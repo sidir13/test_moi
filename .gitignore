@@ -1,8 +1,14 @@
 # devs
 dump
 
+# secrets
+.env
+
+# envs
+.venv
+
 # dependencies
 node_modules
-.env
+
 package-lock.json
 package.json
