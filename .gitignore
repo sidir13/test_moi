@@ -1,5 +1,6 @@
 # devs
 dump
+src/experimental/*
 
 # secrets
 .env
