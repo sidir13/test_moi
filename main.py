@@ -58,7 +58,7 @@ def execute_tool(tool_name: str, tool_input: dict):
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 
-async def main():
+async def main(user_message: str = None):
     # Check available skills
     skills = await check_available_skills()
     
@@ -80,7 +80,8 @@ async def main():
     )
     
     # User query
-    user_message = "Can you process the number 42?"
+    if user_message is None:
+        user_message = "Can you process the number 42?"
     
     print(f"User: {user_message}\n")
     
@@ -146,4 +147,4 @@ async def main():
             break
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
