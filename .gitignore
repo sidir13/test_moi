@@ -1,6 +1,7 @@
 # devs
 dump
 src/experimental/*
+AGENTS.md
 
 # secrets
 .env
