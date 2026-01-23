@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 
-def analyze_audio(audio_path: str, api_key: str):
+def analyse_audio_industriel(audio_path: str, api_key: str):
     load_dotenv()
     client = OpenAI(
         api_key=os.getenv("ANTHROPIC_AUTH_TOKEN"),
