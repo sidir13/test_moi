@@ -48,6 +48,26 @@ TOOLS = [
             },
             "required": ["num"]
         }
+    },
+    {
+        "name": "analyze-industrial-audio",
+        "description": "analyse the audio",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "str",
+                    "description": "path to file"
+                },
+                "context":{
+                    "type": "str",
+                    "description": "contexte general"
+                }
+
+                
+            },
+            "required": ["path"]
+        }
     }
 ]
 
@@ -147,4 +167,5 @@ async def main(user_message: str = None):
             break
 
 if __name__ == "__main__":
-    asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
+    #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
+    asyncio.run(main("can u analayse the audio at the path memoiredesterritoires/data/eng/meule/AV-1-S-OUT-201-1-A.wav"))
