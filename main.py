@@ -11,6 +11,7 @@ load_dotenv()
 # Import your tools
 import sys
 sys.path.append(str(Path(__file__).parent / "src"))
+from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
 from memoiredesterritoires.process_number.process_number import process_number
 
 async def check_available_skills():
@@ -56,11 +57,11 @@ TOOLS = [
             "type": "object",
             "properties": {
                 "path": {
-                    "type": "str",
+                    "type": "string",
                     "description": "path to file"
                 },
                 "context":{
-                    "type": "str",
+                    "type": "string",
                     "description": "contexte general"
                 }
 
@@ -75,6 +76,8 @@ def execute_tool(tool_name: str, tool_input: dict):
     """Execute the requested tool"""
     if tool_name == "process_number":
         return process_number(tool_input["num"])
+    elif tool_name == "analyze-industrial-audio":
+        return analyse_audio_industriel(tool_input["path"], tool_input.get("context", ""))
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 
@@ -168,4 +171,4 @@ async def main(user_message: str = None):
 
 if __name__ == "__main__":
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
-    asyncio.run(main("can u analayse the audio at the path memoiredesterritoires/data/eng/meule/AV-1-S-OUT-201-1-A.wav"))
+    asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav"))
