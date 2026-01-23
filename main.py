@@ -82,15 +82,15 @@ TOOLS = [
                     "description": "path to file"
                 },
                 "max_time":{
-                    "type": "int",
+                    "type": "integer",
                     "description": "max time"
                 },
                 "chunk_size":{
-                    "type": "int",
+                    "type": "integer",
                     "description": "chunk size"
                 }
 
-                
+
             },
             "required": ["path"]
         }
@@ -103,6 +103,12 @@ def execute_tool(tool_name: str, tool_input: dict):
         return process_number(tool_input["num"])
     elif tool_name == "analyze-industrial-audio":
         return analyse_audio_industriel(tool_input["path"], tool_input.get("context", ""))
+    elif tool_name == "transcribe_chunks":
+        return transcribe_chunks(
+            tool_input["path"],
+            tool_input.get("max_time", 180),
+            tool_input.get("chunk_size", 30)
+        )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 
@@ -145,7 +151,7 @@ async def main(user_message: str = None):
     while True:
         response = client.messages.create(
             model="anthropic/claude-sonnet-4-20250514",  # OpenRouter format
-            max_tokens=1024,
+            max_tokens=4096,
             tools=TOOLS,
             messages=messages
         )

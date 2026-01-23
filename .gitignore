@@ -17,6 +17,8 @@ package.json
 
 # Caches
 __pycache__
+__pycache__/*
+*.pyc
 
 *.wav
 *.WAV
