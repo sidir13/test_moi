@@ -20,5 +20,11 @@ __pycache__
 __pycache__/*
 *.pyc
 
+
+
+# audio files
 *.wav
 *.WAV
+
+# models
+qwen-3-tts
