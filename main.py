@@ -13,6 +13,7 @@ import sys
 sys.path.append(str(Path(__file__).parent / "src"))
 from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
 from memoiredesterritoires.process_number.process_number import process_number
+from memoiredesterritoires.transcription.transcription  import transcribe_chunks
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -63,6 +64,30 @@ TOOLS = [
                 "context":{
                     "type": "string",
                     "description": "contexte general"
+                }
+
+                
+            },
+            "required": ["path"]
+        }
+    },
+    {
+        "name": "transcribe_chunks",
+        "description": "transcript the audio",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "path to file"
+                },
+                "max_time":{
+                    "type": "int",
+                    "description": "max time"
+                },
+                "chunk_size":{
+                    "type": "int",
+                    "description": "chunk size"
                 }
 
                 
@@ -171,4 +196,5 @@ async def main(user_message: str = None):
 
 if __name__ == "__main__":
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
-    asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
+    #asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
+    asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
