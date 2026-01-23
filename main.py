@@ -171,4 +171,4 @@ async def main(user_message: str = None):
 
 if __name__ == "__main__":
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
-    asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav"))
+    asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
