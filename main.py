@@ -14,6 +14,7 @@ sys.path.append(str(Path(__file__).parent / "src"))
 from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
 from memoiredesterritoires.process_number.process_number import process_number
 from memoiredesterritoires.transcription.transcription  import transcribe_chunks
+from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -94,6 +95,76 @@ TOOLS = [
             },
             "required": ["path"]
         }
+    },
+    {
+        "name": "save_analysis_result",
+        "description": "Store transcription or background sound analysis outputs into DuckDB",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "analysis_type": {
+                    "type": "string",
+                    "enum": ["transcription", "background_sound"],
+                    "description": "Type of analysis being stored"
+                },
+                "source_path": {
+                    "type": "string",
+                    "description": "Path to the analyzed audio file"
+                },
+                "result": {
+                    "description": "Payload returned by the analysis tool",
+                    "anyOf": [
+                        {"type": "object"},
+                        {"type": "array"},
+                        {"type": "string"},
+                        {"type": "number"},
+                        {"type": "boolean"}
+                    ]
+                },
+                "context_summary": {
+                    "type": "string",
+                    "description": "Optional short human summary to help future search"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Optional labels such as language or interviewee"
+                },
+                "metadata": {
+                    "type": "object",
+                    "description": "Optional structured metadata (speaker, date, location, etc.)"
+                },
+                "is_partial": {
+                    "type": "boolean",
+                    "description": "Mark true when the stored result only covers a small sample"
+                }
+            },
+            "required": ["analysis_type", "source_path", "result"]
+        }
+    },
+    {
+        "name": "list_analysis_results",
+        "description": "Retrieve stored transcription/background sound analyses from DuckDB",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "analysis_type": {
+                    "type": "string",
+                    "enum": ["transcription", "background_sound"],
+                    "description": "Optional filter by analysis type"
+                },
+                "source_path_contains": {
+                    "type": "string",
+                    "description": "Optional substring to search within source_path"
+                },
+                "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "description": "Maximum number of rows to return (default 10)"
+                }
+            }
+        }
     }
 ]
 
@@ -108,6 +179,22 @@ def execute_tool(tool_name: str, tool_input: dict):
             tool_input["path"],
             tool_input.get("max_time", 180),
             tool_input.get("chunk_size", 30)
+        )
+    elif tool_name == "save_analysis_result":
+        return save_analysis_result(
+            analysis_type=tool_input["analysis_type"],
+            source_path=tool_input["source_path"],
+            result=tool_input["result"],
+            context_summary=tool_input.get("context_summary"),
+            tags=tool_input.get("tags"),
+            metadata=tool_input.get("metadata"),
+            is_partial=tool_input.get("is_partial", True)
+        )
+    elif tool_name == "list_analysis_results":
+        return fetch_analysis_results(
+            analysis_type=tool_input.get("analysis_type"),
+            source_path_contains=tool_input.get("source_path_contains"),
+            limit=tool_input.get("limit", 10)
         )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
@@ -203,4 +290,21 @@ async def main(user_message: str = None):
 if __name__ == "__main__":
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
     #asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
-    asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
+    # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
+    # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV and then save the result into the mongodb"))
+
+#     asyncio.run(main("""On a eu ce résultat avec la dernière demande, tu peux me montrer un échantillon de ce qui a été stocké dans les dbResult: {'status': 'stored', 'analysis_type': 'transcription', 'id': 2, 'db_path': 'data/audio_analysis.duckdb', 'table': 'audio_analysis'}
+# Stop reason: end_turn
+
+# Claude: Perfect! I've successfully:
+
+# 1. **Transcribed** the audio file `data/eng/int/Gilles.Hamon-Dessinateur.WAV`
+#    - Duration: 3 minutes (180 seconds)
+#    - Language: French
+#    - Split into 6 chunks of approximately 30 seconds each
+
+# 2. **Saved** the transcription to the database (DuckDB, not MongoDB as mentioned)
+#    - Stored with ID: 2
+#    - Database location: `data/audio_analysis.duckdb`
+#    - Analysis type: transcription
+#    - Included metadata about Gilles Hamon's interview"""))
