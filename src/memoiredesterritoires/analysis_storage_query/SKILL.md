@@ -11,7 +11,7 @@ description: Retrieve stored transcription or background-sound entries from Duck
    - `source_path_contains`: substring to match paths (e.g., `hamon` or `background_sounds`).
    - `limit`: number of rows to return (default 10, keep it small for readability).
 2. Call the `list_analysis_results` tool with the filters.
-3. Summarize the returned rows, including `id`, `analysis_type`, `source_path`, whether it is partial, and notable metadata/tags.
+3. Summarize the returned rows, including `id`, `analysis_type`, `title`, `source_path`, whether it is partial, and notable metadata/tags.
 4. If no results match, clearly state that and suggest refining the filters.
 
 ## Example

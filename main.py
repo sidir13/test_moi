@@ -16,6 +16,9 @@ from memoiredesterritoires.background_sounds_description.background_sounds_descr
 from memoiredesterritoires.process_number.process_number import process_number
 from memoiredesterritoires.transcription.transcription  import transcribe_chunks
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
+from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
+    text_to_speech_with_instructions as synthesize_voice,
+)
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -131,6 +134,10 @@ TOOLS = [
                         {"type": "boolean"}
                     ]
                 },
+                "title": {
+                    "type": "string",
+                    "description": "Optional human-friendly title for the analysis entry"
+                },
                 "context_summary": {
                     "type": "string",
                     "description": "Optional short human summary to help future search"
@@ -175,6 +182,33 @@ TOOLS = [
                 }
             }
         }
+    },
+    {
+        "name": "text_to_speech_with_instructions",
+        "description": "Convert text into expressive speech that follows stylistic instructions",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "Script to read aloud"
+                },
+                "instructions": {
+                    "type": "string",
+                    "description": "Voice/acting guidance (tone, age, tempo, etc.)"
+                },
+                "language": {
+                    "type": "string",
+                    "description": "Language hint for pronunciation",
+                    "default": "French"
+                },
+                "output_path": {
+                    "type": "string",
+                    "description": "Optional path where the WAV file should be stored"
+                }
+            },
+            "required": ["text", "instructions"]
+        }
     }
 ]
 
@@ -187,14 +221,15 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "transcribe_chunks":
         return transcribe_chunks(
             tool_input["path"],
-            tool_input.get("max_time", 180),
-            tool_input.get("chunk_size", 30)
+            tool_input.get("max_time", 600),
+            tool_input.get("chunk_size", 60)
         )
     elif tool_name == "save_analysis_result":
         return save_analysis_result(
             analysis_type=tool_input["analysis_type"],
             source_path=tool_input["source_path"],
             result=tool_input["result"],
+            title=tool_input.get("title"),
             context_summary=tool_input.get("context_summary"),
             tags=tool_input.get("tags"),
             metadata=tool_input.get("metadata"),
@@ -205,6 +240,13 @@ def execute_tool(tool_name: str, tool_input: dict):
             analysis_type=tool_input.get("analysis_type"),
             source_path_contains=tool_input.get("source_path_contains"),
             limit=tool_input.get("limit", 10)
+        )
+    elif tool_name == "text_to_speech_with_instructions":
+        return synthesize_voice(
+            text=tool_input["text"],
+            instructions=tool_input["instructions"],
+            language=tool_input.get("language", "French"),
+            output_path=tool_input.get("output_path"),
         )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
@@ -322,9 +364,10 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
+    asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("yes save it to the database"))
-    asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
+    # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
     #asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
