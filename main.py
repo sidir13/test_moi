@@ -3,7 +3,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from anthropic import Anthropic
-import json
+from claude_agent_sdk import query, ClaudeAgentOptions
+from claude_agent_sdk.types import AssistantMessage, ResultMessage, TextBlock
 
 # Load environment variables
 load_dotenv()
@@ -35,6 +36,15 @@ async def check_available_skills():
                     })
     
     return available_skills
+
+
+def build_skill_context(skills):
+    """Combine SKILL.md contents into a single block for prompting"""
+    skill_context = "\n\n<available_skills>\n"
+    for skill in skills:
+        skill_context += f"\n{skill['content']}\n"
+    skill_context += "</available_skills>"
+    return skill_context
 
 # Define available tools for Claude
 TOOLS = [
@@ -199,34 +209,18 @@ def execute_tool(tool_name: str, tool_input: dict):
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 
-async def main(user_message: str = None):
-    # Check available skills
-    skills = await check_available_skills()
-    
-    print("Available skills:")
-    for skill in skills:
-        print(f"  - {skill['name']}")
-    print()
-    
-    # Build skill context
-    skill_context = "\n\n<available_skills>\n"
-    for skill in skills:
-        skill_context += f"\n{skill['content']}\n"
-    skill_context += "</available_skills>"
-    
-    # Initialize Anthropic client
+async def run_manual_agent(user_message: str | None, skills, skill_context: str):
+    """Original Anthropc-based loop with manual tool dispatch."""
     client = Anthropic(
         base_url=os.getenv("ANTHROPIC_BASE_URL"),
         api_key=os.getenv("ANTHROPIC_AUTH_TOKEN")
     )
     
-    # User query
     if user_message is None:
         user_message = "Can you process the number 42?"
     
     print(f"User: {user_message}\n")
     
-    # Initial messages
     messages = [
         {
             "role": "user",
@@ -234,7 +228,6 @@ async def main(user_message: str = None):
         }
     ]
     
-    # Agentic loop
     while True:
         response = client.messages.create(
             model="anthropic/claude-sonnet-4-20250514",  # OpenRouter format
@@ -245,23 +238,18 @@ async def main(user_message: str = None):
         
         print(f"Stop reason: {response.stop_reason}")
         
-        # Check if we're done
         if response.stop_reason == "end_turn":
-            # Extract text response
             for block in response.content:
                 if block.type == "text":
                     print(f"\nClaude: {block.text}")
             break
         
-        # Handle tool use
         if response.stop_reason == "tool_use":
-            # Add assistant response to messages
             messages.append({
                 "role": "assistant",
                 "content": response.content
             })
             
-            # Execute tools
             tool_results = []
             for block in response.content:
                 if block.type == "tool_use":
@@ -277,36 +265,83 @@ async def main(user_message: str = None):
                         "content": str(result)
                     })
             
-            # Add tool results to messages
             messages.append({
                 "role": "user",
                 "content": tool_results
             })
         else:
-            # Unexpected stop reason
             print(f"Unexpected stop reason: {response.stop_reason}")
             break
 
+
+async def run_sdk_agent(user_message: str | None, skill_context: str):
+    """Send prompt through Claude Agent SDK."""
+    if user_message is None:
+        user_message = "Can you process the number 42?"
+    
+    prompt = user_message + skill_context
+    allowed_tools_env = os.getenv("CLAUDE_SDK_ALLOWED_TOOLS", "").strip()
+    allowed_tools = [tool.strip() for tool in allowed_tools_env.split(",") if tool.strip()]
+    model_override = os.getenv("CLAUDE_SDK_MODEL")
+    
+    options = ClaudeAgentOptions(
+        cwd=str(Path(__file__).parent),
+        allowed_tools=allowed_tools,
+        model=model_override
+    )
+    
+    print("Running with Claude Agent SDK...\n")
+    async for message in query(prompt=prompt, options=options):
+        if isinstance(message, AssistantMessage):
+            for block in message.content:
+                if isinstance(block, TextBlock):
+                    print(block.text)
+        elif isinstance(message, ResultMessage):
+            print("\n--- SDK Session Summary ---")
+            if message.total_cost_usd is not None:
+                print(f"Total cost (USD): {message.total_cost_usd:.4f}")
+            print(f"Duration: {message.duration_ms} ms (API {message.duration_api_ms} ms)")
+            print(f"Turns: {message.num_turns}")
+
+
+async def main(user_message: str = None):
+    skills = await check_available_skills()
+    
+    print("Available skills:")
+    for skill in skills:
+        print(f"  - {skill['name']}")
+    print()
+    
+    skill_context = build_skill_context(skills)
+    use_sdk = os.getenv("USE_CLAUDE_SDK", "false").lower() in {"1", "true", "yes"}
+    
+    if use_sdk:
+        await run_sdk_agent(user_message, skill_context)
+    else:
+        await run_manual_agent(user_message, skills, skill_context)
+
+
 if __name__ == "__main__":
+    # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
+    # asyncio.run(main("yes save it to the database"))
+    asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
     #asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV and then save the result into the mongodb"))
 
-#     asyncio.run(main("""On a eu ce résultat avec la dernière demande, tu peux me montrer un échantillon de ce qui a été stocké dans les dbResult: {'status': 'stored', 'analysis_type': 'transcription', 'id': 2, 'db_path': 'data/audio_analysis.duckdb', 'table': 'audio_analysis'}
-# Stop reason: end_turn
+    #     asyncio.run(main("""On a eu ce résultat avec la dernière demande, tu peux me montrer un échantillon de ce qui a été stocké dans les dbResult: {'status': 'stored', 'analysis_type': 'transcription', 'id': 2, 'db_path': 'data/audio_analysis.duckdb', 'table': 'audio_analysis'}
+    # Stop reason: end_turn
 
-# Claude: Perfect! I've successfully:
+    # Claude: Perfect! I've successfully:
 
-# 1. **Transcribed** the audio file `data/eng/int/Gilles.Hamon-Dessinateur.WAV`
-#    - Duration: 3 minutes (180 seconds)
-#    - Language: French
-#    - Split into 6 chunks of approximately 30 seconds each
+    # 1. **Transcribed** the audio file `data/eng/int/Gilles.Hamon-Dessinateur.WAV`
+    #    - Duration: 3 minutes (180 seconds)
+    #    - Language: French
+    #    - Split into 6 chunks of approximately 30 seconds each
 
-# 2. **Saved** the transcription to the database (DuckDB, not MongoDB as mentioned)
-#    - Stored with ID: 2
-#    - Database location: `data/audio_analysis.duckdb`
-#    - Analysis type: transcription
-#    - Included metadata about Gilles Hamon's interview"""))
-
-    asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/eng/int/Gilles.Hamon-Dessinateur.WAV, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
+    # 2. **Saved** the transcription to the database (DuckDB, not MongoDB as mentioned)
+    #    - Stored with ID: 2
+    #    - Database location: `data/audio_analysis.duckdb`
+    #    - Analysis type: transcription
+    #    - Included metadata about Gilles Hamon's interview"""))
