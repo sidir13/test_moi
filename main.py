@@ -95,9 +95,14 @@ TOOLS = [
                     "type": "string",
                     "description": "path to file"
                 },
+                "start_time": {
+                    "type": "number",
+                    "description": "offset (seconds) from which to start transcribing",
+                    "default": 0
+                },
                 "max_time":{
                     "type": "integer",
-                    "description": "max time"
+                    "description": "Maximum seconds to transcribe in one call (default 1200)"
                 },
                 "chunk_size":{
                     "type": "integer",
@@ -221,7 +226,8 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "transcribe_chunks":
         return transcribe_chunks(
             tool_input["path"],
-            tool_input.get("max_time", 600),
+            tool_input.get("start_time", 0.0),
+            tool_input.get("max_time", 1200),
             tool_input.get("chunk_size", 60)
         )
     elif tool_name == "save_analysis_result":
@@ -364,8 +370,9 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
-    # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
+    # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
+    
+    asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("yes save it to the database"))
     # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
