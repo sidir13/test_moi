@@ -308,3 +308,5 @@ if __name__ == "__main__":
 #    - Database location: `data/audio_analysis.duckdb`
 #    - Analysis type: transcription
 #    - Included metadata about Gilles Hamon's interview"""))
+
+    asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/eng/int/Gilles.Hamon-Dessinateur.WAV, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
