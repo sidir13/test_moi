@@ -20,6 +20,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
     text_to_speech_with_instructions as synthesize_voice,
 )
 from memoiredesterritoires.voice_instructions.edit_voice_instructions import edit_voice_instructions
+from memoiredesterritoires.web_search.restricted_web_search import restricted_web_search
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -233,6 +234,34 @@ TOOLS = [
             },
             "required": ["voice_instructions"]
         }
+    },
+    {
+        "name": "restricted_web_search",
+        "description": "Run OpenRouter web search limited to the project's allowed websites",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Research question or topic to investigate"
+                },
+                "project_name": {
+                    "type": "string",
+                    "description": "Project whose allowed_websites should be used (default 'Mémoire des Territoires')"
+                },
+                "max_results": {
+                    "type": "integer",
+                    "description": "Maximum number of web results to fetch",
+                    "minimum": 1,
+                    "maximum": 10
+                },
+                "model": {
+                    "type": "string",
+                    "description": "OpenRouter model identifier"
+                }
+            },
+            "required": ["query"]
+        }
     }
 ]
 
@@ -277,6 +306,13 @@ def execute_tool(tool_name: str, tool_input: dict):
         return edit_voice_instructions(
             project_name=tool_input.get("project_name"),
             voice_instructions=tool_input["voice_instructions"],
+        )
+    elif tool_name == "restricted_web_search":
+        return restricted_web_search(
+            query=tool_input["query"],
+            project_name=tool_input.get("project_name"),
+            max_results=tool_input.get("max_results", 5),
+            model=tool_input.get("model", "google/gemini-3-pro-preview"),
         )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
@@ -394,7 +430,8 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
+    asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaaux les plus emblématiques qui y étaient amarrés"))
+    # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     
     # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
