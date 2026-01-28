@@ -19,6 +19,7 @@ from memoiredesterritoires.analysis_storage.analysis_storage import save_analysi
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
     text_to_speech_with_instructions as synthesize_voice,
 )
+from memoiredesterritoires.voice_instructions.edit_voice_instructions import edit_voice_instructions
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -214,6 +215,24 @@ TOOLS = [
             },
             "required": ["text", "instructions"]
         }
+    },
+    {
+        "name": "edit_voice_instructions",
+        "description": "Update project-specific voice instructions stored in config.json",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Project identifier (defaults to 'Mémoire des Territoires' if omitted)"
+                },
+                "voice_instructions": {
+                    "type": "string",
+                    "description": "Detailed guidance describing the desired voice style"
+                }
+            },
+            "required": ["voice_instructions"]
+        }
     }
 ]
 
@@ -253,6 +272,11 @@ def execute_tool(tool_name: str, tool_input: dict):
             instructions=tool_input["instructions"],
             language=tool_input.get("language", "French"),
             output_path=tool_input.get("output_path"),
+        )
+    elif tool_name == "edit_voice_instructions":
+        return edit_voice_instructions(
+            project_name=tool_input.get("project_name"),
+            voice_instructions=tool_input["voice_instructions"],
         )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
@@ -370,13 +394,14 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
+    asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     
-    asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
+    # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("yes save it to the database"))
     # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
-    #asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
-    #asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
+    # asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
+    # asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV and then save the result into the mongodb"))
 
