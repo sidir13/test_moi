@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# Outputs (ne pas commit les tests locaux)
+output/local_tests/*
+output/gridsearch/*
+output/gridsearch_config/*
+output/scenarios/*
+output/timelines/*
+output/exports/*
+
+# Garder les dossiers mais pas leur contenu
+!output/local_tests/.gitkeep
+!output/gridsearch/.gitkeep
+!output/gridsearch_config/.gitkeep
+!output/scenarios/.gitkeep
+!output/timelines/.gitkeep
+!output/exports/.gitkeep
+
+# Cache et temporaires
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+
+# OS
+Thumbs.db
+.DS_Store
+*.bak
+*.tmp
+
+# Données sensibles
+config/*_private.json
+*.key
+*.pem
