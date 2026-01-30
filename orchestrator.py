@@ -26,7 +26,8 @@ class ScenarioMakerOrchestrator:
         self,
         config_path: Optional[str] = None,
         api_key: Optional[str] = None,
-        log_level: str = "INFO"
+        log_level: str = "INFO",
+        client: Optional[Any] = None
     ):
         """
         Initialize the orchestrator.
@@ -35,6 +36,7 @@ class ScenarioMakerOrchestrator:
             config_path: Path to configuration file (defaults to config/default_config.json)
             api_key: Anthropic API key (defaults to env variable)
             log_level: Logging level
+            client: Optional custom client (Groq, Ollama, or Claude). If None, creates ClaudeClient.
         """
         # Setup logging
         log_file = os.getenv("LOG_FILE", "./logs/memoire_territoires.log")
@@ -48,13 +50,18 @@ class ScenarioMakerOrchestrator:
         logger.info("Initializing Mémoire des Territoires Orchestrator")
         logger.info("=" * 80)
         
-        # Initialize Claude client
-        try:
-            self.client = ClaudeClient(api_key=api_key)
-            logger.info("Claude client initialized successfully")
-        except Exception as e:
-            logger.error(f"Failed to initialize Claude client: {e}")
-            raise
+        # Initialize client (custom or Claude)
+        if client is not None:
+            self.client = client
+            client_name = client.__class__.__name__
+            logger.info(f"Using custom client: {client_name}")
+        else:
+            try:
+                self.client = ClaudeClient(api_key=api_key)
+                logger.info("Claude client initialized successfully")
+            except Exception as e:
+                logger.error(f"Failed to initialize Claude client: {e}")
+                raise
         
         # Load default configuration
         self.config_path = config_path or "config/default_config.json"
