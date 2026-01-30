@@ -51,21 +51,25 @@ class GroqClient:
         model: Optional[str] = None,
         max_tokens: int = 4096,
         temperature: float = 0.7,
+        max_retries: int = 3,
         **kwargs
     ) -> Dict[str, Any]:
         """
-        Appel API Groq compatible avec l'interface Claude.
+        Appel API Groq avec retry automatique en cas de rate limit.
         
         Args:
             messages: Liste de messages [{"role": "user", "content": "..."}]
             model: Modèle à utiliser (optionnel)
             max_tokens: Nombre max de tokens
             temperature: Température (0-2)
+            max_retries: Nombre de tentatives en cas de rate limit
             **kwargs: Paramètres additionnels
         
         Returns:
             Réponse formatée compatible Claude
         """
+        import time
+        
         used_model = self.AVAILABLE_MODELS.get(model, self.model) if model else self.model
         
         payload = {
@@ -76,36 +80,65 @@ class GroqClient:
             **kwargs
         }
         
-        try:
-            response = requests.post(
-                f"{self.base_url}/chat/completions",
-                headers=self.headers,
-                json=payload,
-                timeout=self.timeout
-            )
-            response.raise_for_status()
-            
-            groq_response = response.json()
-            
-            # Formater la réponse comme Claude
-            return {
-                "content": [
-                    {
-                        "type": "text",
-                        "text": groq_response["choices"][0]["message"]["content"]
-                    }
-                ],
-                "model": groq_response["model"],
-                "usage": {
-                    "input_tokens": groq_response["usage"]["prompt_tokens"],
-                    "output_tokens": groq_response["usage"]["completion_tokens"]
-                }
-            }
+        last_error = None
         
-        except requests.exceptions.Timeout:
-            raise TimeoutError(f"Groq API timeout après {self.timeout}s")
-        except requests.exceptions.RequestException as e:
-            raise Exception(f"Erreur Groq API: {str(e)}")
+        for attempt in range(max_retries):
+            try:
+                response = requests.post(
+                    f"{self.base_url}/chat/completions",
+                    headers=self.headers,
+                    json=payload,
+                    timeout=self.timeout
+                )
+                response.raise_for_status()
+                
+                groq_response = response.json()
+                
+                # Formater la réponse comme Claude
+                return {
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": groq_response["choices"][0]["message"]["content"]
+                        }
+                    ],
+                    "model": groq_response["model"],
+                    "usage": {
+                        "input_tokens": groq_response["usage"]["prompt_tokens"],
+                        "output_tokens": groq_response["usage"]["completion_tokens"]
+                    }
+                }
+            
+            except requests.exceptions.HTTPError as e:
+                if e.response.status_code == 429:  # Rate limit
+                    last_error = e
+                    if attempt < max_retries - 1:
+                        # Backoff exponentiel : 2s, 4s, 8s, etc.
+                        wait_time = 2 ** (attempt + 1)
+                        print(f"⚠️  Rate limit atteint. Nouvelle tentative dans {wait_time}s (tentative {attempt + 1}/{max_retries})")
+                        time.sleep(wait_time)
+                        continue
+                    else:
+                        raise Exception(f"Rate limit Groq dépassé après {max_retries} tentatives. Attendez quelques minutes ou utilisez Ollama.")
+                else:
+                    raise Exception(f"Erreur HTTP Groq {e.response.status_code}: {str(e)}")
+            
+            except requests.exceptions.Timeout:
+                raise TimeoutError(f"Groq API timeout après {self.timeout}s")
+            
+            except requests.exceptions.RequestException as e:
+                last_error = e
+                if attempt < max_retries - 1:
+                    wait_time = 2 ** (attempt + 1)
+                    print(f"⚠️  Erreur réseau. Nouvelle tentative dans {wait_time}s (tentative {attempt + 1}/{max_retries})")
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    raise Exception(f"Erreur Groq API après {max_retries} tentatives: {str(e)}")
+        
+        # Ne devrait pas arriver ici
+        if last_error:
+            raise last_error
 
 
 class GroqClientWrapper:
