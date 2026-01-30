@@ -86,12 +86,15 @@ def create_test_config(
     Returns:
         Configuration modifiée
     """
-    config = base_config.copy()
+    config = json.loads(json.dumps(base_config))  # Deep copy
     
     # Modifier les paramètres de génération
     config["scenario_config"]["generation_parameters"]["ton"]["value"] = ton
     config["scenario_config"]["generation_parameters"]["forme"]["value"] = forme
     config["scenario_config"]["generation_parameters"]["public_cible"]["value"] = public
+    
+    # Forcer 1 seul scénario pour le gridsearch
+    config["scenario_config"]["generation_parameters"]["nombre_scenarios"]["value"] = 1
     
     # Ajouter les nouveaux paramètres s'ils n'existent pas
     if "densite_narrative" not in config["scenario_config"]["generation_parameters"]:
@@ -217,14 +220,25 @@ def run_gridsearch(
                     # Créer l'orchestrateur avec le client Groq
                     orchestrator = ScenarioMakerOrchestrator(
                         client=groq_client,
-                        config_path="config/default_config.json"
+                        config_path="config/default_config.json",
+                        log_level="WARNING"  # Moins de logs pour le gridsearch
                     )
                     
-                    # Générer le scénario
-                    result = orchestrator.generate_scenario_simple(
-                        user_prompt=prompt,
-                        override_config=test_config["scenario_config"]
+                    # Générer le scénario avec la méthode create_scenarios
+                    result = orchestrator.create_scenarios(
+                        user_input=prompt,
+                        mode="simple",
+                        output_dir=None  # Pas de sauvegarde auto
                     )
+                    
+                    # Vérifier le résultat
+                    if result["status"] != "success" or not result.get("scenarios"):
+                        raise Exception(f"Génération échouée: {result.get('error', 'Aucun scénario généré')}")
+                    
+                    # Extraire le premier (et unique) scénario
+                    scenario_data = result["scenarios"][0]
+                    if "error" in scenario_data:
+                        raise Exception(scenario_data["error"])
                     
                     # Sauvegarder les outputs
                     test_dir = output_dir / f"test_{test_num:03d}_{model.replace('.', '_')}_{ton}_{forme}"
@@ -232,19 +246,19 @@ def run_gridsearch(
                     
                     # Sauvegarder config
                     with open(test_dir / "config.json", "w", encoding="utf-8") as f:
-                        json.dump(test_config, f, indent=2, ensure_ascii=False)
+                        json.dump(result["config"], f, indent=2, ensure_ascii=False)
                     
                     # Sauvegarder structure
                     with open(test_dir / "structure.json", "w", encoding="utf-8") as f:
-                        json.dump(result["structure"], f, indent=2, ensure_ascii=False)
+                        json.dump(scenario_data["structure"], f, indent=2, ensure_ascii=False)
                     
                     # Sauvegarder scénario
                     with open(test_dir / "scenario.json", "w", encoding="utf-8") as f:
-                        json.dump(result["scenario"], f, indent=2, ensure_ascii=False)
+                        json.dump(scenario_data["scenario"], f, indent=2, ensure_ascii=False)
                     
                     # Sauvegarder timeline
                     with open(test_dir / "timeline.json", "w", encoding="utf-8") as f:
-                        json.dump(result["timeline"], f, indent=2, ensure_ascii=False)
+                        json.dump(scenario_data["timeline"], f, indent=2, ensure_ascii=False)
                     
                     # Enregistrer les résultats
                     test_result = {
@@ -259,14 +273,15 @@ def run_gridsearch(
                         },
                         "status": "success",
                         "output_dir": str(test_dir),
+                        "generation_time": result.get("generation_time", 0),
                         "metadata": {
-                            "duree_estimee": result["timeline"].get("duree_totale", 0),
-                            "nombre_parties": len(result["structure"].get("structure", [])),
-                            "nombre_mots": result["scenario"].get("metadata", {}).get("nombre_mots", 0)
+                            "duree_estimee": scenario_data["timeline"].get("duree_totale", 0),
+                            "nombre_parties": len(scenario_data["structure"].get("structure", [])),
+                            "nombre_mots": scenario_data["scenario"].get("metadata", {}).get("nombre_mots", 0)
                         }
                     }
                     
-                    console.print(f"✅ Test {test_num}/{total_tests} réussi: {model} - {ton}/{forme}")
+                    console.print(f"✅ Test {test_num}/{total_tests} réussi: {model} - {ton}/{forme} ({result.get('generation_time', 0):.1f}s)")
                 
                 except Exception as e:
                     console.print(f"❌ Test {test_num}/{total_tests} échoué: {str(e)}")

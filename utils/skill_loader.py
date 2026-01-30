@@ -223,6 +223,10 @@ class SkillLoader:
             if not skill_dir.is_dir():
                 continue
             
+            # Ignorer les dossiers __pycache__ et autres dossiers système
+            if skill_dir.name.startswith('__') or skill_dir.name.startswith('.'):
+                continue
+            
             skill_md = skill_dir / 'skill.md'
             if not skill_md.exists():
                 logger.warning(f"No skill.md found in {skill_dir}, skipping")
