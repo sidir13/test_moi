@@ -1,0 +1,241 @@
+{
+  "run_id": "run_20260130_095134",
+  "timestamp": "2026-01-30T09:51:34.062083",
+  "prompt": "Créez un récit sonore sur la vie des ouvriers au début du 20ème siècle",
+  "mode": "standard",
+  "models": [
+    "llama-3.1-8b",
+    "llama-3.1-70b"
+  ],
+  "total_tests": 12,
+  "tests": [
+    {
+      "test_id": 1,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "neutre_informatif",
+        "forme": "documentaire",
+        "public_cible": "grand_public",
+        "densite_narrative": "sparse",
+        "style_linguistique": "moderne_accessible"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_001_llama-3_1-8b_neutre_informatif_documentaire",
+      "generation_time": 0.065908,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 2,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "neutre_informatif",
+        "forme": "reportage",
+        "public_cible": "scolaire_secondaire",
+        "densite_narrative": "equilibree",
+        "style_linguistique": "moderne_accessible"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_002_llama-3_1-8b_neutre_informatif_reportage",
+      "generation_time": 0.058737,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 3,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "emotionnel_empathique",
+        "forme": "temoignage_direct",
+        "public_cible": "grand_public",
+        "densite_narrative": "equilibree",
+        "style_linguistique": "authentique_epoque"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_003_llama-3_1-8b_emotionnel_empathique_temoignage_direct",
+      "generation_time": 0.060821,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 4,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "emotionnel_empathique",
+        "forme": "recit_narratif",
+        "public_cible": "grand_public",
+        "densite_narrative": "dense",
+        "style_linguistique": "litteraire_soigne"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_004_llama-3_1-8b_emotionnel_empathique_recit_narratif",
+      "generation_time": 0.067627,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 5,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "dramatique_immersif",
+        "forme": "documentaire",
+        "public_cible": "grand_public",
+        "densite_narrative": "dense",
+        "style_linguistique": "authentique_epoque"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_005_llama-3_1-8b_dramatique_immersif_documentaire",
+      "generation_time": 0.063075,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 6,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "contemplatif_poetique",
+        "forme": "recit_narratif",
+        "public_cible": "expert_historien",
+        "densite_narrative": "sparse",
+        "style_linguistique": "litteraire_soigne"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_006_llama-3_1-8b_contemplatif_poetique_recit_narratif",
+      "generation_time": 0.070725,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 7,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "neutre_informatif",
+        "forme": "documentaire",
+        "public_cible": "grand_public",
+        "densite_narrative": "sparse",
+        "style_linguistique": "moderne_accessible"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_007_llama-3_1-70b_neutre_informatif_documentaire",
+      "generation_time": 0.067129,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 8,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "neutre_informatif",
+        "forme": "reportage",
+        "public_cible": "scolaire_secondaire",
+        "densite_narrative": "equilibree",
+        "style_linguistique": "moderne_accessible"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_008_llama-3_1-70b_neutre_informatif_reportage",
+      "generation_time": 0.068011,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 9,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "emotionnel_empathique",
+        "forme": "temoignage_direct",
+        "public_cible": "grand_public",
+        "densite_narrative": "equilibree",
+        "style_linguistique": "authentique_epoque"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_009_llama-3_1-70b_emotionnel_empathique_temoignage_direct",
+      "generation_time": 0.138026,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 10,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "emotionnel_empathique",
+        "forme": "recit_narratif",
+        "public_cible": "grand_public",
+        "densite_narrative": "dense",
+        "style_linguistique": "litteraire_soigne"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_010_llama-3_1-70b_emotionnel_empathique_recit_narratif",
+      "generation_time": 0.067906,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 11,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "dramatique_immersif",
+        "forme": "documentaire",
+        "public_cible": "grand_public",
+        "densite_narrative": "dense",
+        "style_linguistique": "authentique_epoque"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_011_llama-3_1-70b_dramatique_immersif_documentaire",
+      "generation_time": 0.06668,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 12,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "contemplatif_poetique",
+        "forme": "recit_narratif",
+        "public_cible": "expert_historien",
+        "densite_narrative": "sparse",
+        "style_linguistique": "litteraire_soigne"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_095134\\test_012_llama-3_1-70b_contemplatif_poetique_recit_narratif",
+      "generation_time": 0.064463,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    }
+  ]
+}

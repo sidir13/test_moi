@@ -172,12 +172,17 @@ class GroqClientWrapper:
         Returns:
             Response object compatible avec Claude
         """
-        # Si un system prompt est fourni, l'ajouter comme premier message
+        # Créer une copie pour éviter de modifier la liste originale
+        messages_copy = list(messages)
+        
+        # Si un system prompt est fourni, vérifier qu'il n'existe pas déjà
         if system:
-            messages = [{"role": "system", "content": system}] + messages
+            has_system = any(msg.get("role") == "system" for msg in messages_copy)
+            if not has_system:
+                messages_copy = [{"role": "system", "content": system}] + messages_copy
         
         response_data = self.client.create(
-            messages=messages,
+            messages=messages_copy,
             model=model,
             max_tokens=max_tokens,
             temperature=temperature,

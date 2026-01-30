@@ -1,0 +1,104 @@
+{
+  "scenario_id": 1,
+  "titre": "La vie d'un travailleur au début du 20e siècle",
+  "axe_narratif": "travailleur",
+  "duree_estimee": 120.0,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La vie rurale avant la révolution industrielle",
+      "duree": 40.0,
+      "texte_narration": "Avant la révolution industrielle, la vie rurale était façonnée par les saisons et les rythmes de la nature. Dans ce village typique du début du 20e siècle, les travailleurs agricoles passaient leur journée à labourer les champs, à planter, à récolter ou à entretenir les animaux. Chaque jour était une lutte contre les éléments, contre les intempéries, contre les maladies et les insectes. Mais c'est aussi une époque de richesse, de convivialité et de traditions fortes. Les gens se réunissaient pour les fêtes et les cérémonies, pour échanger des histoires et des conseils... (0:15) pause_dramatique (durée : 2.0s) Le son des cloches d'église éveillait les villageois pour la messe matinale. Les enfants allaient à l'école, les mères préparaient les repas, les pères allaient travailler aux champs. C'était une vie simple, mais intense, où chaque moment comptait.",
+      "ton": {
+        "global": "descriptif_neutre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:15",
+          "0:30"
+        ],
+        "intonation": "description"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'arrivée de l'industrie et les défis pour les travailleurs",
+      "duree": 40.0,
+      "texte_narration": "Dans les années 1900, les usines se multiplient dans le territoire d'étude. Les machines à vapeur rugissent, les métiers à tisser crépitent, et les travailleurs immigrés affluent pour trouver un emploi. Mais les conditions de travail sont difficiles. Les salles de travail sont chaudes et humides, la poussière est omniprésente, et les risques de blessure sont élevés. Les travailleurs sont souvent exposés à des produits chimiques dangereux et doivent travailler des heures supplémentaires pour gagner un salaire décent. (pause_dramatique, 0:15) Les familles vivent souvent dans des logements insalubres, loin des usines. Les enfants sont souvent employés pour aider les parents et contribuer à la mise en nourriture de la famille.",
+      "ton": {
+        "global": "dramatique",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:15"
+        ],
+        "intonation": "description"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "La résilience des travailleurs face aux défis",
+      "duree": 40.0,
+      "texte_narration": "Au sein des usines et des chantiers, les travailleurs se sont organisés en syndicats pour lutter pour leurs droits. Les grèves et les manifestations ont été fréquentes. Mais les travailleurs n'ont jamais baissé les bras. Ils ont continué à lutter pour un salaire décent, des conditions de travail sûres et une réduction de la longue durée du travail. La solidarité entre les travailleurs a été une des clés de leur résilience. Ils se sont aidés les uns les autres, partageant leurs ressources et leur expertise pour renforcer leur lutte. Les syndicats ont organisé des cours de formation pour les travailleurs, leur apprenant à lire et à écrire, ainsi qu'à négocier avec les employeurs.",
+      "ton": {
+        "global": "énergique",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:2",
+          "0:15",
+          "0:30"
+        ],
+        "intonation": "description"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:2",
+          "action": "son_archive",
+          "duree": 5.0,
+          "consigne": "Sonnerie de tambour à fond de scène pour marquer l'unité et la détermination des travailleurs."
+        },
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner l'immensité de la lutte des travailleurs."
+        },
+        {
+          "timestamp": "0:30",
+          "action": "son_effet",
+          "duree": 3.0,
+          "consigne": "Sonnerie de cloches pour marquer la victoire des travailleurs et la naissance de leur solidarité."
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 368,
+    "duree_lecture_estimee": 120.0,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 1.0,
+      "sources_citees": [],
+      "verifications": [
+        "Anachronismes : 0"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "Agent 2, veuillez noter que la partie 2 doit être marquée par un ton dramatique pour refléter les défis auxquels sont confrontés les travailleurs. La partie 3 doit être énergique pour refléter la résilience des travailleurs. Assurez-vous de respecter la structure chronologique et d'intégrer les éléments narratifs nécessaires à chaque partie."
+}

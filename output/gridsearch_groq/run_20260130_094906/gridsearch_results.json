@@ -1,0 +1,89 @@
+{
+  "run_id": "run_20260130_094906",
+  "timestamp": "2026-01-30T09:49:06.529667",
+  "prompt": "Créez un récit sonore sur la vie des ouvriers au début du 20ème siècle",
+  "mode": "quick",
+  "models": [
+    "llama-3.1-8b",
+    "llama-3.1-70b"
+  ],
+  "total_tests": 4,
+  "tests": [
+    {
+      "test_id": 1,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "neutre_informatif",
+        "forme": "documentaire",
+        "public_cible": "grand_public",
+        "densite_narrative": "equilibree",
+        "style_linguistique": "moderne_accessible"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_094906\\test_001_llama-3_1-8b_neutre_informatif_documentaire",
+      "generation_time": 0.186998,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 2,
+      "model": "llama-3.1-8b",
+      "parameters": {
+        "ton": "dramatique_immersif",
+        "forme": "recit_narratif",
+        "public_cible": "grand_public",
+        "densite_narrative": "dense",
+        "style_linguistique": "litteraire_soigne"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_094906\\test_002_llama-3_1-8b_dramatique_immersif_recit_narratif",
+      "generation_time": 0.0876,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 3,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "neutre_informatif",
+        "forme": "documentaire",
+        "public_cible": "grand_public",
+        "densite_narrative": "equilibree",
+        "style_linguistique": "moderne_accessible"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_094906\\test_003_llama-3_1-70b_neutre_informatif_documentaire",
+      "generation_time": 0.08654,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    },
+    {
+      "test_id": 4,
+      "model": "llama-3.1-70b",
+      "parameters": {
+        "ton": "dramatique_immersif",
+        "forme": "recit_narratif",
+        "public_cible": "grand_public",
+        "densite_narrative": "dense",
+        "style_linguistique": "litteraire_soigne"
+      },
+      "status": "success",
+      "output_dir": "output\\gridsearch_groq\\run_20260130_094906\\test_004_llama-3_1-70b_dramatique_immersif_recit_narratif",
+      "generation_time": 0.078795,
+      "metadata": {
+        "duree_estimee": 120.0,
+        "nombre_parties": 3,
+        "nombre_mots": 21
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La vie d'un ouvrier en 1900",
+  "axe_narratif": "travailleur",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La vie quotidienne dans les usines",
+      "duree_cible": 40.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "La description des usines de l'époque",
+        "Les conditions de travail difficiles",
+        "L'impact sur la santé des ouvriers"
+      ],
+      "mood": "descriptif_neutre"
+    },
+    {
+      "partie": 2,
+      "titre": "Les luttes des ouvriers pour leurs droits",
+      "duree_cible": 40.0,
+      "fonction_narrative": "développement",
+      "position_arc_emotionnel": "tension",
+      "elements_necessaires": [
+        "Les grèves et les manifestations",
+        "Les luttes pour la journée de 8 heures",
+        "L'impact sur la société de l'époque"
+      ],
+      "mood": "énergique"
+    },
+    {
+      "partie": 3,
+      "titre": "Les victoires et les défaites des ouvriers",
+      "duree_cible": 40.0,
+      "fonction_narrative": "climax",
+      "position_arc_emotionnel": "climax",
+      "elements_necessaires": [
+        "Les réalisations des ouvriers",
+        "Les défis qui restent à relever",
+        "L'avenir de la classe ouvrière"
+      ],
+      "mood": "intense"
+    }
+  ],
+  "arc_emotionnel_global": {
+    "type": "tension_resolution",
+    "points_cles": [
+      {
+        "position": 0.0,
+        "etat": "setup",
+        "intensite": 0.3
+      },
+      {
+        "position": 0.2,
+        "etat": "tension",
+        "intensite": 0.7
+      },
+      {
+        "position": 0.6,
+        "etat": "climax",
+        "intensite": 0.9
+      },
+      {
+        "position": 1.0,
+        "etat": "resolution",
+        "intensite": 0.3
+      }
+    ]
+  },
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "La transition se fait par une description de la vie quotidienne des ouvriers, qui se transforme en une lutte pour leurs droits."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "pointe_de_tension",
+      "duree": 1.5,
+      "description": "La transition se fait par un rappel des luttes des ouvriers, qui mène à la victoire et à la défense de leurs droits."
+    }
+  ],
+  "notes_production": "Agent 2, assurez-vous de varier le rythme et l'intensité de la voix pour suivre l'arc émotionnel. Utilisez des sons et des effets pour enrichir l'expérience audio."
+}

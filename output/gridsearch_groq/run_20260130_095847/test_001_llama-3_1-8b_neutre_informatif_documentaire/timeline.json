@@ -1,0 +1,116 @@
+{
+  "timeline_id": "scenario_1_timeline_v1",
+  "scenario_id": 1,
+  "duree_totale": 120.0,
+  "tracks": {
+    "narration_track": [
+      {
+        "id": "narr_01",
+        "start_time": 0.0,
+        "end_time": 40.0,
+        "duration": 40.0,
+        "text_file": "scenario_part_1_narration.txt",
+        "estimated_words": 131,
+        "tempo_lecture": 110,
+        "tone": "descriptif_neutre",
+        "voice_profile": {
+          "gender": "male",
+          "age_range": "45-55",
+          "accent": "regional",
+          "timbre": "medium",
+          "delivery": "moderate"
+        },
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "0:05",
+          "0:15",
+          "0:30"
+        ]
+      },
+      {
+        "id": "narr_02",
+        "start_time": 40.0,
+        "end_time": 80.0,
+        "duration": 40.0,
+        "text_file": "scenario_part_2_narration.txt",
+        "estimated_words": 10,
+        "tempo_lecture": 110,
+        "tone": "tensionneuse",
+        "voice_profile": {
+          "gender": "male",
+          "age_range": "45-55",
+          "accent": "regional",
+          "timbre": "medium",
+          "delivery": "moderate"
+        },
+        "volume": 0.8,
+        "effects": [],
+        "pauses": []
+      },
+      {
+        "id": "narr_03",
+        "start_time": 80.0,
+        "end_time": 120.0,
+        "duration": 40.0,
+        "text_file": "scenario_part_3_narration.txt",
+        "estimated_words": 9,
+        "tempo_lecture": 110,
+        "tone": "optimiste",
+        "voice_profile": {
+          "gender": "male",
+          "age_range": "45-55",
+          "accent": "regional",
+          "timbre": "medium",
+          "delivery": "moderate"
+        },
+        "volume": 0.8,
+        "effects": [],
+        "pauses": []
+      }
+    ],
+    "archives_track": [],
+    "ambiances_track": [],
+    "sfx_track": [],
+    "music_track": []
+  },
+  "transitions": [],
+  "master_parameters": {
+    "target_loudness": -16,
+    "dynamic_range": "moderate",
+    "final_compression": {
+      "threshold": -18.0,
+      "ratio": 3.0,
+      "attack": 10,
+      "release": 100
+    },
+    "final_limiter": {
+      "threshold": -1.0,
+      "ceiling": -0.3
+    }
+  },
+  "metadata": {
+    "total_files_used": 3,
+    "total_tracks": 5,
+    "total_regions": 3,
+    "generation_timestamp": "2026-01-30T09:58:54.585399",
+    "estimated_production_time": "2-3 heures",
+    "required_software": [
+      "Reaper",
+      "ou équivalent"
+    ],
+    "export_formats": [
+      "RPP",
+      "EDL",
+      "JSON"
+    ]
+  },
+  "quality_checks": {
+    "timeline_coherence": "✓ OK",
+    "no_overlapping_conflicts": "✓ OK",
+    "duration_matches_scenario": "✓ OK (120.0s)",
+    "all_required_sounds_found": "✓ OK",
+    "volume_levels_balanced": "✓ OK",
+    "transitions_smooth": "✓ OK"
+  }
+}

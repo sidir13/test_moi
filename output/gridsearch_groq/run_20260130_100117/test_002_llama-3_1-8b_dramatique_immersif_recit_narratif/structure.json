@@ -1,0 +1,70 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La vie d'un travailleur au début du 20e siècle",
+  "axe_narratif": "travailleur",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La vie rurale avant la révolution industrielle",
+      "duree_cible": 40.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "village rurale",
+        "travailleur agricole",
+        "modes de vie traditionnels"
+      ],
+      "mood": "descriptif_neutre"
+    },
+    {
+      "partie": 2,
+      "titre": "L'arrivée de l'industrie et les défis pour les travailleurs",
+      "duree_cible": 40.0,
+      "fonction_narrative": "développement",
+      "position_arc_emotionnel": "tension",
+      "elements_necessaires": [
+        "usines, machines à vapeur",
+        "travailleurs immigrés",
+        "conditions de travail difficiles"
+      ],
+      "mood": "dramatique"
+    },
+    {
+      "partie": 3,
+      "titre": "La résilience des travailleurs face aux défis",
+      "duree_cible": 40.0,
+      "fonction_narrative": "résolution",
+      "position_arc_emotionnel": "climatique",
+      "elements_necessaires": [
+        "syndicats ouvriers",
+        "luttes pour les droits du travail",
+        "solidarité entre travailleurs"
+      ],
+      "mood": "énergique"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "choc_culturel",
+      "duree": 2.0,
+      "description": "La transition entre la vie rurale et l'arrivée de l'industrie est marquée par un choc culturel, les travailleurs doivent s'adapter à de nouvelles conditions de travail et à de nouveaux modes de vie."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "La transition entre les défis pour les travailleurs et leur résilience est naturelle, les travailleurs se sont adaptés aux nouvelles conditions de travail et se sont organisés pour lutter pour leurs droits."
+    }
+  ],
+  "notes_production": "Agent 2, veuillez noter que la partie 2 doit être marquée par un ton dramatique pour refléter les défis auxquels sont confrontés les travailleurs. La partie 3 doit être énergique pour refléter la résilience des travailleurs. Assurez-vous de respecter la structure chronologique et d'intégrer les éléments narratifs nécessaires à chaque partie."
+}

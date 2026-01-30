@@ -1,0 +1,73 @@
+{
+  "scenario_id": 1,
+  "titre": "Le travailleur dans l'usine",
+  "axe_narratif": "travailleur",
+  "duree_estimee": 120.0,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Une journée de travail",
+      "duree": 40.0,
+      "texte_narration": "C'est 8 heures du matin au sein de l'usine métallurgique. Les employés se dirigent vers leur poste de travail, épuisés après une nuit de sommeil ininterrompue. Le bruit des machines à vapeur se fait entendre dans la distance. Nous sommes dans une usine du Territoire d'étude, à la fin du XIXe siècle. Les employés sont chargés de l'assemblage des pièces métalliques. Le bruit des clous qui tombent sur le sol se fait entendre. (pause de 2 secondes) Les employés travaillent en équipe, mais chacun est responsable de sa propre tâche. Le patron les supervise de loin. (pause d'une seconde) Le travail est rude et les conditions de travail sont difficiles. Les employés sont souvent exposés à des substances toxiques et à des niveaux élevés de bruit.",
+      "ton": {
+        "global": "descriptif_neutre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:05",
+          "0:15",
+          "0:30"
+        ],
+        "intonation": "description"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La fatigue et la révolte",
+      "duree": 40.0,
+      "texte_narration": "[Partie 2 : La fatigue et la révolte. Texte à générer.]",
+      "ton": {
+        "global": "tensionneuse",
+        "tempo_lecture": 110,
+        "pauses": [],
+        "intonation": "neutre"
+      },
+      "moments_cles": []
+    },
+    {
+      "partie_id": 3,
+      "titre": "Vers un avenir meilleur",
+      "duree": 40.0,
+      "texte_narration": "[Partie 3 : Vers un avenir meilleur. Texte à générer.]",
+      "ton": {
+        "global": "optimiste",
+        "tempo_lecture": 110,
+        "pauses": [],
+        "intonation": "neutre"
+      },
+      "moments_cles": []
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 150,
+    "duree_lecture_estimee": 120.0,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 1.0,
+      "sources_citees": [],
+      "verifications": [
+        "Anachronismes : 0"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "Agent 2, veuillez créer une ambiance calme et descriptive pour la première partie, puis augmentez la tension pour la deuxième partie. La troisième partie doit être optimiste et rafraîchissante. N'oubliez pas de respecter les transitions clés et l'arc émotionnel global."
+}

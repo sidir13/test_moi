@@ -1,0 +1,101 @@
+{
+  "scenario_id": 1,
+  "titre": "La vie d'un ouvrier en 1900",
+  "axe_narratif": "travailleur",
+  "duree_estimee": 120.0,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La vie quotidienne dans les usines",
+      "duree": 40.0,
+      "texte_narration": "Imaginez-vous dans une usine de l'époque, les murs en métal, les machines à vapeur qui rugissent, les ouvriers qui travaillent jour et nuit pour satisfaire la demande. Les conditions de travail sont difficiles, les heures sont longues et les salaires sont bas. Les ouvriers sont entassés dans des ateliers encombrés, exposés à la poussière, au bruit et aux substances chimiques. Les risques pour leur santé sont nombreux... (0:15 s'arrêter pour laisser résonner la description)",
+      "ton": {
+        "global": "descriptif_neutre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:15",
+          "0:30"
+        ],
+        "intonation": "description"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        },
+        {
+          "timestamp": "0:30",
+          "action": "sourdine_son",
+          "duree": 0.5,
+          "consigne": "Sourdine le son de la machine à vapeur pour accentuer l'atmosphère"
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Les luttes des ouvriers pour leurs droits",
+      "duree": 40.0,
+      "texte_narration": "La lutte des ouvriers pour leurs droits était un phénomène qui touchait tout le territoire d'étude. Les grèves et les manifestations étaient fréquentes, avec des travailleurs qui se rassemblaient pour réclamer de meilleures conditions de travail et des salaires plus élevés. L'une des revendications les plus importantes était la journée de 8 heures, qui était considérée comme un droit fondamental. Mais les patrons résistaient farouchement à cette demande, et les conflits entre les deux parties étaient fréquents.",
+      "ton": {
+        "global": "énergique",
+        "tempo_lecture": 110,
+        "pauses": [
+          "1:00",
+          "2:15",
+          "3:30"
+        ],
+        "intonation": "monotone avec des accents de colère"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        },
+        {
+          "timestamp": "2:00",
+          "action": "son des foules",
+          "duree": 5.0,
+          "consigne": "Créer une atmosphère de foule"
+        },
+        {
+          "timestamp": "3:30",
+          "action": "son de grève",
+          "duree": 3.0,
+          "consigne": "Créer une atmosphère de grève"
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les victoires et les défaites des ouvriers",
+      "duree": 40.0,
+      "texte_narration": "[Partie 3 : Les victoires et les défaites des ouvriers. Texte à générer.]",
+      "ton": {
+        "global": "intense",
+        "tempo_lecture": 110,
+        "pauses": [],
+        "intonation": "neutre"
+      },
+      "moments_cles": []
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 169,
+    "duree_lecture_estimee": 120.0,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 1.0,
+      "sources_citees": [],
+      "verifications": [
+        "Anachronismes : 0"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "Agent 2, assurez-vous de varier le rythme et l'intensité de la voix pour suivre l'arc émotionnel. Utilisez des sons et des effets pour enrichir l'expérience audio."
+}
