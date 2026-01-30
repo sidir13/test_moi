@@ -1,26 +1,30 @@
 """
-Main local pour tester l'architecture avec Ollama (Qwen3 ou autre modèle local).
+Main local pour tester l'architecture avec Ollama ou Groq.
 
 Usage:
     # Mode interactif (demande votre prompt au lancement)
     python main_local.py
+    python main_local.py --provider groq
     
     # Avec prompt en argument
     python main_local.py "Votre demande ici"
+    python main_local.py --provider groq "Votre demande ici"
+    python main_local.py --provider groq --model llama-3.1-70b "Votre demande"
     
     # Exemple complet
     python main_local.py "Un documentaire de 5 minutes sur la grève des mineurs de 1948"
 
 Configuration:
-    - Modèle : qwen3:8b (par défaut)
-    - URL Ollama : http://localhost:11434
-    - Changez dans OLLAMA_CONFIG ci-dessous si nécessaire
+    - Provider par défaut : ollama
+    - Ollama : qwen3:8b (par défaut)
+    - Groq : llama-3.1-8b (par défaut)
 """
 
 import os
 import sys
 import json
 import logging
+import argparse
 from pathlib import Path
 from datetime import datetime
 
@@ -29,6 +33,12 @@ OLLAMA_CONFIG = {
     'model': 'qwen3:8b',  # ou 'llama3:latest', 'mistral:latest', etc.
     'base_url': 'http://localhost:11434',
     'timeout': 600  # Timeout en secondes pour les requêtes (10 minutes)
+}
+
+# Configuration Groq
+GROQ_CONFIG = {
+    'model': 'llama-3.1-8b',  # ou 'llama-3.1-70b', 'mixtral-8x7b', etc.
+    'timeout': 300  # Timeout en secondes (5 minutes)
 }
 
 # Setup logging
@@ -322,33 +332,91 @@ def save_local_outputs(config, structure, scenario, timeline):
 
 
 def main():
-    """Main function pour tests locaux."""
+    """Main function pour tests locaux avec Ollama ou Groq."""
+    # Parser les arguments
+    parser = argparse.ArgumentParser(
+        description="Test local de l'architecture avec Ollama ou Groq"
+    )
+    parser.add_argument(
+        "prompt",
+        nargs="?",
+        default=None,
+        help="Prompt pour générer le scénario (optionnel, mode interactif sinon)"
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["ollama", "groq"],
+        default="ollama",
+        help="Provider à utiliser (ollama ou groq)"
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default=None,
+        help="Modèle spécifique à utiliser"
+    )
+    
+    args = parser.parse_args()
+    
+    # Configuration selon le provider
+    if args.provider == "groq":
+        provider_name = "Groq"
+        model = args.model or GROQ_CONFIG['model']
+        timeout = GROQ_CONFIG['timeout']
+    else:
+        provider_name = "Ollama"
+        model = args.model or OLLAMA_CONFIG['model']
+        timeout = OLLAMA_CONFIG['timeout']
+    
     print("\n" + "=" * 80)
-    print("🎙️  MÉMOIRE DES TERRITOIRES - Tests Locaux avec Ollama")
+    print(f"🎙️  MÉMOIRE DES TERRITOIRES - Tests Locaux avec {provider_name}")
     print("=" * 80)
-    print(f"\nModèle: {OLLAMA_CONFIG['model']}")
-    print(f"URL: {OLLAMA_CONFIG['base_url']}\n")
+    print(f"\nProvider: {provider_name}")
+    print(f"Modèle: {model}")
+    print(f"Timeout: {timeout}s\n")
     
-    # Récupérer le prompt depuis les arguments de ligne de commande si fourni
-    user_prompt = None
-    if len(sys.argv) > 1:
-        user_prompt = " ".join(sys.argv[1:])
-        logger.info(f"Prompt depuis ligne de commande: \"{user_prompt}\"")
+    # Récupérer le prompt
+    user_prompt = args.prompt
+    if user_prompt:
+        logger.info(f"Prompt fourni: \"{user_prompt}\"")
     
-    # 1. Vérifier Ollama
-    logger.info("Étape 1: Vérification de la connexion Ollama")
-    if not check_ollama_connection():
-        logger.error("\n❌ Impossible de continuer sans Ollama")
-        logger.info("\nPour installer et lancer Ollama:")
-        logger.info("  1. Téléchargez depuis https://ollama.ai")
-        logger.info("  2. Lancez: ollama serve")
-        logger.info(f"  3. Téléchargez un modèle: ollama pull {OLLAMA_CONFIG['model']}")
-        sys.exit(1)
+    # 1. Vérifier la connexion
+    logger.info(f"Étape 1: Vérification de la connexion {provider_name}")
+    if args.provider == "ollama":
+        if not check_ollama_connection():
+            logger.error("\n❌ Impossible de continuer sans Ollama")
+            logger.info("\nPour installer et lancer Ollama:")
+            logger.info("  1. Téléchargez depuis https://ollama.ai")
+            logger.info("  2. Lancez: ollama serve")
+            logger.info(f"  3. Téléchargez un modèle: ollama pull {model}")
+            sys.exit(1)
+    else:
+        # Vérifier Groq
+        from utils.groq_client import test_groq_connection
+        if not test_groq_connection(model=model):
+            logger.error("❌ Connexion Groq échouée. Vérifiez votre GROQ_API_KEY dans .env")
+            sys.exit(1)
+        logger.info(f"✓ Connexion Groq OK avec {model}")
     
     # 2. Créer orchestrateur
-    logger.info("\nÉtape 2: Création de l'orchestrateur")
+    logger.info(f"\nÉtape 2: Création de l'orchestrateur avec {provider_name}")
     try:
-        orchestrator = create_local_orchestrator()
+        if args.provider == "groq":
+            from utils.groq_client import GroqClientWrapper
+            client = GroqClientWrapper(model=model, timeout=timeout)
+        else:
+            from utils.ollama_client import OllamaClientWrapper
+            client = OllamaClientWrapper(
+                model=model,
+                base_url=OLLAMA_CONFIG['base_url'],
+                timeout=timeout
+            )
+        
+        from orchestrator import ScenarioMakerOrchestrator
+        orchestrator = ScenarioMakerOrchestrator(
+            client=client,
+            config_path="config/default_config.json"
+        )
         logger.info("✓ Orchestrateur créé avec succès")
     except Exception as e:
         logger.error(f"❌ Erreur création orchestrateur: {e}", exc_info=True)
@@ -390,18 +458,22 @@ def main():
     print("✅ TOUS LES TESTS RÉUSSIS !")
     print("=" * 80)
     print(f"\nRésultats sauvegardés dans: output/local_tests/")
-    print(f"\nPipeline complet testé avec {OLLAMA_CONFIG['model']}")
-    print("\n💡 Le système fonctionne avec des modèles locaux !")
+    print(f"\nPipeline complet testé avec {provider_name} - {model}")
+    print("\n💡 Le système fonctionne !")
     print("\n" + "-" * 80)
     print("📖 UTILISATION")
     print("-" * 80)
-    print("\n1. Mode interactif (demande au lancement) :")
+    print("\n1. Mode interactif Ollama :")
     print("   python main_local.py")
-    print("\n2. Avec prompt en argument :")
+    print("\n2. Mode interactif Groq :")
+    print("   python main_local.py --provider groq")
+    print("\n3. Avec prompt Ollama :")
     print('   python main_local.py "Votre demande ici"')
-    print("\n3. Exemple complet :")
-    print('   python main_local.py "Un documentaire de 5 minutes sur la bataille de Verdun"')
-    print("\n4. Pour passer en production avec Claude :")
+    print("\n4. Avec prompt Groq :")
+    print('   python main_local.py --provider groq "Votre demande ici"')
+    print("\n5. Modèle spécifique Groq :")
+    print('   python main_local.py --provider groq --model llama-3.1-70b "Votre demande"')
+    print("\n6. Pour passer en production avec Claude :")
     print('   python cli.py generate "votre prompt"')
     print("\n" + "=" * 80)
 
