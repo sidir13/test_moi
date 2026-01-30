@@ -114,6 +114,44 @@ class GroqClientWrapper:
     def __init__(self, api_key: Optional[str] = None, model: str = "llama-3.1-70b", timeout: int = 300):
         self.client = GroqClient(api_key=api_key, model=model, timeout=timeout)
         self.messages = self.Messages(self.client)
+        self.default_model = model
+    
+    def create_message(
+        self,
+        model: str,
+        messages: List[Dict[str, str]],
+        system: Optional[str] = None,
+        temperature: float = 0.7,
+        max_tokens: int = 4096,
+        **kwargs
+    ) -> Any:
+        """
+        Méthode compatible avec ClaudeClient.create_message().
+        
+        Args:
+            model: Modèle à utiliser
+            messages: Liste de messages
+            system: System prompt (non utilisé par Groq mais accepté pour compatibilité)
+            temperature: Température
+            max_tokens: Max tokens
+            **kwargs: Paramètres additionnels
+        
+        Returns:
+            Response object compatible avec Claude
+        """
+        # Si un system prompt est fourni, l'ajouter comme premier message
+        if system:
+            messages = [{"role": "system", "content": system}] + messages
+        
+        response_data = self.client.create(
+            messages=messages,
+            model=model,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            **kwargs
+        )
+        
+        return self.Response(response_data)
     
     class Messages:
         def __init__(self, client: GroqClient):
@@ -121,7 +159,7 @@ class GroqClientWrapper:
         
         def create(self, messages: List[Dict[str, str]], **kwargs) -> Any:
             response = self.client.create(messages=messages, **kwargs)
-            return self.Response(response)
+            return GroqClientWrapper.Response(response)
     
     class Response:
         def __init__(self, response_data: Dict[str, Any]):
