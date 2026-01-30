@@ -21,10 +21,14 @@ __pycache__/*
 *.DS_Store
 
 
-
-# audio files
+# data
+## audio files
 *.wav
 *.WAV
 
+## db
+*.duckdb
+
 # models
 qwen-3-tts
+
