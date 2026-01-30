@@ -98,7 +98,7 @@ class ScenarioMakerOrchestrator:
             logger.info("Loading agents...")
             self.agents = SkillLoader.load_all_skills(
                 agents_dir,
-                self.client.client,
+                self.client,  # Passer le client wrapper complet, pas l'objet interne
                 skill_type="agents"
             )
             logger.info(f"Loaded {len(self.agents)} agents: {list(self.agents.keys())}")
@@ -111,7 +111,7 @@ class ScenarioMakerOrchestrator:
             logger.info("Loading skills...")
             self.skills = SkillLoader.load_all_skills(
                 skills_dir,
-                self.client.client,
+                self.client,  # Passer le client wrapper complet, pas l'objet interne
                 skill_type="skills"
             )
             logger.info(f"Loaded {len(self.skills)} skills: {list(self.skills.keys())}")
