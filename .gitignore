@@ -11,7 +11,6 @@ AGENTS.md
 
 # dependencies
 node_modules
-
 package-lock.json
 package.json
 
@@ -19,12 +18,17 @@ package.json
 __pycache__
 __pycache__/*
 *.pyc
+*.DS_Store
 
 
-
-# audio files
+# data
+## audio files
 *.wav
 *.WAV
 
+## db
+*.duckdb
+
 # models
 qwen-3-tts
+

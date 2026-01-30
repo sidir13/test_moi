@@ -13,4 +13,5 @@ dependencies = [
     "qwen-tts>=0.0.5",
     "torch>=2.10.0",
     "duckdb>=1.0.0",
+    "pydub>=0.25.1",
 ]

@@ -1,0 +1,8 @@
+{
+  "Mémoire des Territoires": {
+    "voice_instructions": "Utilise la voix d'une femme érudite, au profil académique, avec une diction claire et appaisante.",
+    "allowed_websites": [
+      "wikipedia.org"
+    ]
+  }
+}

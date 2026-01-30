@@ -18,7 +18,7 @@ def analyse_audio_industriel(audio_path: str, api_key: str):
     encoded_string = base64.b64encode(wav_data).decode("utf-8")
 
     completion = client.chat.completions.create(
-        model="openai/gpt-4o-audio-preview",
+        model="google/gemini-3-flash-preview",
         messages=[
             {
                 "role": "system",
@@ -50,13 +50,8 @@ Répond impérativement en français."""
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python audio_analysis.py <audio_path> <openrouter_api_key>")
-        sys.exit(1)
+    audio_path = "path/to/your/audio.wav"
 
-    audio_path = sys.argv[1]
-    api_key = sys.argv[2]
-
-    result = analyze_audio(audio_path, api_key)
+    result = analyze_audio(audio_path)
     print("\n=== Résultat de l'analyse ===\n")
     print(result)

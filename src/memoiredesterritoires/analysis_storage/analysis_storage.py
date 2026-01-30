@@ -31,6 +31,7 @@ def _initialize_schema(conn: duckdb.DuckDBPyConnection) -> None:
             id BIGINT PRIMARY KEY,
             analysis_type TEXT NOT NULL,
             source_path TEXT NOT NULL,
+            title TEXT,
             result_json JSON NOT NULL,
             context_summary TEXT,
             tags_json JSON,
@@ -40,12 +41,14 @@ def _initialize_schema(conn: duckdb.DuckDBPyConnection) -> None:
         )
         """
     )
+    conn.execute(f"ALTER TABLE {TABLE_NAME} ADD COLUMN IF NOT EXISTS title TEXT;")
 
 
 def save_analysis_result(
     analysis_type: str,
     source_path: str,
     result: Any,
+    title: Optional[str] = None,
     context_summary: Optional[str] = None,
     tags: Optional[List[str]] = None,
     metadata: Optional[Dict[str, Any]] = None,
@@ -70,6 +73,7 @@ def save_analysis_result(
             id,
             analysis_type,
             source_path,
+            title,
             result_json,
             context_summary,
             tags_json,
@@ -79,13 +83,14 @@ def save_analysis_result(
         )
         VALUES (
             nextval('{SEQUENCE_NAME}'),
-            ?, ?, ?, ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?, ?, ?, ?
         )
         RETURNING id
         """,
         (
             analysis_type,
             source_path,
+            title,
             result_json,
             context_summary,
             tags_json,
@@ -137,6 +142,7 @@ def fetch_analysis_results(
             id,
             analysis_type,
             source_path,
+            title,
             result_json,
             context_summary,
             tags_json,
@@ -163,6 +169,7 @@ def fetch_analysis_results(
             row_id,
             row_type,
             row_path,
+            row_title,
             result_json,
             context_summary,
             tags_json,
@@ -175,6 +182,7 @@ def fetch_analysis_results(
                 "id": row_id,
                 "analysis_type": row_type,
                 "source_path": row_path,
+                "title": row_title,
                 "result": parse_json(result_json, {}),
                 "context_summary": context_summary,
                 "tags": parse_json(tags_json, []),
