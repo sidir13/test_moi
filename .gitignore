@@ -2,6 +2,7 @@
 dump
 src/experimental/*
 AGENTS.md
+notebooks/models
 
 # secrets
 .env
