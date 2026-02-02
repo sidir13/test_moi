@@ -1,0 +1,1 @@
+Skill abandonned for Gemini transcription instead of Whisper
