@@ -22,6 +22,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
 from memoiredesterritoires.voice_instructions.edit_voice_instructions import edit_voice_instructions
 from memoiredesterritoires.web_search.restricted_web_search import restricted_web_search
 from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
+from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -91,6 +92,47 @@ TOOLS = [
                 }
             },
             "required": ["input_file"]
+        }
+    },
+    {
+        "name": "mix_voice_with_noise",
+        "description": "Superpose une ambiance (bruit) sur une voix avec un SNR contrôlé, en boucle si nécessaire.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "voice_file": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier voix"
+                },
+                "noise_file": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier de bruit/ambiance"
+                },
+                "output_file": {
+                    "type": "string",
+                    "description": "Chemin du fichier mixé"
+                },
+                "snr_db": {
+                    "type": "number",
+                    "description": "SNR désiré en dB (voix plus forte que bruit)",
+                    "default": 15
+                },
+                "start_time": {
+                    "type": "number",
+                    "description": "Moment dans la voix où commence le bruit (secondes)",
+                    "default": 0
+                },
+                "noise_duration": {
+                    "type": "number",
+                    "description": "Durée du bruit (secondes) ; null = jusqu’à la fin de la voix"
+                },
+                "noise_start_offset": {
+                    "type": "number",
+                    "description": "Décalage de lecture dans le fichier bruit (secondes)",
+                    "default": 2
+                }
+            },
+            "required": ["voice_file", "noise_file"]
         }
     },
     {
@@ -346,6 +388,16 @@ def execute_tool(tool_name: str, tool_input: dict):
             max_results=tool_input.get("max_results", 5),
             model=tool_input.get("model", "google/gemini-3-pro-preview"),
         )
+    elif tool_name == "mix_voice_with_noise":
+        return mix_voice_with_noise(
+            voice_file=tool_input["voice_file"],
+            noise_file=tool_input["noise_file"],
+            output_file=tool_input.get("output_file", "data/generated_speech/mixed_output.wav"),
+            snr_db=tool_input.get("snr_db", 15),
+            start_time=tool_input.get("start_time", 0),
+            noise_duration=tool_input.get("noise_duration"),
+            noise_start_offset=tool_input.get("noise_start_offset", 2),
+        )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 
@@ -462,7 +514,10 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Augmente le volume de ce fichier à 500% chemin data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    asyncio.run(main("Ajoute un bruit de chalumeau pendant 4s à partir de  la 6e seconde, 2x moins fort que le son, et qui monte progressivement en intensité, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de  la 6e seconde, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Augmente le volume de ce fichier à 500% chemin data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
     # asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
