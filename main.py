@@ -23,6 +23,7 @@ from memoiredesterritoires.voice_instructions.edit_voice_instructions import edi
 from memoiredesterritoires.web_search.restricted_web_search import restricted_web_search
 from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
+from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -133,6 +134,26 @@ TOOLS = [
                 }
             },
             "required": ["voice_file", "noise_file"]
+        }
+    },
+    {
+        "name": "find_background_sounds",
+        "description": "Liste les fichiers audio disponibles dans data/audio/background_sounds pour aider à choisir un bruit.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "keyword": {
+                    "type": "string",
+                    "description": "Terme à rechercher dans les noms de dossiers/fichiers"
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Nombre maximum de résultats",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "default": 20
+                }
+            }
         }
     },
     {
@@ -397,6 +418,11 @@ def execute_tool(tool_name: str, tool_input: dict):
             start_time=tool_input.get("start_time", 0),
             noise_duration=tool_input.get("noise_duration"),
             noise_start_offset=tool_input.get("noise_start_offset", 2),
+        )
+    elif tool_name == "find_background_sounds":
+        return find_background_sounds(
+            keyword=tool_input.get("keyword"),
+            limit=tool_input.get("limit", 20),
         )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
