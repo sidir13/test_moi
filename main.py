@@ -430,7 +430,9 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
+    asyncio.run(main("En connaissant les skills à ta disposition et la structure/champs des bases de données, comment tu procèderais pour que si je te donne une fonction qui ajoute un son à un certain timestamp, avec path du son original et path du son à insérer ?"))
+    # asyncio.run(main("Peux tu récupérer la transcription de l'enregistrement audio qui était au chemin data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, puis transforme les 3 première phrases en audio avec une voix d'homme âgé, chaleureuse et posée."))
+    # asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     
@@ -440,7 +442,7 @@ if __name__ == "__main__":
     # asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
     # asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))
-    # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV and then save the result into the mongodb"))
+    # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV and then save the result into the db"))
 
     #     asyncio.run(main("""On a eu ce résultat avec la dernière demande, tu peux me montrer un échantillon de ce qui a été stocké dans les dbResult: {'status': 'stored', 'analysis_type': 'transcription', 'id': 2, 'db_path': 'data/audio_analysis.duckdb', 'table': 'audio_analysis'}
     # Stop reason: end_turn

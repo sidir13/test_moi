@@ -2,12 +2,14 @@
 dump
 src/experimental/*
 AGENTS.md
+notebooks/models
 
 # secrets
 .env
 
 # envs
 .venv
+.venv-vibe
 
 # dependencies
 node_modules
