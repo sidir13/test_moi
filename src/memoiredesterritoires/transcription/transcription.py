@@ -7,14 +7,12 @@ import tempfile
 
 
 def transcribe_audio(
-    audio_path,
-    api_key,
-    chunk_duration_ms=30000,
-    model="google/gemini-3-flash-preview"
-):
+    audio_path: str,
+    chunk_duration_s: int = 30,
+    model: str = "google/gemini-3-flash-preview",
+) -> str:
     load_dotenv()
     client = OpenAI(
-        
         api_key=os.getenv("ANTHROPIC_AUTH_TOKEN"),
         base_url="https://openrouter.ai/api/v1"
     )
@@ -29,6 +27,11 @@ Pour chaque phrase :
 - ajoute un timestamp relatif au début du segment
 - format : [mm:ss] texte
 Répond uniquement par le texte transcrit en français."""
+
+    if chunk_duration_s <= 0:
+        raise ValueError("chunk_duration_s must be positive")
+
+    chunk_duration_ms = int(chunk_duration_s) * 1000
 
     audio = AudioSegment.from_wav(audio_path)
 

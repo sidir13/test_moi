@@ -50,6 +50,6 @@ Utiliser des métaphores liées aux bandes magnétiques, aux archivistes, aux ce
 Toujours structurer en sections claires (analogie, schéma, pas-à-pas, pièges).
 
 ## Tool Details
-Function: transcribe_audio(path: str,  chunk_duration_ms=30000, model: str) -> str  
+Function: `transcribe_audio(path: str, chunk_duration_s: int = 30, model: str = "google/gemini-3-flash-preview") -> str`  
 Action: Découpe un fichier audio **en entier**, envoie chaque segment à OpenRouter, retourne la transcription complète **jusqu’à la dernière seconde du WAV**.  
-Location: src/transcription/openrouter_transcription.py
+Location: `src/memoiredesterritoires/transcription/transcription.py`
