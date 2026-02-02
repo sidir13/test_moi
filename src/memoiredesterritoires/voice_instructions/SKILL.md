@@ -7,12 +7,12 @@ description: Modifie les consignes vocales (voice_instructions) pour un projet d
 
 ## Instructions
 1. Identifie le projet concerné. Si l’utilisateur ne précise rien, utilise “Mémoire des Territoires”.
-2. Reprends EXACTEMENT la demande de voix (sans l’enrichir) :
-   - Si l’utilisateur parle dans une autre langue, reformule-la en français tout en conservant chaque nuance demandée.
+2. Reprends EXACTEMENT la demande de voix (sans l’enrichir) traduite en anglais:
+   - Traduis toujours les instructions de l'utilisateur en anglais tout en conservant chaque nuance demandée.
    - Ne rajoute pas de descriptions supplémentaires.
 3. Appelle `edit_voice_instructions` en fournissant :
    - `project_name` (facultatif si par défaut)
-   - `voice_instructions` (obligatoire, en français et fidèle aux mots de l’utilisateur)
+   - `voice_instructions` (obligatoire, en anglais et fidèle aux mots de l’utilisateur)
 4. Confirme à l’utilisateur que les consignes ont été enregistrées et rappelle le chemin `config.json`.
 
 ## Exemples

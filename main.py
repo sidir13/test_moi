@@ -287,9 +287,9 @@ TOOLS = [
                     "type": "string",
                     "description": "Script to read aloud"
                 },
-                "instructions": {
+                "project_name": {
                     "type": "string",
-                    "description": "Voice/acting guidance (tone, age, tempo, etc.)"
+                    "description": "Project whose stored voice instructions should be used"
                 },
                 "language": {
                     "type": "string",
@@ -385,7 +385,7 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "text_to_speech_with_instructions":
         return synthesize_voice(
             text=tool_input["text"],
-            instructions=tool_input["instructions"],
+            project_name=tool_input.get("project_name"),
             language=tool_input.get("language", "French"),
             output_path=tool_input.get("output_path"),
         )
@@ -538,7 +538,7 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Ajoute un bruit de chalumeau pendant 4s à partir de  la 6e seconde, 2x moins fort que le son, et qui monte progressivement en intensité, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Ajoute un bruit de chalumeau pendant 4s à partir de  la 6e seconde, 2x moins fort que le son, et qui monte progressivement en intensité, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
     # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de  la 6e seconde, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
     # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
     # asyncio.run(main("Augmente le volume de ce fichier à 500% chemin data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
@@ -546,6 +546,10 @@ if __name__ == "__main__":
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     
+
+    asyncio.run(main("""Peux tu changer les instructions de Voix en 'Voix posée, maîtrisée et assurée' et Peux tu transformer ce text en speech ? Au milieu du dix-huitième siècle, Nantes s'affirme comme l'un des ports les plus actifs du royaume. La construction navale se professionnalise : un quai des constructions s'aménage en aval de la Chézine, tandis que les charpentiers s'installent à la Piperie. Nantes devient alors le premier constructeur de navires marchands de France et se lance dans la production de bâtiments de guerre.
+    Le dix-neuvième siècle marque l'apogée de cette industrie. En mille huit cent soixante et un, la compagnie Penhoët est fondée, insufflant un nouvel élan à l'industrie navale nantaise. Les Chantiers Dubigeon, créés dès mille sept cent soixante, deviennent une référence mondiale. Entre mille huit cent quatre-vingt-neuf et mille neuf cent deux, ils lancent vingt-six grands trois-mâts, dont le célèbre Belem en mille huit cent quatre-vingt-seize, le plus vieux voilier d'Europe encore en service aujourd'hui.
+    Les Trente Glorieuses représentent le sommet de cette aventure industrielle : jusqu'à sept mille salariés travaillent sur les trois sites nantais. Mais la concurrence étrangère, l'ensablement de la Loire et la baisse des commandes précipitent le déclin. En mille neuf cent quatre-vingt-sept, les Chantiers Dubigeon ferment définitivement leurs portes, tournant la dernière page de trois siècles de construction navale à Nantes. L'île de Nantes entame alors sa métamorphose, du territoire industriel au quartier de la création."""))
     # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("yes save it to the database"))
     # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
