@@ -97,10 +97,12 @@ TOOLS = [
                 "type": "string",
                 "description": "Absolute path to the WAV audio file"
             },
-            "chunk_duration_ms": {
+            "chunk_duration_s": {
                 "type": "integer",
                 "description": "Chunk size in seconds",
-                "default": 30
+                "default": 30,
+                "minimum": 1,
+                "maximum": 1200
             },
             "model": {
                 "type": "string",
@@ -270,8 +272,8 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "transcribe_audio":
         return transcribe_audio(
             tool_input["path"],
-            tool_input.get("chunk_duration_ms", 30000),
-            tool_input.get("model", "google/gemini-3-pro-preview")
+            tool_input.get("chunk_duration_s", 30),
+            tool_input.get("model", "google/gemini-3-flash-preview")
         )
 
     elif tool_name == "save_analysis_result":
@@ -427,7 +429,7 @@ async def main(user_message: str = None):
 
 if __name__ == "__main__":
     #asyncio.run(main("En connaissant les skills à ta disposition et la structure/champs des bases de données, comment tu procèderais pour que si je te donne une fonction qui ajoute un son à un certain timestamp, avec path du son original et path du son à insérer ?"))
-    asyncio.run(main("Peux   transcription l'integralite de l'enregistrement audio qui était au chemin path data/eng/int/Gilles.Hamon-Dessinateur.WAV"))
+    asyncio.run(main("Peux tu transcrire l'enregistrement audio qui était au chemin path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
