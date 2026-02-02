@@ -26,6 +26,8 @@ __pycache__/*
 ## audio files
 *.wav
 *.WAV
+*.mp3
+*.MP3
 
 ## db
 *.duckdb

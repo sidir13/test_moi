@@ -21,6 +21,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
 )
 from memoiredesterritoires.voice_instructions.edit_voice_instructions import edit_voice_instructions
 from memoiredesterritoires.web_search.restricted_web_search import restricted_web_search
+from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -65,6 +66,31 @@ TOOLS = [
                 }
             },
             "required": ["num"]
+        }
+    },
+    {
+        "name": "adjust_audio_volume",
+        "description": "Applique un gain logarithmique pour réduire ou augmenter le volume perçu d’un fichier audio.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "input_file": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier audio (wav/mp3/...)"
+                },
+                "output_file": {
+                    "type": "string",
+                    "description": "Chemin du fichier de sortie (par défaut data/generated_speech/output.wav)"
+                },
+                "volume_percent": {
+                    "type": "number",
+                    "description": "Pourcentage de volume perçu (10 à 200)",
+                    "minimum": 10,
+                    "maximum": 200,
+                    "default": 90
+                }
+            },
+            "required": ["input_file"]
         }
     },
     {
@@ -302,6 +328,12 @@ def execute_tool(tool_name: str, tool_input: dict):
             language=tool_input.get("language", "French"),
             output_path=tool_input.get("output_path"),
         )
+    elif tool_name == "adjust_audio_volume":
+        return adjust_audio_volume(
+            input_file=Path(tool_input["input_file"]),
+            output_file=tool_input.get("output_file", "data/generated_speech/output.wav"),
+            volume_percent=tool_input.get("volume_percent", 90),
+        )
     elif tool_name == "edit_voice_instructions":
         return edit_voice_instructions(
             project_name=tool_input.get("project_name"),
@@ -430,7 +462,8 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
+    asyncio.run(main("Augmente le volume de ce fichier à 500% chemin data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     
