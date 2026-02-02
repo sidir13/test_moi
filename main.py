@@ -21,6 +21,9 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
 )
 from memoiredesterritoires.voice_instructions.edit_voice_instructions import edit_voice_instructions
 from memoiredesterritoires.web_search.restricted_web_search import restricted_web_search
+from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
+from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
+from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -65,6 +68,92 @@ TOOLS = [
                 }
             },
             "required": ["num"]
+        }
+    },
+    {
+        "name": "adjust_audio_volume",
+        "description": "Applique un gain logarithmique pour réduire ou augmenter le volume perçu d’un fichier audio.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "input_file": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier audio (wav/mp3/...)"
+                },
+                "output_file": {
+                    "type": "string",
+                    "description": "Chemin du fichier de sortie (par défaut data/generated_speech/output.wav)"
+                },
+                "volume_percent": {
+                    "type": "number",
+                    "description": "Pourcentage de volume perçu (10 à 200)",
+                    "minimum": 10,
+                    "maximum": 200,
+                    "default": 90
+                }
+            },
+            "required": ["input_file"]
+        }
+    },
+    {
+        "name": "mix_voice_with_noise",
+        "description": "Superpose une ambiance (bruit) sur une voix avec un SNR contrôlé, en boucle si nécessaire.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "voice_file": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier voix"
+                },
+                "noise_file": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier de bruit/ambiance"
+                },
+                "output_file": {
+                    "type": "string",
+                    "description": "Chemin du fichier mixé"
+                },
+                "snr_db": {
+                    "type": "number",
+                    "description": "SNR désiré en dB (voix plus forte que bruit)",
+                    "default": 15
+                },
+                "start_time": {
+                    "type": "number",
+                    "description": "Moment dans la voix où commence le bruit (secondes)",
+                    "default": 0
+                },
+                "noise_duration": {
+                    "type": "number",
+                    "description": "Durée du bruit (secondes) ; null = jusqu’à la fin de la voix"
+                },
+                "noise_start_offset": {
+                    "type": "number",
+                    "description": "Décalage de lecture dans le fichier bruit (secondes)",
+                    "default": 2
+                }
+            },
+            "required": ["voice_file", "noise_file"]
+        }
+    },
+    {
+        "name": "find_background_sounds",
+        "description": "Liste les fichiers audio disponibles dans data/audio/background_sounds pour aider à choisir un bruit.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "keyword": {
+                    "type": "string",
+                    "description": "Terme à rechercher dans les noms de dossiers/fichiers"
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Nombre maximum de résultats",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "default": 20
+                }
+            }
         }
     },
     {
@@ -300,6 +389,12 @@ def execute_tool(tool_name: str, tool_input: dict):
             language=tool_input.get("language", "French"),
             output_path=tool_input.get("output_path"),
         )
+    elif tool_name == "adjust_audio_volume":
+        return adjust_audio_volume(
+            input_file=Path(tool_input["input_file"]),
+            output_file=tool_input.get("output_file", "data/generated_speech/output.wav"),
+            volume_percent=tool_input.get("volume_percent", 90),
+        )
     elif tool_name == "edit_voice_instructions":
         return edit_voice_instructions(
             project_name=tool_input.get("project_name"),
@@ -311,6 +406,21 @@ def execute_tool(tool_name: str, tool_input: dict):
             project_name=tool_input.get("project_name"),
             max_results=tool_input.get("max_results", 5),
             model=tool_input.get("model", "google/gemini-3-pro-preview"),
+        )
+    elif tool_name == "mix_voice_with_noise":
+        return mix_voice_with_noise(
+            voice_file=tool_input["voice_file"],
+            noise_file=tool_input["noise_file"],
+            output_file=tool_input.get("output_file", "data/generated_speech/mixed_output.wav"),
+            snr_db=tool_input.get("snr_db", 15),
+            start_time=tool_input.get("start_time", 0),
+            noise_duration=tool_input.get("noise_duration"),
+            noise_start_offset=tool_input.get("noise_start_offset", 2),
+        )
+    elif tool_name == "find_background_sounds":
+        return find_background_sounds(
+            keyword=tool_input.get("keyword"),
+            limit=tool_input.get("limit", 20),
         )
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
@@ -428,8 +538,10 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    #asyncio.run(main("En connaissant les skills à ta disposition et la structure/champs des bases de données, comment tu procèderais pour que si je te donne une fonction qui ajoute un son à un certain timestamp, avec path du son original et path du son à insérer ?"))
-    asyncio.run(main("Peux tu transcrire l'enregistrement audio qui était au chemin path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
+    asyncio.run(main("Ajoute un bruit de chalumeau pendant 4s à partir de  la 6e seconde, 2x moins fort que le son, et qui monte progressivement en intensité, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de  la 6e seconde, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
+    # asyncio.run(main("Augmente le volume de ce fichier à 500% chemin data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
     # asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
