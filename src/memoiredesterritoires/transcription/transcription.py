@@ -1,118 +1,72 @@
-from __future__ import annotations
-
-import wave
-from typing import Dict, List, Optional
-
-from faster_whisper import WhisperModel
-
-
-def _get_audio_duration(path: str) -> float:
-    """Return the duration (seconds) of a WAV file using stdlib only."""
-    with wave.open(path, "rb") as wf:
-        return wf.getnframes() / float(wf.getframerate())
+import base64
+from pydub import AudioSegment
+from openai import OpenAI
+import os
+import tempfile
 
 
-def transcribe_chunks(
-    path: str,
-    start_time: float = 0.0,
-    max_time: int = 1200,
-    chunk_size: int = 60,
-) -> Dict[str, object]:
-    """
-    Transcribe an audio file and bucket the transcript into time-based chunks.
-
-    Args:
-        path: Path to the audio file.
-        start_time: Offset (in seconds) from which to start transcribing.
-        max_time: Maximum number of seconds to process before stopping.
-        chunk_size: Duration of each logical chunk in seconds.
-
-    Returns:
-        Dict with detected language, processed duration, and a list of chunk texts.
-    """
-    if chunk_size <= 0:
-        raise ValueError("chunk_size must be greater than 0")
-
-    total_duration = _get_audio_duration(path)
-    start_time = max(0.0, float(start_time))
-    if start_time >= total_duration:
-        return {
-            "language": None,
-            "audio_duration": total_duration,
-            "start_time": start_time,
-            "end_time": start_time,
-            "has_more": False,
-            "next_start_time": None,
-            "chunks": [],
-        }
-
-    end_limit = min(total_duration, start_time + max_time)
-
-    model_size = "large-v3-turbo"
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
-
-    segments, info = model.transcribe(
-        path,
-        vad_filter=True,
-        vad_parameters={"min_silence_duration_ms": 500},
+def transcribe_audio(
+    audio_path,
+    api_key,
+    chunk_duration_ms=30_000,
+    max_duration_ms=180_000,
+    model="google/gemini-3-flash-preview"
+):
+    client = OpenAI(
+        api_key=api_key,
+        base_url="https://openrouter.ai/api/v1"
     )
 
-    chunks: List[Dict[str, object]] = []
-    current_chunk_text: List[str] = []
-    chunk_index = 1
-    chunk_start: Optional[float] = None
-    chunk_end: float = start_time
+    system_prompt = """Tu es un système de transcription automatique.
+Transcris fidèlement la parole humaine.
+- Ne résume pas
+- Ne reformule pas
+- Ne corrige pas
+- Garde les hésitations et répétitions
+Pour chaque phrase :
+- ajoute un timestamp relatif au début du segment
+- format : [mm:ss] texte
+Répond uniquement par le texte transcrit en français."""
 
-    for segment in segments:
-        if segment.end <= start_time:
-            continue
-        if segment.start >= end_limit:
-            break
+    audio = AudioSegment.from_wav(audio_path)
+    audio = audio[:max_duration_ms]
 
-        seg_start = max(segment.start, start_time)
-        seg_end = min(segment.end, end_limit)
+    chunks = [
+        audio[i:i + chunk_duration_ms]
+        for i in range(0, len(audio), chunk_duration_ms)
+    ]
 
-        if chunk_start is None:
-            chunk_start = seg_start
-        chunk_end = seg_end
-        current_chunk_text.append(segment.text.strip())
+    full_transcript = []
 
-        if (chunk_end - chunk_start) >= chunk_size:
-            chunk_text = " ".join(filter(None, current_chunk_text)).strip()
-            if chunk_text:
-                chunks.append(
+    with tempfile.TemporaryDirectory() as tmpdir:
+        for i, chunk in enumerate(chunks, 1):
+            chunk_path = os.path.join(tmpdir, f"chunk_{i}.wav")
+            chunk.export(chunk_path, format="wav")
+
+            with open(chunk_path, "rb") as f:
+                encoded = base64.b64encode(f.read()).decode("utf-8")
+
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
                     {
-                        "chunk": chunk_index,
-                        "chunk_start": round(chunk_start, 2),
-                        "chunk_end": round(chunk_end, 2),
-                        "text": chunk_text,
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": f"Transcris exactement ce segment audio n°{i}."},
+                            {
+                                "type": "input_audio",
+                                "input_audio": {
+                                    "data": encoded,
+                                    "format": "wav"
+                                }
+                            }
+                        ]
                     }
-                )
-                chunk_index += 1
-            current_chunk_text = []
-            chunk_start = None
-
-    if current_chunk_text:
-        chunk_text = " ".join(filter(None, current_chunk_text)).strip()
-        if chunk_text:
-            chunks.append(
-                {
-                    "chunk": chunk_index,
-                    "chunk_start": round(chunk_start or start_time, 2),
-                    "chunk_end": round(chunk_end, 2),
-                    "text": chunk_text,
-                }
+                ]
             )
 
-    processed_until = chunk_end
-    has_more = processed_until < total_duration - 1e-3
+            text = completion.choices[0].message.content
+            full_transcript.append(f"\n[CHUNK {i}]\n{text}")
 
-    return {
-        "language": info.language,
-        "audio_duration": total_duration,
-        "start_time": start_time,
-        "end_time": processed_until,
-        "has_more": has_more,
-        "next_start_time": processed_until if has_more else None,
-        "chunks": chunks,
-    }
+    return "\n".join(full_transcript)

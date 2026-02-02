@@ -1,43 +1,54 @@
 ---
-name: transcription
-description: Transcrire les archives audio en fenêtres successives (par défaut 20 minutes) jusqu’à couvrir tout le fichier.
+name: transcribe-audio-openrouter
+description: Explique comment une fonction Python découpe un fichier audio WAV en segments de 30 secondes, envoie chaque segment à un modèle de reconnaissance vocale via l’API OpenRouter (Gemini), puis reconstruit une transcription complète avec timestamps. À utiliser quand l’utilisateur demande comment fonctionne son code de transcription avec LLM multimodal.
 ---
 
-# Transcription séquencée
+Quand tu expliques ce code, tu dois toujours :
 
-## Instructions
-1. Identifie le besoin (ex. « transcrire tout le fichier ») et initialise `start_time=0`.
-2. Choisis un `max_time` adapté (par défaut 1200 secondes = 20 minutes). Ajuste si l’utilisateur demande une autre granularité.
-3. Appelle `transcribe_chunks` avec :
-   - `path`
-   - `start_time`
-   - `max_time`
-   - éventuellement `chunk_size` (ex. 30 secondes pour regrouper les segments)
-4. Lis la réponse :
-   - `chunks` contient les blocs transcrits avec `chunk_start`/`chunk_end`.
-   - `has_more` + `next_start_time` indiquent s’il faut relancer l’outil.
-5. Tant que `has_more` est `true`, rappelle `transcribe_chunks` en mettant `start_time=next_start_time` afin de couvrir la suite du fichier.
-6. Lorsque `has_more` devient `false`, assemble ou résume l’ensemble des chunks pour répondre à l’utilisateur.
+1. **Commencer par une analogie**  
+   Comparer la fonction à un archiviste qui découpe une vieille bande magnétique en cassettes de 30 secondes, les fait écouter à un expert humain, puis recolle les comptes-rendus dans l’ordre.
 
-## Examples
+2. **Dessiner un schéma**  
+   Utiliser de l’ASCII art pour montrer :
 
-**Exemple 1 — Fichier complet en plusieurs appels**
-```
-[Call transcribe_chunks with path="data/eng/int/Gilles.WAV", start_time=0, max_time=1200]
-→ has_more = true, next_start_time = 119.8
-[Call transcribe_chunks with path="data/eng/int/Gilles.WAV", start_time=119.8, max_time=1200]
-→ has_more = false (transcription terminée)
-```
+   WAV original  
+        ↓  
+   Découpage 30s (pydub)  
+        ↓  
+   Encodage base64  
+        ↓  
+   OpenRouter / Gemini  
+        ↓  
+   Texte par chunk  
+        ↓  
+   Fusion finale (`join`)
 
-**Exemple 2 — Fenêtre unique**
-```
-[Call transcribe_chunks with path="data/audio/sample.wav",
- start_time=0,
- max_time=300,
- chunk_size=60]
-```
+3. **Parcourir le code pas à pas**  
+Expliquer clairement :
+
+- Le rôle de `AudioSegment.from_wav` (lecture et manipulation du signal)
+- Pourquoi on tronque avec `max_duration_ms`
+- La logique de découpage fixe en fenêtres temporelles (sliding windows)
+- Le passage binaire → base64 (transport API)
+- La structure du prompt système (contrôle strict du style de sortie)
+- Le mécanisme `client.chat.completions.create`
+- L’agrégation finale avec `full_transcript.append` et `join`
+
+4. **Mettre en avant les pièges (gotchas)**  
+Mentionner systématiquement :
+
+- Les chunks coupent parfois une phrase en deux (pas de VAD)
+- Les timestamps sont relatifs au chunk, pas à l’audio global
+- Le coût API augmente linéairement avec la durée
+- La latence est séquentielle (pas de parallélisme)
+- La qualité dépend du modèle multimodal choisi
+
+Ton :  
+Pédagogique, orienté traitement du signal, LLM multimodaux et pipelines d’archivage audio.  
+Utiliser des métaphores liées aux bandes magnétiques, aux archivistes, aux centres de transcription.  
+Toujours structurer en sections claires (analogie, schéma, pas-à-pas, pièges).
 
 ## Tool Details
-- Function: `transcribe_chunks(path: str, start_time: float = 0.0, max_time: int = 180, chunk_size: int = 30) -> dict`
-- Action: Transcrit jusqu’à `max_time` secondes en partant de `start_time`, renvoie les chunks + indicateurs pour l’appel suivant.
-- Location: `src/memoiredesterritoires/transcription/transcription.py`
+Function: transcribe_audio(path: str, api_key: str, chunk_duration_ms=30000, max_duration_ms=180000,model: str) -> str  
+Action: Découpe un fichier audio, envoie chaque segment à OpenRouter, retourne la transcription complète.  
+Location: src/transcription/openrouter_transcription.py

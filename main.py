@@ -14,7 +14,7 @@ import sys
 sys.path.append(str(Path(__file__).parent / "src"))
 from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
 from memoiredesterritoires.process_number.process_number import process_number
-from memoiredesterritoires.transcription.transcription  import transcribe_chunks
+from memoiredesterritoires.transcription.transcription  import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
     text_to_speech_with_instructions as synthesize_voice,
@@ -88,34 +88,35 @@ TOOLS = [
         }
     },
     {
-        "name": "transcribe_chunks",
-        "description": "transcript the audio",
+        "name": "transcribe_audio",
+        "description": "Split a WAV audio file into fixed-size chunks and transcribe each chunk using OpenRouter (Gemini), returning a full transcription with timestamps.",
         "input_schema": {
             "type": "object",
             "properties": {
-                "path": {
-                    "type": "string",
-                    "description": "path to file"
-                },
-                "start_time": {
-                    "type": "number",
-                    "description": "offset (seconds) from which to start transcribing",
-                    "default": 0
-                },
-                "max_time":{
-                    "type": "integer",
-                    "description": "Maximum seconds to transcribe in one call (default 1200)"
-                },
-                "chunk_size":{
-                    "type": "integer",
-                    "description": "chunk size"
-                }
-
-
+            "path": {
+                "type": "string",
+                "description": "Absolute path to the WAV audio file"
+            },
+                "max_duration_ms": {
+                "type": "integer",
+                "description": "Maximum duration (in seconds) to transcribe",
+                "default": 180
+            },
+            "chunk_duration_ms": {
+                "type": "integer",
+                "description": "Chunk size in seconds",
+                "default": 30
+            },
+            "model": {
+                "type": "string",
+                "description": "OpenRouter multimodal model to use",
+                "default": "google/gemini-3-flash-preview"
+            }
             },
             "required": ["path"]
         }
-    },
+    }
+        ,
     {
         "name": "save_analysis_result",
         "description": "Store transcription or background sound analysis outputs into DuckDB",
@@ -271,13 +272,15 @@ def execute_tool(tool_name: str, tool_input: dict):
         return process_number(tool_input["num"])
     elif tool_name == "analyze-industrial-audio":
         return analyse_audio_industriel(tool_input["path"], tool_input.get("context", ""))
-    elif tool_name == "transcribe_chunks":
-        return transcribe_chunks(
+    elif tool_name == "transcribe_audio":
+        return transcribe_audio(
             tool_input["path"],
-            tool_input.get("start_time", 0.0),
-            tool_input.get("max_time", 1200),
-            tool_input.get("chunk_size", 60)
+            tool_input.get["model"],
+            tool_input.get["api_key"],
+            tool_input.get("max_duration_ms", 180),
+            tool_input.get("chunk_duration_ms", 30)
         )
+
     elif tool_name == "save_analysis_result":
         return save_analysis_result(
             analysis_type=tool_input["analysis_type"],
@@ -430,8 +433,8 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("En connaissant les skills à ta disposition et la structure/champs des bases de données, comment tu procèderais pour que si je te donne une fonction qui ajoute un son à un certain timestamp, avec path du son original et path du son à insérer ?"))
-    # asyncio.run(main("Peux tu récupérer la transcription de l'enregistrement audio qui était au chemin data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, puis transforme les 3 première phrases en audio avec une voix d'homme âgé, chaleureuse et posée."))
+    #asyncio.run(main("En connaissant les skills à ta disposition et la structure/champs des bases de données, comment tu procèderais pour que si je te donne une fonction qui ajoute un son à un certain timestamp, avec path du son original et path du son à insérer ?"))
+    asyncio.run(main("Peux tu récupérer la transcription de l'enregistrement audio qui était au chemin data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("fais une recherche web sur l'ancien port de Nantes et les bateaux les plus emblématiques qui y étaient amarrés"))
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
