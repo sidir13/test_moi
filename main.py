@@ -20,6 +20,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
     text_to_speech_with_instructions as synthesize_voice,
 )
 from memoiredesterritoires.voice_instructions.edit_voice_instructions import edit_voice_instructions
+from memoiredesterritoires.voice_instructions.generate_voice_instructions import generate_voice_instructions
 from memoiredesterritoires.web_search.restricted_web_search import restricted_web_search
 from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
@@ -323,6 +324,29 @@ TOOLS = [
         }
     },
     {
+        "name": "generate_voice_instructions",
+        "description": "Generate and store voice instructions based on a historical/cultural scenario",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "scenario": {
+                    "type": "string",
+                    "description": "Description du contexte/texte à restituer"
+                },
+                "project_name": {
+                    "type": "string",
+                    "description": "Projet ciblé (défaut: Mémoire des Territoires)"
+                },
+                "hint_language": {
+                    "type": "string",
+                    "description": "Langue du scénario (guide le prompt)",
+                    "default": "French"
+                }
+            },
+            "required": ["scenario"]
+        }
+    },
+    {
         "name": "restricted_web_search",
         "description": "Run OpenRouter web search limited to the project's allowed websites",
         "input_schema": {
@@ -399,6 +423,12 @@ def execute_tool(tool_name: str, tool_input: dict):
         return edit_voice_instructions(
             project_name=tool_input.get("project_name"),
             voice_instructions=tool_input["voice_instructions"],
+        )
+    elif tool_name == "generate_voice_instructions":
+        return generate_voice_instructions(
+            scenario=tool_input["scenario"],
+            project_name=tool_input.get("project_name"),
+            hint_language=tool_input.get("hint_language", "French"),
         )
     elif tool_name == "restricted_web_search":
         return restricted_web_search(
@@ -538,8 +568,12 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
+    asyncio.run(main("""Peux tu déterminer les instructions de voix idéales pour le scénario suivant ? Au milieu du dix-huitième siècle, Nantes s'affirme comme l'un des ports les plus actifs du royaume. La construction navale se professionnalise : un quai des constructions s'aménage en aval de la Chézine, tandis que les charpentiers s'installent à la Piperie. Nantes devient alors le premier constructeur de navires marchands de France et se lance dans la production de bâtiments de guerre.
+    Le dix-neuvième siècle marque l'apogée de cette industrie. En mille huit cent soixante et un, la compagnie Penhoët est fondée, insufflant un nouvel élan à l'industrie navale nantaise. Les Chantiers Dubigeon, créés dès mille sept cent soixante, deviennent une référence mondiale. Entre mille huit cent quatre-vingt-neuf et mille neuf cent deux, ils lancent vingt-six grands trois-mâts, dont le célèbre Belem en mille huit cent quatre-vingt-seize, le plus vieux voilier d'Europe encore en service aujourd'hui.
+    Les Trente Glorieuses représentent le sommet de cette aventure industrielle : jusqu'à sept mille salariés travaillent sur les trois sites nantais. Mais la concurrence étrangère, l'ensablement de la Loire et la baisse des commandes précipitent le déclin. En mille neuf cent quatre-vingt-sept, les Chantiers Dubigeon ferment définitivement leurs portes, tournant la dernière page de trois siècles de construction navale à Nantes. L'île de Nantes entame alors sa métamorphose, du territoire industriel au quartier de la création."""))
+    # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("Peux tu procéder à l'analyse des 2 premières minutes de l'interview au path: data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV , l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
-    asyncio.run(main("Peux tu procéder à l'analyse du background son Titanier et l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
+    # asyncio.run(main("Peux tu procéder à l'analyse du background son Titanier et l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     # asyncio.run(main("Ajoute un bruit de chalumeau pendant 4s à partir de  la 6e seconde, 2x moins fort que le son, et qui monte progressivement en intensité, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
     # asyncio.run(main("Ajoute un bruit de meuleuse pendant 4s à partir de  la 6e seconde, path data/generated_speech/ElevenLabs_Spuds_Oxley.mp3"))
