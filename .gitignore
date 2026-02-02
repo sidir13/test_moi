@@ -21,6 +21,7 @@ __pycache__
 __pycache__/*
 *.pyc
 *.DS_Store
+process_number.cpython-312.pyc
 
 
 # data
@@ -32,6 +33,7 @@ __pycache__/*
 
 ## db
 *.duckdb
+*.parquet
 
 # models
 qwen-3-tts
