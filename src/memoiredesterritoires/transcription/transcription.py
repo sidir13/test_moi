@@ -2,17 +2,20 @@ import base64
 from pydub import AudioSegment
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
 import tempfile
 
 
 def transcribe_audio(
     audio_path,
     api_key,
-    chunk_duration_ms=30_000,
+    chunk_duration_ms=30000,
     model="google/gemini-3-flash-preview"
 ):
+    load_dotenv()
     client = OpenAI(
-        api_key=api_key,
+        
+        api_key=os.getenv("ANTHROPIC_AUTH_TOKEN"),
         base_url="https://openrouter.ai/api/v1"
     )
 
@@ -33,11 +36,12 @@ Répond uniquement par le texte transcrit en français."""
         audio[i:i + chunk_duration_ms]
         for i in range(0, len(audio), chunk_duration_ms)
     ]
-
+    
     full_transcript = []
 
     with tempfile.TemporaryDirectory() as tmpdir:
         for i, chunk in enumerate(chunks, 1):
+            print(f"Chunk {i} / {len(chunks)} | durée = {len(chunk)/1000:.1f}s")
             chunk_path = os.path.join(tmpdir, f"chunk_{i}.wav")
             chunk.export(chunk_path, format="wav")
 
