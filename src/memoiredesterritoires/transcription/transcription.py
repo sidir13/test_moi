@@ -9,7 +9,6 @@ def transcribe_audio(
     audio_path,
     api_key,
     chunk_duration_ms=30_000,
-    max_duration_ms=180_000,
     model="google/gemini-3-flash-preview"
 ):
     client = OpenAI(
@@ -29,7 +28,6 @@ Pour chaque phrase :
 Répond uniquement par le texte transcrit en français."""
 
     audio = AudioSegment.from_wav(audio_path)
-    audio = audio[:max_duration_ms]
 
     chunks = [
         audio[i:i + chunk_duration_ms]

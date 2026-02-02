@@ -97,11 +97,6 @@ TOOLS = [
                 "type": "string",
                 "description": "Absolute path to the WAV audio file"
             },
-                "max_duration_ms": {
-                "type": "integer",
-                "description": "Maximum duration (in seconds) to transcribe",
-                "default": 180
-            },
             "chunk_duration_ms": {
                 "type": "integer",
                 "description": "Chunk size in seconds",
@@ -277,7 +272,6 @@ def execute_tool(tool_name: str, tool_input: dict):
             tool_input["path"],
             tool_input.get["model"],
             tool_input.get["api_key"],
-            tool_input.get("max_duration_ms", 180),
             tool_input.get("chunk_duration_ms", 30)
         )
 
