@@ -1,5 +1,14 @@
 """
-Gridsearch pour tester l'influence des paramètres LLM sur la génération.
+Gridsearch pour tester l'influence des paramètres narratifs sur la génération.
+
+Tests les variations de :
+- Ton de l'histoire (dramatique, neutre, intimiste...)
+- Forme (documentaire, conte, podcast...)
+- Structure narrative (chronologique, flashback, thématique...)
+- Époque linguistique (authentique, moderne...)
+- Niveau de détail historique
+- Perspective narrative (1ère/3ème personne...)
+- Rythme
 
 Usage:
     # Mode STANDARD (12 tests, ~1-2h) - Recommandé
@@ -11,7 +20,7 @@ Usage:
     # Mode RAPIDE (2 tests, ~15-30min) - Debug
     python gridsearch_local.py --quick
     
-    # Mode COMPLET (32 tests, ~4-8h) - Validation finale
+    # Mode COMPLET (48 tests, ~6-10h) - Validation finale
     python gridsearch_local.py --full
 """
 
@@ -19,6 +28,7 @@ import os
 import sys
 import json
 import logging
+import random
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Any
@@ -38,42 +48,88 @@ BASE_OLLAMA_CONFIG = {
     'timeout': 600
 }
 
-# Grille STANDARD (~10 tests) - Recommandée pour exploration locale
+# Grille STANDARD - Tests variés sur paramètres narratifs
 PARAM_GRID = {
-    'temperature': [0.3, 0.5, 0.7, 0.9],      # 4 valeurs
-    'max_tokens': [3072],                      # 1 valeur (fixe)
-    'top_p': [0.9],                            # 1 valeur (fixe)
-    'repeat_penalty': [1.0, 1.05, 1.1],       # 3 valeurs
+    'ton': ["neutre_informatif", "dramatique_immersif", "intimiste_confidentiel"],
+    'forme': ["documentaire", "conte", "podcast_narratif"],
+    'structure_narrative': ["chronologique", "flashback"],
+    'epoque_linguistique': ["authentique"],
+    'niveau_detail_historique': ["moyen"],
+    'perspective_narrative': ["troisieme_personne"],
+    'rythme': ["modere"]
 }
-# Total: 4 × 1 × 1 × 3 = 12 tests
+# Total: 3 × 3 × 2 = 18 tests
 
 # Grille COMPLÈTE (plus exhaustive, pour validation finale)
+# Note: Génère un échantillon stratifié de max 50 combinaisons
 PARAM_GRID_FULL = {
-    'temperature': [0.3, 0.5, 0.7, 0.9],
-    'max_tokens': [2048, 4096],
-    'top_p': [0.9, 0.95],
-    'repeat_penalty': [1.0, 1.1],
+    'ton': ["neutre_informatif", "dramatique_immersif", "intimiste_confidentiel", "poetique_contemplatif"],
+    'forme': ["documentaire", "conte", "podcast_narratif", "temoignage"],
+    'structure_narrative': ["chronologique", "flashback", "thematique", "crescendo_emotionnel"],
+    'epoque_linguistique': ["authentique", "modernise_accessible", "mixte"],
+    'niveau_detail_historique': ["leger", "moyen", "approfondi"],
+    'perspective_narrative': ["premiere_personne", "troisieme_personne"],
+    'rythme': ["lent_contemplatif", "modere", "dynamique"]
 }
-# Total: 4 × 2 × 2 × 2 = 32 tests
+# Total théorique: 4 × 4 × 4 × 3 × 3 × 2 × 3 = 2,304 tests
+# Échantillonnage: ~50 tests représentatifs seront générés automatiquement
 
 # Grille RAPIDE (test minimal, debug)
 PARAM_GRID_QUICK = {
-    'temperature': [0.3, 0.7],
-    'max_tokens': [3072],
-    'top_p': [0.9],
-    'repeat_penalty': [1.0],
+    'ton': ["neutre_informatif", "dramatique_immersif"],
+    'forme': ["documentaire"],
+    'structure_narrative': ["chronologique"],
+    'epoque_linguistique': ["authentique"],
+    'niveau_detail_historique': ["moyen"],
+    'perspective_narrative': ["troisieme_personne"],
+    'rythme': ["modere"]
 }
-# Total: 2 × 1 × 1 × 1 = 2 tests
+# Total: 2 × 1 × 1 × 1 × 1 × 1 × 1 = 2 tests
 
 
-def generate_param_combinations(param_grid: Dict[str, List]) -> List[Dict]:
-    """Génère toutes les combinaisons de paramètres."""
+def generate_param_combinations(param_grid: Dict[str, List], max_combinations: int = 50) -> List[Dict]:
+    """
+    Génère des combinaisons de paramètres.
+    
+    Pour le mode FULL, limite intelligemment le nombre de combinaisons en
+    sélectionnant un échantillon représentatif plutôt que toutes les combinaisons.
+    """
     keys = list(param_grid.keys())
     values = list(param_grid.values())
     
+    # Calculer le nombre total de combinaisons possibles
+    total_possible = 1
+    for v in values:
+        total_possible *= len(v)
+    
+    # Si le nombre est raisonnable, générer toutes les combinaisons
+    if total_possible <= max_combinations:
+        combinations = []
+        for combo in itertools.product(*values):
+            combinations.append(dict(zip(keys, combo)))
+        return combinations
+    
+    # Sinon, générer un échantillon stratifié
+    logger.info(f"Trop de combinaisons possibles ({total_possible}). Génération d'un échantillon de {max_combinations}.")
+    
+    # Stratégie : tester toutes les valeurs de chaque paramètre au moins une fois
     combinations = []
-    for combo in itertools.product(*values):
-        combinations.append(dict(zip(keys, combo)))
+    random.seed(42)  # Reproductibilité
+    
+    # Générer des combinaisons aléatoires
+    seen = set()
+    attempts = 0
+    max_attempts = max_combinations * 10
+    
+    while len(combinations) < max_combinations and attempts < max_attempts:
+        combo_values = [random.choice(v) for v in values]
+        combo_tuple = tuple(combo_values)
+        
+        if combo_tuple not in seen:
+            seen.add(combo_tuple)
+            combinations.append(dict(zip(keys, combo_values)))
+        
+        attempts += 1
     
     return combinations
 
@@ -85,36 +141,41 @@ def run_single_test(
     total_tests: int,
     output_dir: Path
 ) -> Dict[str, Any]:
-    """Lance un test avec une configuration de paramètres."""
+    """Lance un test avec une configuration narrative spécifique."""
     from utils.ollama_client import OllamaClientWrapper
     from utils.skill_loader import SkillLoader
     
     logger.info(f"\n{'='*80}")
     logger.info(f"TEST {test_id}/{total_tests}")
     logger.info(f"{'='*80}")
-    logger.info(f"Paramètres: {params}")
+    logger.info(f"Paramètres narratifs: {params}")
     logger.info(f"Prompt: {prompt}")
     
-    # Créer client avec paramètres custom
+    # Créer client Ollama avec config par défaut
     ollama_client = OllamaClientWrapper(
         model=BASE_OLLAMA_CONFIG['model'],
         base_url=BASE_OLLAMA_CONFIG['base_url'],
         timeout=BASE_OLLAMA_CONFIG['timeout']
     )
     
-    # Modifier les paramètres du client
-    ollama_client.client.default_temperature = params.get('temperature', 0.7)
-    ollama_client.client.default_max_tokens = params.get('max_tokens', 4096)
-    ollama_client.client.default_top_p = params.get('top_p', 0.9)
-    ollama_client.client.default_repeat_penalty = params.get('repeat_penalty', 1.0)
-    
-    # Load config
+    # Load config par défaut
     config_path = Path("config/default_config.json")
     if config_path.exists():
         with open(config_path, 'r', encoding='utf-8') as f:
             default_config = json.load(f)
     else:
         default_config = {}
+    
+    # Appliquer les paramètres narratifs à la config
+    if 'scenario_config' in default_config and 'generation_parameters' in default_config['scenario_config']:
+        gen_params = default_config['scenario_config']['generation_parameters']
+        
+        # Modifier les paramètres selon la grille de test
+        for param_name, param_value in params.items():
+            if param_name in gen_params:
+                gen_params[param_name]['value'] = param_value
+                gen_params[param_name]['user_specified'] = True
+                logger.info(f"  → {param_name}: {param_value}")
     
     # Load agents
     agents_dir = Path("agents")
@@ -144,8 +205,8 @@ def run_single_test(
     }
     
     try:
-        # Agent 0: Parse request
-        logger.info("Agent 0: Parsing request...")
+        # Agent 0: Parse request (avec config modifiée)
+        logger.info("Agent 0: Parsing request avec paramètres narratifs custom...")
         agent_0 = agents['agent_0_request_parser']['instance']
         config = agent_0.parse(prompt, "simple", default_config)
         results['outputs']['config'] = config
@@ -183,8 +244,21 @@ def run_single_test(
         results['errors'].append(str(e))
         results['success'] = False
     
+    # Créer un nom descriptif pour le test
+    test_name_parts = [f"test_{test_id:03d}"]
+    
+    # Ajouter les paramètres les plus importants au nom
+    if 'ton' in params:
+        test_name_parts.append(params['ton'])
+    if 'forme' in params:
+        test_name_parts.append(params['forme'])
+    if 'structure_narrative' in params:
+        test_name_parts.append(params['structure_narrative'])
+    
+    test_name = "_".join(test_name_parts)
+    
     # Sauvegarder résultats individuels
-    test_dir = output_dir / f"test_{test_id:03d}"
+    test_dir = output_dir / test_name
     test_dir.mkdir(parents=True, exist_ok=True)
     
     # Sauvegarder chaque output
@@ -253,7 +327,10 @@ def generate_comparison_report(all_results: List[Dict], output_dir: Path):
     report_txt = output_dir / "comparison_report.txt"
     with open(report_txt, 'w', encoding='utf-8') as f:
         f.write("="*80 + "\n")
-        f.write("RAPPORT DE GRIDSEARCH - Paramètres LLM\n")
+        f.write("RAPPORT DE GRIDSEARCH - Paramètres Narratifs\n")
+        f.write("="*80 + "\n")
+        f.write("Analyse de l'impact des paramètres narratifs sur la génération\n")
+        f.write("(ton, forme, structure, époque linguistique, détail, perspective, rythme)\n")
         f.write("="*80 + "\n\n")
         
         f.write(f"Total de tests: {report['total_tests']}\n")
@@ -266,7 +343,7 @@ def generate_comparison_report(all_results: List[Dict], output_dir: Path):
         
         for test in report['tests']:
             f.write(f"Test {test['test_id']}: {'✓ SUCCÈS' if test['success'] else '✗ ÉCHEC'}\n")
-            f.write(f"  Paramètres:\n")
+            f.write(f"  Paramètres narratifs:\n")
             for param, value in test['params'].items():
                 f.write(f"    - {param}: {value}\n")
             
@@ -276,19 +353,29 @@ def generate_comparison_report(all_results: List[Dict], output_dir: Path):
                 f.write(f"    - Nombre de parties: {test['quality']['num_parts']}\n")
                 f.write(f"    - Durée estimée: {test['quality']['estimated_duration']:.1f}s\n")
             
+            if 'metrics' in test:
+                f.write(f"  Métriques de génération:\n")
+                for metric_name, metric_value in test['metrics'].items():
+                    if metric_value and 'duration' in metric_name:
+                        f.write(f"    - {metric_name}: {metric_value:.2f}s\n")
+            
             f.write("\n")
         
         f.write("-"*80 + "\n")
-        f.write("ANALYSE DES PARAMÈTRES\n")
+        f.write("ANALYSE DE L'IMPACT DES PARAMÈTRES NARRATIFS\n")
         f.write("-"*80 + "\n\n")
         
         # Analyser l'impact de chaque paramètre
         param_analysis = analyze_parameter_impact(report['tests'])
         for param, analysis in param_analysis.items():
-            f.write(f"{param.upper()}:\n")
+            f.write(f"\n{param.upper().replace('_', ' ')}:\n")
+            f.write("-" * 40 + "\n")
             for value, stats in analysis.items():
-                f.write(f"  {value}: {stats['success_rate']:.1%} succès, ")
-                f.write(f"avg {stats['avg_words']:.0f} mots\n")
+                f.write(f"  • {value}:\n")
+                f.write(f"      Succès: {stats['success_rate']:.1%}\n")
+                f.write(f"      Mots moyen: {stats['avg_words']:.0f}\n")
+                if stats.get('avg_duration'):
+                    f.write(f"      Durée moyenne: {stats['avg_duration']:.1f}s\n")
             f.write("\n")
     
     logger.info(f"Rapport sauvegardé: {report_file}")
@@ -298,13 +385,14 @@ def generate_comparison_report(all_results: List[Dict], output_dir: Path):
 
 
 def analyze_parameter_impact(tests: List[Dict]) -> Dict:
-    """Analyse l'impact de chaque paramètre."""
+    """Analyse l'impact de chaque paramètre narratif."""
     from collections import defaultdict
     
     param_stats = defaultdict(lambda: defaultdict(lambda: {
         'count': 0,
         'success': 0,
-        'total_words': 0
+        'total_words': 0,
+        'total_duration': 0
     }))
     
     for test in tests:
@@ -318,6 +406,7 @@ def analyze_parameter_impact(tests: List[Dict]) -> Dict:
             
             if 'quality' in test:
                 stats['total_words'] += test['quality']['word_count']
+                stats['total_duration'] += test['quality'].get('estimated_duration', 0)
     
     # Calculer moyennes
     analysis = {}
@@ -327,7 +416,8 @@ def analyze_parameter_impact(tests: List[Dict]) -> Dict:
             if stats['count'] > 0:
                 analysis[param][value] = {
                     'success_rate': stats['success'] / stats['count'],
-                    'avg_words': stats['total_words'] / stats['count']
+                    'avg_words': stats['total_words'] / stats['count'],
+                    'avg_duration': stats['total_duration'] / stats['count'] if stats['total_duration'] > 0 else None
                 }
     
     return analysis
@@ -336,8 +426,17 @@ def analyze_parameter_impact(tests: List[Dict]) -> Dict:
 def main():
     """Main function pour gridsearch."""
     print("\n" + "="*80)
-    print("🔬 GRIDSEARCH - Test des Paramètres LLM")
+    print("🔬 GRIDSEARCH - Test des Paramètres Narratifs")
     print("="*80)
+    print("\nTestera les variations de:")
+    print("  • Ton de l'histoire")
+    print("  • Forme (documentaire, conte, podcast...)")
+    print("  • Structure narrative")
+    print("  • Époque linguistique")
+    print("  • Niveau de détail historique")
+    print("  • Perspective narrative")
+    print("  • Rythme")
+    print()
     
     # Parse arguments
     quick_mode = '--quick' in sys.argv
@@ -363,7 +462,10 @@ def main():
         mode_name = "STANDARD"
     
     # Générer combinaisons
-    combinations = generate_param_combinations(param_grid)
+    if full_mode:
+        combinations = generate_param_combinations(param_grid, max_combinations=50)
+    else:
+        combinations = generate_param_combinations(param_grid, max_combinations=100)
     total_tests = len(combinations)
     
     print(f"\nMode: {mode_name}")
@@ -382,10 +484,15 @@ def main():
     
     print(f"Durée estimée: {duree_estimee}\n")
     
-    # Afficher les paramètres testés
-    print("Paramètres testés:")
+    # Afficher les paramètres narratifs testés
+    print("Paramètres narratifs testés:")
     for param, values in param_grid.items():
-        print(f"  - {param}: {values}")
+        param_display = param.replace('_', ' ').title()
+        if len(values) > 3:
+            values_display = f"{values[:3]}... ({len(values)} valeurs)"
+        else:
+            values_display = values
+        print(f"  • {param_display}: {values_display}")
     print()
     
     # Confirmer
@@ -406,13 +513,16 @@ def main():
     config_file = output_dir / "gridsearch_config.json"
     with open(config_file, 'w', encoding='utf-8') as f:
         json.dump({
+            'type': 'narrative_parameters_gridsearch',
+            'description': 'Tests de variations de paramètres narratifs (ton, forme, structure, etc.)',
             'prompt': prompt,
             'mode': mode_name,
             'param_grid': param_grid,
             'total_combinations': total_tests,
             'estimated_duration': duree_estimee,
             'timestamp': timestamp,
-            'model': BASE_OLLAMA_CONFIG['model']
+            'model': BASE_OLLAMA_CONFIG['model'],
+            'parameters_tested': list(param_grid.keys())
         }, f, indent=2, ensure_ascii=False)
     
     print(f"\nRésultats seront sauvegardés dans: {output_dir}\n")

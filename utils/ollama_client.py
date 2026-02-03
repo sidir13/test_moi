@@ -17,7 +17,7 @@ class OllamaClient:
         self,
         model: str = "qwen2.5:latest",
         base_url: str = "http://localhost:11434",
-        timeout: int = 600,
+        timeout: int = 1200,
         api_key: Optional[str] = None  # Not used but kept for compatibility
     ):
         """
