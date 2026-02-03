@@ -1146,9 +1146,11 @@ dependencies = [
     { name = "duckdb" },
     { name = "faster-whisper" },
     { name = "huggingface-hub", extra = ["cli"] },
+    { name = "librosa" },
     { name = "openai" },
     { name = "pydub" },
     { name = "qwen-tts" },
+    { name = "soundfile" },
     { name = "torch" },
 ]
 
@@ -1159,9 +1161,11 @@ requires-dist = [
     { name = "duckdb", specifier = ">=1.0.0" },
     { name = "faster-whisper", specifier = ">=1.2.1" },
     { name = "huggingface-hub", extras = ["cli"], specifier = ">=0.34,<1.0" },
+    { name = "librosa", specifier = ">=0.10.1" },
     { name = "openai", specifier = ">=2.15.0" },
     { name = "pydub", specifier = ">=0.25.1" },
     { name = "qwen-tts", specifier = ">=0.0.5" },
+    { name = "soundfile", specifier = ">=0.12.1" },
     { name = "torch", specifier = ">=2.10.0" },
 ]
 
