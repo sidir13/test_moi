@@ -1,0 +1,70 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La vie quotidienne d'un travailleur à la fin du XIXe siècle",
+  "axe_narratif": "travailleur",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La vie dans les mines",
+      "duree_cible": 40.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "Description de la vie dans les mines",
+        "Historique de la situation des travailleurs",
+        "Conditions de travail difficiles"
+      ],
+      "mood": "descriptif_neutre"
+    },
+    {
+      "partie": 2,
+      "titre": "La lutte pour les droits des travailleurs",
+      "duree_cible": 40.0,
+      "fonction_narrative": "développement",
+      "position_arc_emotionnel": "tension",
+      "elements_necessaires": [
+        "Événements marquants de la lutte des travailleurs",
+        "Leaders et leurs stratégies",
+        "Résistance de l'employeur"
+      ],
+      "mood": "tensionneuse"
+    },
+    {
+      "partie": 3,
+      "titre": "La victoire des travailleurs",
+      "duree_cible": 40.0,
+      "fonction_narrative": "climax et résolution",
+      "position_arc_emotionnel": "climax",
+      "elements_necessaires": [
+        "Description de la victoire des travailleurs",
+        "Répercussions de cette victoire",
+        "État d'esprit des travailleurs"
+      ],
+      "mood": "triomphal"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "transition_inspirante",
+      "duree": 2.0,
+      "description": "La transition entre la vie quotidienne et la lutte pour les droits des travailleurs est une étape clé"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "transition_satisfaisante",
+      "duree": 4.0,
+      "description": "La transition entre la lutte et la victoire est un moment de soulagement et de triomphe"
+    }
+  ],
+  "notes_production": "Agent 2, veuillez noter que la partie 2 doit être jouée avec un ton plus intense pour refléter la tension de la lutte. La partie 3 doit être jouée avec un ton plus triomphal pour refléter la victoire des travailleurs. Assurez-vous de varier le tempo pour maintenir l'attention de l'auditeur."
+}

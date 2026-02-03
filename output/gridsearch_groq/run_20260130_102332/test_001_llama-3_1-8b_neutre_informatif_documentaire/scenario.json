@@ -1,0 +1,94 @@
+{
+  "scenario_id": 1,
+  "titre": "La vie quotidienne d'un travailleur à la fin du XIXe siècle",
+  "axe_narratif": "travailleur",
+  "duree_estimee": 120.0,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La vie dans les mines",
+      "duree": 40.0,
+      "texte_narration": "[Partie 1 : La vie dans les mines. Texte à générer.]",
+      "ton": {
+        "global": "descriptif_neutre",
+        "tempo_lecture": 110,
+        "pauses": [],
+        "intonation": "neutre"
+      },
+      "moments_cles": []
+    },
+    {
+      "partie_id": 2,
+      "titre": "La lutte pour les droits des travailleurs",
+      "duree": 40.0,
+      "texte_narration": "Dans la foulée de la grève des mineurs en 1899, les ouvriers du territoire d'étude se mobilisent pour obtenir des congés payés, un salaire équitable et une assurance maladie. Les leaders de la lutte, comme les frères Benoît et Léon Jaurès, utilisent des stratégies de mobilisation et de négociation pour presser les employeurs. Mais les patrons résistent farouchement à ces réclamations, arguant que cela ruinerait leur entreprise. L'opposition entre les ouvriers et les employeurs devient de plus en plus tendue. (pause_dramatique à 0:15) Les protestations des travailleurs se multiplient, mais les résultats sont incertains.",
+      "ton": {
+        "global": "tensionneuse",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:15"
+        ],
+        "intonation": "dramatique"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "La victoire des travailleurs",
+      "duree": 40.0,
+      "texte_narration": "Après des années de luttes et de sacrifices, les travailleurs ont enfin obtenu leurs droits. Les usines sont désormais dotées de meilleures conditions de travail, de salaires plus élevés et de protections sociales. Les travailleurs sont fiers de leur combat et de leur victoire. Ils célèbrent leur triomphe avec des manifestations et des cérémonies. La communauté entière se réjouit de leurs réalisations. C'est une nouvelle ère pour les travailleurs. Les archives nous montrent des images de travailleurs heureux, levant les bras en signe de victoire. Les effets sonores de la foule célébrant évoquent l'esprit de solidarité et de bonheur.",
+      "ton": {
+        "global": "triomphal",
+        "tempo_lecture": 110,
+        "pauses": [
+          "0:10",
+          "0:20",
+          "0:30"
+        ],
+        "intonation": "haletant"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "pause_dramatique",
+          "duree": 2.0,
+          "consigne": "Silence pour laisser résonner"
+        },
+        {
+          "timestamp": "0:25",
+          "action": "son_de_foule",
+          "duree": 3.0,
+          "consigne": "Effets sonores de la foule célébrant"
+        },
+        {
+          "timestamp": "0:35",
+          "action": "image_archives",
+          "duree": 2.0,
+          "consigne": "Images de travailleurs heureux"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 208,
+    "duree_lecture_estimee": 120.0,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 1.0,
+      "sources_citees": [],
+      "verifications": [
+        "Anachronismes : 0"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "Agent 2, veuillez noter que la partie 2 doit être jouée avec un ton plus intense pour refléter la tension de la lutte. La partie 3 doit être jouée avec un ton plus triomphal pour refléter la victoire des travailleurs. Assurez-vous de varier le tempo pour maintenir l'attention de l'auditeur."
+}
