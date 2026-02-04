@@ -1,0 +1,552 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Chantiers Navals Nantes-Saint-Nazaire",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "extraction_date": "2024",
+      "confidence_level": "high",
+      "parameters_explicitly_specified": 15,
+      "parameters_using_defaults": 2,
+      "coherence_check": "passed",
+      "notes": "Demande très détaillée avec contexte historique précis, tonalités émotionnelles contrastées clairement définies, et focus sur l'authenticité des témoignages ouvriers"
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {}
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "témoignage",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": true,
+        "justification": "Le projet se base explicitement sur des témoignages d'anciens ouvriers"
+      },
+      "duree": {
+        "value": 120,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": false,
+        "note": "Durée non spécifiée, utilisation de la valeur par défaut"
+      },
+      "ton": {
+        "value": "emotionnel_personnel",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.8,
+        "variations": [
+          {
+            "scenario_type": "mélancolique",
+            "ton": "emotionnel_personnel",
+            "nuance": "nostalgie et dureté",
+            "intensity": 0.85
+          },
+          {
+            "scenario_type": "heureux",
+            "ton": "emotionnel_personnel",
+            "nuance": "fierté et camaraderie",
+            "intensity": 0.75
+          }
+        ],
+        "justification": "Demande explicite de scénarios mélancoliques et heureux, nécessitant un ton émotionnel et personnel"
+      },
+      "axe_narratif": {
+        "value": "travailleur",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": true,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social"
+        },
+        "focus_principal": "parcours_de_vie_ouvrier",
+        "axes_secondaires": [
+          "evolution_temporelle",
+          "contexte_social"
+        ],
+        "justification": "Focus explicite sur le parcours de vie d'un ouvrier et l'expérience des travailleurs"
+      },
+      "rythme": {
+        "value": "varie",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": true,
+        "details": {
+          "tempo_narration": 110,
+          "pauses": "expressives",
+          "variation": "selon_emotion_scenario",
+          "scenarios_melancoliques": "lent_contemplatif",
+          "scenarios_heureux": "dynamique"
+        },
+        "justification": "Scénarios variés (mélancoliques vs heureux) nécessitent un rythme adaptatif"
+      },
+      "nombre_scenarios": {
+        "value": 5,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "distribution": {
+          "melancoliques": 2,
+          "heureux": 2,
+          "equilibre": 1
+        },
+        "justification": "Demande de scénarios variés avec deux tonalités distinctes, suggérant plusieurs variations"
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": false,
+        "note": "Non spécifié, mais le contexte suggère un public intéressé par l'histoire industrielle locale"
+      },
+      "niveau_detail_historique": {
+        "value": "approfondi",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": true,
+        "justification": "Mention détaillée des techniques (traçage au sol, traçage au dixième, informatisation) et des corps de métiers spécifiques"
+      },
+      "perspective_narrative": {
+        "value": "premiere_personne",
+        "options": [
+          "premiere_personne",
+          "troisieme_personne",
+          "voix_off_omnisciente",
+          "chorale_multiple_voix"
+        ],
+        "default": "troisieme_personne",
+        "user_specified": true,
+        "variante": "chorale_multiple_voix",
+        "justification": "Témoignages d'anciens ouvriers impliquent une narration à la première personne, possibilité de multiples voix"
+      },
+      "epoque_linguistique": {
+        "value": "authentique",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": true,
+        "details": {
+          "vocabulaire_technique": "preserve",
+          "expressions_ouvrieres": "integrees",
+          "argot_chantiers": "authentique"
+        },
+        "justification": "Capturer l'expérience authentique des ouvriers nécessite le langage de l'époque"
+      },
+      "densite_sonore": {
+        "value": "immersive",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": true,
+        "details": {
+          "ambiances_simultanees_max": 4,
+          "frequence_effets_sonores": "eleve",
+          "silence_narratif": true,
+          "sons_chantiers": [
+            "marteaux_pneumatiques",
+            "soudure",
+            "grues",
+            "sirenes",
+            "voix_ouvriers",
+            "machines_outils"
+          ]
+        },
+        "justification": "Environnement industriel des chantiers navals nécessite une immersion sonore riche"
+      },
+      "structure_narrative": {
+        "value": "evolution_temporelle",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": true,
+        "sous_structure": "chronologique_avec_flashbacks",
+        "justification": "Focus sur l'évolution des techniques (manuel → traçage au dixième → informatisation) sur la période 1960-1980"
+      },
+      "equilibre_narration_archives": {
+        "value": 0.3,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": true,
+        "note": "0.3 = 70% témoignages directs, 30% narration contextuelle",
+        "justification": "Projet basé sur témoignages, privilégier les voix authentiques des ouvriers"
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.75,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": true,
+        "note": "Forte authenticité tout en restant compréhensible",
+        "justification": "Capturer l'expérience authentique tout en valorisant l'expertise technique"
+      },
+      "variation_emotionnelle": {
+        "value": "contrastee",
+        "user_specified": true,
+        "scenarios": {
+          "melancoliques": {
+            "themes": [
+              "dureté du travail",
+              "nostalgie industrielle",
+              "disparition d'un monde",
+              "conditions difficiles",
+              "fatigue physique"
+            ],
+            "ton_emotionnel": "contemplatif_nostalgique",
+            "tempo": "lent"
+          },
+          "heureux": {
+            "themes": [
+              "fierté du métier",
+              "expertise technique",
+              "camaraderie ouvrière",
+              "aventure excitante",
+              "accomplissement",
+              "solidarité"
+            ],
+            "ton_emotionnel": "enthousiaste_valorisant",
+            "tempo": "dynamique"
+          }
+        },
+        "justification": "Demande explicite de scénarios contrastés (mélancoliques vs heureux/excitants)"
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "Gilles.Hamon-Interview-Chantiers-Navals.wav",
+            "transcription": "Alors l'idée c'est qu'après, dès que j'ai fini, je vais recommencer à retranscrire. Vu qu'après je retranscris tout, j'ai besoin, pour commencer, qu'est-ce que vous pourriez me donner votre nom, votre prénom et votre âge ? Amon, Gilles. Oui. Votre âge ? 73. Très bien. Alors, avez-vous travaillé au chantier ? Oui. Si oui, où ? Dans quel chantier vous avez travaillé ?\n\nAu départ, c'était la Bretagne, à 14 ans, puis on a suivi toutes les fusions, pour faire venir au chantier de Nantes et puis au chantier du Bujon, ça s'est appelé comme ça, qui était la fusion des trois chantiers nantais de la région. Jusqu'à quelle période ? Jusqu'à la fermeture-fermeture ? En 78, par là, puis après j'ai viré à Saint-Nazaire. D'accord, à Saint-Nazaire. Et vous avez fini votre carrière là-bas ? Ah bah oui. D'accord. Qu'est-ce que vous vous rappelez de votre date d'embauche au tout début ?\n\nAh bah oui, c'était au mois de septembre. D'accord. Je ne sais plus, 78 par là. L'année, vous vous en rappelez ? Oh, euh... 43, euh... Soit 58. 58. 58, 58, 59, c'est ça. Oui, c'est ça. D'accord, donc en septembre 58. Quel était votre poste au niveau des chantiers ? Est-ce qu'il a évolué au fil des années ? On a commencé comme apprenti, naturellement, puis après ouvrier.\n\nAlors, en tant qu'ouvrier traceur, on était déjà très bien placé dans les groupes, il y avait... Et puis après, je suivais des cours à l'ivette, qui m'a permis de passer le brevet, qui m'a permis de monter tout de suite au dixième, puis en parallèle, après j'avais suivi les cours de dessin, pas de dessinateur, puis je suis passé au bureau de dessin. D'accord. Et puis à Chauffa, je grimpais en grade. D'accord.\n\n[Interview continue avec détails techniques sur le traçage, l'évolution des méthodes de travail, les anecdotes sur les grues, les accidents, etc.]",
+            "language": "français",
+            "notes": "Témoignage détaillé couvrant la période 1958-1978, de l'apprentissage à 14 ans jusqu'à la fermeture des chantiers nantais et le passage à Saint-Nazaire. Riche en détails techniques sur l'évolution des métiers (traçage au sol, traçage au dixième, passage aux ordinateurs) et anecdotes sur la vie quotidienne (accidents de grues, organisation du travail, etc.)",
+            "source": "Interview réalisée avec Gilles Hamon, ancien traceur-dessinateur des chantiers navals"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": 1960,
+        "end_year": 1980,
+        "user_specified": true,
+        "decades": [
+          "années 60",
+          "années 70",
+          "début années 80"
+        ],
+        "caracteristiques": "Période charnière de modernisation industrielle",
+        "phases": [
+          {
+            "periode": "1960-1970",
+            "description": "Travail manuel dominant, traçage au sol"
+          },
+          {
+            "periode": "1970-1975",
+            "description": "Transition vers traçage au dixième"
+          },
+          {
+            "periode": "1975-1980",
+            "description": "Début de l'informatisation"
+          }
+        ]
+      },
+      "location": {
+        "primary": "Chantiers navals de Nantes",
+        "specific_areas": [
+          "Ateliers de traçage",
+          "Bureaux de dessin",
+          "Cales de construction",
+          "Zones de soudure",
+          "Hangars de montage"
+        ],
+        "user_specified": true,
+        "region": "Nantes-Saint-Nazaire",
+        "contexte_geographique": "Port de Nantes-Saint-Nazaire, axe Loire",
+        "importance": "Centre majeur de construction navale française"
+      },
+      "themes": {
+        "primary": [
+          "Conditions de travail ouvrier",
+          "Culture ouvrière",
+          "Évolution des chantiers navals",
+          "Parcours de vie d'ouvrier",
+          "Modernisation technique"
+        ],
+        "secondary": [
+          "Fierté du métier",
+          "Camaraderie ouvrière",
+          "Expertise technique",
+          "Nostalgie industrielle",
+          "Transition technologique",
+          "Identité professionnelle",
+          "Mémoire du travail"
+        ],
+        "user_specified": true,
+        "techniques_specifiques": [
+          "Traçage au sol",
+          "Traçage au dixième",
+          "Informatisation",
+          "Dessin industriel",
+          "Construction navale"
+        ]
+      },
+      "key_events": [],
+      "key_figures": [],
+      "professions_concernees": {
+        "principales": [
+          "Traceurs",
+          "Dessinateurs industriels",
+          "Soudeurs",
+          "Chaudronniers",
+          "Ajusteurs",
+          "Monteurs"
+        ],
+        "user_specified": true,
+        "focus": "Traceurs et dessinateurs particulièrement mentionnés"
+      },
+      "contexte_social": {
+        "classe_sociale": "Classe ouvrière industrielle",
+        "environnement": "Milieu industriel portuaire",
+        "valeurs": [
+          "Solidarité",
+          "Fierté du travail bien fait",
+          "Transmission du savoir-faire",
+          "Esprit de corps"
+        ],
+        "defis": [
+          "Conditions de travail difficiles",
+          "Adaptation aux nouvelles technologies",
+          "Pénibilité physique"
+        ]
+      },
+      "evolution_historique": {
+        "transformation_principale": "Passage du travail manuel à l'informatisation",
+        "user_specified": true,
+        "etapes": [
+          {
+            "phase": "Travail traditionnel",
+            "methode": "Traçage au sol, travail manuel",
+            "periode": "années 60"
+          },
+          {
+            "phase": "Modernisation intermédiaire",
+            "methode": "Traçage au dixième",
+            "periode": "années 70"
+          },
+          {
+            "phase": "Révolution numérique",
+            "methode": "Informatisation",
+            "periode": "fin années 70 - début 80"
+          }
+        ],
+        "impact": "Transformation profonde des métiers et de l'identité ouvrière"
+      }
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/chantiers_navals"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "sources_documentaires": {
+      "type": "Témoignages oraux d'anciens ouvriers",
+      "user_specified": true,
+      "nature": [
+        "Récits de vie",
+        "Descriptions techniques",
+        "Anecdotes personnelles",
+        "Mémoire collective"
+      ],
+      "authenticite": "Sources primaires directes"
+    },
+    "objectifs_projet": {
+      "principal": "Capturer l'expérience des ouvriers des chantiers navals",
+      "user_specified": true,
+      "dimensions": [
+        "Mettre en lumière les conditions de travail",
+        "Valoriser la culture ouvrière",
+        "Documenter l'évolution des chantiers",
+        "Préserver la mémoire industrielle",
+        "Transmettre l'expertise technique"
+      ],
+      "approche": "Double perspective émotionnelle (mélancolie et bonheur)"
+    },
+    "contraintes_production": {
+      "diversite_scenarios": {
+        "requis": true,
+        "types": [
+          "Scénarios mélancoliques",
+          "Scénarios heureux/excitants"
+        ],
+        "equilibre": "Représentation équilibrée des deux tonalités"
+      },
+      "authenticite_historique": {
+        "niveau": "élevé",
+        "exigences": [
+          "Respect des témoignages",
+          "Précision technique",
+          "Contexte historique exact",
+          "Vocabulaire d'époque"
+        ]
+      }
+    }
+  }
+}

@@ -268,7 +268,8 @@
       "include_sources_citations": true,
       "include_alternative_versions": false,
       "export_formats": ["json", "pdf_script", "audio_timeline"],
-      "language": "fr"
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
     },
     
     "constraints": {

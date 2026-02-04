@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import logging
 import os
+from dotenv import load_dotenv
+
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Union
 
@@ -47,7 +49,7 @@ class ScenarioConfigBuilderSkill:
             audio_transcriptions (Sequence[dict|tuple]): transcripts to inject.
             documents (Sequence[str|dict]): optional textual sources to attach.
             project_name (str): to overwrite metadata.project_name.
-            api_key (str): Anthropic API key or rely on ANTHROPIC_API_KEY env variable.
+            api_key (str): Anthropic API key or rely on ANTHROPIC_AUTH_TOKEN env variable.
         """
         mode = str(params.get("mode", "simple")).lower()
         project_description = params.get("project_description") or params.get("prompt")
@@ -100,7 +102,8 @@ class ScenarioConfigBuilderSkill:
         base_config: Dict[str, Any],
     ) -> Dict[str, Any]:
         """Leverage Agent 0 to parse the project instructions."""
-        api_key = params.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
+        load_dotenv()
+        api_key = params.get("api_key") or os.getenv("ANTHROPIC_AUTH_TOKEN")
         if not api_key:
             raise ValueError("ScenarioConfigBuilderSkill requires an Anthropic API key.")
 

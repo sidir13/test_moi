@@ -10,7 +10,7 @@ import os
 @pytest.fixture
 def mock_env():
     """Mock environment variables."""
-    with patch.dict(os.environ, {'ANTHROPIC_API_KEY': 'test-key'}):
+    with patch.dict(os.environ, {'ANTHROPIC_AUTH_TOKEN': 'test-key'}):
         yield
 
 

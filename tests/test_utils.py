@@ -119,7 +119,7 @@ Test function description
 
 def test_claude_client_initialization():
     """Test Claude client initialization."""
-    with patch.dict('os.environ', {'ANTHROPIC_API_KEY': 'test-key'}):
+    with patch.dict('os.environ', {'ANTHROPIC_AUTH_TOKEN': 'test-key'}):
         from utils.claude_client import ClaudeClient
         
         client = ClaudeClient(api_key='test-key')

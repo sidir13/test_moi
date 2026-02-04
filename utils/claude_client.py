@@ -25,18 +25,18 @@ class ClaudeClient:
         Initialize Claude client.
         
         Args:
-            api_key: Anthropic API key (defaults to env ANTHROPIC_API_KEY)
+            api_key: Anthropic API key (defaults to env ANTHROPIC_AUTH_TOKEN)
             base_url: API base URL for OpenRouter support
             max_retries: Maximum number of retry attempts
             base_delay: Base delay for exponential backoff (seconds)
         """
-        self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
+        self.api_key = api_key or os.getenv("ANTHROPIC_AUTH_TOKEN")
         self.base_url = base_url or os.getenv("ANTHROPIC_BASE_URL")
         self.max_retries = max_retries
         self.base_delay = base_delay
         
         if not self.api_key:
-            raise ValueError("ANTHROPIC_API_KEY must be set in environment or passed as argument")
+            raise ValueError("ANTHROPIC_AUTH_TOKEN must be set in environment or passed as argument")
         
         # Initialize client
         client_kwargs = {"api_key": self.api_key}
