@@ -17,4 +17,6 @@ dependencies = [
     "librosa>=0.10.1",
     "soundfile>=0.12.1",
     "pandas>=2.2.0",
+    "moviepy>=2.2.1",
+    "pillow>=11.3.0",
 ]
