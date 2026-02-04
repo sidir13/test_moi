@@ -25,6 +25,7 @@ from memoiredesterritoires.web_search.restricted_web_search import restricted_we
 from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
+from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -135,6 +136,33 @@ TOOLS = [
                 }
             },
             "required": ["voice_file", "noise_file"]
+        }
+    },
+    {
+        "name": "eleven_labs_tts",
+        "description": "Génère une narration via ElevenLabs (à utiliser seulement si l'utilisateur le demande explicitement)",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "Script à synthétiser"
+                },
+                "voice_id": {
+                    "type": "string",
+                    "description": "Identifiant ElevenLabs de la voix"
+                },
+                "model_id": {
+                    "type": "string",
+                    "description": "Modèle ElevenLabs à utiliser",
+                    "default": "eleven_multilingual_v2"
+                },
+                "output_path": {
+                    "type": "string",
+                    "description": "Chemin du fichier MP3 de sortie"
+                }
+            },
+            "required": ["text"]
         }
     },
     {
@@ -447,6 +475,13 @@ def execute_tool(tool_name: str, tool_input: dict):
             noise_duration=tool_input.get("noise_duration"),
             noise_start_offset=tool_input.get("noise_start_offset", 2),
         )
+    elif tool_name == "eleven_labs_tts":
+        return eleven_labs_tts(
+            text=tool_input["text"],
+            voice_id=tool_input.get("voice_id", "pqHfZKP75CvOlQylNhV4"),
+            output_path=tool_input.get("output_path"),
+            model_id=tool_input.get("model_id", "eleven_multilingual_v2"),
+        )
     elif tool_name == "find_background_sounds":
         return find_background_sounds(
             keyword=tool_input.get("keyword"),
@@ -568,9 +603,16 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("""Peux tu déterminer les instructions de voix idéales pour le scénario suivant ? Au milieu du dix-huitième siècle, Nantes s'affirme comme l'un des ports les plus actifs du royaume. La construction navale se professionnalise : un quai des constructions s'aménage en aval de la Chézine, tandis que les charpentiers s'installent à la Piperie. Nantes devient alors le premier constructeur de navires marchands de France et se lance dans la production de bâtiments de guerre.
-    Le dix-neuvième siècle marque l'apogée de cette industrie. En mille huit cent soixante et un, la compagnie Penhoët est fondée, insufflant un nouvel élan à l'industrie navale nantaise. Les Chantiers Dubigeon, créés dès mille sept cent soixante, deviennent une référence mondiale. Entre mille huit cent quatre-vingt-neuf et mille neuf cent deux, ils lancent vingt-six grands trois-mâts, dont le célèbre Belem en mille huit cent quatre-vingt-seize, le plus vieux voilier d'Europe encore en service aujourd'hui.
-    Les Trente Glorieuses représentent le sommet de cette aventure industrielle : jusqu'à sept mille salariés travaillent sur les trois sites nantais. Mais la concurrence étrangère, l'ensablement de la Loire et la baisse des commandes précipitent le déclin. En mille neuf cent quatre-vingt-sept, les Chantiers Dubigeon ferment définitivement leurs portes, tournant la dernière page de trois siècles de construction navale à Nantes. L'île de Nantes entame alors sa métamorphose, du territoire industriel au quartier de la création."""))
+    asyncio.run(main("Can you use the tts elevelabs tool to generate speech for the text: 'Bonjour à tous, ceci est un test de synthèse vocale avec ElevenLabs.'"))
+#     asyncio.run(main("""Peux tu générer l'audio pour ce texte:
+                     
+#                      Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité.
+# Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.
+# Le paquebot France, fierté nationale, est né ici en 1960. Cent six mille tonnes de rêves et d'acier.
+# Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."""))
+    # asyncio.run(main("""Peux tu déterminer les instructions de voix idéales pour le scénario suivant ? Au milieu du dix-huitième siècle, Nantes s'affirme comme l'un des ports les plus actifs du royaume. La construction navale se professionnalise : un quai des constructions s'aménage en aval de la Chézine, tandis que les charpentiers s'installent à la Piperie. Nantes devient alors le premier constructeur de navires marchands de France et se lance dans la production de bâtiments de guerre.
+    # Le dix-neuvième siècle marque l'apogée de cette industrie. En mille huit cent soixante et un, la compagnie Penhoët est fondée, insufflant un nouvel élan à l'industrie navale nantaise. Les Chantiers Dubigeon, créés dès mille sept cent soixante, deviennent une référence mondiale. Entre mille huit cent quatre-vingt-neuf et mille neuf cent deux, ils lancent vingt-six grands trois-mâts, dont le célèbre Belem en mille huit cent quatre-vingt-seize, le plus vieux voilier d'Europe encore en service aujourd'hui.
+    # Les Trente Glorieuses représentent le sommet de cette aventure industrielle : jusqu'à sept mille salariés travaillent sur les trois sites nantais. Mais la concurrence étrangère, l'ensablement de la Loire et la baisse des commandes précipitent le déclin. En mille neuf cent quatre-vingt-sept, les Chantiers Dubigeon ferment définitivement leurs portes, tournant la dernière page de trois siècles de construction navale à Nantes. L'île de Nantes entame alors sa métamorphose, du territoire industriel au quartier de la création."""))
     # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("Peux tu procéder à l'analyse des 2 premières minutes de l'interview au path: data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV , l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     # asyncio.run(main("Peux tu procéder à l'analyse du background son Titanier et l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
