@@ -1,6 +1,6 @@
 {
   "Mémoire des Territoires": {
-    "voice_instructions": "A mature male voice (50-60 years old) with a deep, resonant tone that evokes the authority of a maritime industry expert or shipyard foreman. The delivery should be measured and contemplative, reflecting the weight of three centuries of naval history. Use a slightly gravelly quality that suggests decades of experience in industrial environments. The pace should be deliberate, allowing each technical term and historical date to resonate with significance. Emphasize the grandeur of the 18th-19th century golden age with a sense of pride, then gradually shift to a more somber, reflective tone when describing the decline and closure of the shipyards. The voice should carry the dignity of industrial heritage while conveying both nostalgia for a lost era and respect for the workers who built these ships.",
+    "voice_instructions": "A mature, contemplative narrator with the depth and gravitas of a historical documentary voice. The voice should be reflective and evocative, with natural pauses to let the emotion resonate. The tone starts with wonder when describing the bustling shipyards of 1950, builds with pride when speaking of the France ocean liner, and concludes with melancholy as it reflects on what remains today. The voice should convey both the grandeur of the industrial past and the poignancy of its transformation.",
     "allowed_websites": [
       "wikipedia.org"
     ]

@@ -19,4 +19,5 @@ dependencies = [
     "pandas>=2.2.0",
     "moviepy>=2.2.1",
     "pillow>=11.3.0",
+    "elevenlabs>=2.34.0",
 ]
