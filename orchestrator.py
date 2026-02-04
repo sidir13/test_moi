@@ -258,8 +258,13 @@ class ScenarioMakerOrchestrator:
         
         agent_2_logger = AgentLogger("Agent 2")
         
+        audio_transcriptions = self._extract_audio_transcriptions(config)
         agent_2_logger.log_start("Write complete scenario")
-        scenario = agent_2.write_complete_scenario(structure, config)
+        scenario = agent_2.write_complete_scenario(
+            structure,
+            config,
+            audio_transcriptions=audio_transcriptions
+        )
         agent_2_logger.log_end("Write scenario", status="success")
         
         return scenario
@@ -343,3 +348,15 @@ class ScenarioMakerOrchestrator:
         elif skill_name in self.skills:
             return self.skills[skill_name]['config']
         return None
+
+    def _extract_audio_transcriptions(self, config: Dict) -> List[Dict[str, Any]]:
+        """Fetch user-provided audio transcriptions from configuration."""
+        try:
+            data_sources = config.get('scenario_config', {}).get('data_sources', {})
+            user_provided = data_sources.get('user_provided', {})
+            transcriptions = user_provided.get('audio_transcriptions') or []
+            if isinstance(transcriptions, list):
+                return [t for t in transcriptions if isinstance(t, dict)]
+        except Exception as exc:
+            logger.warning(f"Failed to extract audio transcriptions: {exc}")
+        return []
