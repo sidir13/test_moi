@@ -1,0 +1,17 @@
+version: "3.12.8"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      UVICORN_HOST: 0.0.0.0
+      UVICORN_PORT: 8000
+    volumes:
+      - /app:/app
+      - /data:/data
+    ports:
+      - "8000:8000"
