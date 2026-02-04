@@ -25,11 +25,8 @@ from memoiredesterritoires.web_search.restricted_web_search import restricted_we
 from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust_audio_volume
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
-<<<<<<< HEAD
 from memoiredesterritoires.Slideshow.slides import slideshow
-=======
 from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
->>>>>>> 61b205c16674e6c28d7911c61330bed4501cc82d
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
