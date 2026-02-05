@@ -55,9 +55,9 @@ def generate(
     ))
     
     # Check API key
-    if not api_key and not os.getenv("ANTHROPIC_API_KEY"):
+    if not api_key and not os.getenv("ANTHROPIC_AUTH_TOKEN"):
         console.print("[red]Erreur: Clé API Anthropic requise[/red]")
-        console.print("Définissez ANTHROPIC_API_KEY dans .env ou utilisez --api-key")
+        console.print("Définissez ANTHROPIC_AUTH_TOKEN dans .env ou utilisez --api-key")
         raise typer.Exit(code=1)
     
     # Get user input

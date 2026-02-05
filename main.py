@@ -26,8 +26,10 @@ from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
+from memoiredesterritoires.json_utils.read_json import read_json_file
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSkill
+from memoiredesterritoires.scenario_ranking.rank_scenarios import rank_scenarios_against_config
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -143,6 +145,46 @@ TOOLS = [
                 }
             },
             "required": ["voice_file", "noise_file"]
+        }
+    },
+    {
+        "name": "read_json_file",
+        "description": "Lire un fichier JSON local (optionnel : extraire une clé spécifique)",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "Chemin vers le fichier JSON"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Clé à extraire du JSON"
+                }
+            },
+            "required": ["path"]
+        }
+    },
+    {
+        "name": "rank_scenarios_against_config",
+        "description": "Réevalue et classe les scénarios en fonction d’un fichier config projet",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "config_path": {
+                    "type": "string",
+                    "description": "Chemin du fichier config JSON"
+                },
+                "scenarios_dir": {
+                    "type": "string",
+                    "description": "Dossier contenant les scénarios JSON"
+                },
+                "project_name": {
+                    "type": "string",
+                    "description": "Nom du projet (optionnel, pour logs)"
+                }
+            },
+            "required": ["config_path", "scenarios_dir"]
         }
     },
     {
@@ -612,6 +654,17 @@ def execute_tool(tool_name: str, tool_input: dict):
         return find_background_sounds(
             keyword=tool_input.get("keyword"),
             limit=tool_input.get("limit", 20),
+        )
+    elif tool_name == "read_json_file":
+        return read_json_file(
+            path=tool_input["path"],
+            key=tool_input.get("key"),
+        )
+    elif tool_name == "rank_scenarios_against_config":
+        return rank_scenarios_against_config(
+            config_path=tool_input["config_path"],
+            scenarios_dir=tool_input["scenarios_dir"],
+            project_name=tool_input.get("project_name"),
         )
     elif tool_name == "build_project_scenario_config":
         return project_config_builder_skill.run(tool_input)
