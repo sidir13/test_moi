@@ -19,7 +19,7 @@ This agent exposes a set of tools (“skills”) that orchestrate audio processi
 | `generate-voice-instructions` | Ask the LLM to craft new voice instructions from a historical scenario and persist them. | `scenario` (text), optional `project_name`, `hint_language` | `src/memoiredesterritoires/voice_instructions/generate_voice_instructions.py` |
 | `restricted-web-search` | Perform an OpenRouter web search restricted to the `allowed_websites` configured for the project. | `query`, optional `project_name`, `max_results`, `model` | `src/memoiredesterritoires/web_search/restricted_web_search.py` |
 | `eleven_labs_tts` | Produce an MP3 narration with the ElevenLabs API when explicitly requested. | `text`, optional `voice_id`, `model_id`, `output_path` | `src/memoiredesterritoires/elevenlabs_tts/elevenlabs_tts.py` |
-| `read_json_file` | Load a local JSON file (optionally return a specific key’s content). | `path`, optional `key` | `src/memoiredesterritoires/json_utils/read_json.py` |
+| `read_json_file` | Load a local JSON file (optionally scoped to a `project_name` and/or key). | `path`, optional `project_name`, `key` | `src/memoiredesterritoires/json_utils/read_json.py` |
 | `rank_scenarios_against_config` | Ask the LLM to compare each scenario against a project config, produce an ordered list, and persist it under `scenario_ranking`. | `config_path`, `scenarios_dir`, optional `project_name` | `src/memoiredesterritoires/scenario_ranking/rank_scenarios.py` |
 
 ### Usage Guidelines

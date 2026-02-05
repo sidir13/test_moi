@@ -7,9 +7,10 @@ description: Convert text into expressive speech while following detailed voice 
 
 ## Instructions
 1. Assure-toi que les consignes vocales souhaitées sont enregistrées via `edit_voice_instructions`. Tu ne passes plus de paramètre `instructions` ici.
-2. Fournis `text` et, si besoin, `project_name`, `language` ou `output_path`.
-3. Appelle `text_to_speech_with_instructions` : il lira automatiquement `voice_instructions` depuis `config.json` pour le projet choisi (par défaut “Mémoire des Territoires”).
-4. Confirme ensuite le fichier généré et rappelle la voix appliquée.
+2. Si le texte provient d’un scénario structuré en plusieurs sections (`texte_narration_1`, `_2`, etc.), fusionne-les dans un seul champ `text` (sauf demande explicite de fichiers séparés). L’objectif est d’obtenir une narration continue.
+3. Fournis `text` et, si besoin, `project_name`, `language` ou `output_path`.
+4. Appelle `text_to_speech_with_instructions` : il lira automatiquement `voice_instructions` depuis `config.json` pour le projet choisi (par défaut “Mémoire des Territoires”).
+5. Confirme ensuite le fichier généré et rappelle la voix appliquée.
 
 ## Examples
 

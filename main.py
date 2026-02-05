@@ -157,6 +157,10 @@ TOOLS = [
                     "type": "string",
                     "description": "Chemin vers le fichier JSON"
                 },
+                "project_name": {
+                    "type": "string",
+                    "description": "Projet (clé de premier niveau) quand le JSON contient plusieurs entrées"
+                },
                 "key": {
                     "type": "string",
                     "description": "Clé à extraire du JSON"
@@ -658,6 +662,7 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "read_json_file":
         return read_json_file(
             path=tool_input["path"],
+            project_name=tool_input.get("project_name"),
             key=tool_input.get("key"),
         )
     elif tool_name == "rank_scenarios_against_config":
