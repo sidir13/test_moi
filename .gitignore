@@ -125,3 +125,7 @@ process_number.cpython-312.pyc
 qwen-3-tts
 qwen-3-tts
 
+# images
+*.png
+*.jpg
+*.jpeg
