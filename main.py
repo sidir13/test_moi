@@ -37,7 +37,7 @@ async def check_available_skills():
     available_skills = []
     
     if skills_dir.exists():
-        for tool_dir in skills_dir.iterdir():
+        for tool_dir in sorted(skills_dir.iterdir(), key=lambda p: p.name.lower()):
             if tool_dir.is_dir():
                 skill_file = tool_dir / "SKILL.md"
                 if skill_file.exists():
@@ -791,7 +791,9 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("We need you to use your availables skills to properly generate the audio narrated scenario throught tts based on scenario conig file at data/scenarios/chantiers_navals/scenarios/scenario_2_20260204_172233.json, you can extract the story that is divided into different part into the different texte_narration keys of the json ! Generate the audio file with the text to speech too"))
+    asyncio.run(main("Can you generate a new scenario for a project we'll call lA vie de Gilles, path is data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, transcript it and stock it in db, then we'll first find the 3 most relevant background sounds for this audio, then analyze the audio to extract key elements of the ambiance, then store the analysis in the database, generate 2 scenarios, one about his personal life, another about his professional life, then generate voice instructions based on the scenario and the analysis, then synthesize a narration of the 2 scenarios with the generated voice instructions, and finally mix the narration with for each scenario 2 of the found background sounds to create an immersive audio scenario !"))
+    # asyncio.run(main("Can you just list all available skills and their descriptions?"))
+    # asyncio.run(main("We need you to use your availables skills to properly generate the audio narrated scenario throught tts based on scenario conig file at data/scenarios/chantiers_navals/scenarios/scenario_2_20260204_172233.json, you can extract the story that is divided into different part into the different texte_narration keys of the json ! Generate the audio file with the text to speech too"))
     # asyncio.run(main("""Peux tu modifier le fichier config par défaut pour la génération de scénarios et en générer un nouveau à partir de cet extrait d'interview et informations:
                      
     #     Le projet concerne donc le port de Nantes-Saint-Nazaire, plus précisément les chantiers navals de Nantes, avec un focus sur les ouvriers travaillant dans les années 60-80. L'objectif est de capturer l'expérience des ouvriers à travers leurs témoignages, en mettant en lumière les conditions de travail, la culture ouvrière, et l'évolution des chantiers navals durant cette période.
