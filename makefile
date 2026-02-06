@@ -1,25 +1,72 @@
-PROJECT_ROOT := $(realpath ..)
-IMAGE_NAME := memoiredesterritoires
+# Project automation for Mémoire des Territoires
 
-.PHONY: uv-install
-uv-install:
-	cd $(PROJECT_ROOT) && pip install uv
+IMAGE_NAME ?= memoire-des-territoires-app
+GITHUB_PROFILE ?= julienRactM
+GITHUB_HOST ?= laplateformeio
+ENV_FILE ?= .env
+APP_DIR ?= app
+PLATFORM ?= linux
 
-.PHONY: uv-install-mac
-uv-install-mac:
-	cd $(PROJECT_ROOT) && brew install uv
+UV ?= uv
+NPM ?= npm
+PYTHON ?= python3
 
-.PHONY: install
-install: uv-install
-	uv sync
+ifeq ($(PLATFORM),mac)
+	DOCKER_PLATFORM := linux/arm64
+else ifeq ($(PLATFORM),linux)
+	DOCKER_PLATFORM := linux/amd64
+else
+$(error PLATFORM must be 'linux' or 'mac')
+endif
 
-.PHONY: docker-build
-docker-build:
-	docker build -t $(IMAGE_NAME):latest .
+.PHONY: ensure-env ensure-app install install-mac build docker-build build-mac docker-run run-mac docker-refresh refresh-mac docker-push
 
-.PHONY: docker-run
-docker-run:
-	docker run -p 8000:8000 --env-file .env $(IMAGE_NAME):latest
+ensure-env:
+	@test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE). Copy from env.example" && exit 1)
 
-.PHONY: docker-refresh
-docker-refresh: uv-install install docker-build docker-run
+ensure-app:
+	@if [ ! -d $(APP_DIR) ]; then \
+		mkdir -p $(APP_DIR); \
+	fi
+
+install: ensure-env ensure-app
+	$(UV) sync
+	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
+
+install-mac:
+	$(MAKE) install PLATFORM=mac
+
+build: docker-build
+
+docker-build: ensure-env
+	docker build --platform $(DOCKER_PLATFORM) -t $(IMAGE_NAME):latest -f Dockerfile .
+
+build-mac:
+	$(MAKE) docker-build PLATFORM=mac
+
+run: docker-run
+
+docker-run: ensure-env
+	docker run --rm --platform $(DOCKER_PLATFORM) -p 8000:8000 --env-file $(ENV_FILE) $(IMAGE_NAME):latest
+
+run-mac:
+	$(MAKE) docker-run PLATFORM=mac
+
+refresh: docker-refresh
+
+docker-refresh:
+	$(MAKE) install PLATFORM=$(PLATFORM)
+	$(MAKE) docker-build PLATFORM=$(PLATFORM)
+	$(MAKE) docker-run PLATFORM=$(PLATFORM)
+
+refresh-mac:
+	$(MAKE) docker-refresh PLATFORM=mac
+
+docker-push:
+	@if [ -z "$(GITPAT)" ]; then \
+		echo "Set GITPAT=your_token"; \
+		exit 1; \
+	fi
+	echo $(GITPAT) | docker login ghcr.io -u $(GITHUB_PROFILE) --password-stdin
+	docker tag $(IMAGE_NAME):latest ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
+	docker push ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest

@@ -1,4 +1,13 @@
-
-
-# dev local
-dump
+.git
+__pycache__
+*.pyc
+.env
+.env.local
+node_modules
+app/node_modules
+data/audio/*
+data/audio_analysis/*
+logs
+.DS_Store
+models
+notebooks

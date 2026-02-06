@@ -30,3 +30,15 @@ This agent exposes a set of tools (“skills”) that orchestrate audio processi
 4. **Audio Assets:** `data/audio/background_sounds/` is the canonical source for ambient noises. Use `find-background-sounds` to discover valid paths before calling `mix_voice_with_noise`.
 
 Extend this table whenever you add a new `SKILL.md` so the README remains the single source of truth for tool capabilities.
+
+## Interface web & API
+
+- **Backend FastAPI** : exposé via `server.app.create_app`, inclut gestion des sessions, upload audio (validation format + limite configurée), déclenchement d'automations par étape et appel du `ScenarioMakerSkill`. L'API est servie en Docker par `uvicorn server.main:app`.
+- **Frontend React** : l'application Vite (dossier `app/`) fournit la navigation en 6 étapes, un chatbot bilingue (FR/EN) et une visualisation WaveSurfer des pistes audio. Chaque étape affiche uniquement les skills autorisés définis dans `config/step_config.json`.
+- **Build & Docker** : utilisez `Makefile` — par exemple :
+  - `make install PLATFORM=linux` (installe env Python + dépendances Node du frontend)
+  - `make docker-build PLATFORM=linux` puis `make docker-run PLATFORM=linux` pour lancer l'app complète via Docker (l'image embarque le build frontend dans `/app/app/dist`).
+  - `make docker-refresh PLATFORM=linux` enchaîne install + build + run. Les variantes `*-mac` basculent automatiquement sur `PLATFORM=mac` (build multi-arch via `--platform`).
+  - `make docker-push GITPAT=xxxxx` publie l'image sur `ghcr.io/laplateformeio/julienRactM:latest`.
+- **Configuration UI** : `config/step_config.json` centralise titres FR/EN, placeholders chatbot, skills disponibles et automations déclenchées à la transition de chaque étape.
+- **Variables d'environnement** : complétez `.env` (copie de `env.example`) avec vos clés Anthropic/ElevenLabs et `MAX_AUDIO_MB`. Pour le frontend, `VITE_API_BASE` pointe vers l'API (par défaut `http://localhost:8000` en local).

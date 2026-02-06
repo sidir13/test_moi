@@ -1,0 +1,109 @@
+{
+  "steps": [
+    {
+      "id": "project_selection",
+      "order": 1,
+      "name": {"fr": "Sélection de Projet", "en": "Project Selection"},
+      "description": {"fr": "Créez ou choisissez un projet pour stocker toutes les sources.", "en": "Create or pick a project workspace"},
+      "chat_placeholder": {"fr": "", "en": ""},
+      "skills": [],
+      "automations": ["initialize_project_workspace"]
+    },
+    {
+      "id": "project_details",
+      "order": 2,
+      "name": {"fr": "Détails du projet", "en": "Project Details"},
+      "description": {"fr": "Définissez la direction narrative et discutez avec l'IA.", "en": "Set narrative intent and brief the AI."},
+      "chat_placeholder": {"fr": "Quelle histoire souhaitez vous raconter ?", "en": "What story would you like to craft?"},
+      "skills": ["json_utils"],
+      "automations": ["update_project_notes"]
+    },
+    {
+      "id": "audio_sources",
+      "order": 3,
+      "name": {"fr": "Sélection des sources audios", "en": "Audio Source Selection"},
+      "description": {"fr": "Chargez les pistes et choisissez jusqu'à deux ambiances.", "en": "Upload voices and optional ambiences."},
+      "chat_placeholder": {"fr": "Souhaitez vous ajoutez des bruits d'ambiance de notre bibliothèque ?", "en": "Would you like to add ambient sounds from our library?"},
+      "skills": [
+        "background_sounds_description",
+        "analysis_storage",
+        "background_sound_finder",
+        "json_utils",
+        "project_config_builder",
+        "update_project_notes",
+        "analysis_storage_query"
+      ],
+      "automations": [
+        "read_project_config",
+        "update_project_notes",
+        "transcription_pipeline",
+        "analysis_storage",
+        "analysis_storage_background",
+        "project_config_builder"
+      ]
+    },
+    {
+      "id": "scenario_review",
+      "order": 4,
+      "name": {"fr": "Consulter les scénarios", "en": "Review Scenarios"},
+      "description": {"fr": "Comparez les scénarios générés et choisissez le meilleur.", "en": "Review generated scenarios and choose one."},
+      "chat_placeholder": {"fr": "Souhaitez vous qu'on vous aide à choisir le meilleur scénario ?", "en": "Need help picking the best scenario?"},
+      "skills": [
+        "web_search",
+        "analysis_storage_query",
+        "background_sound_finder",
+        "voice_instructions",
+        "project_config_builder",
+        "json_utils",
+        "update_project_notes"
+      ],
+      "automations": [
+        "read_project_config",
+        "project_config_builder",
+        "voice_instructions",
+        "update_project_notes",
+        "analysis_storage_query",
+        "scenario_maker",
+        "background_sound_finder",
+        "adjust_audio_volume",
+        "text_to_speech_with_instructions",
+        "insert_background_sounds",
+        "adjust_audio_volume"
+      ]
+    },
+    {
+      "id": "scenario_edit",
+      "order": 5,
+      "name": {"fr": "Modifier le scénario", "en": "Edit Scenario"},
+      "description": {"fr": "Affinez le texte et la timeline audio.", "en": "Refine text and timeline."},
+      "chat_placeholder": {"fr": "Comment souhaitez vous éditer votre scénario ?", "en": "How would you like to edit your scenario?"},
+      "skills": [
+        "background_sounds_description",
+        "web_search",
+        "analysis_storage_query",
+        "insert_background_sounds",
+        "adjust_audio_volume",
+        "background_sound_finder",
+        "voice_instructions",
+        "text_to_speech_with_instructions",
+        "json_utils",
+        "scenario_maker",
+        "project_config_builder",
+        "update_project_notes"
+      ],
+      "automations": [
+        "read_project_config",
+        "update_project_notes"
+      ]
+    },
+    {
+      "id": "final_validation",
+      "order": 6,
+      "name": {"fr": "Validation finale", "en": "Final Validation"},
+      "description": {"fr": "Confirmez l'audio final et archivez les chemins.", "en": "Confirm final audio and archive paths."},
+      "chat_placeholder": {"fr": "", "en": ""},
+      "skills": [],
+      "automations": ["ensure_final_assets"]
+    }
+  ]
+}
