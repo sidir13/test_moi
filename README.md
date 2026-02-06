@@ -21,6 +21,7 @@ This agent exposes a set of tools (“skills”) that orchestrate audio processi
 | `eleven_labs_tts` | Produce an MP3 narration with the ElevenLabs API when explicitly requested. | `text`, optional `voice_id`, `model_id`, `output_path` | `src/memoiredesterritoires/elevenlabs_tts/elevenlabs_tts.py` |
 | `read_json_file` | Load a local JSON file (optionally scoped to a `project_name` and/or key). | `path`, optional `project_name`, `key` | `src/memoiredesterritoires/json_utils/read_json.py` |
 | `rank_scenarios_against_config` | Ask the LLM to compare each scenario against a project config, produce an ordered list, and persist it under `scenario_ranking`. | `config_path`, `scenarios_dir`, optional `project_name` | `src/memoiredesterritoires/scenario_ranking/rank_scenarios.py` |
+| `update_project_notes` | Store free-form user briefs/requirements for a project in `config.json` so other skills can reuse them. | `description`, optional `project_name` | `src/memoiredesterritoires/project_notes/update_project_notes.py` |
 
 ### Usage Guidelines
 1. **Skill Context:** `main.py` stitches the content of every `SKILL*.md` into the system prompt. Update SKILL docs whenever inputs/behavior change so Claude can self-select the right tool.

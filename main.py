@@ -30,6 +30,7 @@ from memoiredesterritoires.json_utils.read_json import read_json_file
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSkill
 from memoiredesterritoires.scenario_ranking.rank_scenarios import rank_scenarios_against_config
+from memoiredesterritoires.project_notes.update_project_notes import update_project_notes
 
 async def check_available_skills():
     """Check and list available skills from SKILL.md files"""
@@ -189,6 +190,24 @@ TOOLS = [
                 }
             },
             "required": ["config_path", "scenarios_dir"]
+        }
+    },
+    {
+        "name": "update_project_notes",
+        "description": "Mettre à jour les notes/brief utilisateur pour un projet dans config.json",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Projet concerné"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Texte libre décrivant les attentes utilisateur"
+                }
+            },
+            "required": ["description"]
         }
     },
     {
@@ -670,6 +689,11 @@ def execute_tool(tool_name: str, tool_input: dict):
             config_path=tool_input["config_path"],
             scenarios_dir=tool_input["scenarios_dir"],
             project_name=tool_input.get("project_name"),
+        )
+    elif tool_name == "update_project_notes":
+        return update_project_notes(
+            project_name=tool_input.get("project_name"),
+            description=tool_input["description"],
         )
     elif tool_name == "build_project_scenario_config":
         return project_config_builder_skill.run(tool_input)
