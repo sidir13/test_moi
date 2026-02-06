@@ -1,3 +1,6 @@
+PROJECT_ROOT := $(realpath ..)
+IMAGE_NAME := memoiredesterritoires
+
 .PHONY: uv-install
 uv-install:
 	cd $(PROJECT_ROOT) && pip install uv
@@ -8,15 +11,15 @@ uv-install-mac:
 
 .PHONY: install
 install: uv-install
-	pass
+	uv sync
 
 .PHONY: docker-build
 docker-build:
-	pass
+	docker build -t $(IMAGE_NAME):latest .
 
 .PHONY: docker-run
 docker-run:
-	pass
+	docker run -p 8000:8000 --env-file .env $(IMAGE_NAME):latest
 
 .PHONY: docker-refresh
 docker-refresh: uv-install install docker-build docker-run
