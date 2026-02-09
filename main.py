@@ -14,7 +14,6 @@ load_dotenv()
 import sys
 sys.path.append(str(Path(__file__).parent / "src"))
 from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
-from memoiredesterritoires.process_number.process_number import process_number
 from memoiredesterritoires.transcription.transcription  import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
