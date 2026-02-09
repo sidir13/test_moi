@@ -31,7 +31,7 @@ ensure-app:
 		mkdir -p $(APP_DIR); \
 	fi
 
-install-uv:
+uv-install:
 	pip install uv
 
 install: ensure-env ensure-app
