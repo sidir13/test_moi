@@ -14,7 +14,6 @@ load_dotenv()
 import sys
 sys.path.append(str(Path(__file__).parent / "src"))
 from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
-from memoiredesterritoires.process_number.process_number import process_number
 from memoiredesterritoires.transcription.transcription  import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
@@ -76,20 +75,6 @@ project_config_builder_skill = ScenarioConfigBuilderSkill()
 
 # Define available tools for Claude
 TOOLS = [
-    {
-        "name": "process_number",
-        "description": "Multiply a number by 2",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "num": {
-                    "type": "integer",
-                    "description": "The number to process"
-                }
-            },
-            "required": ["num"]
-        }
-    },
     {
         "name": "adjust_audio_volume",
         "description": "Applique un gain logarithmique pour réduire ou augmenter le volume perçu d’un fichier audio.",
@@ -723,9 +708,7 @@ def select_audio_tracks(
 
 def execute_tool(tool_name: str, tool_input: dict):
     """Execute the requested tool"""
-    if tool_name == "process_number":
-        return process_number(tool_input["num"])
-    elif tool_name == "analyze-industrial-audio":
+    if tool_name == "analyze-industrial-audio":
         return analyse_audio_industriel(tool_input["path"], tool_input.get("context", ""))
     elif tool_name == "transcribe_audio":
         return transcribe_audio(

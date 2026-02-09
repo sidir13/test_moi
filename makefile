@@ -21,7 +21,7 @@ else
 $(error PLATFORM must be 'linux' or 'mac')
 endif
 
-.PHONY: ensure-env ensure-app install install-mac build docker-build build-mac docker-run run-mac docker-refresh refresh-mac docker-push
+.PHONY: ensure-env ensure-app  install-uv install-mac build docker-build build-mac docker-run run-mac docker-refresh refresh-mac docker-push
 
 ensure-env:
 	@test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE). Copy from env.example" && exit 1)
@@ -30,6 +30,9 @@ ensure-app:
 	@if [ ! -d $(APP_DIR) ]; then \
 		mkdir -p $(APP_DIR); \
 	fi
+
+install-uv:
+	pip install uv
 
 install: ensure-env ensure-app
 	$(UV) sync
@@ -57,6 +60,7 @@ run-mac:
 refresh: docker-refresh
 
 docker-refresh:
+	$(MAKE) uv-install
 	$(MAKE) install PLATFORM=$(PLATFORM)
 	$(MAKE) docker-build PLATFORM=$(PLATFORM)
 	$(MAKE) docker-run PLATFORM=$(PLATFORM)

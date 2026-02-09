@@ -251,6 +251,18 @@ button.step:disabled {
   background: #fff;
 }
 
+.alert {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.alert.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
 .chat-messages {
   flex: 1;
   padding: 1rem;
