@@ -7,6 +7,7 @@ import json
 import logging
 import os
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from urllib.parse import quote
@@ -19,6 +20,9 @@ from pydantic import BaseModel, Field
 
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
+from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
+    text_to_speech_with_instructions,
+)
 from project_store import (
     load_project_settings,
     save_project_settings,
@@ -83,6 +87,11 @@ class AudioSelectionPayload(BaseModel):
     backgrounds: List[str] = Field(default_factory=list)
 
 
+class ScenarioAudioRequest(BaseModel):
+    text: Optional[str] = None
+    language: str = Field(default="French")
+
+
 def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     settings = settings or get_settings()
     os.environ.setdefault("PROJECTS_DIR", str(settings.projects_dir))
@@ -118,6 +127,63 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=400, detail="Chemin d'ambiance invalide")
         return candidate
 
+    def extract_scenario_payload(entry: Dict[str, Any]) -> Dict[str, Any]:
+        if not isinstance(entry, dict):
+            return {}
+        scenario_payload = entry.get("scenario")
+        if isinstance(scenario_payload, dict):
+            return scenario_payload
+        return entry
+
+    def scenario_to_text(entry: Dict[str, Any]) -> str:
+        payload = extract_scenario_payload(entry)
+        if not payload:
+            return ""
+        chunks: List[str] = []
+        title = payload.get("titre") or payload.get("title")
+        if isinstance(title, str):
+            chunks.append(title.strip())
+        summary = payload.get("resume") or payload.get("texte") or payload.get("texte_narration")
+        parties = payload.get("parties")
+        if isinstance(parties, list) and parties:
+            for part in parties:
+                if not isinstance(part, dict):
+                    continue
+                part_lines = []
+                if isinstance(part.get("titre"), str):
+                    part_lines.append(part["titre"].strip())
+                if isinstance(part.get("texte_narration"), str):
+                    part_lines.append(part["texte_narration"].strip())
+                elif isinstance(part.get("texte"), str):
+                    part_lines.append(part["texte"].strip())
+                if part_lines:
+                    chunks.append("\n".join(part_lines))
+        elif isinstance(summary, str):
+            chunks.append(summary.strip())
+
+        return "\n\n".join([chunk for chunk in chunks if chunk]).strip()
+
+    def upsert_project_config_entry(project_name: str, updates: Dict[str, Any]) -> None:
+        config_path = settings.config_json
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                config = json.load(f)
+        except FileNotFoundError:
+            config = {}
+
+        entry = dict(config.get(project_name, {}))
+        if "created_at" not in entry:
+            entry["created_at"] = datetime.utcnow().isoformat()
+        entry.setdefault("allowed_websites", ["wikipedia.org"])
+        entry.setdefault("voice_instructions", "")
+        for key, value in updates.items():
+            if value is not None:
+                entry[key] = value
+        config[project_name] = entry
+        config_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(config_path, "w", encoding="utf-8") as f:
+            json.dump(config, f, ensure_ascii=False, indent=2)
+
     @app.get("/health", tags=["system"])
     async def health_check() -> dict:
         return {
@@ -144,6 +210,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         (project_dir / "notes").mkdir(exist_ok=True)
         (project_dir / "outputs").mkdir(exist_ok=True)
         save_project_settings(payload.name, {"scenario_target": payload.scenario_target})
+        upsert_project_config_entry(
+            payload.name,
+            {
+                "project_notes": payload.description.strip() if payload.description else None,
+                "scenario_target": payload.scenario_target,
+            },
+        )
 
         if payload.description:
             automation_runner.update_project_notes(payload.name, payload.description)
@@ -338,6 +411,65 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=400, detail="Scenario payload required")
         session_store.set_selected_scenario(session_id, payload.scenario)
         return {"status": "ok"}
+
+    @app.get("/sessions/{session_id}/scenario-audio", tags=["sessions"])
+    async def get_scenario_audio(session_id: str) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        metadata = session_store.get_scenario_audio(session_id)
+        if not metadata:
+            raise HTTPException(status_code=404, detail="Aucun audio généré pour ce scénario")
+        return metadata
+
+    @app.post("/sessions/{session_id}/scenario-audio", tags=["sessions"])
+    async def synthesize_scenario_audio(session_id: str, payload: ScenarioAudioRequest) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        scenario = session.get("selected_scenario")
+        if not scenario:
+            raise HTTPException(status_code=400, detail="Aucun scénario sélectionné")
+        text = (payload.text or scenario_to_text(scenario)).strip()
+        if not text:
+            raise HTTPException(status_code=400, detail="Impossible de générer l'audio : texte vide")
+        try:
+            result = text_to_speech_with_instructions(
+                text=text,
+                project_name=session["project_name"],
+                language=payload.language or "French",
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except Exception as exc:  # pragma: no cover - propagate to client
+            logger.exception("Scenario audio synthesis failed for session %s", session_id)
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+        metadata = {
+            **result,
+            "generated_at": datetime.utcnow().isoformat(),
+            "text_length": len(text),
+            "language": payload.language or "French",
+        }
+        session_store.save_scenario_audio(session_id, metadata)
+        return metadata
+
+    @app.get("/sessions/{session_id}/scenario-audio/file", tags=["sessions"])
+    async def stream_scenario_audio(session_id: str):
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        metadata = session_store.get_scenario_audio(session_id)
+        if not metadata:
+            raise HTTPException(status_code=404, detail="Aucun audio généré pour ce scénario")
+        path_value = metadata.get("path")
+        if not path_value:
+            raise HTTPException(status_code=404, detail="Chemin audio manquant")
+        audio_path = Path(path_value)
+        if not audio_path.is_absolute():
+            audio_path = (Path.cwd() / audio_path).resolve()
+        if not audio_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier audio introuvable")
+        return FileResponse(audio_path)
 
     @app.post("/projects/{project_name}/audio", tags=["projects"])
     async def upload_audio(project_name: str, file: UploadFile = File(...)) -> dict:

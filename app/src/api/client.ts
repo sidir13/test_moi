@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_API_BASE ?? "";
+export const API_BASE_URL = baseURL;
 
 const api = axios.create({
   baseURL
@@ -141,6 +142,41 @@ export async function fetchSelectedScenario(sessionId: string) {
 export async function fetchScenarioProgress(sessionId: string) {
   const { data } = await api.get(`/sessions/${sessionId}/scenario-progress`);
   return (data.steps ?? []) as ScenarioProgressStep[];
+}
+
+export type ScenarioAudioMetadata = {
+  status?: string;
+  path: string;
+  language: string;
+  sample_rate: number;
+  generated_at: string;
+  text_length?: number;
+};
+
+export async function fetchScenarioAudio(sessionId: string) {
+  try {
+    const { data } = await api.get(`/sessions/${sessionId}/scenario-audio`);
+    return data as ScenarioAudioMetadata;
+  } catch (err) {
+    if (axios.isAxiosError(err) && err.response?.status === 404) {
+      return null;
+    }
+    throw err;
+  }
+}
+
+export async function synthesizeScenarioAudio(
+  sessionId: string,
+  payload?: { text?: string; language?: string }
+) {
+  const { data } = await api.post(`/sessions/${sessionId}/scenario-audio`, payload ?? {});
+  return data as ScenarioAudioMetadata;
+}
+
+export function getScenarioAudioUrl(sessionId: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  return `${base}/sessions/${sessionId}/scenario-audio/file`;
 }
 
 export function getWsBaseUrl() {

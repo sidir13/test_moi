@@ -9,7 +9,8 @@ import {
   selectScenario,
   fetchSelectedScenario,
   fetchScenarioProgress,
-  ScenarioProgressStep
+  ScenarioProgressStep,
+  synthesizeScenarioAudio
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -87,6 +88,15 @@ export function ScenarioReviewView() {
   };
 
   const goNext = async () => {
+    if (!sessionId) return;
+    setStatus("Préparation de l'audio du scénario sélectionné…");
+    try {
+      await synthesizeScenarioAudio(sessionId);
+    } catch (err) {
+      console.error("Audio synthesis failed", err);
+      setStatus("Audio non généré. Vérifiez vos instructions vocales.");
+      return;
+    }
     await advanceStep(sessionId, "scenario_review", { prompt });
     setCurrentStep("scenario_edit");
     navigate("/step/scenario_edit");

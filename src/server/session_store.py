@@ -20,6 +20,7 @@ class SessionContext(BaseModel):
     scenarios: List[dict] = Field(default_factory=list)
     selected_scenario: Optional[dict] = None
     scenario_progress: List[dict] = Field(default_factory=list)
+    scenario_audio: Optional[dict] = None
 
     def to_dict(self) -> Dict[str, object]:
         return json.loads(self.model_dump_json())
@@ -81,7 +82,7 @@ class SessionStore:
         return data.get("scenarios", [])
 
     def set_selected_scenario(self, session_id: str, scenario: dict) -> None:
-        self.update_session(session_id, {"selected_scenario": scenario})
+        self.update_session(session_id, {"selected_scenario": scenario, "scenario_audio": None})
 
     def init_scenario_progress(self, session_id: str, steps: List[Dict[str, str]]) -> None:
         templated = []
@@ -109,6 +110,15 @@ class SessionStore:
         if not data:
             return []
         return data.get("scenario_progress", [])
+
+    def save_scenario_audio(self, session_id: str, metadata: dict) -> None:
+        self.update_session(session_id, {"scenario_audio": metadata})
+
+    def get_scenario_audio(self, session_id: str) -> Optional[dict]:
+        data = self.load_session(session_id)
+        if not data:
+            return None
+        return data.get("scenario_audio")
 
     def append_project_file(self, project_name: str, file_path: str) -> None:
         project_meta_path = self.base_path / f"{project_name}_files.json"
