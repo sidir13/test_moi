@@ -81,8 +81,8 @@ config/*_private.json
 
 
 # Front
-package-lock.json
-package.json
+# package-lock.json
+# package.json
 app/tsconfig.tsbuildinfo
 app/tsconfig.node.tsbuildinfo
 app/vite.config.js
