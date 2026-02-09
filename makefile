@@ -7,6 +7,8 @@ ENV_FILE ?= .env
 APP_DIR ?= app
 PLATFORM ?= linux
 
+GITPAT ?= YourGITPAT
+
 UV ?= uv
 NPM ?= npm
 PYTHON ?= python3
