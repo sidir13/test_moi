@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSessionStore } from "../hooks/useSessionStore";
 
 export function StepNavigator() {
-  const { steps, currentStep, setCurrentStep, language } = useSessionStore();
+  const { steps, currentStep, setCurrentStep, language, progress } = useSessionStore();
   const navigate = useNavigate();
 
   const ordered = useMemo(() => steps.slice().sort((a, b) => {
@@ -14,6 +14,23 @@ export function StepNavigator() {
 
   const currentIndex = ordered.findIndex((s) => s.id === currentStep);
 
+  const isEnabled = (stepId: string) => {
+    switch (stepId) {
+      case "project_selection":
+      case "project_details":
+      case "audio_sources":
+        return true;
+      case "scenario_review":
+        return progress.audioReady;
+      case "scenario_edit":
+        return progress.audioReady && progress.scenariosReady && progress.scenarioChosen;
+      case "final_validation":
+        return progress.scenarioEdited;
+      default:
+        return true;
+    }
+  };
+
   return (
     <nav className="step-navigator">
       {ordered.map((step, index) => {
@@ -22,11 +39,14 @@ export function StepNavigator() {
         if (index > -1 && currentIndex > -1 && index < currentIndex) {
           status = "done";
         }
+        const enabled = isEnabled(step.id);
         return (
           <button
             key={step.id}
             className={`step ${status}`}
+            disabled={!enabled}
             onClick={() => {
+              if (!enabled) return;
               setCurrentStep(step.id);
               navigate(step.id === ordered[0]?.id ? "/" : `/step/${step.id}`);
             }}

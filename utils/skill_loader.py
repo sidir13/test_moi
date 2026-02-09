@@ -101,16 +101,16 @@ class SkillLoader:
         
         # Extract functions
         functions_section = re.search(
-            r'##\s+Functions\s+(.+?)(?=##\s+(?!#)|$)',
+            r'##\s+Functions\s+([\s\S]+)$',
             content,
-            re.DOTALL
+            re.MULTILINE
         )
         if functions_section:
             functions_text = functions_section.group(1)
             
             # Find all function definitions (### function_name)
             function_blocks = re.finditer(
-                r'###\s+(\w+)\s+(.+?)(?=###|\Z)',
+                r'###\s+([^\n]+)\n(.+?)(?=###|\Z)',
                 functions_text,
                 re.DOTALL
             )

@@ -16,15 +16,33 @@ type SessionState = {
   language: "fr" | "en";
   steps: Step[];
   chatPlaceholder?: string;
+  scenarioTarget: number;
+  progress: {
+    audioReady: boolean;
+    scenariosReady: boolean;
+    scenarioChosen: boolean;
+    scenarioEdited: boolean;
+  };
   setLanguage: (lang: "fr" | "en") => void;
   setSteps: (steps: Step[]) => void;
   setCurrentStep: (stepId: string) => void;
   setChatPlaceholder: (placeholder: string) => void;
+  setSessionId: (sessionId: string | undefined) => void;
+  setProjectName: (name: string | undefined) => void;
+  setScenarioTarget: (count: number) => void;
+  updateProgress: (patch: Partial<SessionState["progress"]>) => void;
 };
 
 export const useSessionStore = create<SessionState>((set) => ({
   language: "fr",
   steps: [],
+  scenarioTarget: 3,
+  progress: {
+    audioReady: false,
+    scenariosReady: false,
+    scenarioChosen: false,
+    scenarioEdited: false
+  },
   setLanguage: (language) =>
     set((state) => {
       const step = state.steps.find((s) => s.id === state.currentStep);
@@ -46,5 +64,15 @@ export const useSessionStore = create<SessionState>((set) => ({
       const chatPlaceholder = step?.chat_placeholder?.[state.language] ?? state.chatPlaceholder;
       return { currentStep, chatPlaceholder };
     }),
-  setChatPlaceholder: (chatPlaceholder) => set({ chatPlaceholder })
+  setChatPlaceholder: (chatPlaceholder) => set({ chatPlaceholder }),
+  setSessionId: (sessionId) => set({ sessionId }),
+  setProjectName: (projectName) => set({ projectName }),
+  setScenarioTarget: (scenarioTarget) => set({ scenarioTarget }),
+  updateProgress: (patch) =>
+    set((state) => ({
+      progress: {
+        ...state.progress,
+        ...patch
+      }
+    }))
 }));

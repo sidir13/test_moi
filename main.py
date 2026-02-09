@@ -1,6 +1,7 @@
 import asyncio
 import os
 from pathlib import Path
+from typing import Dict, List, Optional
 from dotenv import load_dotenv
 from anthropic import Anthropic
 from claude_agent_sdk import query, ClaudeAgentOptions
@@ -32,8 +33,14 @@ from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSkill
 from memoiredesterritoires.scenario_ranking.rank_scenarios import rank_scenarios_against_config
 from memoiredesterritoires.project_notes.update_project_notes import update_project_notes
+from project_store import (
+    load_audio_selection,
+    save_audio_selection,
+    list_project_audio_files,
+    load_project_settings,
+)
 
-async def check_available_skills():
+def check_available_skills():
     """Check and list available skills from SKILL.md files"""
     skills_dir = Path("src/memoiredesterritoires")
     available_skills = []
@@ -209,6 +216,59 @@ TOOLS = [
                 }
             },
             "required": ["description"]
+        }
+    },
+    {
+        "name": "auto_select_audio",
+        "description": "Sélectionne automatiquement des pistes vocales (1-3) et ambiances (0-2) pour un projet donné.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Nom du projet dont il faut analyser les fichiers"
+                },
+                "max_voice_tracks": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 3,
+                    "default": 3
+                },
+                "max_backgrounds": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "default": 2
+                },
+                "background_keyword": {
+                    "type": "string",
+                    "description": "Mot-clé pour suggérer une ambiance (optionnel)"
+                }
+            },
+            "required": ["project_name"]
+        }
+    },
+    {
+        "name": "select_audio_manually",
+        "description": "Sélectionne explicitement des pistes vocales et/ou ambiances selon un nom de fichier ou un mot-clé (ex: 'bruit de meuleuse').",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {"type": "string"},
+                "voice_identifiers": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Noms ou fragments de nom des fichiers voix à sélectionner"
+                },
+                "background_identifiers": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Fragments décrivant les ambiances à sélectionner (ex: 'meuleuse')"
+                },
+                "max_voice_tracks": {"type": "integer", "minimum": 1, "maximum": 3, "default": 3},
+                "max_backgrounds": {"type": "integer", "minimum": 0, "maximum": 2, "default": 2}
+            },
+            "required": ["project_name"]
         }
     },
     {
@@ -616,6 +676,51 @@ TOOLS = [
     }
 ]
 
+def auto_select_project_audio(project_name: str, max_voice_tracks: int, max_backgrounds: int, background_keyword: str | None):
+    audio_files = list_project_audio_files(project_name)
+    voices = audio_files[:max(1, min(max_voice_tracks, 3))]
+    backgrounds: List[str] = []
+    if max_backgrounds > 0:
+        listing = find_background_sounds(keyword=background_keyword or project_name, limit=max_backgrounds)
+        for path in listing.get("files", []):
+            backgrounds.append(path)
+            if len(backgrounds) >= max_backgrounds:
+                break
+    return save_audio_selection(project_name, {"voices": voices, "backgrounds": backgrounds})
+
+def select_audio_tracks(
+    project_name: str,
+    voice_identifiers: Optional[List[str]],
+    background_identifiers: Optional[List[str]],
+    max_voice_tracks: int,
+    max_backgrounds: int,
+) -> Dict[str, List[str]]:
+    current = load_audio_selection(project_name)
+    audio_files = list_project_audio_files(project_name)
+    selected_voices = current.get("voices", [])[:]
+    if voice_identifiers:
+        for ident in voice_identifiers:
+            ident_lower = ident.lower()
+            for fname in audio_files:
+                if ident_lower in fname.lower() and fname not in selected_voices:
+                    selected_voices.append(fname)
+                if len(selected_voices) >= max_voice_tracks:
+                    break
+    selected_voices = selected_voices[:max_voice_tracks]
+
+    selected_backgrounds = current.get("backgrounds", [])[:]
+    if background_identifiers and max_backgrounds > 0:
+        for ident in background_identifiers:
+            listing = find_background_sounds(keyword=ident, limit=max_backgrounds)
+            for path in listing.get("files", []):
+                if path not in selected_backgrounds:
+                    selected_backgrounds.append(path)
+                if len(selected_backgrounds) >= max_backgrounds:
+                    break
+    selected_backgrounds = selected_backgrounds[:max_backgrounds]
+
+    return save_audio_selection(project_name, {"voices": selected_voices, "backgrounds": selected_backgrounds})
+
 def execute_tool(tool_name: str, tool_input: dict):
     """Execute the requested tool"""
     if tool_name == "process_number":
@@ -720,6 +825,21 @@ def execute_tool(tool_name: str, tool_input: dict):
             project_name=tool_input.get("project_name"),
             description=tool_input["description"],
         )
+    elif tool_name == "auto_select_audio":
+        return auto_select_project_audio(
+            project_name=tool_input["project_name"],
+            max_voice_tracks=int(tool_input.get("max_voice_tracks", 3)),
+            max_backgrounds=int(tool_input.get("max_backgrounds", 2)),
+            background_keyword=tool_input.get("background_keyword"),
+        )
+    elif tool_name == "select_audio_manually":
+        return select_audio_tracks(
+            project_name=tool_input["project_name"],
+            voice_identifiers=tool_input.get("voice_identifiers"),
+            background_identifiers=tool_input.get("background_identifiers"),
+            max_voice_tracks=int(tool_input.get("max_voice_tracks", 3)),
+            max_backgrounds=int(tool_input.get("max_backgrounds", 2)),
+        )
     elif tool_name == "build_project_scenario_config":
         return project_config_builder_skill.run(tool_input)
     elif tool_name == "generate_historical_scenario":
@@ -823,7 +943,7 @@ async def run_sdk_agent(user_message: str | None, skill_context: str):
 
 
 async def main(user_message: str = None):
-    skills = await check_available_skills()
+    skills = check_available_skills()
     
     print("Available skills:")
     for skill in skills:
@@ -840,7 +960,7 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Can you generate a new scenario for a project we'll call lA vie de Gilles, path is data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, transcript it and stock it in db, then we'll first find the 3 most relevant background sounds for this audio, then analyze the audio to extract key elements of the ambiance, then store the analysis in the database, fetch what we need from the parquet db, enchance our transcription with web search on key elements, generate 2 scenarios, one about his personal life, another about his professional life, then generate voice instructions based on the scenario and the analysis, then synthesize a narration of the 2 scenarios with the generated voice instructions, and finally mix the narration with for each scenario 2 of the found background sounds to create an immersive audio scenario !"))
+    # asyncio.run(main("Can you generate a new scenario for a project we'll call lA vie de Gilles, path is data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, transcript it and stock it in db, then we'll first find the 3 most relevant background sounds for this audio, then analyze the audio to extract key elements of the ambiance, then store the analysis in the database, fetch what we need from the parquet db, enchance our transcription with web search on key elements, generate 2 scenarios, one about his personal life, another about his professional life, then generate voice instructions based on the scenario and the analysis, then synthesize a narration of the 2 scenarios with the generated voice instructions, and finally mix the narration with for each scenario 2 of the found background sounds to create an immersive audio scenario !"))
     # asyncio.run(main("Can you just list all available skills and their descriptions?"))
     # asyncio.run(main("We need you to use your availables skills to properly generate the audio narrated scenario throught tts based on scenario conig file at data/scenarios/chantiers_navals/scenarios/scenario_2_20260204_172233.json, you can extract the story that is divided into different part into the different texte_narration keys of the json ! Generate the audio file with the text to speech too"))
     # asyncio.run(main("""Peux tu modifier le fichier config par défaut pour la génération de scénarios et en générer un nouveau à partir de cet extrait d'interview et informations:
@@ -963,13 +1083,13 @@ if __name__ == "__main__":
     # asyncio.run(main("Can you edit the audio voice instructions for the project Mémoire des Territoires to use a very drunk hobo male voice with health issues ?"))
     # asyncio.run(main("Can you transfrom this text into speech, i want it to be generated with a man voice that is very girly and effeminate, and sound very gay, text is : 'Salut les amis, aujourd'hui on va visiter les calanques et s'amuser toute la journée au soleil ! Attention aux méduses les copines !"))
     
-    asyncio.run(main("can you create a slideshow from the images in data/image and use audio data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
+    # asyncio.run(main("can you create a slideshow from the images in data/image and use audio data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
     # asyncio.run(main("""Peux tu changer les instructions de Voix en 'Voix posée, maîtrisée et assurée' et Peux tu transformer ce text en speech ? Au milieu du dix-huitième siècle, Nantes s'affirme comme l'un des ports les plus actifs du royaume. La construction navale se professionnalise : un quai des constructions s'aménage en aval de la Chézine, tandis que les charpentiers s'installent à la Piperie. Nantes devient alors le premier constructeur de navires marchands de France et se lance dans la production de bâtiments de guerre.
     # Le dix-neuvième siècle marque l'apogée de cette industrie. En mille huit cent soixante et un, la compagnie Penhoët est fondée, insufflant un nouvel élan à l'industrie navale nantaise. Les Chantiers Dubigeon, créés dès mille sept cent soixante, deviennent une référence mondiale. Entre mille huit cent quatre-vingt-neuf et mille neuf cent deux, ils lancent vingt-six grands trois-mâts, dont le célèbre Belem en mille huit cent quatre-vingt-seize, le plus vieux voilier d'Europe encore en service aujourd'hui.
     # Les Trente Glorieuses représentent le sommet de cette aventure industrielle : jusqu'à sept mille salariés travaillent sur les trois sites nantais. Mais la concurrence étrangère, l'ensablement de la Loire et la baisse des commandes précipitent le déclin. En mille neuf cent quatre-vingt-sept, les Chantiers Dubigeon ferment définitivement leurs portes, tournant la dernière page de trois siècles de construction navale à Nantes. L'île de Nantes entame alors sa métamorphose, du territoire industriel au quartier de la création."""))
     # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("yes save it to the database"))
-    # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
+    asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     # asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
     # asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))

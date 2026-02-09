@@ -7,10 +7,16 @@ from pathlib import Path
 from typing import List
 
 from pydantic import Field
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class AppSettings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
+
     data_dir: Path = Field(default=Path("data"))
     projects_dir: Path = Field(default=Path("data/projects"))
     session_store: Path = Field(default=Path("data/sessions"))
@@ -19,10 +25,6 @@ class AppSettings(BaseSettings):
     frontend_dist: Path = Field(default=Path("app/dist"))
     max_audio_mb: int = Field(default=500)
     cors_origins: List[str] = Field(default_factory=lambda: ["*"])
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
     @property
     def max_audio_bytes(self) -> int:

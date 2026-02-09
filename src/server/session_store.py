@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from uuid import uuid4
 
 from pydantic import BaseModel, Field
@@ -15,6 +15,10 @@ class SessionContext(BaseModel):
     project_name: str
     current_step: str
     steps: Dict[str, dict] = Field(default_factory=dict)
+    chat_history: list = Field(default_factory=list)
+    scenario_target: int = Field(default=3)
+    scenarios: List[dict] = Field(default_factory=list)
+    selected_scenario: Optional[dict] = None
 
     def to_dict(self) -> Dict[str, object]:
         return json.loads(self.model_dump_json())
@@ -28,11 +32,12 @@ class SessionStore:
     def _session_path(self, session_id: str) -> Path:
         return self.base_path / f"{session_id}.json"
 
-    def create_session(self, project_name: str, initial_step: str) -> Dict[str, object]:
+    def create_session(self, project_name: str, initial_step: str, scenario_target: int = 3) -> Dict[str, object]:
         session = SessionContext(
             session_id=str(uuid4()),
             project_name=project_name,
             current_step=initial_step,
+            scenario_target=scenario_target,
         )
         self._write(session)
         return session.to_dict()
@@ -48,14 +53,34 @@ class SessionStore:
         data = self.load_session(session_id)
         if not data:
             raise FileNotFoundError(f"Session {session_id} not found")
-        data.update({k: v for k, v in updates.items() if k != "steps"})
+        data.update({k: v for k, v in updates.items() if k not in {"steps", "chat_history"}})
         if "steps" in updates:
             merged_steps = data.get("steps", {})
             merged_steps.update(updates["steps"])
             data["steps"] = merged_steps
+        if "chat_history" in updates:
+            data["chat_history"] = updates["chat_history"]
         with open(self._session_path(session_id), "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
         return data
+
+    def get_chat_history(self, session_id: str) -> list:
+        data = self.load_session(session_id)
+        if not data:
+            return []
+        return data.get("chat_history", [])
+
+    def save_chat_history(self, session_id: str, history: list) -> None:
+        self.update_session(session_id, {"chat_history": history})
+
+    def get_scenarios(self, session_id: str) -> List[dict]:
+        data = self.load_session(session_id)
+        if not data:
+            return []
+        return data.get("scenarios", [])
+
+    def set_selected_scenario(self, session_id: str, scenario: dict) -> None:
+        self.update_session(session_id, {"selected_scenario": scenario})
 
     def append_project_file(self, project_name: str, file_path: str) -> None:
         project_meta_path = self.base_path / f"{project_name}_files.json"

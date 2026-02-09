@@ -8,9 +8,24 @@ import { FlagToggle } from "./components/FlagToggle";
 import { ChatPanel } from "./components/ChatPanel";
 import { WaveformPanel } from "./components/WaveformPanel";
 import { useSessionStore } from "./hooks/useSessionStore";
+import { ProjectSelectionView } from "./views/ProjectSelectionView";
+import { ProjectDetailsView } from "./views/ProjectDetailsView";
+import { AudioSelectionView } from "./views/AudioSelectionView";
+import { ScenarioReviewView } from "./views/ScenarioReviewView";
+import { ScenarioEditView } from "./views/ScenarioEditView";
+import { FinalValidationView } from "./views/FinalValidationView";
+
+const STEP_COMPONENTS: Record<string, JSX.Element> = {
+  project_selection: <ProjectSelectionView />,
+  project_details: <ProjectDetailsView />,
+  audio_sources: <AudioSelectionView />,
+  scenario_review: <ScenarioReviewView />,
+  scenario_edit: <ScenarioEditView />,
+  final_validation: <FinalValidationView />
+};
 
 function Layout() {
-  const { setSteps } = useSessionStore();
+  const { setSteps, currentStep } = useSessionStore();
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
 
   useEffect(() => {
@@ -35,9 +50,11 @@ function Layout() {
         <section className="workspace">
           <Outlet />
         </section>
-        <aside className="chat-panel">
-          <ChatPanel />
-        </aside>
+        {currentStep && currentStep !== "project_selection" && currentStep !== "final_validation" && (
+          <aside className="chat-panel">
+            <ChatPanel />
+          </aside>
+        )}
       </main>
       <footer className="app-footer">
         <WaveformPanel />
@@ -74,16 +91,17 @@ function Placeholder({ stepId }: { stepId: string }) {
 
 function StepRoute() {
   const { stepId } = useParams();
-  return <Placeholder stepId={stepId ?? "project_selection"} />;
+  if (!stepId) return STEP_COMPONENTS.project_selection;
+  return STEP_COMPONENTS[stepId] ?? <Placeholder stepId={stepId} />;
 }
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Placeholder stepId="project_selection" />} />
+        <Route path="/" element={<ProjectSelectionView />} />
         <Route path="/step/:stepId" element={<StepRoute />} />
-        <Route path="*" element={<Placeholder stepId="project_selection" />} />
+        <Route path="*" element={<ProjectSelectionView />} />
       </Route>
     </Routes>
   );
