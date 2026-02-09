@@ -32,7 +32,7 @@ Répond uniquement par le texte transcrit en français."""
         raise ValueError("chunk_duration_s must be positive")
 
     chunk_duration_ms = int(chunk_duration_s) * 1000
-    audio = AudioSegment.from_wav(audio_path)
+    audio = AudioSegment.from_file(audio_path)
 
     # Split audio into chunks
     chunks = [

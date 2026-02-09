@@ -1,19 +1,35 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { advanceStep } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
 export function FinalValidationView() {
-  const { projectName, sessionId } = useSessionStore();
+  const { projectName, sessionId, setProjectName, setSessionId, setCurrentStep, updateProgress } = useSessionStore();
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
 
   const confirm = async () => {
     if (!sessionId) return;
     setStatus("Sauvegarde en cours...");
-    await advanceStep(sessionId, "final_validation", { confirmed: true });
-    setStatus("Projet finalisé et archivé.");
-    setModalOpen(false);
+    try {
+      await advanceStep(sessionId, "final_validation", { confirmed: true });
+      updateProgress({
+        audioReady: false,
+        scenariosReady: false,
+        scenarioChosen: false,
+        scenarioEdited: false
+      });
+      setSessionId(undefined);
+      setProjectName(undefined);
+      setCurrentStep("project_selection");
+      setStatus("Projet finalisé et archivé. Retour aux projets.");
+      setModalOpen(false);
+      navigate("/");
+    } catch (err) {
+      setStatus((err as Error).message);
+    }
   };
 
   return (

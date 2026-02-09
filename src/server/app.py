@@ -18,11 +18,18 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+)
+
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
     text_to_speech_with_instructions,
 )
+from memoiredesterritoires.transcription.transcription import transcribe_audio
+from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result
 from project_store import (
     load_project_settings,
     save_project_settings,
@@ -39,6 +46,14 @@ from .chat_agent import ChatAgent
 from .audio_validation import validate_audio_file
 
 logger = logging.getLogger(__name__)
+
+
+def log_progress(event: str, **fields: Any) -> None:
+    if not fields:
+        logger.info(event)
+        return
+    details = " ".join(f"{key}={value}" for key, value in fields.items() if value is not None)
+    logger.info("%s | %s", event, details)
 
 
 class ProjectCreateRequest(BaseModel):
@@ -184,6 +199,103 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         with open(config_path, "w", encoding="utf-8") as f:
             json.dump(config, f, ensure_ascii=False, indent=2)
 
+    def load_project_profile(project_name: str) -> Dict[str, Any]:
+        config_path = settings.config_json
+        if not config_path.exists():
+            return {}
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = json.load(f)
+        return dict(config.get(project_name, {}))
+
+    def build_voice_instruction_prompt(project_name: str, scenario_text: str) -> str:
+        profile = load_project_profile(project_name)
+        sections: List[str] = []
+        if profile.get("project_notes"):
+            sections.append(f"Brief projet : {profile['project_notes']}")
+        if profile.get("tone"):
+            sections.append(f"Ton souhaité : {profile['tone']}")
+        if profile.get("audience"):
+            sections.append(f"Public ciblé : {profile['audience']}")
+        if profile.get("scenario_target"):
+            sections.append(f"Nombre de scénarios générés : {profile['scenario_target']}")
+        if profile.get("allowed_websites"):
+            sections.append(f"Références autorisées : {', '.join(profile['allowed_websites'])}")
+        sections.append("Texte actuel du scénario :")
+        sections.append(scenario_text.strip())
+        return "\n".join(sections)
+
+    def ensure_voice_instructions(project_name: str, scenario_text: str, language_hint: str) -> str:
+        profile = load_project_profile(project_name)
+        existing = profile.get("voice_instructions")
+        if isinstance(existing, str) and existing.strip():
+            return existing
+
+        notes = profile.get("project_notes") or "Documentaire historique sur le patrimoine maritime français."
+        tone = profile.get("tone") or "narration immersive, empathique et documentée"
+        audience = profile.get("audience") or "grand public"
+        snippet = "\n".join(scenario_text.strip().split("\n")[:5])[:600]
+
+        instructions = (
+            f"Voice for project '{project_name}' ({audience}). Speak in {language_hint} with a {tone}. "
+            f"Context: {notes}. Narrator should sound mature (45-60), grounded working-class French accent, "
+            f"clear articulation, moderate tempo, gentle breaths, emotional lift on key sentences. "
+            f"Scenario excerpt:\n{snippet}"
+        )
+        upsert_project_config_entry(project_name, {"voice_instructions": instructions})
+        return instructions
+
+    async def transcribe_and_store(project_name: str, audio_path: Path, meta: Optional[Dict[str, Any]] = None) -> None:
+        meta = meta or {}
+        loop = asyncio.get_running_loop()
+        log_progress(
+            "TRANSCRIPTION_START",
+            project=project_name,
+            file=audio_path.name,
+        )
+
+        def _run_transcription() -> str:
+            return transcribe_audio(str(audio_path))
+
+        try:
+            transcript = await loop.run_in_executor(None, _run_transcription)
+            save_analysis_result(
+                analysis_type="transcription",
+                source_path=str(audio_path),
+                result={"transcription": transcript},
+                title=audio_path.name,
+                metadata={
+                    "project": project_name,
+                    "duration": meta.get("duration"),
+                    "samplerate": meta.get("samplerate"),
+                    "frames": meta.get("frames"),
+                },
+                is_partial=False,
+            )
+            log_progress(
+                "TRANSCRIPTION_DONE",
+                project=project_name,
+                file=audio_path.name,
+            )
+        except Exception as exc:
+            log_progress(
+                "TRANSCRIPTION_FAILED",
+                project=project_name,
+                file=audio_path.name,
+                error=str(exc),
+            )
+            raise
+
+    def persist_final_assets(project_name: str, session_data: Dict[str, Any]) -> None:
+        entry: Dict[str, Any] = {
+            "finalized_at": datetime.utcnow().isoformat(),
+        }
+        if session_data.get("selected_scenario"):
+            entry["final_scenario"] = session_data["selected_scenario"]
+        audio_meta = session_data.get("scenario_audio")
+        if audio_meta:
+            entry["final_audio"] = audio_meta
+        upsert_project_config_entry(project_name, entry)
+
     @app.get("/health", tags=["system"])
     async def health_check() -> dict:
         return {
@@ -220,6 +332,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
 
         if payload.description:
             automation_runner.update_project_notes(payload.name, payload.description)
+        log_progress(
+            "PROJECT_CREATED",
+            project=payload.name,
+            scenario_target=payload.scenario_target,
+        )
 
         return {
             "project": payload.name,
@@ -234,7 +351,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             for child in sorted(settings.projects_dir.iterdir()):
                 if child.is_dir():
                     meta = load_project_settings(child.name)
-                    projects.append({"name": child.name, "scenario_target": meta.get("scenario_target", 3)})
+                    profile = load_project_profile(child.name)
+                    projects.append({
+                        "name": child.name,
+                        "scenario_target": meta.get("scenario_target", 3),
+                        "final_audio": profile.get("final_audio"),
+                        "finalized_at": profile.get("finalized_at"),
+                    })
         return {"projects": projects}
 
     @app.post("/sessions", tags=["sessions"])
@@ -243,6 +366,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         settings_meta = load_project_settings(payload.project_name)
         target = payload.scenario_target or settings_meta.get("scenario_target", 3)
         session = session_store.create_session(payload.project_name, payload.initial_step, scenario_target=target)
+        log_progress(
+            "SESSION_CREATED",
+            session=session.get("id"),
+            project=payload.project_name,
+            initial_step=payload.initial_step,
+            scenario_target=target,
+        )
         return session
 
     @app.get("/sessions/{session_id}", tags=["sessions"])
@@ -266,12 +396,26 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=400, detail="Sélectionnez d'abord un scénario")
         if payload.step_id == "final_validation" and not session.get("selected_scenario"):
             raise HTTPException(status_code=400, detail="Aucun scénario sélectionné")
+        if payload.step_id == "final_validation":
+            persist_final_assets(session["project_name"], session)
 
         session_store.update_session(session_id, {
             "current_step": payload.step_id,
             "steps": {payload.step_id: payload.payload},
         })
+        log_progress(
+            "STEP_TRANSITION",
+            session=session_id,
+            project=session["project_name"],
+            step=payload.step_id,
+        )
         results = automation_runner.run(payload.step_id, session["project_name"], payload.payload)
+        log_progress(
+            "STEP_AUTOMATIONS_DONE",
+            session=session_id,
+            step=payload.step_id,
+            automations=len(results or []),
+        )
         return {"session_id": session_id, "step": payload.step_id, "automations": results}
 
     @app.post("/scenarios/generate", response_model=ScenarioGenerationResponse, tags=["scenarios"])
@@ -295,6 +439,15 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
 
         def mark(idx: int, status: str, message: Optional[str] = None) -> None:
             session_store.update_scenario_progress(req.session_id, idx, status, message)
+            label = progress_template[idx]["label"] if 0 <= idx < len(progress_template) else f"Step-{idx}"
+            log_progress(
+                "SCENARIO_STAGE",
+                session=req.session_id,
+                project=project_name,
+                stage=label,
+                status=status,
+                message=message,
+            )
 
         current_step = 0
 
@@ -312,11 +465,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "output_dir": req.output_dir,
             "scenario_target": req.scenario_target or session.get("scenario_target", 3),
         }
-        logger.info(
-            "Generating scenarios (session=%s project=%s target=%s)",
-            req.session_id,
-            project_name,
-            params["scenario_target"],
+        log_progress(
+            "SCENARIO_GENERATE_START",
+            session=req.session_id,
+            project=project_name,
+            target=params["scenario_target"],
         )
         try:
             start_step(0, "Analyse du prompt et lecture du brief projet")
@@ -378,7 +531,12 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             mark(current_step, "error", str(exc))
             raise
 
-        logger.info("Scenario generation completed for session %s", req.session_id)
+        log_progress(
+            "SCENARIO_GENERATE_DONE",
+            session=req.session_id,
+            project=project_name,
+            scenarios=scenario_count,
+        )
         details = {
             "skill_metadata": result.get("skill_metadata", {}),
             "status": result.get("status"),
@@ -410,6 +568,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not payload.scenario:
             raise HTTPException(status_code=400, detail="Scenario payload required")
         session_store.set_selected_scenario(session_id, payload.scenario)
+        scenario_title = payload.scenario.get("titre") or payload.scenario.get("title")
+        log_progress(
+            "SCENARIO_SELECTED",
+            session=session_id,
+            project=session["project_name"],
+            title=scenario_title,
+        )
         return {"status": "ok"}
 
     @app.get("/sessions/{session_id}/scenario-audio", tags=["sessions"])
@@ -433,14 +598,36 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         text = (payload.text or scenario_to_text(scenario)).strip()
         if not text:
             raise HTTPException(status_code=400, detail="Impossible de générer l'audio : texte vide")
-        try:
-            result = text_to_speech_with_instructions(
+        log_progress(
+            "SCENARIO_AUDIO_START",
+            session=session_id,
+            project=session["project_name"],
+            language=payload.language or "French",
+        )
+        def synthesize() -> dict:
+            return text_to_speech_with_instructions(
                 text=text,
                 project_name=session["project_name"],
                 language=payload.language or "French",
             )
+
+        try:
+            result = synthesize()
         except ValueError as exc:
-            raise HTTPException(status_code=400, detail=str(exc)) from exc
+            message = str(exc)
+            lowered = message.lower()
+            if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
+                logger.info("Voice instructions missing for %s – composing default", session["project_name"])
+                try:
+                    ensure_voice_instructions(session["project_name"], text, payload.language or "French")
+                except Exception as inner_exc:  # pragma: no cover - fallback message
+                    raise HTTPException(status_code=400, detail=str(inner_exc)) from inner_exc
+                try:
+                    result = synthesize()
+                except Exception as retry_exc:
+                    raise HTTPException(status_code=400, detail=str(retry_exc)) from retry_exc
+            else:
+                raise HTTPException(status_code=400, detail=message) from exc
         except Exception as exc:  # pragma: no cover - propagate to client
             logger.exception("Scenario audio synthesis failed for session %s", session_id)
             raise HTTPException(status_code=500, detail=str(exc)) from exc
@@ -451,6 +638,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "language": payload.language or "French",
         }
         session_store.save_scenario_audio(session_id, metadata)
+        log_progress(
+            "SCENARIO_AUDIO_DONE",
+            session=session_id,
+            project=session["project_name"],
+            path=metadata.get("path"),
+            duration=metadata.get("num_samples"),
+        )
         return metadata
 
     @app.get("/sessions/{session_id}/scenario-audio/file", tags=["sessions"])
@@ -487,14 +681,45 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             f.write(contents)
 
         session_store.append_project_file(project_name, str(target))
+        log_progress(
+            "AUDIO_UPLOADED",
+            project=project_name,
+            file=file.filename,
+            size=len(contents),
+        )
 
-        return {"status": "uploaded", "path": str(target), "metadata": meta}
+        transcription_status = {"status": "skipped"}
+        try:
+            await transcribe_and_store(project_name, target, meta)
+            transcription_status = {"status": "ok"}
+        except Exception as exc:
+            transcription_status = {"status": "error", "message": str(exc)}
+
+        return {
+            "status": "uploaded",
+            "path": str(target),
+            "metadata": meta,
+            "transcription": transcription_status,
+        }
 
     @app.get("/projects/{project_name}/audio", tags=["projects"])
     async def list_project_audio_endpoint(project_name: str) -> dict:
         automation_runner.ensure_project_exists(project_name)
         files = list_project_audio_files(project_name)
         return {"files": files}
+
+    @app.get("/projects/{project_name}/final-audio", tags=["projects"])
+    async def stream_project_audio(project_name: str):
+        profile = load_project_profile(project_name)
+        metadata = profile.get("final_audio")
+        if not metadata or not metadata.get("path"):
+            raise HTTPException(status_code=404, detail="Aucun audio final pour ce projet")
+        audio_path = Path(metadata["path"])
+        if not audio_path.is_absolute():
+            audio_path = (Path.cwd() / audio_path).resolve()
+        if not audio_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier audio introuvable")
+        return FileResponse(audio_path)
 
     @app.get("/sessions/{session_id}/audio-selection", tags=["sessions"])
     async def get_audio_selection(session_id: str) -> dict:
@@ -523,6 +748,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         voices = [track for track in payload.voices if track in available_voices][:3]
         backgrounds = payload.backgrounds[:2]
         saved = save_audio_selection(payload.project_name, {"voices": voices, "backgrounds": backgrounds})
+        log_progress(
+            "AUDIO_SELECTION_UPDATED",
+            session=session_id,
+            project=payload.project_name,
+            voices=len(voices),
+            backgrounds=len(backgrounds),
+        )
         return saved
 
     @app.get("/background-sounds", tags=["media"])
@@ -574,6 +806,12 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             f.write(contents)
 
         rel_path = Path("data/audio/background_sounds") / target_path.relative_to(background_root)
+        log_progress(
+            "BACKGROUND_SOUND_UPLOADED",
+            title=title,
+            file=safe_name,
+            size=len(contents),
+        )
         return {
             "status": "uploaded",
             "path": str(rel_path),

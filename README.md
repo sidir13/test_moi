@@ -58,6 +58,7 @@ Mémoire des Territoires orchestre la génération de récits audio historiques 
 | `make docker-run PLATFORM=<mac|linux>` | `docker run --platform linux/arm64 -p 8000:8000 --env-file .env memoire-des-territoires-app`. |
 | `make docker-refresh` | Enchaîne install → build → run. |
 | `make docker-push GITPAT=<token>` | Login GHCR (`echo $GITPAT | docker login ghcr.io -u julienRactM --password-stdin`), tag/push `ghcr.io/laplateformeio/julienRactM`. |
+| `make download-qwen-model` | Télécharge le modèle Qwen3-TTS (via Hugging Face) dans `models/qwen3-tts/` pour une synthèse hors ligne. |
 
 `.dockerignore` élimine `models/`, `notebooks/`, `node_modules/`, les exports audio lourds, etc., pour éviter les contextes > 10 Go.
 
@@ -123,7 +124,6 @@ Tous les appels respectent les validations de taille, cohérence projet/session 
 | `mix_voice_with_noise` | Mixer narration + ambiance avec SNR maîtrisé. | `voice_file`, `noise_file`, `snr_db` | Pydub. |
 | `insert_background_sounds` | Orchestration SFX ↔ narration. | `voice_file`, `noise_file`, timings | Pydub & outils internes. |
 | `text_to_speech_with_instructions` | Synthèse Qwen3 VoiceDesign guidée par instructions projet. | `text`, `project_name`, `language` | `qwen-tts`, Torch, SoundFile. |
-| `elevenlabs_tts` | Synthèse alternative ElevenLabs. | `text`, `voice_id` | API ElevenLabs. |
 | `generate_voice_instructions` | Générer un brief vocal à partir d’un scénario. | `scenario`, `project_name` | Anthropic (LLM). |
 | `edit_voice_instructions` | Mettre à jour la voix dans `config.json`. | `project_name`, `voice_instructions` | JSON helper. |
 | `project_config_builder` | Adapter la configuration Agent 0 selon le brief. | `project_description`, `mode` | ScenarioConfigBuilderSkill. |

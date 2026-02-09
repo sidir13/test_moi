@@ -20,6 +20,12 @@ export async function fetchStepConfig(stepId: string) {
 export type ProjectSummary = {
   name: string;
   scenario_target: number;
+  finalized_at?: string;
+  final_audio?: {
+    path: string;
+    generated_at?: string;
+    language?: string;
+  } | null;
 };
 
 export type AudioSelection = {
@@ -177,6 +183,13 @@ export function getScenarioAudioUrl(sessionId: string) {
   const prefix = (API_BASE_URL || "").replace(/\/$/, "");
   const base = prefix.length > 0 ? prefix : "";
   return `${base}/sessions/${sessionId}/scenario-audio/file`;
+}
+
+export function getProjectFinalAudioUrl(projectName: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  const encoded = encodeURIComponent(projectName);
+  return `${base}/projects/${encoded}/final-audio`;
 }
 
 export function getWsBaseUrl() {

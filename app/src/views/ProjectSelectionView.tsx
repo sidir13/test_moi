@@ -2,8 +2,21 @@ import { FormEvent, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { createProject, createSession, fetchProjects, ProjectSummary } from "../api/client";
+import {
+  createProject,
+  createSession,
+  fetchProjects,
+  ProjectSummary,
+  getProjectFinalAudioUrl
+} from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
+
+const formatDate = (value?: string) => {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
+};
 
 export function ProjectSelectionView() {
   const { data, refetch, isLoading } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
@@ -13,6 +26,14 @@ export function ProjectSelectionView() {
   const [description, setDescription] = useState("");
   const [scenarioTargetDraft, setScenarioTargetDraft] = useState(3);
   const [error, setError] = useState<string | null>(null);
+  const [previewProject, setPreviewProject] = useState<string | null>(null);
+  const [previewKey, setPreviewKey] = useState(0);
+
+  const resetPreview = () => setPreviewProject(null);
+  const togglePreview = (projectName: string) => {
+    setPreviewProject((prev) => (prev === projectName ? null : projectName));
+    setPreviewKey((k) => k + 1);
+  };
 
   const createMutation = useMutation({
     mutationFn: async () => {
@@ -25,6 +46,7 @@ export function ProjectSelectionView() {
       setScenarioTarget(scenarioTargetDraft);
       setName("");
       setDescription("");
+      resetPreview();
       refetch();
       navigate("/step/project_details");
     }
@@ -45,6 +67,7 @@ export function ProjectSelectionView() {
       setSessionId(session.session_id);
       setCurrentStep("project_details");
       setScenarioTarget(project.scenario_target);
+      resetPreview();
       navigate("/step/project_details");
     } catch (err) {
       setError((err as Error).message);
@@ -54,10 +77,68 @@ export function ProjectSelectionView() {
   return (
     <div className="step-view">
       <h2>Créer ou sélectionner un projet</h2>
-      <p>Chaque projet conserve ses audios, scénarios et transcriptions.</p>
+      <p>Chaque projet conserve ses audios finaux, scénarios et transcriptions.</p>
       {error && <p className="error">{error}</p>}
 
-      <section className="card">
+      <section className="card emphasis">
+        <h3>Projets existants</h3>
+        <p>Revenez sur un projet pour reprendre là où vous l’avez laissé. Les audios finalisés sont directement écoutables.</p>
+        {isLoading ? (
+          <p>Chargement...</p>
+        ) : data && data.length > 0 ? (
+          <ul className="project-list stacked">
+            {data.map((project) => {
+              const hasAudio = Boolean(project.final_audio?.path);
+              const finalizedLabel = project.finalized_at ? formatDate(project.finalized_at) : null;
+              return (
+                <li key={project.name}>
+                  <div
+                    className="project-entry"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleSelect(project)}
+                    onKeyDown={(evt) => {
+                      if (evt.key === "Enter" || evt.key === " ") handleSelect(project);
+                    }}
+                  >
+                    <div className="project-label">
+                      <strong>{project.name}</strong>{" "}
+                      <small>({project.scenario_target} scénarios)</small>
+                      {finalizedLabel && <span className="badge">Finalisé le {finalizedLabel}</span>}
+                    </div>
+                    {hasAudio && (
+                      <button
+                        type="button"
+                        className="play-btn"
+                        onClick={(evt) => {
+                          evt.stopPropagation();
+                          togglePreview(project.name);
+                        }}
+                      >
+                        {previewProject === project.name ? "Pause" : "Écouter"}
+                      </button>
+                    )}
+                  </div>
+                  {hasAudio && previewProject === project.name && (
+                    <audio
+                      key={`${project.name}-${previewKey}`}
+                      controls
+                      autoPlay
+                      className="project-audio-preview"
+                      src={getProjectFinalAudioUrl(project.name)}
+                      onClick={(evt) => evt.stopPropagation()}
+                    />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p>Aucun projet enregistré pour le moment.</p>
+        )}
+      </section>
+
+      <section className="card muted">
         <h3>Nouveau projet</h3>
         <form onSubmit={handleCreate} className="form-grid">
           <label>
@@ -81,25 +162,6 @@ export function ProjectSelectionView() {
           </label>
         <button type="submit" disabled={createMutation.isPending}>Créer</button>
         </form>
-      </section>
-
-      <section className="card">
-        <h3>Projets existants</h3>
-        {isLoading ? (
-          <p>Chargement...</p>
-        ) : data && data.length > 0 ? (
-          <ul className="project-list">
-            {data.map((project) => (
-              <li key={project.name}>
-                <button onClick={() => handleSelect(project)}>
-                  {project.name} <small>({project.scenario_target} scénarios)</small>
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Aucun projet enregistré pour le moment.</p>
-        )}
       </section>
     </div>
   );

@@ -6,6 +6,8 @@ GITHUB_HOST ?= laplateformeio
 ENV_FILE ?= .env
 APP_DIR ?= app
 PLATFORM ?= linux
+QWEN_MODEL_DIR ?= models/qwen3-tts
+QWEN_MODEL_ID ?= Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
 
 GITPAT ?= YourGITPAT
 
@@ -21,7 +23,7 @@ else
 $(error PLATFORM must be 'linux' or 'mac')
 endif
 
-.PHONY: ensure-env ensure-app  install-uv install-mac build docker-build build-mac docker-run run-mac docker-refresh refresh-mac docker-push
+.PHONY: ensure-env ensure-app  install-uv install-mac build docker-build build-mac docker-run run-mac docker-refresh refresh-mac docker-push download-qwen-model
 
 ensure-env:
 	@test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE). Copy from env.example" && exit 1)
@@ -31,7 +33,7 @@ ensure-app:
 		mkdir -p $(APP_DIR); \
 	fi
 
-install-uv:
+uv-install:
 	pip install uv
 
 install: ensure-env ensure-app
@@ -76,3 +78,6 @@ docker-push:
 	echo $(GITPAT) | docker login ghcr.io -u $(GITHUB_PROFILE) --password-stdin
 	docker tag $(IMAGE_NAME):latest ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
 	docker push ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
+
+download-qwen-model:
+	$(PYTHON) scripts/download_qwen_tts.py --output-dir $(QWEN_MODEL_DIR) --model $(QWEN_MODEL_ID)

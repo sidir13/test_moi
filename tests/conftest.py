@@ -43,3 +43,30 @@ def _ensure_anthropic_stub() -> None:
 
 
 _ensure_anthropic_stub()
+
+
+def _ensure_qwen_stub() -> None:
+    try:
+        import qwen_tts  # noqa: F401
+        return
+    except ModuleNotFoundError:
+        pass
+
+    module = types.ModuleType("qwen_tts")
+
+    class _DummyModel:
+        @classmethod
+        def from_pretrained(cls, *args, **kwargs):
+            return cls()
+
+        def generate_voice_design(self, text: str, language: str, instruct: str):
+            import numpy as np
+
+            wav = np.zeros(16000, dtype=np.float32)
+            return [wav], 16000
+
+    module.Qwen3TTSModel = _DummyModel
+    sys.modules["qwen_tts"] = module
+
+
+_ensure_qwen_stub()

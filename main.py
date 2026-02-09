@@ -26,7 +26,6 @@ from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 from memoiredesterritoires.Slideshow.slides import slideshow
-from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
 from memoiredesterritoires.json_utils.read_json import read_json_file
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSkill
@@ -254,33 +253,6 @@ TOOLS = [
                 "max_backgrounds": {"type": "integer", "minimum": 0, "maximum": 2, "default": 2}
             },
             "required": ["project_name"]
-        }
-    },
-    {
-        "name": "eleven_labs_tts",
-        "description": "Génère une narration via ElevenLabs (à utiliser seulement si l'utilisateur le demande explicitement)",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "text": {
-                    "type": "string",
-                    "description": "Script à synthétiser"
-                },
-                "voice_id": {
-                    "type": "string",
-                    "description": "Identifiant ElevenLabs de la voix"
-                },
-                "model_id": {
-                    "type": "string",
-                    "description": "Modèle ElevenLabs à utiliser",
-                    "default": "eleven_multilingual_v2"
-                },
-                "output_path": {
-                    "type": "string",
-                    "description": "Chemin du fichier MP3 de sortie"
-                }
-            },
-            "required": ["text"]
         }
     },
     {
@@ -778,13 +750,6 @@ def execute_tool(tool_name: str, tool_input: dict):
             start_time=tool_input.get("start_time", 0),
             noise_duration=tool_input.get("noise_duration"),
             noise_start_offset=tool_input.get("noise_start_offset", 2),
-        )
-    elif tool_name == "eleven_labs_tts":
-        return eleven_labs_tts(
-            text=tool_input["text"],
-            voice_id=tool_input.get("voice_id", "pqHfZKP75CvOlQylNhV4"),
-            output_path=tool_input.get("output_path"),
-            model_id=tool_input.get("model_id", "eleven_multilingual_v2"),
         )
     elif tool_name == "find_background_sounds":
         return find_background_sounds(

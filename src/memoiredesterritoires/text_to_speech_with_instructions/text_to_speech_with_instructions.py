@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import re
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -16,6 +17,8 @@ from qwen_tts import Qwen3TTSModel
 
 DEFAULT_PROJECT = "Mémoire des Territoires"
 CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
+LOCAL_MODEL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts")).expanduser()
+DEFAULT_MODEL = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
 
 
 def _detect_device() -> tuple[str, torch.dtype]:
@@ -41,13 +44,23 @@ def _load_voice_instructions(project_name: Optional[str]) -> tuple[str, str]:
     return entry["voice_instructions"], project
 
 
+def _resolve_model_source(model_name: str) -> tuple[str, dict]:
+    candidate = Path(model_name)
+    if candidate.exists():
+        return str(candidate), {"local_files_only": True}
+    if LOCAL_MODEL_DIR.exists() and any(LOCAL_MODEL_DIR.iterdir()):
+        return str(LOCAL_MODEL_DIR), {"local_files_only": True}
+    LOCAL_MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    return model_name, {"cache_dir": str(LOCAL_MODEL_DIR)}
+
+
 def text_to_speech_with_instructions(
     text: str,
     *,
     project_name: Optional[str] = None,
     language: str = "French",
     output_path: Optional[str] = None,
-    model_name: str = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    model_name: str = DEFAULT_MODEL,
 ) -> dict[str, str | int]:
     """
     Generate speech for `text` while honoring expressive `instructions`.
@@ -67,11 +80,13 @@ def text_to_speech_with_instructions(
     instructions, project = _load_voice_instructions(project_name)
 
     device, dtype = _detect_device()
+    model_source, source_kwargs = _resolve_model_source(model_name)
     model = Qwen3TTSModel.from_pretrained(
-        model_name,
+        model_source,
         device_map=device,
         dtype=dtype,
         attn_implementation="sdpa",
+        **source_kwargs,
     )
 
     wavs, sample_rate = model.generate_voice_design(
