@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import os
@@ -184,7 +185,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
 
-        if payload.step_id == "scenario_review":
+        if payload.step_id == "audio_sources":
             files = payload.payload.get("files") if payload.payload else None
             if not files:
                 raise HTTPException(status_code=400, detail="Sélectionnez au moins une piste audio avant de continuer")
@@ -205,6 +206,33 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         session = session_store.load_session(req.session_id)
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
+        project_name = session["project_name"]
+        selection = load_audio_selection(project_name)
+        voices = selection.get("voices", [])
+        backgrounds = selection.get("backgrounds", [])
+        if not voices:
+            raise HTTPException(status_code=400, detail="Aucune piste vocale sélectionnée pour ce projet.")
+        progress_template = [
+            {"label": "Préparation du projet", "message": "Chargement du brief et du paramétrage"},
+            {"label": "Contrôle des sources audio", "message": "Vérification des pistes sélectionnées"},
+            {"label": "Génération multi-agents", "message": "Agents 0 → 3 en cours"},
+            {"label": "Consolidation finale", "message": "Sauvegarde des scénarios et mises à jour"},
+        ]
+        session_store.init_scenario_progress(req.session_id, progress_template)
+
+        def mark(idx: int, status: str, message: Optional[str] = None) -> None:
+            session_store.update_scenario_progress(req.session_id, idx, status, message)
+
+        current_step = 0
+
+        def start_step(idx: int, message: str) -> None:
+            nonlocal current_step
+            current_step = idx
+            mark(idx, "running", message)
+
+        def finish_step(idx: int, message: str) -> None:
+            mark(idx, "done", message)
+
         params = {
             "prompt": req.prompt,
             "mode": req.mode,
@@ -214,19 +242,77 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         logger.info(
             "Generating scenarios (session=%s project=%s target=%s)",
             req.session_id,
-            session["project_name"],
+            project_name,
             params["scenario_target"],
         )
-        result = scenario_skill.run(params)
+        try:
+            start_step(0, "Analyse du prompt et lecture du brief projet")
+            project_settings = load_project_settings(project_name)
+            finish_step(
+                0,
+                f"Brief chargé (cible: {project_settings.get('scenario_target', 3)} scénarios)",
+            )
+
+            start_step(1, "Vérification des pistes vocales et ambiances")
+            missing_files: List[str] = []
+            audio_dir = settings.projects_dir / project_name / "audio"
+            for voice_name in voices:
+                if not (audio_dir / voice_name).exists():
+                    missing_files.append(voice_name)
+            for bg in backgrounds:
+                bg_path = Path(bg)
+                if not bg_path.is_absolute():
+                    bg_path = (Path.cwd() / bg).resolve()
+                if not bg_path.exists():
+                    missing_files.append(bg)
+            if missing_files:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Fichiers audio introuvables: {', '.join(missing_files)}",
+                )
+            finish_step(
+                1,
+                f"{len(voices)} piste(s) vocale(s) et {len(backgrounds)} ambiance(s) prêtes",
+            )
+
+            start_step(2, "Lancement des agents (0 → 3)")
+            loop = asyncio.get_running_loop()
+            result = await loop.run_in_executor(None, lambda: scenario_skill.run(params))
+            scenario_count = result.get("skill_metadata", {}).get("scenario_count") or len(result.get("scenarios", []))
+            finish_step(2, f"{scenario_count} scénario(s) généré(s)")
+
+            start_step(3, "Sauvegarde des résultats")
+            raw_scenarios = result.get("scenarios", [])
+
+            prepared_scenarios: List[dict] = []
+            for idx, entry in enumerate(raw_scenarios, start=1):
+                if not isinstance(entry, dict):
+                    continue
+                cloned = dict(entry)
+                cloned.setdefault("scenario_index", idx)
+                if "scenario" not in cloned and any(key in cloned for key in ("parties", "titre", "texte_narration")):
+                    payload = {k: v for k, v in cloned.items() if k not in {"structure", "timeline"}}
+                    cloned["scenario"] = payload
+                prepared_scenarios.append(cloned)
+
+            session_store.update_session(req.session_id, {"scenarios": prepared_scenarios})
+            finish_step(3, "Scénarios prêts pour la relecture")
+        except HTTPException as http_err:
+            mark(current_step, "error", str(http_err.detail) if hasattr(http_err, "detail") else str(http_err))
+            raise
+        except Exception as exc:  # pragma: no cover - defensive logging
+            logger.exception("Scenario generation failed for session %s", req.session_id)
+            mark(current_step, "error", str(exc))
+            raise
+
         logger.info("Scenario generation completed for session %s", req.session_id)
         details = {
             "skill_metadata": result.get("skill_metadata", {}),
             "status": result.get("status"),
         }
-        session_store.update_session(req.session_id, {"scenarios": result.get("scenarios", [])})
         return ScenarioGenerationResponse(
             status=result.get("status", "unknown"),
-            scenario_count=result.get("skill_metadata", {}).get("scenario_count", 0),
+            scenario_count=scenario_count,
             output_dir=result.get("skill_metadata", {}).get("output_dir", req.output_dir),
             details=details,
         )
@@ -285,6 +371,14 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Session not found")
         selection = load_audio_selection(session["project_name"])
         return selection
+
+    @app.get("/sessions/{session_id}/scenario-progress", tags=["sessions"])
+    async def get_scenario_progress(session_id: str) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        steps = session_store.get_scenario_progress(session_id)
+        return {"steps": steps}
 
     @app.post("/sessions/{session_id}/audio-selection", tags=["sessions"])
     async def update_audio_selection(session_id: str, payload: AudioSelectionPayload) -> dict:

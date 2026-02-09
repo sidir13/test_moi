@@ -198,6 +198,59 @@ button.step:disabled {
   background: #f8fafc;
 }
 
+.progress-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progress-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progress-step {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+}
+
+.progress-step.status-running {
+  border-color: #2563eb;
+  background: #e0ecff;
+}
+
+.progress-step.status-done {
+  border-color: #16a34a;
+  background: #ecfdf5;
+}
+
+.progress-step.status-error {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.status-badge {
+  border-radius: 999px;
+  padding: 0.15rem 0.75rem;
+  font-size: 0.8rem;
+  border: 1px solid #94a3b8;
+  background: #fff;
+}
+
 .chat-messages {
   flex: 1;
   padding: 1rem;

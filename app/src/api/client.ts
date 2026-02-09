@@ -120,6 +120,12 @@ export async function fetchScenarios(sessionId: string) {
   return data.scenarios as Array<Record<string, unknown>>;
 }
 
+export type ScenarioProgressStep = {
+  label: string;
+  message?: string;
+  status: "pending" | "running" | "done" | "error";
+};
+
 export async function selectScenario(sessionId: string, scenario: Record<string, unknown>) {
   const { data } = await api.post(`/sessions/${sessionId}/scenario-selection`, {
     scenario
@@ -130,6 +136,11 @@ export async function selectScenario(sessionId: string, scenario: Record<string,
 export async function fetchSelectedScenario(sessionId: string) {
   const { data } = await api.get(`/sessions/${sessionId}/scenario-selection`);
   return data.scenario as Record<string, unknown> | undefined;
+}
+
+export async function fetchScenarioProgress(sessionId: string) {
+  const { data } = await api.get(`/sessions/${sessionId}/scenario-progress`);
+  return (data.steps ?? []) as ScenarioProgressStep[];
 }
 
 export function getWsBaseUrl() {

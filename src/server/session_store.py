@@ -19,6 +19,7 @@ class SessionContext(BaseModel):
     scenario_target: int = Field(default=3)
     scenarios: List[dict] = Field(default_factory=list)
     selected_scenario: Optional[dict] = None
+    scenario_progress: List[dict] = Field(default_factory=list)
 
     def to_dict(self) -> Dict[str, object]:
         return json.loads(self.model_dump_json())
@@ -81,6 +82,33 @@ class SessionStore:
 
     def set_selected_scenario(self, session_id: str, scenario: dict) -> None:
         self.update_session(session_id, {"selected_scenario": scenario})
+
+    def init_scenario_progress(self, session_id: str, steps: List[Dict[str, str]]) -> None:
+        templated = []
+        for step in steps:
+            templated.append({
+                "label": step.get("label", "Étape"),
+                "status": step.get("status", "pending"),
+                "message": step.get("message", ""),
+            })
+        self.update_session(session_id, {"scenario_progress": templated})
+
+    def update_scenario_progress(self, session_id: str, index: int, status: str, message: Optional[str] = None) -> None:
+        data = self.load_session(session_id)
+        if not data:
+            return
+        progress = data.get("scenario_progress", [])
+        if 0 <= index < len(progress):
+            progress[index]["status"] = status
+            if message is not None:
+                progress[index]["message"] = message
+            self.update_session(session_id, {"scenario_progress": progress})
+
+    def get_scenario_progress(self, session_id: str) -> List[dict]:
+        data = self.load_session(session_id)
+        if not data:
+            return []
+        return data.get("scenario_progress", [])
 
     def append_project_file(self, project_name: str, file_path: str) -> None:
         project_meta_path = self.base_path / f"{project_name}_files.json"
