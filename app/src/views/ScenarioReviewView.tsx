@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 import {
   advanceStep,
@@ -22,6 +23,8 @@ export function ScenarioReviewView() {
   const [status, setStatus] = useState<string | null>(null);
   const bootstrap = useRef(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isAdvancing, setIsAdvancing] = useState(false);
+  const [advanceError, setAdvanceError] = useState<string | null>(null);
   const scenariosQuery = useQuery({
     queryKey: ["scenarios", sessionId],
     queryFn: () => fetchScenarios(sessionId!),
@@ -89,17 +92,22 @@ export function ScenarioReviewView() {
 
   const goNext = async () => {
     if (!sessionId) return;
+    setAdvanceError(null);
+    setIsAdvancing(true);
     setStatus("Préparation de l'audio du scénario sélectionné…");
     try {
       await synthesizeScenarioAudio(sessionId);
     } catch (err) {
       console.error("Audio synthesis failed", err);
+      setAdvanceError(extractErrorMessage(err) ?? "Audio non généré. Vérifiez vos instructions vocales.");
       setStatus("Audio non généré. Vérifiez vos instructions vocales.");
+      setIsAdvancing(false);
       return;
     }
     await advanceStep(sessionId, "scenario_review", { prompt });
     setCurrentStep("scenario_edit");
     navigate("/step/scenario_edit");
+    setIsAdvancing(false);
   };
 
   return (
@@ -130,9 +138,18 @@ export function ScenarioReviewView() {
             />
           ))}
       </section>
-      <button className="link" onClick={goNext} disabled={!selectedScenarioQuery.data}>
+      {advanceError && <p className="alert error">{advanceError}</p>}
+      <button className="link" onClick={goNext} disabled={!selectedScenarioQuery.data || isAdvancing}>
         Continuer vers l'édition
       </button>
+      {isAdvancing && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h3>Préparation du scénario</h3>
+            <p>Génération de l'audio en cours…</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -234,4 +251,15 @@ function statusLabel(status?: string) {
     default:
       return "En attente";
   }
+}
+
+function extractErrorMessage(err: unknown): string | null {
+  if (axios.isAxiosError(err)) {
+    const detail = err.response?.data?.detail;
+    if (typeof detail === "string" && detail.trim().length > 0) return detail;
+    if (typeof err.message === "string" && err.message.trim().length > 0) return err.message;
+  } else if (err instanceof Error) {
+    return err.message;
+  }
+  return null;
 }

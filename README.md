@@ -114,7 +114,6 @@ Tous les appels respectent les validations de taille, cohérence projet/session 
 
 | Skill | Objectif | Entrées principales | Tech / module |
 | --- | --- | --- | --- |
-| `process_number` | Exemple pédagogique (×2). | `num` | Python basique. |
 | `analysis_storage` / `analysis_storage_query` | Stocker / lire transcriptions & analyses dans DuckDB. | `analysis_type`, `source_path`, `result` | DuckDB, Pandas. |
 | `transcription` | Chunk + transcription (OpenRouter Gemini). | `path`, `chunk_duration_s`, `model` | `faster-whisper`, OpenRouter. |
 | `analysis_storage_background` | Sauvegarder les analyses d’ambiances. | `source_path`, `result` | DuckDB. |
