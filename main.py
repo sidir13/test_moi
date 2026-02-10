@@ -908,6 +908,7 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
+        asyncio.run(main("Peux tu tts cette phrase: 'comment obtenir des dents en or, je vous propose un tuto de 36 heures"))
     # asyncio.run(main("Can you generate a new scenario for a project we'll call lA vie de Gilles, path is data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, transcript it and stock it in db, then we'll first find the 3 most relevant background sounds for this audio, then analyze the audio to extract key elements of the ambiance, then store the analysis in the database, fetch what we need from the parquet db, enchance our transcription with web search on key elements, generate 2 scenarios, one about his personal life, another about his professional life, then generate voice instructions based on the scenario and the analysis, then synthesize a narration of the 2 scenarios with the generated voice instructions, and finally mix the narration with for each scenario 2 of the found background sounds to create an immersive audio scenario !"))
     # asyncio.run(main("Can you just list all available skills and their descriptions?"))
     # asyncio.run(main("We need you to use your availables skills to properly generate the audio narrated scenario throught tts based on scenario conig file at data/scenarios/chantiers_navals/scenarios/scenario_2_20260204_172233.json, you can extract the story that is divided into different part into the different texte_narration keys of the json ! Generate the audio file with the text to speech too"))
@@ -1037,7 +1038,7 @@ if __name__ == "__main__":
     # Les Trente Glorieuses représentent le sommet de cette aventure industrielle : jusqu'à sept mille salariés travaillent sur les trois sites nantais. Mais la concurrence étrangère, l'ensablement de la Loire et la baisse des commandes précipitent le déclin. En mille neuf cent quatre-vingt-sept, les Chantiers Dubigeon ferment définitivement leurs portes, tournant la dernière page de trois siècles de construction navale à Nantes. L'île de Nantes entame alors sa métamorphose, du territoire industriel au quartier de la création."""))
     # asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
     # asyncio.run(main("yes save it to the database"))
-    asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
+    # asyncio.run(main("Peux tu procéder à l'analyse du background son industriel au chemin path: data/audio/background_sounds/meule/AV-1-S-OUT-201-1-A.wav, l'insérer dans une base de données et me montrer un échantillon de ce qui a été stocké ?"))
     # asyncio.run(main("Can i get some clarification on this number ? 0491253869"))
     # asyncio.run(main("can u analayse the audio at the path data/eng/meule/AV-1-S-OUT-201-1-A.wav with the contexte =Cet enregistrement provient d'archives d'entretiens d'ouvriers et de bruits d'ambiance en chantier navale."))
     # asyncio.run(main("can u transcript the audio at the path data/eng/int/Gilles.Hamon-Dessinateur.WAV."))

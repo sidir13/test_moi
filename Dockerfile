@@ -16,6 +16,7 @@ COPY pyproject.toml uv.lock ./
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir "setuptools>=70" "wheel>=0.43"
 COPY . /app
+COPY models/qwen3-tts /app/models/qwen3-tts
 RUN pip install --no-cache-dir -e .
 
 # === Runtime image ===
@@ -27,6 +28,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
 COPY --from=python-deps /usr/local /usr/local
 COPY . .
+COPY models/qwen3-tts /app/models/qwen3-tts
 COPY --from=frontend-builder /frontend/dist ./app/dist
 RUN ln -sfn /app/src/server /app/server
 COPY docker-entrypoint.sh /entrypoint.sh

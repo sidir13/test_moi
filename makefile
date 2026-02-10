@@ -43,6 +43,9 @@ install: ensure-env ensure-app
 install-mac:
 	$(MAKE) install PLATFORM=mac
 
+download-qwen-model:
+	$(PYTHON) scripts/download_qwen_tts.py --output-dir $(QWEN_MODEL_DIR) --model $(QWEN_MODEL_ID)
+
 build: docker-build
 
 docker-build: ensure-env
@@ -64,6 +67,7 @@ refresh: docker-refresh
 docker-refresh:
 	$(MAKE) uv-install
 	$(MAKE) install PLATFORM=$(PLATFORM)
+	$(MAKE) download-qwen-model
 	$(MAKE) docker-build PLATFORM=$(PLATFORM)
 	$(MAKE) docker-run PLATFORM=$(PLATFORM)
 
@@ -79,5 +83,3 @@ docker-push:
 	docker tag $(IMAGE_NAME):latest ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
 	docker push ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
 
-download-qwen-model:
-	$(PYTHON) scripts/download_qwen_tts.py --output-dir $(QWEN_MODEL_DIR) --model $(QWEN_MODEL_ID)

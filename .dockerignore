@@ -9,4 +9,6 @@ data/audio_analysis/*
 logs
 .DS_Store
 models
+!models/qwen3-tts/**
+!models/qwen3-tts/**
 notebooks
