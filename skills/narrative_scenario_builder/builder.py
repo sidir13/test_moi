@@ -83,7 +83,22 @@ class NarrativeScenarioBuilder:
         
         ton = gen_params.get('ton', {}).get('value', 'neutre_informatif')
         public = gen_params.get('public_cible', {}).get('value', 'grand_public')
-        
+
+        # Build audio transcriptions section for the prompt
+        transcriptions_section = ""
+        if audio_transcriptions:
+            transcriptions_lines = []
+            for t in audio_transcriptions:
+                name = t.get("file_name", "audio")
+                text = t.get("transcription", "")
+                if text:
+                    transcriptions_lines.append(f"--- {name} ---\n{text[:3000]}")
+            if transcriptions_lines:
+                transcriptions_section = (
+                    "\n\nTRANSCRIPTIONS AUDIO DISPONIBLES (témoignages réels à intégrer) :\n"
+                    + "\n\n".join(transcriptions_lines)
+                )
+
         # Build prompt for narrative generation
         prompt = f"""Écrivez la partie {part_num} d'un scénario audio historique.
 
@@ -104,7 +119,8 @@ PARAMÈTRES :
 - Public : {public}
 
 CONTEXTE HISTORIQUE :
-{json.dumps(historical_context.get('contexte_enrichi', {}), indent=2, ensure_ascii=False)[:1000]}
+{json.dumps(historical_context.get('contexte_enrichi', {}), indent=2, ensure_ascii=False)[:3000]}
+{transcriptions_section}
 
 CONSIGNES D'ÉCRITURE :
 1. Écrivez un texte narratif fluide et immersif pour {duree}s de lecture (environ {int(duree * 2.5)} mots)
@@ -113,6 +129,7 @@ CONSIGNES D'ÉCRITURE :
 4. Intégrez les éléments nécessaires naturellement
 5. Créez 2-3 moments clés pour placement d'archives ou effets sonores
 6. Donnez des directions de ton (tempo lecture, pauses, intonation)
+7. Si des transcriptions audio sont fournies, UTILISEZ-LES comme source primaire : intégrez les mots, expressions et témoignages réels dans le récit. Le scénario doit être ancré dans ces témoignages authentiques.
 
 Retournez un JSON avec cette structure :
 {{

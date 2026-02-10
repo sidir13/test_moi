@@ -161,7 +161,8 @@ Règles d'écriture :
         
         # Direct generation fallback
         return self._generate_part_direct(
-            part_id, titre, duree_cible, fonction, mood, ton, public, historical_context
+            part_id, titre, duree_cible, fonction, mood, ton, public,
+            historical_context, audio_transcriptions
         )
     
     def _generate_part_direct(
@@ -173,7 +174,8 @@ Règles d'écriture :
         mood: str,
         ton: str,
         public: str,
-        historical_context: Optional[Dict]
+        historical_context: Optional[Dict],
+        audio_transcriptions: Optional[List] = None
     ) -> Dict:
         """Generate part directly with Claude."""
         
@@ -185,7 +187,22 @@ Règles d'écriture :
                 historical_context.get('contexte_enrichi', {}),
                 indent=2,
                 ensure_ascii=False
-            )[:500]
+            )[:2000]
+
+        # Build transcriptions section
+        transcriptions_section = ""
+        if audio_transcriptions:
+            transcriptions_lines = []
+            for t in audio_transcriptions:
+                name = t.get("file_name", "audio")
+                text = t.get("transcription", "")
+                if text:
+                    transcriptions_lines.append(f"--- {name} ---\n{text[:3000]}")
+            if transcriptions_lines:
+                transcriptions_section = (
+                    "\n\nTRANSCRIPTIONS AUDIO DISPONIBLES (témoignages réels) :\n"
+                    + "\n\n".join(transcriptions_lines)
+                )
         
         prompt = f"""Écrivez la partie {part_id} d'un scénario audio historique.
 
@@ -199,12 +216,14 @@ PARAMÈTRES :
 
 CONTEXTE HISTORIQUE :
 {context_str}
+{transcriptions_section}
 
 CONSIGNES :
 1. Texte narratif fluide pour lecture audio
 2. Vocabulaire adapté au public et à l'époque
 3. 2-3 moments clés pour placement d'effets/archives
 4. Directions de ton précises
+5. Si des transcriptions audio sont fournies, UTILISEZ-LES comme source primaire : intégrez les mots, expressions et témoignages réels des intervenants dans le récit. Le scénario doit refléter fidèlement ces témoignages authentiques.
 
 Retournez un JSON :
 {{

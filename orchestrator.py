@@ -27,16 +27,14 @@ class ScenarioMakerOrchestrator:
         config_path: Optional[str] = None,
         api_key: Optional[str] = None,
         log_level: str = "INFO",
-        client: Optional[Any] = None
     ):
         """
         Initialize the orchestrator.
         
         Args:
             config_path: Path to configuration file (defaults to config/default_config.json)
-            api_key: Anthropic API key (defaults to env variable)
+            api_key: Anthropic API key (defaults to env variable ANTHROPIC_AUTH_TOKEN)
             log_level: Logging level
-            client: Optional custom client (Groq, Ollama, or Claude). If None, creates ClaudeClient.
         """
         # Setup logging
         log_file = os.getenv("LOG_FILE", "./logs/memoire_territoires.log")
@@ -50,18 +48,13 @@ class ScenarioMakerOrchestrator:
         logger.info("Initializing Mémoire des Territoires Orchestrator")
         logger.info("=" * 80)
         
-        # Initialize client (custom or Claude)
-        if client is not None:
-            self.client = client
-            client_name = client.__class__.__name__
-            logger.info(f"Using custom client: {client_name}")
-        else:
-            try:
-                self.client = ClaudeClient(api_key=api_key)
-                logger.info("Claude client initialized successfully")
-            except Exception as e:
-                logger.error(f"Failed to initialize Claude client: {e}")
-                raise
+        # Initialize Claude client (uses OpenRouter via ANTHROPIC_BASE_URL env var)
+        try:
+            self.client = ClaudeClient(api_key=api_key)
+            logger.info("Claude client initialized successfully (OpenRouter)")
+        except Exception as e:
+            logger.error(f"Failed to initialize Claude client: {e}")
+            raise
         
         # Load default configuration
         self.config_path = config_path or "config/default_config.json"
@@ -98,7 +91,7 @@ class ScenarioMakerOrchestrator:
             logger.info("Loading agents...")
             self.agents = SkillLoader.load_all_skills(
                 agents_dir,
-                self.client,  # Passer le client wrapper complet, pas l'objet interne
+                self.client,
                 skill_type="agents"
             )
             logger.info(f"Loaded {len(self.agents)} agents: {list(self.agents.keys())}")
@@ -111,7 +104,7 @@ class ScenarioMakerOrchestrator:
             logger.info("Loading skills...")
             self.skills = SkillLoader.load_all_skills(
                 skills_dir,
-                self.client,  # Passer le client wrapper complet, pas l'objet interne
+                self.client,
                 skill_type="skills"
             )
             logger.info(f"Loaded {len(self.skills)} skills: {list(self.skills.keys())}")
@@ -220,6 +213,9 @@ class ScenarioMakerOrchestrator:
         agent_0_logger.log_start("Parse request and build configuration")
         config = agent_0.parse(user_input, mode, self.default_config)
         agent_0_logger.log_end("Parse request", status="success")
+
+        # Log full Agent 0 output for debugging
+        logger.debug("[Agent 0] Full config output: %s", json.dumps(config, indent=2, ensure_ascii=False, default=str)[:5000])
         
         # Validate
         validation = agent_0.validate_configuration(config)
@@ -240,9 +236,20 @@ class ScenarioMakerOrchestrator:
         agent_1 = self.agents['agent_1_structure']['instance']
         agent_1_logger = AgentLogger("Agent 1")
         
+        # Extract audio transcriptions for Agent 1
+        audio_transcriptions = self._extract_audio_transcriptions(config)
+        logger.info("[Agent 1] Audio transcriptions available: %d", len(audio_transcriptions))
+        
         agent_1_logger.log_start(f"Create narrative structure #{scenario_num}")
-        structure = agent_1.create_narrative_structure(config, scenario_num)
+        structure = agent_1.create_narrative_structure(
+            config, 
+            scenario_num,
+            audio_metadata=audio_transcriptions
+        )
         agent_1_logger.log_end("Create structure", status="success")
+
+        # Log full Agent 1 output for debugging
+        logger.debug("[Agent 1] Structure #%d: %s", scenario_num, json.dumps(structure, indent=2, ensure_ascii=False, default=str)[:5000])
         
         return structure
     
@@ -259,6 +266,7 @@ class ScenarioMakerOrchestrator:
         agent_2_logger = AgentLogger("Agent 2")
         
         audio_transcriptions = self._extract_audio_transcriptions(config)
+        logger.info("[Agent 2] Audio transcriptions available: %d", len(audio_transcriptions))
         agent_2_logger.log_start("Write complete scenario")
         scenario = agent_2.write_complete_scenario(
             structure,
@@ -266,6 +274,9 @@ class ScenarioMakerOrchestrator:
             audio_transcriptions=audio_transcriptions
         )
         agent_2_logger.log_end("Write scenario", status="success")
+
+        # Log full Agent 2 output for debugging
+        logger.debug("[Agent 2] Scenario output: %s", json.dumps(scenario, indent=2, ensure_ascii=False, default=str)[:5000])
         
         return scenario
     
@@ -284,6 +295,9 @@ class ScenarioMakerOrchestrator:
         agent_3_logger.log_start("Create audio timeline")
         timeline = agent_3.create_audio_timeline(scenario, None, config)
         agent_3_logger.log_end("Create timeline", status="success")
+
+        # Log full Agent 3 output for debugging
+        logger.debug("[Agent 3] Timeline output: %s", json.dumps(timeline, indent=2, ensure_ascii=False, default=str)[:5000])
         
         return timeline
     
@@ -294,30 +308,41 @@ class ScenarioMakerOrchestrator:
         
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        # Save config
+        # Save config (Agent 0 output)
         config_file = output_path / "scenarios" / f"config_{timestamp}.json"
         config_file.parent.mkdir(parents=True, exist_ok=True)
         
         with open(config_file, 'w', encoding='utf-8') as f:
             json.dump(result['config'], f, indent=2, ensure_ascii=False)
+        logger.info(f"[Agent 0] Config saved to {config_file}")
         
-        # Save each scenario and timeline
+        # Save each scenario, structure and timeline
         for i, scenario_data in enumerate(result.get('scenarios', [])):
             if 'error' in scenario_data:
                 continue
             
-            # Save scenario
+            # Save structure (Agent 1 output)
+            if 'structure' in scenario_data:
+                structure_file = output_path / "structures" / f"structure_{i+1}_{timestamp}.json"
+                structure_file.parent.mkdir(parents=True, exist_ok=True)
+                with open(structure_file, 'w', encoding='utf-8') as f:
+                    json.dump(scenario_data['structure'], f, indent=2, ensure_ascii=False)
+                logger.info(f"[Agent 1] Structure #{i+1} saved to {structure_file}")
+            
+            # Save scenario (Agent 2 output)
             scenario_file = output_path / "scenarios" / f"scenario_{i+1}_{timestamp}.json"
             with open(scenario_file, 'w', encoding='utf-8') as f:
                 json.dump(scenario_data['scenario'], f, indent=2, ensure_ascii=False)
+            logger.info(f"[Agent 2] Scenario #{i+1} saved to {scenario_file}")
             
-            # Save timeline
+            # Save timeline (Agent 3 output)
             timeline_file = output_path / "timelines" / f"timeline_{i+1}_{timestamp}.json"
             timeline_file.parent.mkdir(parents=True, exist_ok=True)
             with open(timeline_file, 'w', encoding='utf-8') as f:
                 json.dump(scenario_data['timeline'], f, indent=2, ensure_ascii=False)
+            logger.info(f"[Agent 3] Timeline #{i+1} saved to {timeline_file}")
         
-        logger.info(f"All outputs saved to {output_dir}")
+        logger.info(f"All agent outputs saved to {output_dir}")
     
     def _save_output(self, result: Dict, output_dir: str):
         """Save generation results to output directory."""

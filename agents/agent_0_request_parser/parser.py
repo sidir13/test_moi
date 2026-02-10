@@ -130,6 +130,21 @@ JSON :"""
             # Merge with default config
             config = self._merge_configs(extracted, default_config)
             
+            # Preserve audio_transcriptions from default_config
+            default_data_sources = default_config.get('scenario_config', {}).get('data_sources', {})
+            if default_data_sources:
+                config_scenario = config.setdefault('scenario_config', {})
+                config_scenario['data_sources'] = deepcopy(default_data_sources)
+                
+                # Log preserved transcriptions
+                audio_transcriptions = (
+                    config.get('scenario_config', {})
+                    .get('data_sources', {})
+                    .get('user_provided', {})
+                    .get('audio_transcriptions', [])
+                )
+                logger.info(f"Audio transcriptions preserved: {len(audio_transcriptions)}")
+            
             # Validate and adjust
             config = self._validate_and_adjust(config)
             
@@ -163,6 +178,27 @@ JSON :"""
         
         # Deep merge user config into default
         config = self._deep_merge(config, user_config)
+        
+        # Preserve data_sources from default_config if not provided by user
+        if 'data_sources' not in user_config.get('scenario_config', {}):
+            default_data_sources = default_config.get('scenario_config', {}).get('data_sources', {})
+            if default_data_sources:
+                config_scenario = config.setdefault('scenario_config', {})
+                config_scenario.setdefault('data_sources', {})
+                # Preserve user_provided from default if not in user_config
+                if 'user_provided' not in user_config.get('scenario_config', {}).get('data_sources', {}):
+                    config_scenario['data_sources']['user_provided'] = deepcopy(
+                        default_data_sources.get('user_provided', {})
+                    )
+                    
+                    # Log preserved transcriptions
+                    audio_transcriptions = (
+                        config.get('scenario_config', {})
+                        .get('data_sources', {})
+                        .get('user_provided', {})
+                        .get('audio_transcriptions', [])
+                    )
+                    logger.info(f"Audio transcriptions preserved: {len(audio_transcriptions)}")
         
         # Mark all provided fields as user_specified
         self._mark_user_specified(config, user_config)
@@ -212,6 +248,23 @@ JSON :"""
             warnings.append("Équilibre faible peut résulter en trop d'archives")
         elif balance > 0.9:
             warnings.append("Équilibre élevé peut sous-utiliser les archives")
+        
+        # Check audio transcriptions
+        data_sources = config.get('scenario_config', {}).get('data_sources', {})
+        user_provided = data_sources.get('user_provided', {})
+        audio_transcriptions = user_provided.get('audio_transcriptions', [])
+        audio_files = user_provided.get('audio_files', [])
+        
+        if audio_files and len(audio_files) > 0:
+            # User has uploaded audio files
+            if not audio_transcriptions or len(audio_transcriptions) == 0:
+                warnings.append(
+                    f"⚠️  {len(audio_files)} fichiers audio uploadés mais 0 transcriptions disponibles. "
+                    "Vérifiez que la transcription automatique a fonctionné."
+                )
+        
+        if audio_transcriptions and len(audio_transcriptions) > 0:
+            logger.info(f"✓ {len(audio_transcriptions)} transcriptions audio disponibles pour les scénarios")
         
         return {
             'valid': len(errors) == 0,

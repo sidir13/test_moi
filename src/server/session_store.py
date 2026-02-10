@@ -120,6 +120,16 @@ class SessionStore:
             return None
         return data.get("scenario_audio")
 
+    def save_agent_outputs(self, session_id: str, agent_outputs: dict) -> None:
+        """Store the intermediate outputs of each agent for inspection."""
+        self.update_session(session_id, {"agent_outputs": agent_outputs})
+
+    def get_agent_outputs(self, session_id: str) -> Optional[dict]:
+        data = self.load_session(session_id)
+        if not data:
+            return None
+        return data.get("agent_outputs")
+
     def append_project_file(self, project_name: str, file_path: str) -> None:
         project_meta_path = self.base_path / f"{project_name}_files.json"
         payload = []

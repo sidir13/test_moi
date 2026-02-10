@@ -51,7 +51,7 @@ Write-Host "`nÉtape 5: Configuration .env..." -ForegroundColor Yellow
 if (-not (Test-Path ".env")) {
     Copy-Item ".env.example" ".env" -ErrorAction SilentlyContinue
     Write-Host "✓ Fichier .env créé (à configurer)" -ForegroundColor Green
-    Write-Host "  → Éditez .env et ajoutez votre clé API" -ForegroundColor Yellow
+    Write-Host "  → Éditez .env et ajoutez votre clé OpenRouter" -ForegroundColor Yellow
 } else {
     Write-Host "✓ .env existe déjà" -ForegroundColor Green
 }
@@ -59,10 +59,9 @@ if (-not (Test-Path ".env")) {
 # 6. Créer dossiers nécessaires
 Write-Host "`nÉtape 6: Création des dossiers..." -ForegroundColor Yellow
 $folders = @(
-    "output/local_tests",
     "output/scenarios",
     "output/timelines",
-    "output/exports",
+    "output/structures",
     "logs"
 )
 
@@ -88,22 +87,16 @@ Write-Host "`n==================================================================
 Write-Host "✅ INSTALLATION COMPLÈTE !`n" -ForegroundColor Green
 Write-Host "Prochaines étapes:`n" -ForegroundColor Cyan
 
-Write-Host "1. Configurer .env avec votre clé API:" -ForegroundColor White
+Write-Host "1. Configurer .env avec votre clé OpenRouter:" -ForegroundColor White
 Write-Host "   notepad .env`n" -ForegroundColor Gray
 
-Write-Host "2. Pour tests locaux (Ollama):" -ForegroundColor White
-Write-Host "   python check_ollama.py" -ForegroundColor Gray
-Write-Host "   python main_local.py`n" -ForegroundColor Gray
+Write-Host "2. Lancer avec Docker:" -ForegroundColor White
+Write-Host "   make refresh`n" -ForegroundColor Gray
 
-Write-Host "3. Pour production (Claude):" -ForegroundColor White
+Write-Host "3. Ou via CLI:" -ForegroundColor White
 Write-Host "   python cli.py generate `"Votre prompt`"`n" -ForegroundColor Gray
 
 Write-Host "4. Lancer les tests:" -ForegroundColor White
 Write-Host "   pytest`n" -ForegroundColor Gray
-
-Write-Host "Documentation:" -ForegroundColor Yellow
-Write-Host "   - SETUP_UV.md" -ForegroundColor Gray
-Write-Host "   - QUICKSTART_LOCAL.md" -ForegroundColor Gray
-Write-Host "   - README_IMPLEMENTATION.md`n" -ForegroundColor Gray
 
 Write-Host "================================================================================`n" -ForegroundColor Cyan

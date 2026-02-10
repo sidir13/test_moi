@@ -56,7 +56,7 @@ echo "Étape 5: Configuration .env..."
 if [ ! -f ".env" ]; then
     cp .env.example .env 2>/dev/null || true
     echo "✓ Fichier .env créé (à configurer)"
-    echo "  → Éditez .env et ajoutez votre clé API"
+    echo "  → Éditez .env et ajoutez votre clé OpenRouter"
 else
     echo "✓ .env existe déjà"
 fi
@@ -64,7 +64,7 @@ fi
 # 6. Créer dossiers nécessaires
 echo ""
 echo "Étape 6: Création des dossiers..."
-mkdir -p output/local_tests output/scenarios output/timelines output/exports logs
+mkdir -p output/scenarios output/timelines output/structures logs
 echo "✓ Dossiers créés"
 
 # 7. Test de l'installation
@@ -84,23 +84,17 @@ echo "✅ INSTALLATION COMPLÈTE !"
 echo ""
 echo "Prochaines étapes:"
 echo ""
-echo "1. Configurer .env avec votre clé API:"
+echo "1. Configurer .env avec votre clé OpenRouter:"
 echo "   nano .env"
 echo ""
-echo "2. Pour tests locaux (Ollama):"
-echo "   python check_ollama.py"
-echo "   python main_local.py"
+echo "2. Lancer avec Docker:"
+echo "   make refresh"
 echo ""
-echo "3. Pour production (Claude):"
+echo "3. Ou via CLI:"
 echo "   python cli.py generate \"Votre prompt\""
 echo ""
 echo "4. Lancer les tests:"
 echo "   pytest"
-echo ""
-echo "Documentation:"
-echo "   - SETUP_UV.md"
-echo "   - QUICKSTART_LOCAL.md"
-echo "   - README_IMPLEMENTATION.md"
 echo ""
 echo "================================================================================"
 echo ""
