@@ -97,6 +97,7 @@ class ChatAgent:
                     model=self.model,
                     max_tokens=1024,
                     tools=TOOLS,
+                    system="Tu es un assistant qui aide l'utilisateur à préparer son projet d'archive sonore historique. IMPORTANT: N'utilise JAMAIS le tool 'generate_historical_scenario' sauf si l'utilisateur te demande EXPLICITEMENT de générer des scénarios (ex: 'génère les scénarios', 'crée les scénarios', 'lance la génération'). Aide-le plutôt à affiner son contexte historique, ses notes de projet, à sélectionner ses sources audio, et à enrichir son brief. N'anticipe pas ses demandes - attends qu'il te le demande clairement.",
                     messages=messages,
                 ),
             )

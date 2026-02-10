@@ -19,7 +19,7 @@ export function ScenarioReviewView() {
   const { sessionId, setCurrentStep, scenarioTarget, updateProgress } = useSessionStore();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [prompt, setPrompt] = useState("Souhaitez vous qu'on vous aide à choisir le meilleur scénario ?");
+  const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const bootstrap = useRef(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -47,10 +47,10 @@ export function ScenarioReviewView() {
   }
 
   useEffect(() => {
-    if (!sessionId || bootstrap.current) return;
+    if (!sessionId || bootstrap.current || (scenariosQuery.data && scenariosQuery.data.length > 0)) return;
     bootstrap.current = true;
     triggerGeneration();
-  }, [prompt, scenarioTarget, sessionId, queryClient]);
+  }, [sessionId, scenariosQuery.data]);
 
   useEffect(() => {
     if (scenariosQuery.data && scenariosQuery.data.length > 0) {
@@ -114,7 +114,12 @@ export function ScenarioReviewView() {
     <div className="step-view">
       <h2>Consulter les scénarios générés</h2>
       <form onSubmit={handleGenerate} className="form-grid">
-        <textarea rows={6} value={prompt} onChange={(e) => setPrompt(e.target.value)} />
+        <textarea 
+          rows={6} 
+          value={prompt} 
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Souhaitez vous qu'on vous aide à choisir le meilleur scénario ?"
+        />
         <button type="submit">Régénérer les scénarios</button>
       </form>
       {status && <p>{status}</p>}

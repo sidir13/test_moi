@@ -29,7 +29,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
     text_to_speech_with_instructions,
 )
 from memoiredesterritoires.transcription.transcription import transcribe_audio
-from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result
+from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from project_store import (
     load_project_settings,
     save_project_settings,
@@ -285,6 +285,36 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             )
             raise
 
+    def fetch_project_transcriptions(project_name: str) -> List[Dict[str, Any]]:
+        """Retrieve stored transcriptions for a project from the Parquet dataset."""
+        try:
+            data = fetch_analysis_results(
+                analysis_type="transcription",
+                source_path_contains=project_name,
+                limit=50,
+            )
+            transcriptions: List[Dict[str, Any]] = []
+            for entry in data.get("entries", []):
+                result = entry.get("result", {})
+                text = result.get("transcription") if isinstance(result, dict) else None
+                title = entry.get("title") or Path(entry.get("source_path", "")).name
+                if text and title:
+                    transcriptions.append({
+                        "file_name": title,
+                        "transcription": text,
+                        "language": "fr",
+                        "source": entry.get("source_path"),
+                    })
+            log_progress(
+                "TRANSCRIPTIONS_FETCHED",
+                project=project_name,
+                count=len(transcriptions),
+            )
+            return transcriptions
+        except Exception as exc:
+            logger.warning("Could not fetch transcriptions for %s: %s", project_name, exc)
+            return []
+
     def persist_final_assets(project_name: str, session_data: Dict[str, Any]) -> None:
         entry: Dict[str, Any] = {
             "finalized_at": datetime.utcnow().isoformat(),
@@ -459,17 +489,34 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         def finish_step(idx: int, message: str) -> None:
             mark(idx, "done", message)
 
+        # Retrieve audio transcriptions from Parquet storage
+        audio_transcriptions = fetch_project_transcriptions(project_name)
+
+        # Load project notes and enrich the prompt
+        project_profile = load_project_profile(project_name)
+        project_notes = project_profile.get("project_notes", "")
+        
+        # Enrich prompt with project context if notes exist
+        enriched_prompt = req.prompt
+        if project_notes and project_notes.strip():
+            if enriched_prompt and enriched_prompt.strip():
+                enriched_prompt = f"{project_notes}\n\n{enriched_prompt}"
+            else:
+                enriched_prompt = project_notes
+
         params = {
-            "prompt": req.prompt,
+            "prompt": enriched_prompt,
             "mode": req.mode,
             "output_dir": req.output_dir,
             "scenario_target": req.scenario_target or session.get("scenario_target", 3),
+            "audio_transcriptions": audio_transcriptions,
         }
         log_progress(
             "SCENARIO_GENERATE_START",
             session=req.session_id,
             project=project_name,
             target=params["scenario_target"],
+            transcriptions=len(audio_transcriptions),
         )
         try:
             start_step(0, "Analyse du prompt et lecture du brief projet")
@@ -506,6 +553,21 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             result = await loop.run_in_executor(None, lambda: scenario_skill.run(params))
             scenario_count = result.get("skill_metadata", {}).get("scenario_count") or len(result.get("scenarios", []))
             finish_step(2, f"{scenario_count} scénario(s) généré(s)")
+
+            # Save agent intermediate outputs for inspection
+            agent_outputs = {
+                "agent_0_config": result.get("config"),
+                "scenarios": [],
+            }
+            for idx_out, sc_data in enumerate(result.get("scenarios", [])):
+                if isinstance(sc_data, dict) and "error" not in sc_data:
+                    agent_outputs["scenarios"].append({
+                        "scenario_index": idx_out + 1,
+                        "agent_1_structure": sc_data.get("structure"),
+                        "agent_2_scenario": sc_data.get("scenario"),
+                        "agent_3_timeline": sc_data.get("timeline"),
+                    })
+            session_store.save_agent_outputs(req.session_id, agent_outputs)
 
             start_step(3, "Sauvegarde des résultats")
             raw_scenarios = result.get("scenarios", [])
@@ -756,6 +818,38 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             backgrounds=len(backgrounds),
         )
         return saved
+
+    @app.get("/sessions/{session_id}/agent-outputs", tags=["sessions"])
+    async def get_agent_outputs(session_id: str) -> dict:
+        """Return the intermediate outputs produced by each agent during scenario generation."""
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        outputs = session_store.get_agent_outputs(session_id)
+        if not outputs:
+            raise HTTPException(status_code=404, detail="Aucune sortie d'agent disponible pour cette session")
+        return outputs
+
+    @app.get("/logs/recent", tags=["system"])
+    async def get_recent_logs(
+        lines: int = Query(default=100, ge=1, le=1000, description="Nombre de lignes à retourner"),
+    ) -> dict:
+        """Return the N most recent lines from the application log file."""
+        log_file = Path(os.getenv("LOG_FILE", "./logs/memoire_territoires.log"))
+        if not log_file.exists():
+            return {"lines": [], "file": str(log_file), "message": "Log file not found"}
+        try:
+            with open(log_file, "r", encoding="utf-8", errors="replace") as f:
+                all_lines = f.readlines()
+            recent = all_lines[-lines:]
+            return {
+                "lines": [line.rstrip("\n") for line in recent],
+                "total_lines": len(all_lines),
+                "returned": len(recent),
+                "file": str(log_file),
+            }
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Erreur de lecture des logs: {exc}") from exc
 
     @app.get("/background-sounds", tags=["media"])
     async def list_background_sounds(
