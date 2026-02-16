@@ -17,7 +17,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir "setuptools>=70" "wheel>=0.43"
 COPY . /app
 COPY models/ /app/models/
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir -e . && \
+    pip install --no-cache-dir moviepy pillow
 
 # === Runtime image ===
 FROM python-deps AS runtime
