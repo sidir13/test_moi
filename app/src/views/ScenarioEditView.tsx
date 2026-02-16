@@ -1,14 +1,22 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { DragEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
+  API_BASE_URL,
   advanceStep,
   fetchSelectedScenario,
   selectScenario,
   fetchScenarioAudio,
   synthesizeScenarioAudio,
-  getScenarioAudioUrl
+  getScenarioAudioUrl,
+  fetchScenarioImages,
+  uploadScenarioImage,
+  deleteScenarioImage,
+  reorderScenarioImages,
+  fetchSlideshow,
+  createSlideshow,
+  getScenarioSlideshowUrl
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -23,6 +31,8 @@ export function ScenarioEditView() {
   const [freeText, setFreeText] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const [audioStatus, setAudioStatus] = useState<string | null>(null);
+  const [imageStatus, setImageStatus] = useState<string | null>(null);
+  const [videoStatus, setVideoStatus] = useState<string | null>(null);
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
@@ -33,6 +43,18 @@ export function ScenarioEditView() {
   const audioQuery = useQuery({
     queryKey: ["scenario-audio", sessionId],
     queryFn: () => fetchScenarioAudio(sessionId!),
+    enabled: Boolean(sessionId)
+  });
+
+  const imagesQuery = useQuery({
+    queryKey: ["scenario-images", sessionId],
+    queryFn: () => fetchScenarioImages(sessionId!),
+    enabled: Boolean(sessionId)
+  });
+
+  const slideshowQuery = useQuery({
+    queryKey: ["scenario-slideshow", sessionId],
+    queryFn: () => fetchSlideshow(sessionId!),
     enabled: Boolean(sessionId)
   });
 
@@ -61,6 +83,17 @@ export function ScenarioEditView() {
     return `${base}${cacheBust}`;
   }, [audioQuery.data, sessionId]);
 
+  const slideshowSrc = useMemo(() => {
+    if (!sessionId || !slideshowQuery.data?.path) return null;
+    const base = getScenarioSlideshowUrl(sessionId).replace(/\/$/, "");
+    const cacheBust = slideshowQuery.data.created_at ? `?ts=${encodeURIComponent(slideshowQuery.data.created_at)}` : "";
+    return `${base}${cacheBust}`;
+  }, [sessionId, slideshowQuery.data]);
+
+  const images = imagesQuery.data ?? [];
+  const imagesLimitReached = images.length >= 10;
+  const apiBase = useMemo(() => (API_BASE_URL || "").replace(/\/$/, ""), []);
+
   if (!sessionId) return <p>Démarrez une session.</p>;
   if (selectionQuery.isLoading) return <p>Chargement du scénario sélectionné...</p>;
   if (!selectionQuery.data) return <p>Aucun scénario sélectionné. Retournez à l'étape précédente.</p>;
@@ -72,14 +105,100 @@ export function ScenarioEditView() {
     await queryClient.invalidateQueries({ queryKey: ["selected-scenario", sessionId] });
   };
 
+  const handleUploadImages = async (files: FileList | null) => {
+    if (!sessionId || !files) return;
+    try {
+      setImageStatus("Téléversement des images en cours...");
+      for (const file of Array.from(files)) {
+        if ((imagesQuery.data?.length ?? 0) >= 10) break;
+        await uploadScenarioImage(sessionId, file);
+      }
+      await imagesQuery.refetch();
+      setImageStatus("Images ajoutées.");
+    } catch (err) {
+      console.error("Image upload failed", err);
+      setImageStatus("Impossible d'ajouter les images.");
+    }
+  };
+
+  const handleDeleteImage = async (imageId: string) => {
+    if (!sessionId) return;
+    await deleteScenarioImage(sessionId, imageId);
+    await imagesQuery.refetch();
+  };
+
+  const handleReorder = async (fromId: string, toId: string) => {
+    if (!sessionId || !imagesQuery.data) return;
+    const list = [...imagesQuery.data];
+    const fromIndex = list.findIndex((img) => img.id === fromId);
+    const toIndex = list.findIndex((img) => img.id === toId);
+    if (fromIndex === -1 || toIndex === -1) return;
+    const reordered = [...list];
+    const [moved] = reordered.splice(fromIndex, 1);
+    reordered.splice(toIndex, 0, moved);
+    await reorderScenarioImages(
+      sessionId,
+      reordered.map((img) => img.id)
+    );
+    await imagesQuery.refetch();
+  };
+
+  const handleDragStart = (evt: DragEvent<HTMLDivElement>, id: string) => {
+    evt.dataTransfer.setData("text/plain", id);
+  };
+
+  const handleDropOnImage = async (evt: DragEvent<HTMLDivElement>, targetId: string) => {
+    evt.preventDefault();
+    const fromId = evt.dataTransfer.getData("text/plain");
+    if (fromId && fromId !== targetId) {
+      await handleReorder(fromId, targetId);
+    }
+  };
+
+  const ensureSlideshowIfNeeded = async () => {
+    if (!sessionId) return;
+    if ((imagesQuery.data?.length ?? 0) === 0) return;
+    try {
+      setVideoStatus("Création du diaporama...");
+      await createSlideshow(sessionId);
+      await slideshowQuery.refetch();
+      setVideoStatus("Diaporama mis à jour.");
+    } catch (err) {
+      console.error("Slideshow generation failed", err);
+      setVideoStatus("Impossible de créer le diaporama.");
+    }
+  };
+
+  const handleCreateSlideshow = async () => {
+    if ((imagesQuery.data?.length ?? 0) === 0) {
+      setVideoStatus("Ajoutez des images avant de créer un diaporama.");
+      return;
+    }
+    await persistScenario();
+    await ensureSlideshowIfNeeded();
+  };
+
   const handleSubmit = async (evt: FormEvent) => {
     evt.preventDefault();
     setStatus("Sauvegarde de vos modifications...");
     await persistScenario();
+    setAudioStatus("Mise à jour de l'audio...");
+    try {
+      await synthesizeScenarioAudio(sessionId);
+      await audioQuery.refetch();
+    } catch (err) {
+      console.error("Audio synthesis failed", err);
+      setAudioStatus("Erreur lors de la génération audio.");
+      setStatus(null);
+      return;
+    }
+    await ensureSlideshowIfNeeded();
     await advanceStep(sessionId, "scenario_edit", { titre: title });
     updateProgress({ scenarioEdited: true });
     setCurrentStep("final_validation");
     navigate("/step/final_validation");
+    setStatus(null);
+    setAudioStatus(null);
   };
 
   const saveDraft = async () => {
@@ -182,6 +301,88 @@ export function ScenarioEditView() {
             Sauvegarder & régénérer l'audio
           </button>
           {audioStatus && <p>{audioStatus}</p>}
+        </section>
+
+        <section className="card">
+          <h3>Images pour le diaporama (optionnel)</h3>
+          <p>Ajoutez jusqu'à 10 images, réorganisez-les par glisser-déposer et générez un diaporama synchronisé avec l'audio.</p>
+          <label className="link">
+            Ajouter des images
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              disabled={imagesLimitReached}
+              style={{ display: "none" }}
+              onChange={(e) => {
+                handleUploadImages(e.target.files);
+                e.target.value = "";
+              }}
+            />
+          </label>
+          {imagesLimitReached && <p>Limite atteinte (10 images).</p>}
+          {imageStatus && <p>{imageStatus}</p>}
+          <div
+            className="image-grid"
+            style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginTop: "0.5rem" }}
+          >
+            {images.map((image) => (
+              <div
+                key={image.id}
+                className="image-thumb"
+                style={{
+                  width: 128,
+                  height: 128,
+                  position: "relative",
+                  border: "1px solid var(--border)",
+                  borderRadius: 8,
+                  overflow: "hidden",
+                  background: "#000"
+                }}
+                draggable
+                onDragStart={(evt) => handleDragStart(evt, image.id)}
+                onDragOver={(evt) => evt.preventDefault()}
+                onDrop={(evt) => handleDropOnImage(evt, image.id)}
+              >
+                <img
+                  src={`${apiBase}${image.download_url}`}
+                  alt={image.original_name ?? image.filename}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleDeleteImage(image.id)}
+                  style={{
+                    position: "absolute",
+                    top: 4,
+                    right: 4,
+                    border: "none",
+                    background: "rgba(0,0,0,0.6)",
+                    color: "#fff",
+                    borderRadius: "50%",
+                    width: 24,
+                    height: 24,
+                    cursor: "pointer"
+                  }}
+                  aria-label="Supprimer cette image"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            <button type="button" onClick={handleCreateSlideshow} disabled={images.length === 0}>
+              Créer le diaporama
+            </button>
+            {videoStatus && <p>{videoStatus}</p>}
+          </div>
+          {slideshowSrc && (
+            <div style={{ marginTop: "0.5rem" }}>
+              <p>Diaporama généré :</p>
+              <video controls src={slideshowSrc} style={{ width: "100%", maxHeight: 360 }} />
+            </div>
+          )}
         </section>
 
         <div className="card">

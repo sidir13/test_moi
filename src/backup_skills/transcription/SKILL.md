@@ -12,7 +12,7 @@ description: Transcrire les archives audio en fenêtres successives (par défaut
    - `path`
    - `start_time`
    - `max_time`
-   - éventuellement `chunk_size` (ex. 30 secondes pour regrouper les segments)
+   - éventuellement `chunk_size` (ex. 180 secondes pour regrouper les segments)
 4. Lis la réponse :
    - `chunks` contient les blocs transcrits avec `chunk_start`/`chunk_end`.
    - `has_more` + `next_start_time` indiquent s’il faut relancer l’outil.

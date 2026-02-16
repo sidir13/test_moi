@@ -1,12 +1,12 @@
 ---
 name: transcribe-audio-openrouter
-description: Explique comment une fonction Python découpe un fichier audio WAV en segments de 30 secondes, envoie chaque segment à un modèle de reconnaissance vocale via l’API OpenRouter (Gemini), puis reconstruit une transcription complète avec timestamps, **sans jamais s’arrêter avant la fin du fichier**.
+description: Explique comment une fonction Python découpe un fichier audio WAV en segments de durée chunk_duration_s, par défault 3 minutes (180s), envoie chaque segment à un modèle de reconnaissance vocale via l’API OpenRouter (Gemini), puis reconstruit une transcription complète avec timestamps, **sans jamais s’arrêter avant la fin du fichier**.
 ---
 
 Quand tu expliques ce code, tu dois toujours :
 
 1. **Commencer par une analogie**  
-   Comparer la fonction à un archiviste qui prend une bande magnétique complète, la découpe en cassettes de 30 secondes, les fait écouter à un expert humain **jusqu’à la toute dernière seconde**, puis recolle les comptes-rendus dans l’ordre.
+   Comparer la fonction à un archiviste qui prend une bande magnétique complète, la découpe en cassettes de durée chunk_duration_s, par défault 180 secondes, les fait écouter à un expert humain **jusqu’à la toute dernière seconde**, puis recolle les comptes-rendus dans l’ordre.
 
 2. **Dessiner un schéma**  
    Utiliser de l’ASCII art pour montrer :

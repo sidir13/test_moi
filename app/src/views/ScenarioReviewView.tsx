@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -49,6 +49,26 @@ export function ScenarioReviewView() {
     enabled: Boolean(sessionId),
     refetchInterval: isGenerating ? 1500 : false
   });
+
+  const sortedScenarios = useMemo(() => {
+    if (!scenariosQuery.data) {
+      return [];
+    }
+    const clone = [...scenariosQuery.data];
+    clone.sort((a, b) => {
+      const rankA = getScenarioRank(a);
+      const rankB = getScenarioRank(b);
+      if (rankA !== null && rankB !== null && rankA !== rankB) {
+        return rankA - rankB;
+      }
+      if (rankA !== null) return -1;
+      if (rankB !== null) return 1;
+      const idxA = (a as any).scenario_index ?? Number.MAX_SAFE_INTEGER;
+      const idxB = (b as any).scenario_index ?? Number.MAX_SAFE_INTEGER;
+      return idxA - idxB;
+    });
+    return clone;
+  }, [scenariosQuery.data]);
 
   if (!sessionId) {
     return <p>Session introuvable.</p>;
@@ -154,13 +174,19 @@ export function ScenarioReviewView() {
       <section className="card">
         <h3>Scénarios disponibles</h3>
         {scenariosQuery.isLoading && <p>Chargement des scénarios...</p>}
-        {scenariosQuery.data && scenariosQuery.data.length === 0 && <p>Aucun scénario pour le moment.</p>}
-      {scenariosQuery.data &&
-        scenariosQuery.data.map((scenario, idx) => (
-          <ScenarioCard
-            key={idx}
-            scenario={scenario}
-              index={idx}
+        {scenariosQuery.data && sortedScenarios.length === 0 && <p>Aucun scénario pour le moment.</p>}
+      {sortedScenarios.length > 0 &&
+        sortedScenarios.map((scenario, idx) => {
+          const displayIndex = getScenarioRank(scenario) ?? idx + 1;
+          const cardKey =
+            (scenario as any).scenario_index ??
+            (scenario as any)?.scenario?.scenario_index ??
+            `${idx}-${displayIndex}`;
+          return (
+            <ScenarioCard
+              key={cardKey}
+              scenario={scenario}
+              displayIndex={displayIndex}
               isSelected={isSameScenario(selectedScenarioQuery.data, scenario)}
               onSelect={async () => {
                 await selectScenario(sessionId!, scenario);
@@ -168,7 +194,8 @@ export function ScenarioReviewView() {
                 updateProgress({ scenarioChosen: true });
               }}
             />
-          ))}
+          );
+        })}
       </section>
       {advanceError && <p className="alert error">{advanceError}</p>}
       <button className="link" onClick={goNext} disabled={!selectedScenarioQuery.data || isAdvancing}>
@@ -188,18 +215,20 @@ export function ScenarioReviewView() {
 
 function ScenarioCard({
   scenario,
-  index,
+  displayIndex,
   isSelected,
   onSelect
 }: {
   scenario: Record<string, any>;
-  index: number;
+  displayIndex: number;
   isSelected: boolean;
   onSelect: () => void;
 }) {
   const raw = scenario as any;
   const payload = raw?.scenario ?? raw;
-  const title = payload?.titre ?? `Scénario ${index + 1}`;
+  const scenarioTitle =
+    typeof payload?.titre === "string" && payload.titre.trim().length > 0 ? payload.titre.trim() : "";
+  const heading = scenarioTitle ? `Scénario ${displayIndex} — ${scenarioTitle}` : `Scénario ${displayIndex}`;
   const axe = payload?.axe_narratif ?? "";
   const angle = payload?.angle_scenarisation ?? "";
   const ton = payload?.ton ?? "";
@@ -225,7 +254,7 @@ function ScenarioCard({
 
   return (
     <article className={`scenario-card ${isSelected ? "selected" : ""}`}>
-      <h4>{title}</h4>
+      <h4>{heading}</h4>
       <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", fontSize: "0.85em", opacity: 0.85, marginBottom: "0.5rem" }}>
         {axe && <span title="Axe narratif">🎯 {axe}</span>}
         {angle && <span title="Angle de scénarisation">🎬 {angleLabels[angle] ?? angle}</span>}
@@ -254,6 +283,27 @@ function ScenarioCard({
       </button>
     </article>
   );
+}
+
+function getScenarioRank(raw?: Record<string, any>): number | null {
+  if (!raw) return null;
+  const immediate = parseRank((raw as any).quality_rank ?? (raw as any).rank);
+  if (immediate !== null) return immediate;
+  const payload = (raw as any).scenario ?? raw;
+  return parseRank(payload?.quality_rank ?? payload?.rank);
+}
+
+function parseRank(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (!Number.isNaN(parsed)) {
+      return parsed;
+    }
+  }
+  return null;
 }
 
 function isSameScenario(a?: Record<string, any>, b?: Record<string, any>) {

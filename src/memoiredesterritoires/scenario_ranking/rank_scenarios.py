@@ -6,7 +6,7 @@ import json
 import os
 import re
 from pathlib import Path
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -43,6 +43,68 @@ def _scenario_summary(path: Path) -> str:
     return json.dumps(data, ensure_ascii=False)[:1500]
 
 
+def _normalize_message_content(content: Any) -> str:
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return "\n".join(
+            block.get("text", "") if isinstance(block, dict) else str(block)
+            for block in content
+        )
+    if content is None:
+        return ""
+    return str(content)
+
+
+def _extract_completion_text(completion: Any) -> str:
+    if completion is None:
+        return ""
+
+    if hasattr(completion, "choices"):
+        choices = getattr(completion, "choices")
+        if isinstance(choices, list) and choices:
+            first_choice = choices[0]
+            message = getattr(first_choice, "message", None)
+            if message and hasattr(message, "content"):
+                return _normalize_message_content(message.content)
+            if isinstance(first_choice, dict):
+                message_dict = first_choice.get("message")
+                if isinstance(message_dict, dict) and "content" in message_dict:
+                    return _normalize_message_content(message_dict["content"])
+                if "content" in first_choice:
+                    return _normalize_message_content(first_choice["content"])
+
+    if isinstance(completion, dict):
+        if "choices" in completion:
+            return _extract_completion_text(completion["choices"])
+        if "message" in completion and isinstance(completion["message"], dict):
+            content = completion["message"].get("content")
+            if content is not None:
+                return _normalize_message_content(content)
+        if "content" in completion:
+            return _normalize_message_content(completion["content"])
+
+    if isinstance(completion, list) and completion:
+        first_item = completion[0]
+        if isinstance(first_item, dict):
+            message = first_item.get("message")
+            if isinstance(message, dict) and "content" in message:
+                return _normalize_message_content(message["content"])
+            if "content" in first_item:
+                return _normalize_message_content(first_item["content"])
+        if hasattr(first_item, "message") and hasattr(first_item.message, "content"):
+            return _normalize_message_content(first_item.message.content)
+
+    if isinstance(completion, str):
+        try:
+            data = json.loads(completion)
+        except json.JSONDecodeError:
+            return completion
+        return _extract_completion_text(data)
+
+    return _normalize_message_content(completion)
+
+
 def _call_llm(prompt: str) -> str:
     load_dotenv()
     client = OpenAI(
@@ -57,15 +119,7 @@ def _call_llm(prompt: str) -> str:
         ],
         max_tokens=600,
     )
-    content = completion.choices[0].message.content
-    if isinstance(content, str):
-        return content
-    if isinstance(content, list):
-        return "\n".join(
-            block.get("text", "") if isinstance(block, dict) else str(block)
-            for block in content
-        )
-    return str(content)
+    return _extract_completion_text(completion)
 
 
 def _parse_ranking(response: str, scenario_names: List[str]) -> List[str]:

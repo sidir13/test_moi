@@ -83,3 +83,7 @@ docker-push:
 	docker tag $(IMAGE_NAME):latest ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
 	docker push ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
 
+run-app:
+	python -m venv .venv && . .venv/bin/activate && pip install -e .
+	cd app && npm install
+	uvicorn server.main:app --reload

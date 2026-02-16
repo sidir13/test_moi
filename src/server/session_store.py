@@ -21,6 +21,8 @@ class SessionContext(BaseModel):
     selected_scenario: Optional[dict] = None
     scenario_progress: List[dict] = Field(default_factory=list)
     scenario_audio: Optional[dict] = None
+    scenario_images: List[dict] = Field(default_factory=list)
+    scenario_slideshow: Optional[dict] = None
 
     def to_dict(self) -> Dict[str, object]:
         return json.loads(self.model_dump_json())

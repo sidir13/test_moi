@@ -11,7 +11,7 @@ FROM python:3.12-slim AS python-deps
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential ffmpeg && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential ffmpeg sox && rm -rf /var/lib/apt/lists/*
 COPY pyproject.toml uv.lock ./
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir "setuptools>=70" "wheel>=0.43"

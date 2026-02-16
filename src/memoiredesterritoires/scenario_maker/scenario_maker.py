@@ -66,6 +66,12 @@ class ScenarioMakerSkill:
             params.get("audio_transcriptions") or []
         )
         config_data = self._load_config(config_path)
+        scenario_target = params.get("scenario_target")
+        if isinstance(scenario_target, int):
+            scenario_config = config_data.setdefault("scenario_config", {})
+            gen_params = scenario_config.setdefault("generation_parameters", {})
+            nombre = gen_params.setdefault("nombre_scenarios", {})
+            nombre["value"] = scenario_target
         if audio_transcriptions:
             self._inject_audio_transcriptions(config_data, audio_transcriptions)
 

@@ -7,7 +7,8 @@ import {
   createSession,
   fetchProjects,
   ProjectSummary,
-  getProjectFinalAudioUrl
+  getProjectFinalAudioUrl,
+  getProjectFinalVideoUrl
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -28,8 +29,10 @@ export function ProjectSelectionView() {
   const [error, setError] = useState<string | null>(null);
   const [previewProject, setPreviewProject] = useState<string | null>(null);
   const [previewKey, setPreviewKey] = useState(0);
+  const [videoProject, setVideoProject] = useState<string | null>(null);
 
   const resetPreview = () => setPreviewProject(null);
+  const closeVideo = () => setVideoProject(null);
   const togglePreview = (projectName: string) => {
     setPreviewProject((prev) => (prev === projectName ? null : projectName));
     setPreviewKey((k) => k + 1);
@@ -47,6 +50,7 @@ export function ProjectSelectionView() {
       setName("");
       setDescription("");
       resetPreview();
+      closeVideo();
       refetch();
       navigate("/step/project_details");
     }
@@ -68,6 +72,7 @@ export function ProjectSelectionView() {
       setCurrentStep("project_details");
       setScenarioTarget(project.scenario_target);
       resetPreview();
+      closeVideo();
       navigate("/step/project_details");
     } catch (err) {
       setError((err as Error).message);
@@ -89,6 +94,7 @@ export function ProjectSelectionView() {
           <ul className="project-list stacked">
             {data.map((project) => {
               const hasAudio = Boolean(project.final_audio?.path);
+              const hasVideo = Boolean(project.final_slideshow?.path);
               const finalizedLabel = project.finalized_at ? formatDate(project.finalized_at) : null;
               return (
                 <li key={project.name}>
@@ -106,18 +112,32 @@ export function ProjectSelectionView() {
                       <small>({project.scenario_target} scénarios)</small>
                       {finalizedLabel && <span className="badge">Finalisé le {finalizedLabel}</span>}
                     </div>
-                    {hasAudio && (
-                      <button
-                        type="button"
-                        className="play-btn"
-                        onClick={(evt) => {
-                          evt.stopPropagation();
-                          togglePreview(project.name);
-                        }}
-                      >
-                        {previewProject === project.name ? "Pause" : "Écouter"}
-                      </button>
-                    )}
+                    <div className="project-actions" style={{ display: "flex", gap: "0.5rem" }}>
+                      {hasAudio && (
+                        <button
+                          type="button"
+                          className="play-btn"
+                          onClick={(evt) => {
+                            evt.stopPropagation();
+                            togglePreview(project.name);
+                          }}
+                        >
+                          {previewProject === project.name ? "Pause" : "Écouter"}
+                        </button>
+                      )}
+                      {hasVideo && (
+                        <button
+                          type="button"
+                          className="play-btn"
+                          onClick={(evt) => {
+                            evt.stopPropagation();
+                            setVideoProject(project.name);
+                          }}
+                        >
+                          Voir la vidéo
+                        </button>
+                      )}
+                    </div>
                   </div>
                   {hasAudio && previewProject === project.name && (
                     <audio
@@ -137,6 +157,23 @@ export function ProjectSelectionView() {
           <p>Aucun projet enregistré pour le moment.</p>
         )}
       </section>
+      {videoProject && (
+        <div className="modal-backdrop" onClick={closeVideo}>
+          <div className="modal" onClick={(evt) => evt.stopPropagation()}>
+            <h3>Diaporama — {videoProject}</h3>
+            <video
+              key={videoProject}
+              controls
+              autoPlay
+              style={{ width: "100%", maxHeight: "70vh" }}
+              src={getProjectFinalVideoUrl(videoProject)}
+            />
+            <button type="button" className="link" onClick={closeVideo}>
+              Fermer
+            </button>
+          </div>
+        </div>
+      )}
 
       <section className="card muted">
         <h3>Nouveau projet</h3>

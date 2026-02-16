@@ -26,6 +26,10 @@ export type ProjectSummary = {
     generated_at?: string;
     language?: string;
   } | null;
+  final_slideshow?: {
+    path: string;
+    created_at?: string;
+  } | null;
 };
 
 export type AudioSelection = {
@@ -200,11 +204,79 @@ export function getScenarioAudioUrl(sessionId: string) {
   return `${base}/sessions/${sessionId}/scenario-audio/file`;
 }
 
+export type ScenarioImage = {
+  id: string;
+  filename: string;
+  original_name?: string;
+  uploaded_at?: string;
+  download_url: string;
+};
+
+export async function fetchScenarioImages(sessionId: string) {
+  const { data } = await api.get(`/sessions/${sessionId}/scenario-images`);
+  return data.images as ScenarioImage[];
+}
+
+export async function uploadScenarioImage(sessionId: string, file: File) {
+  const form = new FormData();
+  form.append("file", file);
+  const { data } = await api.post(`/sessions/${sessionId}/scenario-images`, form, {
+    headers: { "Content-Type": "multipart/form-data" }
+  });
+  return data.image as ScenarioImage;
+}
+
+export async function deleteScenarioImage(sessionId: string, imageId: string) {
+  await api.delete(`/sessions/${sessionId}/scenario-images/${imageId}`);
+}
+
+export async function reorderScenarioImages(sessionId: string, order: string[]) {
+  const { data } = await api.post(`/sessions/${sessionId}/scenario-images/reorder`, { order });
+  return data.images as ScenarioImage[];
+}
+
+export type SlideshowMetadata = {
+  status: string;
+  path: string;
+  created_at?: string;
+  image_count?: number;
+};
+
+export async function fetchSlideshow(sessionId: string) {
+  try {
+    const { data } = await api.get(`/sessions/${sessionId}/slideshow`);
+    return data as SlideshowMetadata;
+  } catch (err) {
+    if (axios.isAxiosError(err) && err.response?.status === 404) {
+      return null;
+    }
+    throw err;
+  }
+}
+
+export async function createSlideshow(sessionId: string) {
+  const { data } = await api.post(`/sessions/${sessionId}/slideshow`);
+  return data as SlideshowMetadata;
+}
+
+export function getScenarioSlideshowUrl(sessionId: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  return `${base}/sessions/${sessionId}/slideshow/file`;
+}
+
 export function getProjectFinalAudioUrl(projectName: string) {
   const prefix = (API_BASE_URL || "").replace(/\/$/, "");
   const base = prefix.length > 0 ? prefix : "";
   const encoded = encodeURIComponent(projectName);
   return `${base}/projects/${encoded}/final-audio`;
+}
+
+export function getProjectFinalVideoUrl(projectName: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  const encoded = encodeURIComponent(projectName);
+  return `${base}/projects/${encoded}/slideshow`;
 }
 
 export function getWsBaseUrl() {

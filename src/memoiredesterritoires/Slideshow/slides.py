@@ -1,53 +1,58 @@
 import os
+from pathlib import Path
+from typing import List
+
 from PIL import Image
-from moviepy import *
-from moviepy.video.fx import Resize
-import os
- 
-def clean_images(path):
-    for filename in os.listdir(path):
-        if filename.endswith(".webp"):
-            # Define paths
-            webp_path = os.path.join(path, filename)
-            jpg_path = os.path.join(path, filename.replace(".webp", ".jpg"))
-            
-            try:
-                # Convert and save
-                img = Image.open(webp_path).convert("RGB")
-                img.save(jpg_path, "JPEG", quality=90)
-                
-                # Close the image object explicitly before deleting
-                img.close()
-                
-                # Delete the original webp file
-                os.remove(webp_path)
-                print(f"Success: Converted and deleted {filename}")
-                
-            except Exception as e:
-                print(f"Error processing {filename}: {e}")
+from moviepy.editor import AudioFileClip, ImageClip, concatenate_videoclips
+from moviepy.video.fx.resize import resize
 
 
-def slideshow(path,audio_file):
-    clean_images(path) 
+def clean_images(directory: Path) -> List[Path]:
+    sanitized: List[Path] = []
+    for filename in sorted(os.listdir(directory)):
+        source = directory / filename
+        if not source.is_file():
+            continue
+        target = source
+        if source.suffix.lower() == ".webp":
+            target = source.with_suffix(".jpg")
+            img = Image.open(source).convert("RGB")
+            img.save(target, "JPEG", quality=90)
+            img.close()
+            source.unlink()
+        sanitized.append(target)
+    return sanitized
 
-    images = sorted([os.path.join(path, f)
-                    for f in os.listdir(path)])
 
-    audio = AudioFileClip(audio_file)
-    duration = audio.duration
+def slideshow(image_dir: str, audio_file: str, output_path: str) -> str:
+    directory = Path(image_dir)
+    if not directory.exists():
+        raise FileNotFoundError(f"Dossier d'images introuvable: {directory}")
+    audio_source = Path(audio_file)
+    if not audio_source.exists():
+        raise FileNotFoundError(f"Audio introuvable: {audio_source}")
+
+    images = clean_images(directory)
+    if not images:
+        raise ValueError("Aucune image fournie pour créer le diaporama.")
+
+    audio_clip = AudioFileClip(str(audio_source))
+    duration = audio_clip.duration
     slide_duration = duration / len(images)
 
     clips = []
     for img in images:
         clip = (
-            ImageClip(img)
+            ImageClip(str(img))
             .with_duration(slide_duration)
-            .with_effects([Resize((1920,1080))])
+            .fx(resize, newsize=(1920, 1080))
         )
         clips.append(clip)
 
-    video = concatenate_videoclips(clips)
-    final = video.with_audio(audio)
+    video = concatenate_videoclips(clips, method="compose")
+    final = video.set_audio(audio_clip)
 
-    final.write_videofile("slideshow70.mp4", fps=24)
-            
+    output = Path(output_path)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    final.write_videofile(str(output), fps=24)
+    return str(output)

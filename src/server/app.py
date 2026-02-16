@@ -7,10 +7,12 @@ import json
 import logging
 import os
 import re
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from urllib.parse import quote
+from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, WebSocket, WebSocketDisconnect, Query, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,12 +26,14 @@ logging.basicConfig(
 )
 
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
+from memoiredesterritoires.scenario_ranking.rank_scenarios import rank_scenarios_against_config
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
     text_to_speech_with_instructions,
 )
 from memoiredesterritoires.transcription.transcription import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
+from memoiredesterritoires.Slideshow.slides import slideshow
 from project_store import (
     load_project_settings,
     save_project_settings,
@@ -110,6 +114,10 @@ class ScenarioAudioRequest(BaseModel):
     language: str = Field(default="French")
 
 
+class ImageOrderPayload(BaseModel):
+    order: List[str]
+
+
 def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     settings = settings or get_settings()
     os.environ.setdefault("PROJECTS_DIR", str(settings.projects_dir))
@@ -186,6 +194,48 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             chunks.append(summary.strip())
 
         return "\n\n".join([chunk for chunk in chunks if chunk]).strip()
+
+    def compute_scenario_ranking(
+        config: Optional[Dict[str, Any]],
+        scenarios: List[Dict[str, Any]],
+        project_name: str,
+    ) -> List[int]:
+        if not config or not scenarios:
+            return []
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                tmpdir_path = Path(tmpdir)
+                config_path = tmpdir_path / "config.json"
+                scenario_dir = tmpdir_path / "scenarios"
+                scenario_dir.mkdir(parents=True, exist_ok=True)
+                with open(config_path, "w", encoding="utf-8") as f:
+                    json.dump(config, f, ensure_ascii=False, indent=2)
+                name_to_index: Dict[str, int] = {}
+                for idx, entry in enumerate(scenarios, start=1):
+                    payload = entry.get("scenario")
+                    if not isinstance(payload, dict):
+                        continue
+                    file_name = f"scenario_{idx}.json"
+                    with open(scenario_dir / file_name, "w", encoding="utf-8") as f:
+                        json.dump(payload, f, ensure_ascii=False, indent=2)
+                    name_to_index[file_name] = idx
+                if not name_to_index:
+                    return []
+                ranking_result = rank_scenarios_against_config(
+                    config_path=str(config_path),
+                    scenarios_dir=str(scenario_dir),
+                    project_name=project_name,
+                )
+            ordered_indexes: List[int] = []
+            for name in ranking_result.get("ranking", []):
+                normalized = Path(name).name
+                idx = name_to_index.get(normalized)
+                if idx is not None and idx not in ordered_indexes:
+                    ordered_indexes.append(idx)
+            return ordered_indexes
+        except Exception as exc:
+            logger.warning("Scenario ranking failed for %s: %s", project_name, exc)
+            return []
 
     def upsert_project_config_entry(project_name: str, updates: Dict[str, Any]) -> None:
         config_path = settings.config_json
@@ -324,6 +374,20 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             logger.warning("Could not fetch transcriptions for %s: %s", project_name, exc)
             return []
 
+    MAX_SCENARIO_IMAGES = 10
+
+    def slides_directory(project_name: str, session_id: str, ensure: bool = False) -> Path:
+        path = settings.projects_dir / project_name / "slides" / session_id
+        if ensure:
+            path.mkdir(parents=True, exist_ok=True)
+        return path
+
+    def videos_directory(project_name: str, ensure: bool = False) -> Path:
+        path = settings.projects_dir / project_name / "videos"
+        if ensure:
+            path.mkdir(parents=True, exist_ok=True)
+        return path
+
     def persist_final_assets(project_name: str, session_data: Dict[str, Any]) -> None:
         entry: Dict[str, Any] = {
             "finalized_at": datetime.utcnow().isoformat(),
@@ -333,6 +397,9 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         audio_meta = session_data.get("scenario_audio")
         if audio_meta:
             entry["final_audio"] = audio_meta
+        slideshow_meta = session_data.get("scenario_slideshow")
+        if slideshow_meta:
+            entry["final_slideshow"] = slideshow_meta
         upsert_project_config_entry(project_name, entry)
 
     @app.get("/health", tags=["system"])
@@ -396,6 +463,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                         "scenario_target": meta.get("scenario_target", 3),
                         "final_audio": profile.get("final_audio"),
                         "finalized_at": profile.get("finalized_at"),
+                        "final_slideshow": profile.get("final_slideshow"),
                     })
         return {"projects": projects}
 
@@ -623,6 +691,28 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                     cloned["scenario"] = payload
                 prepared_scenarios.append(cloned)
 
+            ranking_order = compute_scenario_ranking(result.get("config"), prepared_scenarios, project_name)
+            if ranking_order:
+                rank_map = {idx: position + 1 for position, idx in enumerate(ranking_order)}
+                for entry in prepared_scenarios:
+                    idx = entry.get("scenario_index")
+                    if idx is None:
+                        continue
+                    rank_value = rank_map.get(idx)
+                    if rank_value is None:
+                        continue
+                    entry["quality_rank"] = rank_value
+                    payload = entry.get("scenario")
+                    if isinstance(payload, dict):
+                        payload["quality_rank"] = rank_value
+                prepared_scenarios.sort(
+                    key=lambda item: (
+                        item.get("quality_rank")
+                        if item.get("quality_rank") is not None
+                        else item.get("scenario_index") or 0
+                    )
+                )
+
             session_store.update_session(req.session_id, {"scenarios": prepared_scenarios})
             finish_step(3, "Scénarios prêts pour la relecture")
         except HTTPException as http_err:
@@ -767,6 +857,188 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Fichier audio introuvable")
         return FileResponse(audio_path)
 
+    def _serialize_image_entry(session_id: str, entry: Dict[str, Any]) -> Dict[str, Any]:
+        data = dict(entry)
+        data["download_url"] = f"/sessions/{session_id}/scenario-images/{entry['id']}"
+        return data
+
+    @app.get("/sessions/{session_id}/scenario-images", tags=["sessions"])
+    async def list_scenario_images(session_id: str) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        images = session.get("scenario_images", [])
+        return {"images": [_serialize_image_entry(session_id, img) for img in images]}
+
+    @app.post("/sessions/{session_id}/scenario-images", tags=["sessions"])
+    async def upload_scenario_image(session_id: str, file: UploadFile = File(...)) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        images = list(session.get("scenario_images", []))
+        if len(images) >= MAX_SCENARIO_IMAGES:
+            raise HTTPException(status_code=400, detail="Nombre maximal d'images atteint (10).")
+        contents = await file.read()
+        if not contents:
+            raise HTTPException(status_code=400, detail="Fichier vide.")
+        ext = Path(file.filename).suffix.lower() or ".jpg"
+        allowed_ext = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tiff"}
+        if ext not in allowed_ext:
+            ext = ".jpg"
+        project_name = session["project_name"]
+        directory = slides_directory(project_name, session_id, ensure=True)
+        image_id = uuid4().hex
+        filename = f"{image_id}{ext}"
+        target = directory / filename
+        with open(target, "wb") as f:
+            f.write(contents)
+        metadata = {
+            "id": image_id,
+            "filename": filename,
+            "original_name": file.filename,
+            "uploaded_at": datetime.utcnow().isoformat(),
+            "size": len(contents),
+        }
+        images.append(metadata)
+        session_store.update_session(session_id, {"scenario_images": images})
+        log_progress(
+            "SCENARIO_IMAGE_ADDED",
+            session=session_id,
+            project=project_name,
+            image=image_id,
+        )
+        return {"image": _serialize_image_entry(session_id, metadata)}
+
+    @app.post("/sessions/{session_id}/scenario-images/reorder", tags=["sessions"])
+    async def reorder_scenario_images(session_id: str, payload: ImageOrderPayload):
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        images = session.get("scenario_images", [])
+        mapping = {img["id"]: img for img in images}
+        new_list: List[Dict[str, Any]] = []
+        for image_id in payload.order:
+            img = mapping.get(image_id)
+            if img:
+                new_list.append(img)
+        for image in images:
+            if image["id"] not in payload.order:
+                new_list.append(image)
+        session_store.update_session(session_id, {"scenario_images": new_list})
+        return {"images": [_serialize_image_entry(session_id, img) for img in new_list]}
+
+    @app.delete("/sessions/{session_id}/scenario-images/{image_id}", tags=["sessions"])
+    async def delete_scenario_image(session_id: str, image_id: str):
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        images = list(session.get("scenario_images", []))
+        project_name = session["project_name"]
+        directory = slides_directory(project_name, session_id, ensure=False)
+        removed = None
+        remaining: List[Dict[str, Any]] = []
+        for image in images:
+            if image["id"] == image_id:
+                removed = image
+            else:
+                remaining.append(image)
+        if not removed:
+            raise HTTPException(status_code=404, detail="Image introuvable")
+        if directory.exists():
+            target = directory / removed["filename"]
+            if target.exists():
+                target.unlink()
+        session_store.update_session(session_id, {"scenario_images": remaining})
+        log_progress(
+            "SCENARIO_IMAGE_REMOVED",
+            session=session_id,
+            project=project_name,
+            image=image_id,
+        )
+        return {"status": "deleted"}
+
+    @app.get("/sessions/{session_id}/scenario-images/{image_id}", tags=["sessions"])
+    async def stream_scenario_image(session_id: str, image_id: str):
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        project_name = session["project_name"]
+        directory = slides_directory(project_name, session_id, ensure=False)
+        for image in session.get("scenario_images", []):
+            if image["id"] == image_id:
+                target = directory / image["filename"]
+                if not target.exists():
+                    raise HTTPException(status_code=404, detail="Fichier image introuvable")
+                return FileResponse(target)
+        raise HTTPException(status_code=404, detail="Image introuvable")
+
+    @app.get("/sessions/{session_id}/slideshow", tags=["sessions"])
+    async def get_slideshow_metadata(session_id: str) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        metadata = session.get("scenario_slideshow")
+        if not metadata:
+            raise HTTPException(status_code=404, detail="Aucun diaporama généré")
+        return metadata
+
+    @app.get("/sessions/{session_id}/slideshow/file", tags=["sessions"])
+    async def stream_slideshow(session_id: str):
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        metadata = session.get("scenario_slideshow")
+        if not metadata or not metadata.get("path"):
+            raise HTTPException(status_code=404, detail="Aucun diaporama généré")
+        path_value = metadata["path"]
+        video_path = Path(path_value)
+        if not video_path.is_absolute():
+            video_path = (Path.cwd() / video_path).resolve()
+        if not video_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier vidéo introuvable")
+        return FileResponse(video_path)
+
+    @app.post("/sessions/{session_id}/slideshow", tags=["sessions"])
+    async def create_slideshow(session_id: str) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        images = session.get("scenario_images", [])
+        if not images:
+            raise HTTPException(status_code=400, detail="Ajoutez des images avant de créer un diaporama.")
+        audio = session.get("scenario_audio")
+        if not audio or not audio.get("path"):
+            raise HTTPException(status_code=400, detail="Aucun audio disponible pour accompagner le diaporama.")
+        project_name = session["project_name"]
+        slides_dir = slides_directory(project_name, session_id, ensure=True)
+        audio_path = Path(audio["path"])
+        if not audio_path.is_absolute():
+            audio_path = (Path.cwd() / audio_path).resolve()
+        if not audio_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier audio introuvable pour le diaporama.")
+        output_dir = videos_directory(project_name, ensure=True)
+        timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+        output_path = output_dir / f"{session_id}_{timestamp}.mp4"
+        try:
+            generated_path = slideshow(str(slides_dir), str(audio_path), str(output_path))
+        except Exception as exc:
+            logger.exception("Slideshow generation failed for session %s", session_id)
+            raise HTTPException(status_code=500, detail=f"Impossible de créer le diaporama: {exc}") from exc
+        metadata = {
+            "status": "generated",
+            "path": generated_path,
+            "created_at": datetime.utcnow().isoformat(),
+            "image_count": len(images),
+        }
+        session_store.update_session(session_id, {"scenario_slideshow": metadata})
+        log_progress(
+            "SCENARIO_SLIDESHOW_DONE",
+            session=session_id,
+            project=project_name,
+            path=generated_path,
+        )
+        return metadata
+
     @app.post("/projects/{project_name}/audio", tags=["projects"])
     async def upload_audio(project_name: str, file: UploadFile = File(...)) -> dict:
         automation_runner.ensure_project_exists(project_name)
@@ -822,6 +1094,19 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not audio_path.exists():
             raise HTTPException(status_code=404, detail="Fichier audio introuvable")
         return FileResponse(audio_path)
+
+    @app.get("/projects/{project_name}/slideshow", tags=["projects"])
+    async def stream_project_slideshow(project_name: str):
+        profile = load_project_profile(project_name)
+        metadata = profile.get("final_slideshow")
+        if not metadata or not metadata.get("path"):
+            raise HTTPException(status_code=404, detail="Aucune vidéo finale pour ce projet")
+        video_path = Path(metadata["path"])
+        if not video_path.is_absolute():
+            video_path = (Path.cwd() / video_path).resolve()
+        if not video_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier vidéo introuvable")
+        return FileResponse(video_path)
 
     @app.get("/sessions/{session_id}/audio-selection", tags=["sessions"])
     async def get_audio_selection(session_id: str) -> dict:
