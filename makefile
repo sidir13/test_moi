@@ -23,7 +23,7 @@ else
 $(error PLATFORM must be 'linux' or 'mac')
 endif
 
-.PHONY: ensure-env ensure-app  install-uv install-mac build docker-build build-mac docker-run run-mac docker-refresh refresh-mac docker-push download-qwen-model
+.PHONY: ensure-env ensure-app  install-uv install-mac build docker-build build-mac docker-run run-mac docker-refresh docker-refresh-mac docker-push download-qwen-model
 
 ensure-env:
 	@test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE). Copy from env.example" && exit 1)
@@ -71,7 +71,7 @@ docker-refresh:
 	$(MAKE) docker-build PLATFORM=$(PLATFORM)
 	$(MAKE) docker-run PLATFORM=$(PLATFORM)
 
-refresh-mac:
+docker-refresh-mac:
 	$(MAKE) docker-refresh PLATFORM=mac
 
 docker-push:
