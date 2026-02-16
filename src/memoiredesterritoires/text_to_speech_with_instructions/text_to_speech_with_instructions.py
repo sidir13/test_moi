@@ -9,7 +9,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
+from typing import Dict, Optional
 
 import soundfile as sf
 import torch
@@ -19,6 +19,7 @@ DEFAULT_PROJECT = "Mémoire des Territoires"
 CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
 LOCAL_MODEL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts")).expanduser()
 DEFAULT_MODEL = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
+_MODEL_CACHE: Dict[str, Qwen3TTSModel] = {}
 
 
 def _detect_device() -> tuple[str, torch.dtype]:
@@ -54,6 +55,21 @@ def _resolve_model_source(model_name: str) -> tuple[str, dict]:
     return model_name, {"cache_dir": str(LOCAL_MODEL_DIR)}
 
 
+def _load_model(model_source: str, device: str, dtype: torch.dtype, source_kwargs: dict) -> Qwen3TTSModel:
+    cache_key = f"{model_source}:{device}:{dtype}"
+    model = _MODEL_CACHE.get(cache_key)
+    if model is None:
+        model = Qwen3TTSModel.from_pretrained(
+            model_source,
+            device_map=device,
+            dtype=dtype,
+            attn_implementation="sdpa",
+            **source_kwargs,
+        )
+        _MODEL_CACHE[cache_key] = model
+    return model
+
+
 def text_to_speech_with_instructions(
     text: str,
     *,
@@ -81,13 +97,7 @@ def text_to_speech_with_instructions(
 
     device, dtype = _detect_device()
     model_source, source_kwargs = _resolve_model_source(model_name)
-    model = Qwen3TTSModel.from_pretrained(
-        model_source,
-        device_map=device,
-        dtype=dtype,
-        attn_implementation="sdpa",
-        **source_kwargs,
-    )
+    model = _load_model(model_source, device, dtype, source_kwargs)
 
     wavs, sample_rate = model.generate_voice_design(
         text=text,
