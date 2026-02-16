@@ -31,8 +31,15 @@ Principes de conception :
 1. **Cohérence temporelle** : Respectez strictement la durée totale cible
 2. **Arc émotionnel** : Créez une progression émotionnelle claire
 3. **Rythme audio** : Variez intensité et tempo pour maintenir l'attention
-4. **Transitions fluides** : Planifiez des passages organiques entre parties
-5. **Adaptation au public** : Ajustez complexité selon l'audience"""
+4. **Fluidité narrative** : Le récit doit couler naturellement, sans ruptures artificielles entre sections. Privilégiez le liant et la continuité plutôt qu'un découpage rigide.
+5. **Adaptation au public** : Ajustez complexité selon l'audience
+6. **Liberté structurelle** : Vous décidez librement du nombre de sections (1 à 7) selon ce qui est naturel pour le récit. Un récit court peut n'avoir qu'une seule section continue.
+
+RÈGLE ABSOLUE — RIGUEUR HISTORIQUE :
+- Basez vos titres de sections et éléments narratifs UNIQUEMENT sur le contexte historique fourni ci-dessous.
+- N'INVENTEZ JAMAIS de dates, noms de personnes, lieux ou événements historiques précis.
+- Si le contexte est insuffisant, utilisez des formulations volontairement vagues : "un travailleur", "dans les années...", "sur les quais..." plutôt que d'inventer des détails.
+- Les éléments narratifs (atmosphères, émotions, sensations) peuvent être créatifs, mais les FAITS doivent être traçables aux sources fournies."""
         
         logger.info("StructureArchitectAgent initialized")
     
@@ -66,21 +73,51 @@ Principes de conception :
         axe = gen_params.get('axe_narratif', {}).get('value', 'mixte')
         structure_type = gen_params.get('structure_narrative', {}).get('value', 'chronologique')
         rythme = gen_params.get('rythme', {}).get('value', 'modere')
+        angle_scenarisation = gen_params.get('angle_scenarisation', {}).get('value', 'auto')
+        
+        # Read original user prompt for context fidelity
+        original_prompt = config.get('scenario_config', {}).get('user_input', {}).get('original_prompt', '')
         
         # Get specific axis for this scenario if mixed
         if axe == 'mixte':
             distribution = gen_params.get('axe_narratif', {}).get('distribution', {})
             axe = distribution.get(f'scenario_{scenario_num}', 'travailleur')
         
-        # Calculate parts distribution
-        parts_durations = self.calculate_parts_distribution(
-            duree, public, rythme, structure_type
-        )
-        
         # Define emotional arc
         emotional_arc = self.define_emotional_arc(
             ton, structure_type, duree, public
         )
+        
+        # Build audio metadata section
+        audio_section = ""
+        if audio_metadata:
+            audio_lines = []
+            for t in audio_metadata:
+                name = t.get("file_name", "audio")
+                text = t.get("transcription", "")
+                if text:
+                    audio_lines.append(f"- {name}: {text[:300]}...")
+            if audio_lines:
+                audio_section = "\n\nARCHIVES AUDIO DISPONIBLES :\n" + "\n".join(audio_lines)
+        
+        # Build angle description for prompt
+        angle_descriptions = {
+            "temoignage_croise": "Récit à la 1ère personne avec plusieurs témoins qui se relaient. Chaque voix apporte un regard différent sur le même vécu.",
+            "chronique_sociale": "Chronique à la 3ème personne racontant la vie d'un groupe social, ses habitudes, son quotidien, ses luttes.",
+            "journee_type": "Une journée type racontée du matin au soir — rythme ancré dans le concret des gestes et des heures.",
+            "portrait_individuel": "Portrait intime d'un individu, son parcours, ses pensées, son évolution au fil du récit.",
+            "avant_apres_evenement": "Structure en diptyque : la vie avant un événement marquant, puis la transformation après.",
+            "mosaique_voix": "Fragments de voix, de souvenirs et de témoignages entrelacés comme un collage sonore.",
+            "lettre_intime": "Sous forme de lettre ou de journal intime — ton confidentiel et personnel.",
+            "recit_initiatique": "Parcours d'apprentissage ou de découverte — le narrateur entre dans un monde inconnu et le comprend peu à peu.",
+        }
+        angle_desc = angle_descriptions.get(angle_scenarisation, "")
+        angle_section = f"\n- Angle de scénarisation : {angle_scenarisation}\n  → {angle_desc}" if angle_desc else ""
+
+        # Build original prompt section
+        prompt_section = ""
+        if original_prompt and original_prompt.strip():
+            prompt_section = f"\n\nDEMANDE ORIGINALE DE L'UTILISATEUR :\n\"{original_prompt.strip()}\"\n→ Respectez scrupuleusement les intentions et souhaits exprimés ci-dessus."
         
         # Build prompt for Claude
         prompt = f"""Créez une structure narrative complète pour un scénario audio historique.
@@ -93,37 +130,43 @@ PARAMÈTRES :
 - Axe narratif : {axe}
 - Structure : {structure_type}
 - Rythme : {rythme}
+- Perspective narrative : {gen_params.get('perspective_narrative', {}).get('value', 'troisieme_personne')}{angle_section}
+{prompt_section}
 
 CONTEXTE HISTORIQUE :
 - Période : {hist_context.get('period', {}).get('start_year', 'N/A')}-{hist_context.get('period', {}).get('end_year', 'N/A')}
 - Lieu : {hist_context.get('location', {}).get('primary', 'Non spécifié')}
 - Thèmes : {', '.join(hist_context.get('themes', {}).get('primary', []))}
-
-DURÉES PAR PARTIE (calculées) : {parts_durations}
+{audio_section}
 
 ARC ÉMOTIONNEL (guideline) : {emotional_arc}
 
 MISSION :
-1. Créez {len(parts_durations)} parties avec titres évocateurs
-2. Assignez à chaque partie :
-   - Une fonction narrative claire (exposition, développement, climax, résolution, etc.)
+1. Décidez librement du nombre de sections (1 à 7) selon ce qui est NATUREL pour ce récit. Un récit court ou intimiste peut n'avoir qu'une seule section continue. Un récit épique peut en avoir 5-7. Ne forcez JAMAIS un découpage artificiel.
+2. La somme des durées des sections doit correspondre à la durée totale ({duree}s ± 10%).
+3. Pour chaque section, assignez :
+   - Une fonction narrative claire
    - Une position sur l'arc émotionnel
-   - Une liste d'éléments narratifs nécessaires
+   - Une liste d'éléments narratifs nécessaires (incluant les archives audio si disponibles)
    - Un mood général
-3. Définissez 2-3 transitions clés entre parties
-4. Ajoutez des notes de production pour l'Agent 2 (scénariste)
+4. Définissez les transitions clés entre sections (si plus d'une section)
+5. Ajoutez des notes de production insistant sur la FLUIDITÉ et la CONTINUITÉ narrative
+6. L'angle de scénarisation ("{angle_scenarisation}") définit la MANIÈRE de raconter. Structurez les sections pour servir cet angle.
+
+IMPORTANT : Privilégiez un récit fluide et continu. Les sections sont des repères de rythme, PAS des coupures franches. Le texte final doit couler naturellement d'un bout à l'autre.
 
 Retournez un JSON avec cette structure EXACTE :
 {{
   "scenario_id": {scenario_num},
   "titre_global": "Titre captivant du scénario",
   "axe_narratif": "{axe}",
+  "angle_scenarisation": "{angle_scenarisation}",
   "duree_totale": {duree},
   "structure": [
     {{
       "partie": 1,
-      "titre": "Titre de la partie",
-      "duree_cible": {parts_durations[0] if parts_durations else 60.0},
+      "titre": "Titre de la section",
+      "duree_cible": 60.0,
       "fonction_narrative": "exposition",
       "position_arc_emotionnel": "calme_contemplatif",
       "elements_necessaires": ["element1", "element2", "element3"],
@@ -140,7 +183,7 @@ Retournez un JSON avec cette structure EXACTE :
       "description": "Description de la transition"
     }}
   ],
-  "notes_production": "Instructions pour Agent 2"
+  "notes_production": "Instructions pour Agent 2 : insister sur la fluidité narrative et la continuité du récit"
 }}
 
 JSON :"""
@@ -163,7 +206,7 @@ JSON :"""
         except Exception as e:
             logger.error(f"Error creating narrative structure: {e}", exc_info=True)
             # Return basic fallback structure
-            return self._create_fallback_structure(scenario_num, duree, axe, parts_durations)
+            return self._create_fallback_structure(scenario_num, duree, axe)
     
     def calculate_parts_distribution(
         self,
@@ -323,28 +366,35 @@ JSON :"""
         scenario_id: int,
         duree: float,
         axe: str,
-        parts_durations: List[float]
+        parts_durations: Optional[List[float]] = None
     ) -> Dict:
-        """Create fallback structure if Claude fails."""
+        """Create fallback structure if Claude fails.
+        
+        Uses a simple 2-section structure (intro + development) for
+        short durations and 3 sections for longer ones.
+        """
         logger.warning("Creating fallback structure")
         
-        num_parts = len(parts_durations) if parts_durations else 3
-        if not parts_durations:
-            parts_durations = self._balanced_distribution(duree, num_parts)
+        # Simple adaptive split
+        if duree <= 120:
+            parts_durations = [duree * 0.4, duree * 0.6]
+            functions = ['exposition', 'développement']
+            moods = ['calme', 'intense']
+        else:
+            parts_durations = [duree * 0.25, duree * 0.50, duree * 0.25]
+            functions = ['exposition', 'développement', 'résolution']
+            moods = ['calme', 'intense', 'apaisement']
         
         structure = []
-        functions = ['exposition', 'développement', 'climax', 'résolution']
-        moods = ['calme', 'tension_montante', 'intense', 'apaisement']
-        
-        for i in range(num_parts):
+        for i in range(len(parts_durations)):
             structure.append({
                 'partie': i + 1,
-                'titre': f'Partie {i + 1}',
+                'titre': f'Section {i + 1}',
                 'duree_cible': parts_durations[i],
-                'fonction_narrative': functions[min(i, len(functions) - 1)],
-                'position_arc_emotionnel': moods[min(i, len(moods) - 1)],
+                'fonction_narrative': functions[i],
+                'position_arc_emotionnel': moods[i],
                 'elements_necessaires': ['contexte', 'action', 'transition'],
-                'mood': moods[min(i, len(moods) - 1)]
+                'mood': moods[i]
             })
         
         return {
@@ -356,5 +406,5 @@ JSON :"""
             'arc_emotionnel_global': 'progression_crescendo',
             'rythme_general': 'modere',
             'transitions_cles': [],
-            'notes_production': 'Structure générée automatiquement'
+            'notes_production': 'Structure générée automatiquement — privilégier la fluidité narrative'
         }

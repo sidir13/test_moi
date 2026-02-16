@@ -45,6 +45,8 @@ from .automation import AutomationRunner
 from .chat_agent import ChatAgent
 from .audio_validation import validate_audio_file
 
+from config.model_registry import get_available_models, resolve_model_id
+
 logger = logging.getLogger(__name__)
 
 
@@ -79,6 +81,7 @@ class ScenarioGenerationRequest(BaseModel):
     mode: str = "simple"
     output_dir: str = "./output"
     scenario_target: Optional[int] = Field(default=None, ge=1, le=5)
+    model_id: Optional[str] = Field(default=None, description="Model key (opus, sonnet, gemini) or full OpenRouter ID")
 
 
 class ScenarioGenerationResponse(BaseModel):
@@ -125,6 +128,12 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     scenario_skill = ScenarioMakerSkill()
     chat_agent = ChatAgent()
     background_root = (Path.cwd() / settings.data_dir / "audio" / "background_sounds").resolve()
+
+    # ── Model selection endpoint ──────────────────────────────────
+    @app.get("/models", tags=["models"])
+    async def list_models():
+        """Return available LLM models for scenario generation."""
+        return {"models": get_available_models()}
 
     def slugify(value: str) -> str:
         value = value.strip().lower()
@@ -489,8 +498,34 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         def finish_step(idx: int, message: str) -> None:
             mark(idx, "done", message)
 
-        # Retrieve audio transcriptions from Parquet storage
+        # Retrieve audio transcriptions from Parquet storage.
+        # A retry loop handles the case where the user triggers generation
+        # while an audio upload/transcription is still in progress.
         audio_transcriptions = fetch_project_transcriptions(project_name)
+        if not audio_transcriptions and voices:
+            import time as _time
+            max_retries, wait_seconds = 3, 5
+            for attempt in range(1, max_retries + 1):
+                logger.info(
+                    "No transcriptions yet but %d voice(s) selected — "
+                    "waiting %ds for pending transcriptions (attempt %d/%d)",
+                    len(voices), wait_seconds, attempt, max_retries,
+                )
+                await asyncio.sleep(wait_seconds)
+                audio_transcriptions = fetch_project_transcriptions(project_name)
+                if audio_transcriptions:
+                    logger.info(
+                        "Transcriptions now available: %d (after %d retries)",
+                        len(audio_transcriptions), attempt,
+                    )
+                    break
+            if not audio_transcriptions:
+                logger.warning(
+                    "⚠️  %d voice file(s) selected but 0 transcriptions found "
+                    "after %d retries. Scenarios will be generated without "
+                    "audio transcription context.",
+                    len(voices), max_retries,
+                )
 
         # Load project notes and enrich the prompt
         project_profile = load_project_profile(project_name)
@@ -504,12 +539,16 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             else:
                 enriched_prompt = project_notes
 
+        # Resolve LLM model for scenario generation
+        resolved_model = resolve_model_id(req.model_id)
+
         params = {
             "prompt": enriched_prompt,
             "mode": req.mode,
             "output_dir": req.output_dir,
             "scenario_target": req.scenario_target or session.get("scenario_target", 3),
             "audio_transcriptions": audio_transcriptions,
+            "model_id": resolved_model,
         }
         log_progress(
             "SCENARIO_GENERATE_START",
@@ -517,6 +556,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             project=project_name,
             target=params["scenario_target"],
             transcriptions=len(audio_transcriptions),
+            model=resolved_model,
         )
         try:
             start_step(0, "Analyse du prompt et lecture du brief projet")

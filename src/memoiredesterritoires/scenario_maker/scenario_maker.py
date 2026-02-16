@@ -69,10 +69,14 @@ class ScenarioMakerSkill:
         if audio_transcriptions:
             self._inject_audio_transcriptions(config_data, audio_transcriptions)
 
+        # Resolve the LLM model to use (e.g. "opus" → "anthropic/claude-opus-4-5")
+        model_id = params.get("model_id")
+
         orchestrator = ScenarioMakerOrchestrator(
             config_path=str(config_path),
             api_key=params.get("api_key"),
             log_level=params.get("log_level", "INFO"),
+            model_id=model_id,
         )
 
         # Ensure orchestrator uses the possibly enriched configuration.

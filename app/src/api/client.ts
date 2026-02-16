@@ -92,17 +92,32 @@ export async function uploadBackgroundSound(title: string, file: File) {
   return data;
 }
 
+export type LlmModelInfo = {
+  id: string;
+  openrouterId: string;
+  label: string;
+  provider: string;
+  description: string;
+};
+
+export async function fetchModels(): Promise<LlmModelInfo[]> {
+  const { data } = await api.get("/models");
+  return data.models as LlmModelInfo[];
+}
+
 export async function generateScenarios(
   sessionId: string,
   prompt: string,
   scenarioTarget?: number,
-  mode: "simple" | "expert" = "simple"
+  mode: "simple" | "expert" = "simple",
+  modelId?: string
 ) {
   const { data } = await api.post("/scenarios/generate", {
     session_id: sessionId,
     prompt,
     mode,
-    scenario_target: scenarioTarget
+    scenario_target: scenarioTarget,
+    model_id: modelId || undefined
   });
   return data;
 }

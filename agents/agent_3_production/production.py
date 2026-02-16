@@ -77,6 +77,9 @@ class ProductionEngineerAgent:
         
         # Process each part
         for part in scenario.get('parties', []):
+            if not isinstance(part, dict):
+                logger.warning(f"Skipping non-dict part: {type(part)}")
+                continue
             # Add narration
             narration_region = self._create_narration_region(
                 part,
@@ -87,6 +90,9 @@ class ProductionEngineerAgent:
             
             # Add archives from moments_cles
             for moment in part.get('moments_cles', []):
+                if not isinstance(moment, dict):
+                    logger.warning(f"Skipping non-dict moment_cle: {type(moment)}")
+                    continue
                 if moment.get('action') == 'archive_audio':
                     archive_region = self._create_archive_region(
                         moment,
@@ -98,6 +104,9 @@ class ProductionEngineerAgent:
             
             # Add ambiances
             for ambiance in part.get('ambiances_continues', []):
+                if not isinstance(ambiance, dict):
+                    logger.warning(f"Skipping non-dict ambiance: {type(ambiance)} -> {str(ambiance)[:100]}")
+                    continue
                 ambiance_region = self._create_ambiance_region(
                     ambiance,
                     current_time,
@@ -149,6 +158,10 @@ class ProductionEngineerAgent:
         part_id = part.get('partie_id', 1)
         duration = part.get('duree', 0)
         tone = part.get('ton', {})
+        
+        # Ensure tone is a dict (LLM can return a string)
+        if not isinstance(tone, dict):
+            tone = {'global': str(tone), 'tempo_lecture': 110, 'pauses': []}
         
         # Get voice profile
         voice_profile = {'gender': 'male', 'age_range': '45-55', 'accent': 'regional'}
@@ -430,13 +443,24 @@ class ProductionEngineerAgent:
         import re
         return len(re.findall(r'\b\w+\b', text))
     
-    def _parse_timestamp(self, timestamp: str) -> float:
-        """Parse timestamp string to seconds."""
-        if ':' in timestamp:
-            parts = timestamp.split(':')
-            if len(parts) == 2:
-                return int(parts[0]) * 60 + float(parts[1])
-        return float(timestamp)
+    def _parse_timestamp(self, timestamp) -> float:
+        """Parse timestamp string to seconds. Accepts str, int, or float."""
+        if isinstance(timestamp, (int, float)):
+            return float(timestamp)
+        if not isinstance(timestamp, str):
+            logger.warning(f"Unexpected timestamp type: {type(timestamp)}, defaulting to 0.0")
+            return 0.0
+        try:
+            if ':' in timestamp:
+                parts = timestamp.split(':')
+                if len(parts) == 2:
+                    return int(parts[0]) * 60 + float(parts[1])
+                elif len(parts) == 3:
+                    return int(parts[0]) * 3600 + int(parts[1]) * 60 + float(parts[2])
+            return float(timestamp)
+        except (ValueError, TypeError) as e:
+            logger.warning(f"Cannot parse timestamp '{timestamp}': {e}, defaulting to 0.0")
+            return 0.0
     
     def _generate_reaper_project(self, timeline: Dict) -> str:
         """Generate Reaper project file."""

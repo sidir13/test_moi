@@ -9,6 +9,7 @@ Responsabilités :
 - Extraire les paramètres explicites et implicites
 - Fusionner avec la configuration par défaut
 - Valider la cohérence des paramètres
+- Préserver les transcriptions audio dans la configuration
 - Générer un résumé lisible pour validation humaine
 
 ## Model Configuration
@@ -50,6 +51,13 @@ Extrait les paramètres depuis un prompt en langage naturel.
 - Extrait la période historique et les thématiques
 - Détecte les lieux et événements historiques
 - Génère une distribution d'axes narratifs si mode "mixte"
+- Préserve les `audio_transcriptions` du `data_sources` de la config par défaut
+
+**Règle critique `user_specified`** :
+- `user_specified: true` UNIQUEMENT pour les paramètres EXPLICITEMENT mentionnés par l'utilisateur (ex: "documentaire" → forme=true, "4 minutes" → duree=true, "focus ouvriers" → axe_narratif=true)
+- `user_specified: false` pour TOUS les paramètres déduits, inférés ou laissés par défaut
+- En cas de doute → `user_specified: false` (permet la variation entre scénarios)
+- **JAMAIS** `user_specified: true` sur `angle_scenarisation` — ce paramètre est réservé au système pour assurer la diversité entre scénarios
 
 ### merge_expert_config
 
@@ -65,6 +73,7 @@ Fusionne une configuration expert avec les valeurs par défaut.
 - Fusionne récursivement les configurations
 - Marque tous les champs fournis comme user_specified=true
 - Conserve les valeurs par défaut pour les champs non spécifiés
+- Préserve `data_sources.user_provided.audio_transcriptions` de la config par défaut si non fourni par l'utilisateur
 - Valide les types et les contraintes
 
 ### validate_configuration
@@ -73,7 +82,7 @@ Vérifie les contraintes et ajuste les incompatibilités.
 
 **Input** : `{"config": dict}`
 
-**Output** : `{"valid": bool, "errors": list, "warnings": list, "adjusted_config": dict}`
+**Output** : `{"valid": bool, "errors": list, "warnings": list}`
 
 **Usage** : Après extraction ou fusion, pour valider la cohérence
 
@@ -81,6 +90,7 @@ Vérifie les contraintes et ajuste les incompatibilités.
 - Vérifie durée dans les limites (60-600s)
 - Vérifie cohérence ton/public (ex: pas de dramatique pour enfants)
 - Ajuste automatiquement les incompatibilités mineures
+- ⚠️ Vérifie si des fichiers audio ont été uploadés mais aucune transcription n'est disponible
 - Retourne erreurs pour incompatibilités majeures
 - Génère warnings pour suggestions d'amélioration
 
@@ -96,6 +106,12 @@ Génère un résumé lisible de la configuration pour validation humaine.
 
 ## Notes
 
+### Gestion des transcriptions audio
+
+L'Agent 0 doit préserver les transcriptions audio qui ont été injectées dans la config par défaut par le pipeline en amont. Ces transcriptions sont stockées dans `scenario_config.data_sources.user_provided.audio_transcriptions` et doivent être transmises telles quelles aux agents suivants.
+
+Si des fichiers audio sont présents mais aucune transcription n'est disponible, un warning est émis pour alerter l'utilisateur.
+
 ### Exemples d'extraction
 
 **Simple prompt** :
@@ -108,21 +124,19 @@ Extrait :
 - duree: 300 (user_specified: true)
 - ton: "dramatique_immersif" (user_specified: true)
 - public_cible: "scolaire_secondaire" (user_specified: true)
+- angle_scenarisation: "auto" (user_specified: **false** — toujours réservé au système)
 - period: {start_year: 1900, end_year: 1910} (inféré contexte)
 - themes: ["grèves", "mouvements_sociaux"] (user_specified: true)
 
-**Prompt avec contexte implicite** :
+**Prompt avec focus utilisateur** :
 ```
-"Créez un conte pour enfants sur les marins bretons du 18ème siècle"
+"Focus sur les ouvriers, ambiance mélancolique"
 ```
 
 Extrait :
-- forme: "conte" (user_specified: true)
-- public_cible: "enfants" (user_specified: true)
-- ton: "pedagogique_accessible" (ajusté automatiquement pour enfants)
-- period: {start_year: 1700, end_year: 1800} (user_specified: true)
-- location: {primary: "Bretagne", type: "region"} (user_specified: true)
-- themes: ["navigation", "vie_maritime"] (user_specified: true)
+- axe_narratif: "travailleur" (user_specified: true — explicitement demandé)
+- ton: "intimiste_confidentiel" (user_specified: true — "mélancolique" implique ce ton)
+- angle_scenarisation: "auto" (user_specified: false — jamais marqué true)
 
 ### Ajustements automatiques
 

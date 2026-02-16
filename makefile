@@ -57,7 +57,7 @@ build-mac:
 run: docker-run
 
 docker-run: ensure-env
-	docker run --rm --platform $(DOCKER_PLATFORM) -p 8000:8000 --env-file $(ENV_FILE) $(IMAGE_NAME):latest
+	docker run --rm --platform $(DOCKER_PLATFORM) -p 8000:8000 --env-file $(ENV_FILE) -v $(CURDIR)/data:/app/data $(IMAGE_NAME):latest
 
 run-mac:
 	$(MAKE) docker-run PLATFORM=mac

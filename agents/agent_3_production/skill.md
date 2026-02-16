@@ -40,9 +40,9 @@ Génère la timeline technique complète avec tous les tracks.
 **Input** :
 ```json
 {
-  "scenario": dict,  // Scénario complet d'Agent 2
-  "sound_library": dict,  // Index de la bibliothèque sonore
-  "config": dict  // Configuration complète
+  "scenario": dict,
+  "sound_library": dict,
+  "config": dict
 }
 ```
 
@@ -62,66 +62,11 @@ Génère la timeline technique complète avec tous les tracks.
 5. Génère metadata et quality checks
 6. Retourne timeline complète
 
-**Structure retournée** :
-```json
-{
-  "timeline_id": "scenario_1_timeline_v1",
-  "scenario_id": 1,
-  "duree_totale": 180.450,
-  "tracks": {
-    "narration_track": [
-      {
-        "id": "narr_01",
-        "start_time": 0.0,
-        "end_time": 45.234,
-        "duration": 45.234,
-        "text_file": "scenario_1_partie_1_narration.txt",
-        "estimated_words": 125,
-        "tempo_lecture": 110,
-        "tone": "contemplatif",
-        "voice_profile": {
-          "gender": "male",
-          "age_range": "45-55",
-          "accent": "regional",
-          "timbre": "medium",
-          "delivery": "calm"
-        },
-        "volume": 0.8,
-        "effects": [],
-        "pauses": []
-      }
-    ],
-    "archives_track": [...],
-    "ambiances_track": [...],
-    "sfx_track": [...],
-    "music_track": [...]
-  },
-  "transitions": [...],
-  "master_parameters": {
-    "target_loudness": -16.0,
-    "dynamic_range": "moderate",
-    "final_compression": {...},
-    "final_limiter": {...}
-  },
-  "metadata": {
-    "total_files_used": 15,
-    "total_tracks": 5,
-    "total_regions": 42,
-    "generation_timestamp": "2026-01-28T14:30:00",
-    "estimated_production_time": "2-3 heures",
-    "required_software": ["Reaper", "ou équivalent"],
-    "export_formats": ["RPP", "EDL", "JSON"]
-  },
-  "quality_checks": {
-    "timeline_coherence": "✓ OK",
-    "no_overlapping_conflicts": "✓ OK",
-    "duration_matches_scenario": "✓ OK (180.5s)",
-    "all_required_sounds_found": "⚠ 2 sons manquants remplacés",
-    "volume_levels_balanced": "✓ OK",
-    "transitions_smooth": "✓ OK"
-  }
-}
-```
+**Robustesse** :
+- Valide que chaque `part`, `moment_cle` et `ambiance` est bien un `dict` avant traitement (skip sinon)
+- Normalise le champ `ton` en dict si le LLM a retourné une string
+- Parse les timestamps robustement (accepte str, int, float, formats "M:SS" et "H:MM:SS")
+- Log les éléments malformés au lieu de crasher
 
 ### select_optimal_sound
 
@@ -142,15 +87,11 @@ Sélectionne le son optimal selon critères multiples avec scoring.
 
 **Usage** : Pour chaque ambiance/effet à placer
 
-**Comportement** :
-- Utilise le skill `ambiance_sound_selector.calculate_sound_relevance`
-- Applique scoring multi-critères :
-  - Tags match : 40%
-  - Mood compatibility : 30%
-  - Period accuracy : 20%
-  - Duration fit : 10%
-- Sélectionne le meilleur match
-- Gère fallbacks si aucun son parfait
+**Scoring** :
+- Tags match : 40%
+- Mood compatibility : 30%
+- Period accuracy : 20%
+- Duration fit : 10%
 
 ### calculate_precise_timing
 
@@ -159,22 +100,13 @@ Calcule timings à la milliseconde pour placement temporel.
 **Input** :
 ```json
 {
-  "elements": list,  // Liste d'éléments à placer
+  "elements": list,
   "total_duration": float,
-  "gaps": list  // Gaps/pauses entre éléments
+  "gaps": list
 }
 ```
 
 **Output** : Liste des timings avec start/end précis
-
-**Usage** : Pour placement exact de tous les éléments
-
-**Formule** :
-```
-Pour chaque élément :
-  start_time = previous_end_time + gap
-  end_time = start_time + element_duration
-```
 
 ### export_timeline
 
@@ -184,35 +116,17 @@ Exporte timeline vers formats DAW (Reaper RPP, EDL).
 ```json
 {
   "timeline": dict,
-  "format": str,  // "RPP", "EDL", "JSON"
+  "format": str,
   "output_path": str
 }
 ```
 
 **Output** : Chemin du fichier généré
 
-**Usage** : Export final pour édition audio
-
 **Formats supportés** :
 - **RPP** (Reaper Project) : Format complet avec tracks, régions, effets
 - **EDL** (Edit Decision List) : Format standard d'interchange
 - **JSON** : Format de backup/debug
-
-**Exemple RPP** :
-```
-<REAPER_PROJECT 0.1 "7.0"
-  TEMPO 120 4 4
-  <TRACK
-    NAME "Narration"
-    VOLUME 0.8
-    <ITEM
-      POSITION 0.0
-      LENGTH 45.234
-      FILE "narration_part_1.wav"
-    >
-  >
->
-```
 
 ## Notes
 
@@ -229,19 +143,13 @@ Exporte timeline vers formats DAW (Reaper RPP, EDL).
 - SFX : 0.6 (ponctuels, perceptibles)
 - Musique : 0.2-0.3 (fond très léger)
 
-**Effets automatiques** :
-- Archives vintage : EQ vintage + light noise reduction
-- Ambiances : HPF à 80Hz pour laisser place à la voix
-- Narration : De-esser léger + compression douce
+### Gestion des données malformées du LLM
 
-### Gestion des sons manquants
-
-**Stratégie de fallback** :
-1. Chercher son similaire (tags proches)
-2. Utiliser son générique de la catégorie
-3. Créer silence si non-critique
-4. Logger warning dans quality_checks
-5. Suggérer sons à enregistrer/acquérir
+L'Agent 3 reçoit des données structurées de l'Agent 2, mais le LLM peut produire des formats inattendus. Stratégies de robustesse :
+- Chaque élément (`part`, `moment`, `ambiance`) est vérifié comme `dict` avant traitement
+- Les champs `ton`, `moments_cles`, `ambiances_continues` sont normalisés
+- Les timestamps non parsables sont remplacés par 0.0 avec un warning
+- Les éléments malformés sont ignorés (logged) plutôt que de faire crasher la pipeline
 
 ### Quality checks automatiques
 
@@ -251,38 +159,3 @@ Exporte timeline vers formats DAW (Reaper RPP, EDL).
 - **sounds_found** : % de sons trouvés vs demandés
 - **volumes_balanced** : Pas de pics > -3dB, pas de régions silencieuses
 - **transitions_smooth** : Toutes transitions ont fade in/out
-
-### Optimisations performances
-
-- **Parallel processing** : Traiter plusieurs tracks simultanément si possible
-- **Caching** : Mettre en cache les résultats de sélection de sons
-- **Batch calculations** : Grouper calculs de timing
-
-## Python Tools Examples
-
-```python
-def calculate_precise_timing(elements, total_duration, gaps):
-    timeline = []
-    current_time = 0.0
-    
-    for i, element in enumerate(elements):
-        gap = gaps[i] if i < len(gaps) else 0.0
-        current_time += gap
-        
-        timeline.append({
-            'start_time': round(current_time, 3),
-            'end_time': round(current_time + element['duration'], 3),
-            'duration': element['duration']
-        })
-        
-        current_time += element['duration']
-    
-    return timeline
-
-def export_to_reaper(timeline, output_path):
-    rpp_content = '<REAPER_PROJECT 0.1 "7.0"\\n'
-    # ... génération du fichier RPP
-    with open(output_path, 'w') as f:
-        f.write(rpp_content)
-    return output_path
-```

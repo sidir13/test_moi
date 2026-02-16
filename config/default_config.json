@@ -155,6 +155,22 @@
         "user_specified": false
       },
       
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "temoignage_croise",
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement",
+          "mosaique_voix",
+          "lettre_intime",
+          "recit_initiatique"
+        ],
+        "default": "auto",
+        "user_specified": false
+      },
+      
       "equilibre_narration_archives": {
         "value": 0.6,
         "range": [0.0, 1.0],

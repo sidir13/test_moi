@@ -1,12 +1,15 @@
 """
 Historical Context Analyzer Skill
 Analyzes historical documents and detects anachronisms.
+Falls back to Wikipedia when no user documents are provided.
 """
 
 import json
 import logging
 import re
 from typing import Dict, List, Any, Optional
+
+from utils.wikipedia_fetcher import WikipediaContextFetcher
 
 logger = logging.getLogger(__name__)
 
@@ -63,8 +66,8 @@ class HistoricalContextAnalyzer:
         logger.info(f"Analyzing {len(documents)} documents for period {period}")
         
         if not documents:
-            logger.warning("No documents provided, returning minimal context")
-            return self._minimal_context(period, location, themes)
+            logger.warning("No user documents provided — attempting Wikipedia fallback")
+            return self._wikipedia_fallback_context(period, location, themes)
         
         # Prepare combined document text
         combined_docs = "\n\n---\n\n".join(documents[:5])  # Limit to 5 docs
@@ -79,13 +82,15 @@ DOCUMENTS :
 {combined_docs[:3000]}  # Limit length
 
 MISSION :
-1. Identifiez toutes les dates et événements clés mentionnés
-2. Listez les personnages importants et leurs rôles
-3. Notez les lieux spécifiques
+1. Identifiez toutes les dates et événements clés mentionnés dans les documents
+2. Listez les personnages importants et leurs rôles tels que documentés
+3. Notez les lieux spécifiques cités dans les sources
 4. Extrayez le vocabulaire d'époque (termes professionnels, expressions, unités)
-5. Résumez le contexte social et économique
-6. Citez les sources les plus pertinentes
+5. Résumez le contexte social et économique tel que décrit dans les documents
+6. Citez les sources les plus pertinentes avec leur origine
 7. Donnez des recommandations pour la narration
+
+RÈGLE ABSOLUE : N'ajoutez AUCUNE information qui ne provient pas directement des documents ci-dessus. Ne complétez pas avec vos connaissances internes. Si un champ manque d'information, laissez-le vide plutôt que de l'inventer.
 
 Retournez un JSON avec cette structure :
 {{
@@ -267,13 +272,59 @@ JSON :"""
         
         raise ValueError("Could not extract valid JSON")
     
+    def _wikipedia_fallback_context(
+        self,
+        period: Dict[str, int],
+        location: Optional[str],
+        themes: Optional[List[str]]
+    ) -> Dict:
+        """Fetch Wikipedia articles as fallback context, then analyse them
+        with Claude just like regular documents.
+
+        If the Wikipedia fetch also fails we return a minimal empty context.
+        """
+        try:
+            articles = WikipediaContextFetcher.fetch(
+                themes=themes,
+                location=location,
+                period=period,
+            )
+        except Exception as exc:
+            logger.warning("Wikipedia fetch failed: %s — returning minimal context", exc)
+            articles = []
+
+        if articles:
+            logger.info(
+                "Wikipedia provided %d articles: %s",
+                len(articles),
+                [a["title"] for a in articles],
+            )
+            # Treat the Wikipedia extracts as regular documents
+            wiki_docs = [
+                f"[Source: {a['source']} — {a['title']}]\n{a['extract']}"
+                for a in articles
+            ]
+            # Re-enter the normal analyse path (documents != [])
+            result = self.analyze_historical_documents(
+                wiki_docs, period, location, themes
+            )
+            # Tag the sources so downstream agents know the origin
+            enrichi = result.get("contexte_enrichi", {})
+            enrichi.setdefault("sources_citees", [])
+            for a in articles:
+                enrichi["sources_citees"].append(f"{a['source']} — {a['title']} ({a['url']})")
+            return result
+
+        # Absolute fallback: empty context
+        return self._minimal_context(period, location, themes)
+
     def _minimal_context(
         self,
         period: Dict[str, int],
         location: Optional[str],
         themes: Optional[List[str]]
     ) -> Dict:
-        """Create minimal context when documents not available."""
+        """Create minimal context when no documents and no Wikipedia available."""
         return {
             'contexte_enrichi': {
                 'dates_cles': [],

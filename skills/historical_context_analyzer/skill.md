@@ -5,11 +5,13 @@
 Analyse des documents historiques, extraction de contexte enrichi et détection d'anachronismes. Ce skill est utilisé par Agent 2 pour garantir la rigueur historique.
 
 Responsabilités :
-- Analyser documents et sources historiques
+- Analyser documents et sources historiques fournis par l'utilisateur
+- **Fallback Wikipedia** : si aucun document n'est fourni, récupérer automatiquement des articles Wikipedia comme sources externes vérifiées
 - Extraire vocabulaire d'époque
 - Identifier dates, lieux, personnages clés
 - Détecter anachronismes dans les textes
 - Enrichir le contexte historique
+- **Garantir la traçabilité** : chaque fait extrait doit être rattaché à une source
 
 ## Model Configuration
 
@@ -28,7 +30,7 @@ Analyse des documents historiques pour extraire contexte enrichi.
 **Input** : 
 ```json
 {
-  "documents": list,  // Liste de documents textuels
+  "documents": list,
   "period": {"start_year": int, "end_year": int},
   "location": str,
   "themes": list
@@ -40,31 +42,32 @@ Analyse des documents historiques pour extraire contexte enrichi.
 **Usage** : Avant écriture par Agent 2, pour enrichir le contexte
 
 **Comportement** :
-- Extrait dates, événements, personnages mentionnés
+- Si `documents` est vide → déclenche le **fallback Wikipedia** automatiquement
+- Extrait dates, événements, personnages mentionnés **uniquement** depuis les documents fournis
 - Identifie le vocabulaire d'époque
 - Crée un glossaire de termes historiques
 - Liste les sources par crédibilité
 - Génère des recommandations pour la narration
 
+**Garde-fou anti-hallucination** :
+Le prompt contient une règle absolue : « N'ajoutez AUCUNE information qui ne provient pas directement des documents ci-dessus. Ne complétez pas avec vos connaissances internes. Si un champ manque d'information, laissez-le vide plutôt que de l'inventer. »
+
 **Structure retournée** :
 ```json
 {
   "contexte_enrichi": {
-    "dates_cles": [{"date": "1905-02-12", "evenement": "Début de la grève"}],
-    "personnages": [{"nom": "Jean Dupont", "role": "Délégué syndical"}],
-    "lieux_detailles": ["Quai de la Fosse", "Halle aux marchandises"],
+    "dates_cles": [{"date": "YYYY-MM-DD", "evenement": "..."}],
+    "personnages": [{"nom": "...", "role": "..."}],
+    "lieux_detailles": ["lieu1", "lieu2"],
     "vocabulaire_epoque": {
-      "termes_professionnels": ["docker", "portefaix", "débardeur"],
-      "expressions": ["faire la belle"],
-      "unites_mesure": ["tonneau", "quintal"]
+      "termes_professionnels": ["terme1", "terme2"],
+      "expressions": ["expression1"],
+      "unites_mesure": ["unité1"]
     },
-    "contexte_social": "Description du contexte social...",
-    "sources_citees": ["Archives Municipales, registre X", "Témoignage Y"]
+    "contexte_social": "Description...",
+    "sources_citees": ["source1", "source2"]
   },
-  "recommendations": [
-    "Utiliser 'docker' plutôt que 'manutentionnaire'",
-    "Mentionner les conditions de travail typiques"
-  ]
+  "recommendations": ["rec1", "rec2"]
 }
 ```
 
@@ -77,7 +80,7 @@ Détecte les mots ou expressions anachroniques dans un texte.
 {
   "text": str,
   "period_start": int,
-  "strict_mode": bool  // optionnel, défaut false
+  "strict_mode": bool
 }
 ```
 
@@ -86,60 +89,45 @@ Détecte les mots ou expressions anachroniques dans un texte.
 **Usage** : Validation post-écriture par Agent 2
 
 **Comportement** :
-- Scanne le texte pour mots anachroniques évidents
+- Scanne le texte pour mots anachroniques évidents (base de données interne)
 - En mode strict : détecte également expressions modernes
 - Suggère alternatives d'époque
 - Classe par gravité (critique, modéré, mineur)
-
-**Exemple retour** :
-```json
-{
-  "anachronisms_found": [
-    {
-      "word": "ordinateur",
-      "position": 245,
-      "gravity": "critique",
-      "reason": "Technologie inexistante en 1905",
-      "suggestion": "Supprimer ou remplacer par 'registre'"
-    },
-    {
-      "word": "globalisation",
-      "position": 512,
-      "gravity": "modéré",
-      "reason": "Concept anachronique",
-      "suggestion": "Utiliser 'commerce international'"
-    }
-  ],
-  "score": 0.85,  // 1.0 = parfait, 0.0 = très anachronique
-  "verdict": "acceptable_avec_corrections"
-}
-```
+- Calcule un score (1.0 = parfait, 0.0 = très anachronique)
 
 ### extract_period_vocabulary
 
-Extrait et construit un vocabulaire typique d'une période.
+Extrait et construit un vocabulaire typique d'une période et d'un domaine.
 
 **Input** :
 ```json
 {
   "period": {"start_year": int, "end_year": int},
-  "domain": str,  // ex: "maritime", "industriel", "social"
+  "domain": str,
   "sources": list
 }
 ```
 
 **Output** : Glossaire de vocabulaire d'époque
 
-**Usage** : Préparation pour Agent 2
-
 ## Notes
+
+### Fallback Wikipedia
+
+Quand aucun document utilisateur n'est fourni :
+1. Le skill utilise `WikipediaContextFetcher` pour chercher des articles pertinents
+2. Les articles sont récupérés en français via l'API Wikipedia (avec User-Agent approprié)
+3. Les extraits sont traités comme des documents normaux par `analyze_historical_documents`
+4. Les sources Wikipedia sont taguées dans `sources_citees` avec URL complète
+5. Si Wikipedia échoue aussi → retour d'un contexte minimal vide
 
 ### Sources de référence
 
 Le skill peut s'appuyer sur :
-- Base de données de vocabulaire historique intégrée
-- Documents fournis par l'utilisateur
-- Sources validées de la configuration
+- **Priorité 1** : Documents fournis par l'utilisateur
+- **Priorité 2** : Transcriptions audio (converties en documents textuels)
+- **Priorité 3** : Articles Wikipedia (fallback automatique)
+- **Jamais** : Connaissances internes du LLM (explicitement interdit par le prompt)
 
 ### Niveaux de rigueur
 

@@ -10,7 +10,9 @@ import {
   selectScenario,
   fetchSelectedScenario,
   fetchScenarioProgress,
+  fetchModels,
   ScenarioProgressStep,
+  LlmModelInfo,
   synthesizeScenarioAudio
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
@@ -22,9 +24,15 @@ export function ScenarioReviewView() {
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const bootstrap = useRef(false);
+  const [selectedModel, setSelectedModel] = useState<string>("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isAdvancing, setIsAdvancing] = useState(false);
   const [advanceError, setAdvanceError] = useState<string | null>(null);
+  const modelsQuery = useQuery({
+    queryKey: ["models"],
+    queryFn: fetchModels,
+    staleTime: 1000 * 60 * 10,
+  });
   const scenariosQuery = useQuery({
     queryKey: ["scenarios", sessionId],
     queryFn: () => fetchScenarios(sessionId!),
@@ -68,10 +76,11 @@ export function ScenarioReviewView() {
     if (!sessionId) return;
     setIsGenerating(true);
     scenarioProgressQuery.refetch();
-    setStatus("Génération automatique des scénarios…");
-    generateScenarios(sessionId, prompt, scenarioTarget)
+    const modelLabel = modelsQuery.data?.find((m) => m.id === selectedModel)?.label ?? "défaut";
+    setStatus(`Génération des scénarios avec ${modelLabel}…`);
+    generateScenarios(sessionId, prompt, scenarioTarget, "simple", selectedModel || undefined)
       .then(() => {
-        setStatus(`${scenarioTarget} scénarios ont été générés.`);
+        setStatus(`${scenarioTarget} scénarios ont été générés (${modelLabel}).`);
         queryClient.invalidateQueries({ queryKey: ["scenarios", sessionId] });
       })
       .catch((err) => {
@@ -120,7 +129,25 @@ export function ScenarioReviewView() {
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Souhaitez vous qu'on vous aide à choisir le meilleur scénario ?"
         />
-        <button type="submit">Régénérer les scénarios</button>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
+          <label htmlFor="model-select" style={{ fontWeight: 500 }}>Modèle :</label>
+          <select
+            id="model-select"
+            value={selectedModel}
+            onChange={(e) => setSelectedModel(e.target.value)}
+            style={{ flex: 1, minWidth: 180 }}
+          >
+            <option value="">Par défaut (Opus)</option>
+            {modelsQuery.data?.map((m) => (
+              <option key={m.id} value={m.id} title={m.description}>
+                {m.label} — {m.provider}
+              </option>
+            ))}
+          </select>
+          <button type="submit" disabled={isGenerating}>
+            {isGenerating ? "Génération…" : "Régénérer les scénarios"}
+          </button>
+        </div>
       </form>
       {status && <p>{status}</p>}
       <ScenarioProgressDisplay steps={scenarioProgressQuery.data ?? []} isRunning={isGenerating} />
@@ -174,15 +201,36 @@ function ScenarioCard({
   const payload = raw?.scenario ?? raw;
   const title = payload?.titre ?? `Scénario ${index + 1}`;
   const axe = payload?.axe_narratif ?? "";
+  const angle = payload?.angle_scenarisation ?? "";
+  const ton = payload?.ton ?? "";
   const parties = Array.isArray(payload?.parties) ? payload.parties : [];
+  const sources: string[] =
+    payload?.metadata?.coherence_historique?.sources_citees ??
+    [];
   const fallbackText =
     payload?.texte ??
     payload?.texte_narration ??
     (Array.isArray(parties) && parties.length === 0 && typeof payload === "object" ? JSON.stringify(payload, null, 2) : "");
+
+  const angleLabels: Record<string, string> = {
+    temoignage_croise: "Témoignages croisés (1ère personne)",
+    chronique_sociale: "Chronique sociale (3ème personne)",
+    journee_type: "Journée type",
+    portrait_individuel: "Portrait individuel",
+    avant_apres_evenement: "Avant / Après",
+    mosaique_voix: "Mosaïque de voix",
+    lettre_intime: "Lettre intime",
+    recit_initiatique: "Récit initiatique",
+  };
+
   return (
     <article className={`scenario-card ${isSelected ? "selected" : ""}`}>
       <h4>{title}</h4>
-      {axe && <p>Axe narratif : {axe}</p>}
+      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", fontSize: "0.85em", opacity: 0.85, marginBottom: "0.5rem" }}>
+        {axe && <span title="Axe narratif">🎯 {axe}</span>}
+        {angle && <span title="Angle de scénarisation">🎬 {angleLabels[angle] ?? angle}</span>}
+        {ton && <span title="Ton">🎵 {ton}</span>}
+      </div>
       {parties.length > 0
         ? parties.map((part: any, idxPart: number) => (
             <div key={idxPart}>
@@ -191,6 +239,16 @@ function ScenarioCard({
             </div>
           ))
         : fallbackText && <pre>{fallbackText}</pre>}
+      {sources.length > 0 && (
+        <details style={{ marginTop: "0.5rem", fontSize: "0.85em" }}>
+          <summary>📚 Sources ({sources.length})</summary>
+          <ul style={{ margin: "0.25rem 0", paddingLeft: "1.25rem" }}>
+            {sources.map((src, i) => (
+              <li key={i}>{src}</li>
+            ))}
+          </ul>
+        </details>
+      )}
       <button onClick={onSelect} className="link">
         {isSelected ? "Scénario sélectionné" : "Choisir ce scénario"}
       </button>

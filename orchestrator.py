@@ -6,6 +6,8 @@ Coordinates all agents and skills for scenario generation.
 import os
 import json
 import logging
+import random
+from copy import deepcopy
 from pathlib import Path
 from typing import Dict, Any, Union, List, Optional
 from datetime import datetime
@@ -27,6 +29,7 @@ class ScenarioMakerOrchestrator:
         config_path: Optional[str] = None,
         api_key: Optional[str] = None,
         log_level: str = "INFO",
+        model_id: Optional[str] = None,
     ):
         """
         Initialize the orchestrator.
@@ -35,6 +38,7 @@ class ScenarioMakerOrchestrator:
             config_path: Path to configuration file (defaults to config/default_config.json)
             api_key: Anthropic API key (defaults to env variable ANTHROPIC_AUTH_TOKEN)
             log_level: Logging level
+            model_id: Full OpenRouter model ID to use for all agents (e.g. "anthropic/claude-opus-4-5")
         """
         # Setup logging
         log_file = os.getenv("LOG_FILE", "./logs/memoire_territoires.log")
@@ -47,6 +51,11 @@ class ScenarioMakerOrchestrator:
         logger.info("=" * 80)
         logger.info("Initializing Mémoire des Territoires Orchestrator")
         logger.info("=" * 80)
+        
+        # Store model override (will be applied to agents after loading)
+        self.model_id = model_id
+        if model_id:
+            logger.info(f"Model override: {model_id}")
         
         # Initialize Claude client (uses OpenRouter via ANTHROPIC_BASE_URL env var)
         try:
@@ -65,6 +74,10 @@ class ScenarioMakerOrchestrator:
         self.agents = {}
         self.skills = {}
         self._load_all_skills()
+        
+        # Apply model override to all agents if provided
+        if self.model_id:
+            self._apply_model_override(self.model_id)
         
         logger.info("Orchestrator initialization complete")
         logger.info(f"Loaded {len(self.agents)} agents, {len(self.skills)} skills")
@@ -110,7 +123,23 @@ class ScenarioMakerOrchestrator:
             logger.info(f"Loaded {len(self.skills)} skills: {list(self.skills.keys())}")
         else:
             logger.warning("Skills directory not found")
-    
+
+    def _apply_model_override(self, model_id: str):
+        """Override the model used by all agents (Agent 0–3) and skills."""
+        for name, agent_data in self.agents.items():
+            instance = agent_data.get("instance")
+            if instance and hasattr(instance, "model"):
+                old = getattr(instance, "model", None)
+                instance.model = model_id
+                logger.info(f"Model override [{name}]: {old} → {model_id}")
+
+        for name, skill_data in self.skills.items():
+            instance = skill_data.get("instance")
+            if instance and hasattr(instance, "model"):
+                old = getattr(instance, "model", None)
+                instance.model = model_id
+                logger.info(f"Model override [{name}]: {old} → {model_id}")
+
     def create_scenarios(
         self,
         user_input: Union[str, Dict],
@@ -138,26 +167,39 @@ class ScenarioMakerOrchestrator:
             # Step 1: Parse request with Agent 0
             config = self._run_agent_0(user_input, mode)
             
+            # Store the original user prompt so downstream agents can read it
+            user_input_section = config.setdefault("scenario_config", {}).setdefault("user_input", {})
+            if isinstance(user_input, str):
+                user_input_section["original_prompt"] = user_input
+            else:
+                user_input_section["original_prompt"] = user_input.get("prompt", "")
+            
             # Get number of scenarios to generate
             num_scenarios = config.get('scenario_config', {}).get('generation_parameters', {}).get('nombre_scenarios', {}).get('value', 3)
             
             scenarios_complete = []
             
+            # Track used values for diversity
+            used_values: Dict[str, List[str]] = {}
+
             # Generate each scenario
             for i in range(num_scenarios):
                 logger.info(f"\n{'='*80}")
                 logger.info(f"Generating scenario {i+1}/{num_scenarios}")
                 logger.info(f"{'='*80}\n")
                 
+                # Create a varied copy of the config for this scenario
+                varied_config = self._vary_config_for_scenario(config, i + 1, used_values)
+                
                 try:
                     # Agent 1: Structure
-                    structure = self._run_agent_1(config, i + 1)
+                    structure = self._run_agent_1(varied_config, i + 1)
                     
                     # Agent 2: Writing
-                    scenario = self._run_agent_2(structure, config)
+                    scenario = self._run_agent_2(structure, varied_config)
                     
                     # Agent 3: Production
-                    timeline = self._run_agent_3(scenario, config)
+                    timeline = self._run_agent_3(scenario, varied_config)
                     
                     scenarios_complete.append({
                         'structure': structure,
@@ -373,6 +415,105 @@ class ScenarioMakerOrchestrator:
         elif skill_name in self.skills:
             return self.skills[skill_name]['config']
         return None
+
+    # ------------------------------------------------------------------
+    # Scenario variation helpers
+    # ------------------------------------------------------------------
+
+    # Available angles de scénarisation — the PRIMARY diversity driver.
+    # Each scenario gets a unique angle; this is the ONLY parameter the
+    # system forces, and it is NOT a user choice.
+    _ANGLE_POOL = [
+        "temoignage_croise",
+        "chronique_sociale",
+        "journee_type",
+        "portrait_individuel",
+        "avant_apres_evenement",
+        "mosaique_voix",
+        "lettre_intime",
+        "recit_initiatique",
+    ]
+
+    # All other params that CAN be varied — but ONLY when user_specified
+    # is False.  No parameter is ever forced over a user choice.
+    _SOFT_VARIABILITY_PARAMS = [
+        "ton",
+        "structure_narrative",
+        "perspective_narrative",
+        "forme",
+        "rythme",
+        "densite_sonore",
+        "epoque_linguistique",
+        "niveau_detail_historique",
+        "axe_narratif",
+    ]
+
+    def _vary_config_for_scenario(
+        self,
+        base_config: Dict,
+        scenario_num: int,
+        used_values: Dict[str, List[str]],
+    ) -> Dict:
+        """Return a deep copy of *base_config* with a unique
+        ``angle_scenarisation`` and soft variation on non-user-specified
+        parameters.
+
+        Rules:
+        1. ``angle_scenarisation`` always gets a UNIQUE value per scenario.
+           This is the main diversity driver.  It describes *how* the story
+           is told, not *what* the story is about.
+        2. Every other parameter is varied ONLY when ``user_specified`` is
+           False.  If the user asked for something, we respect it exactly.
+
+        *used_values* is mutated so the next call avoids repeating values.
+        """
+        config = deepcopy(base_config)
+        gen_params = config.get("scenario_config", {}).get("generation_parameters", {})
+
+        changed: List[str] = []
+
+        # --- 1. Assign a UNIQUE angle_scenarisation -------------------
+        angle_param = gen_params.get("angle_scenarisation")
+        if isinstance(angle_param, dict):
+            already_used = used_values.get("angle_scenarisation", [])
+            remaining = [a for a in self._ANGLE_POOL if a not in already_used]
+            if not remaining:
+                remaining = list(self._ANGLE_POOL)
+            chosen_angle = random.choice(remaining)
+            angle_param["value"] = chosen_angle
+            already_used.append(chosen_angle)
+            used_values["angle_scenarisation"] = already_used
+            changed.append(f"angle_scenarisation={chosen_angle}")
+
+        # --- 2. Soft variation (ONLY when not user-specified) ---------
+        for param_key in self._SOFT_VARIABILITY_PARAMS:
+            param = gen_params.get(param_key)
+            if param is None or not isinstance(param, dict):
+                continue
+            if param.get("user_specified", False):
+                continue
+            options = param.get("options")
+            if not options or not isinstance(options, list) or len(options) < 2:
+                continue
+
+            already_used = used_values.get(param_key, [])
+            candidates = [v for v in options if v not in already_used]
+            if not candidates:
+                candidates = list(options)
+            chosen = random.choice(candidates)
+            param["value"] = chosen
+            already_used.append(chosen)
+            used_values[param_key] = already_used
+            changed.append(f"{param_key}={chosen}")
+
+        logger.info(
+            "[Variation] Scenario %d — %d params changed: %s",
+            scenario_num,
+            len(changed),
+            ", ".join(changed) if changed else "(none)",
+        )
+
+        return config
 
     def _extract_audio_transcriptions(self, config: Dict) -> List[Dict[str, Any]]:
         """Fetch user-provided audio transcriptions from configuration."""

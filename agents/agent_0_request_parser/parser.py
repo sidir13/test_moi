@@ -91,8 +91,13 @@ INSTRUCTIONS :
 3. Déterminez le ton approprié
 4. Identifiez le public cible
 5. Extrayez période historique, lieux, thématiques
-6. Pour chaque paramètre extrait, marquez user_specified: true
-7. Pour les paramètres non mentionnés, utilisez les valeurs par défaut avec user_specified: false
+
+RÈGLE CRITIQUE pour user_specified :
+- Marquez user_specified: true UNIQUEMENT pour les paramètres que l'utilisateur a EXPLICITEMENT mentionnés dans sa demande (ex: "documentaire" → forme=true, "4 minutes" → duree=true, "focus ouvriers" → axe_narratif=true)
+- Marquez user_specified: false pour TOUS les paramètres que vous déduisez, inférez ou laissez par défaut
+- En cas de doute, mettez user_specified: false — cela permet au système de varier ces paramètres entre les scénarios pour plus de diversité
+- Ne marquez JAMAIS user_specified: true sur angle_scenarisation — ce paramètre est réservé au système
+- Si l'utilisateur exprime un ton, un axe ou une perspective clairement (ex: "mélancolique", "sur les ouvriers", "à la première personne"), marquez-les user_specified: true
 
 Retournez un JSON avec cette structure :
 {{

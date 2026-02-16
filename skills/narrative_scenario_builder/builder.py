@@ -50,6 +50,8 @@ class NarrativeScenarioBuilder:
         
         parts = []
         gen_params = config.get('scenario_config', {}).get('generation_parameters', {})
+        original_prompt = config.get('scenario_config', {}).get('user_input', {}).get('original_prompt', '')
+        angle = gen_params.get('angle_scenarisation', {}).get('value', 'auto')
         
         for part_structure in structure.get('structure', []):
             part = self._build_part(
@@ -57,7 +59,9 @@ class NarrativeScenarioBuilder:
                 structure,
                 gen_params,
                 historical_context,
-                audio_transcriptions
+                audio_transcriptions,
+                angle_scenarisation=angle,
+                original_prompt=original_prompt
             )
             parts.append(part)
         
@@ -70,7 +74,9 @@ class NarrativeScenarioBuilder:
         full_structure: Dict,
         gen_params: Dict,
         historical_context: Dict,
-        audio_transcriptions: Optional[List]
+        audio_transcriptions: Optional[List],
+        angle_scenarisation: str = "auto",
+        original_prompt: str = ""
     ) -> Dict:
         """Build a single scenario part."""
         
@@ -99,6 +105,11 @@ class NarrativeScenarioBuilder:
                     + "\n\n".join(transcriptions_lines)
                 )
 
+        # Build original prompt section
+        prompt_section = ""
+        if original_prompt and original_prompt.strip():
+            prompt_section = f"\nDEMANDE ORIGINALE : \"{original_prompt.strip()}\""
+
         # Build prompt for narrative generation
         prompt = f"""Écrivez la partie {part_num} d'un scénario audio historique.
 
@@ -113,23 +124,31 @@ CONTEXTE GLOBAL :
 - Titre du scénario : {full_structure.get('titre_global')}
 - Axe narratif : {full_structure.get('axe_narratif')}
 - Arc émotionnel : {full_structure.get('arc_emotionnel_global')}
+- Angle de scénarisation : {angle_scenarisation}
 
 PARAMÈTRES :
 - Ton : {ton}
 - Public : {public}
+{prompt_section}
 
-CONTEXTE HISTORIQUE :
-{json.dumps(historical_context.get('contexte_enrichi', {}), indent=2, ensure_ascii=False)[:3000]}
+CONTEXTE HISTORIQUE (SEULE source de faits autorisée) :
+{json.dumps(historical_context.get('contexte_enrichi', {}), indent=2, ensure_ascii=False)[:4000]}
 {transcriptions_section}
 
 CONSIGNES D'ÉCRITURE :
-1. Écrivez un texte narratif fluide et immersif pour {duree}s de lecture (environ {int(duree * 2.5)} mots)
-2. Adaptez le vocabulaire au public cible
-3. Respectez le mood et la fonction narrative
-4. Intégrez les éléments nécessaires naturellement
-5. Créez 2-3 moments clés pour placement d'archives ou effets sonores
-6. Donnez des directions de ton (tempo lecture, pauses, intonation)
-7. Si des transcriptions audio sont fournies, UTILISEZ-LES comme source primaire : intégrez les mots, expressions et témoignages réels dans le récit. Le scénario doit être ancré dans ces témoignages authentiques.
+1. Écrivez un texte narratif CONTINU et immersif pour {duree}s de lecture (environ {int(duree * 2.5)} mots)
+2. Suivez fidèlement l'angle de scénarisation ci-dessus
+3. Adaptez le vocabulaire au public cible et à l'époque
+4. Respectez le mood et la fonction narrative
+5. 2-3 moments clés pour placement d'archives ou effets sonores + directions de ton
+6. Si des transcriptions audio sont fournies, UTILISEZ-LES comme source primaire
+7. Assurez la CONTINUITÉ avec les sections précédentes et suivantes
+
+GARDE-FOU ANTI-HALLUCINATION :
+- Basez-vous EXCLUSIVEMENT sur le contexte historique et les transcriptions ci-dessus.
+- N'inventez AUCUN nom, date, lieu ou événement non mentionné dans les sources.
+- Si le contexte manque, utilisez des formulations vagues : "un homme", "certains ouvriers", "dans ces années-là..." etc.
+- Les atmosphères, émotions et descriptions sensorielles peuvent être librement créées, mais PAS les faits historiques.
 
 Retournez un JSON avec cette structure :
 {{

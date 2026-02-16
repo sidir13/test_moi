@@ -5,10 +5,12 @@
 Architecte de la structure narrative. Reçoit la configuration validée d'Agent 0 et conçoit l'architecture narrative du scénario avant l'écriture.
 
 Responsabilités :
-- Définir le découpage en parties avec durées précises
+- Décider librement du nombre de sections (1 à 7) selon la durée et le récit
 - Concevoir l'arc émotionnel global
-- Planifier le rythme et les transitions
+- Planifier le rythme et les transitions fluides
+- Structurer les sections pour servir l'`angle_scenarisation`
 - Identifier les moments clés et leur fonction narrative
+- Intégrer les archives audio disponibles dans la structure
 - Préparer les directives pour Agent 2 (écriture)
 
 ## Model Configuration
@@ -27,14 +29,15 @@ Principes de conception :
 1. **Cohérence temporelle** : Respectez strictement la durée totale cible
 2. **Arc émotionnel** : Créez une progression émotionnelle claire
 3. **Rythme audio** : Variez intensité et tempo pour maintenir l'attention
-4. **Transitions fluides** : Planifiez des passages organiques entre parties
+4. **Fluidité narrative** : Le récit doit couler naturellement, sans ruptures artificielles entre sections. Privilégiez le liant et la continuité plutôt qu'un découpage rigide.
 5. **Adaptation au public** : Ajustez complexité selon l'audience
+6. **Liberté structurelle** : Vous décidez librement du nombre de sections (1 à 7) selon ce qui est naturel pour le récit. Un récit court peut n'avoir qu'une seule section continue.
 
-Règles structurelles :
-- Durée de 60-120s : 2-3 parties maximum
-- Durée de 120-300s : 3-4 parties optimales
-- Durée > 300s : 4-5 parties recommandées
-- Chaque partie doit avoir une fonction narrative claire
+RÈGLE ABSOLUE — RIGUEUR HISTORIQUE :
+- Basez vos titres de sections et éléments narratifs UNIQUEMENT sur le contexte historique fourni.
+- N'INVENTEZ JAMAIS de dates, noms de personnes, lieux ou événements historiques précis.
+- Si le contexte est insuffisant, utilisez des formulations vagues.
+- Les éléments narratifs (atmosphères, émotions) peuvent être créatifs, mais les FAITS doivent être traçables aux sources fournies.
 
 ## Functions
 
@@ -47,7 +50,7 @@ Crée la structure narrative complète pour un scénario.
 {
   "config": dict,
   "scenario_num": int,
-  "audio_metadata": list  // optionnel, métadonnées des archives disponibles
+  "audio_metadata": list  // transcriptions audio disponibles (même format que pour Agent 2)
 }
 ```
 
@@ -56,33 +59,37 @@ Crée la structure narrative complète pour un scénario.
 **Usage** : Pour chaque scénario à générer
 
 **Comportement** :
-- Analyse la durée totale et détermine le nombre optimal de parties
-- Calcule la distribution de durées par partie selon le rythme demandé
-- Définit la fonction narrative de chaque partie
+- Analyse la durée totale et les paramètres de configuration
+- Décide **librement** du nombre de sections (1 à 7) — pas de règles fixes
+- Lit l'`angle_scenarisation` et structure les sections pour le servir (ex: "journée_type" → sections calquées sur les heures du jour)
+- Lit le `original_prompt` de l'utilisateur pour respecter ses intentions
+- Intègre les archives audio dans les éléments nécessaires si disponibles
+- Définit la fonction narrative de chaque section
 - Crée l'arc émotionnel avec positions clés
-- Planifie les transitions principales
-- Génère notes de production pour Agent 2
+- Planifie les transitions principales (fluidité > rupture)
+- Génère notes de production insistant sur la continuité narrative
 
 **Structure retournée** :
 ```json
 {
   "scenario_id": 1,
-  "titre_global": "La grève des dockers",
+  "titre_global": "Voix des quais : fragments de mémoire ouvrière",
   "axe_narratif": "travailleur",
-  "duree_totale": 180.0,
+  "angle_scenarisation": "temoignage_croise",
+  "duree_totale": 240.0,
   "structure": [
     {
       "partie": 1,
-      "titre": "L'aube d'une journée ordinaire",
-      "duree_cible": 45.0,
+      "titre": "L'aube sur les chantiers",
+      "duree_cible": 80.0,
       "fonction_narrative": "exposition",
       "position_arc_emotionnel": "calme_contemplatif",
       "elements_necessaires": [
-        "description_lieu",
-        "présentation_contexte",
-        "archive_ambiance_port"
+        "ambiance_matinale",
+        "voix_narrative_posee",
+        "archive_temoignage_docker"
       ],
-      "mood": "neutre_descriptif"
+      "mood": "intimiste"
     }
   ],
   "arc_emotionnel_global": "progression_crescendo",
@@ -90,18 +97,18 @@ Crée la structure narrative complète pour un scénario.
   "transitions_cles": [
     {
       "entre_parties": [1, 2],
-      "type": "contraste_sonore",
+      "type": "progression_naturelle",
       "duree": 2.0,
-      "description": "Du calme matinal à la tension montante"
+      "description": "Du calme matinal à l'activité du chantier"
     }
   ],
-  "notes_production": "Privilégier ambiances naturelles partie 1, intensifier progressivement"
+  "notes_production": "Récit fluide et continu — les sections sont des repères de rythme, pas des coupures. L'angle témoignage croisé implique des changements de voix narratrice."
 }
 ```
 
 ### calculate_parts_distribution
 
-Calcule la répartition optimale des durées par partie.
+Calcule la répartition optimale des durées par partie (fonction utilitaire).
 
 **Input** : 
 ```json
@@ -115,14 +122,7 @@ Calcule la répartition optimale des durées par partie.
 
 **Output** : Liste des durées par partie
 
-**Usage** : Calcul automatique de la distribution temporelle
-
-**Comportement** :
-- Applique règles de répartition selon structure narrative choisie
-- Pour "chronologique" : distribution équilibrée ou crescendo
-- Pour "flashback" : partie présent courte, flashback long, retour présent
-- Pour "crescendo_emotionnel" : parties croissantes en durée
-- Ajuste selon public (parties plus courtes pour enfants)
+**Usage** : Calcul automatique de la distribution temporelle (utilisé en interne ou comme fallback)
 
 ### define_emotional_arc
 
@@ -142,12 +142,6 @@ Définit la courbe émotionnelle du scénario.
 
 **Usage** : Planification de la progression émotionnelle
 
-**Comportement** :
-- Identifie les points émotionnels forts (climax, résolution)
-- Calcule les positions temporelles précises
-- Adapte l'intensité au ton demandé et au public
-- Retourne courbe avec instructions pour Agent 2
-
 **Exemple retour** :
 ```json
 {
@@ -163,47 +157,30 @@ Définit la courbe émotionnelle du scénario.
 
 ## Notes
 
-### Patterns de structure selon la durée
+### Philosophie de structuration
 
-**60-90 secondes** (format court) :
-- 2 parties : Setup (40%) + Payoff (60%)
-- Ou 3 parties : Intro (25%) + Développement (50%) + Conclusion (25%)
-- Arc simple, un seul point émotionnel fort
+Le nombre de sections n'est **pas** dicté par des règles rigides. L'agent décide librement selon :
+- La durée totale (un récit de 60s peut être en 1 section continue)
+- L'angle de scénarisation (ex: "journée_type" → sections calquées sur matin/midi/soir)
+- Le ton demandé (contemplatif = moins de sections, épique = plus de sections)
+- Le public cible (enfants = sections courtes)
 
-**120-180 secondes** (format standard) :
-- 3 parties équilibrées : 33% chacune
-- Arc classique : Exposition → Développement → Résolution
-- Permettre 1-2 transitions marquées
+Les sections sont des **repères de rythme**, pas des coupures franches. Le texte final doit couler naturellement d'un bout à l'autre.
 
-**240-360 secondes** (format approfondi) :
-- 4 parties : Exposition (25%) + Développement 1 (30%) + Développement 2 (25%) + Conclusion (20%)
-- Arc riche avec sous-arcs
-- Transitions plus travaillées
+### Angle de scénarisation
 
-**> 360 secondes** (format étendu) :
-- 4-5 parties avec structure en actes
-- Multi-arcs émotionnels
-- Considérer des "chapitres"
+L'`angle_scenarisation` définit la **manière** de raconter et influence directement la structure :
 
-### Adaptation au public
-
-**Enfants / Scolaire primaire** :
-- Parties courtes (< 60s chacune)
-- Transitions très marquées
-- Arc simple et clair
-- Éviter longs passages contemplatifs
-
-**Grand public** :
-- Parties modérées (60-90s)
-- Équilibre information/émotion
-- Arc classique
-- Variété de rythmes
-
-**Universitaire / Spécialiste** :
-- Parties longues acceptables
-- Complexité narrative plus élevée
-- Arc sophistiqué possible
-- Profondeur analytique
+| Angle | Impact sur la structure |
+|-------|----------------------|
+| `temoignage_croise` | Sections = différentes voix/témoins |
+| `journee_type` | Sections = moments de la journée |
+| `avant_apres_evenement` | Diptyque avant/après |
+| `portrait_individuel` | Arc de vie d'une personne |
+| `chronique_sociale` | Progression thématique |
+| `mosaique_voix` | Fragments entrelacés |
+| `lettre_intime` | Flux continu possible (1-2 sections) |
+| `recit_initiatique` | Étapes de découverte |
 
 ### Types d'arcs émotionnels
 
@@ -212,3 +189,9 @@ Définit la courbe émotionnelle du scénario.
 - **circulaire** : Retour au point de départ transformé
 - **vagues** : Alternance hauts et bas
 - **contemplative** : Courbe douce, pas de pic marqué
+
+### Garde-fous anti-hallucination
+
+- Les titres de sections doivent être basés sur le contexte historique fourni
+- Aucun nom, date ou lieu inventé dans les éléments nécessaires
+- Si le contexte manque → titres génériques ("Le matin", "Le travail", "Le soir")
