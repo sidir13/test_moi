@@ -5,7 +5,7 @@ GITHUB_PROFILE ?= julienRactM
 GITHUB_HOST ?= laplateformeio
 ENV_FILE ?= .env
 APP_DIR ?= app
-PLATFORM ?= mac
+PLATFORM ?= linux
 QWEN_MODEL_DIR ?= models/qwen3-tts
 QWEN_MODEL_ID ?= Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
 
@@ -39,6 +39,7 @@ uv-install:
 install: ensure-env ensure-app
 	$(UV) sync
 	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
+	cd $(APP_DIR) && $(NPM) run build
 
 install-mac:
 	$(MAKE) install PLATFORM=mac
@@ -49,6 +50,8 @@ download-qwen-model:
 build: docker-build
 
 docker-build: ensure-env
+	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
+	cd $(APP_DIR) && $(NPM) run build
 	docker build --platform $(DOCKER_PLATFORM) -t $(IMAGE_NAME):latest -f Dockerfile .
 
 build-mac:
@@ -86,4 +89,5 @@ docker-push:
 run-app: ensure-env ensure-app
 	$(UV) sync
 	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
+	cd $(APP_DIR) && $(NPM) run build
 	$(UV) run uvicorn server.app:create_app --factory --reload

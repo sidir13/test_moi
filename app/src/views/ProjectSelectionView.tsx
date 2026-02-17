@@ -43,6 +43,15 @@ const VideoIcon = () => (
   </svg>
 );
 
+const DownloadIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path
+      fill="currentColor"
+      d="M5 20h14v-2H5v2zm7-18l-5.5 5.5h4v6h3v-6h4L12 2z"
+    />
+  </svg>
+);
+
 export function ProjectSelectionView() {
   const { data, refetch, isLoading } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
   const { setProjectName, setSessionId, setCurrentStep, setScenarioTarget } = useSessionStore();
@@ -155,6 +164,17 @@ export function ProjectSelectionView() {
                           {previewProject === project.name ? <PauseIcon /> : <SpeakerIcon />}
                         </button>
                       )}
+                      {hasAudio && (
+                        <a
+                          href={getProjectFinalAudioUrl(project.name)}
+                          download
+                          className="play-btn"
+                          aria-label="Télécharger l'audio final"
+                          onClick={(evt) => evt.stopPropagation()}
+                        >
+                          <DownloadIcon />
+                        </a>
+                      )}
                       {hasVideo && (
                         <button
                           type="button"
@@ -167,6 +187,17 @@ export function ProjectSelectionView() {
                         >
                           <VideoIcon />
                         </button>
+                      )}
+                      {hasVideo && (
+                        <a
+                          href={getProjectFinalVideoUrl(project.name)}
+                          download
+                          className="play-btn"
+                          aria-label="Télécharger la vidéo finale"
+                          onClick={(evt) => evt.stopPropagation()}
+                        >
+                          <DownloadIcon />
+                        </a>
                       )}
                     </div>
                   </div>
