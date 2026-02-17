@@ -30,6 +30,7 @@ class ScenarioMakerOrchestrator:
         api_key: Optional[str] = None,
         log_level: str = "INFO",
         model_id: Optional[str] = None,
+        scenario_target_override: Optional[int] = None,
     ):
         """
         Initialize the orchestrator.
@@ -56,6 +57,21 @@ class ScenarioMakerOrchestrator:
         self.model_id = model_id
         if model_id:
             logger.info(f"Model override: {model_id}")
+
+        # Store scenario target override (slider)
+        self.scenario_target_override: Optional[int] = None
+        if scenario_target_override is not None:
+            try:
+                forced_value = int(scenario_target_override)
+                if forced_value < 1:
+                    raise ValueError
+                self.scenario_target_override = forced_value
+                logger.info("Scenario target override active: %d", forced_value)
+            except Exception:
+                logger.warning(
+                    "Ignoring invalid scenario_target_override=%r",
+                    scenario_target_override,
+                )
         
         # Initialize Claude client (uses OpenRouter via ANTHROPIC_BASE_URL env var)
         try:
@@ -139,6 +155,33 @@ class ScenarioMakerOrchestrator:
                 old = getattr(instance, "model", None)
                 instance.model = model_id
                 logger.info(f"Model override [{name}]: {old} → {model_id}")
+
+    def _apply_scenario_target_override(self, config: Dict[str, Any]) -> None:
+        """Force nombre_scenarios to match the project slider selection."""
+        if self.scenario_target_override is None:
+            return
+        forced_value = self.scenario_target_override
+        scenario_config = config.setdefault("scenario_config", {})
+        gen_params = scenario_config.setdefault("generation_parameters", {})
+        nombre = gen_params.setdefault("nombre_scenarios", {})
+        previous_value = nombre.get("value")
+        nombre["value"] = forced_value
+        nombre["user_specified"] = True
+        nombre["source"] = "project_slider"
+        scenario_config.setdefault("metadata", {})[
+            "scenario_target_override"
+        ] = forced_value
+        if previous_value != forced_value:
+            logger.info(
+                "Scenario count override applied: %s → %s",
+                previous_value,
+                forced_value,
+            )
+        else:
+            logger.info(
+                "Scenario count confirmed at %s via override",
+                forced_value,
+            )
 
     def create_scenarios(
         self,
@@ -258,6 +301,9 @@ class ScenarioMakerOrchestrator:
 
         # Log full Agent 0 output for debugging
         logger.debug("[Agent 0] Full config output: %s", json.dumps(config, indent=2, ensure_ascii=False, default=str)[:5000])
+
+        # Enforce scenario count override if provided
+        self._apply_scenario_target_override(config)
         
         # Validate
         validation = agent_0.validate_configuration(config)

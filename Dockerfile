@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . /app
 COPY models/ /app/models/
 RUN pip install --no-cache-dir -e . && \
-    pip install --no-cache-dir moviepy pillow
+    pip install --no-cache-dir "moviepy==2.2.1" pillow
 
 # === Runtime image ===
 FROM python-deps AS runtime

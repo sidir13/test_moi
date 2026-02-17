@@ -1,4 +1,5 @@
 import base64
+import logging
 from pydub import AudioSegment
 from openai import OpenAI
 import os
@@ -7,6 +8,8 @@ import tempfile
 import math
 import time
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 def transcribe_audio(
     audio_path: str,
@@ -50,6 +53,13 @@ Répond uniquement par le texte transcrit en français."""
         audio[i:i + chunk_duration_ms]
         for i in range(0, len(audio), chunk_duration_ms)
     ]
+    logger.info(
+        "Transcription start | file=%s chunks=%d chunk_duration=%ss model=%s",
+        audio_path,
+        len(chunks),
+        chunk_duration_s,
+        model,
+    )
     
     full_transcript = []
     cumulative_ms = 0  # cumulative time in milliseconds
@@ -57,7 +67,12 @@ Répond uniquement par le texte transcrit en français."""
 
     with tempfile.TemporaryDirectory() as tmpdir:
         for i, chunk in enumerate(chunks, 1):
-            print(f"Chunk {i}/{len(chunks)} | durée = {len(chunk)/1000:.1f}s")
+            logger.info(
+                "Transcription chunk start | chunk=%d/%d duration=%.1fs",
+                i,
+                len(chunks),
+                len(chunk) / 1000,
+            )
             chunk_path = os.path.join(tmpdir, f"chunk_{i}.wav")
             chunk.export(chunk_path, format="wav")
 
@@ -92,59 +107,119 @@ Répond uniquement par le texte transcrit en français."""
 
                     # Get plain text from LLM with validation
                     if not completion or not completion.choices or len(completion.choices) == 0:
-                        print(f"⚠️  Chunk {i} (attempt {attempt}): API returned no choices")
+                        logger.warning(
+                            "Transcription chunk issue | chunk=%d attempt=%d reason=no_choices",
+                            i,
+                            attempt,
+                        )
                         if attempt < max_retries:
                             wait_time = 2 ** attempt  # Exponential backoff: 2s, 4s, 8s
-                            print(f"   Retrying in {wait_time}s...")
+                            logger.info(
+                                "Retry scheduled | chunk=%d attempt=%d wait=%ds",
+                                i,
+                                attempt,
+                                wait_time,
+                            )
                             time.sleep(wait_time)
                             continue
                         else:
-                            print(f"   Skipping after {max_retries} attempts")
+                            logger.warning(
+                                "Chunk skipped after max retries | chunk=%d attempts=%d",
+                                i,
+                                max_retries,
+                            )
                             break
-                    
+
                     message = completion.choices[0].message
                     if not message or not message.content:
-                        print(f"⚠️  Chunk {i} (attempt {attempt}): API returned empty content")
+                        logger.warning(
+                            "Transcription chunk issue | chunk=%d attempt=%d reason=empty_content",
+                            i,
+                            attempt,
+                        )
                         if attempt < max_retries:
                             wait_time = 2 ** attempt
-                            print(f"   Retrying in {wait_time}s...")
+                            logger.info(
+                                "Retry scheduled | chunk=%d attempt=%d wait=%ds",
+                                i,
+                                attempt,
+                                wait_time,
+                            )
                             time.sleep(wait_time)
                             continue
                         else:
-                            print(f"   Skipping after {max_retries} attempts")
+                            logger.warning(
+                                "Chunk skipped after max retries | chunk=%d attempts=%d",
+                                i,
+                                max_retries,
+                            )
                             break
-                    
+
                     text = message.content.strip()
                     if not text:
-                        print(f"⚠️  Chunk {i} (attempt {attempt}): Empty transcription")
+                        logger.warning(
+                            "Transcription chunk issue | chunk=%d attempt=%d reason=empty_text",
+                            i,
+                            attempt,
+                        )
                         if attempt < max_retries:
                             wait_time = 2 ** attempt
-                            print(f"   Retrying in {wait_time}s...")
+                            logger.info(
+                                "Retry scheduled | chunk=%d attempt=%d wait=%ds",
+                                i,
+                                attempt,
+                                wait_time,
+                            )
                             time.sleep(wait_time)
                             continue
                         else:
-                            print(f"   Skipping after {max_retries} attempts")
+                            logger.warning(
+                                "Chunk skipped after max retries | chunk=%d attempts=%d",
+                                i,
+                                max_retries,
+                            )
                             break
-                    
+
                     # Success!
                     if attempt > 1:
-                        print(f"✓  Chunk {i} succeeded on attempt {attempt}")
+                        logger.info(
+                            "Chunk succeeded after retries | chunk=%d attempt=%d",
+                            i,
+                            attempt,
+                        )
                     break
-                    
+
                 except Exception as e:
                     last_error = e
-                    print(f"⚠️  Chunk {i} (attempt {attempt}) error: {type(e).__name__}: {str(e)}")
+                    logger.warning(
+                        "Transcription chunk error | chunk=%d attempt=%d error=%s",
+                        i,
+                        attempt,
+                        f"{type(e).__name__}: {e}",
+                    )
                     if attempt < max_retries:
                         wait_time = 2 ** attempt
-                        print(f"   Retrying in {wait_time}s...")
+                        logger.info(
+                            "Retry scheduled | chunk=%d attempt=%d wait=%ds",
+                            i,
+                            attempt,
+                            wait_time,
+                        )
                         time.sleep(wait_time)
                     else:
-                        print(f"   Failed after {max_retries} attempts, skipping chunk")
+                        logger.error(
+                            "Chunk failed after max retries | chunk=%d attempts=%d",
+                            i,
+                            max_retries,
+                        )
                         break
             
             # If we got text, process it
             if not text:
-                print(f"⚠️  Chunk {i}: Skipped (no valid transcription after retries)")
+                logger.warning(
+                    "Chunk skipped | chunk=%d reason=no_transcription",
+                    i,
+                )
                 cumulative_ms += len(chunk)  # Still advance time
                 continue
                 
@@ -176,7 +251,13 @@ Répond uniquement par le texte transcrit en français."""
         error_msg += "\n  - Audio format not supported"
         if last_error:
             error_msg += f"\n  Last error: {type(last_error).__name__}: {str(last_error)}"
+        logger.error("%s", error_msg)
         raise ValueError(error_msg)
     
-    print(f"✓ Transcription complete: {len(full_transcript)} lines from {len(chunks)} chunks")
+    logger.info(
+        "Transcription finished | file=%s chunks=%d lines=%d",
+        audio_path,
+        len(chunks),
+        len(full_transcript),
+    )
     return "\n".join(full_transcript)

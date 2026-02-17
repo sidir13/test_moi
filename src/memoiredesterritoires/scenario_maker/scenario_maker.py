@@ -67,11 +67,14 @@ class ScenarioMakerSkill:
         )
         config_data = self._load_config(config_path)
         scenario_target = params.get("scenario_target")
+        forced_scenario_target: Optional[int] = None
         if isinstance(scenario_target, int):
+            forced_scenario_target = scenario_target
             scenario_config = config_data.setdefault("scenario_config", {})
             gen_params = scenario_config.setdefault("generation_parameters", {})
             nombre = gen_params.setdefault("nombre_scenarios", {})
             nombre["value"] = scenario_target
+            nombre["user_specified"] = True
         if audio_transcriptions:
             self._inject_audio_transcriptions(config_data, audio_transcriptions)
 
@@ -83,6 +86,7 @@ class ScenarioMakerSkill:
             api_key=params.get("api_key"),
             log_level=params.get("log_level", "INFO"),
             model_id=model_id,
+            scenario_target_override=forced_scenario_target,
         )
 
         # Ensure orchestrator uses the possibly enriched configuration.

@@ -6,7 +6,8 @@ import json
 import os
 import re
 from pathlib import Path
-from typing import Any, List, Optional
+import unicodedata
+from typing import Any, Dict, List, Optional, Set, Union
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -35,12 +36,109 @@ def _flatten_texts(data) -> List[str]:
     return texts
 
 
-def _scenario_summary(path: Path) -> str:
-    data = _load_json(path)
+def _scenario_summary(source: Union[Path, Dict[str, Any]]) -> str:
+    if isinstance(source, Path):
+        data = _load_json(source)
+    else:
+        data = source
     snippets = _flatten_texts(data)
     if snippets:
         return "\n".join(snippets)[:1500]
     return json.dumps(data, ensure_ascii=False)[:1500]
+
+
+def _normalize_label(label: Any) -> str:
+    if label is None:
+        return ""
+    text = str(label).strip()
+    if not text:
+        return ""
+    normalized = unicodedata.normalize("NFKD", text)
+    normalized = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+    normalized = normalized.replace("’", "'").lower()
+    normalized = re.sub(r"[^a-z0-9]+", " ", normalized)
+    return normalized.strip()
+
+
+def _build_aliases(file_name: str, data: Dict[str, Any]) -> Set[str]:
+    aliases = {
+        file_name,
+        Path(file_name).name,
+        Path(file_name).stem,
+    }
+    scenario_id = data.get("scenario_id")
+    if scenario_id is not None:
+        scenario_id_str = str(scenario_id)
+        aliases.update(
+            {
+                scenario_id_str,
+                f"scenario {scenario_id_str}",
+                f"scenario_{scenario_id_str}",
+                f"scénario {scenario_id_str}",
+            }
+        )
+    for key in ("titre", "title", "titre_global", "scenario_title"):
+        value = data.get(key)
+        if isinstance(value, str) and value.strip():
+            aliases.add(value)
+    metadata = data.get("metadata")
+    if isinstance(metadata, dict):
+        for key in ("titre", "titre_global", "title"):
+            value = metadata.get(key)
+            if isinstance(value, str) and value.strip():
+                aliases.add(value)
+
+    normalized_aliases: Set[str] = set()
+    for alias in aliases:
+        normalized = _normalize_label(alias)
+        if normalized:
+            normalized_aliases.add(normalized)
+    return normalized_aliases
+
+
+def _match_candidate(candidate: str, scenario_infos: List[Dict[str, Any]]) -> Optional[str]:
+    if not candidate:
+        return None
+
+    attempts = [candidate]
+    stripped_prefix = re.sub(r"^[\s\-\d\.\)\(]+", "", candidate)
+    if stripped_prefix != candidate:
+        attempts.append(stripped_prefix)
+    dash_split = re.split(r"[–—\-:]+", candidate, 1)
+    if len(dash_split) == 2 and dash_split[1].strip():
+        attempts.append(dash_split[1])
+
+    seen_attempts: Set[str] = set()
+    for attempt in attempts:
+        if attempt in seen_attempts:
+            continue
+        seen_attempts.add(attempt)
+        normalized = _normalize_label(attempt)
+        if not normalized:
+            continue
+
+        for info in scenario_infos:
+            if normalized in info["aliases"]:
+                return info["name"]
+
+        for info in scenario_infos:
+            for alias in info["aliases"]:
+                if len(alias) <= 1:
+                    continue
+                if alias in normalized:
+                    return info["name"]
+    return None
+
+
+def _complete_ranking(selected: List[str], scenario_infos: List[Dict[str, Any]]) -> List[str]:
+    ordered: List[str] = []
+    for name in selected:
+        if name and name not in ordered:
+            ordered.append(name)
+    for info in scenario_infos:
+        if info["name"] not in ordered:
+            ordered.append(info["name"])
+    return ordered
 
 
 def _normalize_message_content(content: Any) -> str:
@@ -122,24 +220,55 @@ def _call_llm(prompt: str) -> str:
     return _extract_completion_text(completion)
 
 
-def _parse_ranking(response: str, scenario_names: List[str]) -> List[str]:
+def _parse_ranking(response: str, scenario_infos: List[Dict[str, Any]]) -> List[str]:
     response = response.strip()
     try:
         data = json.loads(response)
         if isinstance(data, list):
-            cleaned = [str(item) for item in data if str(item) in scenario_names]
-            if cleaned:
-                return cleaned
+            matches = []
+            for item in data:
+                name = _match_candidate(str(item), scenario_infos)
+                if name:
+                    matches.append(name)
+            if matches:
+                return _complete_ranking(matches, scenario_infos)
+        if isinstance(data, dict):
+            for key in ("ranking", "order", "scenarios", "result"):
+                value = data.get(key)
+                if isinstance(value, list):
+                    matches = []
+                    for item in value:
+                        name = _match_candidate(str(item), scenario_infos)
+                        if name:
+                            matches.append(name)
+                    if matches:
+                        return _complete_ranking(matches, scenario_infos)
+            if all(isinstance(value, str) for value in data.values()):
+                matches = []
+                for value in data.values():
+                    name = _match_candidate(value, scenario_infos)
+                    if name:
+                        matches.append(name)
+                if matches:
+                    return _complete_ranking(matches, scenario_infos)
     except json.JSONDecodeError:
         pass
 
     names = []
     for line in response.splitlines():
-        line = line.strip(" -.")
-        for name in scenario_names:
-            if name in line and name not in names:
+        cleaned = line.strip().strip("[]\"'")
+        if not cleaned:
+            continue
+        parts = re.split(r"[,;]", cleaned) if "," in cleaned or ";" in cleaned else [cleaned]
+        for part in parts:
+            candidate = re.sub(r"^[\d]+\s*[\).\-\]]*\s*", "", part).strip()
+            name = _match_candidate(candidate, scenario_infos)
+            if name and name not in names:
                 names.append(name)
-    return names or scenario_names
+    if names:
+        return _complete_ranking(names, scenario_infos)
+
+    return [info["name"] for info in scenario_infos]
 
 
 def rank_scenarios_against_config(
@@ -158,11 +287,13 @@ def rank_scenarios_against_config(
     if not scenario_files:
         raise FileNotFoundError(f"Aucun scénario trouvé dans {scenarios_path}")
 
-    scenario_infos = []
+    scenario_infos: List[Dict[str, Any]] = []
     for file in scenario_files:
+        payload = _load_json(file)
         scenario_infos.append({
             "name": file.name,
-            "summary": _scenario_summary(file),
+            "summary": _scenario_summary(payload),
+            "aliases": _build_aliases(file.name, payload),
         })
 
     prompt_lines = [
@@ -179,8 +310,7 @@ def rank_scenarios_against_config(
 
     prompt = "\n".join(prompt_lines)
     raw = _call_llm(prompt)
-    scenario_names = [info["name"] for info in scenario_infos]
-    ranking = _parse_ranking(raw, scenario_names)
+    ranking = _parse_ranking(raw, scenario_infos)
 
     config.setdefault("scenario_config", {})["scenario_ranking"] = ranking
     with open(config_file, "w", encoding="utf-8") as f:

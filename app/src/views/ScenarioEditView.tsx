@@ -1,6 +1,7 @@
-import { DragEvent, FormEvent, useEffect, useMemo, useState } from "react";
+import { DragEvent, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 import {
   API_BASE_URL,
@@ -33,6 +34,8 @@ export function ScenarioEditView() {
   const [audioStatus, setAudioStatus] = useState<string | null>(null);
   const [imageStatus, setImageStatus] = useState<string | null>(null);
   const [videoStatus, setVideoStatus] = useState<string | null>(null);
+  const [isDraggingFiles, setIsDraggingFiles] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
@@ -121,6 +124,21 @@ export function ScenarioEditView() {
     }
   };
 
+  const openFilePicker = () => {
+    if (imagesLimitReached) return;
+    fileInputRef.current?.click();
+  };
+
+  const handleDropFiles = async (evt: DragEvent<HTMLDivElement>) => {
+    evt.preventDefault();
+    setIsDraggingFiles(false);
+    if (imagesLimitReached) return;
+    if (evt.dataTransfer.files && evt.dataTransfer.files.length > 0) {
+      await handleUploadImages(evt.dataTransfer.files);
+      evt.dataTransfer.clearData();
+    }
+  };
+
   const handleDeleteImage = async (imageId: string) => {
     if (!sessionId) return;
     await deleteScenarioImage(sessionId, imageId);
@@ -158,6 +176,10 @@ export function ScenarioEditView() {
   const ensureSlideshowIfNeeded = async () => {
     if (!sessionId) return;
     if ((imagesQuery.data?.length ?? 0) === 0) return;
+    if (!audioQuery.data?.path) {
+      setVideoStatus("Générez l'audio avant de créer un diaporama.");
+      return;
+    }
     try {
       setVideoStatus("Création du diaporama...");
       await createSlideshow(sessionId);
@@ -165,13 +187,21 @@ export function ScenarioEditView() {
       setVideoStatus("Diaporama mis à jour.");
     } catch (err) {
       console.error("Slideshow generation failed", err);
-      setVideoStatus("Impossible de créer le diaporama.");
+      const apiMessage =
+        axios.isAxiosError(err) && err.response?.data?.detail
+          ? err.response.data.detail
+          : "Impossible de créer le diaporama.";
+      setVideoStatus(apiMessage);
     }
   };
 
   const handleCreateSlideshow = async () => {
     if ((imagesQuery.data?.length ?? 0) === 0) {
       setVideoStatus("Ajoutez des images avant de créer un diaporama.");
+      return;
+    }
+    if (!audioQuery.data?.path) {
+      setVideoStatus("Générez l'audio avant de créer un diaporama.");
       return;
     }
     await persistScenario();
@@ -182,23 +212,12 @@ export function ScenarioEditView() {
     evt.preventDefault();
     setStatus("Sauvegarde de vos modifications...");
     await persistScenario();
-    setAudioStatus("Mise à jour de l'audio...");
-    try {
-      await synthesizeScenarioAudio(sessionId);
-      await audioQuery.refetch();
-    } catch (err) {
-      console.error("Audio synthesis failed", err);
-      setAudioStatus("Erreur lors de la génération audio.");
-      setStatus(null);
-      return;
-    }
     await ensureSlideshowIfNeeded();
     await advanceStep(sessionId, "scenario_edit", { titre: title });
     updateProgress({ scenarioEdited: true });
     setCurrentStep("final_validation");
     navigate("/step/final_validation");
     setStatus(null);
-    setAudioStatus(null);
   };
 
   const saveDraft = async () => {
@@ -306,20 +325,66 @@ export function ScenarioEditView() {
         <section className="card">
           <h3>Images pour le diaporama (optionnel)</h3>
           <p>Ajoutez jusqu'à 10 images, réorganisez-les par glisser-déposer et générez un diaporama synchronisé avec l'audio.</p>
-          <label className="link">
-            Ajouter des images
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              disabled={imagesLimitReached}
-              style={{ display: "none" }}
-              onChange={(e) => {
-                handleUploadImages(e.target.files);
-                e.target.value = "";
-              }}
-            />
-          </label>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            disabled={imagesLimitReached}
+            style={{ display: "none" }}
+            onChange={(e) => {
+              handleUploadImages(e.target.files);
+              e.target.value = "";
+            }}
+          />
+          <div
+            role="button"
+            tabIndex={0}
+            aria-disabled={imagesLimitReached}
+            onClick={openFilePicker}
+            onKeyDown={(evt) => {
+              if (evt.key === "Enter" || evt.key === " ") {
+                evt.preventDefault();
+                openFilePicker();
+              }
+            }}
+            onDragEnter={(evt) => {
+              evt.preventDefault();
+              if (!imagesLimitReached) {
+                setIsDraggingFiles(true);
+              }
+            }}
+            onDragOver={(evt) => {
+              evt.preventDefault();
+              if (!imagesLimitReached) {
+                setIsDraggingFiles(true);
+              }
+            }}
+            onDragLeave={(evt) => {
+              evt.preventDefault();
+              setIsDraggingFiles(false);
+            }}
+            onDrop={handleDropFiles}
+            style={{
+              border: `2px dashed ${isDraggingFiles ? "var(--accent, #2680eb)" : "var(--border, #d0d7de)"}`,
+              borderRadius: 12,
+              padding: "1.5rem",
+              textAlign: "center",
+              background: isDraggingFiles ? "rgba(38, 128, 235, 0.08)" : "var(--card-bg, #f9fafb)",
+              cursor: imagesLimitReached ? "not-allowed" : "pointer",
+              opacity: imagesLimitReached ? 0.5 : 1,
+              transition: "background 0.2s ease, border-color 0.2s ease"
+            }}
+          >
+            <strong style={{ display: "block", marginBottom: "0.35rem" }}>
+              {imagesLimitReached ? "Limite atteinte" : "Déposez vos visuels ici"}
+            </strong>
+            <span style={{ color: "var(--text-muted, #444)" }}>
+              {imagesLimitReached
+                ? "Vous avez déjà ajouté 10 images."
+                : "Cliquez ou glissez-déposez jusqu'à 10 images (JPEG ou PNG)."}
+            </span>
+          </div>
           {imagesLimitReached && <p>Limite atteinte (10 images).</p>}
           {imageStatus && <p>{imageStatus}</p>}
           <div

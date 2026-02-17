@@ -36,6 +36,7 @@ def edit_voice_instructions(project_name: Optional[str], voice_instructions: str
     config = _load_config()
     project_entry = config.setdefault(project, {})
     project_entry["voice_instructions"] = voice_instructions.strip()
+    project_entry["voice_instructions_source"] = "manual"
     _save_config(config)
 
     return {

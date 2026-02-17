@@ -1387,7 +1387,7 @@ requires-dist = [
     { name = "faster-whisper", specifier = ">=1.2.1" },
     { name = "huggingface-hub", extras = ["cli"], specifier = ">=0.34,<1.0" },
     { name = "librosa", specifier = ">=0.10.1" },
-    { name = "moviepy", specifier = "==2.0.0.dev2" },
+    { name = "moviepy", specifier = "==2.2.1" },
     { name = "openai", specifier = ">=2.15.0" },
     { name = "pandas", specifier = ">=2.2.0" },
     { name = "pillow", specifier = ">=11.3.0" },
@@ -1402,17 +1402,21 @@ requires-dist = [
 
 [[package]]
 name = "moviepy"
-version = "2.0.0.dev2"
+version = "2.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "decorator" },
     { name = "imageio" },
     { name = "imageio-ffmpeg" },
     { name = "numpy" },
+    { name = "pillow" },
     { name = "proglog" },
-    { name = "requests" },
+    { name = "python-dotenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4b/d8/f952b137844e197bccf3a2b6fe231de020d96168aeab84daa945bcf61466/moviepy-2.0.0.dev2.tar.gz", hash = "sha256:c0567bbaaf17936f498b53f40b8c1e2d7667d4b917f775cac610c4af382d174f", size = 400120, upload-time = "2020-10-05T00:26:29.804Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/de/61/15f9476e270f64c78a834e7459ca045d669f869cec24eed26807b8cd479d/moviepy-2.2.1.tar.gz", hash = "sha256:c80cb56815ece94e5e3e2d361aa40070eeb30a09d23a24c4e684d03e16deacb1", size = 58431438, upload-time = "2025-05-21T19:31:52.601Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9a/73/7d3b2010baa0b5eb1e4dfa9e4385e89b6716be76f2fa21a6c0fe34b68e5a/moviepy-2.2.1-py3-none-any.whl", hash = "sha256:6b56803fec2ac54b557404126ac1160e65448e03798fa282bd23e8fab3795060", size = 129871, upload-time = "2025-05-21T19:31:50.11Z" },
+]
 
 [[package]]
 name = "mpmath"

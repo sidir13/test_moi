@@ -908,7 +908,8 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("Décrit le son d'ambiance de chalumeau"))
+    asyncio.run(main("can you create a slideshow from the images in data/image and use audio data/audio/background_sounds/Chalumeau/AV-1-S-OUT-101-1-A.wav"))
+    # asyncio.run(main("Décrit le son d'ambiance de chalumeau"))
     # asyncio.run(main("Peux tu tts cette phrase: 'comment obtenir des dents en or, je vous propose un tuto de 36 heures"))
     # asyncio.run(main("Can you generate a new scenario for a project we'll call lA vie de Gilles, path is data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV, transcript it and stock it in db, then we'll first find the 3 most relevant background sounds for this audio, then analyze the audio to extract key elements of the ambiance, then store the analysis in the database, fetch what we need from the parquet db, enchance our transcription with web search on key elements, generate 2 scenarios, one about his personal life, another about his professional life, then generate voice instructions based on the scenario and the analysis, then synthesize a narration of the 2 scenarios with the generated voice instructions, and finally mix the narration with for each scenario 2 of the found background sounds to create an immersive audio scenario !"))
     # asyncio.run(main("Can you just list all available skills and their descriptions?"))

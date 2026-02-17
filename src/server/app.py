@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import math
 import os
 import re
 import tempfile
@@ -41,6 +42,7 @@ from project_store import (
     save_audio_selection,
     list_project_audio_files,
 )
+from pydub import AudioSegment
 
 from .config import AppSettings, get_settings
 from .session_store import SessionStore
@@ -52,6 +54,7 @@ from .audio_validation import validate_audio_file
 from config.model_registry import get_available_models, resolve_model_id
 
 logger = logging.getLogger(__name__)
+BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.8)  # ≈ -1.94 dB
 
 
 def log_progress(event: str, **fields: Any) -> None:
@@ -60,6 +63,109 @@ def log_progress(event: str, **fields: Any) -> None:
         return
     details = " ".join(f"{key}={value}" for key, value in fields.items() if value is not None)
     logger.info("%s | %s", event, details)
+
+
+def apply_background_selection(
+    voice_path: Path,
+    project_name: str,
+) -> tuple[Path, int, Optional[Path], int]:
+    """
+    Mix the user-selected background sounds under the generated narration.
+
+    Returns:
+        (final_voice_path, layers_applied, dry_voice_path, requested_layers)
+    """
+    try:
+        selection = load_audio_selection(project_name)
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.warning("Unable to load audio selection for %s: %s", project_name, exc)
+        selection = {}
+
+    raw_backgrounds = selection.get("backgrounds") or []
+    normalized_paths: List[Path] = []
+    for entry in raw_backgrounds:
+        if not entry:
+            continue
+        resolved = Path(entry)
+        if not resolved.is_absolute():
+            resolved = (Path.cwd() / resolved).resolve()
+        normalized_paths.append(resolved)
+
+    requested_layers = len(normalized_paths)
+    if requested_layers == 0:
+        return voice_path, 0, None, requested_layers
+    if AudioSegment is None:
+        logger.warning("pydub is not available; skipping background mix for %s", project_name)
+        return voice_path, 0, None, requested_layers
+
+    resolved_voice = Path(voice_path)
+    if not resolved_voice.is_absolute():
+        resolved_voice = (Path.cwd() / resolved_voice).resolve()
+    if not resolved_voice.exists():
+        logger.warning("Voice file missing for background mix: %s", resolved_voice)
+        return voice_path, 0, None, requested_layers
+
+    try:
+        voice_segment = AudioSegment.from_file(resolved_voice)
+    except Exception as exc:
+        logger.warning("Unable to load narration audio (%s): %s", resolved_voice, exc)
+        return voice_path, 0, None, requested_layers
+
+    mixed_segment = voice_segment
+    layers_applied = 0
+    for bg_path in normalized_paths:
+        if not bg_path.exists():
+            logger.warning("Background sound not found: %s", bg_path)
+            continue
+        try:
+            background_segment = AudioSegment.from_file(bg_path)
+        except Exception as exc:
+            logger.warning("Failed to load background %s: %s", bg_path, exc)
+            continue
+        # Reduce to 80% loudness before mixing
+        background_segment = background_segment + BACKGROUND_ATTENUATION_DB
+        if len(background_segment) < len(mixed_segment):
+            repeats = max(1, math.ceil(len(mixed_segment) / max(len(background_segment), 1)))
+            background_segment = background_segment * repeats
+        background_segment = background_segment[: len(mixed_segment)]
+        mixed_segment = mixed_segment.overlay(background_segment)
+        layers_applied += 1
+
+    if layers_applied == 0:
+        return voice_path, 0, None, requested_layers
+
+    output_format = resolved_voice.suffix.replace(".", "") or "wav"
+    temp_mix = resolved_voice.with_name(f"{resolved_voice.stem}_mix{resolved_voice.suffix}")
+    mixed_segment.export(
+        str(temp_mix),
+        format=output_format,
+        parameters=["-ar", str(voice_segment.frame_rate)],
+    )
+    dry_path = resolved_voice.with_name(f"{resolved_voice.stem}_dry{resolved_voice.suffix}")
+    if dry_path.exists():
+        dry_path.unlink()
+    resolved_voice.replace(dry_path)
+    temp_mix.replace(resolved_voice)
+
+    # Return the path in the same shape as input (relative or absolute)
+    final_path = Path(voice_path)
+    if not final_path.is_absolute():
+        try:
+            final_path = resolved_voice.relative_to(Path.cwd())
+        except ValueError:
+            final_path = resolved_voice
+    else:
+        final_path = resolved_voice
+
+    dry_relative: Optional[Path] = dry_path
+    if dry_path:
+        if not voice_path.is_absolute():
+            try:
+                dry_relative = dry_path.relative_to(Path.cwd())
+            except ValueError:
+                dry_relative = dry_path
+
+    return final_path, layers_applied, dry_relative, requested_layers
 
 
 class ProjectCreateRequest(BaseModel):
@@ -250,6 +356,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             entry["created_at"] = datetime.utcnow().isoformat()
         entry.setdefault("allowed_websites", ["wikipedia.org"])
         entry.setdefault("voice_instructions", "")
+        entry.setdefault("voice_instructions_source", "")
         for key, value in updates.items():
             if value is not None:
                 entry[key] = value
@@ -283,24 +390,73 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         sections.append(scenario_text.strip())
         return "\n".join(sections)
 
+    def _extract_voice_hint(notes: Optional[str]) -> tuple[Optional[str], str]:
+        if not notes:
+            return None, ""
+        voice_hint = None
+        remaining: List[str] = []
+        for raw_line in notes.splitlines():
+            line = raw_line.strip()
+            if not line:
+                continue
+            lower = line.lower()
+            if voice_hint is None and ("voix" in lower or "voice" in lower or "narrateur" in lower or "narratrice" in lower):
+                voice_hint = line
+                continue
+            remaining.append(line)
+        return voice_hint, "\n".join(remaining).strip()
+
+    def _compose_voice_instructions(
+        voice_hint: Optional[str],
+        project_summary: str,
+        tone: str,
+        audience: str,
+        language_hint: str,
+        scenario_excerpt: str,
+    ) -> str:
+        base_voice = voice_hint or f"Use a narrator aligned with a {tone} delivery suitable for a {audience} audience."
+        fragments = [
+            base_voice,
+            f"Speak in {language_hint} with clear articulation, medium pace, natural breathing and pedagogical warmth.",
+            f"Audience: {audience}. Maintain the requested tone '{tone}'.",
+        ]
+        if project_summary:
+            fragments.append(f"Project brief: {project_summary}")
+        if scenario_excerpt:
+            fragments.append(f"Scenario excerpt for context: {scenario_excerpt}")
+        return " ".join(fragments).strip()
+
     def ensure_voice_instructions(project_name: str, scenario_text: str, language_hint: str) -> str:
         profile = load_project_profile(project_name)
         existing = profile.get("voice_instructions")
-        if isinstance(existing, str) and existing.strip():
-            return existing
-
+        source = (profile.get("voice_instructions_source") or "").lower()
         notes = profile.get("project_notes") or "Documentaire historique sur le patrimoine maritime français."
         tone = profile.get("tone") or "narration immersive, empathique et documentée"
         audience = profile.get("audience") or "grand public"
-        snippet = "\n".join(scenario_text.strip().split("\n")[:5])[:600]
+        snippet = "\n".join(scenario_text.strip().split("\n")[:5]).strip()[:600]
+        voice_hint, cleaned_notes = _extract_voice_hint(notes)
 
-        instructions = (
-            f"Voice for project '{project_name}' ({audience}). Speak in {language_hint} with a {tone}. "
-            f"Context: {notes}. Narrator should sound mature (45-60), grounded working-class French accent, "
-            f"clear articulation, moderate tempo, gentle breaths, emotional lift on key sentences. "
-            f"Scenario excerpt:\n{snippet}"
+        if isinstance(existing, str) and existing.strip():
+            if source == "manual":
+                return existing
+            if not voice_hint or voice_hint.lower() in existing.lower():
+                return existing
+
+        instructions = _compose_voice_instructions(
+            voice_hint,
+            cleaned_notes or notes,
+            tone,
+            audience,
+            language_hint,
+            snippet,
         )
-        upsert_project_config_entry(project_name, {"voice_instructions": instructions})
+        upsert_project_config_entry(
+            project_name,
+            {
+                "voice_instructions": instructions,
+                "voice_instructions_source": "project_notes" if voice_hint else "auto",
+            },
+        )
         return instructions
 
     async def transcribe_and_store(project_name: str, audio_path: Path, meta: Optional[Dict[str, Any]] = None) -> None:
@@ -823,13 +979,50 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         except Exception as exc:  # pragma: no cover - propagate to client
             logger.exception("Scenario audio synthesis failed for session %s", session_id)
             raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+        backgrounds_applied = 0
+        backgrounds_requested = 0
+        dry_voice_path: Optional[Path] = None
+        try:
+            voice_path = Path(result["path"])
+            (
+                layered_path,
+                backgrounds_applied,
+                dry_voice_path,
+                backgrounds_requested,
+            ) = apply_background_selection(voice_path, session["project_name"])
+            result["path"] = str(layered_path)
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.exception("Background layering failed for session %s: %s", session_id, exc)
+            backgrounds_applied = 0
+
         metadata = {
             **result,
             "generated_at": datetime.utcnow().isoformat(),
             "text_length": len(text),
             "language": payload.language or "French",
+            "backgrounds_applied": backgrounds_applied,
+            "background_tracks_requested": backgrounds_requested,
         }
+        if dry_voice_path:
+            metadata["voice_only_path"] = str(dry_voice_path)
         session_store.save_scenario_audio(session_id, metadata)
+
+        if backgrounds_applied:
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_APPLIED",
+                session=session_id,
+                project=session["project_name"],
+                layers=backgrounds_applied,
+            )
+        elif backgrounds_requested:
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_SKIPPED",
+                session=session_id,
+                project=session["project_name"],
+                reason="mix_failed",
+            )
+
         log_progress(
             "SCENARIO_AUDIO_DONE",
             session=session_id,
@@ -1003,18 +1196,37 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         session = session_store.load_session(session_id)
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
+        project_name = session["project_name"]
         images = session.get("scenario_images", [])
         if not images:
+            log_progress(
+                "SCENARIO_SLIDESHOW_FAILED",
+                session=session_id,
+                project=project_name,
+                reason="no_images",
+            )
             raise HTTPException(status_code=400, detail="Ajoutez des images avant de créer un diaporama.")
         audio = session.get("scenario_audio")
         if not audio or not audio.get("path"):
+            log_progress(
+                "SCENARIO_SLIDESHOW_FAILED",
+                session=session_id,
+                project=project_name,
+                reason="no_audio",
+            )
             raise HTTPException(status_code=400, detail="Aucun audio disponible pour accompagner le diaporama.")
-        project_name = session["project_name"]
         slides_dir = slides_directory(project_name, session_id, ensure=True)
         audio_path = Path(audio["path"])
         if not audio_path.is_absolute():
             audio_path = (Path.cwd() / audio_path).resolve()
         if not audio_path.exists():
+            log_progress(
+                "SCENARIO_SLIDESHOW_FAILED",
+                session=session_id,
+                project=project_name,
+                reason="audio_file_missing",
+                path=str(audio_path),
+            )
             raise HTTPException(status_code=404, detail="Fichier audio introuvable pour le diaporama.")
         output_dir = videos_directory(project_name, ensure=True)
         timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
@@ -1023,6 +1235,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             generated_path = slideshow(str(slides_dir), str(audio_path), str(output_path))
         except Exception as exc:
             logger.exception("Slideshow generation failed for session %s", session_id)
+            log_progress(
+                "SCENARIO_SLIDESHOW_FAILED",
+                session=session_id,
+                project=project_name,
+                reason="render_error",
+                error=str(exc),
+            )
             raise HTTPException(status_code=500, detail=f"Impossible de créer le diaporama: {exc}") from exc
         metadata = {
             "status": "generated",

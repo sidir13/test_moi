@@ -76,6 +76,7 @@ def generate_voice_instructions(
     config = _load_config()
     entry = config.setdefault(project, {})
     entry["voice_instructions"] = voice_instructions
+    entry["voice_instructions_source"] = "llm"
     _save_config(config)
 
     return {
