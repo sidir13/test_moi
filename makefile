@@ -5,7 +5,7 @@ GITHUB_PROFILE ?= julienRactM
 GITHUB_HOST ?= laplateformeio
 ENV_FILE ?= .env
 APP_DIR ?= app
-PLATFORM ?= linux
+PLATFORM ?= mac
 QWEN_MODEL_DIR ?= models/qwen3-tts
 QWEN_MODEL_ID ?= Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
 

@@ -28,6 +28,17 @@ class SessionContext(BaseModel):
         return json.loads(self.model_dump_json())
 
 
+def _scenarios_equal(a: Optional[dict], b: Optional[dict]) -> bool:
+    if a is b:
+        return True
+    if a is None or b is None:
+        return False
+    try:
+        return json.dumps(a, sort_keys=True, ensure_ascii=False) == json.dumps(b, sort_keys=True, ensure_ascii=False)
+    except TypeError:
+        return a == b
+
+
 class SessionStore:
     def __init__(self, base_path: Path) -> None:
         self.base_path = Path(base_path)
@@ -84,7 +95,14 @@ class SessionStore:
         return data.get("scenarios", [])
 
     def set_selected_scenario(self, session_id: str, scenario: dict) -> None:
-        self.update_session(session_id, {"selected_scenario": scenario, "scenario_audio": None})
+        data = self.load_session(session_id)
+        if not data:
+            raise FileNotFoundError(f"Session {session_id} not found")
+        previous = data.get("selected_scenario")
+        updates: Dict[str, object] = {"selected_scenario": scenario}
+        if not _scenarios_equal(previous, scenario):
+            updates["scenario_audio"] = None
+        self.update_session(session_id, updates)
 
     def init_scenario_progress(self, session_id: str, steps: List[Dict[str, str]]) -> None:
         templated = []

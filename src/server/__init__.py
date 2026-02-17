@@ -4,4 +4,8 @@ __all__ = [
     "create_app",
 ]
 
-from .app import create_app  # noqa: E402
+
+def create_app(*args, **kwargs):
+    from .app import create_app as _create_app  # pylint: disable=import-outside-toplevel
+
+    return _create_app(*args, **kwargs)

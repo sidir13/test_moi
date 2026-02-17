@@ -117,24 +117,30 @@ export function ProjectSelectionView() {
                         <button
                           type="button"
                           className="play-btn"
+                          aria-label={
+                            previewProject === project.name
+                              ? "Mettre en pause l'audio final"
+                              : "Écouter l'audio final"
+                          }
                           onClick={(evt) => {
                             evt.stopPropagation();
                             togglePreview(project.name);
                           }}
                         >
-                          {previewProject === project.name ? "Pause" : "Écouter"}
+                          <span aria-hidden="true">{previewProject === project.name ? "⏸️" : "🔊"}</span>
                         </button>
                       )}
                       {hasVideo && (
                         <button
                           type="button"
                           className="play-btn"
+                          aria-label="Lire le diaporama vidéo"
                           onClick={(evt) => {
                             evt.stopPropagation();
                             setVideoProject(project.name);
                           }}
                         >
-                          Voir la vidéo
+                          <span aria-hidden="true">🎬</span>
                         </button>
                       )}
                     </div>
