@@ -7,5 +7,15 @@
   },
   "chantiers_navals": {
     "voice_instructions": "Professional documentary narrator, mature male voice around 55 years old, authoritative yet warm tone, clear articulation suitable for historical content about naval shipyards, measured pace with appropriate pauses for dramatic effect, French accent when speaking French"
+  },
+  "Letsssskate": {
+    "created_at": "2026-02-17T11:54:27.443170",
+    "allowed_websites": [
+      "wikipedia.org"
+    ],
+    "voice_instructions": "Voix de femme 40 ans, pédagogue et posée Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: Histoire de son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde Scenario excerpt for context: Mémoires de chantier : l'apprentissage d'un métier, l'évolution d'une vie\n\nLes premiers pas dans le métier\nJe me souviens de mon premier jour sur les chantiers. C'était au bord de la Loire, dans les années où Nantes bourdonnait encore de cette activité formidable. J'avais à peine vingt ans.",
+    "voice_instructions_source": "project_notes",
+    "project_notes": "Histoire de son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde\nVoix de femme 40 ans, pédagogue et posée",
+    "scenario_target": 1
   }
 }

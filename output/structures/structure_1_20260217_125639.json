@@ -1,0 +1,53 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Mémoires de chantier : l'apprentissage d'un métier, l'évolution d'une vie",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "temoignage_croise",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Les premiers pas dans le métier",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "témoignage première personne - voix de femme posée évoquant ses débuts",
+        "atmosphère sonore des chantiers navals (archive ElevenLabs_Spuds_Oxley.mp3 en fond)",
+        "évocation sensorielle de l'apprentissage : les gestes répétés, les conseils des anciens",
+        "transmission du savoir-faire par l'observation et la pratique",
+        "sentiment mêlé de fierté naissante et d'appréhension face à l'ampleur de la tâche"
+      ],
+      "mood": "nostalgique_pedagogique"
+    },
+    {
+      "partie": 2,
+      "titre": "Le métier qui se transforme",
+      "duree_cible": 65.0,
+      "fonction_narrative": "developpement_climax_resolution",
+      "position_arc_emotionnel": "tension_climax_apaisement",
+      "elements_necessaires": [
+        "témoignage croisé - même voix mais regard rétrospectif sur les décennies passées",
+        "évolution des techniques et des outils au fil du temps",
+        "transformation du rapport au métier : de l'apprentie à la transmetteuse",
+        "réflexion sur ce qui demeure malgré les changements",
+        "ouverture vers l'avenir et la transmission aux nouvelles générations"
+      ],
+      "mood": "reflexif_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 3.0,
+      "description": "Transition fluide par une phrase-pont du type 'Les années ont passé...' ou 'Avec le temps, j'ai compris...' - la voix reste la même, seul le regard change de temporalité, passant du souvenir d'apprentissage à la vision d'ensemble d'une carrière"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 : Ce récit doit être conçu comme un MONOLOGUE CONTINU d'une femme d'environ 40 ans, pédagogue et posée. L'angle 'témoignage croisé' se traduit ici par le croisement de deux temporalités dans une même voix : la jeune apprentie d'hier et la professionnelle accomplie d'aujourd'hui. Le passage de la partie 1 à la partie 2 ne doit PAS être une rupture mais un glissement naturel dans le récit, comme si la narratrice laissait ses souvenirs d'apprentissage la mener naturellement vers une réflexion sur l'évolution de son métier. L'archive audio des chantiers navals peut servir de toile de fond sonore discrète pour ancrer le récit dans un contexte industriel concret. Privilégier un ton chaleureux, accessible, évitant le jargon technique excessif. Le rythme doit rester posé, avec des pauses naturelles pour laisser respirer le récit et permettre à l'auditeur d'absorber les informations."
+}
