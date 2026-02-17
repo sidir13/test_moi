@@ -161,13 +161,31 @@ button.step:disabled {
 }
 
 .play-btn {
-  border: 1px solid #2563eb;
+  border: 1px solid #1d4ed8;
   border-radius: 999px;
-  padding: 0.25rem 0.9rem;
-  background: #2563eb;
-  color: #fff;
-  font-weight: 600;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: #fff;
+  color: #1d4ed8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.play-btn svg {
+  pointer-events: none;
+}
+
+.play-btn[data-playing="true"] {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.play-btn:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.4);
+  outline-offset: 2px;
 }
 
 .project-audio-preview {

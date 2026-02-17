@@ -8,6 +8,7 @@ import logging
 import math
 import os
 import re
+import shutil
 import tempfile
 from datetime import datetime
 from pathlib import Path
@@ -544,18 +545,48 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             path.mkdir(parents=True, exist_ok=True)
         return path
 
+    def project_outputs_directory(project_name: str, ensure: bool = False) -> Path:
+        path = settings.projects_dir / project_name / "outputs"
+        if ensure:
+            path.mkdir(parents=True, exist_ok=True)
+        return path
+
     def persist_final_assets(project_name: str, session_data: Dict[str, Any]) -> None:
         entry: Dict[str, Any] = {
             "finalized_at": datetime.utcnow().isoformat(),
         }
         if session_data.get("selected_scenario"):
             entry["final_scenario"] = session_data["selected_scenario"]
+        outputs_dir = project_outputs_directory(project_name, ensure=True)
+        slug = slugify(project_name)
         audio_meta = session_data.get("scenario_audio")
-        if audio_meta:
-            entry["final_audio"] = audio_meta
+        if audio_meta and audio_meta.get("path"):
+            audio_source = Path(audio_meta["path"])
+            if not audio_source.is_absolute():
+                audio_source = (Path.cwd() / audio_source).resolve()
+            if audio_source.exists():
+                audio_ext = audio_source.suffix or ".wav"
+                final_audio_path = outputs_dir / f"audio_{slug}{audio_ext}"
+                if audio_source.resolve() != final_audio_path.resolve():
+                    final_audio_path.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(audio_source, final_audio_path)
+                audio_payload = dict(audio_meta)
+                audio_payload["path"] = str(final_audio_path)
+                entry["final_audio"] = audio_payload
         slideshow_meta = session_data.get("scenario_slideshow")
-        if slideshow_meta:
-            entry["final_slideshow"] = slideshow_meta
+        if slideshow_meta and slideshow_meta.get("path"):
+            video_source = Path(slideshow_meta["path"])
+            if not video_source.is_absolute():
+                video_source = (Path.cwd() / video_source).resolve()
+            if video_source.exists():
+                video_ext = video_source.suffix or ".mp4"
+                final_video_path = outputs_dir / f"video_{slug}{video_ext}"
+                if video_source.resolve() != final_video_path.resolve():
+                    final_video_path.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(video_source, final_video_path)
+                video_payload = dict(slideshow_meta)
+                video_payload["path"] = str(final_video_path)
+                entry["final_slideshow"] = video_payload
         upsert_project_config_entry(project_name, entry)
 
     @app.get("/health", tags=["system"])

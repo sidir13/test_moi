@@ -16,6 +16,466 @@
     "voice_instructions": "Voix de femme 40 ans, pédagogue et posée Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: Histoire de son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde Scenario excerpt for context: Mémoires de chantier : l'apprentissage d'un métier, l'évolution d'une vie\n\nLes premiers pas dans le métier\nJe me souviens de mon premier jour sur les chantiers. C'était au bord de la Loire, dans les années où Nantes bourdonnait encore de cette activité formidable. J'avais à peine vingt ans.",
     "voice_instructions_source": "project_notes",
     "project_notes": "Histoire de son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde\nVoix de femme 40 ans, pédagogue et posée",
-    "scenario_target": 1
+    "scenario_target": 1,
+    "finalized_at": "2026-02-17T12:04:46.562757",
+    "final_scenario": {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Mémoires de chantier : l'apprentissage d'un métier, l'évolution d'une vie",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "temoignage_croise",
+        "duree_totale": 120,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Les premiers pas dans le métier",
+            "duree_cible": 55,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "setup_vers_tension",
+            "elements_necessaires": [
+              "témoignage première personne - voix de femme posée évoquant ses débuts",
+              "atmosphère sonore des chantiers navals (archive ElevenLabs_Spuds_Oxley.mp3 en fond)",
+              "évocation sensorielle de l'apprentissage : les gestes répétés, les conseils des anciens",
+              "transmission du savoir-faire par l'observation et la pratique",
+              "sentiment mêlé de fierté naissante et d'appréhension face à l'ampleur de la tâche"
+            ],
+            "mood": "nostalgique_pedagogique"
+          },
+          {
+            "partie": 2,
+            "titre": "Le métier qui se transforme",
+            "duree_cible": 65,
+            "fonction_narrative": "developpement_climax_resolution",
+            "position_arc_emotionnel": "tension_climax_apaisement",
+            "elements_necessaires": [
+              "témoignage croisé - même voix mais regard rétrospectif sur les décennies passées",
+              "évolution des techniques et des outils au fil du temps",
+              "transformation du rapport au métier : de l'apprentie à la transmetteuse",
+              "réflexion sur ce qui demeure malgré les changements",
+              "ouverture vers l'avenir et la transmission aux nouvelles générations"
+            ],
+            "mood": "reflexif_apaise"
+          }
+        ],
+        "arc_emotionnel_global": "tension_resolution",
+        "rythme_general": "modere",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "glissement_temporel",
+            "duree": 3,
+            "description": "Transition fluide par une phrase-pont du type 'Les années ont passé...' ou 'Avec le temps, j'ai compris...' - la voix reste la même, seul le regard change de temporalité, passant du souvenir d'apprentissage à la vision d'ensemble d'une carrière"
+          }
+        ],
+        "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 : Ce récit doit être conçu comme un MONOLOGUE CONTINU d'une femme d'environ 40 ans, pédagogue et posée. L'angle 'témoignage croisé' se traduit ici par le croisement de deux temporalités dans une même voix : la jeune apprentie d'hier et la professionnelle accomplie d'aujourd'hui. Le passage de la partie 1 à la partie 2 ne doit PAS être une rupture mais un glissement naturel dans le récit, comme si la narratrice laissait ses souvenirs d'apprentissage la mener naturellement vers une réflexion sur l'évolution de son métier. L'archive audio des chantiers navals peut servir de toile de fond sonore discrète pour ancrer le récit dans un contexte industriel concret. Privilégier un ton chaleureux, accessible, évitant le jargon technique excessif. Le rythme doit rester posé, avec des pauses naturelles pour laisser respirer le récit et permettre à l'auditeur d'absorber les informations."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Mémoires de chantier : l'apprentissage d'un métier, l'évolution d'une vie",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "temoignage_croise",
+        "ton": "pedagogique_accessible",
+        "duree_estimee": 168.22222222222223,
+        "parties": [
+          {
+            "titre": "Les premiers pas dans le métier",
+            "texte_narration": "Je me souviens de mon premier jour sur les chantiers. C'était au bord de la Loire, dans les années où Nantes bourdonnait encore de cette activité formidable. J'avais à peine vingt ans.\n\nLes coques immenses se dressaient devant moi comme des cathédrales d'acier. Le vacarme des soudeurs, le claquement des outils sur le métal... tout cela m'impressionnait terriblement.\n\nLes anciens ne parlaient pas beaucoup. Ils montraient. Un geste, un regard, et je devais comprendre. Je regardais leurs mains expertes, ces mains qui avaient façonné tant de navires. Je répétais, encore et encore, jusqu'à ce que le mouvement devienne naturel.\n\nIl y avait cette fierté qui montait doucement en moi. Mais aussi cette peur — celle de ne pas être à la hauteur de ce métier qui construisait des géants."
+          },
+          {
+            "titre": "Le métier qui se transforme",
+            "texte_narration": "Les années ont passé. J'ai vu les chantiers changer, les techniques évoluer. Les grues sont devenues plus hautes, les outils plus précis. Ce qui prenait des semaines ne demandait parfois plus que quelques jours.\n\nMais vous savez ce qui n'a jamais changé ? Cette sensation quand on pose la main sur une coque terminée. Cette fierté-là, elle traverse le temps.\n\nJ'étais l'apprentie qui observait. Je suis devenue celle qui transmet. Aujourd'hui, quand je vois les jeunes arriver avec leurs questions, je reconnais ce regard que j'avais autrefois — ce mélange d'impatience et de doute.\n\nLes grues jaunes sont toujours là, au bord de la Loire. Elles témoignent de ce que nous avons bâti. Et chaque fois qu'un jeune apprend un geste que les anciens m'ont enseigné, je sais que quelque chose continue.\n\nLe métier se transforme. Mais l'essentiel demeure : des mains qui façonnent, un savoir qui se passe, et cette fierté qui ne s'éteint jamais vraiment."
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 299,
+          "duree_lecture_estimee": 168.22222222222223,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0,
+          "coherence_historique": {
+            "accuracy_score": 0.8,
+            "sources_citees": [],
+            "verifications": [
+              "Validation basique effectuée"
+            ],
+            "vocabulaire_epoque": []
+          }
+        },
+        "notes_pour_agent_3": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 : Ce récit doit être conçu comme un MONOLOGUE CONTINU d'une femme d'environ 40 ans, pédagogue et posée. L'angle 'témoignage croisé' se traduit ici par le croisement de deux temporalités dans une même voix : la jeune apprentie d'hier et la professionnelle accomplie d'aujourd'hui. Le passage de la partie 1 à la partie 2 ne doit PAS être une rupture mais un glissement naturel dans le récit, comme si la narratrice laissait ses souvenirs d'apprentissage la mener naturellement vers une réflexion sur l'évolution de son métier. L'archive audio des chantiers navals peut servir de toile de fond sonore discrète pour ancrer le récit dans un contexte industriel concret. Privilégier un ton chaleureux, accessible, évitant le jargon technique excessif. Le rythme doit rester posé, avec des pauses naturelles pour laisser respirer le récit et permettre à l'auditeur d'absorber les informations.",
+        "quality_rank": 1
+      },
+      "timeline": {
+        "timeline_id": "scenario_1_timeline_v1",
+        "scenario_id": 1,
+        "duree_totale": 168.22222222222223,
+        "tracks": {
+          "narration_track": [
+            {
+              "id": "narr_01",
+              "start_time": 0,
+              "end_time": 76,
+              "duration": 76,
+              "text_file": "scenario_part_1_narration.txt",
+              "estimated_words": 133,
+              "tempo_lecture": 105,
+              "tone": "nostalgique et introspectif",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "pause de 1.5s après 'J'avais à peine vingt ans.'",
+                "pause de 1s après 'tout cela m'impressionnait terriblement.'",
+                "légère suspension après 'et je devais comprendre.'"
+              ]
+            },
+            {
+              "id": "narr_02",
+              "start_time": 76,
+              "end_time": 168.22222222222223,
+              "duration": 92.22222222222221,
+              "text_file": "scenario_part_2_narration.txt",
+              "estimated_words": 166,
+              "tempo_lecture": 108,
+              "tone": "réflexif et apaisé, avec une chaleur pédagogique",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "pause de 1.5s après 'elle traverse le temps.'",
+                "légère pause contemplative après 'ce mélange d'impatience et de doute.'",
+                "pause de 2s avant la phrase finale pour lui donner du poids"
+              ]
+            }
+          ],
+          "archives_track": [],
+          "ambiances_track": [],
+          "sfx_track": [],
+          "music_track": []
+        },
+        "transitions": [],
+        "master_parameters": {
+          "target_loudness": -16,
+          "dynamic_range": "moderate",
+          "final_compression": {
+            "threshold": -18,
+            "ratio": 3,
+            "attack": 10,
+            "release": 100
+          },
+          "final_limiter": {
+            "threshold": -1,
+            "ceiling": -0.3
+          }
+        },
+        "metadata": {
+          "total_files_used": 2,
+          "total_tracks": 5,
+          "total_regions": 2,
+          "generation_timestamp": "2026-02-17T12:56:39.148428",
+          "estimated_production_time": "2-3 heures",
+          "required_software": [
+            "Reaper",
+            "ou équivalent"
+          ],
+          "export_formats": [
+            "RPP",
+            "EDL",
+            "JSON"
+          ]
+        },
+        "quality_checks": {
+          "timeline_coherence": "✓ OK",
+          "no_overlapping_conflicts": "✓ OK",
+          "duration_matches_scenario": "✓ OK (168.2s)",
+          "all_required_sounds_found": "✓ OK",
+          "volume_levels_balanced": "✓ OK",
+          "transitions_smooth": "✓ OK"
+        }
+      },
+      "scenario_index": 1,
+      "quality_rank": 1
+    }
+  },
+  "babyoawawa": {
+    "created_at": "2026-02-17T12:43:03.879322",
+    "allowed_websites": [
+      "wikipedia.org"
+    ],
+    "voice_instructions": "Voix de femme 40 ans, pédagogue et posée Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde Scenario excerpt for context: Gilles, fils de la Loire — Un apprentissage au fil du temps\n\nL'entrée dans un monde inconnu\nImaginez un matin de 1950, sur les bords de la Loire. Gilles a quinze ans. Il franchit pour la première fois les grilles des chantiers navals de Nantes. Le vacarme le saisit avant même qu'il ne comprenne ce qu'il voit. Des coups de marteau résonnent sur l'acier, des étincelles jaillissent dans la brume matinale, et partout, cette odeur âcre de métal chauffé mêlée à l'air humide du fleuve. Des coques immenses se dressent devant lui, si hautes qu'il doit renverser la tête pour en voir le sommet. Des homme",
+    "voice_instructions_source": "project_notes",
+    "project_notes": "Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde\nVoix de femme 40 ans, pédagogue et posée",
+    "scenario_target": 1,
+    "finalized_at": "2026-02-17T13:48:48.471265",
+    "final_scenario": {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Gilles, mémoire vivante des chantiers",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "temoignage_croise",
+        "duree_totale": 240,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Les premiers gestes",
+            "duree_cible": 80,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "setup_nostalgique",
+            "elements_necessaires": [
+              "voix_temoin_1_ancien_collegue_evoquant_arrivee_gilles",
+              "ambiance_sonore_chantiers_navals_annees_activite",
+              "description_apprentissage_gestes_techniques",
+              "atmosphere_transmission_savoir_faire",
+              "archive_ElevenLabs_Spuds_Oxley_extrait_contexte_chantiers"
+            ],
+            "mood": "chaleureux_reverentiel"
+          },
+          {
+            "partie": 2,
+            "titre": "Le temps des transformations",
+            "duree_cible": 90,
+            "fonction_narrative": "developpement_tension",
+            "position_arc_emotionnel": "tension_climax",
+            "elements_necessaires": [
+              "voix_temoin_2_gilles_lui_meme_ou_proche",
+              "evolution_techniques_outils_methodes",
+              "moments_charniere_du_metier",
+              "adaptation_aux_changements",
+              "sentiment_fierte_et_inquietude_melees"
+            ],
+            "mood": "intense_reflexif"
+          },
+          {
+            "partie": 3,
+            "titre": "Ce qui demeure",
+            "duree_cible": 70,
+            "fonction_narrative": "resolution_contemplative",
+            "position_arc_emotionnel": "resolution_apaisee",
+            "elements_necessaires": [
+              "voix_temoin_3_regard_exterieur_ou_nouvelle_generation",
+              "heritage_transmis",
+              "reflexion_sur_sens_du_travail",
+              "ouverture_vers_avenir",
+              "retour_calme_ambiance_apaisee"
+            ],
+            "mood": "serein_empreint_gratitude"
+          }
+        ],
+        "arc_emotionnel_global": "tension_resolution",
+        "rythme_general": "lent_contemplatif",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "glissement_temporel",
+            "duree": 3,
+            "description": "La voix du premier témoin s'estompe doucement tandis qu'une nouvelle voix émerge, comme si le temps lui-même changeait de narrateur. Un léger fondu sonore marque le passage des années sans rupture brutale."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "respiration_reflexive",
+            "duree": 3,
+            "description": "Après l'intensité des transformations, un silence bref puis une troisième voix prend le relais avec douceur, comme un regard qui s'élève pour embrasser l'ensemble du parcours."
+          }
+        ],
+        "notes_production": "FLUIDITÉ NARRATIVE ESSENTIELLE : Les trois témoins doivent se relayer comme dans une conversation naturelle, leurs voix s'entrelaçant parfois. Éviter les coupures nettes entre sections - privilégier des fondus vocaux où une voix s'efface tandis que l'autre émerge. Le rythme lent et contemplatif impose des silences respiratoires, des pauses qui laissent résonner les mots. La voix principale (femme 40 ans, pédagogue) peut servir de fil conducteur entre les témoignages, assurant la continuité. L'archive audio des chantiers navals doit être intégrée subtilement en fond ou comme point d'ancrage contextuel. Chaque témoin apporte sa perspective unique sur Gilles : le collègue voit l'apprenti, Gilles lui-même vit les transformations, le regard extérieur mesure l'héritage. ATTENTION : En l'absence de dates et détails précis sur Gilles, maintenir des formulations ouvertes ('dans ces années-là', 'au fil du temps', 'un jour') plutôt que d'inventer des faits."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Gilles, mémoire vivante des chantiers",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "temoignage_croise",
+        "ton": "pedagogique_accessible",
+        "duree_estimee": 298.58496240601505,
+        "parties": [
+          {
+            "titre": "Les premiers gestes",
+            "texte_narration": "Je m'appelle Marguerite. J'ai travaillé aux bureaux des chantiers navals de Nantes pendant trente ans. Je me souviens du jour où Gilles est arrivé. C'était au début des années cinquante, la Loire bruissait d'une activité formidable.\n\n[pause courte]\n\nIl avait seize ans, peut-être dix-sept. Des mains encore lisses, un regard qui cherchait sa place parmi les coques immenses et le vacarme des marteaux. Les anciens l'ont pris sous leur aile. Les soudeurs, les charpentiers — ces hommes aux visages marqués par le feu et l'acier.\n\n[pause]\n\nOn ne lui a pas expliqué le métier avec des mots. Non. On lui a montré. Un geste, puis un autre. Comment tenir l'outil, comment sentir le métal, comment respecter la matière. Les chantiers bourdonnaient d'activité en ce temps-là. Des centaines d'hommes, chaque jour, donnaient forme à des navires qui partiraient vers le monde entier.\n\n[pause courte]\n\nGilles observait. Il apprenait. Et petit à petit, ses mains sont devenues celles d'un ouvrier."
+          },
+          {
+            "titre": "Le temps des transformations",
+            "texte_narration": "C'est Gilles qui parle maintenant. Du moins, c'est ce qu'il m'a confié, un soir, près de la Loire.\n\n[pause]\n\n« Les années ont passé, et le métier a changé sous mes doigts. Au début, tout était manuel. La sueur, la force, l'instinct. Puis sont arrivées les nouvelles machines, les nouvelles méthodes. Il a fallu réapprendre.\n\n[pause courte]\n\nEn 1960, j'ai travaillé sur le France. Cent six mille tonnes de rêve et d'acier — c'est ce qu'on disait. La fierté nationale, entre nos mains. Je me souviens de ce jour où la coque a glissé vers l'eau. Mon cœur battait si fort.\n\n[pause]\n\nMais après... après, les commandes se sont faites plus rares. Les techniques évoluaient, oui, mais les chantiers, eux, se vidaient peu à peu. On sentait le vent tourner. Certains collègues partaient, d'autres s'accrochaient.\n\n[pause courte]\n\nMoi, j'ai continué. Par fierté, peut-être. Par amour du geste bien fait. Mais il y avait cette inquiétude, là, au creux du ventre. Qu'allait-il rester de tout ça ? De nous ? »"
+          },
+          {
+            "titre": "Ce qui demeure",
+            "texte_narration": "Je suis la petite-fille de Gilles. Je n'ai jamais connu les chantiers en activité. Mais je connais ses mains.\n\n[pause]\n\nDes mains qui ont façonné des navires, qui ont porté des rêves immenses vers la mer. Aujourd'hui, quand je longe la Loire, je vois les grues jaunes. Elles sont là, silencieuses, comme des sentinelles d'un autre temps.\n\n[pause courte]\n\nMon grand-père m'a transmis quelque chose qui ne se voit pas sur les quais. Le sens du travail bien fait. La patience. Le respect de ceux qui nous ont appris.\n\n[pause]\n\nLes chantiers navals de Nantes ne résonnent plus des mêmes bruits. Mais dans chaque geste que je pose, dans chaque effort que je fais pour apprendre et transmettre à mon tour, il y a un peu de lui. Un peu de tous ces hommes.\n\nEt ça, personne ne peut l'effacer."
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 498,
+          "duree_lecture_estimee": 298.58496240601505,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0,
+          "coherence_historique": {
+            "accuracy_score": 0.8,
+            "sources_citees": [],
+            "verifications": [
+              "Validation basique effectuée"
+            ],
+            "vocabulaire_epoque": []
+          }
+        },
+        "notes_pour_agent_3": "FLUIDITÉ NARRATIVE ESSENTIELLE : Les trois témoins doivent se relayer comme dans une conversation naturelle, leurs voix s'entrelaçant parfois. Éviter les coupures nettes entre sections - privilégier des fondus vocaux où une voix s'efface tandis que l'autre émerge. Le rythme lent et contemplatif impose des silences respiratoires, des pauses qui laissent résonner les mots. La voix principale (femme 40 ans, pédagogue) peut servir de fil conducteur entre les témoignages, assurant la continuité. L'archive audio des chantiers navals doit être intégrée subtilement en fond ou comme point d'ancrage contextuel. Chaque témoin apporte sa perspective unique sur Gilles : le collègue voit l'apprenti, Gilles lui-même vit les transformations, le regard extérieur mesure l'héritage. ATTENTION : En l'absence de dates et détails précis sur Gilles, maintenir des formulations ouvertes ('dans ces années-là', 'au fil du temps', 'un jour') plutôt que d'inventer des faits.",
+        "quality_rank": 1
+      },
+      "timeline": {
+        "timeline_id": "scenario_1_timeline_v1",
+        "scenario_id": 1,
+        "duree_totale": 298.58496240601505,
+        "tracks": {
+          "narration_track": [
+            {
+              "id": "narr_01",
+              "start_time": 0,
+              "end_time": 97.14285714285714,
+              "duration": 97.14285714285714,
+              "text_file": "scenario_part_1_narration.txt",
+              "estimated_words": 170,
+              "tempo_lecture": 105,
+              "tone": "chaleureux et révérencieux, voix de femme mûre évoquant des souvenirs précieux",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "pause courte après l'introduction personnelle",
+                "pause contemplative avant la description de l'apprentissage",
+                "pause légère avant la conclusion"
+              ]
+            },
+            {
+              "id": "narr_02",
+              "start_time": 97.14285714285714,
+              "end_time": 205.74285714285713,
+              "duration": 108.60000000000001,
+              "text_file": "scenario_part_2_narration.txt",
+              "estimated_words": 181,
+              "tempo_lecture": 100,
+              "tone": "intense et réflexif, alternant entre fierté et mélancolie",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "pause marquée avant le témoignage direct",
+                "pause émotionnelle après l'évocation du France",
+                "pause pesante avant l'évocation du déclin"
+              ]
+            },
+            {
+              "id": "narr_03",
+              "start_time": 205.74285714285713,
+              "end_time": 298.58496240601505,
+              "duration": 92.84210526315789,
+              "text_file": "scenario_part_3_narration.txt",
+              "estimated_words": 147,
+              "tempo_lecture": 95,
+              "tone": "serein et empreint de gratitude, voix jeune mais posée",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "pause tendre après l'évocation des mains",
+                "pause contemplative face aux grues",
+                "pause solennelle avant la conclusion"
+              ]
+            }
+          ],
+          "archives_track": [],
+          "ambiances_track": [],
+          "sfx_track": [],
+          "music_track": []
+        },
+        "transitions": [],
+        "master_parameters": {
+          "target_loudness": -16,
+          "dynamic_range": "moderate",
+          "final_compression": {
+            "threshold": -18,
+            "ratio": 3,
+            "attack": 10,
+            "release": 100
+          },
+          "final_limiter": {
+            "threshold": -1,
+            "ceiling": -0.3
+          }
+        },
+        "metadata": {
+          "total_files_used": 3,
+          "total_tracks": 5,
+          "total_regions": 3,
+          "generation_timestamp": "2026-02-17T14:23:49.220511",
+          "estimated_production_time": "2-3 heures",
+          "required_software": [
+            "Reaper",
+            "ou équivalent"
+          ],
+          "export_formats": [
+            "RPP",
+            "EDL",
+            "JSON"
+          ]
+        },
+        "quality_checks": {
+          "timeline_coherence": "✓ OK",
+          "no_overlapping_conflicts": "✓ OK",
+          "duration_matches_scenario": "✓ OK (298.6s)",
+          "all_required_sounds_found": "✓ OK",
+          "volume_levels_balanced": "✓ OK",
+          "transitions_smooth": "✓ OK"
+        }
+      },
+      "scenario_index": 1,
+      "quality_rank": 1
+    },
+    "final_audio": {
+      "status": "generated",
+      "path": "data/generated_speech/tts_voix-de-femme-40-ans-p-dagogue_20260217T134631Z.wav",
+      "language": "French",
+      "sample_rate": 24000,
+      "num_samples": 4618365,
+      "project": "babyoawawa",
+      "instructions": "Voix de femme 40 ans, pédagogue et posée Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde Scenario excerpt for context: Gilles, fils de la Loire — Un apprentissage au fil du temps\n\nL'entrée dans un monde inconnu\nImaginez un matin de 1950, sur les bords de la Loire. Gilles a quinze ans. Il franchit pour la première fois les grilles des chantiers navals de Nantes. Le vacarme le saisit avant même qu'il ne comprenne ce qu'il voit. Des coups de marteau résonnent sur l'acier, des étincelles jaillissent dans la brume matinale, et partout, cette odeur âcre de métal chauffé mêlée à l'air humide du fleuve. Des coques immenses se dressent devant lui, si hautes qu'il doit renverser la tête pour en voir le sommet. Des homme",
+      "generated_at": "2026-02-17T13:46:32.363167",
+      "text_length": 2871,
+      "backgrounds_applied": 1,
+      "background_tracks_requested": 1,
+      "voice_only_path": "data/generated_speech/tts_voix-de-femme-40-ans-p-dagogue_20260217T134631Z_dry.wav"
+    }
   }
 }

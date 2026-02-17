@@ -19,6 +19,30 @@ const formatDate = (value?: string) => {
   return date.toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
 };
 
+const SpeakerIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path
+      fill="currentColor"
+      d="M5 9v6h4l5 5V4l-5 5H5zm11.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"
+    />
+  </svg>
+);
+
+const PauseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z" />
+  </svg>
+);
+
+const VideoIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path
+      fill="currentColor"
+      d="M17 10.5V6c0-1.1-.9-2-2-2H5C3.9 4 3 4.9 3 6v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-4.5l4 4v-11l-4 4z"
+    />
+  </svg>
+);
+
 export function ProjectSelectionView() {
   const { data, refetch, isLoading } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
   const { setProjectName, setSessionId, setCurrentStep, setScenarioTarget } = useSessionStore();
@@ -112,7 +136,7 @@ export function ProjectSelectionView() {
                       <small>({project.scenario_target} scénarios)</small>
                       {finalizedLabel && <span className="badge">Finalisé le {finalizedLabel}</span>}
                     </div>
-                    <div className="project-actions" style={{ display: "flex", gap: "0.5rem" }}>
+                    <div className="project-actions" style={{ display: "flex", gap: "0.25rem" }}>
                       {hasAudio && (
                         <button
                           type="button"
@@ -126,8 +150,9 @@ export function ProjectSelectionView() {
                             evt.stopPropagation();
                             togglePreview(project.name);
                           }}
+                          data-playing={previewProject === project.name}
                         >
-                          <span aria-hidden="true">{previewProject === project.name ? "⏸️" : "🔊"}</span>
+                          {previewProject === project.name ? <PauseIcon /> : <SpeakerIcon />}
                         </button>
                       )}
                       {hasVideo && (
@@ -140,7 +165,7 @@ export function ProjectSelectionView() {
                             setVideoProject(project.name);
                           }}
                         >
-                          <span aria-hidden="true">🎬</span>
+                          <VideoIcon />
                         </button>
                       )}
                     </div>

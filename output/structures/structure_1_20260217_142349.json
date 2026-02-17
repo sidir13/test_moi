@@ -1,0 +1,77 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, mémoire vivante des chantiers",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "temoignage_croise",
+  "duree_totale": 240,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Les premiers gestes",
+      "duree_cible": 80.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_nostalgique",
+      "elements_necessaires": [
+        "voix_temoin_1_ancien_collegue_evoquant_arrivee_gilles",
+        "ambiance_sonore_chantiers_navals_annees_activite",
+        "description_apprentissage_gestes_techniques",
+        "atmosphere_transmission_savoir_faire",
+        "archive_ElevenLabs_Spuds_Oxley_extrait_contexte_chantiers"
+      ],
+      "mood": "chaleureux_reverentiel"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des transformations",
+      "duree_cible": 90.0,
+      "fonction_narrative": "developpement_tension",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "voix_temoin_2_gilles_lui_meme_ou_proche",
+        "evolution_techniques_outils_methodes",
+        "moments_charniere_du_metier",
+        "adaptation_aux_changements",
+        "sentiment_fierte_et_inquietude_melees"
+      ],
+      "mood": "intense_reflexif"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui demeure",
+      "duree_cible": 70.0,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution_apaisee",
+      "elements_necessaires": [
+        "voix_temoin_3_regard_exterieur_ou_nouvelle_generation",
+        "heritage_transmis",
+        "reflexion_sur_sens_du_travail",
+        "ouverture_vers_avenir",
+        "retour_calme_ambiance_apaisee"
+      ],
+      "mood": "serein_empreint_gratitude"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 3.0,
+      "description": "La voix du premier témoin s'estompe doucement tandis qu'une nouvelle voix émerge, comme si le temps lui-même changeait de narrateur. Un léger fondu sonore marque le passage des années sans rupture brutale."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "respiration_reflexive",
+      "duree": 3.0,
+      "description": "Après l'intensité des transformations, un silence bref puis une troisième voix prend le relais avec douceur, comme un regard qui s'élève pour embrasser l'ensemble du parcours."
+    }
+  ],
+  "notes_production": "FLUIDITÉ NARRATIVE ESSENTIELLE : Les trois témoins doivent se relayer comme dans une conversation naturelle, leurs voix s'entrelaçant parfois. Éviter les coupures nettes entre sections - privilégier des fondus vocaux où une voix s'efface tandis que l'autre émerge. Le rythme lent et contemplatif impose des silences respiratoires, des pauses qui laissent résonner les mots. La voix principale (femme 40 ans, pédagogue) peut servir de fil conducteur entre les témoignages, assurant la continuité. L'archive audio des chantiers navals doit être intégrée subtilement en fond ou comme point d'ancrage contextuel. Chaque témoin apporte sa perspective unique sur Gilles : le collègue voit l'apprenti, Gilles lui-même vit les transformations, le regard extérieur mesure l'héritage. ATTENTION : En l'absence de dates et détails précis sur Gilles, maintenir des formulations ouvertes ('dans ces années-là', 'au fil du temps', 'un jour') plutôt que d'inventer des faits."
+}

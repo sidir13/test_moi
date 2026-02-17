@@ -317,8 +317,11 @@ export function ScenarioEditView() {
           )}
           {!audioSrc && !audioQuery.isFetching && <p>Aucun audio disponible pour l'instant.</p>}
           <button type="button" onClick={regenerateAudio}>
-            Sauvegarder & régénérer l'audio
+            Régénérer l'audio
           </button>
+          <p className="hint">
+            Le dernier audio est sauvegardé automatiquement. Régénérez uniquement si vous souhaitez une nouvelle version.
+          </p>
           {audioStatus && <p>{audioStatus}</p>}
         </section>
 
