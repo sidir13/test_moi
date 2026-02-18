@@ -119,14 +119,6 @@ button.step:disabled {
   margin: 0;
 }
 
-.project-list button {
-  border: 1px solid #cbd5f5;
-  border-radius: 999px;
-  padding: 0.4rem 1rem;
-  background: transparent;
-  cursor: pointer;
-}
-
 .project-list.stacked {
   flex-direction: column;
   gap: 0.75rem;
@@ -150,6 +142,21 @@ button.step:disabled {
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
 }
 
+.project-actions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.project-actions button,
+.project-actions a {
+  border: 1px solid #cbd5f5;
+  border-radius: 999px;
+  padding: 0.4rem 0.1rem;
+  background: transparent;
+  cursor: pointer;
+}
+
 .project-label {
   display: flex;
   flex-direction: column;
@@ -160,11 +167,33 @@ button.step:disabled {
   color: #64748b;
 }
 
+.project-label-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.project-entry.last-active {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.22);
+}
+
+.part-title-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 0.25rem;
+}
+
+.part-title-label input {
+  font-weight: 400;
+}
+
 .play-btn {
   border: 1px solid #1d4ed8;
   border-radius: 999px;
-  width: calc(2.6rem * 4);
-  height: calc(2.6rem * 4);
+  width: 2.8rem;
+  height: 2.8rem;
   background: #fff;
   color: #1d4ed8;
   display: inline-flex;
@@ -172,12 +201,13 @@ button.step:disabled {
   justify-content: center;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  overflow: visible;
 }
 
 .play-btn svg {
   pointer-events: none;
-  width: 65%;
-  height: 65%;
+  width: 2.6rem;
+  height: 2.6rem;
 }
 
 .play-btn[data-playing="true"] {
@@ -204,6 +234,11 @@ button.step:disabled {
   color: #065f46;
   font-size: 0.75rem;
   width: fit-content;
+}
+
+.badge.accent {
+  background: #fff7ed;
+  color: #c2410c;
 }
 
 .card.emphasis {

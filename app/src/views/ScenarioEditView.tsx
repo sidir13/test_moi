@@ -204,7 +204,6 @@ export function ScenarioEditView() {
       setVideoStatus("Générez l'audio avant de créer un diaporama.");
       return;
     }
-    await persistScenario();
     await ensureSlideshowIfNeeded();
   };
 
@@ -269,8 +268,8 @@ export function ScenarioEditView() {
             <>
               {partsDraft.map((part, idx) => (
                 <div className="card" key={idx}>
-                  <label>
-                    Titre de la partie {idx + 1}
+                  <label className="part-title-label">
+                    {part.titre?.trim() || `Partie ${idx + 1}`}
                     <input
                       value={part.titre}
                       onChange={(e) =>

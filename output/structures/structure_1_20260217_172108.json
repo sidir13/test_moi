@@ -1,0 +1,72 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Avant et après : fragments d'une transformation",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le monde d'avant",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_nostalgique",
+      "elements_necessaires": [
+        "ambiance sonore quotidienne",
+        "voix multiples évoquant la routine",
+        "détails sensoriels du quotidien",
+        "archive: elevenlabs_output.mp3 en fond ou transition"
+      ],
+      "mood": "intimiste_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le basculement",
+      "duree_cible": 25.0,
+      "fonction_narrative": "pivot_dramatique",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "rupture sonore marquée",
+        "voix entremêlées exprimant surprise ou bouleversement",
+        "silence dramatique possible"
+      ],
+      "mood": "intense_suspendu"
+    },
+    {
+      "partie": 3,
+      "titre": "Le monde d'après",
+      "duree_cible": 40.0,
+      "fonction_narrative": "resolution_chorale",
+      "position_arc_emotionnel": "apaisement_transforme",
+      "elements_necessaires": [
+        "voix multiples témoignant du changement",
+        "contraste avec l'ambiance initiale",
+        "ouverture émotionnelle vers l'avenir"
+      ],
+      "mood": "reflexif_empreint_espoir"
+    }
+  ],
+  "arc_emotionnel_global": "progression_crescendo",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "rupture_progressive",
+      "duree": 3.0,
+      "description": "La routine s'effrite doucement, les voix se chevauchent puis s'interrompent, laissant place à un silence chargé avant le basculement."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "emergence_lente",
+      "duree": 3.0,
+      "description": "Du silence ou du chaos émerge progressivement une nouvelle texture sonore, les voix reprennent une à une, transformées par l'événement."
+    }
+  ],
+  "notes_production": "FLUIDITÉ NARRATIVE ESSENTIELLE : Ce récit en trois mouvements doit couler comme un seul souffle. Les titres de parties sont des repères internes pour la production, ils ne doivent PAS être prononcés dans l'audio final. La perspective chorale implique des voix qui se passent le relais naturellement, sans annonce ni coupure franche. Le diptyque avant/après doit se ressentir par le contraste d'atmosphère et de ton, non par une rupture artificielle. L'archive audio disponible peut servir de fil conducteur ou de ponctuation subtile. Privilégier les fondus et superpositions plutôt que les coupes sèches entre sections."
+}

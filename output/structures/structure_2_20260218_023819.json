@@ -1,0 +1,74 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Chroniques portuaires : Témoignage d'un dessinateur",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le temps d'avant",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_contexte_initial",
+      "position_arc_emotionnel": "setup_tension_montante",
+      "elements_necessaires": [
+        "évocation atmosphérique d'une époque révolue",
+        "introduction du témoin Gilles Hamon",
+        "ambiance sonore d'un environnement de travail",
+        "présentation du métier de dessinateur"
+      ],
+      "mood": "nostalgique_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le basculement",
+      "duree_cible": 50,
+      "fonction_narrative": "developpement_climax",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "archive audio Gilles.Hamon-Dessinateur.WAV",
+        "moment d'enregistrement du témoignage",
+        "tension entre mémoire et présent",
+        "valeur du geste de transmission"
+      ],
+      "mood": "intense_revelateur"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui demeure",
+      "duree_cible": 35,
+      "fonction_narrative": "resolution_ouverture",
+      "position_arc_emotionnel": "resolution_apaisee",
+      "elements_necessaires": [
+        "réflexion sur la préservation des mémoires",
+        "importance du travail de retranscription évoqué",
+        "ouverture vers la transmission aux générations futures",
+        "retour au calme contemplatif"
+      ],
+      "mood": "meditatif_porteur_espoir"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "bascule_temporelle",
+      "duree": 3,
+      "description": "Glissement fluide du récit évocateur vers l'irruption de la voix authentique du témoin, comme un pont entre le passé raconté et le présent de l'enregistrement"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "elargissement_reflexif",
+      "duree": 3,
+      "description": "Sortie progressive de l'intimité du témoignage vers une réflexion plus large sur la mémoire collective, en fondu naturel"
+    }
+  ],
+  "notes_production": "Instructions pour Agent 2 : Ce reportage pédagogique doit couler comme une conversation captivante. FLUIDITÉ ABSOLUE entre les sections - pas de ruptures franches mais des glissements naturels. La voix off omnisciente guide l'auditeur avec bienveillance, sans jamais être condescendante. L'archive audio de Gilles Hamon constitue le cœur battant du récit : préparer son arrivée, la laisser respirer, puis en tirer délicatement le sens. Le diptyque avant/après ne doit pas être mécanique mais organique - on sent le temps qui passe, les choses qui changent, ce qui reste. Rythme dynamique signifie varié et engageant, pas précipité. Laisser des silences pour que l'émotion s'installe. ATTENTION : en l'absence de contexte historique précis, rester volontairement vague sur les dates et lieux - privilégier l'universel du témoignage humain."
+}

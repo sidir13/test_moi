@@ -1,0 +1,54 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, une vie au fil du métier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube de l'apprentissage",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "réveil matinal d'un jeune apprenti",
+        "premiers gestes maladroits sous le regard du maître",
+        "odeurs et sons de l'atelier au petit matin",
+        "fatigue physique et fierté naissante",
+        "rituel du déjeuner avec les anciens"
+      ],
+      "mood": "nostalgique_tendre"
+    },
+    {
+      "partie": 2,
+      "titre": "Le crépuscule d'un savoir-faire",
+      "duree_cible": 65,
+      "fonction_narrative": "evolution_et_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "même journée, des décennies plus tard",
+        "gestes devenus automatiques, expertise acquise",
+        "transformation des outils et des méthodes",
+        "regard sur les jeunes apprentis d'aujourd'hui",
+        "fin de journée contemplative, transmission accomplie",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 en écho mémoriel"
+      ],
+      "mood": "melancolique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_douce",
+      "duree": 3,
+      "description": "Glissement fluide du passé vers le présent par un geste identique répété à travers les années — le même mouvement de la main, mais avec l'assurance du temps"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRUCIALES POUR AGENT 2 : Ce récit est un TÉMOIGNAGE À LA PREMIÈRE PERSONNE. Gilles raconte SA journée type, d'abord celle de ses débuts, puis celle d'aujourd'hui. La narration doit couler comme une confidence intime, sans rupture artificielle entre les deux parties. La voix (femme 40 ans, pédagogue et posée) incarne une narratrice qui donne vie aux souvenirs de Gilles avec chaleur et respect. L'ellipse temporelle centrale doit être INVISIBLE à l'oreille — un fondu naturel, pas une coupure. Privilégier les sensations concrètes (le froid du matin, l'odeur du métal, le poids des outils) pour ancrer l'auditeur dans le vécu. L'archive audio peut être intégrée subtilement en fond sonore évocateur lors de la partie 2, comme un écho du monde industriel qui a façonné Gilles. Le ton pédagogique doit rester accessible : on explique sans jargonner, on émeut sans pathos."
+}

@@ -289,8 +289,6 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 if not isinstance(part, dict):
                     continue
                 part_lines = []
-                if isinstance(part.get("titre"), str):
-                    part_lines.append(part["titre"].strip())
                 if isinstance(part.get("texte_narration"), str):
                     part_lines.append(part["texte_narration"].strip())
                 elif isinstance(part.get("texte"), str):

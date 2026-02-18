@@ -54,7 +54,14 @@ const DownloadIcon = () => (
 
 export function ProjectSelectionView() {
   const { data, refetch, isLoading } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
-  const { setProjectName, setSessionId, setCurrentStep, setScenarioTarget } = useSessionStore();
+  const {
+    setProjectName,
+    setSessionId,
+    setCurrentStep,
+    setScenarioTarget,
+    lastProjectName,
+    setLastProjectName
+  } = useSessionStore();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -74,9 +81,11 @@ export function ProjectSelectionView() {
   const createMutation = useMutation({
     mutationFn: async () => {
       if (!name.trim()) throw new Error("Nom requis");
-      await createProject({ name: name.trim(), description, scenario_target: scenarioTargetDraft });
-      const session = await createSession(name.trim(), "project_selection", scenarioTargetDraft);
-      setProjectName(name.trim());
+      const trimmed = name.trim();
+      await createProject({ name: trimmed, description, scenario_target: scenarioTargetDraft });
+      const session = await createSession(trimmed, "project_selection", scenarioTargetDraft);
+      setProjectName(trimmed);
+      setLastProjectName(trimmed);
       setSessionId(session.session_id);
       setCurrentStep("project_details");
       setScenarioTarget(scenarioTargetDraft);
@@ -101,6 +110,7 @@ export function ProjectSelectionView() {
     try {
       const session = await createSession(project.name, "project_selection", project.scenario_target);
       setProjectName(project.name);
+      setLastProjectName(project.name);
       setSessionId(session.session_id);
       setCurrentStep("project_details");
       setScenarioTarget(project.scenario_target);
@@ -129,10 +139,11 @@ export function ProjectSelectionView() {
               const hasAudio = Boolean(project.final_audio?.path);
               const hasVideo = Boolean(project.final_slideshow?.path);
               const finalizedLabel = project.finalized_at ? formatDate(project.finalized_at) : null;
+              const isLastActive = project.name === lastProjectName;
               return (
                 <li key={project.name}>
                   <div
-                    className="project-entry"
+                    className={`project-entry${isLastActive ? " last-active" : ""}`}
                     role="button"
                     tabIndex={0}
                     onClick={() => handleSelect(project)}
@@ -143,7 +154,10 @@ export function ProjectSelectionView() {
                     <div className="project-label">
                       <strong>{project.name}</strong>{" "}
                       <small>({project.scenario_target} scénarios)</small>
-                      {finalizedLabel && <span className="badge">Finalisé le {finalizedLabel}</span>}
+                      <div className="project-label-badges">
+                        {finalizedLabel && <span className="badge">Finalisé le {finalizedLabel}</span>}
+                        {isLastActive && <span className="badge accent">Dernier projet actif</span>}
+                      </div>
                     </div>
                     <div className="project-actions" style={{ display: "flex", gap: "0.25rem" }}>
                       {hasAudio && (
