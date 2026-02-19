@@ -1,6 +1,6 @@
 ---
 name: generate-voice-instructions
-description: Génère automatiquement des consignes vocales en anglais à partir d’un scénario, puis les enregistre dans config.json.
+description: Génère automatiquement des consignes vocales en anglais à partir d’un scénario, puis les enregistre dans `data/projects/<nom>/config.json`.
 ---
 
 ## Instructions
@@ -28,5 +28,5 @@ description: Génère automatiquement des consignes vocales en anglais à partir
 
 ## Tool Details
 - Function: `generate_voice_instructions(scenario: str, project_name: Optional[str] = None, hint_language: str = "French") -> dict`
-- Action: Interroge un LLM pour créer des consignes vocales cohérentes avec le scénario et les persiste dans `config.json`.
+- Action: Interroge un LLM pour créer des consignes vocales cohérentes avec le scénario et les persiste dans `data/projects/<projet>/config.json`.
 - Location: `src/memoiredesterritoires/voice_instructions/generate_voice_instructions.py`

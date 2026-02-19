@@ -4,25 +4,15 @@ Utility to update TTS/STT voice instructions per project.
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Any, Dict, Optional
 
-DEFAULT_PROJECT = "Mémoire des Territoires"
-CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
+from memoiredesterritoires.project_config import (
+    DEFAULT_PROJECT_NAME,
+    load_project_config,
+    save_project_config,
+)
 
-
-def _load_config() -> Dict[str, Any]:
-    if CONFIG_PATH.exists():
-        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-
-def _save_config(config: Dict[str, Any]) -> None:
-    CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-        json.dump(config, f, ensure_ascii=False, indent=2)
+DEFAULT_PROJECT = DEFAULT_PROJECT_NAME
 
 
 def edit_voice_instructions(project_name: Optional[str], voice_instructions: str) -> Dict[str, Any]:
@@ -33,15 +23,14 @@ def edit_voice_instructions(project_name: Optional[str], voice_instructions: str
         raise ValueError("voice_instructions must be provided")
 
     project = project_name.strip() if project_name else DEFAULT_PROJECT
-    config = _load_config()
-    project_entry = config.setdefault(project, {})
+    project_entry = load_project_config(project)
     project_entry["voice_instructions"] = voice_instructions.strip()
     project_entry["voice_instructions_source"] = "manual"
-    _save_config(config)
+    config_path = save_project_config(project, project_entry)
 
     return {
         "status": "updated",
         "project": project,
         "voice_instructions": project_entry["voice_instructions"],
-        "config_path": str(CONFIG_PATH),
+        "config_path": str(config_path),
     }

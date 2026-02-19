@@ -1,6 +1,6 @@
 ---
 name: edit_voice_instructions
-description: Modifie les consignes vocales (voice_instructions) pour un projet donné dans config.json.
+description: Modifie les consignes vocales (voice_instructions) pour un projet donné dans `data/projects/<nom>/config.json`.
 ---
 
 # Modifier les consignes vocales
@@ -13,7 +13,7 @@ description: Modifie les consignes vocales (voice_instructions) pour un projet d
 3. Appelle `edit_voice_instructions` en fournissant :
    - `project_name` (facultatif si par défaut)
    - `voice_instructions` (obligatoire, en anglais et fidèle aux mots de l’utilisateur)
-4. Confirme à l’utilisateur que les consignes ont été enregistrées et rappelle le chemin `config.json`.
+4. Confirme à l’utilisateur que les consignes ont été enregistrées et rappelle que tout est stocké dans `data/projects/<projet>/config.json`.
 
 ## Exemples
 
@@ -37,5 +37,5 @@ Les consignes vocales ont été mises à jour pour “Mémoire des Territoires�
 
 ## Détails du Tool
 - Fonction : `edit_voice_instructions(project_name: Optional[str], voice_instructions: str) -> dict`
-- Action : Met à jour/ajoute l’entrée `voice_instructions` dans `config.json`.
+- Action : Met à jour/ajoute l’entrée `voice_instructions` dans `data/projects/<projet>/config.json`.
 - Emplacement : `src/memoiredesterritoires/voice_instructions/edit_voice_instructions.py`

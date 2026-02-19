@@ -4,27 +4,23 @@ Project-aware web search helper that limits sources to approved domains.
 
 from __future__ import annotations
 
-import json
 import os
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
 from openai import OpenAI
 
-DEFAULT_PROJECT = "Mémoire des Territoires"
-CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
+from memoiredesterritoires.project_config import (
+    DEFAULT_PROJECT_NAME,
+    load_project_config,
+)
 
 
-def _load_allowed_websites(project_name: Optional[str]) -> List[str]:
-    project = project_name.strip() if project_name else DEFAULT_PROJECT
-    if not CONFIG_PATH.exists():
-        raise FileNotFoundError(f"config.json not found at {CONFIG_PATH}")
-    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-        config = json.load(f)
-    entry = config.get(project)
+def _load_allowed_websites(project_name: Optional[str]) -> tuple[str, List[str]]:
+    project = project_name.strip() if project_name else DEFAULT_PROJECT_NAME
+    entry = load_project_config(project)
     if not entry:
-        raise KeyError(f"Project '{project}' not found in config.json")
+        raise KeyError(f"Project '{project}' not found in project config")
     allowed = entry.get("allowed_websites")
     if not allowed:
         raise ValueError(f"No allowed_websites configured for project '{project}'")

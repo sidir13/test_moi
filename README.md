@@ -17,7 +17,7 @@ Mémoire des Territoires orchestre la génération de récits audio historiques 
 | `src/memoiredesterritoires/` | Skills et outils (transcription, mixage, scenario maker…). |
 | `main.py` | Entrée CLI pour le chatbot (Anthropic tools + orchestrateur). |
 | `config/step_config.json` | Source de vérité pour les étapes UX (titres, skills, automatisations). |
-| `config.json` | Métadonnées consolidées par projet (notes, voix, chemins exports). |
+| `data/projects/<nom>/config.json` | Métadonnées consolidées par projet (notes, voix, chemins exports). |
 | `data/` | Projets utilisateurs et bibliothèque d’ambiances (`audio/background_sounds`). |
 | `Dockerfile`, `makefile` | Tooling multi-plateforme (Mac Apple Silicon + Linux). |
 
@@ -45,7 +45,7 @@ Mémoire des Territoires orchestre la génération de récits audio historiques 
    cd app && npm run dev        # http://localhost:5173 (proxy vers VITE_API_BASE)
    ```
 
-> Sans clés Anthropic/ELEVENLABS valides, le chatbot et la synthèse vocale retourneront des erreurs 401/400. Vérifiez `.env` et la présence de `config.json`.
+> Sans clés Anthropic/ELEVENLABS valides, le chatbot et la synthèse vocale retourneront des erreurs 401/400. Vérifiez `.env` et la présence des fichiers `data/projects/<projet>/config.json`.
 
 ---
 
@@ -68,12 +68,12 @@ Mémoire des Territoires orchestre la génération de récits audio historiques 
 
 | Étape | Intitulé | Contenu & automatisations |
 | --- | --- | --- |
-| 1 | **Sélection de projet** | Création / sélection d’un projet. Backend crée `data/projects/<nom>` et initialise `config.json`. |
+| 1 | **Sélection de projet** | Création / sélection d’un projet. Backend crée `data/projects/<nom>` et initialise `data/projects/<nom>/config.json`. |
 | 2 | **Détails du projet** | Brief narratif (FR/EN) envoyé au chatbot. `update_project_notes` + `project_config_builder`. |
 | 3 | **Sélection des sources audios** | Upload (validation extension/codecs, taille < `MAX_AUDIO_MB`). Sélection manuelle + suggestions background. Automatisations : transcription → stockage DuckDB, mise à jour de la config projet. |
 | 4 | **Consulter les scénarios** | Appel pipeline Agent 0→3 (ScenarioMakerSkill). Progression live (préparation, vérif des sources, génération multi-agents, consolidation). Sélection d’un scénario → synthèse TTS immédiate. |
 | 5 | **Modifier le scénario** | Édition manuelle (titre, parties, texte libre). Sauvegarde via API, régénération audio (Qwen3 TTS) accessible sur place, interactions LLM via chat. |
-| 6 | **Validation finale** | Double confirmation. Stockage des chemins (texte, audio, voix, background) dans `config.json`. Prêt pour export/diffusion. |
+| 6 | **Validation finale** | Double confirmation. Stockage des chemins (texte, audio, voix, background) dans `config.json` du projet. Prêt pour export/diffusion. |
 
 Chaque étape possède son placeholder de chat, son set de skills autorisés et des garde-fous (ex : impossible d’accéder à “Consulter les scénarios” tant qu’aucune piste vocale n’est sélectionnée).
 
@@ -83,7 +83,7 @@ Chaque étape possède son placeholder de chat, son set de skills autorisés et 
 
 | Méthode | Route | Description |
 | --- | --- | --- |
-| `POST /projects` | Crée un projet + entrée `config.json`. |
+| `POST /projects` | Crée un projet + fichier `data/projects/<nom>/config.json`. |
 | `GET /projects` | Liste nom + `scenario_target`. |
 | `POST /sessions` | Démarre une session (garde en mémoire scénario cible). |
 | `GET/POST /sessions/{id}/step` | Avance ou consulte les métadonnées d’étape. |
@@ -125,13 +125,13 @@ Tous les appels respectent les validations de taille, cohérence projet/session 
 | `insert_background_sounds` | Orchestration SFX ↔ narration. | `voice_file`, `noise_file`, timings | Pydub & outils internes. |
 | `text_to_speech_with_instructions` | Synthèse Qwen3 VoiceDesign guidée par instructions projet. | `text`, `project_name`, `language` | `qwen-tts`, Torch, SoundFile. |
 | `generate_voice_instructions` | Générer un brief vocal à partir d’un scénario. | `scenario`, `project_name` | Anthropic (LLM). |
-| `edit_voice_instructions` | Mettre à jour la voix dans `config.json`. | `project_name`, `voice_instructions` | JSON helper. |
+| `edit_voice_instructions` | Mettre à jour la voix dans `data/projects/<nom>/config.json`. | `project_name`, `voice_instructions` | JSON helper. |
 | `project_config_builder` | Adapter la configuration Agent 0 selon le brief. | `project_description`, `mode` | ScenarioConfigBuilderSkill. |
 | `scenario_maker` / `generate_historical_scenario` | Pipeline Agent 0→3 complet (structures, textes, timeline). | `prompt`, `mode`, `config_path` | Orchestrateur. |
 | `scenario_ranking` | Évaluer des scénarios vs la config. | `config_path`, `scenarios_dir` | Anthropic. |
 | `restricted_web_search` | Recherche web limitée aux domaines autorisés par projet. | `query`, `project_name`, `max_results` | OpenRouter search API. |
 | `json_utils.read_json_file` | Lire un JSON (par projet/clé). | `path`, `project_name`, `key` | Helper interne. |
-| `update_project_notes` | Persist les notes/brief projet dans `config.json`. | `description`, `project_name` | JSON helper. |
+| `update_project_notes` | Persist les notes/brief projet dans `data/projects/<nom>/config.json`. | `description`, `project_name` | JSON helper. |
 
 (Ajoutez vos nouveaux skills dans cette table et documentez-les dans leurs `SKILL.md` respectifs pour que le chatbot les utilise automatiquement.)
 
@@ -141,7 +141,7 @@ Tous les appels respectent les validations de taille, cohérence projet/session 
 
 - **`data/projects/<nom>`** : workspace du projet (audio importé, notes, outputs). Nettoyez ce dossier si vous supprimez un projet.
 - **`data/audio/background_sounds/*`** : bibliothèque partagée d’ambiances (organisées par dossier). L’API `/background-sounds/upload` slugifie les noms et classe automatiquement les fichiers.
-- **`config.json`** : mis à jour automatiquement lors de la création de projet (voix, notes, allowed_websites). Les skills `update_project_notes`, `generate_voice_instructions`, TTS et validation finale l’enrichissent avec les chemins des fichiers finaux.
+- **`data/projects/<nom>/config.json`** : mis à jour automatiquement lors de la création de projet (voix, notes, allowed_websites). Les skills `update_project_notes`, `generate_voice_instructions`, TTS et validation finale l’enrichissent avec les chemins des fichiers finaux.
 - **`.env`** : doit être monté dans Docker (`--env-file .env`). Pour un run autonome côté container, un `docker-entrypoint.sh` lit `/app/.env`.
 
 ---
@@ -168,4 +168,4 @@ Tous les appels respectent les validations de taille, cohérence projet/session 
 
 ---
 
-La plateforme est prête pour des utilisateurs finaux : navigation guidée, chat outillé, validations de sources audio, génération multi-agents, édition texte/audio avec persistance, et stockage exhaustif des métadonnées projet dans `config.json`. Utilisez les sections ci-dessus comme référence lors de l’ajout de nouveaux skills, étapes ou intégrations.
+La plateforme est prête pour des utilisateurs finaux : navigation guidée, chat outillé, validations de sources audio, génération multi-agents, édition texte/audio avec persistance, et stockage exhaustif des métadonnées projet dans `data/projects/<nom>/config.json`. Utilisez les sections ci-dessus comme référence lors de l’ajout de nouveaux skills, étapes ou intégrations.

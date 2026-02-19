@@ -23,11 +23,20 @@ def read_json_file(path: str, *, key: Optional[str] = None, project_name: Option
             raise KeyError(f"Projet '{project_name}' absent dans {json_path}")
         target = data[project_name]
 
+    missing_key = False
     if key is not None:
         if key not in target:
-            raise KeyError(f"Clé '{key}' absente dans {json_path} (projet={project_name})")
-        content = target[key]
+            missing_key = True
+            content = None
+        else:
+            content = target[key]
     else:
         content = target
 
-    return {"path": str(json_path), "project": project_name, "key": key, "content": content}
+    return {
+        "path": str(json_path),
+        "project": project_name,
+        "key": key,
+        "content": content,
+        "missing_key": missing_key,
+    }

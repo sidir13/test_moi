@@ -41,7 +41,10 @@ export function FinalValidationView() {
         précédentes pour ajuster les scénarios.
       </p>
       <div className="placeholder-card">
-        <p>Audio et transcription enregistrés dans config.json.</p>
+        <p>
+          Audio et transcription enregistrés dans{" "}
+          {projectName ? `data/projects/${projectName}/config.json` : "la configuration du projet"}.
+        </p>
         <button onClick={() => setModalOpen(true)}>Confirmer la finalisation</button>
       </div>
       {status && <p>{status}</p>}

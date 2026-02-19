@@ -36,6 +36,11 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
 from memoiredesterritoires.transcription.transcription import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.Slideshow.slides import slideshow
+from memoiredesterritoires.project_config import (
+    get_project_config_path,
+    load_project_config,
+    save_project_config,
+)
 from project_store import (
     load_project_settings,
     save_project_settings,
@@ -548,14 +553,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             return []
 
     def upsert_project_config_entry(project_name: str, updates: Dict[str, Any]) -> None:
-        config_path = settings.config_json
-        try:
-            with open(config_path, "r", encoding="utf-8") as f:
-                config = json.load(f)
-        except FileNotFoundError:
-            config = {}
-
-        entry = dict(config.get(project_name, {}))
+        entry = load_project_config(
+            project_name,
+            projects_dir=settings.projects_dir,
+            fallback_path=settings.config_json,
+        )
         if "created_at" not in entry:
             entry["created_at"] = datetime.utcnow().isoformat()
         entry.setdefault("allowed_websites", ["wikipedia.org"])
@@ -564,18 +566,18 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         for key, value in updates.items():
             if value is not None:
                 entry[key] = value
-        config[project_name] = entry
-        config_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(config_path, "w", encoding="utf-8") as f:
-            json.dump(config, f, ensure_ascii=False, indent=2)
+        save_project_config(
+            project_name,
+            entry,
+            projects_dir=settings.projects_dir,
+        )
 
     def load_project_profile(project_name: str) -> Dict[str, Any]:
-        config_path = settings.config_json
-        if not config_path.exists():
-            return {}
-        with open(config_path, "r", encoding="utf-8") as f:
-            config = json.load(f)
-        return dict(config.get(project_name, {}))
+        return load_project_config(
+            project_name,
+            projects_dir=settings.projects_dir,
+            fallback_path=settings.config_json,
+        )
 
     def build_voice_instruction_prompt(project_name: str, scenario_text: str) -> str:
         profile = load_project_profile(project_name)

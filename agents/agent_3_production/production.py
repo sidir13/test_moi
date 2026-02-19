@@ -30,7 +30,6 @@ class ProductionEngineerAgent:
         # Skills will be injected
         self.sound_selector = None
         self.timeline_composer = None
-        self.voice_matcher = None
         
         logger.info("ProductionEngineerAgent initialized")
     
@@ -40,8 +39,6 @@ class ProductionEngineerAgent:
             self.sound_selector = skills['ambiance_sound_selector']['instance']
         if 'audio_timeline_composer' in skills:
             self.timeline_composer = skills['audio_timeline_composer']['instance']
-        if 'voice_persona_matcher' in skills:
-            self.voice_matcher = skills['voice_persona_matcher']['instance']
     
     def create_audio_timeline(
         self,
@@ -164,16 +161,6 @@ class ProductionEngineerAgent:
             tone = {'global': str(tone), 'tempo_lecture': 110, 'pauses': []}
         
         # Get voice profile
-        voice_profile = {'gender': 'male', 'age_range': '45-55', 'accent': 'regional'}
-        if self.voice_matcher:
-            try:
-                voice_profile = self.voice_matcher.match_voice_profile(
-                    {},
-                    tone.get('global', 'neutral')
-                )
-            except:
-                pass
-        
         return {
             'id': f"narr_{part_id:02d}",
             'start_time': start_time,
@@ -183,7 +170,6 @@ class ProductionEngineerAgent:
             'estimated_words': self._estimate_words(part.get('texte_narration', '')),
             'tempo_lecture': tone.get('tempo_lecture', 110),
             'tone': tone.get('global', 'neutral'),
-            'voice_profile': voice_profile,
             'volume': 0.8,
             'effects': [],
             'pauses': tone.get('pauses', [])

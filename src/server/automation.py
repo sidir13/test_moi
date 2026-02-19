@@ -5,9 +5,12 @@ from __future__ import annotations
 import logging
 from typing import Dict, List, Optional
 
-from memoiredesterritoires.json_utils.read_json import read_json_file
 from memoiredesterritoires.project_notes.update_project_notes import update_project_notes as skill_update_project_notes
 from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSkill
+from memoiredesterritoires.project_config import (
+    get_project_config_path,
+    load_project_config,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -62,9 +65,17 @@ class AutomationRunner:
         return self.update_project_notes(project_name, description)
 
     def _handle_read_project_config(self, project_name: str, payload: dict) -> Dict[str, object]:
-        config_path = self.settings.config_json
-        content = read_json_file(str(config_path), project_name=project_name)
-        return {"status": "ok", "config_keys": list(content.get("content", {}).keys())}
+        entry = load_project_config(
+            project_name,
+            projects_dir=self.settings.projects_dir,
+            fallback_path=self.settings.config_json,
+        )
+        config_path = get_project_config_path(project_name, projects_dir=self.settings.projects_dir)
+        return {
+            "status": "ok",
+            "config_path": str(config_path),
+            "config_keys": sorted(entry.keys()),
+        }
 
     def _handle_project_config_builder(self, project_name: str, payload: dict) -> Dict[str, object]:
         description = payload.get("notes") or payload.get("description")

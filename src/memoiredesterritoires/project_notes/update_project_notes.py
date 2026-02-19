@@ -1,26 +1,16 @@
-"""Store user descriptions / guidance for a project in config.json."""
+"""Store user descriptions / guidance for a project in its config.json."""
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Optional
 
-DEFAULT_PROJECT = "Mémoire des Territoires"
-CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
+from memoiredesterritoires.project_config import (
+    DEFAULT_PROJECT_NAME,
+    load_project_config,
+    save_project_config,
+)
 
-
-def _load_config() -> dict:
-    if CONFIG_PATH.exists():
-        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-
-def _save_config(config: dict) -> None:
-    CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-        json.dump(config, f, ensure_ascii=False, indent=2)
+DEFAULT_PROJECT = DEFAULT_PROJECT_NAME
 
 
 def update_project_notes(
@@ -33,14 +23,13 @@ def update_project_notes(
         raise ValueError("description must be provided")
 
     project = project_name.strip() if project_name else DEFAULT_PROJECT
-    config = _load_config()
-    entry = config.setdefault(project, {})
+    entry = load_project_config(project)
     entry["project_notes"] = description.strip()
-    _save_config(config)
+    config_path = save_project_config(project, entry)
 
     return {
         "status": "updated",
         "project": project,
         "project_notes": entry["project_notes"],
-        "config_path": str(CONFIG_PATH),
+        "config_path": str(config_path),
     }

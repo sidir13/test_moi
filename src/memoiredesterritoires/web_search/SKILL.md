@@ -1,6 +1,6 @@
 ---
 name: restricted-web-search
-description: Effectue une recherche web limitée aux domaines autorisés dans config.json pour un projet donné.
+description: Effectue une recherche web limitée aux domaines autorisés stockés dans `data/projects/<nom>/config.json` pour un projet donné.
 ---
 
 # Recherche Web Restreinte

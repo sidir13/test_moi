@@ -1,30 +1,20 @@
-"""Generate scenario-based voice instructions and persist them in config.json."""
+"""Generate scenario-based voice instructions and persist them in the project config."""
 
 from __future__ import annotations
 
-import json
 import os
-from pathlib import Path
 from typing import Optional
 
 from dotenv import load_dotenv
 from openai import OpenAI
 
-DEFAULT_PROJECT = "Mémoire des Territoires"
-CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
+from memoiredesterritoires.project_config import (
+    DEFAULT_PROJECT_NAME,
+    load_project_config,
+    save_project_config,
+)
 
-
-def _load_config() -> dict:
-    if CONFIG_PATH.exists():
-        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-
-def _save_config(config: dict) -> None:
-    CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-        json.dump(config, f, ensure_ascii=False, indent=2)
+DEFAULT_PROJECT = DEFAULT_PROJECT_NAME
 
 
 def _call_llm(prompt: str) -> str:
@@ -73,15 +63,14 @@ def generate_voice_instructions(
 
     voice_instructions = _call_llm(prompt)
 
-    config = _load_config()
-    entry = config.setdefault(project, {})
+    entry = load_project_config(project)
     entry["voice_instructions"] = voice_instructions
     entry["voice_instructions_source"] = "llm"
-    _save_config(config)
+    config_path = save_project_config(project, entry)
 
     return {
         "status": "generated",
         "project": project,
         "voice_instructions": voice_instructions,
-        "config_path": str(CONFIG_PATH),
+        "config_path": str(config_path),
     }
