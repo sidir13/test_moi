@@ -51,11 +51,17 @@ from .step_config import StepConfigRegistry
 from .automation import AutomationRunner
 from .chat_agent import ChatAgent
 from .audio_validation import validate_audio_file
+from utils.claude_client import ClaudeClient
 
 from config.model_registry import get_available_models, resolve_model_id
 
 logger = logging.getLogger(__name__)
-BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.8)  # ≈ -1.94 dB
+BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.4)  # ≈ -7.96 dB
+BACKGROUND_PLAN_MODEL = os.getenv("BACKGROUND_PLAN_MODEL", "anthropic/claude-sonnet-4-5")
+MIN_BACKGROUND_SEGMENT = 5.0
+MAX_BACKGROUND_SEGMENT = 10.0
+BACKGROUND_SEGMENT_GAP = 0.5
+_background_plan_client: Optional[ClaudeClient] = None
 
 
 def log_progress(event: str, **fields: Any) -> None:
@@ -66,15 +72,184 @@ def log_progress(event: str, **fields: Any) -> None:
     logger.info("%s | %s", event, details)
 
 
+def _get_background_plan_client() -> Optional[ClaudeClient]:
+    global _background_plan_client
+    if _background_plan_client is not None:
+        return _background_plan_client
+    try:
+        _background_plan_client = ClaudeClient()
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.warning("Unable to initialize Claude client for background planning: %s", exc)
+        return None
+    return _background_plan_client
+
+
+def _extract_json_array(payload: str) -> List[Dict[str, Any]]:
+    try:
+        parsed = json.loads(payload)
+        if isinstance(parsed, list):
+            return parsed
+    except json.JSONDecodeError:
+        pass
+    match = re.search(r"\[[\s\S]+\]", payload)
+    if match:
+        try:
+            parsed = json.loads(match.group(0))
+            if isinstance(parsed, list):
+                return parsed
+        except json.JSONDecodeError:
+            return []
+    return []
+
+
+def _fallback_background_plan(duration_seconds: float, background_count: int) -> List[Dict[str, float]]:
+    if background_count <= 0 or duration_seconds <= 0:
+        return []
+    slot_duration = min(MAX_BACKGROUND_SEGMENT, max(MIN_BACKGROUND_SEGMENT, duration_seconds * 0.1))
+    spacing = duration_seconds / (background_count + 1)
+    plan: List[Dict[str, float]] = []
+    for idx in range(background_count):
+        start = spacing * (idx + 1) - slot_duration / 2
+        start = max(0.0, min(start, max(0.0, duration_seconds - slot_duration)))
+        plan.append(
+            {
+                "background_index": idx,
+                "start_seconds": start,
+                "duration_seconds": slot_duration,
+                "note": "Fallback placement",
+            }
+        )
+    return plan
+
+
+def _sanitize_background_plan(
+    raw_plan: List[Dict[str, Any]],
+    duration_seconds: float,
+    background_count: int,
+) -> List[Dict[str, float]]:
+    if duration_seconds <= 0 or background_count <= 0:
+        return []
+    sanitized: List[Dict[str, float]] = []
+    used_indexes: set[int] = set()
+    last_end = 0.0
+    for entry in sorted(raw_plan, key=lambda item: float(item.get("start_seconds", 0.0))):
+        try:
+            idx = int(entry.get("background_index"))
+        except (TypeError, ValueError):
+            continue
+        if idx < 0 or idx >= background_count or idx in used_indexes:
+            continue
+        try:
+            start = float(entry.get("start_seconds", 0.0))
+        except (TypeError, ValueError):
+            start = 0.0
+        try:
+            duration = float(entry.get("duration_seconds", MIN_BACKGROUND_SEGMENT))
+        except (TypeError, ValueError):
+            duration = MIN_BACKGROUND_SEGMENT
+        duration = max(MIN_BACKGROUND_SEGMENT, min(MAX_BACKGROUND_SEGMENT, duration))
+        if start < last_end + BACKGROUND_SEGMENT_GAP:
+            start = last_end + BACKGROUND_SEGMENT_GAP
+        if start + duration > duration_seconds:
+            start = max(0.0, duration_seconds - duration)
+        if start < last_end + BACKGROUND_SEGMENT_GAP:
+            continue
+        if start + duration > duration_seconds or duration < MIN_BACKGROUND_SEGMENT:
+            continue
+        note = entry.get("note") or entry.get("context") or entry.get("moment")
+        sanitized.append(
+            {
+                "background_index": idx,
+                "start_seconds": round(start, 3),
+                "duration_seconds": round(duration, 3),
+                "note": note.strip() if isinstance(note, str) else None,
+            }
+        )
+        used_indexes.add(idx)
+        last_end = start + duration
+        if len(sanitized) >= background_count:
+            break
+    return sanitized
+
+
+def plan_background_segments(
+    scenario_text: Optional[str],
+    duration_seconds: float,
+    background_files: List[Path],
+) -> List[Dict[str, float]]:
+    background_count = len(background_files)
+    if background_count == 0 or duration_seconds <= MIN_BACKGROUND_SEGMENT:
+        return []
+
+    scenario_excerpt = ""
+    if scenario_text:
+        scenario_excerpt = re.sub(r"\s+", " ", scenario_text).strip()
+        max_chars = 1500
+        if len(scenario_excerpt) > max_chars:
+            scenario_excerpt = scenario_excerpt[:max_chars] + "…"
+
+    raw_plan: List[Dict[str, Any]] = []
+    client = _get_background_plan_client() if scenario_excerpt else None
+    if client:
+        available_lines = [
+            f"{idx}: {bg.name}"
+            for idx, bg in enumerate(background_files)
+        ]
+        available_listing = "\n".join(available_lines)
+        user_prompt = (
+            "You plan short ambience cues under a narration. "
+            "Constraints:\n"
+            "- Each ambience plays exactly once.\n"
+            "- Each cue must last between 5 and 10 seconds.\n"
+            "- Cues must never overlap; keep at least 0.5s gap.\n"
+            "- Never exceed the narration length.\n\n"
+            f"Narration duration: {duration_seconds:.1f} seconds.\n"
+            "Available ambiences (index: file):\n"
+            f"{available_listing}\n\n"
+            "Script excerpt:\n"
+            f"{scenario_excerpt}\n\n"
+            "Return ONLY a JSON array like:\n"
+            '[{"background_index": 0, "start_seconds": 12.5, "duration_seconds": 7.0, "note": "support intro"}]\n'
+            "Use narrative cues to place the backgrounds."
+        )
+        try:
+            response = client.create_message(
+                model=BACKGROUND_PLAN_MODEL,
+                system="You are an audio post-production planner who schedules short ambience cues.",
+                messages=[{"role": "user", "content": user_prompt}],
+                temperature=0.2,
+                max_tokens=600,
+            )
+            raw_text = ""
+            if response and getattr(response, "content", None):
+                raw_text = response.content[0].text  # type: ignore[attr-defined]
+            raw_plan = _extract_json_array(raw_text)
+        except Exception as exc:  # pragma: no cover - network
+            logger.warning("Background planning via LLM failed: %s", exc)
+
+    if not raw_plan:
+        raw_plan = _fallback_background_plan(duration_seconds, background_count)
+
+    plan = _sanitize_background_plan(raw_plan, duration_seconds, background_count)
+    if not plan:
+        plan = _sanitize_background_plan(
+            _fallback_background_plan(duration_seconds, background_count),
+            duration_seconds,
+            background_count,
+        )
+    return plan
+
+
 def apply_background_selection(
     voice_path: Path,
     project_name: str,
-) -> tuple[Path, int, Optional[Path], int]:
+    scenario_text: Optional[str] = None,
+) -> tuple[Path, int, Optional[Path], int, List[Dict[str, Any]]]:
     """
     Mix the user-selected background sounds under the generated narration.
 
     Returns:
-        (final_voice_path, layers_applied, dry_voice_path, requested_layers)
+        (final_voice_path, layers_applied, dry_voice_path, requested_layers, plan_metadata)
     """
     try:
         selection = load_audio_selection(project_name)
@@ -94,46 +269,79 @@ def apply_background_selection(
 
     requested_layers = len(normalized_paths)
     if requested_layers == 0:
-        return voice_path, 0, None, requested_layers
+        return voice_path, 0, None, requested_layers, []
     if AudioSegment is None:
         logger.warning("pydub is not available; skipping background mix for %s", project_name)
-        return voice_path, 0, None, requested_layers
+        return voice_path, 0, None, requested_layers, []
 
     resolved_voice = Path(voice_path)
     if not resolved_voice.is_absolute():
         resolved_voice = (Path.cwd() / resolved_voice).resolve()
     if not resolved_voice.exists():
         logger.warning("Voice file missing for background mix: %s", resolved_voice)
-        return voice_path, 0, None, requested_layers
+        return voice_path, 0, None, requested_layers, []
 
     try:
         voice_segment = AudioSegment.from_file(resolved_voice)
     except Exception as exc:
         logger.warning("Unable to load narration audio (%s): %s", resolved_voice, exc)
-        return voice_path, 0, None, requested_layers
+        return voice_path, 0, None, requested_layers, []
+
+    duration_seconds = len(voice_segment) / 1000.0
+    plan = plan_background_segments(scenario_text, duration_seconds, normalized_paths)
+    if not plan:
+        logger.info("No background plan generated for %s; leaving narration dry", project_name)
+        return voice_path, 0, None, requested_layers, []
 
     mixed_segment = voice_segment
-    layers_applied = 0
-    for bg_path in normalized_paths:
+    used_indexes: set[int] = set()
+    plan_metadata: List[Dict[str, Any]] = []
+    background_cache: Dict[int, AudioSegment] = {}
+
+    total_backgrounds = len(normalized_paths)
+    for slot in plan:
+        idx = int(slot["background_index"])
+        if idx < 0 or idx >= total_backgrounds:
+            continue
+        bg_path = normalized_paths[idx]
         if not bg_path.exists():
             logger.warning("Background sound not found: %s", bg_path)
             continue
+        background_segment = background_cache.get(idx)
         try:
-            background_segment = AudioSegment.from_file(bg_path)
+            if background_segment is None:
+                background_segment = AudioSegment.from_file(bg_path)
+                background_cache[idx] = background_segment
         except Exception as exc:
             logger.warning("Failed to load background %s: %s", bg_path, exc)
             continue
-        # Reduce to 80% loudness before mixing
-        background_segment = background_segment + BACKGROUND_ATTENUATION_DB
-        if len(background_segment) < len(mixed_segment):
-            repeats = max(1, math.ceil(len(mixed_segment) / max(len(background_segment), 1)))
-            background_segment = background_segment * repeats
-        background_segment = background_segment[: len(mixed_segment)]
-        mixed_segment = mixed_segment.overlay(background_segment)
-        layers_applied += 1
+        start_ms = max(0, int(slot["start_seconds"] * 1000))
+        duration_ms = max(1, int(slot["duration_seconds"] * 1000))
+        if start_ms >= len(mixed_segment):
+            continue
+        snippet = background_segment
+        if len(snippet) < duration_ms:
+            repeats = max(1, math.ceil(duration_ms / max(len(snippet), 1)))
+            snippet = snippet * repeats
+        snippet = snippet[:duration_ms]
+        snippet = snippet + BACKGROUND_ATTENUATION_DB
+        available = len(mixed_segment) - start_ms
+        if available <= 0:
+            continue
+        snippet = snippet[:available]
+        mixed_segment = mixed_segment.overlay(snippet, position=start_ms)
+        used_indexes.add(idx)
+        plan_metadata.append(
+            {
+                "background": bg_path.name,
+                "start_seconds": round(start_ms / 1000, 2),
+                "duration_seconds": round(len(snippet) / 1000, 2),
+                "note": slot.get("note"),
+            }
+        )
 
-    if layers_applied == 0:
-        return voice_path, 0, None, requested_layers
+    if not used_indexes:
+        return voice_path, 0, None, requested_layers, []
 
     output_format = resolved_voice.suffix.replace(".", "") or "wav"
     temp_mix = resolved_voice.with_name(f"{resolved_voice.stem}_mix{resolved_voice.suffix}")
@@ -166,7 +374,7 @@ def apply_background_selection(
             except ValueError:
                 dry_relative = dry_path
 
-    return final_path, layers_applied, dry_relative, requested_layers
+    return final_path, len(used_indexes), dry_relative, requested_layers, plan_metadata
 
 
 class ProjectCreateRequest(BaseModel):
@@ -279,9 +487,6 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not payload:
             return ""
         chunks: List[str] = []
-        title = payload.get("titre") or payload.get("title")
-        if isinstance(title, str):
-            chunks.append(title.strip())
         summary = payload.get("resume") or payload.get("texte") or payload.get("texte_narration")
         parties = payload.get("parties")
         if isinstance(parties, list) and parties:
@@ -1012,6 +1217,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         backgrounds_applied = 0
         backgrounds_requested = 0
         dry_voice_path: Optional[Path] = None
+        background_plan: List[Dict[str, Any]] = []
         try:
             voice_path = Path(result["path"])
             (
@@ -1019,11 +1225,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 backgrounds_applied,
                 dry_voice_path,
                 backgrounds_requested,
-            ) = apply_background_selection(voice_path, session["project_name"])
+                background_plan,
+            ) = apply_background_selection(voice_path, session["project_name"], text)
             result["path"] = str(layered_path)
         except Exception as exc:  # pragma: no cover - defensive
             logger.exception("Background layering failed for session %s: %s", session_id, exc)
             backgrounds_applied = 0
+            background_plan = []
 
         metadata = {
             **result,
@@ -1033,6 +1241,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "backgrounds_applied": backgrounds_applied,
             "background_tracks_requested": backgrounds_requested,
         }
+        if background_plan:
+            metadata["background_plan"] = background_plan
         if dry_voice_path:
             metadata["voice_only_path"] = str(dry_voice_path)
         session_store.save_scenario_audio(session_id, metadata)

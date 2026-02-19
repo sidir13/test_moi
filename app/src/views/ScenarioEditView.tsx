@@ -211,6 +211,11 @@ export function ScenarioEditView() {
     evt.preventDefault();
     setStatus("Sauvegarde de vos modifications...");
     await persistScenario();
+    const refreshed = await audioQuery.refetch();
+    if (!refreshed.data?.path) {
+      setStatus("Générez l'audio avant de continuer vers la validation finale.");
+      return;
+    }
     await ensureSlideshowIfNeeded();
     await advanceStep(sessionId, "scenario_edit", { titre: title });
     updateProgress({ scenarioEdited: true });
@@ -243,14 +248,13 @@ export function ScenarioEditView() {
     setPartsDraft((prev) => prev.filter((_, idx) => idx !== index));
   };
 
+  const scenarioTitle = title?.trim();
+  const heading = scenarioTitle && scenarioTitle.length > 0 ? `Modifier le scénario — ${scenarioTitle}` : "Modifier le scénario";
+
   return (
     <div className="step-view">
-      <h2>Modifier le scénario</h2>
+      <h2>{heading}</h2>
       <form onSubmit={handleSubmit} className="form-grid">
-        <label>
-          Titre du scénario
-          <input value={title} onChange={(e) => setTitle(e.target.value)} />
-        </label>
 
         <section className="card">
           <h3>Structure narrative</h3>
@@ -268,16 +272,20 @@ export function ScenarioEditView() {
             <>
               {partsDraft.map((part, idx) => (
                 <div className="card" key={idx}>
-                  <label className="part-title-label">
-                    {part.titre?.trim() || `Partie ${idx + 1}`}
-                    <input
-                      value={part.titre}
-                      onChange={(e) =>
-                        setPartsDraft((prev) =>
-                          prev.map((p, i) => (i === idx ? { ...p, titre: e.target.value } : p))
-                        )
-                      }
-                    />
+                  <label>
+                    Titre de la partie {idx + 1} (non modifiable)
+                    <div
+                      style={{
+                        border: "1px solid var(--border, #d0d7de)",
+                        borderRadius: 6,
+                        padding: "0.4rem 0.6rem",
+                        background: "var(--card-bg, #f5f6f8)",
+                        marginTop: "0.25rem",
+                        fontWeight: 600
+                      }}
+                    >
+                      {part.titre || `Partie ${idx + 1}`}
+                    </div>
                   </label>
                   <label>
                     Contenu

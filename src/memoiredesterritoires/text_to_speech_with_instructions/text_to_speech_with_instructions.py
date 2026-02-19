@@ -23,11 +23,17 @@ _MODEL_CACHE: Dict[str, Qwen3TTSModel] = {}
 
 
 def _detect_device() -> tuple[str, torch.dtype]:
-    """Pick the most capable device available along with the right dtype."""
+    """
+    Pick the most capable device available along with a numerically stable dtype.
+
+    Note:
+        Qwen TTS occasionally produces NaNs on MPS when using float16, so we keep
+        float32 there even if it is slower to avoid RuntimeError during sampling.
+    """
     if torch.cuda.is_available():
         return "cuda", torch.float16
     if torch.backends.mps.is_available():
-        return "mps", torch.float16
+        return "mps", torch.float32
     return "cpu", torch.float32
 
 

@@ -235,6 +235,7 @@ CONSIGNES :
 3. Adaptez le vocabulaire au public cible et à l'époque historique
 4. Si des transcriptions audio sont fournies, UTILISEZ-LES comme source primaire : intégrez les mots et témoignages réels
 5. Pour chaque partie : 2-3 moments clés (effets sonores, pauses, archives) + directions de ton (tempo, intonation)
+6. Après avoir rédigé le texte, découpez-le en phrases et pour chaque phrase listez les lignes de transcription qui l'ont inspirée (exactes ou très proches). S'il n'y a pas de transcription pertinente, laissez la liste vide.
 
 Retournez un JSON avec TOUTES les parties :
 {{
@@ -257,7 +258,11 @@ Retournez un JSON avec TOUTES les parties :
           "duree": 2.0
         }}
       ],
-      "ambiances_continues": []
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {{"sentence": "Phrase complète numéro 1.", "sources": ["[00:12] Citation exacte...", "[00:35] ..."]}},
+        {{"sentence": "Phrase 2 ...", "sources": []}}
+      ]
     }},
     {{ ... partie 2 ... }},
     {{ ... etc pour toutes les parties ... }}
@@ -318,6 +323,26 @@ JSON :"""
                     part['ambiances_continues'] = [a for a in ambiances if isinstance(a, dict)]
                 else:
                     part['ambiances_continues'] = []
+
+                sentence_sources = part.get('sentence_sources', [])
+                if isinstance(sentence_sources, list):
+                    normalized_sources = []
+                    for item in sentence_sources:
+                        if not isinstance(item, dict):
+                            continue
+                        sentence_text = item.get('sentence')
+                        sources_list = item.get('sources', [])
+                        if not isinstance(sentence_text, str):
+                            continue
+                        if not isinstance(sources_list, list):
+                            sources_list = []
+                        normalized_sources.append({
+                            'sentence': sentence_text.strip(),
+                            'sources': [str(src).strip() for src in sources_list if isinstance(src, str) and src.strip()],
+                        })
+                    part['sentence_sources'] = normalized_sources
+                else:
+                    part['sentence_sources'] = []
                 
                 timing = self.calculate_narration_timing(
                     part.get('texte_narration', ''),
@@ -470,7 +495,8 @@ CONSIGNES :
 2. Adaptez le vocabulaire au public et à l'époque
 3. 2-3 moments clés pour placement d'effets/archives + directions de ton
 4. Si des transcriptions audio sont fournies, intégrez les mots et témoignages réels
-5. Suivez fidèlement l'angle de scénarisation demandé
+5. Après rédaction, découpez vos phrases et associez à chacune les lignes de transcription pertinentes (ou liste vide si aucune).
+6. Suivez fidèlement l'angle de scénarisation demandé
 
 Retournez un JSON :
 {{
@@ -490,7 +516,11 @@ Retournez un JSON :
       "duree": 2.0
     }}
   ],
-  "ambiances_continues": []
+  "ambiances_continues": [],
+  "sentence_sources": [
+    {{"sentence": "Première phrase complète.", "sources": ["[00:12] ..."]}},
+    {{"sentence": "Deuxième phrase.", "sources": []}}
+  ]
 }}
 
 JSON :"""

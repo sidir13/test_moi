@@ -991,5 +991,498 @@
       "scenario_index": 1,
       "quality_rank": 1
     }
+  },
+  "slider7bh": {
+    "created_at": "2026-02-18T13:38:22.204624",
+    "allowed_websites": [
+      "wikipedia.org"
+    ],
+    "voice_instructions": "Voix de femme 40 ans, pédagogue et posée Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde Scenario excerpt for context: Gilles, une vie au fil du métier\n\nGilles avait seize ans quand il a poussé pour la première fois la porte de l'atelier. L'odeur du bois fraîchement coupé, la poussière fine qui dansait dans la lumière du matin — tout cela l'a saisi d'un coup. Son maître, un homme aux mains larges et au regard patient, ne parlait pas beaucoup. Il montrait. Encore et encore. Tenir l'outil comme ceci. Sentir le fil du bois sous les doigts. Ne jamais forcer. Gilles a raté, recommencé, raté encore. Ses premières pièces partaient au rebut, mais il apprenait. Les gestes se répétaient jusqu'à devenir naturels. Le soir",
+    "voice_instructions_source": "project_notes",
+    "scenario_target": 1,
+    "project_notes": "Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde\nVoix de femme 40 ans, pédagogue et posée"
+  },
+  "slider8ios": {
+    "created_at": "2026-02-18T14:31:38.461331",
+    "allowed_websites": [
+      "wikipedia.org"
+    ],
+    "voice_instructions": "Voix de femme 40 ans, pédagogue et posée Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde Scenario excerpt for context: Gilles, une vie de chantier\n\nImaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnent d'activité. C'est dans ce monde de métal et de bruit que Gilles, quinze ans à peine, fait ses premiers pas. Chaque matin, avant l'aube, il quitte la maison familiale. Le trajet jusqu'aux chantiers sent la brume et le fleuve. Arrivé sur place, l'odeur âcre de la soudure lui pique les narines. Les coques immenses se dressent devant lui comme des cathédrales d'acier. Il observe, intimidé, les gestes précis des anciens. Un charpentier lui montre comment tenir l'outil, comment sentir le bois sous ses",
+    "voice_instructions_source": "project_notes",
+    "project_notes": "Histoire de gilles, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde\nVoix de femme 40 ans, pédagogue et posée",
+    "scenario_target": 1,
+    "finalized_at": "2026-02-18T15:03:53.688110",
+    "final_scenario": {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Gilles, une vie de chantier",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "journee_type",
+        "duree_totale": 120,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "L'aube de l'apprentissage",
+            "duree_cible": 55,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "setup_vers_tension",
+            "elements_necessaires": [
+              "réveil matinal d'un jeune apprenti",
+              "trajet vers les chantiers navals",
+              "premiers gestes appris auprès des anciens",
+              "bruits et odeurs du chantier au petit matin",
+              "regard intimidé sur les coques immenses",
+              "archive audio ElevenLabs_Spuds_Oxley.mp3 en ouverture pour ancrer l'époque"
+            ],
+            "mood": "eveil_initiatique"
+          },
+          {
+            "partie": 2,
+            "titre": "Le crépuscule d'un métier",
+            "duree_cible": 65,
+            "fonction_narrative": "developpement_et_resolution",
+            "position_arc_emotionnel": "climax_vers_resolution",
+            "elements_necessaires": [
+              "ellipse temporelle douce vers des décennies plus tard",
+              "même homme, mêmes gestes mais outils différents",
+              "fin de journée sur un chantier transformé",
+              "regard rétrospectif sur ce qui a changé",
+              "transmission aux nouvelles générations",
+              "mélancolie apaisée du soir qui tombe"
+            ],
+            "mood": "nostalgique_serein"
+          }
+        ],
+        "arc_emotionnel_global": "tension_resolution",
+        "rythme_general": "modere",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "ellipse_temporelle_fluide",
+            "duree": 3,
+            "description": "Glissement naturel du matin de l'apprenti vers le soir de l'homme accompli — une phrase-pont évoque le passage des années sans rupture, comme un fondu entre deux moments d'une même vie"
+          }
+        ],
+        "notes_production": "FLUIDITÉ ESSENTIELLE : Le récit doit couler comme une seule respiration. La voix féminine posée (40 ans, pédagogue) guide l'auditeur sans jamais le brusquer. L'archive audio en ouverture pose l'atmosphère des chantiers navals nantais. La transition entre les deux parties ne doit PAS être une coupure mais un glissement poétique — une phrase comme 'Les années ont passé...' ou 'Bien des matins plus tard...' suffit. L'angle 'journée type' structure les deux époques : matin de l'apprentissage / soir de la maturité, créant un parallèle symbolique. Privilégier les détails sensoriels concrets (sons du métal, odeur de la Loire, lumière changeante) pour ancrer le témoignage dans le vécu. Ton pédagogique mais chaleureux, jamais distant."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Gilles, une vie de chantier",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "journee_type",
+        "ton": "pedagogique_accessible",
+        "duree_estimee": 146.7149758454106,
+        "parties": [
+          {
+            "titre": "L'aube de l'apprentissage",
+            "texte_narration": "Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnent d'activité. C'est dans ce monde de métal et de bruit que Gilles, quinze ans à peine, fait ses premiers pas. Chaque matin, avant l'aube, il quitte la maison familiale. Le trajet jusqu'aux chantiers sent la brume et le fleuve. Arrivé sur place, l'odeur âcre de la soudure lui pique les narines. Les coques immenses se dressent devant lui comme des cathédrales d'acier. Il observe, intimidé, les gestes précis des anciens. Un charpentier lui montre comment tenir l'outil, comment sentir le bois sous ses doigts. Les soudeurs travaillent dans une pluie d'étincelles. Gilles apprend à se taire et à regarder. Ici, le savoir se transmet par l'exemple, pas par les mots."
+          },
+          {
+            "titre": "Le crépuscule d'un métier",
+            "texte_narration": "Les années ont passé. Nous sommes maintenant dans les années soixante. Le paquebot France prend forme sous les yeux de Gilles — cent six mille tonnes de rêve et d'acier, fierté nationale. Ses mains ont changé. Elles connaissent désormais chaque secret du métier. Les outils, eux aussi, ont évolué. Les machines ont remplacé certains gestes anciens. Mais l'essentiel demeure : ce regard attentif sur la coque, cette patience du travail bien fait. Le soir tombe sur le chantier. Gilles observe un jeune apprenti qui hésite devant une pièce de métal. Il s'approche, ajuste la position de ses mains, comme on le fit pour lui autrefois. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux. Mais dans chaque geste transmis, dans chaque savoir partagé, quelque chose de ces années vibre encore. Le fleuve coule, indifférent. Et pourtant, il se souvient."
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 272,
+          "duree_lecture_estimee": 146.7149758454106,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0,
+          "coherence_historique": {
+            "accuracy_score": 0.8,
+            "sources_citees": [],
+            "verifications": [
+              "Validation basique effectuée"
+            ],
+            "vocabulaire_epoque": []
+          }
+        },
+        "notes_pour_agent_3": "FLUIDITÉ ESSENTIELLE : Le récit doit couler comme une seule respiration. La voix féminine posée (40 ans, pédagogue) guide l'auditeur sans jamais le brusquer. L'archive audio en ouverture pose l'atmosphère des chantiers navals nantais. La transition entre les deux parties ne doit PAS être une coupure mais un glissement poétique — une phrase comme 'Les années ont passé...' ou 'Bien des matins plus tard...' suffit. L'angle 'journée type' structure les deux époques : matin de l'apprentissage / soir de la maturité, créant un parallèle symbolique. Privilégier les détails sensoriels concrets (sons du métal, odeur de la Loire, lumière changeante) pour ancrer le témoignage dans le vécu. Ton pédagogique mais chaleureux, jamais distant.",
+        "quality_rank": 1
+      },
+      "timeline": {
+        "timeline_id": "scenario_1_timeline_v1",
+        "scenario_id": 1,
+        "duree_totale": 146.7149758454106,
+        "tracks": {
+          "narration_track": [
+            {
+              "id": "narr_01",
+              "start_time": 0,
+              "end_time": 67.82608695652173,
+              "duration": 67.82608695652173,
+              "text_file": "scenario_part_1_narration.txt",
+              "estimated_words": 130,
+              "tempo_lecture": 115,
+              "tone": "Évocateur et chaleureux, comme si l'on racontait un souvenir précieux à un enfant curieux",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "Pause de 1 seconde après 'ses premiers pas'",
+                "Légère suspension après 'cathédrales d'acier'",
+                "Pause contemplative avant la dernière phrase"
+              ]
+            },
+            {
+              "id": "narr_02",
+              "start_time": 67.82608695652173,
+              "end_time": 146.7149758454106,
+              "duration": 78.88888888888889,
+              "text_file": "scenario_part_2_narration.txt",
+              "estimated_words": 142,
+              "tempo_lecture": 108,
+              "tone": "Nostalgique mais serein, comme un regard apaisé sur une vie accomplie",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "Pause méditative après 'fierté nationale'",
+                "Suspension douce après 'comme on le fit pour lui autrefois'",
+                "Pause longue avant 'Le fleuve coule'",
+                "Silence contemplatif final après 'il se souvient'"
+              ]
+            }
+          ],
+          "archives_track": [],
+          "ambiances_track": [],
+          "sfx_track": [],
+          "music_track": []
+        },
+        "transitions": [],
+        "master_parameters": {
+          "target_loudness": -16,
+          "dynamic_range": "moderate",
+          "final_compression": {
+            "threshold": -18,
+            "ratio": 3,
+            "attack": 10,
+            "release": 100
+          },
+          "final_limiter": {
+            "threshold": -1,
+            "ceiling": -0.3
+          }
+        },
+        "metadata": {
+          "total_files_used": 2,
+          "total_tracks": 5,
+          "total_regions": 2,
+          "generation_timestamp": "2026-02-18T15:33:37.624558",
+          "estimated_production_time": "2-3 heures",
+          "required_software": [
+            "Reaper",
+            "ou équivalent"
+          ],
+          "export_formats": [
+            "RPP",
+            "EDL",
+            "JSON"
+          ]
+        },
+        "quality_checks": {
+          "timeline_coherence": "✓ OK",
+          "no_overlapping_conflicts": "✓ OK",
+          "duration_matches_scenario": "✓ OK (146.7s)",
+          "all_required_sounds_found": "✓ OK",
+          "volume_levels_balanced": "✓ OK",
+          "transitions_smooth": "✓ OK"
+        }
+      },
+      "scenario_index": 1,
+      "quality_rank": 1
+    },
+    "final_slideshow": {
+      "status": "generated",
+      "path": "data/projects/slider8ios/outputs/video_slider8ios.mp4",
+      "created_at": "2026-02-18T14:42:48.426224",
+      "image_count": 10
+    }
+  },
+  "slider99": {
+    "created_at": "2026-02-18T15:20:27.758667",
+    "allowed_websites": [
+      "wikipedia.org"
+    ],
+    "voice_instructions": "Use a narrator aligned with a narration immersive, empathique et documentée delivery suitable for a grand public audience. Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: 99 Scenario excerpt for context: Les mains qui ont forgé le France\n\nImaginez la Loire en 1950. Sur les chantiers navals de Nantes, un homme se tient face à la coque immense. Ses mains, noircies par le métal, connaissent chaque rivet, chaque soudure. Autour de lui, le vacarme des marteaux, le sifflement des chalumeaux, le grondement des grues qui pivotent dans le ciel gris. Il est soudeur. L'un des milliers d'ouvriers qui, chaque matin, franchissent les portes du chantier. Son nom ne figure dans aucun registre officiel. Mais ses mains, elles, vont façonner l'histoire.\n\nLes années passent. Et puis, vers 1960, le mot circule sur",
+    "voice_instructions_source": "auto",
+    "project_notes": "99",
+    "scenario_target": 1,
+    "finalized_at": "2026-02-18T15:46:23.060216",
+    "final_scenario": {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Les mains qui ont forgé le France",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "portrait_individuel",
+        "duree_totale": 120,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "L'homme aux mains d'acier",
+            "duree_cible": 35,
+            "fonction_narrative": "exposition_portrait",
+            "position_arc_emotionnel": "setup",
+            "elements_necessaires": [
+              "présentation d'un ouvrier des chantiers navals de Nantes",
+              "ambiance sonore des années 1950 - bruits industriels",
+              "description sensorielle du quotidien sur les chantiers",
+              "archive audio ElevenLabs_Spuds_Oxley.mp3 segment initial"
+            ],
+            "mood": "contemplatif_immersif"
+          },
+          {
+            "partie": 2,
+            "titre": "Le rêve prend forme",
+            "duree_cible": 45,
+            "fonction_narrative": "developpement_tension",
+            "position_arc_emotionnel": "tension_climax",
+            "elements_necessaires": [
+              "montée en puissance du chantier du France vers 1960",
+              "fierté et engagement personnel de l'ouvrier",
+              "dimension collective du projet - 106000 tonnes d'acier",
+              "tension entre labeur quotidien et grandeur du projet"
+            ],
+            "mood": "epique_intime"
+          },
+          {
+            "partie": 3,
+            "titre": "Ce qui reste",
+            "duree_cible": 40,
+            "fonction_narrative": "resolution_contemplative",
+            "position_arc_emotionnel": "resolution",
+            "elements_necessaires": [
+              "contraste passé glorieux / présent silencieux",
+              "héritage personnel et mémoire ouvrière",
+              "ouverture mélancolique sur les quais aujourd'hui",
+              "archive audio segment final - 'seules le...'"
+            ],
+            "mood": "nostalgique_apaise"
+          }
+        ],
+        "arc_emotionnel_global": "tension_resolution",
+        "rythme_general": "modere",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "progression_temporelle",
+            "duree": 3,
+            "description": "Glissement fluide du portrait individuel vers l'ampleur du projet collectif, la voix accompagne naturellement le passage des années"
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "contraste_emotionnel",
+            "duree": 3,
+            "description": "Bascule douce du climax épique vers la contemplation présente, le silence industriel succède au tumulte"
+          }
+        ],
+        "notes_production": "Instructions pour Agent 2 : Ce récit est un portrait intime qui traverse le temps. La voix off omnisciente doit incarner une proximité bienveillante avec le personnage, sans jamais le nommer précisément (contexte insuffisant). Privilégier les sensations - chaleur du métal, odeur de soudure, poids de la fatigue - pour ancrer l'émotion. Les transitions doivent être imperceptibles : le texte coule comme un souvenir qui se déroule. L'archive audio disponible sert de fil conducteur factuel. Ne pas inventer de noms, dates précises ou événements non documentés. Le ton journalistique s'exprime par la précision des détails vérifiables (106000 tonnes, année 1960, chantiers de Nantes) tout en laissant l'humain au centre. La fin doit résonner comme un écho - ce qui fut grandiose persiste dans le silence actuel des quais."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Les mains qui ont forgé le France",
+        "axe_narratif": "evolution_temporelle",
+        "angle_scenarisation": "portrait_individuel",
+        "ton": "journalistique_factuel",
+        "duree_estimee": 172.90186335403726,
+        "parties": [
+          {
+            "titre": "L'homme aux mains d'acier",
+            "texte_narration": "Imaginez la Loire en 1950. Sur les chantiers navals de Nantes, un homme se tient face à la coque immense. Ses mains, noircies par le métal, connaissent chaque rivet, chaque soudure. Autour de lui, le vacarme des marteaux, le sifflement des chalumeaux, le grondement des grues qui pivotent dans le ciel gris. Il est soudeur. L'un des milliers d'ouvriers qui, chaque matin, franchissent les portes du chantier. Son nom ne figure dans aucun registre officiel. Mais ses mains, elles, vont façonner l'histoire."
+          },
+          {
+            "titre": "Le rêve prend forme",
+            "texte_narration": "Les années passent. Et puis, vers 1960, le mot circule sur le chantier : le France. Un paquebot comme personne n'en a jamais construit ici. 106 000 tonnes d'acier à assembler. 106 000 tonnes de rêve, disent certains. Notre homme est là, parmi les soudeurs et les charpentiers. Il voit les coques immenses prendre forme sous les mains expertes de ses camarades. Fierté nationale, répètent les journaux. Mais pour lui, c'est autre chose. C'est le sentiment, chaque soir en rentrant chez lui, d'appartenir à quelque chose de plus grand. De savoir que ses gestes, répétés mille fois, participent à une œuvre collective. Le France naît ici. Et lui, modeste ouvrier, en est l'un des pères anonymes."
+          },
+          {
+            "titre": "Ce qui reste",
+            "texte_narration": "Aujourd'hui, les quais sont silencieux. Les marteaux se sont tus depuis longtemps. Seules les grues jaunes témoignent de ce passé glorieux. Elles se dressent là, immobiles, comme des sentinelles oubliées. L'homme aux mains d'acier n'est plus. Mais quelque part, dans la mémoire de ceux qui l'ont connu, dans les récits transmis aux enfants, son geste perdure. Il a forgé le France. Et le France, d'une certaine manière, l'a forgé lui aussi. Sur la Loire apaisée, le vent souffle encore. Il porte avec lui l'écho d'une époque où Nantes construisait des rêves de métal."
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 308,
+          "duree_lecture_estimee": 172.90186335403726,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0,
+          "coherence_historique": {
+            "accuracy_score": 0.8,
+            "sources_citees": [],
+            "verifications": [
+              "Validation basique effectuée"
+            ],
+            "vocabulaire_epoque": []
+          }
+        },
+        "notes_pour_agent_3": "Instructions pour Agent 2 : Ce récit est un portrait intime qui traverse le temps. La voix off omnisciente doit incarner une proximité bienveillante avec le personnage, sans jamais le nommer précisément (contexte insuffisant). Privilégier les sensations - chaleur du métal, odeur de soudure, poids de la fatigue - pour ancrer l'émotion. Les transitions doivent être imperceptibles : le texte coule comme un souvenir qui se déroule. L'archive audio disponible sert de fil conducteur factuel. Ne pas inventer de noms, dates précises ou événements non documentés. Le ton journalistique s'exprime par la précision des détails vérifiables (106000 tonnes, année 1960, chantiers de Nantes) tout en laissant l'humain au centre. La fin doit résonner comme un écho - ce qui fut grandiose persiste dans le silence actuel des quais.",
+        "quality_rank": 1
+      },
+      "timeline": {
+        "timeline_id": "scenario_1_timeline_v1",
+        "scenario_id": 1,
+        "duree_totale": 172.90186335403726,
+        "tracks": {
+          "narration_track": [
+            {
+              "id": "narr_01",
+              "start_time": 0,
+              "end_time": 48.57142857142857,
+              "duration": 48.57142857142857,
+              "text_file": "scenario_part_1_narration.txt",
+              "estimated_words": 85,
+              "tempo_lecture": 105,
+              "tone": "contemplatif, posé, immersif",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "après 'en 1950' (1s)",
+                "après 'chaque soudure' (0.5s)",
+                "après 'façonner l'histoire' (1.5s)"
+              ]
+            },
+            {
+              "id": "narr_02",
+              "start_time": 48.57142857142857,
+              "end_time": 111.70186335403726,
+              "duration": 63.13043478260869,
+              "text_file": "scenario_part_2_narration.txt",
+              "estimated_words": 121,
+              "tempo_lecture": 115,
+              "tone": "épique mais intime, montée progressive en intensité",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "après 'le France' (0.8s)",
+                "après '106 000 tonnes de rêve' (1s)",
+                "après 'pères anonymes' (1.5s)"
+              ]
+            },
+            {
+              "id": "narr_03",
+              "start_time": 111.70186335403726,
+              "end_time": 172.90186335403726,
+              "duration": 61.2,
+              "text_file": "scenario_part_3_narration.txt",
+              "estimated_words": 102,
+              "tempo_lecture": 100,
+              "tone": "nostalgique, apaisé, mélancolique",
+              "voice_profile": {
+                "gender": "male",
+                "age_range": "45-55",
+                "accent": "regional",
+                "timbre": "medium",
+                "delivery": "moderate"
+              },
+              "volume": 0.8,
+              "effects": [],
+              "pauses": [
+                "après 'silencieux' (1s)",
+                "après 'sentinelles oubliées' (1.2s)",
+                "après 'forgé lui aussi' (1s)",
+                "pause finale (2s)"
+              ]
+            }
+          ],
+          "archives_track": [],
+          "ambiances_track": [],
+          "sfx_track": [],
+          "music_track": []
+        },
+        "transitions": [],
+        "master_parameters": {
+          "target_loudness": -16,
+          "dynamic_range": "moderate",
+          "final_compression": {
+            "threshold": -18,
+            "ratio": 3,
+            "attack": 10,
+            "release": 100
+          },
+          "final_limiter": {
+            "threshold": -1,
+            "ceiling": -0.3
+          }
+        },
+        "metadata": {
+          "total_files_used": 3,
+          "total_tracks": 5,
+          "total_regions": 3,
+          "generation_timestamp": "2026-02-18T16:22:49.217109",
+          "estimated_production_time": "2-3 heures",
+          "required_software": [
+            "Reaper",
+            "ou équivalent"
+          ],
+          "export_formats": [
+            "RPP",
+            "EDL",
+            "JSON"
+          ]
+        },
+        "quality_checks": {
+          "timeline_coherence": "✓ OK",
+          "no_overlapping_conflicts": "✓ OK",
+          "duration_matches_scenario": "✓ OK (172.9s)",
+          "all_required_sounds_found": "✓ OK",
+          "volume_levels_balanced": "✓ OK",
+          "transitions_smooth": "✓ OK"
+        }
+      },
+      "scenario_index": 1,
+      "quality_rank": 1
+    },
+    "final_audio": {
+      "status": "generated",
+      "path": "data/projects/slider99/outputs/audio_slider99.wav",
+      "language": "French",
+      "sample_rate": 24000,
+      "num_samples": 3149310,
+      "project": "slider99",
+      "instructions": "Use a narrator aligned with a narration immersive, empathique et documentée delivery suitable for a grand public audience. Speak in French with clear articulation, medium pace, natural breathing and pedagogical warmth. Audience: grand public. Maintain the requested tone 'narration immersive, empathique et documentée'. Project brief: 99 Scenario excerpt for context: Les mains qui ont forgé le France\n\nImaginez la Loire en 1950. Sur les chantiers navals de Nantes, un homme se tient face à la coque immense. Ses mains, noircies par le métal, connaissent chaque rivet, chaque soudure. Autour de lui, le vacarme des marteaux, le sifflement des chalumeaux, le grondement des grues qui pivotent dans le ciel gris. Il est soudeur. L'un des milliers d'ouvriers qui, chaque matin, franchissent les portes du chantier. Son nom ne figure dans aucun registre officiel. Mais ses mains, elles, vont façonner l'histoire.\n\nLes années passent. Et puis, vers 1960, le mot circule sur",
+      "generated_at": "2026-02-18T15:45:01.237883",
+      "text_length": 1803,
+      "backgrounds_applied": 1,
+      "background_tracks_requested": 1,
+      "voice_only_path": "data/generated_speech/tts_use-a-narrator-aligned-with-a-_20260218T154500Z_dry.wav"
+    },
+    "final_slideshow": {
+      "status": "generated",
+      "path": "data/projects/slider99/outputs/video_slider99.mp4",
+      "created_at": "2026-02-18T15:46:17.087132",
+      "image_count": 10
+    }
   }
 }

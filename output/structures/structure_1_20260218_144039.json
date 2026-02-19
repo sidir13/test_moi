@@ -1,0 +1,55 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, une vie au fil du métier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Les années d'apprentissage",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "présentation de Gilles jeune apprenti",
+        "description sensorielle de l'atelier ou du lieu de travail",
+        "relation avec un maître ou mentor",
+        "gestes répétés, erreurs, premières réussites",
+        "atmosphère d'effort et de patience",
+        "vocabulaire du métier transmis oralement"
+      ],
+      "mood": "nostalgique_chaleureux"
+    },
+    {
+      "partie": 2,
+      "titre": "Le monde change, le métier se transforme",
+      "duree_cible": 65.0,
+      "fonction_narrative": "developpement_et_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "passage du temps évoqué subtilement",
+        "arrivée de nouvelles techniques ou outils",
+        "adaptation de Gilles face aux changements",
+        "ce qui demeure malgré les transformations",
+        "regard rétrospectif sur le chemin parcouru",
+        "ouverture vers la transmission aux générations suivantes"
+      ],
+      "mood": "reflexif_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_douce",
+      "duree": 3.0,
+      "description": "Glissement naturel du passé vers le présent, porté par une phrase-pivot évoquant le passage des années. Pas de rupture franche : le fil du récit reste tendu, seul le tempo s'élargit légèrement pour marquer l'écoulement du temps."
+    }
+  ],
+  "notes_production": "FLUIDITÉ NARRATIVE ESSENTIELLE : Ce récit doit être conté d'une seule traite, comme une confidence partagée. La narratrice (voix féminine, 40 ans, posée et pédagogue) guide l'auditeur avec bienveillance. Éviter tout effet de liste ou de découpage scolaire. Les deux parties s'enchaînent par une transition organique — une respiration, un léger changement de ton — sans annonce explicite. Le vocabulaire reste accessible, les phrases courtes à moyennes. Privilégier les images concrètes (mains, outils, lumière de l'atelier) aux abstractions. La dimension pédagogique passe par l'émotion et l'incarnation, non par l'explication frontale. ATTENTION : en l'absence de données historiques précises sur Gilles, rester volontairement vague sur les dates, lieux et noms propres. Utiliser des formulations comme 'dans ces années-là', 'l'atelier où il apprit', 'son maître' sans inventer de détails factuels."
+}
