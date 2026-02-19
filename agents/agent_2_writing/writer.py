@@ -536,6 +536,26 @@ JSON :"""
             
             response_text = response.content[0].text
             part = self._extract_json(response_text)
+
+            sentence_sources = part.get('sentence_sources', [])
+            if isinstance(sentence_sources, list):
+                normalized_sources = []
+                for item in sentence_sources:
+                    if not isinstance(item, dict):
+                        continue
+                    sentence_text = item.get('sentence')
+                    sources_list = item.get('sources', [])
+                    if not isinstance(sentence_text, str):
+                        continue
+                    if not isinstance(sources_list, list):
+                        sources_list = []
+                    normalized_sources.append({
+                        'sentence': sentence_text.strip(),
+                        'sources': [str(src).strip() for src in sources_list if isinstance(src, str) and src.strip()],
+                    })
+                part['sentence_sources'] = normalized_sources
+            else:
+                part['sentence_sources'] = []
             
             # Calculate actual timing
             timing = self.calculate_narration_timing(

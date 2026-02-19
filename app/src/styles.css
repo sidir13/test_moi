@@ -241,6 +241,58 @@ button.step:disabled {
   color: #c2410c;
 }
 
+.scenario-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sourcing-toggle {
+  margin-top: 0.5rem;
+}
+
+.sourcing-panel {
+  border: 1px solid #dbeafe;
+  background: #f8fbff;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sourcing-part ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.35rem 0 0;
+}
+
+.sourcing-label {
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+.sourcing-label.muted {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.sourcing-pill {
+  display: inline-flex;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8em;
+  margin-right: 0.25rem;
+  margin-top: 0.15rem;
+}
+
 .card.emphasis {
   border: 2px solid #1d4ed8;
   background: #eef2ff;

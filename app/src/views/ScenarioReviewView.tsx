@@ -213,6 +213,8 @@ export function ScenarioReviewView() {
   );
 }
 
+type SentenceSourcing = { sentence: string; sources: string[] };
+
 function ScenarioCard({
   scenario,
   displayIndex,
@@ -224,6 +226,7 @@ function ScenarioCard({
   isSelected: boolean;
   onSelect: () => void;
 }) {
+  const [showSourcing, setShowSourcing] = useState(false);
   const raw = scenario as any;
   const payload = raw?.scenario ?? raw;
   const scenarioTitle =
@@ -251,6 +254,34 @@ function ScenarioCard({
     lettre_intime: "Lettre intime",
     recit_initiatique: "Récit initiatique",
   };
+  const sourcingByPart = Array.isArray(parties)
+    ? parties
+        .map((part: any, idx: number) => {
+          const sentences: SentenceSourcing[] = Array.isArray(part?.sentence_sources)
+            ? part.sentence_sources
+                .map((item: any) => {
+                  if (!item || typeof item !== "object" || typeof item.sentence !== "string") {
+                    return null;
+                  }
+                  const rawSources = Array.isArray(item.sources) ? item.sources : [];
+                  const sanitizedSources = rawSources
+                    .map((src: unknown) => (typeof src === "string" ? src.trim() : ""))
+                    .filter((src: string) => src.length > 0);
+                  return {
+                    sentence: item.sentence.trim(),
+                    sources: sanitizedSources
+                  } as SentenceSourcing;
+                })
+                .filter(Boolean) as SentenceSourcing[]
+            : [];
+          return {
+            title: part?.titre || `Partie ${idx + 1}`,
+            sentences
+          };
+        })
+        .filter((entry) => entry.sentences.length > 0)
+    : [];
+  const hasSourcing = sourcingByPart.length > 0;
 
   return (
     <article className={`scenario-card ${isSelected ? "selected" : ""}`}>
@@ -278,9 +309,52 @@ function ScenarioCard({
           </ul>
         </details>
       )}
-      <button onClick={onSelect} className="link">
-        {isSelected ? "Scénario sélectionné" : "Choisir ce scénario"}
-      </button>
+      <div className="scenario-card-actions">
+        {hasSourcing ? (
+          <button
+            type="button"
+            className="link sourcing-toggle"
+            onClick={() => setShowSourcing((prev) => !prev)}
+          >
+            {showSourcing ? "Masquer le sourcing" : "Afficher le sourcing"}
+          </button>
+        ) : (
+          <span />
+        )}
+        <button onClick={onSelect} className="link">
+          {isSelected ? "Scénario sélectionné" : "Choisir ce scénario"}
+        </button>
+      </div>
+      {hasSourcing && showSourcing && (
+        <div className="sourcing-panel">
+          {sourcingByPart.map((part, idx) => (
+            <div key={idx} className="sourcing-part">
+              <strong>{part.title}</strong>
+              <ul>
+                {part.sentences.map((item: SentenceSourcing, sentenceIdx: number) => (
+                  <li key={sentenceIdx}>
+                    <p>
+                      <em>{item.sentence}</em>
+                    </p>
+                    {Array.isArray(item.sources) && item.sources.length > 0 ? (
+                      <div>
+                        <span className="sourcing-label">Transcriptions :</span>{" "}
+                        {item.sources.map((src: string, srcIdx: number) => (
+                          <span key={srcIdx} className="sourcing-pill">
+                            {src}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <span className="sourcing-label muted">Aucune transcription citée</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
     </article>
   );
 }

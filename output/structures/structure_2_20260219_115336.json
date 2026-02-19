@@ -1,0 +1,100 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Mémoires d'acier et d'eau",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Échos du fleuve",
+      "duree_cible": 25.0,
+      "fonction_narrative": "ouverture_immersive",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "sons d'eau et de fleuve en arrière-plan",
+        "première voix - murmure nostalgique",
+        "évocation sensorielle des chantiers navals",
+        "archive ElevenLabs_Spuds_Oxley.mp3 [00:00-00:15] - introduction Loire 1950"
+      ],
+      "mood": "contemplatif_brumeux"
+    },
+    {
+      "partie": 2,
+      "titre": "Le chœur des bâtisseurs",
+      "duree_cible": 35.0,
+      "fonction_narrative": "montee_en_tension",
+      "position_arc_emotionnel": "tension",
+      "elements_necessaires": [
+        "entrelacement de fragments de voix multiples",
+        "souvenirs de travail entremêlés",
+        "archive ElevenLabs_Spuds_Oxley.mp3 [00:15-00:35] - chantiers et construction",
+        "rythme des marteaux et soudures évoqué",
+        "voix qui se superposent progressivement"
+      ],
+      "mood": "intense_collectif"
+    },
+    {
+      "partie": 3,
+      "titre": "106 000 tonnes de rêves",
+      "duree_cible": 35.0,
+      "fonction_narrative": "climax_emotionnel",
+      "position_arc_emotionnel": "climax",
+      "elements_necessaires": [
+        "moment de lancement évoqué",
+        "archive ElevenLabs_Spuds_Oxley.mp3 [00:35-fin] - paquebot France 1960",
+        "voix convergentes vers un même souvenir",
+        "fierté collective palpable",
+        "silence suspendu avant la mise à l'eau"
+      ],
+      "mood": "exaltation_poetique"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce qui demeure",
+      "duree_cible": 25.0,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "retour au présent",
+        "voix qui s'éloignent doucement",
+        "le fleuve qui continue de couler",
+        "dernière voix solitaire",
+        "silence habité de mémoire"
+      ],
+      "mood": "melancolique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_enchaine_sonore",
+      "duree": 3.0,
+      "description": "Le murmure solitaire se fond dans un bourdon de voix multiples, comme si d'autres souvenirs émergeaient du fleuve"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "crescendo_naturel",
+      "duree": 2.5,
+      "description": "Les voix entremêlées convergent vers un même instant, un même souffle retenu"
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_contemplatif",
+      "duree": 3.0,
+      "description": "L'exaltation se dissout lentement, les voix se raréfient, le fleuve reprend ses droits"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR AGENT 2 : Ce scénario est un COLLAGE SONORE où les voix doivent s'entrelacer comme des fils d'eau. Aucune rupture franche entre les sections - le récit doit couler comme la Loire elle-même. Les voix (minimum 3-4 perspectives différentes suggérées) peuvent se chevaucher, se répondre, s'interrompre tendrement. Utiliser la première personne mais alterner les 'je' pour créer cette mosaïque. L'archive audio disponible doit être intégrée comme une voix parmi d'autres, pas comme un élément séparé. Le ton poétique-contemplatif demande des silences habités, des respirations entre les fragments. La structure en flashback implique que nous sommes dans le présent regardant vers le passé - ce regard rétrospectif doit teinter chaque voix d'une douce mélancolie. Privilégier les sensations (odeur de métal chaud, bruit des rivets, reflets sur l'eau) aux descriptions factuelles."
+}
