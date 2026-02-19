@@ -63,10 +63,28 @@ from config.model_registry import get_available_models, resolve_model_id
 logger = logging.getLogger(__name__)
 BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.4)  # ≈ -7.96 dB
 BACKGROUND_PLAN_MODEL = os.getenv("BACKGROUND_PLAN_MODEL", "anthropic/claude-sonnet-4-5")
+VOICE_TRANSLATION_MODEL = os.getenv("VOICE_TRANSLATION_MODEL", "anthropic/claude-3-haiku-20240307")
 MIN_BACKGROUND_SEGMENT = 5.0
 MAX_BACKGROUND_SEGMENT = 10.0
 BACKGROUND_SEGMENT_GAP = 0.5
 _background_plan_client: Optional[ClaudeClient] = None
+_voice_translation_client: Optional[ClaudeClient] = None
+FRENCH_HINT_KEYWORDS = {
+    "voix",
+    "femme",
+    "homme",
+    "ans",
+    "ton",
+    "posé",
+    "posée",
+    "pédagogue",
+    "doux",
+    "douce",
+    "grave",
+    "rapide",
+    "lent",
+    "accent",
+}
 
 
 def log_progress(event: str, **fields: Any) -> None:
@@ -87,6 +105,18 @@ def _get_background_plan_client() -> Optional[ClaudeClient]:
         logger.warning("Unable to initialize Claude client for background planning: %s", exc)
         return None
     return _background_plan_client
+
+
+def _get_voice_translation_client() -> Optional[ClaudeClient]:
+    global _voice_translation_client
+    if _voice_translation_client is not None:
+        return _voice_translation_client
+    try:
+        _voice_translation_client = ClaudeClient()
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.warning("Unable to initialize Claude client for voice translation: %s", exc)
+        return None
+    return _voice_translation_client
 
 
 def _extract_json_array(payload: str) -> List[Dict[str, Any]]:
@@ -612,6 +642,42 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             remaining.append(line)
         return voice_hint, "\n".join(remaining).strip()
 
+    def _maybe_translate_voice_hint(text: Optional[str]) -> Optional[str]:
+        if not text:
+            return text
+        candidate = text.strip()
+        if not candidate:
+            return candidate
+        lower = candidate.lower()
+        contains_accents = any(ord(ch) > 127 for ch in candidate)
+        looks_french = contains_accents or any(token in lower for token in FRENCH_HINT_KEYWORDS)
+        if not looks_french:
+            return candidate
+        client = _get_voice_translation_client()
+        if not client:
+            return candidate
+        user_prompt = (
+            "Translate the following narrator / voice style hint into concise English instructions suitable for a TTS model. "
+            "Preserve age, gender, tone, pacing, personality, and emotional cues. Respond with the translation only."
+            f"\n\n{text}"
+        )
+        try:
+            response = client.create_message(
+                model=VOICE_TRANSLATION_MODEL,
+                system="You are a precise translator who rewrites short voice direction notes into fluent English instructions.",
+                messages=[{"role": "user", "content": user_prompt}],
+                temperature=0,
+                max_tokens=300,
+            )
+            translated = ""
+            if response and getattr(response, "content", None):
+                translated = response.content[0].text.strip()  # type: ignore[attr-defined]
+            if translated:
+                return translated
+        except Exception as exc:  # pragma: no cover - translation is best-effort
+            logger.warning("Voice hint translation failed: %s", exc)
+        return candidate
+
     def _compose_voice_instructions(
         voice_hint: Optional[str],
         project_summary: str,
@@ -620,7 +686,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         language_hint: str,
         scenario_excerpt: str,
     ) -> str:
-        base_voice = voice_hint or f"Use a narrator aligned with a {tone} delivery suitable for a {audience} audience."
+        normalized_hint = _maybe_translate_voice_hint(voice_hint)
+        base_voice = normalized_hint or f"Use a narrator aligned with a {tone} delivery suitable for a {audience} audience."
         fragments = [
             base_voice,
             f"Speak in {language_hint} with clear articulation, medium pace, natural breathing and pedagogical warmth.",

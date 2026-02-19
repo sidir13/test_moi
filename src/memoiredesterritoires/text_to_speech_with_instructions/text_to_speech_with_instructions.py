@@ -9,6 +9,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Optional
+import logging
 
 import soundfile as sf
 import torch
@@ -18,6 +19,8 @@ from memoiredesterritoires.project_config import (
     DEFAULT_PROJECT_NAME,
     load_project_config,
 )
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_PROJECT = DEFAULT_PROJECT_NAME
 LOCAL_MODEL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts")).expanduser()
@@ -48,6 +51,14 @@ def _load_voice_instructions(project_name: Optional[str]) -> tuple[str, str]:
         raise ValueError(
             f"Aucune voix définie pour '{project}'. Utilisez d'abord edit_voice_instructions."
         )
+    trimmed_preview = instructions.strip().splitlines()[0][:160] if instructions else ""
+    logger.info(
+        "Using voice instructions for project=%s (source=%s): %s%s",
+        project,
+        entry.get("voice_instructions_source"),
+        trimmed_preview,
+        "…" if instructions and len(instructions) > len(trimmed_preview) else "",
+    )
     return instructions, project
 
 

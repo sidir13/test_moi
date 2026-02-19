@@ -1,0 +1,76 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, une vie au fil du métier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube de l'apprentissage",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "réveil matinal du jeune apprenti",
+        "premiers gestes hésitants sous le regard du maître",
+        "atmosphère sonore d'atelier ou de chantier",
+        "découverte des outils et des rituels du métier",
+        "fatigue et fierté mêlées de la première journée"
+      ],
+      "mood": "intimiste_evocateur"
+    },
+    {
+      "partie": 2,
+      "titre": "Le midi des transformations",
+      "duree_cible": 40,
+      "fonction_narrative": "developpement_climax",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "passage du temps - Gilles devenu compagnon puis maître",
+        "évolution des techniques et des outils",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 en illustration contextuelle",
+        "adaptation aux changements industriels",
+        "transmission du savoir à son tour"
+      ],
+      "mood": "dynamique_nostalgique"
+    },
+    {
+      "partie": 3,
+      "titre": "Le crépuscule d'un savoir",
+      "duree_cible": 25,
+      "fonction_narrative": "resolution_ouverture",
+      "position_arc_emotionnel": "resolution_apaisee",
+      "elements_necessaires": [
+        "regard rétrospectif sur le parcours",
+        "ce qui demeure malgré les changements",
+        "héritage transmis aux nouvelles générations",
+        "note d'espoir ou de continuité"
+      ],
+      "mood": "contemplatif_chaleureux"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_fluide",
+      "duree": 3,
+      "description": "Glissement naturel du soir de la première journée d'apprenti vers les années qui passent - la fatigue du jeune homme se mue en assurance du compagnon, sans rupture mais par une phrase-pont évoquant le temps qui forge."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "ralentissement_contemplatif",
+      "duree": 2,
+      "description": "Le rythme s'apaise, le tumulte des transformations laisse place à un moment de recul - comme une fin de journée où l'on pose les outils pour contempler l'ouvrage accompli."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 : Ce récit doit couler comme une seule journée métaphorique - l'aube représente les débuts de Gilles, le midi sa maturité professionnelle, le crépuscule son regard rétrospectif. La voix féminine de 40 ans, pédagogue et posée, doit incarner une narratrice bienveillante qui accompagne l'auditeur sans jamais brusquer. FLUIDITÉ ABSOLUE : pas de ruptures entre sections, mais des glissements naturels. L'archive audio peut être intégrée brièvement (5-10s) pour ancrer le contexte industriel sans interrompre le fil narratif. Le ton pédagogique doit rester accessible et chaleureux, jamais professoral. Privilégier les images concrètes : gestes, outils, sensations physiques du travail. La métaphore de la journée-type structure le récit mais ne doit pas être explicitement nommée - elle doit se ressentir dans le rythme et les atmosphères."
+}
