@@ -12,6 +12,30 @@ import {
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
+type SessionBootstrap = {
+  steps?: Record<string, unknown>;
+  scenarios?: unknown[];
+  selected_scenario?: unknown;
+  scenario_audio?: { path?: string | null } | null;
+};
+
+const deriveProgressFromSession = (
+  session: SessionBootstrap | null,
+  requireFreshEdit: boolean
+) => {
+  const steps = (session?.steps ?? {}) as Record<string, unknown>;
+  const storedScenarios = Array.isArray(session?.scenarios) ? (session?.scenarios as unknown[]) : [];
+  const selectedScenario = session?.selected_scenario;
+  const audioMeta = session?.scenario_audio;
+  const audioSources = steps && typeof steps === "object" ? (steps as any).audio_sources : undefined;
+  return {
+    audioReady: Boolean(audioSources || audioMeta?.path),
+    scenariosReady: Boolean(storedScenarios.length > 0 || selectedScenario),
+    scenarioChosen: Boolean(selectedScenario),
+    scenarioEdited: requireFreshEdit ? false : Boolean(audioMeta?.path)
+  };
+};
+
 const formatDate = (value?: string) => {
   if (!value) return "";
   const date = new Date(value);
@@ -60,7 +84,9 @@ export function ProjectSelectionView() {
     setCurrentStep,
     setScenarioTarget,
     lastProjectName,
-    setLastProjectName
+    setLastProjectName,
+    resetProgress,
+    setProgress
   } = useSessionStore();
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -89,6 +115,7 @@ export function ProjectSelectionView() {
       setSessionId(session.session_id);
       setCurrentStep("project_details");
       setScenarioTarget(scenarioTargetDraft);
+      resetProgress();
       setName("");
       setDescription("");
       resetPreview();
@@ -108,7 +135,10 @@ export function ProjectSelectionView() {
 
   const handleSelect = async (project: ProjectSummary) => {
     try {
+      resetProgress();
       const session = await createSession(project.name, "project_selection", project.scenario_target);
+      const derivedProgress = deriveProgressFromSession(session, Boolean(project.finalized_at));
+      setProgress(derivedProgress);
       setProjectName(project.name);
       setLastProjectName(project.name);
       setSessionId(session.session_id);
@@ -219,7 +249,6 @@ export function ProjectSelectionView() {
                     <audio
                       key={`${project.name}-${previewKey}`}
                       controls
-                      autoPlay
                       className="project-audio-preview"
                       src={getProjectFinalAudioUrl(project.name)}
                       onClick={(evt) => evt.stopPropagation()}
@@ -240,7 +269,6 @@ export function ProjectSelectionView() {
             <video
               key={videoProject}
               controls
-              autoPlay
               style={{ width: "100%", maxHeight: "70vh" }}
               src={getProjectFinalVideoUrl(videoProject)}
             />

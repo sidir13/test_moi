@@ -29,6 +29,8 @@ type SessionState = {
     scenarioChosen: boolean;
     scenarioEdited: boolean;
   };
+  setProgress: (progress: SessionState["progress"]) => void;
+  resetProgress: () => void;
   setLanguage: (lang: "fr" | "en") => void;
   setSteps: (steps: Step[]) => void;
   setCurrentStep: (stepId: string) => void;
@@ -50,6 +52,24 @@ export const useSessionStore = create<SessionState>((set) => ({
     scenarioChosen: false,
     scenarioEdited: false
   },
+  setProgress: (progress) =>
+    set({
+      progress: {
+        audioReady: progress.audioReady,
+        scenariosReady: progress.scenariosReady,
+        scenarioChosen: progress.scenarioChosen,
+        scenarioEdited: progress.scenarioEdited
+      }
+    }),
+  resetProgress: () =>
+    set({
+      progress: {
+        audioReady: false,
+        scenariosReady: false,
+        scenarioChosen: false,
+        scenarioEdited: false
+      }
+    }),
   setLanguage: (language) =>
     set((state) => {
       const step = state.steps.find((s) => s.id === state.currentStep);

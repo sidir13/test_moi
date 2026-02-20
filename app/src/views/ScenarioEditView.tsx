@@ -173,11 +173,14 @@ export function ScenarioEditView() {
     }
   };
 
-  const ensureSlideshowIfNeeded = async () => {
+  const ensureSlideshowIfNeeded = async (force = false) => {
     if (!sessionId) return;
     if ((imagesQuery.data?.length ?? 0) === 0) return;
     if (!audioQuery.data?.path) {
       setVideoStatus("Générez l'audio avant de créer un diaporama.");
+      return;
+    }
+    if (!force && slideshowQuery.data?.path) {
       return;
     }
     try {
@@ -204,7 +207,7 @@ export function ScenarioEditView() {
       setVideoStatus("Générez l'audio avant de créer un diaporama.");
       return;
     }
-    await ensureSlideshowIfNeeded();
+    await ensureSlideshowIfNeeded(true);
   };
 
   const handleSubmit = async (evt: FormEvent) => {

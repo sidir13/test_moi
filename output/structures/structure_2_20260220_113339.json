@@ -1,0 +1,76 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Une journée aux chantiers navals de Nantes",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube sur les chantiers",
+      "duree_cible": 40.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "ambiance sonore matinale des chantiers",
+        "présentation du travailleur et de son parcours d'apprentissage",
+        "description des gestes du matin : préparation des outils, premiers contacts avec le métal",
+        "évocation de la transmission du savoir-faire par les anciens",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 pour contextualiser l'époque et le lieu"
+      ],
+      "mood": "contemplatif_pedagogique"
+    },
+    {
+      "partie": 2,
+      "titre": "Le cœur de la journée",
+      "duree_cible": 50.0,
+      "fonction_narrative": "developpement_tension",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "immersion dans le travail intense : soudure, assemblage, bruit des marteaux",
+        "évolution du métier à travers les décennies",
+        "changements techniques et humains sur les chantiers",
+        "passage de l'artisanat à l'industrialisation",
+        "témoignage implicite des transformations vécues par le travailleur"
+      ],
+      "mood": "dynamique_engage"
+    },
+    {
+      "partie": 3,
+      "titre": "Le crépuscule d'une époque",
+      "duree_cible": 30.0,
+      "fonction_narrative": "resolution_reflexive",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "fin de journée : rangement des outils, regard sur le travail accompli",
+        "réflexion sur l'héritage transmis et les métiers disparus",
+        "ouverture vers la mémoire collective et la transmission aux générations futures",
+        "ton apaisé et mélancolique"
+      ],
+      "mood": "nostalgique_serein"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_temporelle_naturelle",
+      "duree": 2.0,
+      "description": "Glissement fluide du matin vers le plein jour, porté par l'intensification des sons du chantier et l'accélération du rythme narratif."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_emotionnel",
+      "duree": 2.0,
+      "description": "Ralentissement progressif du récit, les bruits s'estompent, la voix adopte un ton plus intime et réflexif pour accompagner la fin de journée."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS POUR AGENT 2 — FLUIDITÉ NARRATIVE IMPÉRATIVE : Le récit doit s'écouler comme une seule coulée narrative, sans ruptures perceptibles entre les sections. La voix féminine, pédagogue et posée, guide l'auditeur à travers la journée type d'un travailleur des chantiers navals. Utiliser l'archive audio en ouverture pour ancrer immédiatement le contexte historique (Nantes, années 1950-1960). Les transitions sont des respirations naturelles, pas des coupures. Première partie : ton calme, descriptif, centré sur l'apprentissage et la transmission. Deuxième partie : montée en intensité, rythme plus soutenu, focus sur l'évolution du métier. Troisième partie : apaisement, regard rétrospectif, émotion contenue. Respecter scrupuleusement la demande utilisateur : partie 1 = histoire et apprentissage, partie 2 = évolution du métier. Ne jamais inventer de dates ou noms précis non présents dans le contexte fourni."
+}

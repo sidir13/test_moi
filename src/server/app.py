@@ -687,7 +687,9 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         scenario_excerpt: str,
     ) -> str:
         normalized_hint = _maybe_translate_voice_hint(voice_hint)
-        base_voice = normalized_hint or f"Use a narrator aligned with a {tone} delivery suitable for a {audience} audience."
+        if normalized_hint:
+            return normalized_hint.strip()
+        base_voice = f"Use a narrator aligned with a {tone} delivery suitable for a {audience} audience."
         fragments = [
             base_voice,
             f"Speak in {language_hint} with clear articulation, medium pace, natural breathing and pedagogical warmth.",
@@ -823,6 +825,22 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             path.mkdir(parents=True, exist_ok=True)
         return path
 
+    def restore_session_from_profile(session_payload: Dict[str, Any], profile: Dict[str, Any]) -> Dict[str, Any]:
+        if not session_payload or not isinstance(profile, dict):
+            return session_payload
+        updates: Dict[str, Any] = {}
+        if profile.get("last_scenarios"):
+            updates["scenarios"] = profile["last_scenarios"]
+        if profile.get("final_scenario"):
+            updates["selected_scenario"] = profile["final_scenario"]
+        if profile.get("final_audio"):
+            updates["scenario_audio"] = profile["final_audio"]
+        if profile.get("final_slideshow"):
+            updates["scenario_slideshow"] = profile["final_slideshow"]
+        if not updates:
+            return session_payload
+        return session_store.update_session(session_payload["session_id"], updates)
+
     def persist_final_assets(project_name: str, session_data: Dict[str, Any]) -> None:
         entry: Dict[str, Any] = {
             "finalized_at": datetime.utcnow().isoformat(),
@@ -926,12 +944,45 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                     })
         return {"projects": projects}
 
+    @app.get("/projects/{project_name}", tags=["projects"])
+    async def get_project_details(project_name: str) -> dict:
+        project_dir = settings.projects_dir / project_name
+        if not project_dir.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+        profile = load_project_profile(project_name)
+        if not profile:
+            upsert_project_config_entry(project_name, {})
+            profile = load_project_profile(project_name)
+        if not profile:
+            profile = {}
+        settings_meta = load_project_settings(project_name)
+        audio_selection = load_audio_selection(project_name)
+        return {
+            "name": project_name,
+            "scenario_target": settings_meta.get("scenario_target", 3),
+            "project_notes": profile.get("project_notes"),
+            "voice_instructions": profile.get("voice_instructions"),
+            "voice_instructions_source": profile.get("voice_instructions_source"),
+            "allowed_websites": profile.get("allowed_websites"),
+            "last_scenarios": profile.get("last_scenarios") or [],
+            "last_scenarios_generated_at": profile.get("last_scenarios_generated_at"),
+            "final_scenario": profile.get("final_scenario"),
+            "final_audio": profile.get("final_audio"),
+            "final_slideshow": profile.get("final_slideshow"),
+            "audio_selection": audio_selection,
+        }
+
     @app.post("/sessions", tags=["sessions"])
     async def create_session(payload: SessionCreateRequest) -> dict:
         automation_runner.ensure_project_exists(payload.project_name)
         settings_meta = load_project_settings(payload.project_name)
         target = payload.scenario_target or settings_meta.get("scenario_target", 3)
         session = session_store.create_session(payload.project_name, payload.initial_step, scenario_target=target)
+        profile = load_project_profile(payload.project_name)
+        if profile:
+            session = restore_session_from_profile(session, profile)
+        else:
+            session = session_store.load_session(session["session_id"]) or session
         log_progress(
             "SESSION_CREATED",
             session=session.get("id"),
@@ -1173,6 +1224,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 )
 
             session_store.update_session(req.session_id, {"scenarios": prepared_scenarios})
+            upsert_project_config_entry(
+                project_name,
+                {
+                    "last_scenarios": prepared_scenarios,
+                    "last_scenarios_generated_at": datetime.utcnow().isoformat(),
+                },
+            )
             finish_step(3, "Scénarios prêts pour la relecture")
         except HTTPException as http_err:
             mark(current_step, "error", str(http_err.detail) if hasattr(http_err, "detail") else str(http_err))
@@ -1201,7 +1259,18 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
 
     @app.get("/sessions/{session_id}/scenarios", tags=["sessions"])
     async def get_generated_scenarios(session_id: str) -> dict:
-        scenarios = session_store.get_scenarios(session_id)
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        scenarios = session.get("scenarios") or []
+        if not scenarios:
+            profile = load_project_profile(session["project_name"])
+            fallback = profile.get("last_scenarios")
+            if not fallback and profile.get("final_scenario"):
+                fallback = [profile["final_scenario"]]
+            if fallback:
+                session_store.update_session(session_id, {"scenarios": fallback})
+                scenarios = fallback
         return {"scenarios": scenarios}
 
     @app.get("/sessions/{session_id}/scenario-selection", response_model=ScenarioSelectionResponse, tags=["sessions"])
@@ -1209,7 +1278,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         session = session_store.load_session(session_id)
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
-        return ScenarioSelectionResponse(scenario=session.get("selected_scenario"))
+        selected = session.get("selected_scenario")
+        if not selected:
+            profile = load_project_profile(session["project_name"])
+            selected = profile.get("final_scenario")
+            if selected:
+                session_store.update_session(session_id, {"selected_scenario": selected})
+        return ScenarioSelectionResponse(scenario=selected)
 
     @app.post("/sessions/{session_id}/scenario-selection", tags=["sessions"])
     async def choose_scenario(session_id: str, payload: ScenarioSelectionPayload):
@@ -1234,6 +1309,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
         metadata = session_store.get_scenario_audio(session_id)
+        if not metadata:
+            profile = load_project_profile(session["project_name"])
+            metadata = profile.get("final_audio")
+            if metadata:
+                session_store.save_scenario_audio(session_id, metadata)
         if not metadata:
             raise HTTPException(status_code=404, detail="Aucun audio généré pour ce scénario")
         return metadata
@@ -1480,6 +1560,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Session not found")
         metadata = session.get("scenario_slideshow")
         if not metadata:
+            profile = load_project_profile(session["project_name"])
+            metadata = profile.get("final_slideshow")
+            if metadata:
+                session_store.update_session(session_id, {"scenario_slideshow": metadata})
+        if not metadata:
             raise HTTPException(status_code=404, detail="Aucun diaporama généré")
         return metadata
 
@@ -1489,6 +1574,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
         metadata = session.get("scenario_slideshow")
+        if not metadata or not metadata.get("path"):
+            profile = load_project_profile(session["project_name"])
+            metadata = profile.get("final_slideshow")
+            if metadata:
+                session_store.update_session(session_id, {"scenario_slideshow": metadata})
         if not metadata or not metadata.get("path"):
             raise HTTPException(status_code=404, detail="Aucun diaporama généré")
         path_value = metadata["path"]

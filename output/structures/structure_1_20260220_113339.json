@@ -1,0 +1,57 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui ont bâti le France",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprenti des chantiers",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_et_immersion",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "voix_feminine_premiere_personne",
+        "contexte_chantiers_navals_nantes_annees_1950",
+        "decouverte_du_metier_par_un_jeune_apprenti",
+        "sensations_physiques_bruit_metal_odeur_soudure",
+        "figure_du_maitre_transmetteur",
+        "premiers_gestes_maladroits_puis_progression",
+        "archive_audio_ElevenLabs_Spuds_Oxley_extrait_ambiance"
+      ],
+      "mood": "nostalgique_et_formateur"
+    },
+    {
+      "partie": 2,
+      "titre": "Du France aux derniers navires",
+      "duree_cible": 65,
+      "fonction_narrative": "developpement_climax_resolution",
+      "position_arc_emotionnel": "tension_climax_apaisement",
+      "elements_necessaires": [
+        "construction_paquebot_france_1960_fierte",
+        "evolution_techniques_soudure_charpente",
+        "passage_du_temps_collegues_qui_partent",
+        "transformation_des_chantiers",
+        "transmission_aux_jeunes_generations",
+        "regard_retrospectif_empreint_de_sagesse",
+        "fermeture_progressive_des_chantiers"
+      ],
+      "mood": "fierte_teintee_melancolie_puis_serenite"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_fluide",
+      "duree": 3,
+      "description": "Glissement naturel du souvenir d'apprentissage vers la maturité professionnelle, porté par une phrase de liaison évoquant le passage des années sans rupture narrative"
+    }
+  ],
+  "notes_production": "Instructions pour Agent 2 : Le récit doit être conté d'une seule voix féminine, pédagogue et posée, à la première personne. La narratrice incarne une ouvrière des chantiers navals qui se remémore sa vie. FLUIDITÉ ABSOLUE : pas de titres annoncés, pas de ruptures entre les deux parties. La transition temporelle doit se faire par le fil du souvenir, comme si la narratrice laissait naturellement ses pensées voyager dans le temps. Utiliser l'archive audio en ouverture ou en fond pour ancrer l'atmosphère des chantiers. Le ton reste accessible et chaleureux, jamais académique. Privilégier les détails sensoriels et les émotions personnelles plutôt que les données techniques. La résolution finale doit apporter une note de transmission et de paix intérieure."
+}

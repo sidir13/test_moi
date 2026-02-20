@@ -75,10 +75,12 @@ export function ScenarioReviewView() {
   }
 
   useEffect(() => {
-    if (!sessionId || bootstrap.current || (scenariosQuery.data && scenariosQuery.data.length > 0)) return;
+    if (!sessionId || bootstrap.current) return;
+    if (scenariosQuery.isLoading || scenariosQuery.isFetching) return;
+    if (scenariosQuery.data && scenariosQuery.data.length > 0) return;
     bootstrap.current = true;
     triggerGeneration();
-  }, [sessionId, scenariosQuery.data]);
+  }, [sessionId, scenariosQuery.data, scenariosQuery.isLoading, scenariosQuery.isFetching]);
 
   useEffect(() => {
     if (scenariosQuery.data && scenariosQuery.data.length > 0) {

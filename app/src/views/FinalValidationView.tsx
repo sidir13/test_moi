@@ -5,7 +5,14 @@ import { advanceStep } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
 export function FinalValidationView() {
-  const { projectName, sessionId, setProjectName, setSessionId, setCurrentStep, updateProgress } = useSessionStore();
+  const {
+    projectName,
+    sessionId,
+    setProjectName,
+    setSessionId,
+    setCurrentStep,
+    resetProgress
+  } = useSessionStore();
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
@@ -15,12 +22,7 @@ export function FinalValidationView() {
     setStatus("Sauvegarde en cours...");
     try {
       await advanceStep(sessionId, "final_validation", { confirmed: true });
-      updateProgress({
-        audioReady: false,
-        scenariosReady: false,
-        scenarioChosen: false,
-        scenarioEdited: false
-      });
+      resetProgress();
       setSessionId(undefined);
       setProjectName(undefined);
       setCurrentStep("project_selection");

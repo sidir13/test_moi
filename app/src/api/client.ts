@@ -32,6 +32,29 @@ export type ProjectSummary = {
   } | null;
 };
 
+export type ProjectProfile = {
+  name: string;
+  scenario_target: number;
+  project_notes?: string;
+  voice_instructions?: string;
+  voice_instructions_source?: string;
+  allowed_websites?: string[];
+  last_scenarios?: Array<Record<string, unknown>>;
+  last_scenarios_generated_at?: string;
+  final_scenario?: Record<string, unknown>;
+  final_audio?: {
+    path: string;
+    generated_at?: string;
+    language?: string;
+    sample_rate?: number;
+  };
+  final_slideshow?: {
+    path: string;
+    created_at?: string;
+  };
+  audio_selection?: AudioSelection;
+};
+
 export type AudioSelection = {
   voices: string[];
   backgrounds: string[];
@@ -40,6 +63,11 @@ export type AudioSelection = {
 export async function fetchProjects() {
   const { data } = await api.get("/projects");
   return data.projects as ProjectSummary[];
+}
+
+export async function fetchProjectProfile(projectName: string) {
+  const { data } = await api.get(`/projects/${encodeURIComponent(projectName)}`);
+  return data as ProjectProfile;
 }
 
 export async function createProject(payload: { name: string; description?: string; scenario_target: number }) {
