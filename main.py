@@ -26,6 +26,7 @@ from memoiredesterritoires.adjust_audio_volume.adjust_audio_volume import adjust
 from memoiredesterritoires.insert_background_sounds.insert_backgrounds_sounds import mix_voice_with_noise
 from memoiredesterritoires.background_sound_finder.background_sound_finder import find_background_sounds
 from memoiredesterritoires.Slideshow.slides import slideshow
+from memoiredesterritoires.relevant_sound.relevant_audio import relevant_audio
 from memoiredesterritoires.json_utils.read_json import read_json_file
 from memoiredesterritoires.scenario_maker import ScenarioMakerSkill
 from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSkill
@@ -290,6 +291,21 @@ TOOLS = [
                     "description": "contexte general"
                 }
 
+                
+            },
+            "required": ["path"]
+        }
+    },
+    {
+        "name": "relevant-audio-tool-detector",
+        "description": "find relevant part of an audio",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "path to file"
+                }
                 
             },
             "required": ["path"]
@@ -693,6 +709,10 @@ def execute_tool(tool_name: str, tool_input: dict):
             tool_input["path"],
             tool_input["audio_file"]       
         )
+    elif tool_name == "relevant-audio-tool-detector":
+        return relevant_audio(
+            tool_input["path"]     
+        )
     elif tool_name == "save_analysis_result":
         return save_analysis_result(
             analysis_type=tool_input["analysis_type"],
@@ -908,7 +928,9 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main(""""""))
+    # asyncio.run(main(""""""))
+    asyncio.run(main("can you find the relevant part of the audio in /home/onyxia/work/memoiredesterritoires/data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
+    # asyncio.run(main("Décrit le son d'ambiance de chalumeau"))
 #     asyncio.run(main("""We were interrupted during our previous task, here is all that was done, can you continue and complete the task ? It is very important you evaluate all models in a same table based on your average evaluar
 #     tion of the 3 scenarios generated each !
                      
@@ -939,369 +961,369 @@ if __name__ == "__main__":
 #                     For this transcription, [00:00] Donc voilà, réglé, hop, donc là un bon ça enregistre. Alors l'idée c'est qu'après moi dès que j'ai fini, je vais recommencer à retranscrire. Donc vu qu'après je retranscris tout, j'ai besoin pour commencer, est-ce que vous pourriez me donner votre nom, votre prénom et votre âge ?
 #     """))
 
-    asyncio.run(main("""For this transcription, [00:00] Donc voilà, réglé, hop, donc là un bon ça enregistre. Alors l'idée c'est qu'après moi dès que j'ai fini, je vais recommencer à retranscrire. Donc vu qu'après je retranscris tout, j'ai besoin pour commencer, est-ce que vous pourriez me donner votre nom, votre prénom et votre âge ?
-[00:06] - Moi c'est Amon Gilles.
-[00:12] - Oui. Votre âge ?
-[00:18] - 73 ans.
-[00:24] Très bien. Alors euh avez-vous travaillé aux chantiers ?
-[00:27] Bah oui.
-[00:30] Oui, et si oui, où ? Dans quels chantiers vous avez travaillé ?
-[00:33] Alors au départ c'était la Bretagne.
-[00:36] Ouais.
-[00:39] À 14 ans.
-[00:42] Hum-hum
-[00:45] Puis on a suivi bah toutes les fusions et tout pour finir aux chantiers de Nantes et puis aux chantiers Dubigeon, ça s'est appelé comme ça, qui était la fusion des trois chantiers nantais de la région.
-[00:48] Hum-hum. Jusqu'à quelle période ? 
-[00:51] Bah jusque... Jusqu'à la fermeture fermeture, en 87 88 par là ou...
-[00:54] - D'accord.
-[00:56] - Et puis après, j'ai viré à Saint-Nazaire.
-[00:59] - D'accord, à Saint-Nazaire. Et vous avez fini votre carrière là-bas ?
-[01:01] - Ah bah oui.
-[01:04] - D'accord. Euh est-ce que vous vous rappelez de votre date d'embauche au tout début ? 
-[01:06] - Ah bah oui, c'était au au mois de septembre. 
-[01:09] - D'accord. Oh je sais plus, 7, 8, par là.
-[01:11] - L'année ? Vous vous en rappelez ?
-[01:14] - Oh... euh... 4... 43... euh... soit 58.
-[01:16] - 58.
-[01:19] - 58... 58, 59, 60... oui, c'est ça.
-[01:21] - D'accord. Donc en... donc en...
-[01:24] "Septembre 58... Euh.. Quel était votre poste au niveau des chantiers ? Est-ce qu'il a évolué au fil des années ?"
-[01:39] "Ah bah oui ! On a commencé bah comme apprenti naturellement, puis après ouvrier... Alors en tant qu'ouvrier traceur, on était déjà très bien placés dans dans les groupes hein, il y avait... Puis après j'ai p... alors je suivais des cours à l'IVET qui m'a p... permis de passer le brevet, qui m'a..."
-[01:54] Je termine mon CAP tout de suite au 10e. Puis en parallèle après j'avais suivi des cours de dessin pas de dessinateur, puis j'suis passé au bureau de dessin. D'accord. Et puis à Chausson ben j’e… je grimpais un grade. D'accord. Et en… comme j'étais bien vu j'ai souvent eu des galons. D'accord. Au fil des années en traversant les différents les différentes infusions. D'accord. Donc en quoi consistait votre travail plus précisément ? Bah au départ…
-[02:24] Fallait étudier, euh faire euh les formes des bateaux. Hm hm. Suivant des données euh qu'on avait des bureaux d'étude, des points dans l'espace hein, soit en largeur, en longueur, en profondeur et puis par-terre représenter ça sous sous une forme de dessin. Alors là, c'est à l'échelle un, donc c'était sur un parquet. Hm hm. Donc on travaillait à quatre pattes par-terre. D'accord. Sur les les les fautes-on qu'on connait ? Oui, oui, avec euh oui, il fallait avec un décamètre reporter euh des points qu'on avait sur euh sur un petit de- un petit carnet.
-[02:54] - de nous donner et puis de passer une latte, pis d'voir... les points, si on s'finit à la latte Ben Naturellement ça f'sait tout d'travers. Alors c'était à nous d'refaire une belle ligne droite et à ce moment-là, de reporter les points qu'on avait corriger et... comme ça là, et puis après, à la fin ben, c'était accepté par l'armateur ou son r'présentant quoi naturellement.
-[03:04] - D'accord. Donc ça c'était... ça c'était une partie... Est-ce que ça a évolué avec le temps, avec les nouvelles techniques ?
-[03:14] - Ah ben maintenant...
-[03:24] "Non, alors c'était ça. C'est pour ça que on suivait des cours tout le temps parce que ça ça a duré un certain moment. Hum hum. Et dans les autres chantiers c'était pareil. Et puis après il y a eu le traçage au dixième. C'est que tout le dessin que l'on en faisait à l'échelle un. Hum hum. Il fallait le faire au dixième de la taille réelle. Dix fois plus petit. Mais c'est même pas tout à fait ça. On dessinait- ça revenait à un dessin sur une table, c'était plus pareil. Avec mettons un m... un mètre ou un décimètre où les..."
-[03:54] Il y a les graduations. D'accord. Mais on se servait d'une loupe pour dess... dessiner au dixième de millimètre près qui était indiqué euh sur l'instrument de mesure. Parce que si vous... si vous utilisiez des grandes tailles, ça... ça faisait en réalité des beaucoup plus petits dessins. Ah ben oui ! Là, j'va... j'vais vous montrer... bah on le... on l'verra pas à l'enregistrement. Non non. Mais là, quand on a un décamètre... un mètre, là... c'était du matériel allemand qui sont...
-[04:24] Qui est très très très précis. Ouais. Qui ne bouge pas. J'en ai encore un. Où y a les centimètres, pis les millimètres. Ouais. Là. Et nous avec fallait faire un dessin mettons un trait c'était le dixième de millimètres de là divisé en dix. Donc c'était. Ouais d'accord. C'était précis. C'est ça. Alors avec une loupe. Donc vraiment p'tit tout p'tit et hop là. Il y avait qu'un côté qui comptait. D'accord. C'est bien qu'on s'en foutait de l'épaisseur. Mais au dixième près parce qu'après mettons...
-[04:54] Le rectangle qu'on avait fait, euh ben c'était ça le dessin allait à une machine qui reproduisait en dix fois plus grand. D'accord. Donc la moindre erreur était multipliée par dix. D'accord. C'est ça l'truc. Hmm hmm. Mais c'était dans tous les chantiers pareil. Les trucs en forme pareil, le développement. Fallait tout développer mais au dixième près à la loupe, on avait des loupes. Mais c'était vraiment un travail de précision sur les plans pour que quand ce soit ressorti à la bonne taille. Ben eh c'était multiplié par dix, la moindre... la moindre déférence d'un côté ou de l'autre. D'accord. Et c'est là qu'on...
-[05:24] On avait fait Moi j'avais été ben c'est d'autres faire un pas un stage mais un déplacement à Sud Aviation à l'époque sur le Concorde. Parce que c'était pareil ils dessinaient au dixième près là-bas aussi.
-[05:30] - Hmm hmm
-[05:36] - Sur un panneau pas sur du papier et c'était reproduit mais au dixième, c'était pas multiplié par dix. 
-[05:42] - D'accord.
-[05:48] - Puisque c'était mécanique chez eux hein. À la place au lieu que ça soit un chalumeau qui coupe, eux c'était une pièce qui tournait comme ça puis qui découpait suivant notre trait.
-[05:54] Hum, mais au 10e près, et c'était reproduit sur sur la pièce mais au 10e près pareil. C'était pas multiplié. Donc l'erreur restait au 10e près. D'accord, donc c'était c'était au lieu que ce soit agrandi 10 fois, c'était exactement la même chose qui était retranscrit directement. D'accord. Oui, c'est mécanique. D'accord. C'est pour ça que j'avais été là-bas et puis Oh, j'avais voulu me faire enfin j'avais mis un truc pour pour faire embaucher mais j'ai pas été. Parce que il c'était payé plus cher. C'était mieux payé. Et puis après... oh oui oui... et puis après ça s'est...
-[06:24] Ouais ouais, ça ça avait monté quand même euh le chantier, ça ça allait. Ah bah oui ! Alors on a suivi ça au dixième, là. Et puis après moi j'avais passé en même temps ben j'continue... j'avais passé le CAP de dessinateur. Et puis quand j'ai eu... à un moment...
-[06:31] Je suis tombé à un moment où ben y'avait besoin de dessinateur. Donc j'y allais... puis des fois non... ah, y'en avait besoin. Et hop, je montais ! Alolrs c'est pour ça des fois j'montais mais je faisais toujours partie du dixième quand même. Mais j'avais monté en grade.
-[06:39] - Donc au niveau de de vos postes ?
-[06:46] Alors vous avez eu euh ce moment où vous trassiez sur le sur le l'épon le plancher, vous avez eu le le moment où vous avez eu travaillé sur les plans au dixième. Oui. Et ensuite comment ça a évolué ça après ça ? C'est c’est resté comme ça jusqu’à la fin ? Ah non non, le dixième après, c’est passé à l’ordinateur. D’accord. Et à ce moment-là moi j’étais au bureau d’études, si bien que je j’ai pas trop travaillé, je sais comment que c’est mais j’ai pas travaillé à l’ordinateur en tant que traceur quoi. D’accord. Puisque j’étais déjà j’étais...
-[07:16] Ben, l'école m'avait balancé, j'étais dessinateur... euh... dessinateur, j'ai fini dessinateur-projeteur, c'est comme ça l'appellation, qui fait partie des cadres. J'ai fini comme ça. Mais après moi j'ai pas suivi parce que arrivé là-bas à Saint-Nazaire, euh, ils avaient déjà leurs traceurs et tout ça. Hmm hmm. Donc j'ai plutôt été viré là-bas à Saint-Nazaire au bureau de dessin. D'accord. Donc j'ai pas travaillé à l'ordinateur en tant que pour développer les tôles et tout. D'accord. Donc vous travaillez plus techniquement sur la structure générale ?
-[07:46] - Ah oui, sur la structure générale d'un bateau.
-[07:49] - Oui, et puis alors ce qui y'a, c'est souvent on faisait mettons quatre bateaux pareils.
-[07:53] - Hmm hmm.
-[07:56] - Donc nous, on n'avait plus de travail.
-[07:59] - D'accord.
-[08:03] - Vous n'aviez plus qu'à le dupliquer quatre fois et c'était exactement les mêmes.
-[08:06] - Ah bah oui, donc il ne nous allait pas nous payer, hein. Donc il m'avait viré, et puis les collègues aussi, dans le bureau d'études, mais d'ici de la menuiserie.
-[08:09] - D'accord.
-[08:13] - Parce que les bateaux, l'extérieur est pareil mais l'intérieur change. Ils en profitent, hein, il y a des cabines en plus, des trucs en moins. Alors voilà.
-[08:16] Ça donne du boulot et quand j'ai été à Saint-Nazaire, j'ai été viré au bureau d'étude aménagement. D'accord. Puisqu'ils avaient déjà leurs tôliers, puis c'est là que j'ai grimpé au bureau d'aménagement là-bas. Très bien. Alors enfin, faire les aménagements, c'est tout l'intérieur, tout, alors là ça change de bateau en bateau, comme là, ils vont ils vont en avoir quatre pareils là. Et les coques extérieures, c'est les mêmes, mais par contre l'intérieur va être totalement différent. Y'a tous ces...
-[08:46] qui arrive dans l'industrie pendant un an qui qui pouvait pas se faire dans ce bateau-là donc il y a forcément des améliorations à chaque fois on a vu ça à chaque coup tiens au fait où alors ça coûtait trop cher après ah ben tiens on va le mettre dans celui-là là hein c'est toujours une histoire de d'argent mais moi c'est pas mon problème ça hein chacun son son job.
-[09:01] Euh donc vous avez vu que mon mon travail c'est lié avec les discussions qu'on avait eu mardi sur le la grue jaune les les...
-[09:16] Les engins de levage, les différentes petites choses qu’on peut retrouver. Donc si vous avez été embauché sur les chantiers dans les années, à la fin des années 50, euh Jean Péneau m’avait m’avait dit que lui, il avait vu la grue jaune se monter dans les en 58.
-[09:22] Ah ben, nous, on était à l'apprentissage. 
-[09:28] Et est-ce que c'était c'était de l'autre côté ? C’était loin de...
-[09:34] Ah non, mais oui mais nous, on était euh la Bretagne qui était là, et la grue jaune faisait partie de la LOIRE qui était à côté. 
-[09:40] Donc c'était c'était un peu un... Ah oui, c'était un autre, c'était une autre, vu que c'était une autre entreprise, vous n’étiez pas forcément...
-[09:46] - Vous vous mélangiez pas avec ces personnes-là.
-[09:51] - Oh oui, mais on connaissait les les gens parce qu'à l'époque quand quand on s'engueulait avec notre chef on prenait notre ma notre la caisse sous la porte comme on dit, on s'en va. Et puis on s'eng on s'embauchait à côté hein, y'avait y'avait pas de chômage à l'époque. 
-[09:56] - Très bien.
-[10:01] - Oh hmm et puis on on était prêté. Moi j'ai été prêté souvent mais à Chantenay là-bas euh du Bigeon. 
-[10:06] - D'accord.
-[10:11] - Oh c'é c'était un peu plu une autre façon de faire à Chantenay. Oh enfin c'est ça paraissait plus vieux que nous, puis on...
-[10:16] - Oh, ben, on va faire ici...
-[10:20] - Plus à l'ancienne ?
-[10:25] - Oui oui, plus à l'ancienne. Eux, ils mettaient des morceaux de bateau comme ça, les uns sur les autres.
-[10:29] - Hum hum.
-[10:33] - Comme on fait chez nous. Mais y avait du bon partout.
-[10:37] - D'accord, oui c'est ce que vous me racontiez.
-[10:42] - L'autre aussi du bon. Et après y avait une armée de de découpeurs partout, tout d'un coup on entendait "Brrr Brrr", l'un découper là, "Brrr" tout tombait, tout alors que nous, non, quand y avait une épaisseur, à la limite, bon y avait du vent mais quand celle-là était bonne, tout de suite ils mettaient l'épaisseur au-dessus, jusque-là, ouais, alors tout, ah ben on l'avait vu nous.
-[10:46] Alors de en peu de temps, les gens d'à côté euh ils voyaient le bateau se faire. Et puis après un coup ban ban ban ban. Oh là là... C'est une autre façon de faire mais c'était pas des gros bateaux comme maintenant. Alors ils pourraient pas...Ils pouvaient se permettre ça parce que c'était des plus petites structures. Oh oui oui oui... Et puis souvent c'était des bateaux qu'on avait vu je m'appelle c'était des pinardiers des trucs comme ça ben c'est vide à l'intérieur. C'est pas des paquebots. Donc y a pas besoin de gros aménagements, c'est... Oui, oui. Y a... Donc ils pouvaient se permettre d'empiler et puis après couper claque claque claque. Ouais.
-[11:16] Alors, euh si vous avez travaillé sur les chantiers dans les années 50, donc vous avez, est-ce que vous- vous l’avez vous avez pas vu la grue jaune se construire ?
-[11:20] - Ah non.
-[11:25] - Mais vous en tout cas vous l’avez vue pendant longtemps travailler ?
-[11:29] - Oh bah oui, on l’a vue oui, oui oui.
-[11:33] - D’accord. Donc, euh, la question normalement que je pose mais là techniquement je suppose que c’est d’une autre manière, c’est est-ce que votre poste était lié à l’utilisation de la grue, souvent parce que c’est des charpentiers fer, donc des personnes qui étaient dans les- dans les- dans les cales enfin dans les- dans les ateliers...
-[11:37] - Ah ben oui j’avais besoin de la grue !
-[11:42] - Voilà !
-[11:46] – Euh, mais est-ce que vous avez assisté par exemple à des destructions, des modifications de grue ? Parce que... si vous étiez là dans les à la fin des... au milieu des années 70...
-[11:52] – Ah bah oui, j'étais là !
-[11:58] – Parce que il y a des travaux qui ont été faits sur la grue au milieu des années 70...
-[12:04] – Oui, elle a été mise... ils ont renforcé, voilà ! Alors ils avaient mis... Bon, on a vu ça visuellement, moi on m'a pas d'mandé, mais je voyais, de visu... ils ont apporté des gros blocs... tout dans le bas d'la grue là.
-[12:10] – Oui.
-[12:16] Ils l'ont monté en charge ou en puissance. Donc ils ont amené des blocs de béton qui étaient coulés d'avance ou étudiés pour, pour faire une assise beaucoup plus lourde quoi. J'ai vu que ça moi.
-[12:31] - Vous avez juste vu ça ? Ça c'était dans les années de ce que j'ai cru comprendre c'est dans les années 74 ? Vous avez pas de souvenir des travaux qui ont été faits ? Parce que j'ai vu un article de journal où un ancien de la société Montalev expliquait qu'ils avaient...
-[12:46] Soulever la flèche de la grue pour modifier le... Bonjour, tenir l'angle.
-[12:56] Zéro l'angle. Pas de soucis.
-[13:06] Ah oui mais bon, il suffit que j'étais, comme c'était grand en surface le bateau, oui mais enfin le chantier. Il suffit que je travaillais à ce bout là, c'est que c'était... c'était loin ! Ça... ça dépassait de l'autre côté de l'avenue, là-dedans, là-bas on l'entend... Hmm hmm. Mais de l'autre côté ça faisait partie du chantier. Ah il y a toute une histoire là quand même. Il y avait la grue là et on allait de l'autre côté là. Hein, il y avait...
-[13:16] - Les parcs à tôles !
-[13:19] - Hm hm.
-[13:22] - Et euh... euh à profilés. Les tôles étaient pas... ils allaient pas les traverser. Donc c'était des parcs à profilés. Et en passant, eh ben chacun avait sa place dans les cafés là.
-[13:25] On regardait Ratatin à la télévision. 
-[13:28] - Ah, Ratatan. D'accord. 
-[13:31] - On se tournait, il y avait nos chefs derrière, mais personne ne disait rien, parce que moi je suis arrivé à la... enfin, faut dire que chaque travail avait un temps.
-[13:34] - Oui.
-[13:37] - Donc les chefs, à la limite, ils s'en foutaient. Ils voyaient les gars...
-[13:40] - Parce que si de toute façon le travail était fait, c'était fait.
-[13:43] - Beh oui ! Mais...
-[13:46] S'il passait plus de temps qu'il fallait, il... il avait un malus, c'était ça en moins sur sa paye. Ouais. Donc les chefs, à la limite, ils disaient rien.
-[13:52] T'es en train d'me détruire mon enregistrement.
-[13:58] Bon on va dire que c'est arrêté. Donc voilà. On peut repartir. Oui. Par contre, euh s'il... si on avait du temps, on avait des galons. Ouais. Mais il fallait que le travail soit bien fait, faut pas le... Alors nous en tant que traceurs là, comme je dis souvent euh, bah on s'occup-...
-[14:04] Ils avaient pas de grue, pas besoin de grue parce que euh ceux qu'avaient besoin de grue là, s'il fallait qu'ils attendent une heure la grue, ben ça faisait une heure de leur temps en moins. D'accord. S'ils étaient deux, enfin fallait être au moins deux, 2 heures de temps à la fin, oh! trop de temps. Allez couac ! D'accord. Mais parce que eux, ils étaient, il y avait ce alors je sais pas si je m'exprime bien mais le ce système de le temps comptabilisé pour faire quelque chose, il avait son problème parce que si les personnes s'appuyaient entre eux en plus, si le grutier...
-[14:34] - Bah... on a pris du retard, ça a impacté aussi les autres.
-[14:49] - Ah oui ! Au maximum, il y a que deux groupes par bateau. Enfin... il fallait bien que qu'il y en ait toujours... Oh oui, ça... ça pas... Nous on n'est pas habitués à la fin de sa passion parce qu'il y avait des corporations. Et le gars il démarrait son travail avec de du malus. Dès le départ il y avait... Alors ça collait plus quoi! Alors il y avait le bureau des pleurs. Le fameux... que ces gens-là, il fallait bien qu'ils se défendent. Donc ils expliquaient puis souvent ça s'arrangeait. Et qui c'était le bureau des pleurs ? C'était des anciens traceurs comme moi qui étaient...
-[15:04] Moi j'étais moi j'étais trop vieux pour pour faire le tracé par terre. Alors si si j'allais pigner j'avais tout tout tout tout ce que je voulais quoi, mais enfin ça c'est jamais arrivé. Nous on avait du temps. Hein. Parce qu'on f- on f- on faisait nos formes de bateaux si ça plaisait pas en haut lieu, ils passaient : "Ah non, c'est pas c'est un p'tit peu trop m- on... Bon, faut effacer ça. Faut mettre un p'tit peu plus d'forme là." Bon bah on on s'en fiche nous, hop hop hop et...
-[15:10] Vous ét- vous étiez moins soumis à cette réglementation.
-[15:16] Ah bah non, oui oui, ah bah oui ! Donc c'est pour ça, y avait il y avait des corporations comme ça...
-[15:22] "Alors, c'est pour ça que c'est... ça s'est battu ça, au niveau syndical et tout ça, puis moi j'ai vécu que la fin de ça. Après ça a été supprimé, ils ont arran-... moyenné tout le monde et terminé.
-[15:27] - Hm, il n'y avait plus ce...
-[15:32] - Oh bah oui !
-[15:37] - ... il n'y avait plus ce-ce... ce marchandage...
-[15:42] - Et il n'y avait pas qu'au chantier, parait que c'était partout, hein, mais ça-ça s'est... Oh oui, alors là des s- ça n'allait plus ça.
-[15:47] - Alors euh, vu que vous étiez sur les chantiers à cette période-là, euh..."
-[15:52] Question un peu un peu étrange peut-être, est-ce que... je suppose que vous avez pas trop côtoyé des grutiers ou des personnes qui... Bon on les connaissait de comme ça mais... que vous les connaissiez voilà, mais je me la question c'est : est-ce que ces personnes-là par exemple euh, vu que le grutier parfois c'est séparé du reste, est-ce que eux ils étaient un peu enviés par le fait qu'ils étaient pas dans le travail en bas ?
-[15:59] Ah alors ça faudrait demander... il est pas là le gars qui s'occupe de l'électricien de service qu'on a là.
-[16:07] Humm humm.
-[16:14] Et ben il s'occupait justement de l'électricité des grues et tout, alors lui...
-[16:22] - Oui, il s'y connaît lui… de tous les, de … ah oui, c'est c'est lui qui… Oh ben oui, moi je n'avais pas à faire aux, aux gens des grues.
-[16:26] - Et au niveau de la, de, des en… parce que le chantier était quand même, il y avait un paquet de grues à l'intérieur du chantier…
-[16:31] - Ah oui ! Ah bah oui, vous avez des photos là… Ah oui !
-[16:35] - Il y en avait un petit paquet ! J'ai vu sur certains plans qu'il y en avait entre dix et quinze à une certaine période… 
-[16:39] - Oh oui, certainement ! Oh oui, oh oui !
-[16:43] - Est-ce que c'était impressionnant à voir au niveau de la, de la machinerie, de la, de la taille que c'était ?
-[16:48] - Ah bah oui, bah nous ! Bah nous, c'est quand on est rentré dans l'apprentissage, à quatorze quinze ans…
-[16:52] Bien-sûr quand on voyait ça là. Et puis après on est dans le mouvement, on marche entre les grues, on... Enfin y a... c'est l'univers des grues quoi.
-[16:57] - C'est ça, c'est à la fin, c'est... vous les... c'était votre paysage de tous les jours...
-[17:02] - Ah bah oui, c'est la forêt partout !
-[17:07] - Ouais, bah oui.
-[17:12] - Oh oui c'était... Les bateaux ils se construisaient entre deux rangées de grues... enfin de deux grues une de chaque côté, mais puis l'autre à côté pareil...
-[17:17] - Mardi on... on avait discuté de du fait qu'il y avait eu des différents petits accidents qui avaient eu lieu...
-[17:22] ... euh sur des grues qui avaient été en surpoids, des élingues qui avaient qui avaient craqué.
-[17:29] - Oh, je j'ai... Bah il y a pas eu d'embêtement. Pas spécialement... Je veux dire, il y a pas eu d'accident grave.
-[17:37] - Il n'y a pas eu d'accident grave, mais c'est arrivé de temps en temps par exemple qu'u... qu'une élingue claque pendant pendant qu'e... 
-[17:44] - Oui, ça m'était arrivé à moi... à tracé... à... quelque chose... Euh les les tôles, on on les mettait sur un bâti en ferraille, comme ça puis ils arrivaient par la grue et puis soit qu'une...
-[17:52] La grue qui était mal... enfin... elle était... c'était des pinces autoserrantes. Pas... pas euh ou alors elle était mal serrée, puis tout d'un coup, paf ! Elle... elle est tombée sur le... Ben j'aurais été là, j'aurais été... alors que j'étais à côté, moi. 
-[17:58] - Ouais. Elle vous est tombée juste à côté ? 
-[18:04] - Elle est tombée... oh ben merde ! C'est un truc qu'on réagit après... Ben... parce que la grue... je... la tôle, elle a dû accrocher un moment, et puis ça s'est décroché et clac ! Est-ce que c'est un système de pincement ? C'est le poids de... 
-[18:10] - C'est le poids qui fait... qui fait serrer la pince. 
-[18:16] - Oui, dès... dès... dès... qu'il y en a...
-[18:22] Tout d’un coup, bah ça se décroche. Alors, bon, elle a dû faire ça et puis clac ! Puis moi, j'étais à côté donc paf ! On dit bon, bah, allez, oh bah, c'est après j'ai vu les, ou les collègues : « Bah, elle te serait tombée dessus... » Bah oui, sur le coup on n'y pense pas, mais… Oh bah ça c'est des trucs comme ça, mais il n'y a pas eu d'accident. Alors, la fameuse, quand… quand c’est tout le bloc, là, bah là, là il aurait pu y avoir des accidents.
-[18:32] - Est-ce que vous pourriez me raconter ça parce que là pour que je puisse le réécrire…
-[18:42] - Alors, là faudrait, vous voyez là, faudrait comme… comme je vous dis une pierre…
-[18:52] Il y avait la grue, l'emplacement, oui la grue, les deux rails étaient là et puis la grue était là. Et puis moi j'étais juste à côté là, il y avait un panneau de tôles avec plusieurs tôles, puis moi j'étais à tracer des éléments et puis après ce plateau-là à cet emplacement-là, ben ils mettent des affaires dessus et puis ça fait un morceau. Donc ça fait un ensemble de choses à soulever d'un seul coup. Après, mais là il était vide puisque là et puis la grue bah elle se baladait à côté de moi là. Et puis ça c'était laquelle de grue dont on parle ? Ah celle-là.
-[19:22] Une grue, une grue noire à sa- et c'est justement ces- euh je parlais de ça, la grue, le pi- la grue bah je sais bien, elle était juste, moi j'étais là. Et il y a euh je crois qu'il y a au moins quatre roues, y en a qui disent quatre ou six roues mais heu un ensemble comme ça. Hum hum. Hein et puis le rail qui est là. Puis moi j'étais à côté et puis quand- quand on est à quatre pattes là-bas on est à cette hauteur-là. À la hauteur des galets des des roues? Et la roue, il y avait un bloc au milieu, alors ça je ça je m'en rappellerai toujours, comme ça.
-[19:52] Alors là, il y a un axe, et puis après, il y a le reste de la grue. Et il y a tout un système de... de qui vient accrocher là, ça, ça fait partie de la grue. Là c'est... en deux fois comme ça, il faut... hein. Ça s'était fait comme ça, il y a un axe et puis il y a le reste de la grue. Et moi j'étais à côté et c'est ça qui s'est soulevé. un moment, elle, elle... elle a été là. Donc en fait, le... le pied... euh... Ouais bah ça, il est... il est resté par terre. Donc en fait les... les...
-[20:22] - Les les roues sont restées sur le sol mais en fait le l'indice central s'est soulevé.
-[20:28] - Ah bah oui, mais il va plutôt... oui oui.
-[20:34] - Mais comment c'est posé... comment c'est possible que la grue soit soulevée alors ?
-[20:40] - Bah c'est en haut. Avec la force.
-[20:46] - C'est ça. Le... il y avait deux grues au départ. Il y avait cette grue-là et puis il y en avait une autre. Hum hum. Et c'était un un bloc qui était accroché. C'était des des escorteurs... euh escorteurs. Et en haut, parce que quand c'est fait là, tout tout est fait à l'envers.
-[20:52] Ouais, m'enfin, non mais, de par la forme du du bateau, autrement ça serait... En équilibre. Ils ont tout fait à l'envers, ils ont renversé, ils ont renversé toutes les formes pour pouvoir les construire en avance, à plat comme ça, sur une surface plane. Hein, ça commence par le fond du bateau qui est comme ça. Bon bah nous, dans les ateliers, par terre, Eh bah ils les fabriquent comme ça avec les les éléments, c'est peut-être un morceau comme ça justement. Après ils mettent la tôle par-dessus, hein, qui qui s'arrête par là, et après l'ensemble est soulevé et puis ils le retournent.
-[21:22] "Donc c'était un morceau comme ça mais plus pas pas un fond, c'était une une charpente arrière ou une charpente à quelque un truc un truc quand même assez lourd, volumineux volumineux ouais volumineux. Oh bah lourd c'est plein de vide à l'intérieur. Eh à la limite c'est c'est plus lourd les box de fond parce qu'ils ont des éléments dans ce sens là et ça fait un quadrillage. À à la limite ils sont plus lourds par eux-mêmes que qu'un de qu'un celui de l'avant mettons avec plein de vide mais qui est beaucoup plus en volumineux"
-[21:52] Ça c'était accroché comme ça, et ça a cassé là, à un moment il a basculé et tout le poids a été sur celle-là. 
-[21:57] D'accord, donc il y a un bout de la de la structure qui s'est brisé, donc une élingue.
-[22:02] Une une élingue, une attache. Il y avait deux grues qui portaient chacune un côté et puis après de façon d'un mouvement de faire un mouvement au moment où il y en avait une qui lâchait un peu plus de...
-[22:07] Oui, mais à ce moment là, ils ouais, ils reposent un moment parce qu'il faut pas qu'il lâche. 
-[22:12] Mhm. 
-[22:17] Donc, pour la retourner alors il se sou... ils vont dans un...
-[22:22] Alors euh là il y a il y a un endroit oui i r'pose, là il loche et après i s'rattache d'une autre façon de façon d'arriver à le r'tourner. D'accord. Mais là i s'est cassé clac en pleine en l'air et tout d'un coup elle a basculé et tout l'poids était là. Alors comme j'étais là pis moi moi ca ça soulevé, c'est signe que à la limite c'est en face hein puisqu'elle a fait ça là les pieds. Donc c'est hop ! Et donc en fait tout l'poids est tombé sur la flèche et ça a soulevé...
-[22:52] - soulevé euh la grue à la panne n°... 
-[22:56] - donc c’était de l'autre côté où que j'étais moi ! Enfin que ça s’est soulevé, là, c’est de l'autre côté, c’est pour ça que j’ai rien eu, moi.
-[23:01] - Bah j’ai… après j’ai vu ça, pis on a entendu le bruit de bah tous les boulons qu’ont pété et les écrous.
-[23:05] - Et les c’est en fait c’est à cause de la surtension les les boulons qui étaient dans la sur- dans la structure ont sauté.
-[23:09] - Ah bah oui, bah il y a eu trop de poids tout d’un coup, il y a eu un choc. Tout ça parce que ça a été soudé dans l’eau, il pleuvait à pleins temps.
-[23:13] - D’accord, donc oui d’accord, donc vu qu’il pleuvait, c’était moins solide, la soudure...
-[23:18] - Ah bah là... la la la soudure a...
-[23:22] Et puis un truc comme ils disaient que qu'était dans le dans ce bureau là. C'est ça tourne autour d'un centre de gravité, c'est tout et puis ils ils les opérateurs et tout là, ils obéissent au plan qui existe, qui a été fait là et là c'était tout nouveau, c'était pas vieux. Avant, ça n'existait pas ça.
-[23:32] - Donc le fait de le fait de définir des centres de gravité, des choses comme ça parce qu'avant les charges avaient pas forcément besoin d'être calculées comme ça ?
-[23:42] - Bah, c'était l'habitude, hein. Ils savaient. C'est parce que ça a été dur des fois, il y a...
-[23:52] certains ch'ti enfin ils ont pas voulu obéir au plan du on a l'habitude de faire ça comme ça et pi main et pi ils ont été obligés on les a he parce qu'après y'a les assurances et toussa. Alors là et puis alors c'est des goussets qui y a he mettre des goussets c'est y'a la ferraille qui est là et pi des goussets c'est un truc comme ça qui est triangulaire et pi y'a un trou dedans où on passe les angles. He cette forme là en gros elle est triangulaire et pi y'a le trou pour laisser passer et pi souvent y'a en plus bah des goussets gu-
-[24:22] - bah tu vois le système de déversement, c'est de ça qu'il parlait là.
-[24:25] - Euh d'accord, donc les goussets...
-[24:28] - Si si si ça a appuyé là, bah oui, faut pas qu'ça arrache la tôle là !
-[24:31] - Mm.
-[24:34] - Et ben il paraît que les goussets, soit qu'ils étaient pas mis, parce que c'est une histoire de temps. 
-[24:37] - Parce que le temps c'est- c't'é- c'est d'l'argent quoi. C'est- c'est vraiment si en fait on perd du temps à mettre des goussets, euh on perd du temps de- 
-[24:40] - Ou alors ils étaient mis, mais ils étaient pas soudés.
-[24:43] - Donc en fait l'- l'idée ce s'rait que le- le gousset qui servait en fait à la tr- à tirer le- 
-[24:46] - Bah ça a été tiré de toute façon.
-[24:49] - Il a été mal fait ou alors...
-[24:52] Alors, il avait pas de gousset de de renfort, et puis alors ça a été soudé euh dans l'eau, dans la pluie, et ça refroidissait trop vite ça. Donc le moindre choc, bah ça ça sautait. Alors si il y en a un qui pète, l'autre pète tout de suite puis alors euh oh là là ça faisait un bruit, bah oui moi j'étais de l'autre côté mais il y a tellement de bruit sur le chantier, un bruit comme on se tourne pas. "Oh bah c'est un bruit de plus" quoi. Et c'est là quand j'ai vu tout le j'ai vu en face ! Oh bah et puis j'ai vu. Heureusement, il est retombé bien sur ses pattes ! Oh bah autrement ça aurait été la...
-[25:22] Elle bougeait pas dans ce sens là la grue. Ouais. 
-[25:27] Ah Ben si elle avait bougé dans ce sens là c’est fini parce que… Faut pas oublier qu’il tombait pas dans l’axe lui. 
-[25:32] La chance c’est qu’en fait ce soit tombé tout droit. Si…
-[25:37] Ben peut-être pas comme ça ou comme ça mais elle bougeait pas dans ce sens là. C’est dans ce sens là là. 
-[25:42] Crac !
-[25:47] Et alors l’autre elle a dû sûrement avoir quelque chose, l’autre l’autre aussi à un moment elle s’est trouvée libérée, l’autre il a dû avoir aussi quelque chose. Alors le pontonnier tout là-haut là…
-[25:52] Et euh c'est c'est quand c'est la figure là de bah dans sa cabine c'est s'est fait mal au genou et il paraît qu'il est il est plus jamais remonté après. Alors, c'est en haut les les grues et et qui sont comme ça. Et puis bah l'accrochage et tout ça. Et ben c'est tous les boulons qui tenaient là. C'est tout ça quoi, c'est de de la flèche qui a qui a fléchi. Alors clac clac clac clac clac une pluie de boulons qui est tombé là. On a on n'a pas entendu parler qu'il y a eu de blessés ni rien du tout. Bah non, parce que comme ils disaient là, quand ils font des des manœuvres comme ça bah allez faut pas rester dessous.
-[26:22] - bah sinon on peut pas parce que en dehors de ça mais souvent des oublis ça arrive souvent euh des boîtes de soudure ça arrive tout plein puis là on retourne d'un coup bada bada oh là t'en as un qui avait oublié sa boîte de soudure à l'intérieur ?
-[26:32] - oui bah oui en gros c'est c'est c'est un exemple ça pouvait arriver ?
-[26:42] - oui oui c'est pour ça qu'il fallait ben oui il y avait toujours des cochonneries parce que pour attacher les bouts de ferraille comme ça pour les fixer eh ben pour les souder à leur place ben on pique sur le sol et...
-[26:52] Un bout de ferraille comme ça et puis on met un coin... Un coin qui est comme ça là, et puis on tape un coup de marteau. Et puis, parce que le tracé, il est là, mettons. Alors en tapant un coup de marteau, ça ramène la ferraille comme ça, clac ! Hein, et puis quand c'est... quand la ferraille est le long du trait, et ben on fait un point de soudure, puis après on casse notre morceau, mais il reste là... Donc il y a plein de morceaux de ferraille qu'ils donnent pas de coup de balai, souvent. Alors au contraire, on n'entend tout... tout ce qui gêne !
-[27:22] Oui, puis de toute façon, on ne se met pas en dessous.
-[27:26] Heu, vous avez assisté souvent à des, je suppose là, si vous étiez parfois de temps en temps au pied de la grue en train de dessiner...
-[27:31] Ah bah oui, oui, oui !
-[27:35] Au pied des grues, vous avez souvent vu des des utilisations comme ça. Heu, je suppose qu’avec le temps, si vous avez vu une longue période qui s’écoule jusque dans les années 70, heu comment ça a évolué cette relation entre le entre le grutier, enfin le pontonnier, et les personnes qui étaient en bas en train de travailler au niveau de...
-[27:39] - de comment ils communiquaient entre eux. 
-[27:45] - Ah bah ils... On m'a dit qu'ils travaillaient au début par gestes s'il n'y avait pas de radio. Donc c'était est-ce que c'était quelque chose qui était où c'était un peu un... une entente cor... sous-entendue entre le... ou est-ce que c'est quelque chose qui se faisait vraiment avec des signes qui étaient prédéfinis ? 
-[27:51] - Ah bah il y a des signes, oui, il y avait... parce que souvent, nous on le voyait pas, donc c'était un troisième individu, c'est lui qui faisait des signes. 
-[27:57] - Donc c'était un peu l'intermédiaire entre... 
-[28:03] - Ah bah oui, c'était l'intermédiaire entre le sol et le grutier. D'abord, le grutier souvent il est tourné de l'autre côté alors pour la...
-[28:09] - appelez, rien
-[28:14] - Ah ! Y avait l'idée, moi j'ai connu pas de téléphone mais euh y avait des téléphones à la grue, enfin fallait tourner la manivelle et puis hop, on-
-[28:19] - C'était en bas de la grue ?
-[28:24] - Oui, accroché à son fût. Accroché à la grue.
-[28:29] - Ah un genre de téléphone avec une dynamo quoi pour-
-[28:34] - Ouais, fallait tourner et puis : « Allô oui, ça y est, allez viens j'ai besoin ! » Alors derrière, puis après y en a un qui faisait hop hop hop, puis alors après bah oui y en avait un qui faisait des gestes, tac, stop, tac, stop, parce que faut- tout ce qu'y- y avait-
-[28:39] Y avait une équipe de gars, qui étaient des cadors. Euh... C'était tous ceux qui mettaient les élingues et tout ça. Hum hum. Hein parce que c'est pas des gars comme moi, moi je faisais mes blocs et tout, mais après c'était les élingueurs, hein tout ça, puis c'était des amarrages parce que... Parce que c'était il fallait, parce que les élingues et les manilles, enfin c'est assez lourd. Ah bah oui ! Alors là, ça c'était... On peut parler bien... Ah bah alors là, ils savaient, tac tac tac tac tac, allez-y remontez, parce qu'après ces gros blocs-là une fois qu'ils étaient bien retournés et tout, après...
-[29:09] Ça permettait entre autres de finir la soudure, au lieu de faire une soudure au plafond, comme c'était retourné, mais impeccable, hein, ça... Et puis finir les... les quelques éléments qu'on pouvait pas faire, il y en a qu'on pouvait... Mais quand on les retournait, aux trois quarts le bloc était fini. Un... un bloc de quai dessous, là. Ben, pratiquement à 100 %, il était fini en dessous. À la limite, quand il retournait, il y avait quelques soudures à faire là, mais c'est tout, parce que les... et puis...
-[29:39] Souvent, c'était un panneau euh... les tôles étaient déjà soudées, mettons, des deux côtés qui enveloppaient ou alors faisaient vraiment une forme, donc... une fois qu'il était mis comme ça, à la limite, il n'y avait que quelques soudures comme ça. Et souvent, ah ben si ben, et puis des soudures, euh... si pour tenir quand même euh... les euh viroles qui étaient là, les euh soudures du dessous là, ben oui, il faut bien. Au lieu de les faire au plafond, il n'y en avait qu'un tout petit peu et après, ils les faisaient à la main. Mais fallait quand même, ah ben non...
-[30:09] Non mais même pas parce que pour soulever lui et ben les les les crochets enfin les les blocs tout je veux dire les pitons étaient plutôt là sur les côtés. Ici, ici. Mais pas pas là.
-[30:19] D'accord, plus sur l'intérieur de...
-[30:29] Oui et puis de enfin dans ce sens là déjà bon bah ils étaient sur les côtés là parce que ça finissait par une tôle. Même si la tôle avait des trous, il y avait forcément de la tôle qui fermait la section. Donc c'était là.
-[30:39] Accroché là ! d'accord ! et puis de l'autre côté pareil. Donc la grue les prenait là, il y avait deux grues qui prenaient, après il y en avait une qui lâchait. Alors là, c’était le truc le plus simple. Elle prenait, l'autre elle lâche, puis à un moment il touche par terre. Donc en gros ça faisait ça. Alors il soulevait puis y avait le poids où c'était pas parce qu'à un moment il soulevait tout seul et à ce moment-là, le passage, il le repassaient là. D’accord. Il faisait ça et puis h- et puis ils arrivaient à le retourner, ça s'est fait comme ça.
-[31:09] - C'était assez sympa.
-[31:12] - Oui, c'était...
-[31:15] - Parce qu'après une fois qu'il était comme ça, il faisait sauter les manilles qui étaient là et il soudait quatre manilles carrément dessus après, puisqu'il était bien. Et après il prenait comme ça, c'était... c'était... ça faisait 100 tonnes au maximum, parce que... ça pouvait soulever 100 tonnes.
-[31:17] - Oui, c'est ça.
-[31:20] - Donc, elle toute seule, hop !
-[31:23] - Elle prenait tout seul ?
-[31:25] - Donc le... la grande grue jaune, elle se permettait de soulever...
-[31:28] - Bah, elle toute seule.
-[31:31] - Mais elle pouvait... est-ce qu'elle pouvait soulever vraiment 100 tonnes parce que dans les années 70, elle...
-[31:34] - Ah ben si, elle avait été montée à 100 tonnes.
-[31:36] - Ben oui !
-[31:39] - Moi ce que j'ai vu c'est qu'elle avait été montée à 80 tonnes officiellement parce qu'elle avait été éprouvée à 120 tonnes mais que j'ai entendu dire plein de fois que on l'utilisait à 90 tonnes ou un peu plus parfois. Oh oui, et puis à ce moment-là on coupait tous les gros engins qui qui pompaient de qui pompaient du courant pour balancer justement les l'électricité là. Ou alors à quand c'était ça. Ah oui c'était du... Ah oui faut fallait tout de suite et puis après pschit allez ça y est tout est bon. D'accord. Ben parce que... un monsieur de l'entreprise Mahé donc la personne qui a refait les...
-[32:09] Et les câblages me disaient que pour lui sur les plans elle est écrit qu'elle qu'elle tournait à 440 volts mais que euh sur pour elle tournait à plus de 500 volts. Qu'en gros il boostait un petit peu la capacité pour pour donner un petit peu.
-[32:24] Oui ben faut il il tâchait de faire ça à un moment où où il y avait personne qui travaillait dans les ateliers de façon ou où il y avait moins de de courant ailleurs. Mais des fois c'était pas possible. Ah oui ben déjà. Puis en plus là là il l'autre là il amenait là les ingénieurs.
-[32:39] Osalenguer aussi là, c'est que le bloc lui qui était grand comme ça, mais il fallait le mettre sur un plan incliné, donc c'était Osalenguer, et ben alors il y avait quatre manilles là, là, mais à eux de mettre des élingues plus longues d'un côté, que déjà il a la pente. Tu vois, d'arriver pile comme ça, et les gros blocs comme ça, pareil !
-[33:09] Il fallait qu'il calcule ça les longueurs de brins d'accord en atelier le le collègue avait été viré moi j'avais appris ça les élinguages mais je n'ai pas été viré dans lui il a il était là fallait fallait tout étudier ça hein. De toute façon qu'il les prenne et puis que ça arrive sur le bloc puis sur sur la cale avec la pente qui correspond et tout hein. Ouais c'est dans tous les chantiers c'est comme ça. Ah ben oui parce que techniquement sur le sur le petit chariot euh du de la grue, il fallait que de deux côtés les brins soient de taille...
-[33:39] - Ah bah oui, parce que le chariot il est horizontal lui de la... mais c'est après c'est la longueur des bras. 
-[33:47] - Donc il fallait il fallait enlever certains brins, les changer pour...
-[33:54] - Alors, il y avait des bras plus longs les uns que les autres, d'accord, et le calcul bah c'était suivant la longueur, le... bah c'est le triangle là-dedans. Ah bah oui, ça c'était un gros travail. Alors dans les calculs, hein, c'est c'est à eux de calculer tout ça. 
-[34:02] - D'accord. OK. C'est ouais, c'est donc c'est dans ce moment-là où on se rend compte bah c'est comme le comment il s'appelle le monsieur qu'on a... qui était avec nous mardi ?
-[34:09] - Hum... ce soir, qui nous parlait euh... en fin de journée.
-[34:12] - Celui que... que j'ai pas pu interviewer. Je sais plus comment...
-[34:15] - Ah ben, je sais pas non plus. Oh, il y en a plusieurs, hein !
-[34:17] - Ben le monsieur qui... qui disait qu'il avait fait un...
-[34:20] - Il y a... il y a celui qui a... qui a fait le... l'homaro... le... le bateau là, c'est pas celui-là ?
-[34:23] - Non non, le monsieur avec qui on discutait qui nous racontait que lui il avait fait un homaro pour calculer les...
-[34:25] - Ah, ben ! Gilbert Calaro.
-[34:28] - Oui, voilà.
-[34:31] - Eh ben, c'est mon collègue.
-[34:34] - D'accord, donc Monsieur Calaro.
-[34:36] - On a passé le... On s'est aperçu de ça parce que il y a...
-[34:39] - un gars de notre âge ou peut-être un peu après que là. Celui qui boîte là. Oui. C'est c'est un ancien ingénieur des ponts. Oui. Il a calculé tous les ponts et tout.
-[34:49] - Il a été à l'école à Nantes de Longchamp. Et puis nous, on disait bah, c'est là qu'on a passé notre certificat d'études. Et puis le collègue aussi. Il me dit il recherche pour cette année justement des certifi... des papiers. Oui. Et puis au décès de mes parents, on a retrouvé, il avait gardé mon certificat.
-[34:59] - De d'études, mon- et puis le collègue, il avait le sien. Alors on l'on l'a apporté. On l'apporté le même jour à la même école. Nous on se connaissait pas à l'époque. Alors on a été le- j'ai été le porter là-bas à l'école. On en fait une photocopie aussi. Parce que il fallait ce papier là pour être inscrit au concours d'entrée du chantier. C'est mes parents qui… Hein, et puis euh après on s'est retrouvé ensemble. Alors lui il l'a eu ce ce- ça, il a été basculé. Moi j'ai suivi ces mêmes cours de- de…
-[35:29] C'est au brevet, mais après je n'ai pas été basculé dans... c'est ça que quand on passe des examens on reçoit tout. Oui c'est ça. Comme Tripoteau là qui était notre Président là, qui est un grand barbu là; enfin grand non, oh c'est comme ça qu'on disait. Ben lui il a été viré... ah mais il ne venait pas du chantier lui, il venait de Bordeaux ou... Oui c'est ça, un Bordelais. Oui. Alors lui il a été viré dans le bureau de calcul des lancements et tout ça, c'est pour ça qu'il s'y connaît à plein. Le bouquin c'est lui qui l'a fait. Oui d'accord, sur les calculs de lancements... de lancements.
-[35:59] D'accord, oui, non. Mais alors bon, moi j'ai vu ça mais globalement, ça fait partie juste des des épreuves du brevet, là qu'il fallait calculer bah enfin vous savez, c'est forcément ça arrive par tout un calculer le centre de gravité de façon de machin et puis ça, lui il a été versé là-dedans, moi j'ai pas été versé là, après on est versé soit là soit là et puis voilà. Vous aviez chacun votre spécificité au niveau des calculs etcetera. Donc monsieur monsieur Calla lui il racontait qu'il avait pour le... pour le poids.
-[36:29] Euh pour le poids, il avait il avait fait un abaque sur Ah oui oui bien sûr, je les ai vus mais mais j'ai au départ j'ai pas su que c'était lui. Après il nous a il nous a envoyé en plus tout à l'heure, on l'a on l'a la photo, je vous la montrerai si si vous voulez, on l'imprimera je pense pour le pour l'expo, c'est on voit le le calcul de la masse à supprimer de général de d'une pièce en fonction du nombre de de de de trous et du diamètre des trous qui ont qui ont été faits, ce qui est très malin. Ce qui fait que Ah oui bah tout le monde le prenait pour un fou, enfin c'est une façon de dire. Puis après bah tout le monde était intéressé, il il fallait qu'il qu'il fallait qu'il
-[36:59] Alors tout le monde était content. Bah oui, parce que moi aussi j'avais fait ça pour les examens enfin, et ben on calculait nos poids là et puis après ben fallait enlever les trous. Alors comme c'était chacun faisait ça, hein, puisqu'on avait les mêmes trous. On n'allait pas recommencer donc on faisait nos calculs tant sur tant, ça fait tant. Donc on... Ah tiens ! J'ai déjà fait celui-là. Mais c'est un truc personnel comme ça. Hein, mais lui qu'avait fait en grand et tous les trous existants... Ça fait comme chez nous là, un...
-[37:29] Quand je suis monté au bureau d'dessin, y en a un, il a passé p't-être deux ans à faire tous les... oh les... trucs de soudure, tous les codes soudure. Un, deux... Alors le plus simple, c'est - c'était une tôle, une tôle comme ça, pis soudée... tous les... il a passé p't-être deux ans comme ça à passer tous les codes soudure qui existaient dans l'chantier. Mais bon, il était payé pour ça ! Mais... C'est à un moment où on faisait euh des bateaux où d'un côté c'était comme ça et de l'aut' côté c'était de l'inox. Ah c'est pas du tout la même, hein ! Et inox avec ferraille, ça va pas...
-[37:59] Oh là là ! Donc c'était des en fonction de en fonction des spécificités vous vous adaptiez en fonction des nouvelles choses qui étaient demandées au chantier ? Ah bah oui après des trucs comme ça ben il y en a qui ont été payés par l'excellence ça ça me regarde pas et puis ils ont fait un cahier où il y a tout dedans. Alors après on était obligé de hein bah le cahier était forcément là "Ah bah tiens c'est là, bon bah faut faire comme c'est écrit". Oui il y en a un qui a fait tout ça. Mais à Suresnes c'était pareil hein moi on était au bureau d'étude moi j'étais à l'aménagement. À chaque fois qu'il y avait quelque chose de nouveau il fallait ils avaient une bibliothèque.
-[38:29] C’est c'est du temps de l'ordinateur à à ce moment-là. Fallait regarder dans la bibliothèque si si c'était pas puis après comme il y avait un nouveau bateau, moi j'avais travaillé pendant pendant peut-être un un bout de temps au chantier là-bas sur ordinateur à rajouter des trucs à à la bibliothèque. Hum hum. Alors faut pas se tromper donc parce qu'à chaque fois là c'était un élément un nouvel élément et puis fallait calculer son centre de gravité. Hum hum. Alors bah il se trouvait forcément dans le bon bah ils étaient là. Parce qu'après...
-[38:59] Tous les morceaux, c'est ça dans dans les bateaux. Comme tu sais… là-bas. Je… Le bateau dans son ensemble, il y a un centre de gravité. Qui est dans les trois dimensions. Il est forcément dans l'axe, vers l'arrière, je ne sais plus à quel endroit, et en hauteur. Et le moindre élément du bateau, il il il doit être mesuré d'après ce centre-là. Mais dans toutes les dimensions, en hauteur, en largeur, en profondeur et tout.
-[39:29] Le moindre morceau, euh c’est-à-dire le moindre centre de gravité de ce morceau là, hum hum bah à l’ordinateur c'est ça puisqu'on chaud chacun faisait dans son dans son coin, donc on savait que notre élément il était pff à 300 mètres de l’autre plus ou moins. En gros c’est, à l’arrière je crois que c’est le p' le plan qui sert à zéro comme chez nous. Euh ça doit être ou il y a l’arbre d’hélice. L'hélice et tout ça à un moment dans ce sens là c'est là, dans l’autre sens c’est c’est l’axe et puis dans l’autre sens c’est je crois.
-[39:59] C'est c'est le centre de de de la ligne de flottaison euh quand il est vide. Hmmm. À lège. Je crois que c'est ça le le point. Alors, il est situé à l'arrière naturellement. Alors tout dans un sens c'est plus et après c'est moins. Mais tout tout tout ce qu'on faisait tout chaque morceau mais tout, le moindre morceau, le moindre boulon tout dans le bateau, il est à tel endroit dans les trois dimensions d'après ce point-là. D'accord. Comme ça tout Ah c'est obligé autrement. Mais clac l'ordinateur le met tout de suite clac à sa place. Bah bien sûr, je comprends.
-[40:29] Parce que nous, dans notre dessin, on voyait que notre dessin...
-[40:37] Si on... Là, ça a permis de voir les dessins dans leur globalité directement...
-[40:44] Et puis tout d'un coup, si on allait faire ailleurs, bah on allait ailleurs, mais tout de suite c'était... Ah ouais ! Bien sûr... Mais c'était pas à nous de le calculer, il venait automatiquement.
-[40:52] Parce que la tôle, elle faisait... ça appartenait soit à la bibliothèque ou autre, mais quelqu'un avait déjà calculé son... Donc on le mettait à cet emplacement et tout de suite, clac, on le savait. D'abord l'ordinateur savait déjà qu'on ne pouvait pas le...
-[40:59] -votre emplacement était déjà calculé donc si on le rajoutait là il tombait forcément dans l'emplacement donc automatiquement le calcul se faisait.
-[41:14] -D'accord. Alors pour finir vu que là il me reste plus beaucoup de temps, euh on va parler d'une dernière chose, ça va être le la conservation au niveau du de l'ancien chantier naval dans sa globalité sans l'ancienne zone des chantiers navals les conservations qu'ont été faites et principalement...
-[41:29] Principalement la conservation de la grue titan. Euh la question est un peu générale pour qu'on puisse en on peut en parler, c'est que pensez-vous de la conservation de de des grues en général, c'est-à-dire les deux grues qu'il y a euh ici, c'est-à-dire la grande grue grise, la grue jaune et la grue du bignon, la grue noire qui a été conservée, qui est conservée. Ah bah oui ! C'est ça, maintenant elle a été rachetée par la ville il y a quelques années. Ouais, et elle appartient à un euh elle appartenait à un particulier à un certain moment. Oui qu'il l'avait acheté et puis après donc. Ah bah oui, tout a été rachetée ! Toute été rachetée !
-[41:59] D'accord, et maintenant sous la responsabilité de la ville, la grue grise est conservée au patrimoine, en gros, elle est classée aux monuments historiques. La grue jaune et la grue noire sont en train d'être... elles ont des procédures pour qu'on demande à ce qu'elles soient classées elles aussi pour qu'elles soient protégées par l'État. Euh, donc cette conservation des grues, qu'est-ce que vous en pensez ? Est-ce que c'est nécessaire les trois ? La question aussi c'est par rapport à... vu qu'il y a plein de personnes qui ont un souvenir très différent de ces grues-là, est-ce que parfois ça peut sembler...
-[42:29] - C’est pas superflu ? Est-ce qu’au niveau de… de… de les voir comme ça, est-ce que c’est douloureux ?
-[42:37] - Oh !
-[42:44] - Est-ce que… est-ce qu’on aurait dû conserver autre chose que… que les grues ? Est-ce qu’il y aurait d’autres bâtiments qui auraient valu le coup d’être conservés, par exemple ?
-[42:52] - Ben… d’autres bâtiments, ça… ça prend beaucoup de place. Faut compter que… pour… les grues, ça… ça c’est bien, les grues, quoi. Hmm, toutes les grues mais on avait des mecs d’IHC, on a tous fait des grues. C’était ça, si c’était pas mes frangins dans le bâtiment, c’était les grues aussi. On a tous baigné… et puis on a vécu avec… avec ça, nous.
-[42:59] Il n'y aurait pas eu de grues, c'était fini.
-[43:04] Si... Et en même temps d'où... Ah ben oui les grues là.
-[43:09] Et c'est vrai que ces grues-là en même temps, elles ont été... Par exemple la grue Titan elle est assez intéressante dans son histoire parce que elle est... Elle est là parce qu'on a eu besoin de cette capacité en plus pour construire des plus gros bateaux. Elle a été rehaussée au niveau de son mât parce que c'est le moment dans les années 70 où on re-veut des plus gros blocs pour travailler plus rapidement pour faire des plus gros... Plus grosses structures.
-[43:14] Ah oui ! Ah bah c'est sûr. Avant c'étaient des petites grues. Même les mâts... Celle-là là, la grosse.
-[43:19] La grue dont vous me parlez, oui.
-[43:24] Elle était pas plus grosse que l'autre.
-[43:29] Je crois même pas qu'elles faisaient mais elles étaient plus volumineuses. Oui, c'est ça, les rousses mais c'était de vrais mécano. Oui, c'est ça, c'est les... On voyait à travers. Oui, c'est ça, c'est les squelettes, c'est des grues Titan. Bah en fait la grue Titan... La grue Titan qu'on connaît c'est pas la seule Titan, c'est-à-dire qu'il y en avait d'autres des Titan, des autres modèles Titan et je crois que celle dont vous parlez c'est un modèle Titan en fait mais vraiment à l'ancienne qui était très plat au... au-dessus. Ah oui ! C'est un quadrillage ! Oui, c'est ça et c'était vraiment comme des pièces de meccano un peu, elles étaient... Elles étaient beaucoup plus grosses mais elles avaient pas... Elles étaient pas plus fortes. Ah non, c'était celle-là qui était.
-[43:59] C'est la plus forte !
-[44:02] - Donc physiquement c'est pas... Donc ils ont très bien fait de...
-[44:05] - C'est celle-là.
-[44:07] - Ah oui, de la conserver ! On est d'accord !
-[44:10] - Et puis elle se tient ! Les autres ça faisait comme le pont de Transbordeur là, c'était de la ferraille... la cornière et tout c'était de l'acier mais enfin, ou de la vulgaire... acier...
-[44:13] - Ben...
-[44:15] - C'était tout rouillé quoi ! Les boulons c'est souvent qu'ils... ils en avaient eu... ils en ont eu des barbouillages de coaltar et tout ça... enfin de la... oui, de la peinture noire là.
-[44:18] - Hmm, donc c'est...
-[44:21] - C'est pas celle-là... celle-là, oui, elle est !
-[44:24] - Elle est costaude !
-[44:26] - Ah ouais.
-[44:29] C'était une nouvelle forme comme ça... Ah oui oui, c'était très bien de la garder, celle-là, oui oui. Voilà, la... la cosse ou non, non, pas d'autres bâtiments, hein ? Vous avez... la photo là où on voit une vue aérienne de tout, ben, on voit bien d'autres bâtiments partout. Alors, pourquoi garder plutôt celui-là que celui-là ? Je sais pas parce que la... la question que j'avais déjà posée, c'était... c'était est-ce qu'il y avait un bâtiment qui aurait peut-être valu le coup d'être conservé parce qu'il était beau ? Ou parce qu'il...
-[44:59] Il représentait quelque chose en plus. 
-[45:02] C'est celui-là qu'était... C'est celui-là qu'était... 
-[45:05] Oui c'est celui qui... Ah oui ! C'est lui qu'avait le plus de sens en tout cas dans sa conservation. 
-[45:07] Bah les autres c'était jamais des... des bâtiments, c'était des ateliers et tout. À la limite c'était une carcasse en ferraille comme ils ont fait là. C'est très bien, ils ont tout enlevé, ils ont conservé la carcasse qu'ils ont réarrangée et puis voilà, c'est ça ! 
-[45:10] C'est... C'était ce genre-là de bâtiment partout... On pouvait pas... 
-[45:13] Euh... Jean Rolay et certains chercheurs parlent des grues de manière assez symbolique en les appelant des flèches.
-[45:15] ...l'image des cathédrales ouvrières en en donnant cette cette idée que la grue portuaire est porteuse d'un symbole tout comme un... en disant à cet endroit-là, il y a eu quelque chose... 
-[45:20] - Eh ben il y a eu de l'activité, il y a eu des gens, il y a eu des... ah oui.
-[45:25] - Et est-ce que cette grue elle doit garder cet aspect-là, cet aspect d'ancrage territorial ?
-[45:30] - Ah oui, c'est... c'est à nous de faire attention à ça. Ah oui, faut que ça reste.
-[45:35] - Donc elle doit garder cette cette pureté de de sa fonction.
-[45:40] - Oh bah oui. Oh oui oui, faut pas que ça devienne un machin robotisé, non.
-[45:45] - On sait pas, peut-être les générations à venir ils demanderont ce que c'est que cet engin là, n'est-ce pas ? Mais... mais non, il faut que ça reste un symbole et c'est quelque chose de formidable, c'est... c'est bien.
-[45:55] - Et pour que les... question un peu comme ça qui me vient... mais pour que les autres personnes se rendent compte de ce que c'était, est-ce qu'il faudrait la... lui redonner un signe de vie, ou est-ce qu'il faudrait juste lui l'expliquer ?
-[46:05] - Oh non, faut expliquer, oh non, on peut pas... Elle est comme ça, elle est là, elle est là, on va pas s'amuser... et puis ça... ça donne c'est ce que c'est... une... une mine qu'on a connu... de ce que on a fait ou ce qu'on fait ailleurs. C'est dommage que d'autres... d'autres sites ont pas été gardé comme ça.
-[46:15] Alors on va pas faire des... des peintures dessus pour montrer, c'est... c'est à nous d'expliquer euh... à quoi ça servait, tout ça. Enfin de leur montrer. Bah tiens d'ailleurs, y a encore les cales, l'avantage, c'est que... elles sont... elle est encore cernée par les cales, donc on peut comprendre euh... ce qui... oui-oui... on comprend pourquoi elle est là, quoi.
-[46:30] Euh... Comment... euh... quel est votre avis et quel a été l'avis des personnes qui vous entourent sur les différentes propositions qui ont été faites par la ville de Nantes et par des structures qui proposent...
-[46:45] proposé par exemple d'accrocher des choses dessus, de la transformer peut-être dans autre chose.
-[46:53] pas du tout ?
-[47:00] Oh bah non, ça sortait elle sortait de son rôle à ce moment-là. Elle sert pas à accrocher et pour faire venir du public ça a été le cas, ils voulaient mettre de de la pub de monde. Oh bah non, ça pas, ça colle pas, c'est pas du tout
-[47:08] Parce que le problème, c'est que ça dénature le sens et que si par exemple on accrochait par exemple euh je sais pas, j'en ai aucune idée, mais si on accroche...
-[47:15] chercher quelque chose qui la raccrochait encore à son... à sa structure de... de construction... de truc métallique quoi... de choses métalliques, de moteur, de... quelque chose. Ça c'est quelque chose qui... qui aurait du sens parce qu'il y a... Ah bah ouais. Pas... pas... pas quelque chose qui... qui fasse marionnette ou... ou... des trucs... Bon voilà, c'est vraiment... si on est censé la mettre en avant à travers quelque chose, il faut que ce soit quelque chose de... qui... un truc... quelque chose qui représenterait un bloc de bateau mais ça... ça c'est compliqué. Je sais qu'en plus dans... il y a... ils veulent un... un peu le jeu derrière... Oui oui.
-[47:45] Oui enfin quelque chose qui, qui rappelle mes tonnages navals, quoi. Oui, c'est ça. Voilà, mais qu'il faut, il faut la garder dans son ancrage, dans son ancrage présent. Très bien. Euh est-ce que vous avez quelque chose à rajouter sur son, sur l'histoire de, de la grue, là ? Un ressenti que vous avez par rapport à ça ? Est-ce que vous avez une idée, ou je ne sais pas ? Bah nous on s'trouvait très très bien avec les grues, nous, j'sais pas moi, c'est ça faisait partie de l'univers, on rentrait, clac, la grue. Et puis on la voyait de loin. Heu tous les nantais.
-[48:15] - Euh, c'était un coin... par contre tous ceux qui qui ne travaillaient pas au chantier, ben il y en a ils sont jamais venus de ce côté-là. 
-[48:19] - Oui. 
-[48:22] - Ils ont jamais traversé la Loire.
-[48:25] - Il y avait ce côté très exclusif de... c'était c'était une zone...
-[48:29] - Faut dire que tous ceux qu'avaient du travail de l'autre côté, qu'avaient rien à faire au chantier, mais ils y allaient même pas le dimanche pour se balader. Ça ça...
-[48:32] - Parce que c'était comme... enfin pour eux c'était pas une zone de promenade, c'était...
-[48:35] - Bah oui ! 
-[48:39] - C'était un...
-[48:42] - Ah bah oui, il y avait... il n'y avait que du travail, il y avait tout le long, oui, il n'y avait pas grand-chose d'autre.
-[48:45] Est-ce que vous vous rappelez, question c'est un peu un peu complexe, est-ce que vous vous rappelez de la période où elle a été repeinte ? Parce qu'on est d'accord qu'elle a été grise, les photos le montrent, elle était grise. Mais est-ce que vous vous rappelez peut-être d'une période où elle aurait pu être repeinte parce que je ne retrouve pas, il n'y a pas malheureusement de date en particulier, on sait qu'elle a qu'elle a été modifiée dans entre les années, apparemment entre 74 et 75-76, mais est-ce qu'elle a été repeinte à ce moment-là ou est-ce que c'est plus tard ?
-[49:15] Bah c'est c'est juste euh un juste est-ce qu'il y a un souvenir ou une... Pas spécialement, on l'a connu verte et puis à un moment bah on l'a connue jaune, mais euh entre les deux euh... Bah oui... On allait des fois en déplacement chez Dubuisson là-bas à Chatenay, alors peut-être qu'elle a été repeinte à ce moment-là et puis après quand on est revenu, oh bah elle était jaune et puis je sais pas, on n'a pas fait gaffe. Parce que je sais que les les trois quarts des des engins étaient étaient dans des teintes grises ou noires... Oui oui, de toute façon...
-[49:45] – Ah ben... Euh... Oui, tous les grands, ils étaient... ils étaient noirs, ils étaient d'une couleur foncée.
-[49:55] – C'est ça. Mais, par contre, dans les photos en couleur qu'on a des chantiers dans les années... fin des années 70, début des années 80, les trois-quarts des... des objets de levage sont jaunes. Ont été quasiment tous repeints. Donc c'est quelque chose qui... qui s'est fait progressivement.
-[50:05] – Faudra que je retrouve... j'ai des diapos que j'avais faites moi... faudra que je retrouve dans toutes mes diapos. Parce que... quand on faisait des diapos, hein, il y a... il y a l'année de marquée. Et c'est là que... mais je ne sais pas si je les ai encore.
-[50:15] J'ai pas pris spécialement en photo mais j'aurais j'aurais pu la prendre comme Mais après c'est normal, c'est c'est quelque chose qui était tellement dans votre paysage que Ah oui oui, donc euh non j'ai pas pu m'en douter quoi. Non mais c'est bien normal. Ah oui. Non puis j'ai été bien vu moi. Oh bah j'ai pas fait Si on est tous faits un peu de conneries on se on se marre toujours. Non, ça m'est plus arrivé de toute façon. Non mais euh une fois euh entre deux examens, je me rappelle, j'étais au 10ème et puis pour monter en grade mettons fallait
-[50:45] - Inventer quelque chose euh pour notre profession qui nous fasse gagner du temps
-[50:49] - Hmm hmm
-[50:53] - Pour euh que notre travail se fasse en un temps plus court
-[50:57] - Plus court, oui.
-[51:00] - Voilà.
-[51:04] - Donc ça c'était un examen ?
-[51:08] - Oui oui, mais oui, mais comme ça.
-[51:12] - Oh alors eh bien, lors d'un travail que j'avais à faire pour de vrai, je me suis débrouillé oh j'avais gagné du temps notamment en développant des tôles, mais développées au dixième, j'avais trouvé un truc oh !
-[51:15] - Bah oui mais après au forgeron il lui fallait deux fois plus de temps qu'aux autres. Si bien qu’à la fin, je gagnais que moi.
-[51:20] - Sauf que pour d'autres c'était...
-[51:25] - pour vous c'était plus... c'était plus pratique mais pour eux c'était plus dur quoi.
-[51:30] - Bah oui parce que j'avais trouvé l'truc pour développer oh là là un truc de changement de plan, tire ! Oh impec’ ! Bah oui mais après... il faut quand même donner des des données... au au forgeron, et il les avait plus.
-[51:35] - Donc finalement ça vous arrangeait que vous quoi ?
-[51:40] - Que moi. Oui c'est ça, c'est ce qu'on m'a dit après. Pshh...
-[51:45] C'est vrai. Moi je gagnais du temps et puis mais après non finalement ils en perdaient ou alors fallait que je retourne à bord ou à - pas à bord mais - à l'atelier pour redessiner euh ou refaire un autre calcul parce que faut bien leur montrer les - les entrax à la limite où il y a les chaudes de traits où il y a euh hein où il y a - chose qu'il y avait avant puisque je m' - on s'en servait pour développer justement. Puis il fallait les noter parce qu'après bah "Ah bah merde alors comment j'vais faire ?" Bah ouais c'est donc de...
-[52:15] C'est ça qu'on nous a dit. OK. Moi, on m'appelle Ah ouais donc... C'est du vieux ça hein. Ce qu'on pensait pareil des examens justement des brevets qu'il fallait qu'ils trouvent quelque chose qu'on était à l'apprentissage... Eh ben, il y en avait un qui avait trouvé. Et puis, oh bah c'est tout bête ! Mais euh, y a le vertical bah qui est qui est comme ça là avec les formes. Et puis souvent, on avait l'étau là fait euh... Il a une forme à faire au milieu parce que bah ils ajoutent une cloison. Bah au lieu de s'amuser à calculer, eh ben une simple...
-[52:45] L'élastique. Deux points au crayon... euh l'un l'élastique, un point au milieu. Deux gars qui sont là, et puis l'autre il fait ça... suivant l'écart et puis l'autre au milieu... clac clac clac clac clac. Et ben impeccable ! Le... ben il est toujours au milieu le point. Alors là, il... il a eu des points parce que là c'était bien, ça c'est le... c'est un truc tout simple. Non, mais c'est totalement bête, mais oui, c'est totalement malin en fait oui. Surtout quand on est par terre, à chaque fois il faut calculer, tandis que là il pouvait se balader partout puis suivre.
-[53:15] La forme, il suffit de faire ça ou il tient puis il on travaille souvent deux par deux ou et tu as on appelle un collègue. Puis l'autre au milieu ben il avait juste et puis de tac tac tac tac ! à la limite il suivait, puis l'autre il suivait, puis il il avait la forme tout de suite puisque le point il est comme c'est au milieu.
-[53:21] Ah c'est vachement malin ouais !
-[53:27] Ouais ouais, ben il avait eu des points pas mal avec ça, il avait puisque moi zéro patate puisque ça n'intéressait que moi. Il faut avoir une idée de... ouais ouais, on on ne travaille pas pour soi.
-[53:33] C'est ça.
-[53:39] Donc à chaque fois il y avait il fallait toujours réfléchir.
-[53:45] ... faire son travail avec les autres métiers. Oui oui il avait... ben oui il était pour embêter les autres c'est pas... j'ai... j'avais pas servi puis en plus il avait fallu que je l'ai... que je la refasse comme comme avant quoi. Enfin ne s'est pas trompé. Mais oui oui je me rappelle de ce qu'il a... et puis il avait inventé aussi, à si mais, il avait trouvé des trucs alors euh parce qu'à l'époque on faisait des des moules en bois naturellement alors on mettait... ben avec des fers de mécano... tiens ben c'est comme...
-[54:15] L'image qu'il a, on voit des planches comme ça, qui sont coupées suivant des formes avec une ligne, un plan là, il y a un paquet. Et lui il avait trouvé au lieu de mettre une planche comme ça, et ben, genre faire un fer de meccano plein de trous. Hmm hmm. Et c'est le même fer partout et à ce moment-là, au lieu de faire couper une planche à chaque fois, couper hein, parce que suivant la forme et tout, eh ben, son faire, le même fer partout, des... un bout de cornière pourquoi pas qui était plein de trous.
-[54:45] et puis une traverse dans l’autre sens et puis y’avait juste à régler le le le trou là, clac clac clac clac clac clac clac. Et après quand on démontait, i récupérait la la partie fer, ben i servait pour la tôle d’après, y’avait y’avait juste le bois qui servait pas parce qu’i les forgeaient pas. Mais la partie ferraille, eh ben elle servait tout le temps. Bah là il avait vu quelque chose quand même aussi là. D’accord. À chaque fois i fallait i fallait refaire euh parce que là i i z’avaient des parce que là une fois que ta ta tôle est...
-[55:15] est informé, bon bah il, il ramenait, il, il récupérait sa ferraille, et puis il servait au suivant, tac tac tac tac ! D'accord ! Ok. Bah c'est malin en tout cas comme truc ! Oui, bah à l'époque, faut, fallait bien trouver quelque chose, tu sais !
+#     asyncio.run(main("""For this transcription, [00:00] Donc voilà, réglé, hop, donc là un bon ça enregistre. Alors l'idée c'est qu'après moi dès que j'ai fini, je vais recommencer à retranscrire. Donc vu qu'après je retranscris tout, j'ai besoin pour commencer, est-ce que vous pourriez me donner votre nom, votre prénom et votre âge ?
+# [00:06] - Moi c'est Amon Gilles.
+# [00:12] - Oui. Votre âge ?
+# [00:18] - 73 ans.
+# [00:24] Très bien. Alors euh avez-vous travaillé aux chantiers ?
+# [00:27] Bah oui.
+# [00:30] Oui, et si oui, où ? Dans quels chantiers vous avez travaillé ?
+# [00:33] Alors au départ c'était la Bretagne.
+# [00:36] Ouais.
+# [00:39] À 14 ans.
+# [00:42] Hum-hum
+# [00:45] Puis on a suivi bah toutes les fusions et tout pour finir aux chantiers de Nantes et puis aux chantiers Dubigeon, ça s'est appelé comme ça, qui était la fusion des trois chantiers nantais de la région.
+# [00:48] Hum-hum. Jusqu'à quelle période ? 
+# [00:51] Bah jusque... Jusqu'à la fermeture fermeture, en 87 88 par là ou...
+# [00:54] - D'accord.
+# [00:56] - Et puis après, j'ai viré à Saint-Nazaire.
+# [00:59] - D'accord, à Saint-Nazaire. Et vous avez fini votre carrière là-bas ?
+# [01:01] - Ah bah oui.
+# [01:04] - D'accord. Euh est-ce que vous vous rappelez de votre date d'embauche au tout début ? 
+# [01:06] - Ah bah oui, c'était au au mois de septembre. 
+# [01:09] - D'accord. Oh je sais plus, 7, 8, par là.
+# [01:11] - L'année ? Vous vous en rappelez ?
+# [01:14] - Oh... euh... 4... 43... euh... soit 58.
+# [01:16] - 58.
+# [01:19] - 58... 58, 59, 60... oui, c'est ça.
+# [01:21] - D'accord. Donc en... donc en...
+# [01:24] "Septembre 58... Euh.. Quel était votre poste au niveau des chantiers ? Est-ce qu'il a évolué au fil des années ?"
+# [01:39] "Ah bah oui ! On a commencé bah comme apprenti naturellement, puis après ouvrier... Alors en tant qu'ouvrier traceur, on était déjà très bien placés dans dans les groupes hein, il y avait... Puis après j'ai p... alors je suivais des cours à l'IVET qui m'a p... permis de passer le brevet, qui m'a..."
+# [01:54] Je termine mon CAP tout de suite au 10e. Puis en parallèle après j'avais suivi des cours de dessin pas de dessinateur, puis j'suis passé au bureau de dessin. D'accord. Et puis à Chausson ben j’e… je grimpais un grade. D'accord. Et en… comme j'étais bien vu j'ai souvent eu des galons. D'accord. Au fil des années en traversant les différents les différentes infusions. D'accord. Donc en quoi consistait votre travail plus précisément ? Bah au départ…
+# [02:24] Fallait étudier, euh faire euh les formes des bateaux. Hm hm. Suivant des données euh qu'on avait des bureaux d'étude, des points dans l'espace hein, soit en largeur, en longueur, en profondeur et puis par-terre représenter ça sous sous une forme de dessin. Alors là, c'est à l'échelle un, donc c'était sur un parquet. Hm hm. Donc on travaillait à quatre pattes par-terre. D'accord. Sur les les les fautes-on qu'on connait ? Oui, oui, avec euh oui, il fallait avec un décamètre reporter euh des points qu'on avait sur euh sur un petit de- un petit carnet.
+# [02:54] - de nous donner et puis de passer une latte, pis d'voir... les points, si on s'finit à la latte Ben Naturellement ça f'sait tout d'travers. Alors c'était à nous d'refaire une belle ligne droite et à ce moment-là, de reporter les points qu'on avait corriger et... comme ça là, et puis après, à la fin ben, c'était accepté par l'armateur ou son r'présentant quoi naturellement.
+# [03:04] - D'accord. Donc ça c'était... ça c'était une partie... Est-ce que ça a évolué avec le temps, avec les nouvelles techniques ?
+# [03:14] - Ah ben maintenant...
+# [03:24] "Non, alors c'était ça. C'est pour ça que on suivait des cours tout le temps parce que ça ça a duré un certain moment. Hum hum. Et dans les autres chantiers c'était pareil. Et puis après il y a eu le traçage au dixième. C'est que tout le dessin que l'on en faisait à l'échelle un. Hum hum. Il fallait le faire au dixième de la taille réelle. Dix fois plus petit. Mais c'est même pas tout à fait ça. On dessinait- ça revenait à un dessin sur une table, c'était plus pareil. Avec mettons un m... un mètre ou un décimètre où les..."
+# [03:54] Il y a les graduations. D'accord. Mais on se servait d'une loupe pour dess... dessiner au dixième de millimètre près qui était indiqué euh sur l'instrument de mesure. Parce que si vous... si vous utilisiez des grandes tailles, ça... ça faisait en réalité des beaucoup plus petits dessins. Ah ben oui ! Là, j'va... j'vais vous montrer... bah on le... on l'verra pas à l'enregistrement. Non non. Mais là, quand on a un décamètre... un mètre, là... c'était du matériel allemand qui sont...
+# [04:24] Qui est très très très précis. Ouais. Qui ne bouge pas. J'en ai encore un. Où y a les centimètres, pis les millimètres. Ouais. Là. Et nous avec fallait faire un dessin mettons un trait c'était le dixième de millimètres de là divisé en dix. Donc c'était. Ouais d'accord. C'était précis. C'est ça. Alors avec une loupe. Donc vraiment p'tit tout p'tit et hop là. Il y avait qu'un côté qui comptait. D'accord. C'est bien qu'on s'en foutait de l'épaisseur. Mais au dixième près parce qu'après mettons...
+# [04:54] Le rectangle qu'on avait fait, euh ben c'était ça le dessin allait à une machine qui reproduisait en dix fois plus grand. D'accord. Donc la moindre erreur était multipliée par dix. D'accord. C'est ça l'truc. Hmm hmm. Mais c'était dans tous les chantiers pareil. Les trucs en forme pareil, le développement. Fallait tout développer mais au dixième près à la loupe, on avait des loupes. Mais c'était vraiment un travail de précision sur les plans pour que quand ce soit ressorti à la bonne taille. Ben eh c'était multiplié par dix, la moindre... la moindre déférence d'un côté ou de l'autre. D'accord. Et c'est là qu'on...
+# [05:24] On avait fait Moi j'avais été ben c'est d'autres faire un pas un stage mais un déplacement à Sud Aviation à l'époque sur le Concorde. Parce que c'était pareil ils dessinaient au dixième près là-bas aussi.
+# [05:30] - Hmm hmm
+# [05:36] - Sur un panneau pas sur du papier et c'était reproduit mais au dixième, c'était pas multiplié par dix. 
+# [05:42] - D'accord.
+# [05:48] - Puisque c'était mécanique chez eux hein. À la place au lieu que ça soit un chalumeau qui coupe, eux c'était une pièce qui tournait comme ça puis qui découpait suivant notre trait.
+# [05:54] Hum, mais au 10e près, et c'était reproduit sur sur la pièce mais au 10e près pareil. C'était pas multiplié. Donc l'erreur restait au 10e près. D'accord, donc c'était c'était au lieu que ce soit agrandi 10 fois, c'était exactement la même chose qui était retranscrit directement. D'accord. Oui, c'est mécanique. D'accord. C'est pour ça que j'avais été là-bas et puis Oh, j'avais voulu me faire enfin j'avais mis un truc pour pour faire embaucher mais j'ai pas été. Parce que il c'était payé plus cher. C'était mieux payé. Et puis après... oh oui oui... et puis après ça s'est...
+# [06:24] Ouais ouais, ça ça avait monté quand même euh le chantier, ça ça allait. Ah bah oui ! Alors on a suivi ça au dixième, là. Et puis après moi j'avais passé en même temps ben j'continue... j'avais passé le CAP de dessinateur. Et puis quand j'ai eu... à un moment...
+# [06:31] Je suis tombé à un moment où ben y'avait besoin de dessinateur. Donc j'y allais... puis des fois non... ah, y'en avait besoin. Et hop, je montais ! Alolrs c'est pour ça des fois j'montais mais je faisais toujours partie du dixième quand même. Mais j'avais monté en grade.
+# [06:39] - Donc au niveau de de vos postes ?
+# [06:46] Alors vous avez eu euh ce moment où vous trassiez sur le sur le l'épon le plancher, vous avez eu le le moment où vous avez eu travaillé sur les plans au dixième. Oui. Et ensuite comment ça a évolué ça après ça ? C'est c’est resté comme ça jusqu’à la fin ? Ah non non, le dixième après, c’est passé à l’ordinateur. D’accord. Et à ce moment-là moi j’étais au bureau d’études, si bien que je j’ai pas trop travaillé, je sais comment que c’est mais j’ai pas travaillé à l’ordinateur en tant que traceur quoi. D’accord. Puisque j’étais déjà j’étais...
+# [07:16] Ben, l'école m'avait balancé, j'étais dessinateur... euh... dessinateur, j'ai fini dessinateur-projeteur, c'est comme ça l'appellation, qui fait partie des cadres. J'ai fini comme ça. Mais après moi j'ai pas suivi parce que arrivé là-bas à Saint-Nazaire, euh, ils avaient déjà leurs traceurs et tout ça. Hmm hmm. Donc j'ai plutôt été viré là-bas à Saint-Nazaire au bureau de dessin. D'accord. Donc j'ai pas travaillé à l'ordinateur en tant que pour développer les tôles et tout. D'accord. Donc vous travaillez plus techniquement sur la structure générale ?
+# [07:46] - Ah oui, sur la structure générale d'un bateau.
+# [07:49] - Oui, et puis alors ce qui y'a, c'est souvent on faisait mettons quatre bateaux pareils.
+# [07:53] - Hmm hmm.
+# [07:56] - Donc nous, on n'avait plus de travail.
+# [07:59] - D'accord.
+# [08:03] - Vous n'aviez plus qu'à le dupliquer quatre fois et c'était exactement les mêmes.
+# [08:06] - Ah bah oui, donc il ne nous allait pas nous payer, hein. Donc il m'avait viré, et puis les collègues aussi, dans le bureau d'études, mais d'ici de la menuiserie.
+# [08:09] - D'accord.
+# [08:13] - Parce que les bateaux, l'extérieur est pareil mais l'intérieur change. Ils en profitent, hein, il y a des cabines en plus, des trucs en moins. Alors voilà.
+# [08:16] Ça donne du boulot et quand j'ai été à Saint-Nazaire, j'ai été viré au bureau d'étude aménagement. D'accord. Puisqu'ils avaient déjà leurs tôliers, puis c'est là que j'ai grimpé au bureau d'aménagement là-bas. Très bien. Alors enfin, faire les aménagements, c'est tout l'intérieur, tout, alors là ça change de bateau en bateau, comme là, ils vont ils vont en avoir quatre pareils là. Et les coques extérieures, c'est les mêmes, mais par contre l'intérieur va être totalement différent. Y'a tous ces...
+# [08:46] qui arrive dans l'industrie pendant un an qui qui pouvait pas se faire dans ce bateau-là donc il y a forcément des améliorations à chaque fois on a vu ça à chaque coup tiens au fait où alors ça coûtait trop cher après ah ben tiens on va le mettre dans celui-là là hein c'est toujours une histoire de d'argent mais moi c'est pas mon problème ça hein chacun son son job.
+# [09:01] Euh donc vous avez vu que mon mon travail c'est lié avec les discussions qu'on avait eu mardi sur le la grue jaune les les...
+# [09:16] Les engins de levage, les différentes petites choses qu’on peut retrouver. Donc si vous avez été embauché sur les chantiers dans les années, à la fin des années 50, euh Jean Péneau m’avait m’avait dit que lui, il avait vu la grue jaune se monter dans les en 58.
+# [09:22] Ah ben, nous, on était à l'apprentissage. 
+# [09:28] Et est-ce que c'était c'était de l'autre côté ? C’était loin de...
+# [09:34] Ah non, mais oui mais nous, on était euh la Bretagne qui était là, et la grue jaune faisait partie de la LOIRE qui était à côté. 
+# [09:40] Donc c'était c'était un peu un... Ah oui, c'était un autre, c'était une autre, vu que c'était une autre entreprise, vous n’étiez pas forcément...
+# [09:46] - Vous vous mélangiez pas avec ces personnes-là.
+# [09:51] - Oh oui, mais on connaissait les les gens parce qu'à l'époque quand quand on s'engueulait avec notre chef on prenait notre ma notre la caisse sous la porte comme on dit, on s'en va. Et puis on s'eng on s'embauchait à côté hein, y'avait y'avait pas de chômage à l'époque. 
+# [09:56] - Très bien.
+# [10:01] - Oh hmm et puis on on était prêté. Moi j'ai été prêté souvent mais à Chantenay là-bas euh du Bigeon. 
+# [10:06] - D'accord.
+# [10:11] - Oh c'é c'était un peu plu une autre façon de faire à Chantenay. Oh enfin c'est ça paraissait plus vieux que nous, puis on...
+# [10:16] - Oh, ben, on va faire ici...
+# [10:20] - Plus à l'ancienne ?
+# [10:25] - Oui oui, plus à l'ancienne. Eux, ils mettaient des morceaux de bateau comme ça, les uns sur les autres.
+# [10:29] - Hum hum.
+# [10:33] - Comme on fait chez nous. Mais y avait du bon partout.
+# [10:37] - D'accord, oui c'est ce que vous me racontiez.
+# [10:42] - L'autre aussi du bon. Et après y avait une armée de de découpeurs partout, tout d'un coup on entendait "Brrr Brrr", l'un découper là, "Brrr" tout tombait, tout alors que nous, non, quand y avait une épaisseur, à la limite, bon y avait du vent mais quand celle-là était bonne, tout de suite ils mettaient l'épaisseur au-dessus, jusque-là, ouais, alors tout, ah ben on l'avait vu nous.
+# [10:46] Alors de en peu de temps, les gens d'à côté euh ils voyaient le bateau se faire. Et puis après un coup ban ban ban ban. Oh là là... C'est une autre façon de faire mais c'était pas des gros bateaux comme maintenant. Alors ils pourraient pas...Ils pouvaient se permettre ça parce que c'était des plus petites structures. Oh oui oui oui... Et puis souvent c'était des bateaux qu'on avait vu je m'appelle c'était des pinardiers des trucs comme ça ben c'est vide à l'intérieur. C'est pas des paquebots. Donc y a pas besoin de gros aménagements, c'est... Oui, oui. Y a... Donc ils pouvaient se permettre d'empiler et puis après couper claque claque claque. Ouais.
+# [11:16] Alors, euh si vous avez travaillé sur les chantiers dans les années 50, donc vous avez, est-ce que vous- vous l’avez vous avez pas vu la grue jaune se construire ?
+# [11:20] - Ah non.
+# [11:25] - Mais vous en tout cas vous l’avez vue pendant longtemps travailler ?
+# [11:29] - Oh bah oui, on l’a vue oui, oui oui.
+# [11:33] - D’accord. Donc, euh, la question normalement que je pose mais là techniquement je suppose que c’est d’une autre manière, c’est est-ce que votre poste était lié à l’utilisation de la grue, souvent parce que c’est des charpentiers fer, donc des personnes qui étaient dans les- dans les- dans les cales enfin dans les- dans les ateliers...
+# [11:37] - Ah ben oui j’avais besoin de la grue !
+# [11:42] - Voilà !
+# [11:46] – Euh, mais est-ce que vous avez assisté par exemple à des destructions, des modifications de grue ? Parce que... si vous étiez là dans les à la fin des... au milieu des années 70...
+# [11:52] – Ah bah oui, j'étais là !
+# [11:58] – Parce que il y a des travaux qui ont été faits sur la grue au milieu des années 70...
+# [12:04] – Oui, elle a été mise... ils ont renforcé, voilà ! Alors ils avaient mis... Bon, on a vu ça visuellement, moi on m'a pas d'mandé, mais je voyais, de visu... ils ont apporté des gros blocs... tout dans le bas d'la grue là.
+# [12:10] – Oui.
+# [12:16] Ils l'ont monté en charge ou en puissance. Donc ils ont amené des blocs de béton qui étaient coulés d'avance ou étudiés pour, pour faire une assise beaucoup plus lourde quoi. J'ai vu que ça moi.
+# [12:31] - Vous avez juste vu ça ? Ça c'était dans les années de ce que j'ai cru comprendre c'est dans les années 74 ? Vous avez pas de souvenir des travaux qui ont été faits ? Parce que j'ai vu un article de journal où un ancien de la société Montalev expliquait qu'ils avaient...
+# [12:46] Soulever la flèche de la grue pour modifier le... Bonjour, tenir l'angle.
+# [12:56] Zéro l'angle. Pas de soucis.
+# [13:06] Ah oui mais bon, il suffit que j'étais, comme c'était grand en surface le bateau, oui mais enfin le chantier. Il suffit que je travaillais à ce bout là, c'est que c'était... c'était loin ! Ça... ça dépassait de l'autre côté de l'avenue, là-dedans, là-bas on l'entend... Hmm hmm. Mais de l'autre côté ça faisait partie du chantier. Ah il y a toute une histoire là quand même. Il y avait la grue là et on allait de l'autre côté là. Hein, il y avait...
+# [13:16] - Les parcs à tôles !
+# [13:19] - Hm hm.
+# [13:22] - Et euh... euh à profilés. Les tôles étaient pas... ils allaient pas les traverser. Donc c'était des parcs à profilés. Et en passant, eh ben chacun avait sa place dans les cafés là.
+# [13:25] On regardait Ratatin à la télévision. 
+# [13:28] - Ah, Ratatan. D'accord. 
+# [13:31] - On se tournait, il y avait nos chefs derrière, mais personne ne disait rien, parce que moi je suis arrivé à la... enfin, faut dire que chaque travail avait un temps.
+# [13:34] - Oui.
+# [13:37] - Donc les chefs, à la limite, ils s'en foutaient. Ils voyaient les gars...
+# [13:40] - Parce que si de toute façon le travail était fait, c'était fait.
+# [13:43] - Beh oui ! Mais...
+# [13:46] S'il passait plus de temps qu'il fallait, il... il avait un malus, c'était ça en moins sur sa paye. Ouais. Donc les chefs, à la limite, ils disaient rien.
+# [13:52] T'es en train d'me détruire mon enregistrement.
+# [13:58] Bon on va dire que c'est arrêté. Donc voilà. On peut repartir. Oui. Par contre, euh s'il... si on avait du temps, on avait des galons. Ouais. Mais il fallait que le travail soit bien fait, faut pas le... Alors nous en tant que traceurs là, comme je dis souvent euh, bah on s'occup-...
+# [14:04] Ils avaient pas de grue, pas besoin de grue parce que euh ceux qu'avaient besoin de grue là, s'il fallait qu'ils attendent une heure la grue, ben ça faisait une heure de leur temps en moins. D'accord. S'ils étaient deux, enfin fallait être au moins deux, 2 heures de temps à la fin, oh! trop de temps. Allez couac ! D'accord. Mais parce que eux, ils étaient, il y avait ce alors je sais pas si je m'exprime bien mais le ce système de le temps comptabilisé pour faire quelque chose, il avait son problème parce que si les personnes s'appuyaient entre eux en plus, si le grutier...
+# [14:34] - Bah... on a pris du retard, ça a impacté aussi les autres.
+# [14:49] - Ah oui ! Au maximum, il y a que deux groupes par bateau. Enfin... il fallait bien que qu'il y en ait toujours... Oh oui, ça... ça pas... Nous on n'est pas habitués à la fin de sa passion parce qu'il y avait des corporations. Et le gars il démarrait son travail avec de du malus. Dès le départ il y avait... Alors ça collait plus quoi! Alors il y avait le bureau des pleurs. Le fameux... que ces gens-là, il fallait bien qu'ils se défendent. Donc ils expliquaient puis souvent ça s'arrangeait. Et qui c'était le bureau des pleurs ? C'était des anciens traceurs comme moi qui étaient...
+# [15:04] Moi j'étais moi j'étais trop vieux pour pour faire le tracé par terre. Alors si si j'allais pigner j'avais tout tout tout tout ce que je voulais quoi, mais enfin ça c'est jamais arrivé. Nous on avait du temps. Hein. Parce qu'on f- on f- on faisait nos formes de bateaux si ça plaisait pas en haut lieu, ils passaient : "Ah non, c'est pas c'est un p'tit peu trop m- on... Bon, faut effacer ça. Faut mettre un p'tit peu plus d'forme là." Bon bah on on s'en fiche nous, hop hop hop et...
+# [15:10] Vous ét- vous étiez moins soumis à cette réglementation.
+# [15:16] Ah bah non, oui oui, ah bah oui ! Donc c'est pour ça, y avait il y avait des corporations comme ça...
+# [15:22] "Alors, c'est pour ça que c'est... ça s'est battu ça, au niveau syndical et tout ça, puis moi j'ai vécu que la fin de ça. Après ça a été supprimé, ils ont arran-... moyenné tout le monde et terminé.
+# [15:27] - Hm, il n'y avait plus ce...
+# [15:32] - Oh bah oui !
+# [15:37] - ... il n'y avait plus ce-ce... ce marchandage...
+# [15:42] - Et il n'y avait pas qu'au chantier, parait que c'était partout, hein, mais ça-ça s'est... Oh oui, alors là des s- ça n'allait plus ça.
+# [15:47] - Alors euh, vu que vous étiez sur les chantiers à cette période-là, euh..."
+# [15:52] Question un peu un peu étrange peut-être, est-ce que... je suppose que vous avez pas trop côtoyé des grutiers ou des personnes qui... Bon on les connaissait de comme ça mais... que vous les connaissiez voilà, mais je me la question c'est : est-ce que ces personnes-là par exemple euh, vu que le grutier parfois c'est séparé du reste, est-ce que eux ils étaient un peu enviés par le fait qu'ils étaient pas dans le travail en bas ?
+# [15:59] Ah alors ça faudrait demander... il est pas là le gars qui s'occupe de l'électricien de service qu'on a là.
+# [16:07] Humm humm.
+# [16:14] Et ben il s'occupait justement de l'électricité des grues et tout, alors lui...
+# [16:22] - Oui, il s'y connaît lui… de tous les, de … ah oui, c'est c'est lui qui… Oh ben oui, moi je n'avais pas à faire aux, aux gens des grues.
+# [16:26] - Et au niveau de la, de, des en… parce que le chantier était quand même, il y avait un paquet de grues à l'intérieur du chantier…
+# [16:31] - Ah oui ! Ah bah oui, vous avez des photos là… Ah oui !
+# [16:35] - Il y en avait un petit paquet ! J'ai vu sur certains plans qu'il y en avait entre dix et quinze à une certaine période… 
+# [16:39] - Oh oui, certainement ! Oh oui, oh oui !
+# [16:43] - Est-ce que c'était impressionnant à voir au niveau de la, de la machinerie, de la, de la taille que c'était ?
+# [16:48] - Ah bah oui, bah nous ! Bah nous, c'est quand on est rentré dans l'apprentissage, à quatorze quinze ans…
+# [16:52] Bien-sûr quand on voyait ça là. Et puis après on est dans le mouvement, on marche entre les grues, on... Enfin y a... c'est l'univers des grues quoi.
+# [16:57] - C'est ça, c'est à la fin, c'est... vous les... c'était votre paysage de tous les jours...
+# [17:02] - Ah bah oui, c'est la forêt partout !
+# [17:07] - Ouais, bah oui.
+# [17:12] - Oh oui c'était... Les bateaux ils se construisaient entre deux rangées de grues... enfin de deux grues une de chaque côté, mais puis l'autre à côté pareil...
+# [17:17] - Mardi on... on avait discuté de du fait qu'il y avait eu des différents petits accidents qui avaient eu lieu...
+# [17:22] ... euh sur des grues qui avaient été en surpoids, des élingues qui avaient qui avaient craqué.
+# [17:29] - Oh, je j'ai... Bah il y a pas eu d'embêtement. Pas spécialement... Je veux dire, il y a pas eu d'accident grave.
+# [17:37] - Il n'y a pas eu d'accident grave, mais c'est arrivé de temps en temps par exemple qu'u... qu'une élingue claque pendant pendant qu'e... 
+# [17:44] - Oui, ça m'était arrivé à moi... à tracé... à... quelque chose... Euh les les tôles, on on les mettait sur un bâti en ferraille, comme ça puis ils arrivaient par la grue et puis soit qu'une...
+# [17:52] La grue qui était mal... enfin... elle était... c'était des pinces autoserrantes. Pas... pas euh ou alors elle était mal serrée, puis tout d'un coup, paf ! Elle... elle est tombée sur le... Ben j'aurais été là, j'aurais été... alors que j'étais à côté, moi. 
+# [17:58] - Ouais. Elle vous est tombée juste à côté ? 
+# [18:04] - Elle est tombée... oh ben merde ! C'est un truc qu'on réagit après... Ben... parce que la grue... je... la tôle, elle a dû accrocher un moment, et puis ça s'est décroché et clac ! Est-ce que c'est un système de pincement ? C'est le poids de... 
+# [18:10] - C'est le poids qui fait... qui fait serrer la pince. 
+# [18:16] - Oui, dès... dès... dès... qu'il y en a...
+# [18:22] Tout d’un coup, bah ça se décroche. Alors, bon, elle a dû faire ça et puis clac ! Puis moi, j'étais à côté donc paf ! On dit bon, bah, allez, oh bah, c'est après j'ai vu les, ou les collègues : « Bah, elle te serait tombée dessus... » Bah oui, sur le coup on n'y pense pas, mais… Oh bah ça c'est des trucs comme ça, mais il n'y a pas eu d'accident. Alors, la fameuse, quand… quand c’est tout le bloc, là, bah là, là il aurait pu y avoir des accidents.
+# [18:32] - Est-ce que vous pourriez me raconter ça parce que là pour que je puisse le réécrire…
+# [18:42] - Alors, là faudrait, vous voyez là, faudrait comme… comme je vous dis une pierre…
+# [18:52] Il y avait la grue, l'emplacement, oui la grue, les deux rails étaient là et puis la grue était là. Et puis moi j'étais juste à côté là, il y avait un panneau de tôles avec plusieurs tôles, puis moi j'étais à tracer des éléments et puis après ce plateau-là à cet emplacement-là, ben ils mettent des affaires dessus et puis ça fait un morceau. Donc ça fait un ensemble de choses à soulever d'un seul coup. Après, mais là il était vide puisque là et puis la grue bah elle se baladait à côté de moi là. Et puis ça c'était laquelle de grue dont on parle ? Ah celle-là.
+# [19:22] Une grue, une grue noire à sa- et c'est justement ces- euh je parlais de ça, la grue, le pi- la grue bah je sais bien, elle était juste, moi j'étais là. Et il y a euh je crois qu'il y a au moins quatre roues, y en a qui disent quatre ou six roues mais heu un ensemble comme ça. Hum hum. Hein et puis le rail qui est là. Puis moi j'étais à côté et puis quand- quand on est à quatre pattes là-bas on est à cette hauteur-là. À la hauteur des galets des des roues? Et la roue, il y avait un bloc au milieu, alors ça je ça je m'en rappellerai toujours, comme ça.
+# [19:52] Alors là, il y a un axe, et puis après, il y a le reste de la grue. Et il y a tout un système de... de qui vient accrocher là, ça, ça fait partie de la grue. Là c'est... en deux fois comme ça, il faut... hein. Ça s'était fait comme ça, il y a un axe et puis il y a le reste de la grue. Et moi j'étais à côté et c'est ça qui s'est soulevé. un moment, elle, elle... elle a été là. Donc en fait, le... le pied... euh... Ouais bah ça, il est... il est resté par terre. Donc en fait les... les...
+# [20:22] - Les les roues sont restées sur le sol mais en fait le l'indice central s'est soulevé.
+# [20:28] - Ah bah oui, mais il va plutôt... oui oui.
+# [20:34] - Mais comment c'est posé... comment c'est possible que la grue soit soulevée alors ?
+# [20:40] - Bah c'est en haut. Avec la force.
+# [20:46] - C'est ça. Le... il y avait deux grues au départ. Il y avait cette grue-là et puis il y en avait une autre. Hum hum. Et c'était un un bloc qui était accroché. C'était des des escorteurs... euh escorteurs. Et en haut, parce que quand c'est fait là, tout tout est fait à l'envers.
+# [20:52] Ouais, m'enfin, non mais, de par la forme du du bateau, autrement ça serait... En équilibre. Ils ont tout fait à l'envers, ils ont renversé, ils ont renversé toutes les formes pour pouvoir les construire en avance, à plat comme ça, sur une surface plane. Hein, ça commence par le fond du bateau qui est comme ça. Bon bah nous, dans les ateliers, par terre, Eh bah ils les fabriquent comme ça avec les les éléments, c'est peut-être un morceau comme ça justement. Après ils mettent la tôle par-dessus, hein, qui qui s'arrête par là, et après l'ensemble est soulevé et puis ils le retournent.
+# [21:22] "Donc c'était un morceau comme ça mais plus pas pas un fond, c'était une une charpente arrière ou une charpente à quelque un truc un truc quand même assez lourd, volumineux volumineux ouais volumineux. Oh bah lourd c'est plein de vide à l'intérieur. Eh à la limite c'est c'est plus lourd les box de fond parce qu'ils ont des éléments dans ce sens là et ça fait un quadrillage. À à la limite ils sont plus lourds par eux-mêmes que qu'un de qu'un celui de l'avant mettons avec plein de vide mais qui est beaucoup plus en volumineux"
+# [21:52] Ça c'était accroché comme ça, et ça a cassé là, à un moment il a basculé et tout le poids a été sur celle-là. 
+# [21:57] D'accord, donc il y a un bout de la de la structure qui s'est brisé, donc une élingue.
+# [22:02] Une une élingue, une attache. Il y avait deux grues qui portaient chacune un côté et puis après de façon d'un mouvement de faire un mouvement au moment où il y en avait une qui lâchait un peu plus de...
+# [22:07] Oui, mais à ce moment là, ils ouais, ils reposent un moment parce qu'il faut pas qu'il lâche. 
+# [22:12] Mhm. 
+# [22:17] Donc, pour la retourner alors il se sou... ils vont dans un...
+# [22:22] Alors euh là il y a il y a un endroit oui i r'pose, là il loche et après i s'rattache d'une autre façon de façon d'arriver à le r'tourner. D'accord. Mais là i s'est cassé clac en pleine en l'air et tout d'un coup elle a basculé et tout l'poids était là. Alors comme j'étais là pis moi moi ca ça soulevé, c'est signe que à la limite c'est en face hein puisqu'elle a fait ça là les pieds. Donc c'est hop ! Et donc en fait tout l'poids est tombé sur la flèche et ça a soulevé...
+# [22:52] - soulevé euh la grue à la panne n°... 
+# [22:56] - donc c’était de l'autre côté où que j'étais moi ! Enfin que ça s’est soulevé, là, c’est de l'autre côté, c’est pour ça que j’ai rien eu, moi.
+# [23:01] - Bah j’ai… après j’ai vu ça, pis on a entendu le bruit de bah tous les boulons qu’ont pété et les écrous.
+# [23:05] - Et les c’est en fait c’est à cause de la surtension les les boulons qui étaient dans la sur- dans la structure ont sauté.
+# [23:09] - Ah bah oui, bah il y a eu trop de poids tout d’un coup, il y a eu un choc. Tout ça parce que ça a été soudé dans l’eau, il pleuvait à pleins temps.
+# [23:13] - D’accord, donc oui d’accord, donc vu qu’il pleuvait, c’était moins solide, la soudure...
+# [23:18] - Ah bah là... la la la soudure a...
+# [23:22] Et puis un truc comme ils disaient que qu'était dans le dans ce bureau là. C'est ça tourne autour d'un centre de gravité, c'est tout et puis ils ils les opérateurs et tout là, ils obéissent au plan qui existe, qui a été fait là et là c'était tout nouveau, c'était pas vieux. Avant, ça n'existait pas ça.
+# [23:32] - Donc le fait de le fait de définir des centres de gravité, des choses comme ça parce qu'avant les charges avaient pas forcément besoin d'être calculées comme ça ?
+# [23:42] - Bah, c'était l'habitude, hein. Ils savaient. C'est parce que ça a été dur des fois, il y a...
+# [23:52] certains ch'ti enfin ils ont pas voulu obéir au plan du on a l'habitude de faire ça comme ça et pi main et pi ils ont été obligés on les a he parce qu'après y'a les assurances et toussa. Alors là et puis alors c'est des goussets qui y a he mettre des goussets c'est y'a la ferraille qui est là et pi des goussets c'est un truc comme ça qui est triangulaire et pi y'a un trou dedans où on passe les angles. He cette forme là en gros elle est triangulaire et pi y'a le trou pour laisser passer et pi souvent y'a en plus bah des goussets gu-
+# [24:22] - bah tu vois le système de déversement, c'est de ça qu'il parlait là.
+# [24:25] - Euh d'accord, donc les goussets...
+# [24:28] - Si si si ça a appuyé là, bah oui, faut pas qu'ça arrache la tôle là !
+# [24:31] - Mm.
+# [24:34] - Et ben il paraît que les goussets, soit qu'ils étaient pas mis, parce que c'est une histoire de temps. 
+# [24:37] - Parce que le temps c'est- c't'é- c'est d'l'argent quoi. C'est- c'est vraiment si en fait on perd du temps à mettre des goussets, euh on perd du temps de- 
+# [24:40] - Ou alors ils étaient mis, mais ils étaient pas soudés.
+# [24:43] - Donc en fait l'- l'idée ce s'rait que le- le gousset qui servait en fait à la tr- à tirer le- 
+# [24:46] - Bah ça a été tiré de toute façon.
+# [24:49] - Il a été mal fait ou alors...
+# [24:52] Alors, il avait pas de gousset de de renfort, et puis alors ça a été soudé euh dans l'eau, dans la pluie, et ça refroidissait trop vite ça. Donc le moindre choc, bah ça ça sautait. Alors si il y en a un qui pète, l'autre pète tout de suite puis alors euh oh là là ça faisait un bruit, bah oui moi j'étais de l'autre côté mais il y a tellement de bruit sur le chantier, un bruit comme on se tourne pas. "Oh bah c'est un bruit de plus" quoi. Et c'est là quand j'ai vu tout le j'ai vu en face ! Oh bah et puis j'ai vu. Heureusement, il est retombé bien sur ses pattes ! Oh bah autrement ça aurait été la...
+# [25:22] Elle bougeait pas dans ce sens là la grue. Ouais. 
+# [25:27] Ah Ben si elle avait bougé dans ce sens là c’est fini parce que… Faut pas oublier qu’il tombait pas dans l’axe lui. 
+# [25:32] La chance c’est qu’en fait ce soit tombé tout droit. Si…
+# [25:37] Ben peut-être pas comme ça ou comme ça mais elle bougeait pas dans ce sens là. C’est dans ce sens là là. 
+# [25:42] Crac !
+# [25:47] Et alors l’autre elle a dû sûrement avoir quelque chose, l’autre l’autre aussi à un moment elle s’est trouvée libérée, l’autre il a dû avoir aussi quelque chose. Alors le pontonnier tout là-haut là…
+# [25:52] Et euh c'est c'est quand c'est la figure là de bah dans sa cabine c'est s'est fait mal au genou et il paraît qu'il est il est plus jamais remonté après. Alors, c'est en haut les les grues et et qui sont comme ça. Et puis bah l'accrochage et tout ça. Et ben c'est tous les boulons qui tenaient là. C'est tout ça quoi, c'est de de la flèche qui a qui a fléchi. Alors clac clac clac clac clac une pluie de boulons qui est tombé là. On a on n'a pas entendu parler qu'il y a eu de blessés ni rien du tout. Bah non, parce que comme ils disaient là, quand ils font des des manœuvres comme ça bah allez faut pas rester dessous.
+# [26:22] - bah sinon on peut pas parce que en dehors de ça mais souvent des oublis ça arrive souvent euh des boîtes de soudure ça arrive tout plein puis là on retourne d'un coup bada bada oh là t'en as un qui avait oublié sa boîte de soudure à l'intérieur ?
+# [26:32] - oui bah oui en gros c'est c'est c'est un exemple ça pouvait arriver ?
+# [26:42] - oui oui c'est pour ça qu'il fallait ben oui il y avait toujours des cochonneries parce que pour attacher les bouts de ferraille comme ça pour les fixer eh ben pour les souder à leur place ben on pique sur le sol et...
+# [26:52] Un bout de ferraille comme ça et puis on met un coin... Un coin qui est comme ça là, et puis on tape un coup de marteau. Et puis, parce que le tracé, il est là, mettons. Alors en tapant un coup de marteau, ça ramène la ferraille comme ça, clac ! Hein, et puis quand c'est... quand la ferraille est le long du trait, et ben on fait un point de soudure, puis après on casse notre morceau, mais il reste là... Donc il y a plein de morceaux de ferraille qu'ils donnent pas de coup de balai, souvent. Alors au contraire, on n'entend tout... tout ce qui gêne !
+# [27:22] Oui, puis de toute façon, on ne se met pas en dessous.
+# [27:26] Heu, vous avez assisté souvent à des, je suppose là, si vous étiez parfois de temps en temps au pied de la grue en train de dessiner...
+# [27:31] Ah bah oui, oui, oui !
+# [27:35] Au pied des grues, vous avez souvent vu des des utilisations comme ça. Heu, je suppose qu’avec le temps, si vous avez vu une longue période qui s’écoule jusque dans les années 70, heu comment ça a évolué cette relation entre le entre le grutier, enfin le pontonnier, et les personnes qui étaient en bas en train de travailler au niveau de...
+# [27:39] - de comment ils communiquaient entre eux. 
+# [27:45] - Ah bah ils... On m'a dit qu'ils travaillaient au début par gestes s'il n'y avait pas de radio. Donc c'était est-ce que c'était quelque chose qui était où c'était un peu un... une entente cor... sous-entendue entre le... ou est-ce que c'est quelque chose qui se faisait vraiment avec des signes qui étaient prédéfinis ? 
+# [27:51] - Ah bah il y a des signes, oui, il y avait... parce que souvent, nous on le voyait pas, donc c'était un troisième individu, c'est lui qui faisait des signes. 
+# [27:57] - Donc c'était un peu l'intermédiaire entre... 
+# [28:03] - Ah bah oui, c'était l'intermédiaire entre le sol et le grutier. D'abord, le grutier souvent il est tourné de l'autre côté alors pour la...
+# [28:09] - appelez, rien
+# [28:14] - Ah ! Y avait l'idée, moi j'ai connu pas de téléphone mais euh y avait des téléphones à la grue, enfin fallait tourner la manivelle et puis hop, on-
+# [28:19] - C'était en bas de la grue ?
+# [28:24] - Oui, accroché à son fût. Accroché à la grue.
+# [28:29] - Ah un genre de téléphone avec une dynamo quoi pour-
+# [28:34] - Ouais, fallait tourner et puis : « Allô oui, ça y est, allez viens j'ai besoin ! » Alors derrière, puis après y en a un qui faisait hop hop hop, puis alors après bah oui y en avait un qui faisait des gestes, tac, stop, tac, stop, parce que faut- tout ce qu'y- y avait-
+# [28:39] Y avait une équipe de gars, qui étaient des cadors. Euh... C'était tous ceux qui mettaient les élingues et tout ça. Hum hum. Hein parce que c'est pas des gars comme moi, moi je faisais mes blocs et tout, mais après c'était les élingueurs, hein tout ça, puis c'était des amarrages parce que... Parce que c'était il fallait, parce que les élingues et les manilles, enfin c'est assez lourd. Ah bah oui ! Alors là, ça c'était... On peut parler bien... Ah bah alors là, ils savaient, tac tac tac tac tac, allez-y remontez, parce qu'après ces gros blocs-là une fois qu'ils étaient bien retournés et tout, après...
+# [29:09] Ça permettait entre autres de finir la soudure, au lieu de faire une soudure au plafond, comme c'était retourné, mais impeccable, hein, ça... Et puis finir les... les quelques éléments qu'on pouvait pas faire, il y en a qu'on pouvait... Mais quand on les retournait, aux trois quarts le bloc était fini. Un... un bloc de quai dessous, là. Ben, pratiquement à 100 %, il était fini en dessous. À la limite, quand il retournait, il y avait quelques soudures à faire là, mais c'est tout, parce que les... et puis...
+# [29:39] Souvent, c'était un panneau euh... les tôles étaient déjà soudées, mettons, des deux côtés qui enveloppaient ou alors faisaient vraiment une forme, donc... une fois qu'il était mis comme ça, à la limite, il n'y avait que quelques soudures comme ça. Et souvent, ah ben si ben, et puis des soudures, euh... si pour tenir quand même euh... les euh viroles qui étaient là, les euh soudures du dessous là, ben oui, il faut bien. Au lieu de les faire au plafond, il n'y en avait qu'un tout petit peu et après, ils les faisaient à la main. Mais fallait quand même, ah ben non...
+# [30:09] Non mais même pas parce que pour soulever lui et ben les les les crochets enfin les les blocs tout je veux dire les pitons étaient plutôt là sur les côtés. Ici, ici. Mais pas pas là.
+# [30:19] D'accord, plus sur l'intérieur de...
+# [30:29] Oui et puis de enfin dans ce sens là déjà bon bah ils étaient sur les côtés là parce que ça finissait par une tôle. Même si la tôle avait des trous, il y avait forcément de la tôle qui fermait la section. Donc c'était là.
+# [30:39] Accroché là ! d'accord ! et puis de l'autre côté pareil. Donc la grue les prenait là, il y avait deux grues qui prenaient, après il y en avait une qui lâchait. Alors là, c’était le truc le plus simple. Elle prenait, l'autre elle lâche, puis à un moment il touche par terre. Donc en gros ça faisait ça. Alors il soulevait puis y avait le poids où c'était pas parce qu'à un moment il soulevait tout seul et à ce moment-là, le passage, il le repassaient là. D’accord. Il faisait ça et puis h- et puis ils arrivaient à le retourner, ça s'est fait comme ça.
+# [31:09] - C'était assez sympa.
+# [31:12] - Oui, c'était...
+# [31:15] - Parce qu'après une fois qu'il était comme ça, il faisait sauter les manilles qui étaient là et il soudait quatre manilles carrément dessus après, puisqu'il était bien. Et après il prenait comme ça, c'était... c'était... ça faisait 100 tonnes au maximum, parce que... ça pouvait soulever 100 tonnes.
+# [31:17] - Oui, c'est ça.
+# [31:20] - Donc, elle toute seule, hop !
+# [31:23] - Elle prenait tout seul ?
+# [31:25] - Donc le... la grande grue jaune, elle se permettait de soulever...
+# [31:28] - Bah, elle toute seule.
+# [31:31] - Mais elle pouvait... est-ce qu'elle pouvait soulever vraiment 100 tonnes parce que dans les années 70, elle...
+# [31:34] - Ah ben si, elle avait été montée à 100 tonnes.
+# [31:36] - Ben oui !
+# [31:39] - Moi ce que j'ai vu c'est qu'elle avait été montée à 80 tonnes officiellement parce qu'elle avait été éprouvée à 120 tonnes mais que j'ai entendu dire plein de fois que on l'utilisait à 90 tonnes ou un peu plus parfois. Oh oui, et puis à ce moment-là on coupait tous les gros engins qui qui pompaient de qui pompaient du courant pour balancer justement les l'électricité là. Ou alors à quand c'était ça. Ah oui c'était du... Ah oui faut fallait tout de suite et puis après pschit allez ça y est tout est bon. D'accord. Ben parce que... un monsieur de l'entreprise Mahé donc la personne qui a refait les...
+# [32:09] Et les câblages me disaient que pour lui sur les plans elle est écrit qu'elle qu'elle tournait à 440 volts mais que euh sur pour elle tournait à plus de 500 volts. Qu'en gros il boostait un petit peu la capacité pour pour donner un petit peu.
+# [32:24] Oui ben faut il il tâchait de faire ça à un moment où où il y avait personne qui travaillait dans les ateliers de façon ou où il y avait moins de de courant ailleurs. Mais des fois c'était pas possible. Ah oui ben déjà. Puis en plus là là il l'autre là il amenait là les ingénieurs.
+# [32:39] Osalenguer aussi là, c'est que le bloc lui qui était grand comme ça, mais il fallait le mettre sur un plan incliné, donc c'était Osalenguer, et ben alors il y avait quatre manilles là, là, mais à eux de mettre des élingues plus longues d'un côté, que déjà il a la pente. Tu vois, d'arriver pile comme ça, et les gros blocs comme ça, pareil !
+# [33:09] Il fallait qu'il calcule ça les longueurs de brins d'accord en atelier le le collègue avait été viré moi j'avais appris ça les élinguages mais je n'ai pas été viré dans lui il a il était là fallait fallait tout étudier ça hein. De toute façon qu'il les prenne et puis que ça arrive sur le bloc puis sur sur la cale avec la pente qui correspond et tout hein. Ouais c'est dans tous les chantiers c'est comme ça. Ah ben oui parce que techniquement sur le sur le petit chariot euh du de la grue, il fallait que de deux côtés les brins soient de taille...
+# [33:39] - Ah bah oui, parce que le chariot il est horizontal lui de la... mais c'est après c'est la longueur des bras. 
+# [33:47] - Donc il fallait il fallait enlever certains brins, les changer pour...
+# [33:54] - Alors, il y avait des bras plus longs les uns que les autres, d'accord, et le calcul bah c'était suivant la longueur, le... bah c'est le triangle là-dedans. Ah bah oui, ça c'était un gros travail. Alors dans les calculs, hein, c'est c'est à eux de calculer tout ça. 
+# [34:02] - D'accord. OK. C'est ouais, c'est donc c'est dans ce moment-là où on se rend compte bah c'est comme le comment il s'appelle le monsieur qu'on a... qui était avec nous mardi ?
+# [34:09] - Hum... ce soir, qui nous parlait euh... en fin de journée.
+# [34:12] - Celui que... que j'ai pas pu interviewer. Je sais plus comment...
+# [34:15] - Ah ben, je sais pas non plus. Oh, il y en a plusieurs, hein !
+# [34:17] - Ben le monsieur qui... qui disait qu'il avait fait un...
+# [34:20] - Il y a... il y a celui qui a... qui a fait le... l'homaro... le... le bateau là, c'est pas celui-là ?
+# [34:23] - Non non, le monsieur avec qui on discutait qui nous racontait que lui il avait fait un homaro pour calculer les...
+# [34:25] - Ah, ben ! Gilbert Calaro.
+# [34:28] - Oui, voilà.
+# [34:31] - Eh ben, c'est mon collègue.
+# [34:34] - D'accord, donc Monsieur Calaro.
+# [34:36] - On a passé le... On s'est aperçu de ça parce que il y a...
+# [34:39] - un gars de notre âge ou peut-être un peu après que là. Celui qui boîte là. Oui. C'est c'est un ancien ingénieur des ponts. Oui. Il a calculé tous les ponts et tout.
+# [34:49] - Il a été à l'école à Nantes de Longchamp. Et puis nous, on disait bah, c'est là qu'on a passé notre certificat d'études. Et puis le collègue aussi. Il me dit il recherche pour cette année justement des certifi... des papiers. Oui. Et puis au décès de mes parents, on a retrouvé, il avait gardé mon certificat.
+# [34:59] - De d'études, mon- et puis le collègue, il avait le sien. Alors on l'on l'a apporté. On l'apporté le même jour à la même école. Nous on se connaissait pas à l'époque. Alors on a été le- j'ai été le porter là-bas à l'école. On en fait une photocopie aussi. Parce que il fallait ce papier là pour être inscrit au concours d'entrée du chantier. C'est mes parents qui… Hein, et puis euh après on s'est retrouvé ensemble. Alors lui il l'a eu ce ce- ça, il a été basculé. Moi j'ai suivi ces mêmes cours de- de…
+# [35:29] C'est au brevet, mais après je n'ai pas été basculé dans... c'est ça que quand on passe des examens on reçoit tout. Oui c'est ça. Comme Tripoteau là qui était notre Président là, qui est un grand barbu là; enfin grand non, oh c'est comme ça qu'on disait. Ben lui il a été viré... ah mais il ne venait pas du chantier lui, il venait de Bordeaux ou... Oui c'est ça, un Bordelais. Oui. Alors lui il a été viré dans le bureau de calcul des lancements et tout ça, c'est pour ça qu'il s'y connaît à plein. Le bouquin c'est lui qui l'a fait. Oui d'accord, sur les calculs de lancements... de lancements.
+# [35:59] D'accord, oui, non. Mais alors bon, moi j'ai vu ça mais globalement, ça fait partie juste des des épreuves du brevet, là qu'il fallait calculer bah enfin vous savez, c'est forcément ça arrive par tout un calculer le centre de gravité de façon de machin et puis ça, lui il a été versé là-dedans, moi j'ai pas été versé là, après on est versé soit là soit là et puis voilà. Vous aviez chacun votre spécificité au niveau des calculs etcetera. Donc monsieur monsieur Calla lui il racontait qu'il avait pour le... pour le poids.
+# [36:29] Euh pour le poids, il avait il avait fait un abaque sur Ah oui oui bien sûr, je les ai vus mais mais j'ai au départ j'ai pas su que c'était lui. Après il nous a il nous a envoyé en plus tout à l'heure, on l'a on l'a la photo, je vous la montrerai si si vous voulez, on l'imprimera je pense pour le pour l'expo, c'est on voit le le calcul de la masse à supprimer de général de d'une pièce en fonction du nombre de de de de trous et du diamètre des trous qui ont qui ont été faits, ce qui est très malin. Ce qui fait que Ah oui bah tout le monde le prenait pour un fou, enfin c'est une façon de dire. Puis après bah tout le monde était intéressé, il il fallait qu'il qu'il fallait qu'il
+# [36:59] Alors tout le monde était content. Bah oui, parce que moi aussi j'avais fait ça pour les examens enfin, et ben on calculait nos poids là et puis après ben fallait enlever les trous. Alors comme c'était chacun faisait ça, hein, puisqu'on avait les mêmes trous. On n'allait pas recommencer donc on faisait nos calculs tant sur tant, ça fait tant. Donc on... Ah tiens ! J'ai déjà fait celui-là. Mais c'est un truc personnel comme ça. Hein, mais lui qu'avait fait en grand et tous les trous existants... Ça fait comme chez nous là, un...
+# [37:29] Quand je suis monté au bureau d'dessin, y en a un, il a passé p't-être deux ans à faire tous les... oh les... trucs de soudure, tous les codes soudure. Un, deux... Alors le plus simple, c'est - c'était une tôle, une tôle comme ça, pis soudée... tous les... il a passé p't-être deux ans comme ça à passer tous les codes soudure qui existaient dans l'chantier. Mais bon, il était payé pour ça ! Mais... C'est à un moment où on faisait euh des bateaux où d'un côté c'était comme ça et de l'aut' côté c'était de l'inox. Ah c'est pas du tout la même, hein ! Et inox avec ferraille, ça va pas...
+# [37:59] Oh là là ! Donc c'était des en fonction de en fonction des spécificités vous vous adaptiez en fonction des nouvelles choses qui étaient demandées au chantier ? Ah bah oui après des trucs comme ça ben il y en a qui ont été payés par l'excellence ça ça me regarde pas et puis ils ont fait un cahier où il y a tout dedans. Alors après on était obligé de hein bah le cahier était forcément là "Ah bah tiens c'est là, bon bah faut faire comme c'est écrit". Oui il y en a un qui a fait tout ça. Mais à Suresnes c'était pareil hein moi on était au bureau d'étude moi j'étais à l'aménagement. À chaque fois qu'il y avait quelque chose de nouveau il fallait ils avaient une bibliothèque.
+# [38:29] C’est c'est du temps de l'ordinateur à à ce moment-là. Fallait regarder dans la bibliothèque si si c'était pas puis après comme il y avait un nouveau bateau, moi j'avais travaillé pendant pendant peut-être un un bout de temps au chantier là-bas sur ordinateur à rajouter des trucs à à la bibliothèque. Hum hum. Alors faut pas se tromper donc parce qu'à chaque fois là c'était un élément un nouvel élément et puis fallait calculer son centre de gravité. Hum hum. Alors bah il se trouvait forcément dans le bon bah ils étaient là. Parce qu'après...
+# [38:59] Tous les morceaux, c'est ça dans dans les bateaux. Comme tu sais… là-bas. Je… Le bateau dans son ensemble, il y a un centre de gravité. Qui est dans les trois dimensions. Il est forcément dans l'axe, vers l'arrière, je ne sais plus à quel endroit, et en hauteur. Et le moindre élément du bateau, il il il doit être mesuré d'après ce centre-là. Mais dans toutes les dimensions, en hauteur, en largeur, en profondeur et tout.
+# [39:29] Le moindre morceau, euh c’est-à-dire le moindre centre de gravité de ce morceau là, hum hum bah à l’ordinateur c'est ça puisqu'on chaud chacun faisait dans son dans son coin, donc on savait que notre élément il était pff à 300 mètres de l’autre plus ou moins. En gros c’est, à l’arrière je crois que c’est le p' le plan qui sert à zéro comme chez nous. Euh ça doit être ou il y a l’arbre d’hélice. L'hélice et tout ça à un moment dans ce sens là c'est là, dans l’autre sens c’est c’est l’axe et puis dans l’autre sens c’est je crois.
+# [39:59] C'est c'est le centre de de de la ligne de flottaison euh quand il est vide. Hmmm. À lège. Je crois que c'est ça le le point. Alors, il est situé à l'arrière naturellement. Alors tout dans un sens c'est plus et après c'est moins. Mais tout tout tout ce qu'on faisait tout chaque morceau mais tout, le moindre morceau, le moindre boulon tout dans le bateau, il est à tel endroit dans les trois dimensions d'après ce point-là. D'accord. Comme ça tout Ah c'est obligé autrement. Mais clac l'ordinateur le met tout de suite clac à sa place. Bah bien sûr, je comprends.
+# [40:29] Parce que nous, dans notre dessin, on voyait que notre dessin...
+# [40:37] Si on... Là, ça a permis de voir les dessins dans leur globalité directement...
+# [40:44] Et puis tout d'un coup, si on allait faire ailleurs, bah on allait ailleurs, mais tout de suite c'était... Ah ouais ! Bien sûr... Mais c'était pas à nous de le calculer, il venait automatiquement.
+# [40:52] Parce que la tôle, elle faisait... ça appartenait soit à la bibliothèque ou autre, mais quelqu'un avait déjà calculé son... Donc on le mettait à cet emplacement et tout de suite, clac, on le savait. D'abord l'ordinateur savait déjà qu'on ne pouvait pas le...
+# [40:59] -votre emplacement était déjà calculé donc si on le rajoutait là il tombait forcément dans l'emplacement donc automatiquement le calcul se faisait.
+# [41:14] -D'accord. Alors pour finir vu que là il me reste plus beaucoup de temps, euh on va parler d'une dernière chose, ça va être le la conservation au niveau du de l'ancien chantier naval dans sa globalité sans l'ancienne zone des chantiers navals les conservations qu'ont été faites et principalement...
+# [41:29] Principalement la conservation de la grue titan. Euh la question est un peu générale pour qu'on puisse en on peut en parler, c'est que pensez-vous de la conservation de de des grues en général, c'est-à-dire les deux grues qu'il y a euh ici, c'est-à-dire la grande grue grise, la grue jaune et la grue du bignon, la grue noire qui a été conservée, qui est conservée. Ah bah oui ! C'est ça, maintenant elle a été rachetée par la ville il y a quelques années. Ouais, et elle appartient à un euh elle appartenait à un particulier à un certain moment. Oui qu'il l'avait acheté et puis après donc. Ah bah oui, tout a été rachetée ! Toute été rachetée !
+# [41:59] D'accord, et maintenant sous la responsabilité de la ville, la grue grise est conservée au patrimoine, en gros, elle est classée aux monuments historiques. La grue jaune et la grue noire sont en train d'être... elles ont des procédures pour qu'on demande à ce qu'elles soient classées elles aussi pour qu'elles soient protégées par l'État. Euh, donc cette conservation des grues, qu'est-ce que vous en pensez ? Est-ce que c'est nécessaire les trois ? La question aussi c'est par rapport à... vu qu'il y a plein de personnes qui ont un souvenir très différent de ces grues-là, est-ce que parfois ça peut sembler...
+# [42:29] - C’est pas superflu ? Est-ce qu’au niveau de… de… de les voir comme ça, est-ce que c’est douloureux ?
+# [42:37] - Oh !
+# [42:44] - Est-ce que… est-ce qu’on aurait dû conserver autre chose que… que les grues ? Est-ce qu’il y aurait d’autres bâtiments qui auraient valu le coup d’être conservés, par exemple ?
+# [42:52] - Ben… d’autres bâtiments, ça… ça prend beaucoup de place. Faut compter que… pour… les grues, ça… ça c’est bien, les grues, quoi. Hmm, toutes les grues mais on avait des mecs d’IHC, on a tous fait des grues. C’était ça, si c’était pas mes frangins dans le bâtiment, c’était les grues aussi. On a tous baigné… et puis on a vécu avec… avec ça, nous.
+# [42:59] Il n'y aurait pas eu de grues, c'était fini.
+# [43:04] Si... Et en même temps d'où... Ah ben oui les grues là.
+# [43:09] Et c'est vrai que ces grues-là en même temps, elles ont été... Par exemple la grue Titan elle est assez intéressante dans son histoire parce que elle est... Elle est là parce qu'on a eu besoin de cette capacité en plus pour construire des plus gros bateaux. Elle a été rehaussée au niveau de son mât parce que c'est le moment dans les années 70 où on re-veut des plus gros blocs pour travailler plus rapidement pour faire des plus gros... Plus grosses structures.
+# [43:14] Ah oui ! Ah bah c'est sûr. Avant c'étaient des petites grues. Même les mâts... Celle-là là, la grosse.
+# [43:19] La grue dont vous me parlez, oui.
+# [43:24] Elle était pas plus grosse que l'autre.
+# [43:29] Je crois même pas qu'elles faisaient mais elles étaient plus volumineuses. Oui, c'est ça, les rousses mais c'était de vrais mécano. Oui, c'est ça, c'est les... On voyait à travers. Oui, c'est ça, c'est les squelettes, c'est des grues Titan. Bah en fait la grue Titan... La grue Titan qu'on connaît c'est pas la seule Titan, c'est-à-dire qu'il y en avait d'autres des Titan, des autres modèles Titan et je crois que celle dont vous parlez c'est un modèle Titan en fait mais vraiment à l'ancienne qui était très plat au... au-dessus. Ah oui ! C'est un quadrillage ! Oui, c'est ça et c'était vraiment comme des pièces de meccano un peu, elles étaient... Elles étaient beaucoup plus grosses mais elles avaient pas... Elles étaient pas plus fortes. Ah non, c'était celle-là qui était.
+# [43:59] C'est la plus forte !
+# [44:02] - Donc physiquement c'est pas... Donc ils ont très bien fait de...
+# [44:05] - C'est celle-là.
+# [44:07] - Ah oui, de la conserver ! On est d'accord !
+# [44:10] - Et puis elle se tient ! Les autres ça faisait comme le pont de Transbordeur là, c'était de la ferraille... la cornière et tout c'était de l'acier mais enfin, ou de la vulgaire... acier...
+# [44:13] - Ben...
+# [44:15] - C'était tout rouillé quoi ! Les boulons c'est souvent qu'ils... ils en avaient eu... ils en ont eu des barbouillages de coaltar et tout ça... enfin de la... oui, de la peinture noire là.
+# [44:18] - Hmm, donc c'est...
+# [44:21] - C'est pas celle-là... celle-là, oui, elle est !
+# [44:24] - Elle est costaude !
+# [44:26] - Ah ouais.
+# [44:29] C'était une nouvelle forme comme ça... Ah oui oui, c'était très bien de la garder, celle-là, oui oui. Voilà, la... la cosse ou non, non, pas d'autres bâtiments, hein ? Vous avez... la photo là où on voit une vue aérienne de tout, ben, on voit bien d'autres bâtiments partout. Alors, pourquoi garder plutôt celui-là que celui-là ? Je sais pas parce que la... la question que j'avais déjà posée, c'était... c'était est-ce qu'il y avait un bâtiment qui aurait peut-être valu le coup d'être conservé parce qu'il était beau ? Ou parce qu'il...
+# [44:59] Il représentait quelque chose en plus. 
+# [45:02] C'est celui-là qu'était... C'est celui-là qu'était... 
+# [45:05] Oui c'est celui qui... Ah oui ! C'est lui qu'avait le plus de sens en tout cas dans sa conservation. 
+# [45:07] Bah les autres c'était jamais des... des bâtiments, c'était des ateliers et tout. À la limite c'était une carcasse en ferraille comme ils ont fait là. C'est très bien, ils ont tout enlevé, ils ont conservé la carcasse qu'ils ont réarrangée et puis voilà, c'est ça ! 
+# [45:10] C'est... C'était ce genre-là de bâtiment partout... On pouvait pas... 
+# [45:13] Euh... Jean Rolay et certains chercheurs parlent des grues de manière assez symbolique en les appelant des flèches.
+# [45:15] ...l'image des cathédrales ouvrières en en donnant cette cette idée que la grue portuaire est porteuse d'un symbole tout comme un... en disant à cet endroit-là, il y a eu quelque chose... 
+# [45:20] - Eh ben il y a eu de l'activité, il y a eu des gens, il y a eu des... ah oui.
+# [45:25] - Et est-ce que cette grue elle doit garder cet aspect-là, cet aspect d'ancrage territorial ?
+# [45:30] - Ah oui, c'est... c'est à nous de faire attention à ça. Ah oui, faut que ça reste.
+# [45:35] - Donc elle doit garder cette cette pureté de de sa fonction.
+# [45:40] - Oh bah oui. Oh oui oui, faut pas que ça devienne un machin robotisé, non.
+# [45:45] - On sait pas, peut-être les générations à venir ils demanderont ce que c'est que cet engin là, n'est-ce pas ? Mais... mais non, il faut que ça reste un symbole et c'est quelque chose de formidable, c'est... c'est bien.
+# [45:55] - Et pour que les... question un peu comme ça qui me vient... mais pour que les autres personnes se rendent compte de ce que c'était, est-ce qu'il faudrait la... lui redonner un signe de vie, ou est-ce qu'il faudrait juste lui l'expliquer ?
+# [46:05] - Oh non, faut expliquer, oh non, on peut pas... Elle est comme ça, elle est là, elle est là, on va pas s'amuser... et puis ça... ça donne c'est ce que c'est... une... une mine qu'on a connu... de ce que on a fait ou ce qu'on fait ailleurs. C'est dommage que d'autres... d'autres sites ont pas été gardé comme ça.
+# [46:15] Alors on va pas faire des... des peintures dessus pour montrer, c'est... c'est à nous d'expliquer euh... à quoi ça servait, tout ça. Enfin de leur montrer. Bah tiens d'ailleurs, y a encore les cales, l'avantage, c'est que... elles sont... elle est encore cernée par les cales, donc on peut comprendre euh... ce qui... oui-oui... on comprend pourquoi elle est là, quoi.
+# [46:30] Euh... Comment... euh... quel est votre avis et quel a été l'avis des personnes qui vous entourent sur les différentes propositions qui ont été faites par la ville de Nantes et par des structures qui proposent...
+# [46:45] proposé par exemple d'accrocher des choses dessus, de la transformer peut-être dans autre chose.
+# [46:53] pas du tout ?
+# [47:00] Oh bah non, ça sortait elle sortait de son rôle à ce moment-là. Elle sert pas à accrocher et pour faire venir du public ça a été le cas, ils voulaient mettre de de la pub de monde. Oh bah non, ça pas, ça colle pas, c'est pas du tout
+# [47:08] Parce que le problème, c'est que ça dénature le sens et que si par exemple on accrochait par exemple euh je sais pas, j'en ai aucune idée, mais si on accroche...
+# [47:15] chercher quelque chose qui la raccrochait encore à son... à sa structure de... de construction... de truc métallique quoi... de choses métalliques, de moteur, de... quelque chose. Ça c'est quelque chose qui... qui aurait du sens parce qu'il y a... Ah bah ouais. Pas... pas... pas quelque chose qui... qui fasse marionnette ou... ou... des trucs... Bon voilà, c'est vraiment... si on est censé la mettre en avant à travers quelque chose, il faut que ce soit quelque chose de... qui... un truc... quelque chose qui représenterait un bloc de bateau mais ça... ça c'est compliqué. Je sais qu'en plus dans... il y a... ils veulent un... un peu le jeu derrière... Oui oui.
+# [47:45] Oui enfin quelque chose qui, qui rappelle mes tonnages navals, quoi. Oui, c'est ça. Voilà, mais qu'il faut, il faut la garder dans son ancrage, dans son ancrage présent. Très bien. Euh est-ce que vous avez quelque chose à rajouter sur son, sur l'histoire de, de la grue, là ? Un ressenti que vous avez par rapport à ça ? Est-ce que vous avez une idée, ou je ne sais pas ? Bah nous on s'trouvait très très bien avec les grues, nous, j'sais pas moi, c'est ça faisait partie de l'univers, on rentrait, clac, la grue. Et puis on la voyait de loin. Heu tous les nantais.
+# [48:15] - Euh, c'était un coin... par contre tous ceux qui qui ne travaillaient pas au chantier, ben il y en a ils sont jamais venus de ce côté-là. 
+# [48:19] - Oui. 
+# [48:22] - Ils ont jamais traversé la Loire.
+# [48:25] - Il y avait ce côté très exclusif de... c'était c'était une zone...
+# [48:29] - Faut dire que tous ceux qu'avaient du travail de l'autre côté, qu'avaient rien à faire au chantier, mais ils y allaient même pas le dimanche pour se balader. Ça ça...
+# [48:32] - Parce que c'était comme... enfin pour eux c'était pas une zone de promenade, c'était...
+# [48:35] - Bah oui ! 
+# [48:39] - C'était un...
+# [48:42] - Ah bah oui, il y avait... il n'y avait que du travail, il y avait tout le long, oui, il n'y avait pas grand-chose d'autre.
+# [48:45] Est-ce que vous vous rappelez, question c'est un peu un peu complexe, est-ce que vous vous rappelez de la période où elle a été repeinte ? Parce qu'on est d'accord qu'elle a été grise, les photos le montrent, elle était grise. Mais est-ce que vous vous rappelez peut-être d'une période où elle aurait pu être repeinte parce que je ne retrouve pas, il n'y a pas malheureusement de date en particulier, on sait qu'elle a qu'elle a été modifiée dans entre les années, apparemment entre 74 et 75-76, mais est-ce qu'elle a été repeinte à ce moment-là ou est-ce que c'est plus tard ?
+# [49:15] Bah c'est c'est juste euh un juste est-ce qu'il y a un souvenir ou une... Pas spécialement, on l'a connu verte et puis à un moment bah on l'a connue jaune, mais euh entre les deux euh... Bah oui... On allait des fois en déplacement chez Dubuisson là-bas à Chatenay, alors peut-être qu'elle a été repeinte à ce moment-là et puis après quand on est revenu, oh bah elle était jaune et puis je sais pas, on n'a pas fait gaffe. Parce que je sais que les les trois quarts des des engins étaient étaient dans des teintes grises ou noires... Oui oui, de toute façon...
+# [49:45] – Ah ben... Euh... Oui, tous les grands, ils étaient... ils étaient noirs, ils étaient d'une couleur foncée.
+# [49:55] – C'est ça. Mais, par contre, dans les photos en couleur qu'on a des chantiers dans les années... fin des années 70, début des années 80, les trois-quarts des... des objets de levage sont jaunes. Ont été quasiment tous repeints. Donc c'est quelque chose qui... qui s'est fait progressivement.
+# [50:05] – Faudra que je retrouve... j'ai des diapos que j'avais faites moi... faudra que je retrouve dans toutes mes diapos. Parce que... quand on faisait des diapos, hein, il y a... il y a l'année de marquée. Et c'est là que... mais je ne sais pas si je les ai encore.
+# [50:15] J'ai pas pris spécialement en photo mais j'aurais j'aurais pu la prendre comme Mais après c'est normal, c'est c'est quelque chose qui était tellement dans votre paysage que Ah oui oui, donc euh non j'ai pas pu m'en douter quoi. Non mais c'est bien normal. Ah oui. Non puis j'ai été bien vu moi. Oh bah j'ai pas fait Si on est tous faits un peu de conneries on se on se marre toujours. Non, ça m'est plus arrivé de toute façon. Non mais euh une fois euh entre deux examens, je me rappelle, j'étais au 10ème et puis pour monter en grade mettons fallait
+# [50:45] - Inventer quelque chose euh pour notre profession qui nous fasse gagner du temps
+# [50:49] - Hmm hmm
+# [50:53] - Pour euh que notre travail se fasse en un temps plus court
+# [50:57] - Plus court, oui.
+# [51:00] - Voilà.
+# [51:04] - Donc ça c'était un examen ?
+# [51:08] - Oui oui, mais oui, mais comme ça.
+# [51:12] - Oh alors eh bien, lors d'un travail que j'avais à faire pour de vrai, je me suis débrouillé oh j'avais gagné du temps notamment en développant des tôles, mais développées au dixième, j'avais trouvé un truc oh !
+# [51:15] - Bah oui mais après au forgeron il lui fallait deux fois plus de temps qu'aux autres. Si bien qu’à la fin, je gagnais que moi.
+# [51:20] - Sauf que pour d'autres c'était...
+# [51:25] - pour vous c'était plus... c'était plus pratique mais pour eux c'était plus dur quoi.
+# [51:30] - Bah oui parce que j'avais trouvé l'truc pour développer oh là là un truc de changement de plan, tire ! Oh impec’ ! Bah oui mais après... il faut quand même donner des des données... au au forgeron, et il les avait plus.
+# [51:35] - Donc finalement ça vous arrangeait que vous quoi ?
+# [51:40] - Que moi. Oui c'est ça, c'est ce qu'on m'a dit après. Pshh...
+# [51:45] C'est vrai. Moi je gagnais du temps et puis mais après non finalement ils en perdaient ou alors fallait que je retourne à bord ou à - pas à bord mais - à l'atelier pour redessiner euh ou refaire un autre calcul parce que faut bien leur montrer les - les entrax à la limite où il y a les chaudes de traits où il y a euh hein où il y a - chose qu'il y avait avant puisque je m' - on s'en servait pour développer justement. Puis il fallait les noter parce qu'après bah "Ah bah merde alors comment j'vais faire ?" Bah ouais c'est donc de...
+# [52:15] C'est ça qu'on nous a dit. OK. Moi, on m'appelle Ah ouais donc... C'est du vieux ça hein. Ce qu'on pensait pareil des examens justement des brevets qu'il fallait qu'ils trouvent quelque chose qu'on était à l'apprentissage... Eh ben, il y en avait un qui avait trouvé. Et puis, oh bah c'est tout bête ! Mais euh, y a le vertical bah qui est qui est comme ça là avec les formes. Et puis souvent, on avait l'étau là fait euh... Il a une forme à faire au milieu parce que bah ils ajoutent une cloison. Bah au lieu de s'amuser à calculer, eh ben une simple...
+# [52:45] L'élastique. Deux points au crayon... euh l'un l'élastique, un point au milieu. Deux gars qui sont là, et puis l'autre il fait ça... suivant l'écart et puis l'autre au milieu... clac clac clac clac clac. Et ben impeccable ! Le... ben il est toujours au milieu le point. Alors là, il... il a eu des points parce que là c'était bien, ça c'est le... c'est un truc tout simple. Non, mais c'est totalement bête, mais oui, c'est totalement malin en fait oui. Surtout quand on est par terre, à chaque fois il faut calculer, tandis que là il pouvait se balader partout puis suivre.
+# [53:15] La forme, il suffit de faire ça ou il tient puis il on travaille souvent deux par deux ou et tu as on appelle un collègue. Puis l'autre au milieu ben il avait juste et puis de tac tac tac tac ! à la limite il suivait, puis l'autre il suivait, puis il il avait la forme tout de suite puisque le point il est comme c'est au milieu.
+# [53:21] Ah c'est vachement malin ouais !
+# [53:27] Ouais ouais, ben il avait eu des points pas mal avec ça, il avait puisque moi zéro patate puisque ça n'intéressait que moi. Il faut avoir une idée de... ouais ouais, on on ne travaille pas pour soi.
+# [53:33] C'est ça.
+# [53:39] Donc à chaque fois il y avait il fallait toujours réfléchir.
+# [53:45] ... faire son travail avec les autres métiers. Oui oui il avait... ben oui il était pour embêter les autres c'est pas... j'ai... j'avais pas servi puis en plus il avait fallu que je l'ai... que je la refasse comme comme avant quoi. Enfin ne s'est pas trompé. Mais oui oui je me rappelle de ce qu'il a... et puis il avait inventé aussi, à si mais, il avait trouvé des trucs alors euh parce qu'à l'époque on faisait des des moules en bois naturellement alors on mettait... ben avec des fers de mécano... tiens ben c'est comme...
+# [54:15] L'image qu'il a, on voit des planches comme ça, qui sont coupées suivant des formes avec une ligne, un plan là, il y a un paquet. Et lui il avait trouvé au lieu de mettre une planche comme ça, et ben, genre faire un fer de meccano plein de trous. Hmm hmm. Et c'est le même fer partout et à ce moment-là, au lieu de faire couper une planche à chaque fois, couper hein, parce que suivant la forme et tout, eh ben, son faire, le même fer partout, des... un bout de cornière pourquoi pas qui était plein de trous.
+# [54:45] et puis une traverse dans l’autre sens et puis y’avait juste à régler le le le trou là, clac clac clac clac clac clac clac. Et après quand on démontait, i récupérait la la partie fer, ben i servait pour la tôle d’après, y’avait y’avait juste le bois qui servait pas parce qu’i les forgeaient pas. Mais la partie ferraille, eh ben elle servait tout le temps. Bah là il avait vu quelque chose quand même aussi là. D’accord. À chaque fois i fallait i fallait refaire euh parce que là i i z’avaient des parce que là une fois que ta ta tôle est...
+# [55:15] est informé, bon bah il, il ramenait, il, il récupérait sa ferraille, et puis il servait au suivant, tac tac tac tac ! D'accord ! Ok. Bah c'est malin en tout cas comme truc ! Oui, bah à l'époque, faut, fallait bien trouver quelque chose, tu sais !
 
-                      call scenario maker with following openrouter model forced: openai/gpt-5.2; and evaluate the generated scenarios to determine how model performed in: properly using source transcription and not inventing things, overall quality, story remaining historically interesting and not litterature"""))
+#                       call scenario maker with following openrouter model forced: openai/gpt-5.2; and evaluate the generated scenarios to determine how model performed in: properly using source transcription and not inventing things, overall quality, story remaining historically interesting and not litterature"""))
     # asyncio.run(main("can you transcript audio: data/generated_speech/archived/ElevenLabs_Spuds_Oxley.mp3 and show me the transcription exactly how it is currently returned"))
     # asyncio.run(main("can you create a slideshow from the images in data/image and use audio data/audio/background_sounds/Chalumeau/AV-1-S-OUT-101-1-A.wav"))
     # asyncio.run(main("Décrit le son d'ambiance de chalumeau"))
