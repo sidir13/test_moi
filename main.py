@@ -928,8 +928,8 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    # asyncio.run(main(""""""))
-    asyncio.run(main("can you find the relevant part of the audio in /home/onyxia/work/memoiredesterritoires/data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
+    pass
+    # asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
     # asyncio.run(main("Décrit le son d'ambiance de chalumeau"))
 #     asyncio.run(main("""We were interrupted during our previous task, here is all that was done, can you continue and complete the task ? It is very important you evaluate all models in a same table based on your average evaluar
 #     tion of the 3 scenarios generated each !

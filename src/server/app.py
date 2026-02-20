@@ -19,7 +19,6 @@ from uuid import uuid4
 from fastapi import FastAPI, HTTPException, UploadFile, File, WebSocket, WebSocketDisconnect, Query, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 logging.basicConfig(
@@ -472,10 +471,6 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     settings = settings or get_settings()
     os.environ.setdefault("PROJECTS_DIR", str(settings.projects_dir))
     app = FastAPI(title="Mémoire des Territoires API", version="0.1.0")
-    
-    @app.get("/", tags=["system"])
-    async def root():
-        return {"ok": True, "message": "Mémoire des Territoires API active"}
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
@@ -1887,14 +1882,23 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
 
     frontend_dir = settings.frontend_dist
     if frontend_dir.exists():
-        app.mount("/web", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+        index_file = (frontend_dir / "index.html").resolve()
+
+        @app.get("/", include_in_schema=False)
+        async def serve_frontend_root():
+            if index_file.exists():
+                return FileResponse(index_file)
+            raise HTTPException(status_code=404, detail="Frontend not built")
 
         @app.get("/{full_path:path}", include_in_schema=False)
-        async def serve_spa(full_path: str):
-            file_path = frontend_dir / full_path
-            if file_path.is_file():
-                return FileResponse(file_path)
-            index_file = frontend_dir / "index.html"
+        async def serve_frontend(full_path: str):
+            candidate = (frontend_dir / full_path).resolve()
+            try:
+                candidate.relative_to(frontend_dir.resolve())
+            except ValueError:
+                raise HTTPException(status_code=403, detail="Chemin invalide")
+            if candidate.exists() and candidate.is_file():
+                return FileResponse(candidate)
             if index_file.exists():
                 return FileResponse(index_file)
             raise HTTPException(status_code=404, detail="Asset not found")
