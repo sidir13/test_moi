@@ -228,6 +228,10 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     settings = settings or get_settings()
     os.environ.setdefault("PROJECTS_DIR", str(settings.projects_dir))
     app = FastAPI(title="Mémoire des Territoires API", version="0.1.0")
+    
+    @app.get("/", tags=["system"])
+    async def root():
+        return {"ok": True, "message": "Mémoire des Territoires API active"}
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
