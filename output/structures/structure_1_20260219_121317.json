@@ -1,0 +1,100 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Mémoires de Cale — Voix des Chantiers de Nantes",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'éveil des quais",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "ambiance sonore industrielle naissante",
+        "première voix : fragment de souvenir d'un travailleur évoquant l'arrivée à l'aube",
+        "archive ElevenLabs_Spuds_Oxley.mp3 [00:00-00:08] : contextualisation Loire 1950",
+        "deuxième voix en écho : sensation physique du froid matinal"
+      ],
+      "mood": "eveil_progressif_intimiste"
+    },
+    {
+      "partie": 2,
+      "titre": "Le chœur des métiers",
+      "duree_cible": 35.0,
+      "fonction_narrative": "montee_en_puissance",
+      "position_arc_emotionnel": "tension_croissante",
+      "elements_necessaires": [
+        "entrelacement de 3-4 voix distinctes : soudeur, charpentier, riveteur",
+        "archive ElevenLabs_Spuds_Oxley.mp3 [00:08-00:18] : description des coques et mains expertes",
+        "fragments sensoriels : bruit du métal, odeur de soudure, chaleur des forges",
+        "rythme accéléré des témoignages qui se chevauchent",
+        "tension physique du labeur collectif"
+      ],
+      "mood": "energie_collective_montante"
+    },
+    {
+      "partie": 3,
+      "titre": "Le France prend corps",
+      "duree_cible": 35.0,
+      "fonction_narrative": "climax_emotionnel",
+      "position_arc_emotionnel": "climax",
+      "elements_necessaires": [
+        "archive ElevenLabs_Spuds_Oxley.mp3 [00:18-00:28] : naissance du France, fierté nationale",
+        "voix entremêlées exprimant la fierté, l'épuisement, l'émerveillement",
+        "moment de suspension : le géant d'acier achevé",
+        "chiffre emblématique : 106 000 tonnes",
+        "intensité émotionnelle maximale : accomplissement collectif"
+      ],
+      "mood": "fierte_vibrante_culminante"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce qui reste",
+      "duree_cible": 25.0,
+      "fonction_narrative": "resolution_meditative",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "archive ElevenLabs_Spuds_Oxley.mp3 [fin] : aujourd'hui, seules...",
+        "dernières voix en fondu : mémoire qui persiste",
+        "silence progressif des machines",
+        "une voix finale : transmission aux générations suivantes",
+        "ouverture contemplative sur l'héritage"
+      ],
+      "mood": "melancolie_lumineuse_apaisee"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_enchaine_sonore",
+      "duree": 2.5,
+      "description": "La voix intimiste du matin se fond dans le brouhaha grandissant des chantiers. Pas de coupure : une voix appelle, une autre répond."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "crescendo_naturel",
+      "duree": 2.0,
+      "description": "Les voix des métiers convergent vers un point focal : le France. Le rythme s'intensifie puis suspend son souffle."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_emotionnel",
+      "duree": 3.0,
+      "description": "De la fierté vibrante vers le silence. Les voix se raréfient, comme des échos qui s'éloignent dans le temps."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRUCIALES POUR AGENT 2 — FLUIDITÉ ET MOSAÏQUE VOCALE :\n\n1. CONTINUITÉ ABSOLUE : Ce récit est UN SEUL FLUX narratif. Les sections sont des repères de densité émotionnelle, PAS des chapitres séparés. Aucune pause franche entre les parties.\n\n2. TECHNIQUE MOSAÏQUE : Les voix doivent s'entrelacer comme un collage sonore vivant. Une phrase commence avec une voix, une autre la complète. Les témoignages se répondent, se chevauchent légèrement, créent un tissu vocal organique.\n\n3. ARCHIVES INTÉGRÉES : L'archive audio fournie sert de colonne vertébrale factuelle. Les voix créées gravitent autour, commentent, humanisent les faits énoncés.\n\n4. RYTHME RESPIRATOIRE : Dynamique ne signifie pas précipité. Alterner micro-accélérations et micro-suspensions. Le climax (partie 3) est le pic d'intensité, pas de vitesse.\n\n5. AUTHENTICITÉ DES VOIX : Chaque fragment vocal doit sonner comme un souvenir arraché au temps — incomplet, émotionnel, sensoriel. Éviter le ton explicatif.\n\n6. RIGUEUR HISTORIQUE : S'en tenir aux éléments factuels de l'archive (Loire, Nantes, 1950-1960, France, 106 000 tonnes). Tout le reste est atmosphère et émotion, jamais invention de faits.\n\n7. SILENCE COMME PONCTUATION : Utiliser les micro-silences entre fragments vocaux comme respiration narrative, pas comme rupture."
+}

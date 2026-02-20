@@ -1,0 +1,76 @@
+{
+  "scenario_id": 3,
+  "titre_global": "La Loire avant le silence",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le temps des coques",
+      "duree_cible": 50.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_nostalgique",
+      "elements_necessaires": [
+        "évocation sensorielle des chantiers navals en activité",
+        "bruits des marteaux, odeur de soudure, cris des ouvriers",
+        "fierté collective du travail accompli",
+        "archive ElevenLabs_Spuds_Oxley.mp3 (segment 00:00-00:15)",
+        "rythme quotidien d'une vie organisée autour du fleuve"
+      ],
+      "mood": "chaleureux_vivant"
+    },
+    {
+      "partie": 2,
+      "titre": "Le dernier navire",
+      "duree_cible": 35.0,
+      "fonction_narrative": "basculement_emotionnel",
+      "position_arc_emotionnel": "tension_montante_vers_climax",
+      "elements_necessaires": [
+        "annonce de la fermeture progressive",
+        "transformation du paysage sonore",
+        "silence qui s'installe sur les quais",
+        "regard personnel sur ce qui disparaît",
+        "archive ElevenLabs_Spuds_Oxley.mp3 (segment final sur l'absence)"
+      ],
+      "mood": "melancolique_poignant"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui reste",
+      "duree_cible": 35.0,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "apaisement_reflexif",
+      "elements_necessaires": [
+        "la Loire aujourd'hui, transformée",
+        "mémoire des gestes et des hommes",
+        "transmission aux générations suivantes",
+        "ouverture vers l'avenir sans oublier"
+      ],
+      "mood": "doux_esperant"
+    }
+  ],
+  "arc_emotionnel_global": "progression_crescendo",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 3.0,
+      "description": "Le récit bascule imperceptiblement du souvenir vivant vers la prise de conscience de la fin. Pas de rupture : le narrateur continue de parler mais le ton s'assombrit, comme un nuage passant sur le fleuve."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "respiration_contemplative",
+      "duree": 2.5,
+      "description": "Après l'émotion du climax, un silence bref puis une reprise plus douce. Le narrateur prend du recul, sa voix s'apaise pour accueillir ce qui demeure malgré tout."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRITIQUES POUR AGENT 2 : Ce récit en première personne doit couler comme une confidence intime. Le narrateur est un témoin de cette époque (ouvrier, enfant d'ouvrier, habitant des quais). AUCUNE rupture franche entre sections : le texte doit être un monologue continu où les transitions sont des inflexions de ton, pas des coupures. L'archive audio fournie sert de matière première à intégrer naturellement dans le flux narratif. Privilégier les sensations physiques (sons, odeurs, lumière sur l'eau) pour ancrer l'émotion. Le diptyque avant/après doit se ressentir dans le contraste entre vitalité passée et silence présent, sans jamais devenir didactique. La résolution finale n'est pas une conclusion fermée mais une ouverture mélancolique et digne."
+}

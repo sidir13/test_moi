@@ -5,7 +5,7 @@ description: Ouvre un fichier JSON local et retourne son contenu, avec option po
 
 ## Instructions
 1. Vérifie que l’utilisateur fournit un chemin valide sous le projet (ex. `data/...json`).
-2. Si le fichier contient plusieurs projets (ex: `config.json`), utilise `project_name` pour cibler la bonne entrée.
+2. Si le fichier contient plusieurs projets (ex : ancien `config.json` global) précise `project_name`. Pour les fichiers récents (`data/projects/<nom>/config.json`), `project_name` est inutile.
 3. Optionnel : passe `key` pour retourner uniquement la valeur souhaitée.
 4. Appelle `read_json_file` avec `path`, `project_name`, `key`, puis restitue le contenu.
 
@@ -23,7 +23,7 @@ description: Ouvre un fichier JSON local et retourne son contenu, avec option po
 
 **Exemple 3**
 ```
-[Call read_json_file with path="config.json", project_name="Mémoire des Territoires", key="voice_instructions"]
+[Call read_json_file with path="data/projects/slider99/config.json", key="voice_instructions"]
 ```
 
 ## Tool Details

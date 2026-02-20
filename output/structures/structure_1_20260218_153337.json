@@ -1,0 +1,55 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, une vie de chantier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube de l'apprentissage",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "réveil matinal d'un jeune apprenti",
+        "trajet vers les chantiers navals",
+        "premiers gestes appris auprès des anciens",
+        "bruits et odeurs du chantier au petit matin",
+        "regard intimidé sur les coques immenses",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 en ouverture pour ancrer l'époque"
+      ],
+      "mood": "eveil_initiatique"
+    },
+    {
+      "partie": 2,
+      "titre": "Le crépuscule d'un métier",
+      "duree_cible": 65.0,
+      "fonction_narrative": "developpement_et_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "ellipse temporelle douce vers des décennies plus tard",
+        "même homme, mêmes gestes mais outils différents",
+        "fin de journée sur un chantier transformé",
+        "regard rétrospectif sur ce qui a changé",
+        "transmission aux nouvelles générations",
+        "mélancolie apaisée du soir qui tombe"
+      ],
+      "mood": "nostalgique_serein"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_fluide",
+      "duree": 3.0,
+      "description": "Glissement naturel du matin de l'apprenti vers le soir de l'homme accompli — une phrase-pont évoque le passage des années sans rupture, comme un fondu entre deux moments d'une même vie"
+    }
+  ],
+  "notes_production": "FLUIDITÉ ESSENTIELLE : Le récit doit couler comme une seule respiration. La voix féminine posée (40 ans, pédagogue) guide l'auditeur sans jamais le brusquer. L'archive audio en ouverture pose l'atmosphère des chantiers navals nantais. La transition entre les deux parties ne doit PAS être une coupure mais un glissement poétique — une phrase comme 'Les années ont passé...' ou 'Bien des matins plus tard...' suffit. L'angle 'journée type' structure les deux époques : matin de l'apprentissage / soir de la maturité, créant un parallèle symbolique. Privilégier les détails sensoriels concrets (sons du métal, odeur de la Loire, lumière changeante) pour ancrer le témoignage dans le vécu. Ton pédagogique mais chaleureux, jamais distant."
+}

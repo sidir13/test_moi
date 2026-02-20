@@ -1,0 +1,497 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire Gilles Hamon - Chantiers Navals",
+      "creation_date": "2026-01-28",
+      "user_mode": "expert",
+      "analysis_confidence": 0.95,
+      "user_specification_level": "Élevé - demande détaillée et précise",
+      "flexibility_zones": [
+        "Durée exacte des segments",
+        "Angles de scénarisation spécifiques",
+        "Équilibre narration/archives"
+      ],
+      "locked_parameters": [
+        "Période historique (1958-1987)",
+        "Lieu (Nantes)",
+        "Protagoniste (Gilles Hamon)",
+        "Thématiques principales",
+        "Ton documentaire",
+        "Authenticité technique"
+      ]
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {}
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": true,
+        "rationale": "Implicite dans 'narrations historiques authentiques' et 'ton documentaire'"
+      },
+      "duree": {
+        "value": 180,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "rationale": "Non spécifiée - ajustée à 180s pour permettre développement technique et humain"
+      },
+      "ton": {
+        "value": "journalistique_factuel",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.75,
+        "rationale": "Explicitement demandé : 'ton documentaire, respect de la précision technique'"
+      },
+      "axe_narratif": {
+        "value": "mixte",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": true,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "evolution_temporelle"
+        },
+        "rationale": "Triple focus explicite : témoignage ouvrier + grue jaune + transformations du travail"
+      },
+      "rythme": {
+        "value": "modere",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": true,
+        "details": {
+          "tempo_narration": 115,
+          "pauses": "techniques_reflexives",
+          "variation": "progressive"
+        },
+        "rationale": "Adapté au contenu technique et testimonial"
+      },
+      "nombre_scenarios": {
+        "value": 3,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "rationale": "Valeur par défaut - permet de couvrir les 3 axes identifiés"
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "rationale": "Non spécifié - grand public approprié pour valorisation patrimoniale"
+      },
+      "niveau_detail_historique": {
+        "value": "approfondi",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": true,
+        "rationale": "Demande explicite de 'précision technique' et 'expertise technique'"
+      },
+      "perspective_narrative": {
+        "value": "troisieme_personne",
+        "options": [
+          "premiere_personne",
+          "troisieme_personne",
+          "voix_off_omnisciente",
+          "chorale_multiple_voix"
+        ],
+        "default": "troisieme_personne",
+        "user_specified": true,
+        "with_testimonial_inserts": true,
+        "rationale": "Narration documentaire avec insertion de témoignage direct"
+      },
+      "epoque_linguistique": {
+        "value": "authentique",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": true,
+        "rationale": "Demande explicite d'authenticité et de vocabulaire technique d'époque"
+      },
+      "densite_sonore": {
+        "value": "riche",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": true,
+        "details": {
+          "ambiances_simultanees_max": 4,
+          "frequence_effets_sonores": "eleve",
+          "silence_narratif": true,
+          "sons_industriels": "authentiques_periode"
+        },
+        "rationale": "Environnement industriel naval nécessite richesse sonore"
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": true,
+        "rationale": "Focus explicite sur 'évolution' et 'transformations' implique progression temporelle"
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "temoignage_croise",
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement",
+          "mosaique_voix",
+          "lettre_intime",
+          "recit_initiatique"
+        ],
+        "default": "auto",
+        "user_specified": true,
+        "suggested_angles": [
+          "portrait_individuel",
+          "chronique_sociale",
+          "avant_apres_evenement"
+        ],
+        "rationale": "Système déterminera l'angle optimal par scénario"
+      },
+      "equilibre_narration_archives": {
+        "value": 0.5,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": true,
+        "rationale": "Équilibre entre narration documentaire et authenticité testimoniale"
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.75,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": true,
+        "rationale": "Forte demande d'authenticité technique tout en restant compréhensible"
+      },
+      "valorisation_temoignage": {
+        "value": true,
+        "user_specified": true,
+        "rationale": "Objectif explicite : 'valorisation du témoignage ouvrier'"
+      },
+      "precision_technique": {
+        "value": "elevee",
+        "user_specified": true,
+        "rationale": "Demande explicite de 'respect de la précision technique'"
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "Gilles.Hamon-Dessinateur.WAV",
+            "transcription": "[00:00] Donc voilà, réglé, hop, donc là un bon ça enregistre. Alors l'idée c'est qu'après moi dès que j'ai fini, je vais recommencer à retranscrire. Donc vu qu'après je retranscris tout, j'ai besoin pour commencer, est-ce que vous pourriez me donner votre nom, votre prénom et votre âge ?\n[00:06] - Moi c'est Amon Gilles.\n[00:12] - Oui. Votre âge ?\n[00:18] - 73 ans.\n[00:24] Très bien. Alors euh avez-vous travaillé aux chantiers ?\n[00:27] Bah oui.\n[00:30] Oui, et si oui, où ? Dans quels chantiers vous avez travaillé ?\n[00:33] Alors au départ c'était la Bretagne.\n[00:36] Ouais.\n[00:39] À 14 ans.\n[00:42] Hum-hum\n[00:45] Puis on a suivi bah toutes les fusions et tout pour finir aux chantiers de Nantes et puis aux chantiers Dubigeon, ça s'est appelé comme ça, qui était la fusion des trois chantiers nantais de la région.",
+            "language": "fr",
+            "notes": "Interview complète de 55min avec Gilles Hamon, détails techniques sur la grue jaune et l'évolution du métier de traceur",
+            "source": "Archives orales chantiers navals"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": 1958,
+        "end_year": 1987,
+        "user_specified": true,
+        "key_phases": [
+          {
+            "phase": "apogee_chantiers",
+            "years": "1958-1970",
+            "description": "Période faste de la construction navale française"
+          },
+          {
+            "phase": "modernisation",
+            "years": "1970-1980",
+            "description": "Introduction nouvelles technologies, évolution métiers"
+          },
+          {
+            "phase": "declin_restructuration",
+            "years": "1980-1987",
+            "description": "Crise de la construction navale, fermetures"
+          }
+        ],
+        "rationale": "Période explicitement mentionnée dans le témoignage de Gilles Hamon"
+      },
+      "location": {
+        "primary": "Nantes",
+        "specific_areas": [
+          "Chantiers navals de Nantes",
+          "Île de Nantes",
+          "Quais de Loire",
+          "Ateliers de traçage",
+          "Zone portuaire"
+        ],
+        "user_specified": true,
+        "region": "Pays de la Loire",
+        "rationale": "Lieu explicitement mentionné"
+      },
+      "themes": {
+        "primary": [
+          "Techniques de traçage naval",
+          "Métier de traceur",
+          "Grue jaune emblématique",
+          "Évolution du travail industriel",
+          "Savoir-faire ouvrier"
+        ],
+        "secondary": [
+          "Mémoire ouvrière",
+          "Patrimoine industriel",
+          "Transformation urbaine",
+          "Crise de la construction navale française",
+          "Identité professionnelle",
+          "Transmission des savoirs techniques"
+        ],
+        "user_specified": true,
+        "rationale": "Thématiques explicitement listées dans la demande"
+      },
+      "key_events": [],
+      "key_figures": [],
+      "protagonist": {
+        "name": "Gilles Hamon",
+        "role": "Traceur",
+        "workplace": "Chantiers navals de Nantes",
+        "period": "1958-1987",
+        "user_specified": true,
+        "expertise": "Traçage naval, lecture de plans, géométrie appliquée"
+      },
+      "iconic_elements": {
+        "objects": [
+          {
+            "name": "Grue jaune",
+            "significance": "Emblème des chantiers navals de Nantes",
+            "user_specified": true,
+            "status": "Monument patrimonial conservé"
+          },
+          {
+            "name": "Outils de traçage",
+            "items": [
+              "Compas",
+              "Règles",
+              "Gabarits",
+              "Pointes à tracer"
+            ]
+          }
+        ]
+      },
+      "socio_economic_context": {
+        "industry": "Construction navale française",
+        "evolution": "Apogée puis déclin",
+        "workforce": "Ouvriers qualifiés, culture technique forte",
+        "technological_shift": "Passage du traçage manuel au numérique"
+      }
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality",
+        "user_specified": true
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "content_objectives": {
+      "primary_goals": [
+        "Restituer l'expertise technique du métier de traceur",
+        "Valoriser l'expérience humaine et le témoignage ouvrier",
+        "Documenter l'évolution des techniques de traçage naval",
+        "Contextualiser les transformations du travail industriel"
+      ],
+      "user_specified": true,
+      "narrative_approach": "Authenticité historique + accessibilité documentaire",
+      "emotional_dimension": "Respect et dignité du travail ouvrier"
+    },
+    "technical_specifications": {
+      "vocabulary_level": "Technique authentique avec explications contextuelles",
+      "historical_accuracy": "Élevée - vérification dates, techniques, contexte",
+      "testimonial_integration": "Citations directes ou style indirect libre",
+      "sound_design_priorities": [
+        "Ambiances industrielles d'époque",
+        "Sons métalliques des chantiers",
+        "Bruits de la grue jaune",
+        "Atmosphère portuaire",
+        "Silence contemplatif pour moments réflexifs"
+      ]
+    },
+    "scenario_distribution_suggestion": {
+      "scenario_1": {
+        "focus": "Portrait de Gilles Hamon traceur",
+        "axe": "travailleur",
+        "angle_suggere": "portrait_individuel",
+        "periode": "1958-1970"
+      },
+      "scenario_2": {
+        "focus": "La grue jaune et les chantiers",
+        "axe": "objet_lieu",
+        "angle_suggere": "chronique_sociale",
+        "periode": "1970-1980"
+      },
+      "scenario_3": {
+        "focus": "Transformations du travail industriel",
+        "axe": "evolution_temporelle",
+        "angle_suggere": "avant_apres_evenement",
+        "periode": "1980-1987"
+      }
+    }
+  }
+}

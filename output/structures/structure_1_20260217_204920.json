@@ -1,0 +1,56 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, mémoire d'un métier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprenti des chantiers",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "ambiance sonore des chantiers navals années 1950-60",
+        "description sensorielle de l'atelier (odeurs de métal, chaleur des soudures)",
+        "figure du jeune apprenti découvrant le métier",
+        "transmission des gestes par les anciens",
+        "fierté collective des ouvriers",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 - passage sur les chantiers de Nantes et le paquebot France"
+      ],
+      "mood": "nostalgique_lumineux"
+    },
+    {
+      "partie": 2,
+      "titre": "Les métamorphoses du métier",
+      "duree_cible": 65,
+      "fonction_narrative": "developpement_climax_resolution",
+      "position_arc_emotionnel": "tension_climax_apaisement",
+      "elements_necessaires": [
+        "passage du temps évoqué par les transformations du travail",
+        "évolution des techniques et des outils",
+        "fermetures progressives des chantiers",
+        "adaptation ou reconversion des travailleurs",
+        "regard rétrospectif sur une vie de labeur",
+        "héritage transmis aux générations suivantes",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 - passage final sur ce qu'il reste aujourd'hui"
+      ],
+      "mood": "melancolique_puis_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_fluide",
+      "duree": 3,
+      "description": "Glissement naturel du passé vers le présent, porté par une phrase de liaison évoquant le passage des années. La voix maintient sa chaleur pédagogue tout en marquant subtilement l'écoulement du temps."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 : Ce récit doit être raconté comme une chronique sociale à la 3ème personne, suivant Gilles et ses compagnons de travail. La voix (femme 40 ans, pédagogue et posée) adopte le ton d'une conteuse bienveillante qui partage une mémoire collective. FLUIDITÉ ABSOLUE : les deux parties doivent s'enchaîner sans rupture perceptible, comme un seul souffle narratif. L'archive audio des chantiers de Nantes sert d'ancrage historique - l'intégrer naturellement dans le fil du récit. Éviter tout effet de liste ou de découpage scolaire. Le texte doit couler comme une rivière, avec des variations de rythme mais jamais d'arrêts brusques. La première partie installe l'univers sensoriel et humain de l'apprentissage ; la seconde accompagne les transformations avec empathie, sans nostalgie larmoyante. Terminer sur une note d'apaisement qui honore le parcours accompli."
+}

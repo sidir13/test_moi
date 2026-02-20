@@ -1,0 +1,55 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, des mains d'apprenti aux gestes d'expert",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Les premiers pas de l'apprenti",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "contexte des chantiers navals actifs",
+        "atmosphère sonore des années 1950-60",
+        "découverte du métier par Gilles jeune",
+        "relation maître-apprenti",
+        "gestes techniques premiers",
+        "archive ElevenLabs_Spuds_Oxley.mp3 (extrait ambiance chantiers)"
+      ],
+      "mood": "nostalgique_evocateur"
+    },
+    {
+      "partie": 2,
+      "titre": "Les mutations du métier",
+      "duree_cible": 65.0,
+      "fonction_narrative": "developpement_et_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "passage du temps et transformations industrielles",
+        "adaptation des savoir-faire",
+        "regard rétrospectif de Gilles sur son parcours",
+        "transmission aux nouvelles générations",
+        "bilan personnel et professionnel",
+        "archive ElevenLabs_Spuds_Oxley.mp3 (extrait sur l'évolution)"
+      ],
+      "mood": "reflexif_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_fluide",
+      "duree": 3.0,
+      "description": "Glissement naturel du passé vers le présent, porté par une phrase de liaison évoquant le passage des années. La narratrice accompagne l'auditeur dans ce saut temporel sans rupture brutale, comme un fondu enchaîné vocal."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS POUR AGENT 2 — FLUIDITÉ NARRATIVE ESSENTIELLE : Le récit doit être raconté d'une voix posée et pédagogue (femme 40 ans), comme si elle nous confiait l'histoire de Gilles avec bienveillance. La structure en deux parties (avant/après) ne doit PAS créer de coupure audible : la transition est un pont narratif, pas une frontière. Privilégier des formulations du type 'Les années ont passé...', 'Aujourd'hui, quand Gilles repense...' pour assurer la continuité. L'archive audio des chantiers navals peut servir de fil conducteur sonore entre les deux époques. Le ton reste accessible au grand public, évitant le jargon technique tout en valorisant les savoir-faire. La première personne narrative (je/nous) crée une proximité avec l'auditeur, comme un reportage intime."
+}

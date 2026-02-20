@@ -1,162 +1,114 @@
+from __future__ import annotations
+
 import os
+from pathlib import Path
+from typing import List
+
 from PIL import Image
-from moviepy import *
-from moviepy.video.fx import Resize
-import os
- 
-def clean_images(path):
-    for filename in os.listdir(path):
-        if filename.endswith(".webp"):
-            # Define paths
-            webp_path = os.path.join(path, filename)
-            jpg_path = os.path.join(path, filename.replace(".webp", ".jpg"))
-            
+
+try:  # MoviePy 2.x public API
+    from moviepy import AudioFileClip, ImageClip, concatenate_videoclips  # type: ignore
+    import moviepy.video.fx as vfx  # type: ignore
+
+    _HAS_NEW_API = hasattr(ImageClip, "with_duration")
+    _resize_fx = None
+except Exception:  # pragma: no cover - fallback for dev builds
+    from moviepy.audio.io.AudioFileClip import AudioFileClip  # type: ignore
+    from moviepy.video.VideoClip import ImageClip  # type: ignore
+    from moviepy.video.compositing.concatenate import concatenate_videoclips  # type: ignore
+    from moviepy.video.fx.resize import resize as _resize_fx  # type: ignore
+
+    vfx = None  # type: ignore
+    _HAS_NEW_API = False
+
+
+def _set_duration(clip: ImageClip, seconds: float) -> ImageClip:
+    return clip.with_duration(seconds) if _HAS_NEW_API else clip.set_duration(seconds)
+
+
+def _set_audio(video_clip, audio_clip):
+    return video_clip.with_audio(audio_clip) if hasattr(video_clip, "with_audio") else video_clip.set_audio(audio_clip)
+
+
+def _resize_to_1080p(clip: ImageClip) -> ImageClip:
+    if _HAS_NEW_API and vfx:
+        return clip.with_effects([vfx.Resize((1920, 1080))])
+    if _resize_fx is None:
+        raise RuntimeError("MoviePy resize effect not available")
+    return clip.fx(_resize_fx, newsize=(1920, 1080))
+
+
+def clean_images(directory: Path) -> List[Path]:
+    """Convert WEBP images to JPG so MoviePy can ingest the folder safely."""
+    sanitized: List[Path] = []
+    for filename in sorted(os.listdir(directory)):
+        source = directory / filename
+        if not source.is_file():
+            continue
+
+        target = source
+        if source.suffix.lower() == ".webp":
+            target = source.with_suffix(".jpg")
+            with Image.open(source) as img:
+                img.convert("RGB").save(target, "JPEG", quality=90)
+            source.unlink()
+
+        sanitized.append(target)
+
+    return sanitized
+
+
+def slideshow(image_dir: str, audio_file: str, output_path: str) -> str:
+    """Create a slideshow video matching 100% of the audio duration."""
+    directory = Path(image_dir)
+    if not directory.exists():
+        raise FileNotFoundError(f"Dossier d'images introuvable: {directory}")
+
+    audio_source = Path(audio_file)
+    if not audio_source.exists():
+        raise FileNotFoundError(f"Audio introuvable: {audio_source}")
+
+    images = clean_images(directory)
+    if not images:
+        raise ValueError("Aucune image fournie pour créer le diaporama.")
+
+    audio_clip = AudioFileClip(str(audio_source))
+    video_clip = None
+    final_clip = None
+    clips: List[ImageClip] = []
+    try:
+        duration = float(audio_clip.duration or 0.0)
+        if duration <= 0:
+            raise ValueError("Durée audio invalide pour le diaporama.")
+
+        slide_duration = duration / len(images)
+        for img in images:
+            clip = ImageClip(str(img))
+            clip = _set_duration(clip, slide_duration)
+            clip = _resize_to_1080p(clip)
+            clips.append(clip)
+
+        video_clip = concatenate_videoclips(clips, method="compose")
+        final_clip = _set_audio(video_clip, audio_clip)
+
+        output = Path(output_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        final_clip.write_videofile(str(output), fps=24)
+        return str(output)
+    finally:
+        for clip in clips:
             try:
-                # Convert and save
-                img = Image.open(webp_path).convert("RGB")
-                img.save(jpg_path, "JPEG", quality=90)
-                
-                # Close the image object explicitly before deleting
-                img.close()
-                
-                # Delete the original webp file
-                os.remove(webp_path)
-                print(f"Success: Converted and deleted {filename}")
-                
-            except Exception as e:
-                print(f"Error processing {filename}: {e}")
-
-
-def slideshow(path,audio_file):
-    clean_images(path) 
-
-    images = sorted([os.path.join(path, f)
-                    for f in os.listdir(path)])
-
-    audio = AudioFileClip(audio_file)
-    duration = audio.duration
-    slide_duration = duration / len(images)
-
-    clips = []
-    for img in images:
-        clip = (
-            ImageClip(img)
-            .with_duration(slide_duration)
-            .with_effects([Resize((1920,1080))])
-        )
-        clips.append(clip)
-
-    video = concatenate_videoclips(clips)
-    final = video.with_audio(audio)
-
-    final.write_videofile("slideshow70.mp4", fps=24)
-            
-
-
-
-
-
-
-
-
-
-# import os
-# from pathlib import Path
-# from typing import List
-
-# from PIL import Image
-
-# # ----------------------------
-# # MoviePy imports (compat)
-# # ----------------------------
-# try:
-#     # Newer MoviePy 2.x may expose these at top-level
-#     from moviepy import AudioFileClip, ImageClip, concatenate_videoclips
-#     import moviepy.video.fx as vfx  # has Resize class in newer 2.x
-#     _HAS_NEW_API = hasattr(ImageClip, "with_duration")
-# except Exception:
-#     # MoviePy 2.0.0.dev2 (and some builds) -> import from submodules
-#     from moviepy.audio.io.AudioFileClip import AudioFileClip
-#     from moviepy.video.VideoClip import ImageClip
-#     from moviepy.video.compositing.concatenate import concatenate_videoclips
-#     from moviepy.video.fx.resize import resize as _resize_fx
-#     _HAS_NEW_API = False
-
-
-# def _set_duration(clip, seconds: float):
-#     return clip.with_duration(seconds) if _HAS_NEW_API else clip.set_duration(seconds)
-
-
-# def _set_audio(video_clip, audio_clip):
-#     return video_clip.with_audio(audio_clip) if hasattr(video_clip, "with_audio") else video_clip.set_audio(audio_clip)
-
-
-# def _resize_to_1080p(clip):
-#     # Newer MoviePy 2.x: effects are classes
-#     if _HAS_NEW_API:
-#         return clip.with_effects([vfx.Resize((1920, 1080))])
-#     # dev2: fx function + .fx(...)
-#     return clip.fx(_resize_fx, newsize=(1920, 1080))
-
-
-# def clean_images(directory: Path) -> List[Path]:
-#     sanitized: List[Path] = []
-#     for filename in sorted(os.listdir(directory)):
-#         source = directory / filename
-#         if not source.is_file():
-#             continue
-
-#         target = source
-#         if source.suffix.lower() == ".webp":
-#             target = source.with_suffix(".jpg")
-#             with Image.open(source) as img:
-#                 img.convert("RGB").save(target, "JPEG", quality=90)
-#             source.unlink()
-
-#         sanitized.append(target)
-
-#     return sanitized
-
-
-# def slideshow(image_dir: str, audio_file: str, output_path: str) -> str:
-#     directory = Path(image_dir)
-#     if not directory.exists():
-#         raise FileNotFoundError(f"Dossier d'images introuvable: {directory}")
-
-#     audio_source = Path(audio_file)
-#     if not audio_source.exists():
-#         raise FileNotFoundError(f"Audio introuvable: {audio_source}")
-
-#     images = clean_images(directory)
-#     if not images:
-#         raise ValueError("Aucune image fournie pour créer le diaporama.")
-
-#     audio_clip = AudioFileClip(str(audio_source))
-#     try:
-#         duration = float(audio_clip.duration)
-#         slide_duration = duration / len(images)
-
-#         clips = []
-#         for img in images:
-#             clip = ImageClip(str(img))
-#             clip = _set_duration(clip, slide_duration)
-#             clip = _resize_to_1080p(clip)
-#             clips.append(clip)
-
-#         video = concatenate_videoclips(clips, method="compose")
-#         final = _set_audio(video, audio_clip)
-
-#         output = Path(output_path)
-#         output.parent.mkdir(parents=True, exist_ok=True)
-#         final.write_videofile(str(output), fps=24)
-
-#         # Close to release file handles / ffmpeg resources
-#         final.close()
-#         video.close()
-#         for c in clips:
-#             c.close()
-
-#         return str(output)
-
-#     finally:
-#         audio_clip.close()
+                clip.close()
+            except Exception:
+                pass
+        if video_clip:
+            try:
+                video_clip.close()
+            except Exception:
+                pass
+        if final_clip:
+            try:
+                final_clip.close()
+            except Exception:
+                pass
+        audio_clip.close()

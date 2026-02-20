@@ -1,0 +1,74 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui ont forgé le France",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'homme aux mains d'acier",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_portrait",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "présentation d'un ouvrier des chantiers navals de Nantes",
+        "ambiance sonore des années 1950 - bruits industriels",
+        "description sensorielle du quotidien sur les chantiers",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 segment initial"
+      ],
+      "mood": "contemplatif_immersif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le rêve prend forme",
+      "duree_cible": 45,
+      "fonction_narrative": "developpement_tension",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "montée en puissance du chantier du France vers 1960",
+        "fierté et engagement personnel de l'ouvrier",
+        "dimension collective du projet - 106000 tonnes d'acier",
+        "tension entre labeur quotidien et grandeur du projet"
+      ],
+      "mood": "epique_intime"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui reste",
+      "duree_cible": 40,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "contraste passé glorieux / présent silencieux",
+        "héritage personnel et mémoire ouvrière",
+        "ouverture mélancolique sur les quais aujourd'hui",
+        "archive audio segment final - 'seules le...'"
+      ],
+      "mood": "nostalgique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_temporelle",
+      "duree": 3,
+      "description": "Glissement fluide du portrait individuel vers l'ampleur du projet collectif, la voix accompagne naturellement le passage des années"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_emotionnel",
+      "duree": 3,
+      "description": "Bascule douce du climax épique vers la contemplation présente, le silence industriel succède au tumulte"
+    }
+  ],
+  "notes_production": "Instructions pour Agent 2 : Ce récit est un portrait intime qui traverse le temps. La voix off omnisciente doit incarner une proximité bienveillante avec le personnage, sans jamais le nommer précisément (contexte insuffisant). Privilégier les sensations - chaleur du métal, odeur de soudure, poids de la fatigue - pour ancrer l'émotion. Les transitions doivent être imperceptibles : le texte coule comme un souvenir qui se déroule. L'archive audio disponible sert de fil conducteur factuel. Ne pas inventer de noms, dates précises ou événements non documentés. Le ton journalistique s'exprime par la précision des détails vérifiables (106000 tonnes, année 1960, chantiers de Nantes) tout en laissant l'humain au centre. La fin doit résonner comme un écho - ce qui fut grandiose persiste dans le silence actuel des quais."
+}

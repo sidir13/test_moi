@@ -5,44 +5,61 @@ Text-to-speech helper that adapts pronunciation/voice based on user instructions
 from __future__ import annotations
 
 import re
-import json
 import os
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Optional
+import logging
 
 import soundfile as sf
 import torch
 from qwen_tts import Qwen3TTSModel
 
-DEFAULT_PROJECT = "Mémoire des Territoires"
-CONFIG_PATH = Path(__file__).resolve().parents[3] / "config.json"
+from memoiredesterritoires.project_config import (
+    DEFAULT_PROJECT_NAME,
+    load_project_config,
+)
+
+logger = logging.getLogger(__name__)
+
+DEFAULT_PROJECT = DEFAULT_PROJECT_NAME
 LOCAL_MODEL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts")).expanduser()
 DEFAULT_MODEL = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
 _MODEL_CACHE: Dict[str, Qwen3TTSModel] = {}
 
 
 def _detect_device() -> tuple[str, torch.dtype]:
-    """Pick the most capable device available along with the right dtype."""
+    """
+    Pick the most capable device available along with a numerically stable dtype.
+
+    Note:
+        Qwen TTS occasionally produces NaNs on MPS when using float16, so we keep
+        float32 there even if it is slower to avoid RuntimeError during sampling.
+    """
     if torch.cuda.is_available():
         return "cuda", torch.float16
     if torch.backends.mps.is_available():
-        return "mps", torch.float16
+        return "mps", torch.float32
     return "cpu", torch.float32
 
 
 def _load_voice_instructions(project_name: Optional[str]) -> tuple[str, str]:
     project = project_name.strip() if project_name else DEFAULT_PROJECT
-    if not CONFIG_PATH.exists():
-        raise FileNotFoundError(f"config.json introuvable: {CONFIG_PATH}")
-    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-        config = json.load(f)
-    entry = config.get(project)
-    if not entry or not entry.get("voice_instructions"):
+    entry = load_project_config(project)
+    instructions = (entry or {}).get("voice_instructions")
+    if not instructions:
         raise ValueError(
             f"Aucune voix définie pour '{project}'. Utilisez d'abord edit_voice_instructions."
         )
-    return entry["voice_instructions"], project
+    trimmed_preview = instructions.strip().splitlines()[0][:160] if instructions else ""
+    logger.info(
+        "Using voice instructions for project=%s (source=%s): %s%s",
+        project,
+        entry.get("voice_instructions_source"),
+        trimmed_preview,
+        "…" if instructions and len(instructions) > len(trimmed_preview) else "",
+    )
+    return instructions, project
 
 
 def _resolve_model_source(model_name: str) -> tuple[str, dict]:

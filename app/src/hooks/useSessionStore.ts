@@ -9,9 +9,15 @@ export type Step = {
   skills: string[];
 };
 
+const getInitialLastProject = () => {
+  if (typeof window === "undefined") return undefined;
+  return window.sessionStorage.getItem("lastProjectName") ?? undefined;
+};
+
 type SessionState = {
   sessionId?: string;
   projectName?: string;
+  lastProjectName?: string;
   currentStep?: string;
   language: "fr" | "en";
   steps: Step[];
@@ -29,6 +35,7 @@ type SessionState = {
   setChatPlaceholder: (placeholder: string) => void;
   setSessionId: (sessionId: string | undefined) => void;
   setProjectName: (name: string | undefined) => void;
+  setLastProjectName: (name: string | undefined) => void;
   setScenarioTarget: (count: number) => void;
   updateProgress: (patch: Partial<SessionState["progress"]>) => void;
 };
@@ -67,6 +74,7 @@ export const useSessionStore = create<SessionState>((set) => ({
   setChatPlaceholder: (chatPlaceholder) => set({ chatPlaceholder }),
   setSessionId: (sessionId) => set({ sessionId }),
   setProjectName: (projectName) => set({ projectName }),
+  lastProjectName: getInitialLastProject(),
   setScenarioTarget: (scenarioTarget) => set({ scenarioTarget }),
   updateProgress: (patch) =>
     set((state) => ({
@@ -74,5 +82,15 @@ export const useSessionStore = create<SessionState>((set) => ({
         ...state.progress,
         ...patch
       }
-    }))
+    })),
+  setLastProjectName: (lastProjectName) => {
+    if (typeof window !== "undefined") {
+      if (lastProjectName) {
+        window.sessionStorage.setItem("lastProjectName", lastProjectName);
+      } else {
+        window.sessionStorage.removeItem("lastProjectName");
+      }
+    }
+    set({ lastProjectName });
+  }
 }));

@@ -1,0 +1,53 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, mémoires d'un métier en mouvement",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprenti aux mains neuves",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "fragments de souvenirs d'apprentissage",
+        "voix entrelacées évoquant les premiers gestes",
+        "atmosphère sonore d'atelier ou de chantier",
+        "sensations tactiles et odeurs du métier naissant",
+        "archive ElevenLabs_Spuds_Oxley.mp3 en fond contextuel (extrait sur les chantiers)"
+      ],
+      "mood": "nostalgique_curieux"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps qui transforme les gestes",
+      "duree_cible": 65.0,
+      "fonction_narrative": "developpement_climax_resolution",
+      "position_arc_emotionnel": "tension_climax_apaisement",
+      "elements_necessaires": [
+        "collage de témoignages sur l'évolution des techniques",
+        "contraste entre hier et aujourd'hui",
+        "voix multiples suggérant le passage du temps",
+        "réflexion sur la transmission et l'adaptation",
+        "retour à une tonalité apaisée et contemplative"
+      ],
+      "mood": "reflexif_emouvant"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_temporel",
+      "duree": 3.0,
+      "description": "Glissement fluide du passé vers le présent, comme un souvenir qui se fond dans un autre. Une phrase suspendue de la partie 1 trouve écho dans l'ouverture de la partie 2."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS AGENT 2 — FLUIDITÉ NARRATIVE ESSENTIELLE : Ce récit doit couler comme un flux de mémoire, sans ruptures franches. L'angle 'mosaïque de voix' implique d'entrelacer des fragments : bribes de souvenirs, échos de témoignages, impressions sensorielles. La narratrice (voix féminine, 40 ans, pédagogue et posée) tisse le fil conducteur entre ces fragments. Elle guide l'auditeur avec douceur, sans didactisme lourd. Les deux parties ne sont pas des blocs séparés mais deux mouvements d'une même respiration. La transition doit être imperceptible, comme quand on passe d'un souvenir à un autre sans s'en rendre compte. Éviter les annonces explicites ('Passons maintenant à...'). Privilégier les liens émotionnels et sensoriels. L'archive audio peut servir de texture de fond ou d'amorce, intégrée naturellement au collage sonore."
+}

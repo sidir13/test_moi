@@ -1,0 +1,77 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Les heures du dessinateur",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube au bureau d'études",
+      "duree_cible": 35.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "ambiance matinale feutrée",
+        "premiers gestes du métier",
+        "rituel d'installation au poste de travail",
+        "voix de Gilles Hamon en introduction",
+        "sons de papier et d'instruments de dessin"
+      ],
+      "mood": "intimiste_recueilli"
+    },
+    {
+      "partie": 2,
+      "titre": "Le trait et la tension",
+      "duree_cible": 50.0,
+      "fonction_narrative": "developpement_tension",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "concentration intense sur le travail",
+        "exigence de précision",
+        "pression des délais évoquée",
+        "témoignage sur les difficultés du métier",
+        "archive Gilles Hamon - extrait central"
+      ],
+      "mood": "concentre_sous_tension"
+    },
+    {
+      "partie": 3,
+      "titre": "La fin du jour",
+      "duree_cible": 35.0,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "relâchement de la tension",
+        "regard sur le travail accompli",
+        "réflexion personnelle sur le sens du métier",
+        "ouverture vers le lendemain",
+        "silence contemplatif"
+      ],
+      "mood": "apaise_reflexif"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 3.0,
+      "description": "Le matin s'efface doucement, les heures s'écoulent dans le murmure du crayon sur le papier. La voix du témoin nous guide naturellement vers le cœur de la journée de travail."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "respiration_narrative",
+      "duree": 3.0,
+      "description": "La tension retombe comme le jour décline. Un soupir, un recul face à la planche — le temps suspend son vol avant la réflexion finale."
+    }
+  ],
+  "notes_production": "Instructions pour Agent 2 : Ce récit doit couler comme une journée qui s'écoule — sans rupture, sans annonce de chapitres. Les trois parties sont des respirations, pas des coupures. La voix chorale peut alterner entre narration externe et fragments de témoignage de Gilles Hamon, mais toujours dans un flux continu. Le rythme lent permet des silences habités, des descriptions sensorielles (le grain du papier, la lumière qui change). L'angle 'journée type' doit ancrer chaque moment dans le concret des gestes : poser la règle, tailler le crayon, se pencher sur la planche. Éviter tout effet dramatique artificiel — la tension naît naturellement de l'exigence du métier. L'archive audio disponible semble être un début d'entretien — utiliser avec parcimonie, peut-être en amorce ou en écho discret."
+}

@@ -1,0 +1,77 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, fils de la Loire — Un apprentissage au fil du temps",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "recit_initiatique",
+  "duree_totale": 180,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'entrée dans un monde inconnu",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_initiatique",
+      "position_arc_emotionnel": "setup_curiosite",
+      "elements_necessaires": [
+        "Évocation sensorielle des chantiers navals (bruits, odeurs, lumière)",
+        "Premier regard de Gilles sur ce monde intimidant",
+        "Figure du maître d'apprentissage — présence rassurante",
+        "Gestes observés avant d'être compris",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 (extrait 0:00-0:15) pour ancrer l'époque"
+      ],
+      "mood": "emerveillement_timide"
+    },
+    {
+      "partie": 2,
+      "titre": "Les mains qui apprennent",
+      "duree_cible": 50,
+      "fonction_narrative": "montee_en_competence",
+      "position_arc_emotionnel": "tension_apprentissage",
+      "elements_necessaires": [
+        "Premiers échecs et frustrations",
+        "Moment de déclic — quand le geste devient instinct",
+        "Transmission silencieuse entre générations",
+        "Fierté naissante du travail accompli",
+        "Lien affectif avec l'atelier et les collègues"
+      ],
+      "mood": "effort_et_perseverance"
+    },
+    {
+      "partie": 3,
+      "titre": "Le temps qui transforme",
+      "duree_cible": 75,
+      "fonction_narrative": "climax_et_resolution",
+      "position_arc_emotionnel": "climax_puis_apaisement",
+      "elements_necessaires": [
+        "Passage du temps — les outils changent, les techniques évoluent",
+        "Ce qui reste : le savoir-faire transmis, l'amour du métier",
+        "Gilles devenu lui-même transmetteur",
+        "Regard rétrospectif empreint de gratitude",
+        "Ouverture contemplative sur l'héritage laissé"
+      ],
+      "mood": "sagesse_melancolique"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 3,
+      "description": "Du regard émerveillé aux premières tentatives — la transition se fait par le passage de l'observation à l'action, sans rupture, comme un souffle qui s'approfondit."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "ellipse_temporelle_douce",
+      "duree": 4,
+      "description": "Les années passent dans une phrase — le rythme ralentit encore, la voix prend de la hauteur pour embrasser le temps écoulé avec tendresse."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRUCIALES POUR L'AGENT 2 :\n\n1. FLUIDITÉ ABSOLUE : Ce récit est un FLUX CONTINU. Les trois parties sont des repères de rythme, PAS des chapitres séparés. Aucune pause marquée, aucun titre lu, aucune rupture de ton brutale.\n\n2. VOIX : Femme 40 ans, pédagogue et posée. Le ton doit évoquer une conteuse qui prend son temps, comme au coin du feu. Chaleur maternelle, pas de didactisme froid.\n\n3. ANGLE INITIATIQUE : Gilles découvre un monde. La narratrice nous guide dans SA découverte. On voit par ses yeux, on ressent son intimidation puis sa fierté. C'est un parcours intérieur autant que professionnel.\n\n4. RYTHME CONTEMPLATIF : Phrases longues autorisées. Silences respirés. Laisser les images se déployer. Ne pas presser.\n\n5. ARCHIVE AUDIO : Intégrer l'extrait de manière organique — il peut servir d'ancrage temporel en ouverture ou en transition vers la partie 3.\n\n6. RIGUEUR HISTORIQUE : Rester dans le vague sur les dates et noms précis. 'Dans les années cinquante', 'sur les chantiers de la Loire', 'un maître soudeur' — pas de détails inventés.\n\n7. ÉMOTION : L'arc va de la curiosité timide → l'effort et la fierté → la sagesse mélancolique. La voix doit porter cette évolution subtilement, sans surjouer."
+}

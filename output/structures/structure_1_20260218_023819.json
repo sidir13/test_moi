@@ -1,0 +1,75 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Chronique des travailleurs de l'ombre",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube du labeur",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "description du réveil collectif des travailleurs",
+        "atmosphère matinale, bruits du quotidien",
+        "présentation du groupe social sans noms inventés",
+        "évocation des gestes répétitifs et des habitudes"
+      ],
+      "mood": "descriptif_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le poids des jours",
+      "duree_cible": 45,
+      "fonction_narrative": "développement_tension",
+      "position_arc_emotionnel": "tension_montante_vers_climax",
+      "elements_necessaires": [
+        "témoignage audio Gilles Hamon (extrait court)",
+        "description des conditions de travail",
+        "solidarité et tensions au sein du groupe",
+        "accumulation des difficultés quotidiennes",
+        "voix collective qui émerge"
+      ],
+      "mood": "intense_engagé"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui demeure",
+      "duree_cible": 40,
+      "fonction_narrative": "résolution_ouverture",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "retour au calme après l'effort",
+        "transmission entre générations évoquée",
+        "dignité du travail accompli",
+        "ouverture vers la mémoire collective"
+      ],
+      "mood": "apaisé_réflexif"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 3,
+      "description": "Glissement fluide de l'atmosphère matinale vers l'intensité du travail, le rythme s'accélère imperceptiblement comme la journée qui s'écoule"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_emotionnel",
+      "duree": 3,
+      "description": "La tension retombe progressivement, passage du collectif à l'universel, du bruit au silence habité de sens"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS POUR AGENT 2 - FLUIDITÉ ESSENTIELLE : Ce récit doit couler comme une seule respiration. Les trois parties sont des repères de rythme, PAS des coupures. Utilisez des phrases de liaison, des reprises thématiques. Le témoignage audio de Gilles Hamon doit s'intégrer naturellement dans le flux narratif, introduit par le contexte et prolongé par le commentaire. Évitez tout découpage artificiel. Le ton neutre-informatif ne signifie pas froid : cherchez la justesse émotionnelle sans pathos. La chronique sociale implique de parler DU groupe, pas d'UN individu héroïsé. ATTENTION : ne pas inventer de dates, lieux ou noms précis non fournis dans le contexte historique."
+}

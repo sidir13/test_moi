@@ -21,9 +21,9 @@ export function StepNavigator() {
       case "audio_sources":
         return true;
       case "scenario_review":
-        return progress.audioReady;
+        return progress.scenariosReady;
       case "scenario_edit":
-        return progress.audioReady && progress.scenariosReady && progress.scenarioChosen;
+        return progress.scenariosReady && progress.scenarioChosen;
       case "final_validation":
         return progress.scenarioEdited;
       default:

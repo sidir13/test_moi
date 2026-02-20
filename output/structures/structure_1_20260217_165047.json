@@ -1,0 +1,55 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, des mains qui apprennent aux mains qui transmettent",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprenti des chantiers",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_et_tension",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "Présentation de Gilles jeune apprenti",
+        "Atmosphère des chantiers navals en activité",
+        "Le quotidien d'un groupe d'ouvriers : gestes répétés, camaraderie, fatigue",
+        "L'apprentissage par l'observation et l'imitation des anciens",
+        "Les premières difficultés, les erreurs, les encouragements",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 (extrait sur l'ambiance des chantiers)"
+      ],
+      "mood": "immersif_laborieux"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps qui transforme",
+      "duree_cible": 65,
+      "fonction_narrative": "climax_et_resolution",
+      "position_arc_emotionnel": "climax_vers_apaisement",
+      "elements_necessaires": [
+        "Passage du temps évoqué par les transformations du métier",
+        "Évolution des techniques et des outils",
+        "Gilles devenu ouvrier confirmé puis transmetteur de savoir",
+        "Le déclin progressif des chantiers, la nostalgie d'une époque",
+        "La fierté d'un parcours, d'un savoir-faire préservé",
+        "Ouverture sur ce qui reste : la mémoire, les gestes transmis"
+      ],
+      "mood": "nostalgique_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_douce",
+      "duree": 3,
+      "description": "Glissement naturel du jeune apprenti vers l'homme mûr, porté par une phrase de liaison évoquant les années qui passent sans rupture brutale"
+    }
+  ],
+  "notes_production": "Instructions pour Agent 2 : Le récit doit couler comme une chronique intime et sociale, sans jamais marquer de pause artificielle entre les deux parties. La voix de femme, posée et pédagogue, accompagne l'auditeur dans le temps avec bienveillance. Privilégier des phrases de liaison qui font le pont entre apprentissage et transmission. L'archive audio doit s'intégrer naturellement, comme un écho sonore du passé, non comme une rupture. Le ton reste accessible, jamais didactique : on raconte une vie, on ne fait pas un cours. La chronique sociale s'incarne dans les détails du quotidien ouvrier, les solidarités, les rituels du groupe. Éviter toute invention de dates ou noms précis non fournis dans le contexte."
+}

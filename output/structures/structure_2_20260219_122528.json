@@ -1,0 +1,55 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Gilles, des mains d'apprenti aux gestes d'un monde qui change",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprentissage - Les premières flammes",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "évocation sensorielle des chantiers navals en activité",
+        "portrait de Gilles jeune apprenti découvrant le métier",
+        "transmission des gestes par les anciens",
+        "atmosphère sonore des ateliers bourdonnants",
+        "fierté du travail manuel et de l'appartenance à une communauté ouvrière",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 - extrait sur l'activité des chantiers et la construction du France"
+      ],
+      "mood": "nostalgique_vibrant"
+    },
+    {
+      "partie": 2,
+      "titre": "La bascule - Quand les coques se sont tues",
+      "duree_cible": 65.0,
+      "fonction_narrative": "climax_et_resolution",
+      "position_arc_emotionnel": "tension_climax_resolution",
+      "elements_necessaires": [
+        "évocation du déclin progressif des chantiers",
+        "transformation du métier et adaptation de Gilles",
+        "passage du temps marqué par les changements du paysage industriel",
+        "regard rétrospectif sur une vie de travail",
+        "ouverture sur la transmission et la mémoire ouvrière",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 - extrait sur le silence actuel des chantiers"
+      ],
+      "mood": "melancolique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "ellipse_temporelle_douce",
+      "duree": 3.0,
+      "description": "Transition par une phrase pivot qui fait basculer du passé vibrant vers le présent apaisé, sans rupture brutale - le récit glisse naturellement d'une époque à l'autre comme un fondu sonore"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS POUR AGENT 2 - FLUIDITÉ NARRATIVE ESSENTIELLE : Le récit doit couler comme une conversation intime, portée par une voix de femme posée et pédagogue (40 ans). Éviter tout découpage scolaire - les deux parties forment un diptyque unifié, pas deux blocs séparés. La transition entre l'avant et l'après doit être imperceptible, comme un souvenir qui s'égrène. Utiliser l'archive audio comme ancrage émotionnel, en l'intégrant naturellement au fil du récit (pas comme une citation plaquée). Le ton pédagogique ne doit jamais devenir didactique - privilégier l'évocation sensorielle et l'empathie. ATTENTION : ne pas inventer de dates précises ni de détails biographiques non fournis dans le contexte - rester dans l'évocation et le portrait sensible plutôt que dans la précision factuelle."
+}

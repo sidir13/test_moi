@@ -1,0 +1,79 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles, mémoire vivante d'un métier en mutation",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 240,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprenti : les gestes fondateurs",
+      "duree_cible": 80.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_nostalgique",
+      "elements_necessaires": [
+        "voix_narratrice_posée_introduction_gilles",
+        "évocation_sensorielle_atelier_apprentissage",
+        "transmission_maitre_apprenti",
+        "gestes_répétés_mille_fois",
+        "odeurs_sons_matières_premières",
+        "fierté_premiers_accomplissements"
+      ],
+      "mood": "chaleureux_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le tournant : quand le monde change",
+      "duree_cible": 70.0,
+      "fonction_narrative": "pivot_dramatique",
+      "position_arc_emotionnel": "tension_montante",
+      "elements_necessaires": [
+        "archive_audio_ElevenLabs_Spuds_Oxley",
+        "parallèle_entre_époques",
+        "arrivée_nouvelles_technologies",
+        "questionnements_sur_avenir_métier",
+        "voix_multiples_témoins_époque"
+      ],
+      "mood": "réflexif_interrogatif"
+    },
+    {
+      "partie": 3,
+      "titre": "Aujourd'hui : le passeur de savoirs",
+      "duree_cible": 90.0,
+      "fonction_narrative": "resolution_ouverte",
+      "position_arc_emotionnel": "apaisement_sagesse",
+      "elements_necessaires": [
+        "gilles_devenu_formateur",
+        "dialogue_intergénérationnel",
+        "ce_qui_demeure_malgré_changements",
+        "héritage_immatériel",
+        "ouverture_vers_futur",
+        "retour_voix_narratrice_conclusion"
+      ],
+      "mood": "serein_porteur_espoir"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_temporel",
+      "duree": 3.0,
+      "description": "La voix narratrice fait glisser doucement du souvenir d'apprentissage vers l'évocation des bouleversements industriels, sans rupture - le fil du récit reste tendu par la figure de Gilles"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "respiration_contemplative",
+      "duree": 2.5,
+      "description": "Après l'archive sonore et les questionnements, un silence habité permet de basculer vers le présent - la voix reprend avec une tonalité plus lumineuse, tournée vers la transmission"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRUCIALES POUR AGENT 2 : Ce récit est conçu comme une interview pédagogique fluide, portée par une voix de femme posée (40 ans). La structure en trois parties ne doit JAMAIS créer de ruptures franches - le texte doit couler comme une conversation réfléchie. L'archive audio (ElevenLabs_Spuds_Oxley.mp3 évoquant les chantiers navals de Nantes et le paquebot France) doit être intégrée naturellement dans la partie 2 comme illustration sonore du contexte industriel de l'époque. La perspective chorale s'exprime par des évocations de voix multiples (le maître, les collègues, les jeunes apprentis d'aujourd'hui) rapportées par la narratrice, non par des changements de locuteurs. Le diptyque avant/après se structure autour du 'tournant' (partie 2) mais l'émotion reste contenue, pédagogique, jamais dramatisée. Privilégier les silences habités et le rythme contemplatif pour laisser résonner les mots."
+}

@@ -98,11 +98,7 @@ class SessionStore:
         data = self.load_session(session_id)
         if not data:
             raise FileNotFoundError(f"Session {session_id} not found")
-        previous = data.get("selected_scenario")
-        updates: Dict[str, object] = {"selected_scenario": scenario}
-        if not _scenarios_equal(previous, scenario):
-            updates["scenario_audio"] = None
-        self.update_session(session_id, updates)
+        self.update_session(session_id, {"selected_scenario": scenario})
 
     def init_scenario_progress(self, session_id: str, steps: List[Dict[str, str]]) -> None:
         templated = []

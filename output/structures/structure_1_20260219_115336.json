@@ -1,0 +1,75 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui ont forgé le France",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bourdonnement des chantiers",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "ambiance sonore des chantiers navals",
+        "description sensorielle du travail quotidien",
+        "présentation du collectif ouvrier anonyme",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 [00:00-00:15] - introduction Loire 1950"
+      ],
+      "mood": "nostalgique_reverent"
+    },
+    {
+      "partie": 2,
+      "titre": "Le labeur des corps",
+      "duree_cible": 45,
+      "fonction_narrative": "developpement_tension",
+      "position_arc_emotionnel": "tension_montante_vers_climax",
+      "elements_necessaires": [
+        "gestes répétitifs des soudeurs et charpentiers",
+        "fatigue physique et fierté mêlées",
+        "solidarité silencieuse entre travailleurs",
+        "montée vers l'accomplissement du France",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 [00:15-00:30] - construction du paquebot"
+      ],
+      "mood": "intense_emouvan"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui reste",
+      "duree_cible": 40,
+      "fonction_narrative": "resolution_meditative",
+      "position_arc_emotionnel": "apaisement_melancolique",
+      "elements_necessaires": [
+        "contraste passé glorieux / présent silencieux",
+        "héritage immatériel des travailleurs",
+        "réflexion sur la mémoire ouvrière",
+        "archive audio ElevenLabs_Spuds_Oxley.mp3 [00:30-fin] - évocation du silence actuel"
+      ],
+      "mood": "contemplatif_grave"
+    }
+  ],
+  "arc_emotionnel_global": "progression_crescendo",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_sensoriel",
+      "duree": 3,
+      "description": "De l'ambiance générale des chantiers, la voix resserre progressivement le cadre sur les gestes précis des hommes au travail, sans rupture - le bruit des machines devient rythme cardiaque du labeur"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "bascule_temporelle_douce",
+      "duree": 3,
+      "description": "L'évocation du France achevé ouvre naturellement sur la question de l'après - le silence qui a remplacé le vacarme, traité comme un fondu sonore et narratif"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRUCIALES POUR AGENT 2 : Ce récit est une chronique sociale contemplative, PAS un documentaire factuel segmenté. La voix off omnisciente doit couler comme un fleuve - la Loire elle-même. Les trois parties sont des MOUVEMENTS d'une même respiration, pas des chapitres distincts. Éviter absolument les formules de transition explicites ('Ensuite...', 'Puis...'). Privilégier les liaisons par l'image sonore et la sensation. Le ton dramatique immersif passe par la lenteur assumée et les silences habités, non par l'emphase. L'archive audio disponible structure le récit : l'utiliser comme fil conducteur, en laissant ses mots résonner avant de reprendre la narration. Le public grand public nécessite clarté sans simplification - faire confiance à l'émotion plutôt qu'à l'explication."
+}

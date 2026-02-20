@@ -119,14 +119,6 @@ button.step:disabled {
   margin: 0;
 }
 
-.project-list button {
-  border: 1px solid #cbd5f5;
-  border-radius: 999px;
-  padding: 0.4rem 1rem;
-  background: transparent;
-  cursor: pointer;
-}
-
 .project-list.stacked {
   flex-direction: column;
   gap: 0.75rem;
@@ -150,6 +142,21 @@ button.step:disabled {
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
 }
 
+.project-actions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.project-actions button,
+.project-actions a {
+  border: 1px solid #cbd5f5;
+  border-radius: 999px;
+  padding: 0.4rem 0.1rem;
+  background: transparent;
+  cursor: pointer;
+}
+
 .project-label {
   display: flex;
   flex-direction: column;
@@ -160,14 +167,57 @@ button.step:disabled {
   color: #64748b;
 }
 
-.play-btn {
-  border: 1px solid #2563eb;
-  border-radius: 999px;
-  padding: 0.25rem 0.9rem;
-  background: #2563eb;
-  color: #fff;
+.project-label-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.project-entry.last-active {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.22);
+}
+
+.part-title-label {
+  display: flex;
+  flex-direction: column;
   font-weight: 600;
+  gap: 0.25rem;
+}
+
+.part-title-label input {
+  font-weight: 400;
+}
+
+.play-btn {
+  border: 1px solid #1d4ed8;
+  border-radius: 999px;
+  width: 2.8rem;
+  height: 2.8rem;
+  background: #fff;
+  color: #1d4ed8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  overflow: visible;
+}
+
+.play-btn svg {
+  pointer-events: none;
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.play-btn[data-playing="true"] {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.play-btn:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.4);
+  outline-offset: 2px;
 }
 
 .project-audio-preview {
@@ -184,6 +234,63 @@ button.step:disabled {
   color: #065f46;
   font-size: 0.75rem;
   width: fit-content;
+}
+
+.badge.accent {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.scenario-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sourcing-toggle {
+  margin-top: 0.5rem;
+}
+
+.sourcing-panel {
+  border: 1px solid #dbeafe;
+  background: #f8fbff;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sourcing-part ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.35rem 0 0;
+}
+
+.sourcing-label {
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+.sourcing-label.muted {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.sourcing-pill {
+  display: inline-flex;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8em;
+  margin-right: 0.25rem;
+  margin-top: 0.15rem;
 }
 
 .card.emphasis {

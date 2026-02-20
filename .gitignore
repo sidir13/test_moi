@@ -120,6 +120,8 @@ process_number.cpython-312.pyc
 *.WAV
 *.mp3
 *.MP3
+*.mp4
+*.MP4
 
 ## db
 *.duckdb

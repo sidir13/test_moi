@@ -1,0 +1,74 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Mémoires de cale : les voix du France",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "temoignage_croise",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'appel des chantiers",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_tension_montante",
+      "elements_necessaires": [
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 en ouverture",
+        "Premier témoin : voix d'un ancien soudeur évoquant l'ambiance des chantiers navals de Nantes",
+        "Sons d'ambiance industrielle suggérés (marteaux, soudure)",
+        "Évocation sensorielle : odeur de métal chaud, lumière des arcs électriques"
+      ],
+      "mood": "nostalgique_vibrant"
+    },
+    {
+      "partie": 2,
+      "titre": "La naissance du géant",
+      "duree_cible": 45,
+      "fonction_narrative": "climax_emotionnel",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "Deuxième témoin : voix d'un charpentier de marine sur la construction de la coque",
+        "Troisième témoin : voix féminine (épouse ou fille d'ouvrier) sur l'attente et la fierté familiale",
+        "Évocation du paquebot France prenant forme - 106 000 tonnes",
+        "Moment pivot : le lancement en 1960, fierté collective"
+      ],
+      "mood": "epique_intime"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui reste",
+      "duree_cible": 40,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution_apaisee",
+      "elements_necessaires": [
+        "Retour au premier témoin ou nouvelle voix : regard sur le présent",
+        "Contraste entre l'effervescence passée et le silence actuel des quais",
+        "Écho de l'archive d'ouverture : 'Aujourd'hui, seules...'",
+        "Fermeture sur la transmission de la mémoire"
+      ],
+      "mood": "melancolique_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "relais_vocal",
+      "duree": 3,
+      "description": "La voix du soudeur s'estompe sur une image sonore (écho métallique) tandis que le charpentier prend le relais, comme si les souvenirs se passaient de main en main"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "bascule_temporelle",
+      "duree": 4,
+      "description": "La fierté du lancement de 1960 se mue en silence contemplatif - un souffle, puis la voix reprend au présent, plus posée"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS POUR AGENT 2 - FLUIDITÉ ESSENTIELLE : Ce récit est un TISSAGE de voix, pas une succession de témoignages cloisonnés. Les trois témoins doivent sembler converser à travers le temps, leurs phrases pouvant se chevaucher légèrement ou se répondre. L'archive audio d'ouverture pose le cadre factuel ; les voix fictives l'habitent émotionnellement. ATTENTION : ne pas inventer de noms propres ni de dates autres que celles mentionnées dans l'archive (1950, 1960, France, Nantes, 106 000 tonnes). Utiliser des formulations génériques : 'un vieux de la cale', 'ma mère disait', 'on racontait sur les quais'. Le rythme dynamique s'obtient par la variation des timbres et des registres émotionnels, non par la précipitation. Laisser respirer les silences entre les relais vocaux."
+}

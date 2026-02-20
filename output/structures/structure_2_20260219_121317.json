@@ -1,0 +1,79 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Lettre à la Loire — Mémoires d'acier et d'eau",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "lettre_intime",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'encre et le souvenir",
+      "duree_cible": 35.0,
+      "fonction_narrative": "ouverture_epistolaire",
+      "position_arc_emotionnel": "setup_nostalgique",
+      "elements_necessaires": [
+        "voix_confidentielle_comme_lecture_lettre",
+        "adresse_directe_a_la_Loire_personnifiee",
+        "evocation_chantiers_navals_Nantes",
+        "atmosphere_sonore_eau_calme",
+        "ton_intime_contemplatif"
+      ],
+      "mood": "melancolique_tendre"
+    },
+    {
+      "partie": 2,
+      "titre": "Les mains qui façonnaient les géants",
+      "duree_cible": 45.0,
+      "fonction_narrative": "coeur_emotionnel",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "archive_ElevenLabs_Spuds_Oxley",
+        "evocation_soudeurs_charpentiers",
+        "naissance_paquebot_France_1960",
+        "106000_tonnes_reves_acier",
+        "crescendo_emotionnel",
+        "fierte_collective_evoquee"
+      ],
+      "mood": "epique_intime"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui demeure",
+      "duree_cible": 40.0,
+      "fonction_narrative": "resolution_poetique",
+      "position_arc_emotionnel": "apaisement_contemplatif",
+      "elements_necessaires": [
+        "retour_voix_epistolaire",
+        "contraste_passe_present",
+        "silence_des_chantiers_aujourdhui",
+        "memoire_inscrite_dans_fleuve",
+        "signature_emotionnelle_lettre",
+        "ouverture_vers_transmission"
+      ],
+      "mood": "serein_empreint_absence"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "varie",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 3.0,
+      "description": "La voix épistolaire laisse place naturellement à l'archive, comme si le souvenir prenait corps — transition par fondu sonore, l'eau cède au métal"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "retour_au_present",
+      "duree": 2.5,
+      "description": "L'écho de l'archive s'estompe, la voix intime reprend le fil de la lettre — passage du tumulte au silence habité"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR AGENT 2 : Ce récit est UNE SEULE LETTRE lue à voix haute, adressée à la Loire comme à une confidente. Les trois sections ne sont PAS des ruptures mais des RESPIRATIONS dans une même coulée narrative. La voix doit rester constante dans son intimité — comme quelqu'un qui lit sa propre lettre à mi-voix. L'archive audio s'intègre comme un SOUVENIR qui surgit dans l'écriture, pas comme une citation externe. Privilégier les liaisons douces : 'Et je me souviens...', 'Tu portais alors...', 'Aujourd'hui quand je...' Le texte doit pouvoir être lu d'une traite sans que l'auditeur perçoive de découpage. Ton général : celui d'une correspondance qu'on n'enverra jamais, écrite pour soi-même, pour ne pas oublier."
+}
