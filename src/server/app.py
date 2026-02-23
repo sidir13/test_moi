@@ -62,7 +62,7 @@ from config.model_registry import get_available_models, resolve_model_id
 
 logger = logging.getLogger(__name__)
 SCENARIO_DEFAULT_CONFIG_PATH = Path(os.getenv("SCENARIO_DEFAULT_CONFIG", "config/default_config.json")).expanduser()
-BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.4)  # ≈ -7.96 dB
+BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.15)  # ≈ -16.48 dB
 BACKGROUND_PLAN_MODEL = os.getenv("BACKGROUND_PLAN_MODEL", "anthropic/claude-sonnet-4-5")
 VOICE_TRANSLATION_MODEL = os.getenv("VOICE_TRANSLATION_MODEL", "anthropic/claude-3-haiku-20240307")
 MIN_BACKGROUND_SEGMENT = 5.0
