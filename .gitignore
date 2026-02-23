@@ -122,6 +122,8 @@ process_number.cpython-312.pyc
 *.MP3
 *.mp4
 *.MP4
+!data/audio/background_sounds/
+!data/audio/background_sounds/**
 
 ## db
 *.duckdb
