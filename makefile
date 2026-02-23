@@ -2,10 +2,10 @@
 
 IMAGE_NAME ?= memoire-des-territoires-app
 GITHUB_PROFILE ?= julienRactM
-GITHUB_HOST ?= laplateformeio
+
 ENV_FILE ?= .env
 APP_DIR ?= app
-PLATFORM ?= linux
+PLATFORM ?= mac
 QWEN_MODEL_DIR ?= models/qwen3-tts
 QWEN_MODEL_ID ?= Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
 
@@ -34,7 +34,11 @@ ensure-app:
 	fi
 
 uv-install:
+ifeq ($(PLATFORM), mac)
+	brew install uv
+else
 	pip install uv
+endif
 
 install: ensure-env ensure-app
 	$(UV) sync
@@ -77,14 +81,7 @@ docker-refresh:
 docker-refresh-mac:
 	$(MAKE) docker-refresh PLATFORM=mac
 
-docker-push:
-	@if [ -z "$(GITPAT)" ]; then \
-		echo "Set GITPAT=your_token"; \
-		exit 1; \
-	fi
-	echo $(GITPAT) | docker login ghcr.io -u $(GITHUB_PROFILE) --password-stdin
-	docker tag $(IMAGE_NAME):latest ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
-	docker push ghcr.io/$(GITHUB_HOST)/$(IMAGE_NAME):latest
+
 
 run-app: ensure-env ensure-app
 	$(UV) sync
