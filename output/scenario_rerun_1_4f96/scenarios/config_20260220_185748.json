@@ -1,0 +1,493 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "universitaire",
+        "tone": "intimiste_confidentiel",
+        "duration_seconds": 30,
+        "voice_instructions": "Utilise une Voix d'enfant hystérique"
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "analyse_date": "2025-01-10",
+      "conflits_detectes": [
+        {
+          "type": "voix_contradictoire",
+          "description": "Demande simultanée de 'voix d'enfant hystérique' ET 'voix de femme pédagogue et posée'",
+          "resolution": "Priorité donnée à 'femme pédagogue et posée' (cohérent avec public universitaire et ton intimiste)",
+          "justification": "La voix d'enfant hystérique est incompatible avec le ton intimiste_confidentiel et le public universitaire"
+        }
+      ],
+      "ajustements_coherence": [
+        {
+          "parametre": "rythme",
+          "valeur_ajustee": "dynamique",
+          "raison": "Durée très courte (30s) nécessite un rythme soutenu pour couvrir 2 parties"
+        },
+        {
+          "parametre": "densite_sonore",
+          "valeur_ajustee": "minimaliste",
+          "raison": "Durée courte privilégie la narration pure sans surcharge sonore"
+        }
+      ],
+      "informations_manquantes": [
+        "Métier/profession spécifique concerné",
+        "Période historique précise",
+        "Localisation géographique",
+        "Contexte historique particulier"
+      ],
+      "recommandations_production": [
+        "Prioriser la densité informative (30s pour 2 parties)",
+        "Maintenir vocabulaire universitaire sans jargon excessif",
+        "Respecter strictement le ton intimiste sans dérive émotionnelle",
+        "Introduire explicitement le cadre (public + ton) en 3-5 secondes maximum",
+        "Équilibrer les 2 parties (≈15s chacune après introduction)"
+      ],
+      "scenario_target_override": 1
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : universitaire (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : intimiste_confidentiel (ne change jamais de ton).\n- Durée cible : ~30 s (0 min 30). Tolérance maximale ±15 %.\n- Voix attendue : Utilise une Voix d'enfant hystérique (intègre cette intention dans la mise en scène).\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nPrésente son histoire, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde\n\nUtilise une Voix de femme, pédagogue et posée"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": false,
+        "note": "Non spécifié explicitement, valeur par défaut conservée"
+      },
+      "duree": {
+        "value": 30,
+        "unit": "secondes",
+        "range": [
+          25,
+          35
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "explicit_user_constraint",
+        "tolerance_percent": 15,
+        "note": "CONTRAINTE NON NÉGOCIABLE : ~30s avec tolérance ±15%"
+      },
+      "ton": {
+        "value": "intimiste_confidentiel",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.8,
+        "source": "explicit_user_constraint",
+        "note": "CONTRAINTE NON NÉGOCIABLE : ton intimiste_confidentiel à maintenir tout au long"
+      },
+      "axe_narratif": {
+        "value": "evolution_temporelle",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": true,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social",
+          "partie_1": "apprentissage_histoire",
+          "partie_2": "evolution_metier"
+        },
+        "note": "Structure explicite demandée : histoire/apprentissage puis évolution du métier"
+      },
+      "rythme": {
+        "value": "dynamique",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 140,
+          "pauses": "minimales",
+          "variation": "rapide",
+          "justification": "Durée très courte (30s) nécessite un rythme soutenu"
+        }
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "note": "Implicite : une seule narration cohérente demandée",
+        "source": "project_slider"
+      },
+      "public_cible": {
+        "value": "universitaire",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "explicit_user_constraint",
+        "note": "CONTRAINTE NON NÉGOCIABLE : public universitaire, vocabulaire adapté à rappeler dès l'ouverture"
+      },
+      "niveau_detail_historique": {
+        "value": "approfondi",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "note": "Déduit du public universitaire"
+      },
+      "perspective_narrative": {
+        "value": "troisieme_personne",
+        "options": [
+          "premiere_personne",
+          "troisieme_personne",
+          "voix_off_omnisciente",
+          "chorale_multiple_voix"
+        ],
+        "default": "troisieme_personne",
+        "user_specified": false,
+        "note": "Non spécifié, valeur par défaut conservée"
+      },
+      "epoque_linguistique": {
+        "value": "modernise_accessible",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "note": "Adapté au public universitaire pour clarté académique"
+      },
+      "densite_sonore": {
+        "value": "minimaliste",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": false,
+        "details": {
+          "ambiances_simultanees_max": 1,
+          "frequence_effets_sonores": "rare",
+          "silence_narratif": true,
+          "justification": "Durée très courte (30s) privilégie la narration pure"
+        }
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": true,
+        "note": "Structure explicite : partie 1 (histoire/apprentissage) → partie 2 (évolution)"
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "temoignage_croise",
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement",
+          "mosaique_voix",
+          "lettre_intime",
+          "recit_initiatique"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "note": "Réservé au système, non spécifié par l'utilisateur"
+      },
+      "equilibre_narration_archives": {
+        "value": 0.9,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "note": "Privilégie fortement la narration (durée courte, pas d'archives mentionnées)"
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.6,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "note": "Équilibre vers accessibilité pour public universitaire"
+      },
+      "voix_narrative": {
+        "value": "femme_pedagogue_posee",
+        "user_specified": true,
+        "source": "explicit_user_request",
+        "caracteristiques": {
+          "genre": "femme",
+          "style": "pédagogue et posée",
+          "intention": "transmission de savoir"
+        },
+        "note": "CONTRAINTE EXPLICITE : Voix de femme, pédagogue et posée"
+      },
+      "contrainte_voix_alternative": {
+        "value": "enfant_hysterique",
+        "user_specified": true,
+        "status": "CONFLIT_DETECTE",
+        "resolution": "IGNORER",
+        "note": "CONFLIT : 'Voix d'enfant hystérique' incompatible avec ton intimiste_confidentiel ET public universitaire ET voix femme pédagogue. Cette contrainte contradictoire est écartée au profit de la cohérence globale."
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "ElevenLabs_Spuds_Oxley.mp3",
+            "transcription": "[00:00] Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité. Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêves et d'acier. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux.\n[00:30] Je n'ai pas reçu de segment audio à transcrire. Veuillez me transmettre le fichier ou le flux audio pour que je puisse effectuer la transcription.",
+            "language": "fr",
+            "notes": null,
+            "source": "data/projects/input4/audio/ElevenLabs_Spuds_Oxley.mp3"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": null,
+        "end_year": null,
+        "user_specified": false,
+        "era": "non_specifie",
+        "note": "Aucune période historique explicitement mentionnée"
+      },
+      "location": {
+        "primary": "non_specifie",
+        "specific_areas": [],
+        "user_specified": false,
+        "note": "Aucun lieu géographique spécifié"
+      },
+      "themes": {
+        "primary": [
+          "histoire_metier",
+          "apprentissage_professionnel",
+          "evolution_professionnelle"
+        ],
+        "secondary": [
+          "transmission_savoir",
+          "transformation_travail",
+          "parcours_formation"
+        ],
+        "user_specified": false,
+        "note": "Thématiques déduites de la structure demandée (histoire/apprentissage + évolution métier)"
+      },
+      "key_events": [],
+      "key_figures": [],
+      "subject_type": {
+        "value": "metier_profession",
+        "note": "Sujet centré sur un métier/profession non spécifié"
+      }
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "content_structure": {
+      "parties": [
+        {
+          "numero": 1,
+          "titre": "Histoire et apprentissage",
+          "duree_estimee": 15,
+          "focus": "Origines du métier, formation initiale, contexte d'apprentissage",
+          "user_specified": true
+        },
+        {
+          "numero": 2,
+          "titre": "Évolution du métier à travers le temps",
+          "duree_estimee": 15,
+          "focus": "Transformations, adaptations, mutations professionnelles",
+          "user_specified": true
+        }
+      ],
+      "introduction": {
+        "contenu_obligatoire": [
+          "Présentation explicite du public cible (universitaire)",
+          "Annonce du ton narratif (intimiste et confidentiel)"
+        ],
+        "duree_max": 5,
+        "user_specified": true,
+        "note": "CONTRAINTE : Commencer en présentant explicitement public et ton"
+      }
+    },
+    "quality_constraints": {
+      "non_negociables": [
+        {
+          "parametre": "public_cible",
+          "valeur": "universitaire",
+          "verification": "Vocabulaire académique adapté dès l'ouverture"
+        },
+        {
+          "parametre": "ton",
+          "valeur": "intimiste_confidentiel",
+          "verification": "Maintien constant du ton, aucune variation"
+        },
+        {
+          "parametre": "duree",
+          "valeur": "30s ±15%",
+          "verification": "Durée entre 25,5s et 34,5s"
+        },
+        {
+          "parametre": "voix",
+          "valeur": "femme_pedagogue_posee",
+          "verification": "Caractéristiques vocales respectées"
+        }
+      ],
+      "ecarts_interdits": [
+        "Changement de ton en cours de narration",
+        "Dépassement de la tolérance de durée",
+        "Vocabulaire inadapté au public universitaire",
+        "Omission de la présentation initiale (public + ton)"
+      ]
+    }
+  }
+}

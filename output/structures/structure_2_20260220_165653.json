@@ -1,0 +1,74 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Lettre à mon fils, depuis les chantiers de Nantes",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "lettre_intime",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Mon cher enfant, laisse-moi te raconter",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_intime",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "voix_epistolaire_douce",
+        "contexte_chantiers_navals_nantes_1950",
+        "archive_audio_ElevenLabs_introduction",
+        "ambiance_sonore_industrielle_lointaine"
+      ],
+      "mood": "nostalgique_tendre"
+    },
+    {
+      "partie": 2,
+      "titre": "Ces mains qui façonnaient l'acier",
+      "duree_cible": 45,
+      "fonction_narrative": "developpement_emotionnel",
+      "position_arc_emotionnel": "tension_climax",
+      "elements_necessaires": [
+        "description_travail_ouvrier",
+        "naissance_paquebot_france_1960",
+        "fierte_collective",
+        "details_sensoriels_chantier"
+      ],
+      "mood": "intense_fier"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qu'il reste de nos rêves d'acier",
+      "duree_cible": 40,
+      "fonction_narrative": "resolution_melancolique",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "passage_du_temps",
+        "heritage_transmis",
+        "clôture_epistolaire",
+        "silence_contemplatif"
+      ],
+      "mood": "apaise_melancolique"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 3,
+      "description": "La voix du narrateur s'anime progressivement, passant de l'adresse tendre à l'évocation vivante du travail quotidien, sans rupture de ton épistolaire"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_emotionnel",
+      "duree": 3,
+      "description": "L'intensité retombe doucement, la voix reprend son souffle comme après un souvenir puissant, menant vers la conclusion de la lettre"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR AGENT 2 : Ce récit est UNE SEULE LETTRE lue à voix haute, pas trois textes séparés. Le narrateur écrit à son fils pour lui transmettre la mémoire des chantiers navals. Maintenir le 'tu' épistolaire tout au long. Les transitions entre sections doivent être IMPERCEPTIBLES - le texte coule comme une confidence continue. L'archive audio disponible peut servir de base contextuelle mais doit être RÉÉCRITE dans le ton intime de la lettre. Éviter tout didactisme : les faits historiques (1950, 1960, paquebot France, 106 000 tonnes) doivent émerger naturellement dans le fil de la confidence personnelle, jamais comme des données encyclopédiques. Le silence final doit suggérer l'émotion contenue de celui qui referme une lettre précieuse."
+}

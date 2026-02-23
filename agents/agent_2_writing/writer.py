@@ -8,6 +8,8 @@ import logging
 import re
 from typing import Dict, List, Any, Optional
 
+from agents.utils import build_user_requirement_block
+
 logger = logging.getLogger(__name__)
 
 
@@ -196,6 +198,15 @@ DEMANDE ORIGINALE DE L'UTILISATEUR :
 \"{original_prompt.strip()}\"
 → Respectez scrupuleusement les intentions, souhaits et le ton demandé ci-dessus."""
         
+        user_requirements_block = build_user_requirement_block(config)
+        priority_rule = ""
+        if user_requirements_block:
+            priority_rule = (
+                "\n7. PRIORITÉ ABSOLUE : applique strictement le brief utilisateur et "
+                "les paramètres verrouillés listés ci-dessus (public, ton, durée, voix, etc.), "
+                "mais ne les cite jamais explicitement et n'explique pas que tu suis des consignes."
+            )
+
         # Build structure description for prompt
         parts_desc = []
         for part_struct in structure.get('structure', []):
@@ -209,6 +220,8 @@ Partie {part_struct['partie']} : {part_struct['titre']}
 """)
         
         prompt = f"""Écrivez le scénario audio complet en GÉNÉRANT TOUTES LES PARTIES dans une seule réponse cohérente.
+
+{user_requirements_block + '\\n\\n' if user_requirements_block else ''}
 
 INFORMATIONS GLOBALES :
 - Titre du scénario : {structure.get('titre_global')}
@@ -235,7 +248,7 @@ CONSIGNES :
 3. Adaptez le vocabulaire au public cible et à l'époque historique
 4. Si des transcriptions audio sont fournies, UTILISEZ-LES comme source primaire : intégrez les mots et témoignages réels
 5. Pour chaque partie : 2-3 moments clés (effets sonores, pauses, archives) + directions de ton (tempo, intonation)
-6. Après avoir rédigé le texte, découpez-le en phrases et pour chaque phrase listez les lignes de transcription qui l'ont inspirée (exactes ou très proches). S'il n'y a pas de transcription pertinente, laissez la liste vide.
+6. Après avoir rédigé le texte, découpez-le en phrases et pour chaque phrase listez les lignes de transcription qui l'ont inspirée (exactes ou très proches). S'il n'y a pas de transcription pertinente, laissez la liste vide.{priority_rule}
 
 Retournez un JSON avec TOUTES les parties :
 {{
@@ -360,216 +373,7 @@ JSON :"""
             
         except Exception as e:
             logger.error(f"Error generating all parts: {e}", exc_info=True)
-            # Fallback to iterative generation
-            logger.warning("Falling back to iterative part generation")
-            return self._write_parts_iterative(structure, config, historical_context, audio_transcriptions)
-    
-    def _write_parts_iterative(
-        self,
-        structure: Dict,
-        config: Dict,
-        historical_context: Optional[Dict],
-        audio_transcriptions: Optional[List]
-    ) -> List[Dict]:
-        """Fallback: Generate parts iteratively (old method)."""
-        parties = []
-        for part_structure in structure.get('structure', []):
-            part = self._write_part(
-                part_structure,
-                structure,
-                config,
-                historical_context,
-                audio_transcriptions
-            )
-            parties.append(part)
-        return parties
-    
-    def _write_part(
-        self,
-        part_structure: Dict,
-        full_structure: Dict,
-        config: Dict,
-        historical_context: Optional[Dict],
-        audio_transcriptions: Optional[List]
-    ) -> Dict:
-        """Write a single scenario part."""
-        
-        part_id = part_structure['partie']
-        titre = part_structure['titre']
-        duree_cible = part_structure['duree_cible']
-        fonction = part_structure['fonction_narrative']
-        mood = part_structure['mood']
-        
-        gen_params = config.get('scenario_config', {}).get('generation_parameters', {})
-        ton = gen_params.get('ton', {}).get('value', 'neutre_informatif')
-        public = gen_params.get('public_cible', {}).get('value', 'grand_public')
-        
-        # Use narrative builder skill if available
-        if self.narrative_builder:
-            try:
-                parts = self.narrative_builder.build_scenario_from_structure(
-                    full_structure,
-                    config,
-                    historical_context or {},
-                    audio_transcriptions
-                )
-                if parts and len(parts) >= part_id:
-                    return parts[part_id - 1]
-            except Exception as e:
-                logger.warning(f"Skill failed, using direct generation: {e}")
-        
-        # Direct generation fallback
-        angle = gen_params.get('angle_scenarisation', {}).get('value', 'auto')
-        original_prompt = config.get('scenario_config', {}).get('user_input', {}).get('original_prompt', '')
-        return self._generate_part_direct(
-            part_id, titre, duree_cible, fonction, mood, ton, public,
-            historical_context, audio_transcriptions,
-            angle_scenarisation=angle,
-            original_prompt=original_prompt
-        )
-    
-    def _generate_part_direct(
-        self,
-        part_id: int,
-        titre: str,
-        duree: float,
-        fonction: str,
-        mood: str,
-        ton: str,
-        public: str,
-        historical_context: Optional[Dict],
-        audio_transcriptions: Optional[List] = None,
-        angle_scenarisation: str = "auto",
-        original_prompt: str = ""
-    ) -> Dict:
-        """Generate part directly with Claude."""
-        
-        word_target = int(duree * 2.5)  # ~2.5 words per second at 150 WPM
-        
-        context_str = ""
-        if historical_context:
-            context_str = json.dumps(
-                historical_context.get('contexte_enrichi', {}),
-                indent=2,
-                ensure_ascii=False
-            )[:4000]
-
-        # Build transcriptions section
-        transcriptions_section = ""
-        if audio_transcriptions:
-            transcriptions_lines = []
-            for t in audio_transcriptions:
-                name = t.get("file_name", "audio")
-                text = t.get("transcription", "")
-                if text:
-                    transcriptions_lines.append(f"--- {name} ---\n{text[:3000]}")
-            if transcriptions_lines:
-                transcriptions_section = (
-                    "\n\nTRANSCRIPTIONS AUDIO DISPONIBLES (témoignages réels) :\n"
-                    + "\n\n".join(transcriptions_lines)
-                )
-
-        # Build original prompt section
-        prompt_section = ""
-        if original_prompt and original_prompt.strip():
-            prompt_section = f"\nDEMANDE ORIGINALE : \"{original_prompt.strip()}\""
-        
-        prompt = f"""Écrivez la partie {part_id} d'un scénario audio historique.
-
-PARAMÈTRES :
-- Titre : {titre}
-- Durée : {duree}s (environ {word_target} mots)
-- Fonction narrative : {fonction}
-- Mood : {mood}
-- Ton : {ton}
-- Public : {public}
-- Angle de scénarisation : {angle_scenarisation}
-{prompt_section}
-
-CONTEXTE HISTORIQUE (SEULE source de faits autorisée) :
-{context_str}
-{transcriptions_section}
-
-CONSIGNES :
-1. Texte narratif fluide et continu pour lecture audio
-2. Adaptez le vocabulaire au public et à l'époque
-3. 2-3 moments clés pour placement d'effets/archives + directions de ton
-4. Si des transcriptions audio sont fournies, intégrez les mots et témoignages réels
-5. Après rédaction, découpez vos phrases et associez à chacune les lignes de transcription pertinentes (ou liste vide si aucune).
-6. Suivez fidèlement l'angle de scénarisation demandé
-
-Retournez un JSON :
-{{
-  "partie_id": {part_id},
-  "titre": "{titre}",
-  "duree": {duree},
-  "texte_narration": "Votre texte...",
-  "ton": {{
-    "global": "{mood}",
-    "tempo_lecture": 110,
-    "pauses": ["après X", "avant Y"]
-  }},
-  "moments_cles": [
-    {{
-      "timestamp": "0:XX",
-      "action": "pause_dramatique",
-      "duree": 2.0
-    }}
-  ],
-  "ambiances_continues": [],
-  "sentence_sources": [
-    {{"sentence": "Première phrase complète.", "sources": ["[00:12] ..."]}},
-    {{"sentence": "Deuxième phrase.", "sources": []}}
-  ]
-}}
-
-JSON :"""
-        
-        try:
-            response = self.client.create_message(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                system=self.system_prompt,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens
-            )
-            
-            response_text = response.content[0].text
-            part = self._extract_json(response_text)
-
-            sentence_sources = part.get('sentence_sources', [])
-            if isinstance(sentence_sources, list):
-                normalized_sources = []
-                for item in sentence_sources:
-                    if not isinstance(item, dict):
-                        continue
-                    sentence_text = item.get('sentence')
-                    sources_list = item.get('sources', [])
-                    if not isinstance(sentence_text, str):
-                        continue
-                    if not isinstance(sources_list, list):
-                        sources_list = []
-                    normalized_sources.append({
-                        'sentence': sentence_text.strip(),
-                        'sources': [str(src).strip() for src in sources_list if isinstance(src, str) and src.strip()],
-                    })
-                part['sentence_sources'] = normalized_sources
-            else:
-                part['sentence_sources'] = []
-            
-            # Calculate actual timing
-            timing = self.calculate_narration_timing(
-                part.get('texte_narration', ''),
-                part.get('ton', {}).get('tempo_lecture', 110),
-                []
-            )
-            part['duree'] = timing['duration']
-            
-            return part
-            
-        except Exception as e:
-            logger.error(f"Error generating part {part_id}: {e}", exc_info=True)
-            return self._fallback_part(part_id, titre, duree, mood)
+            raise
     
     def validate_historical_accuracy(
         self,
@@ -737,18 +541,3 @@ JSON :"""
         
         raise ValueError("Could not extract valid JSON")
     
-    def _fallback_part(self, part_id: int, titre: str, duree: float, mood: str) -> Dict:
-        """Create fallback part."""
-        return {
-            'partie_id': part_id,
-            'titre': titre,
-            'duree': duree,
-            'texte_narration': f"[Partie {part_id}: {titre}. Texte à générer.]",
-            'ton': {
-                'global': mood,
-                'tempo_lecture': 110,
-                'pauses': []
-            },
-            'moments_cles': [],
-            'ambiances_continues': []
-        }

@@ -10,6 +10,7 @@ import os
 import re
 import shutil
 import tempfile
+from functools import lru_cache
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -60,6 +61,7 @@ from utils.claude_client import ClaudeClient
 from config.model_registry import get_available_models, resolve_model_id
 
 logger = logging.getLogger(__name__)
+SCENARIO_DEFAULT_CONFIG_PATH = Path(os.getenv("SCENARIO_DEFAULT_CONFIG", "config/default_config.json")).expanduser()
 BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.4)  # ≈ -7.96 dB
 BACKGROUND_PLAN_MODEL = os.getenv("BACKGROUND_PLAN_MODEL", "anthropic/claude-sonnet-4-5")
 VOICE_TRANSLATION_MODEL = os.getenv("VOICE_TRANSLATION_MODEL", "anthropic/claude-3-haiku-20240307")
@@ -84,6 +86,45 @@ FRENCH_HINT_KEYWORDS = {
     "lent",
     "accent",
 }
+
+
+@lru_cache(maxsize=1)
+def _load_generation_preference_defaults() -> Dict[str, Any]:
+    if not SCENARIO_DEFAULT_CONFIG_PATH.exists():
+        logger.warning("Default scenario config not found at %s", SCENARIO_DEFAULT_CONFIG_PATH)
+        return {}
+    try:
+        with open(SCENARIO_DEFAULT_CONFIG_PATH, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+    except json.JSONDecodeError as exc:
+        logger.warning("Invalid JSON in %s: %s", SCENARIO_DEFAULT_CONFIG_PATH, exc)
+        return {}
+    return payload.get("scenario_config", {}).get("generation_parameters", {})
+
+
+def _get_preference_options() -> Dict[str, Any]:
+    defaults = _load_generation_preference_defaults()
+    tone = defaults.get("ton", {})
+    audience = defaults.get("public_cible", {})
+    duration = defaults.get("duree", {})
+    duration_range = duration.get("range") or [30, 600]
+    if not isinstance(duration_range, list) or len(duration_range) != 2:
+        duration_range = [30, 600]
+    try:
+        duration_min = int(duration_range[0])
+        duration_max = int(duration_range[1])
+    except (TypeError, ValueError):
+        duration_min, duration_max = 30, 600
+    return {
+        "tone_options": tone.get("options", []),
+        "audience_options": audience.get("options", []),
+        "duration": {
+            "min": duration_min,
+            "max": duration_max,
+            "default": int(duration.get("value") or duration.get("default") or 120),
+            "step": int(duration.get("step") or 10),
+        },
+    }
 
 
 def log_progress(event: str, **fields: Any) -> None:
@@ -581,6 +622,183 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             logger.warning("Scenario ranking failed for %s: %s", project_name, exc)
             return []
 
+    def _normalize_requirement_value(value: Optional[str]) -> str:
+        if not value:
+            return ""
+        return value.replace("_", " ").replace("-", " ").strip()
+
+    def build_project_constraints(profile: Dict[str, Any]) -> Dict[str, Any]:
+        scenario_config = profile.get("scenario_config") or {}
+        gen_params = scenario_config.get("generation_parameters") or {}
+
+        def _from_config(key: str) -> Optional[str]:
+            if not isinstance(gen_params, dict):
+                return None
+            entry = gen_params.get(key)
+            if isinstance(entry, dict):
+                return entry.get("value")
+            return None
+
+        audience = profile.get("audience") or _from_config("public_cible")
+        tone = profile.get("tone") or _from_config("ton")
+        duration = profile.get("target_duration") or _from_config("duree")
+        try:
+            duration_value = int(duration) if duration is not None else None
+        except (TypeError, ValueError):
+            duration_value = None
+        voice = profile.get("voice_instructions")
+        norm_audience = _normalize_requirement_value(audience).lower()
+        norm_tone = _normalize_requirement_value(tone).lower()
+        audience_tokens: List[str] = []
+        if norm_audience:
+            audience_tokens.append(norm_audience)
+            if "enfant" in norm_audience:
+                audience_tokens.extend(
+                    ["enfant", "enfants", "mon enfant", "mon fils", "ma fille"]
+                )
+        constraints = {
+            "audience": audience,
+            "audience_norm": norm_audience,
+            "audience_tokens": audience_tokens,
+            "tone": tone,
+            "tone_norm": norm_tone,
+            "duration": duration_value,
+            "voice": voice,
+            "require_intro_context": True,
+        }
+        constraints["has_requirements"] = any(
+            constraints.get(key) for key in ("audience", "tone", "duration", "voice")
+        )
+        return constraints
+
+    def build_config_overrides_from_constraints(constraints: Dict[str, Any]) -> Dict[str, Any]:
+        if not constraints.get("has_requirements"):
+            return {}
+        overrides: Dict[str, Any] = {}
+        scenario_config = overrides.setdefault("scenario_config", {})
+        gen_params = scenario_config.setdefault("generation_parameters", {})
+        if constraints.get("audience"):
+            gen_params["public_cible"] = {
+                "value": constraints["audience"],
+                "user_specified": True,
+                "source": "project_profile",
+            }
+        if constraints.get("tone"):
+            gen_params["ton"] = {
+                "value": constraints["tone"],
+                "user_specified": True,
+                "source": "project_profile",
+            }
+        if constraints.get("duration"):
+            gen_params["duree"] = {
+                "value": constraints["duration"],
+                "unit": "secondes",
+                "user_specified": True,
+                "source": "project_profile",
+            }
+        metadata = scenario_config.setdefault("metadata", {})
+        metadata.setdefault("project_constraints", {}).update(
+            {
+                "audience": constraints.get("audience"),
+                "tone": constraints.get("tone"),
+                "duration_seconds": constraints.get("duration"),
+                "voice_instructions": constraints.get("voice"),
+            }
+        )
+        metadata.setdefault("hard_requirements", {}).update(
+            {
+                "must_reference_audience_in_intro": constraints.get("require_intro_context"),
+                "enforce_project_tone": bool(constraints.get("tone")),
+                "enforce_project_duration": bool(constraints.get("duration")),
+            }
+        )
+        return overrides
+
+    def build_constraint_prompt_block(constraints: Dict[str, Any]) -> str:
+        if not constraints.get("has_requirements"):
+            return ""
+        lines = [
+            "=== CONTRAINTES NON NÉGOCIABLES ===",
+        ]
+        if constraints.get("audience"):
+            lines.append(f"- Public cible : {constraints['audience']} (adapte le vocabulaire et rappelle-le dès l'ouverture).")
+        if constraints.get("tone"):
+            lines.append(f"- Ton narratif : {constraints['tone']} (ne change jamais de ton).")
+        if constraints.get("duration"):
+            minutes = constraints["duration"] // 60
+            seconds = constraints["duration"] % 60
+            lines.append(
+                f"- Durée cible : ~{constraints['duration']} s ({minutes} min {seconds:02d}). Tolérance maximale ±15 %."
+            )
+        if constraints.get("voice"):
+            lines.append(f"- Voix attendue : {constraints['voice']} (intègre cette intention dans la mise en scène).")
+        lines.append("Commence la narration en présentant explicitement le public cible et le ton demandé.")
+        lines.append("Tout écart à ces exigences doit être considéré comme une erreur.")
+        return "\n".join(lines)
+
+    def scenario_intro_snippet(entry: Dict[str, Any], max_chars: int = 400) -> str:
+        payload = extract_scenario_payload(entry)
+        snippets: List[str] = []
+        parties = payload.get("parties")
+        if isinstance(parties, list) and parties:
+            for part in parties[:2]:
+                text = part.get("texte_narration") if isinstance(part, dict) else None
+                if text:
+                    snippets.append(str(text).strip())
+                if sum(len(s) for s in snippets) >= max_chars:
+                    break
+        elif isinstance(payload.get("texte_narration"), str):
+            snippets.append(payload["texte_narration"].strip())
+        intro = " ".join(snippets).strip()
+        return intro[:max_chars]
+
+    def intro_mentions_audience(text: str, constraints: Dict[str, Any]) -> bool:
+        tokens = constraints.get("audience_tokens") or []
+        if not tokens or not text:
+            return True
+        snippet = text.lower()
+        return any(token in snippet for token in tokens)
+
+    def assess_scenario_compliance(entry: Dict[str, Any], constraints: Dict[str, Any]) -> Dict[str, Any]:
+        scenario_payload = extract_scenario_payload(entry)
+        issues: List[str] = []
+        tone_expected = constraints.get("tone_norm")
+        tone_actual = _normalize_requirement_value(scenario_payload.get("ton", "")).lower()
+        if tone_expected and tone_actual != tone_expected:
+            issues.append(
+                f"Ton attendu '{constraints.get('tone')}' mais obtenu '{scenario_payload.get('ton') or 'inconnu'}'."
+            )
+
+        expected_duration = constraints.get("duration")
+        duration_actual = scenario_payload.get("duree_estimee")
+        if duration_actual is None:
+            timeline = entry.get("timeline")
+            if isinstance(timeline, dict):
+                duration_actual = timeline.get("duree_totale")
+        if expected_duration and isinstance(expected_duration, int):
+            try:
+                duration_value = float(duration_actual)
+            except (TypeError, ValueError):
+                duration_value = None
+            if duration_value is None:
+                issues.append("Durée estimée indisponible.")
+            else:
+                tolerance = max(30.0, expected_duration * 0.15)
+                if abs(duration_value - expected_duration) > tolerance:
+                    issues.append(
+                        f"Durée {int(duration_value)}s hors tolérance autour de {expected_duration}s."
+                    )
+
+        if constraints.get("require_intro_context"):
+            intro = scenario_intro_snippet(entry)
+            if not intro_mentions_audience(intro, constraints):
+                issues.append("L'introduction ne rappelle pas le public cible fixé.")
+
+        return {
+            "is_compliant": not issues,
+            "issues": issues,
+        }
+
     def upsert_project_config_entry(project_name: str, updates: Dict[str, Any]) -> None:
         entry = load_project_config(
             project_name,
@@ -956,6 +1174,17 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             profile = {}
         settings_meta = load_project_settings(project_name)
         audio_selection = load_audio_selection(project_name)
+        scenario_config = profile.get("scenario_config") or {}
+        gen_params = scenario_config.get("generation_parameters") or {}
+        audience_value = profile.get("audience") or (gen_params.get("public_cible") or {}).get("value")
+        tone_value = profile.get("tone") or (gen_params.get("ton") or {}).get("value")
+        duration_param = gen_params.get("duree") or {}
+        target_duration = profile.get("target_duration") or duration_param.get("value") or duration_param.get("default")
+        try:
+            target_duration = int(target_duration) if target_duration is not None else None
+        except (TypeError, ValueError):
+            target_duration = None
+        preference_options = _get_preference_options()
         return {
             "name": project_name,
             "scenario_target": settings_meta.get("scenario_target", 3),
@@ -963,6 +1192,10 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "voice_instructions": profile.get("voice_instructions"),
             "voice_instructions_source": profile.get("voice_instructions_source"),
             "allowed_websites": profile.get("allowed_websites"),
+            "audience": audience_value,
+            "tone": tone_value,
+            "target_duration": target_duration,
+            "preference_options": preference_options,
             "last_scenarios": profile.get("last_scenarios") or [],
             "last_scenarios_generated_at": profile.get("last_scenarios_generated_at"),
             "final_scenario": profile.get("final_scenario"),
@@ -1107,6 +1340,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         # Load project notes and enrich the prompt
         project_profile = load_project_profile(project_name)
         project_notes = project_profile.get("project_notes", "")
+        constraints = build_project_constraints(project_profile)
         
         # Enrich prompt with project context if notes exist
         enriched_prompt = req.prompt
@@ -1115,9 +1349,16 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 enriched_prompt = f"{project_notes}\n\n{enriched_prompt}"
             else:
                 enriched_prompt = project_notes
+        constraint_prompt = build_constraint_prompt_block(constraints)
+        if constraint_prompt:
+            if enriched_prompt and enriched_prompt.strip():
+                enriched_prompt = f"{constraint_prompt}\n\n{enriched_prompt}"
+            else:
+                enriched_prompt = constraint_prompt
 
         # Resolve LLM model for scenario generation
         resolved_model = resolve_model_id(req.model_id)
+        config_overrides = build_config_overrides_from_constraints(constraints)
 
         params = {
             "prompt": enriched_prompt,
@@ -1127,6 +1368,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "audio_transcriptions": audio_transcriptions,
             "model_id": resolved_model,
         }
+        if config_overrides:
+            params["config_overrides"] = config_overrides
         log_progress(
             "SCENARIO_GENERATE_START",
             session=req.session_id,
@@ -1167,6 +1410,22 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
 
             start_step(2, "Lancement des agents (0 → 3)")
             loop = asyncio.get_running_loop()
+
+            async def regenerate_single_scenario(target_index: int) -> Optional[dict]:
+                rerun_params = dict(params)
+                rerun_params["scenario_target"] = 1
+                rerun_output_dir = Path(req.output_dir or "./output")
+                rerun_params["output_dir"] = str(
+                    (rerun_output_dir / f"scenario_rerun_{target_index}_{uuid4().hex[:4]}").resolve()
+                )
+                rerun_result = await loop.run_in_executor(None, lambda: scenario_skill.run(rerun_params))
+                rerun_scenarios = rerun_result.get("scenarios", [])
+                if not rerun_scenarios:
+                    return None
+                cloned = dict(rerun_scenarios[0])
+                cloned.setdefault("scenario_index", target_index)
+                return cloned
+
             result = await loop.run_in_executor(None, lambda: scenario_skill.run(params))
             scenario_count = result.get("skill_metadata", {}).get("scenario_count") or len(result.get("scenarios", []))
             finish_step(2, f"{scenario_count} scénario(s) généré(s)")
@@ -1199,6 +1458,60 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                     payload = {k: v for k, v in cloned.items() if k not in {"structure", "timeline"}}
                     cloned["scenario"] = payload
                 prepared_scenarios.append(cloned)
+
+            failing_indexes: List[int] = []
+            if constraints.get("has_requirements"):
+                for entry in prepared_scenarios:
+                    report = assess_scenario_compliance(entry, constraints)
+                    entry["compliance_report"] = report
+                    idx = entry.get("scenario_index")
+                    if idx is not None and not report["is_compliant"]:
+                        failing_indexes.append(idx)
+            else:
+                for entry in prepared_scenarios:
+                    entry["compliance_report"] = {"is_compliant": True, "issues": []}
+
+            if failing_indexes:
+                target_idx = next((idx for idx in failing_indexes if isinstance(idx, int)), None)
+                if target_idx is not None:
+                    log_progress(
+                        "SCENARIO_RERUN_START",
+                        session=req.session_id,
+                        project=project_name,
+                        scenario_index=target_idx,
+                    )
+                    replacement = await regenerate_single_scenario(target_idx)
+                    if replacement:
+                        replacement_report = assess_scenario_compliance(replacement, constraints)
+                        replacement["compliance_report"] = replacement_report
+                        if replacement_report["is_compliant"]:
+                            for idx_entry, entry in enumerate(prepared_scenarios):
+                                if entry.get("scenario_index") == target_idx:
+                                    prepared_scenarios[idx_entry] = replacement
+                                    break
+                            log_progress(
+                                "SCENARIO_RERUN_DONE",
+                                session=req.session_id,
+                                project=project_name,
+                                scenario_index=target_idx,
+                            )
+                        else:
+                            issues = "; ".join(replacement_report["issues"])
+                            log_progress(
+                                "SCENARIO_RERUN_FAILED",
+                                session=req.session_id,
+                                project=project_name,
+                                scenario_index=target_idx,
+                                reason=f"non_compliant_replacement: {issues}",
+                            )
+                    else:
+                        log_progress(
+                            "SCENARIO_RERUN_FAILED",
+                            session=req.session_id,
+                            project=project_name,
+                            scenario_index=target_idx,
+                            reason="no_scenario_generated",
+                        )
 
             ranking_order = compute_scenario_ranking(result.get("config"), prepared_scenarios, project_name)
             if ranking_order:

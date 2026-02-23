@@ -1,0 +1,78 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui ont bâti les navires",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprentissage sur les quais",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_et_montee_tension",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "ambiance_sonore_chantiers_navals_annees_50",
+        "archive_ElevenLabs_Spuds_Oxley_extrait_Loire_1950",
+        "voix_collective_apprentis",
+        "transmission_gestes_anciens_vers_jeunes",
+        "rythme_quotidien_ouvrier",
+        "fierté_du_métier_naissante"
+      ],
+      "mood": "dynamique_industriel_espoir"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des grands paquebots",
+      "duree_cible": 40.0,
+      "fonction_narrative": "climax_apogee",
+      "position_arc_emotionnel": "climax",
+      "elements_necessaires": [
+        "archive_ElevenLabs_Spuds_Oxley_extrait_France_1960",
+        "voix_multiples_ouvriers_temoins",
+        "intensité_travail_collectif",
+        "accomplissement_106000_tonnes",
+        "moment_de_fierté_nationale"
+      ],
+      "mood": "epique_collectif_intense"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui reste",
+      "duree_cible": 25.0,
+      "fonction_narrative": "resolution_melancolique",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "archive_ElevenLabs_Spuds_Oxley_extrait_aujourdhui",
+        "silence_des_chantiers",
+        "mémoire_des_gestes",
+        "transmission_interrompue",
+        "ouverture_contemplative"
+      ],
+      "mood": "nostalgique_digne"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "acceleration_temporelle",
+      "duree": 3.0,
+      "description": "Glissement fluide de l'apprentissage vers l'apogée - les années passent dans le martèlement des rivets, les apprentis deviennent maîtres"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce",
+      "duree": 2.0,
+      "description": "Le bruit s'estompe progressivement - du vacarme glorieux au silence présent, sans coupure brutale mais comme un souffle qui s'apaise"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR AGENT 2 : Ce récit est une chronique sociale chorale - les voix multiples doivent se fondre en un seul mouvement narratif continu. L'archive audio ElevenLabs sert de fil conducteur et doit être intégrée organiquement, pas comme citation isolée. Le passage du temps doit se ressentir dans le rythme même des phrases : énergiques et percutantes pour l'apprentissage, amples et fières pour l'apogée, espacées et contemplatives pour la fin. AUCUNE rupture narrative entre sections - le texte doit couler comme le fleuve Loire lui-même, portant l'histoire des ouvriers d'une rive temporelle à l'autre. Privilégier les formulations collectives ('ils', 'ces hommes', 'les mains') plutôt qu'individuelles. Le ton journalistique factuel s'exprime par la précision des détails sensoriels et l'absence de sentimentalisme - laisser les faits porter l'émotion."
+}

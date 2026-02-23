@@ -92,12 +92,16 @@ button.step:disabled {
 }
 
 .form-grid input,
-.form-grid textarea {
+.form-grid textarea,
+.form-grid select {
   width: 100%;
   border-radius: 12px;
   border: 1px solid #cbd5f5;
   padding: 0.75rem 1rem;
   font-size: 1rem;
+}
+.form-grid select {
+  background: #fff;
 }
 
 .form-grid button {
@@ -171,6 +175,29 @@ button.step:disabled {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+}
+
+.field-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.preference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.slider-field input[type="range"] {
+  width: 100%;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
 }
 
 .project-entry.last-active {

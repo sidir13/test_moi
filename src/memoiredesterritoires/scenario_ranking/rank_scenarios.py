@@ -271,6 +271,12 @@ def _parse_ranking(response: str, scenario_infos: List[Dict[str, Any]]) -> List[
     return [info["name"] for info in scenario_infos]
 
 
+def _readable_value(value: Optional[str]) -> str:
+    if not value:
+        return ""
+    return value.replace("_", " ").replace("-", " ").strip()
+
+
 def rank_scenarios_against_config(
     config_path: str,
     scenarios_dir: str,
@@ -296,15 +302,66 @@ def rank_scenarios_against_config(
             "aliases": _build_aliases(file.name, payload),
         })
 
+    gen_params = (
+        config.get("scenario_config", {})
+        .get("generation_parameters", {})
+        if isinstance(config.get("scenario_config"), dict)
+        else {}
+    )
+    tone_value = _readable_value(
+        (gen_params or {}).get("ton", {}).get("value")
+        if isinstance(gen_params, dict)
+        else None
+    )
+    audience_value = _readable_value(
+        (gen_params or {}).get("public_cible", {}).get("value")
+        if isinstance(gen_params, dict)
+        else None
+    )
+    duration_value = (
+        (gen_params or {}).get("duree", {}).get("value")
+        if isinstance(gen_params, dict)
+        else None
+    )
+
+    constraint_lines: List[str] = []
+    if tone_value or audience_value or duration_value:
+        constraint_lines.append(
+            "IMPORTANT : pénalise immédiatement tout scénario qui ne respecte pas les paramètres suivants."
+        )
+        if audience_value:
+            constraint_lines.append(
+                f"- Public cible imposé : {audience_value}. Le texte doit être adapté à ce public et le signaler clairement dès l'introduction."
+            )
+        if tone_value:
+            constraint_lines.append(
+                f"- Ton narratif imposé : {tone_value}. Aucune digression vers un autre ton n'est acceptée."
+            )
+        if duration_value:
+            constraint_lines.append(
+                f"- Durée attendue : ~{duration_value} secondes (tolérance maximale ±15 %)."
+            )
+        constraint_lines.append(
+            "- Les scénarios doivent rappeler dans les premières phrases le public et le ton imposés."
+        )
+        constraint_lines.append(
+            "- Classe d'abord sur la conformité, ensuite sur la cohérence historique et l'impact narratif."
+        )
+
     prompt_lines = [
         "Tu dois classer les scénarios du meilleur au moins adapté selon le cahier des charges suivant.",
         "Renvoie STRICTEMENT une liste JSON ordonnée des noms de fichiers.",
         "",
         "Cahier des charges:",
         config_str,
+    ]
+    if constraint_lines:
+        prompt_lines.append("")
+        prompt_lines.extend(constraint_lines)
+    prompt_lines.extend([
         "",
         "Scénarios:",
-    ]
+    ])
     for info in scenario_infos:
         prompt_lines.append(f"- {info['name']}: {info['summary']}")
 

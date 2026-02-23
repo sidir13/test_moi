@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+from copy import deepcopy
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Union
 
@@ -66,6 +67,9 @@ class ScenarioMakerSkill:
             params.get("audio_transcriptions") or []
         )
         config_data = self._load_config(config_path)
+        config_overrides = params.get("config_overrides")
+        if isinstance(config_overrides, dict):
+            config_data = self._deep_merge_dicts(config_data, deepcopy(config_overrides))
         scenario_target = params.get("scenario_target")
         forced_scenario_target: Optional[int] = None
         if isinstance(scenario_target, int):
@@ -208,3 +212,16 @@ class ScenarioMakerSkill:
                     }
                 )
         return normalized
+
+    def _deep_merge_dicts(self, base: Dict[str, Any], overrides: Dict[str, Any]) -> Dict[str, Any]:
+        """Recursively merge ``overrides`` into ``base`` without mutating inputs."""
+        for key, value in overrides.items():
+            if isinstance(value, dict):
+                node = base.setdefault(key, {})
+                if isinstance(node, dict):
+                    base[key] = self._deep_merge_dicts(node, value)
+                else:
+                    base[key] = deepcopy(value)
+            else:
+                base[key] = deepcopy(value)
+        return base

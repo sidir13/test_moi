@@ -1,0 +1,63 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Confession d'un métier en mutation",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "lettre_intime",
+  "duree_totale": 30,
+  "public_cible": "universitaire",
+  "ton_narratif": "intimiste_confidentiel",
+  "consignes_vocales_prioritaires": "Voix d'enfant hystérique (intention émotionnelle forte, urgence dans le débit) - PUIS Voix de femme pédagogue et posée pour contraste narratif",
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprentissage : mains tremblantes, cœur battant",
+      "duree_cible": 15.0,
+      "fonction_narrative": "exposition_intime",
+      "position_arc_emotionnel": "tension_initiale",
+      "intensite_emotionnelle": 0.7,
+      "elements_necessaires": [
+        "Adresse directe au public universitaire (explicite)",
+        "Ton intimiste-confidentiel établi dès l'ouverture",
+        "Évocation sensorielle de l'apprentissage (mains, gestes, peur, fierté)",
+        "Référence contextuelle vague aux années d'apprentissage",
+        "Atmosphère d'urgence et d'émotion brute (voix d'enfant hystérique)",
+        "Vocabulaire académique adapté mais émotionnellement chargé"
+      ],
+      "mood": "confidentiel_urgent_vulnerable",
+      "note_realisateur": "Voix d'enfant hystérique : débit rapide, souffle court, urgence émotionnelle. Le ton intimiste-confidentiel doit transparaître dans la vulnérabilité et l'authenticité, pas dans le calme."
+    },
+    {
+      "partie": 2,
+      "titre": "Métamorphose : du geste à l'abstraction",
+      "duree_cible": 15.0,
+      "fonction_narrative": "evolution_resolution",
+      "position_arc_emotionnel": "climax_puis_apaisement",
+      "intensite_emotionnelle": 0.9,
+      "elements_necessaires": [
+        "Transition fluide depuis l'apprentissage vers l'évolution du métier",
+        "Contraste temporel (avant/après) sans dates précises inventées",
+        "Archive audio possible : référence aux chantiers navals, transformation industrielle",
+        "Évocation de la dématérialisation ou modernisation (rester vague si contexte insuffisant)",
+        "Voix de femme pédagogue et posée (contraste vocal intentionnel)",
+        "Résolution émotionnelle : acceptation, nostalgie maîtrisée, transmission du savoir",
+        "Maintien du ton intimiste-confidentiel jusqu'à la fin"
+      ],
+      "mood": "reflexif_pedagogique_melancolique",
+      "note_realisateur": "Changement vocal radical : voix de femme posée, pédagogue, qui apaise et explique. Le contraste avec la partie 1 doit être saisissant mais naturel, comme une confidence qui trouve sa maturité."
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "pivot_vocal_et_temporel",
+      "duree": 1.0,
+      "description": "Transition fluide marquée par un changement de voix (enfant hystérique → femme posée). Pas de coupure narrative : le récit se poursuit naturellement, mais la perspective mûrit. Peut inclure un silence bref (0.5s) ou une respiration profonde pour signifier le passage du temps et de l'émotion brute à la réflexion."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRITIQUES POUR AGENT 2 - RÉDACTEUR :\n\n1. BRIEF UTILISATEUR = LOI ABSOLUE :\n   - Public universitaire : vocabulaire soutenu dès la première phrase\n   - Ton intimiste-confidentiel : JAMAIS de rupture, même avec voix hystérique\n   - Durée 30s : tolérance ±15% (25,5s - 34,5s maximum)\n   - Voix d'enfant hystérique partie 1 : urgence, souffle, émotion brute\n   - Voix de femme pédagogue partie 2 : contraste apaisant, transmission\n\n2. FLUIDITÉ NARRATIVE ABSOLUE :\n   - Les 2 sections forment UN SEUL récit continu\n   - Pas de rupture artificielle : le texte doit couler comme une confidence ininterrompue\n   - La transition voix = transition temporelle/émotionnelle, PAS une coupure de récit\n   - Angle 'lettre intime' : 'Je te confie...', 'Tu comprendras...', adresse directe\n\n3. RIGUEUR HISTORIQUE :\n   - Contexte fourni : vague (métier non spécifié, période floue)\n   - NE PAS inventer de dates, noms propres, lieux précis\n   - Rester dans l'évocation sensorielle et émotionnelle\n   - Si archive audio utilisée (chantiers navals) : l'intégrer naturellement mais ne pas extrapoler\n\n4. STRUCTURE BIPARTITE JUSTIFIÉE :\n   - Partie 1 (15s) : apprentissage, gestes, peur, initiation\n   - Partie 2 (15s) : évolution du métier, transformation, transmission\n   - Respect strict de la demande utilisateur : 'première partie apprentissage / seconde partie évolution'\n\n5. CONTRASTE VOCAL = OUTIL NARRATIF :\n   - Hystérie enfantine = urgence de l'apprentissage, vulnérabilité du débutant\n   - Pédagogie féminine posée = sagesse acquise, recul temporel, transmission\n   - Les deux voix servent le TON intimiste-confidentiel de manières différentes\n\nLe texte final doit être une confession universitaire fluide de 30 secondes, où l'émotion brute de l'apprentissage cède naturellement à la réflexion posée sur l'évolution d'un métier."
+}

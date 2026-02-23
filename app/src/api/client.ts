@@ -32,6 +32,17 @@ export type ProjectSummary = {
   } | null;
 };
 
+export type PreferenceOptions = {
+  tone_options: string[];
+  audience_options: string[];
+  duration: {
+    min: number;
+    max: number;
+    step: number;
+    default: number;
+  };
+};
+
 export type ProjectProfile = {
   name: string;
   scenario_target: number;
@@ -39,6 +50,10 @@ export type ProjectProfile = {
   voice_instructions?: string;
   voice_instructions_source?: string;
   allowed_websites?: string[];
+  audience?: string;
+  tone?: string;
+  target_duration?: number;
+  preference_options?: PreferenceOptions;
   last_scenarios?: Array<Record<string, unknown>>;
   last_scenarios_generated_at?: string;
   final_scenario?: Record<string, unknown>;

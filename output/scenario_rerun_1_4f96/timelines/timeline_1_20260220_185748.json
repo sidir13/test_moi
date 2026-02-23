@@ -1,0 +1,69 @@
+{
+  "timeline_id": "scenario_1_timeline_v1",
+  "scenario_id": 1,
+  "duree_totale": 38.526315789473685,
+  "tracks": {
+    "narration_track": [
+      {
+        "id": "narr_01",
+        "start_time": 0.0,
+        "end_time": 38.526315789473685,
+        "duration": 38.526315789473685,
+        "text_file": "scenario_part_1_narration.txt",
+        "estimated_words": 61,
+        "tempo_lecture": 95,
+        "tone": "intimiste_confidentiel",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause contemplative après 'quelque chose d'intime'",
+          "Pause méditative après 'tout s'est tu'",
+          "Pause finale après 'persiste en nous'"
+        ]
+      }
+    ],
+    "archives_track": [],
+    "ambiances_track": [],
+    "sfx_track": [],
+    "music_track": []
+  },
+  "transitions": [],
+  "master_parameters": {
+    "target_loudness": -16,
+    "dynamic_range": "moderate",
+    "final_compression": {
+      "threshold": -18.0,
+      "ratio": 3.0,
+      "attack": 10,
+      "release": 100
+    },
+    "final_limiter": {
+      "threshold": -1.0,
+      "ceiling": -0.3
+    }
+  },
+  "metadata": {
+    "total_files_used": 1,
+    "total_tracks": 5,
+    "total_regions": 1,
+    "generation_timestamp": "2026-02-20T18:57:48.802719",
+    "estimated_production_time": "2-3 heures",
+    "required_software": [
+      "Reaper",
+      "ou équivalent"
+    ],
+    "export_formats": [
+      "RPP",
+      "EDL",
+      "JSON"
+    ]
+  },
+  "quality_checks": {
+    "timeline_coherence": "✓ OK",
+    "no_overlapping_conflicts": "✓ OK",
+    "duration_matches_scenario": "✓ OK (38.5s)",
+    "all_required_sounds_found": "✓ OK",
+    "volume_levels_balanced": "✓ OK",
+    "transitions_smooth": "✓ OK"
+  }
+}

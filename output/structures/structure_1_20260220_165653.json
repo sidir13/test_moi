@@ -1,0 +1,74 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Mains d'acier, cœurs de Loire - Voix des chantiers navals",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "temoignage_croise",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le réveil des quais",
+      "duree_cible": 35.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 (extrait contextuel Loire 1950)",
+        "Premier témoin : voix d'un soudeur évoquant l'arrivée à l'aube sur les chantiers",
+        "Ambiance sonore industrielle naissante",
+        "Présentation du cadre : Nantes, chantiers navals, années 1950-1960"
+      ],
+      "mood": "evocateur_nostalgique"
+    },
+    {
+      "partie": 2,
+      "titre": "La forge des géants",
+      "duree_cible": 45.0,
+      "fonction_narrative": "developpement_tension",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "Deuxième témoin : voix d'un charpentier naval décrivant le labeur quotidien",
+        "Troisième témoin : voix d'une épouse ou proche évoquant l'attente et l'inquiétude",
+        "Évocation de la construction du paquebot France (1960, 106 000 tonnes)",
+        "Intensité du travail collectif, fierté mêlée d'effort"
+      ],
+      "mood": "intense_epique"
+    },
+    {
+      "partie": 3,
+      "titre": "L'écho des coques vides",
+      "duree_cible": 40.0,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "Retour au premier témoin : regard rétrospectif sur ce qui reste",
+        "Évocation du silence actuel des chantiers",
+        "Transmission de mémoire : ce que ces mains ont bâti demeure",
+        "Ouverture poétique sur la Loire et le temps qui passe"
+      ],
+      "mood": "melancolique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "varie",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "relais_de_voix",
+      "duree": 3.0,
+      "description": "La voix du soudeur s'efface progressivement tandis que celle du charpentier prend le relais, comme un passage de témoin naturel sur le chantier. Le bruit ambiant assure la continuité."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_temporel",
+      "duree": 3.0,
+      "description": "L'intensité du climax retombe doucement. Un silence marqué, puis la voix du premier témoin revient, vieillie par le souvenir, ramenant l'auditeur au présent contemplatif."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRUCIALES POUR AGENT 2 — FLUIDITÉ ET CONTINUITÉ : Ce récit doit couler comme un seul souffle mémoriel. Les trois témoins ne sont pas des segments isolés mais des voix qui se répondent et se complètent. Évitez toute rupture franche : les transitions sont des fondus, des relais naturels. L'archive audio doit être intégrée organiquement en ouverture pour ancrer immédiatement l'auditeur dans le lieu et l'époque. Le ton 'neutre_informatif' s'exprime par la sobriété des témoignages — pas de pathos excessif, mais une dignité ouvrière qui laisse les faits parler. La perspective première personne doit varier subtilement selon le témoin (soudeur pragmatique, charpentier fier, proche inquiet) tout en maintenant une cohérence de registre. Le public grand public impose clarté et accessibilité : éviter le jargon technique sans explication. ATTENTION : ne pas inventer de noms propres ou dates non attestés par le contexte fourni."
+}

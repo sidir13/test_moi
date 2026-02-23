@@ -10,6 +10,7 @@ from memoiredesterritoires.project_config_builder import ScenarioConfigBuilderSk
 from memoiredesterritoires.project_config import (
     get_project_config_path,
     load_project_config,
+    save_project_config,
 )
 
 logger = logging.getLogger(__name__)
@@ -60,9 +61,89 @@ class AutomationRunner:
 
     def _handle_update_project_notes(self, project_name: str, payload: dict) -> Dict[str, object]:
         description = payload.get("notes") or payload.get("description")
-        if not description:
-            return {"status": "skipped", "reason": "no notes provided"}
-        return self.update_project_notes(project_name, description)
+        result: Dict[str, object] = {"status": "skipped", "reason": "no notes provided"}
+        if description:
+            result = self.update_project_notes(project_name, description)
+        pref_result = self._apply_project_preferences(project_name, payload)
+        if pref_result:
+            result.setdefault("updates", {}).update(pref_result)
+        return result
+
+    def _apply_project_preferences(self, project_name: str, payload: dict) -> Dict[str, object]:
+        audience = payload.get("audience")
+        tone = payload.get("tone")
+        target_duration = payload.get("target_duration")
+        voice_instructions = payload.get("voice_instructions")
+        has_updates = any(
+            value is not None and (value != "" if isinstance(value, str) else True)
+            for value in (audience, tone, target_duration, voice_instructions)
+        )
+        if not has_updates:
+            return {}
+
+        entry = load_project_config(
+            project_name,
+            projects_dir=self.settings.projects_dir,
+            fallback_path=self.settings.config_json,
+        )
+        scenario_config = entry.setdefault("scenario_config", {})
+        gen_params = scenario_config.setdefault("generation_parameters", {})
+        updated: Dict[str, object] = {}
+        changed = False
+
+        if isinstance(audience, str) and audience.strip():
+            audience_value = audience.strip()
+            entry["audience"] = audience_value
+            public_param = gen_params.setdefault("public_cible", {})
+            public_param["value"] = audience_value
+            public_param["user_specified"] = True
+            updated["audience"] = audience_value
+            changed = True
+
+        if isinstance(tone, str) and tone.strip():
+            tone_value = tone.strip()
+            entry["tone"] = tone_value
+            tone_param = gen_params.setdefault("ton", {})
+            tone_param["value"] = tone_value
+            tone_param["user_specified"] = True
+            updated["tone"] = tone_value
+            changed = True
+
+        if isinstance(target_duration, (int, float)):
+            duration_value = int(target_duration)
+            if duration_value <= 0:
+                duration_value = 30
+            duration_value = max(30, min(600, duration_value))
+            duration_param = gen_params.setdefault("duree", {})
+            duration_param["value"] = duration_value
+            duration_param["user_specified"] = True
+            entry["target_duration"] = duration_value
+            updated["target_duration"] = duration_value
+            changed = True
+
+        if voice_instructions is not None:
+            voice_value = voice_instructions.strip()
+            if voice_value:
+                entry["voice_instructions"] = voice_value
+                entry["voice_instructions_source"] = "manual"
+                updated["voice_instructions"] = "manual"
+                changed = True
+
+        if changed:
+            save_project_config(
+                project_name,
+                entry,
+                projects_dir=self.settings.projects_dir,
+            )
+            logger.info(
+                "Project preferences updated | project=%s audience=%s tone=%s target_duration=%s voice_manual=%s",
+                project_name,
+                entry.get("audience"),
+                entry.get("tone"),
+                entry.get("target_duration"),
+                bool(entry.get("voice_instructions")),
+            )
+        return updated
 
     def _handle_read_project_config(self, project_name: str, payload: dict) -> Dict[str, object]:
         entry = load_project_config(

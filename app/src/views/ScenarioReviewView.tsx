@@ -159,7 +159,7 @@ export function ScenarioReviewView() {
             onChange={(e) => setSelectedModel(e.target.value)}
             style={{ flex: 1, minWidth: 180 }}
           >
-            <option value="">Par défaut (Opus)</option>
+            <option value="">Par défaut (Opus 4.6)</option>
             {modelsQuery.data?.map((m) => (
               <option key={m.id} value={m.id} title={m.description}>
                 {m.label} — {m.provider}

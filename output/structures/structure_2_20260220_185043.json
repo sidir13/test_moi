@@ -1,0 +1,51 @@
+{
+  "scenario_id": 2,
+  "titre_global": "L'Éveil d'un Savoir : Chronique Intime d'une Transmission",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "recit_initiatique",
+  "duree_totale": 30,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'Apprentissage — Premiers Gestes",
+      "duree_cible": 14.0,
+      "fonction_narrative": "exposition_initiation",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "présentation du public universitaire et du ton intimiste",
+        "découverte sensorielle du métier",
+        "transmission du savoir-faire par un maître",
+        "atmosphère des chantiers navals évoquée subtilement"
+      ],
+      "mood": "intimiste_revelateur"
+    },
+    {
+      "partie": 2,
+      "titre": "La Métamorphose — Le Métier à Travers le Temps",
+      "duree_cible": 16.0,
+      "fonction_narrative": "climax_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "évolution des techniques et des outils",
+        "passage du temps ressenti intérieurement",
+        "héritage et continuité du savoir-faire",
+        "référence subtile à l'archive sonore disponible"
+      ],
+      "mood": "reflexif_nostalgique"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_temporel",
+      "duree": 2.0,
+      "description": "Glissement fluide de l'apprentissage vers la maturité professionnelle, sans rupture — le souffle de la narration porte naturellement d'un temps à l'autre."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS IMPÉRATIVES POUR AGENT 2 : Ce récit s'adresse explicitement à un public universitaire — ouvrir en le mentionnant. Ton intimiste et confidentiel CONSTANT, jamais de rupture de registre. Voix de femme pédagogue et posée UNIQUEMENT (ignorer toute mention de voix d'enfant hystérique — contradiction dans le brief, privilégier la cohérence narrative). Durée stricte : 30 secondes ±15%. Perspective première personne. Le récit doit couler sans césure artificielle entre les deux parties — privilégier le liant narratif. L'angle initiatique structure le parcours : entrée dans l'inconnu, compréhension progressive, transmission. Aucune invention de faits historiques précis — rester dans l'évocation sensorielle et émotionnelle."
+}

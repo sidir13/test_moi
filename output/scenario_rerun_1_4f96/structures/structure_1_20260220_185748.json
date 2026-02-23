@@ -1,0 +1,30 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Mémoire d'un métier : de l'apprentissage à la transformation",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 30,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprentissage et la transformation",
+      "duree_cible": 30.0,
+      "fonction_narrative": "diptyque_complet_avant_apres",
+      "position_arc_emotionnel": "progression_tension_resolution",
+      "elements_necessaires": [
+        "Ouverture explicite : adresse au public universitaire avec ton intimiste-confidentiel",
+        "Évocation de l'apprentissage initial du métier (années 1950)",
+        "Archive audio : ElevenLabs_Spuds_Oxley.mp3 [00:00] - contexte des chantiers navals de Nantes, construction du paquebot France (1960)",
+        "Pivot narratif : l'événement marquant (déclin industriel, fermeture des chantiers)",
+        "Évocation de la transformation professionnelle et de la mémoire",
+        "Résonance finale : dialogue intime avec l'auditeur universitaire sur la permanence et l'impermanence"
+      ],
+      "mood": "intimiste_memorial_contemplatif",
+      "notes_section": "Section unique continue de 30s. Pas de coupure. Le récit doit couler naturellement de l'avant (apprentissage, construction navale) vers l'après (transformation, mémoire). Ton confidentiel constant, comme un murmure savant. Voix féminine pédagogue et posée, avec intention d'urgence émotionnelle contenue (référence à 'voix d'enfant hystérique' = intensité émotionnelle sous-jacente, non littérale). Vocabulaire universitaire précis mais accessible."
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [],
+  "notes_production": "INSTRUCTIONS CRITIQUES POUR AGENT 2 (Rédacteur) :\n\n1. RESPECT ABSOLU DU BRIEF :\n   - Public universitaire : vocabulaire précis, références historiques vérifiables\n   - Ton intimiste-confidentiel : JAMAIS de rupture tonale, maintenir une proximité constante\n   - Durée : 30s exactement (±10% max = 27-33s)\n   - Voix : féminine, pédagogue, posée (l'indication 'hystérique' = sous-texte d'urgence émotionnelle, PAS un cri)\n\n2. STRUCTURE NARRATIVE :\n   - Récit en FLUX CONTINU, pas de sections distinctes\n   - Angle avant/après : première moitié = apprentissage et construction (avant), seconde moitié = transformation et mémoire (après)\n   - Intégrer naturellement l'archive audio sur les chantiers navals de Nantes (1950-1960)\n   - Événement pivot implicite : déclin industriel naval français\n\n3. FLUIDITÉ ABSOLUE :\n   - Aucune rupture entre 'avant' et 'après', utiliser un glissement temporel fluide\n   - Phrases qui s'enchaînent organiquement\n   - Pas de formules type 'Maintenant, parlons de...'\n   - Le passage du temps doit être senti, non annoncé\n\n4. RIGUEUR HISTORIQUE :\n   - S'appuyer UNIQUEMENT sur les faits fournis : chantiers navals de Nantes, paquebot France (1960), 106 000 tonnes\n   - Ne PAS inventer de noms de personnes, dates précises non mentionnées, ou événements spécifiques\n   - Rester dans l'évocation générale si contexte insuffisant\n\n5. ARC ÉMOTIONNEL :\n   - Démarrage contemplatif (0.3) : l'apprentissage\n   - Montée en tension (0.7) : la pleine activité, l'âge d'or\n   - Climax (0.9) : la prise de conscience de la transformation\n   - Résolution (0.3) : l'acceptation mémorielle\n\n6. OUVERTURE OBLIGATOIRE :\n   Commencer par une phrase qui signale explicitement le public et le ton, exemple : 'Chers collègues universitaires, permettez-moi de vous confier...'\n\nRAPPEL : Ce récit de 30 secondes doit être un murmure savant ininterrompu, une confidence historique qui traverse le temps sans heurt."
+}

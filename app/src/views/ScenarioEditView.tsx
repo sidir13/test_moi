@@ -275,21 +275,19 @@ export function ScenarioEditView() {
             <>
               {partsDraft.map((part, idx) => (
                 <div className="card" key={idx}>
-                  <label>
-                    Titre de la partie {idx + 1} (non modifiable)
-                    <div
-                      style={{
-                        border: "1px solid var(--border, #d0d7de)",
-                        borderRadius: 6,
-                        padding: "0.4rem 0.6rem",
-                        background: "var(--card-bg, #f5f6f8)",
-                        marginTop: "0.25rem",
-                        fontWeight: 600
-                      }}
-                    >
-                      {part.titre || `Partie ${idx + 1}`}
-                    </div>
-                  </label>
+                  <div
+                    style={{
+                      border: "1px solid var(--border, #d0d7de)",
+                      borderRadius: 6,
+                      padding: "0.4rem 0.6rem",
+                      background: "var(--card-bg, #f5f6f8)",
+                      marginBottom: "0.5rem",
+                      fontWeight: 600
+                    }}
+                    aria-label={`Titre de la partie ${idx + 1}`}
+                  >
+                    {part.titre || `Partie ${idx + 1}`}
+                  </div>
                   <label>
                     Contenu
                     <textarea

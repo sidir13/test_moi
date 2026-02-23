@@ -1,51 +1,71 @@
-# Mémoire des Territoires – Architecture & Product Guide
+# Mémoire des Territoires – Architecture, Pipeline & Ops Guide
 
-Mémoire des Territoires orchestre la génération de récits audio historiques à partir d’archives sonores. Le dépôt réunit :
+Mémoire des Territoires assemble des récits audio immersifs à partir d’archives sonores. Le dépôt combine :
 
-1. **Un backend FastAPI** (`src/server`) qui gère projets, sessions, stockage, chat WebSocket avec le LLM Anthropic, orchestrations Agent 0→3 et synthèse vocale.
-2. **Un frontend React/Vite** (`app/`) bilingue FR/EN avec une navigation guidée, un chatbot outillé, drag & drop audio, affichage WaveSurfer et lecteur HTML5.
-3. **Un ensemble de skills Python** (`src/memoiredesterritoires/*`) mutualisés entre le chatbot (`main.py`), les automatisations et l’orchestrateur (`orchestrator.py`).
+1. **Un backend FastAPI** (`src/server/`) qui orchestre projets, sessions, stockage audio/vidéo, WebSocket chat et toutes les automatisations (Agents 0→3, TTS Qwen, mixage, slideshow).
+2. **Un frontend React/Vite** (`app/`) bilingue, structuré autour de six étapes avec un copilote LLM outillé (sélection audio, sourcing, édition, validation).
+3. **Une librairie de skills Python** (`src/memoiredesterritoires/*`) factorisée entre le chatbot CLI (`main.py`), l’orchestrateur multi-agent (`orchestrator.py`) et les automations backend.
 
 ---
 
-## 1. Organisation du dépôt
+## 1. Tour du dépôt
 
 | Chemin | Description |
 | --- | --- |
-| `app/` | SPA React (TypeScript, Vite). |
-| `src/server/` | App FastAPI (`app.py`, `chat_agent.py`, `automation.py`, etc.). |
-| `src/memoiredesterritoires/` | Skills et outils (transcription, mixage, scenario maker…). |
-| `main.py` | Entrée CLI pour le chatbot (Anthropic tools + orchestrateur). |
-| `config/step_config.json` | Source de vérité pour les étapes UX (titres, skills, automatisations). |
-| `data/projects/<nom>/config.json` | Métadonnées consolidées par projet (notes, voix, chemins exports). |
-| `data/` | Projets utilisateurs et bibliothèque d’ambiances (`audio/background_sounds`). |
-| `Dockerfile`, `makefile` | Tooling multi-plateforme (Mac Apple Silicon + Linux). |
+| `app/` | SPA React (TypeScript, Vite, TanStack Query, Zustand). |
+| `src/server/app.py` | Entrée FastAPI : routes REST/WS, chargement config, automation runner, TTS, slideshow. |
+| `src/server/chat_agent.py` | Proxy Anthropic (Claude) + mapping outils → skills Python. |
+| `src/server/automation.py` | Gestion des automations par étape (`step_config.json`). |
+| `src/server/session_store.py` | Persistence file-based des sessions (JSON) et suivi de progression. |
+| `src/memoiredesterritoires/` | Skills (transcription OpenRouter, background planner, scenario maker, TTS, mixage…). Chaque dossier possède un `SKILL.md`. |
+| `main.py` | Interface CLI interactive pour piloter les skills hors UI. |
+| `config/default_config.json` | Baseline Agent 0 (génération paramètres, tons, publics, durées, etc.). |
+| `config/step_config.json` | Source de vérité des étapes (nom, description, skills autorisés, automations). |
+| `data/projects/<nom>/` | Espace projet (config consolidée, uploads audio, notes, exports finaux). |
+| `data/audio/background_sounds/` | Bibliothèque partagée d’ambiances. |
+| `models/qwen3-tts/` | Modèle Qwen3 TTS (optionnel hors-ligne). |
+| `makefile`, `Dockerfile`, `docker-entrypoint.sh` | Tooling multi-plateforme (uv + npm + multi-stage build). |
 
 ---
 
 ## 2. Installation & exécution locale
 
-1. **Variables d’env.**
+1. **Variables d’environnement**
    ```bash
    cp env.example .env
-   # Renseigner : ANTHROPIC_AUTH_TOKEN, ANTHROPIC_BASE_URL, ELEVENLABS_API_KEY,
-   # MAX_AUDIO_MB, VITE_API_BASE (ex: http://localhost:8000)
-   ```
-2. **Dépendances**
-   ```bash
-   make install PLATFORM=mac    # ou linux – utilise uv + npm
-   ```
-3. **API de dev**
-   ```bash
-   uv run uvicorn server.main:app --reload
-   # http://localhost:8000 (Swagger : /docs, front : /web en prod)
-   ```
-4. **Front de dev**
-   ```bash
-   cd app && npm run dev        # http://localhost:5173 (proxy vers VITE_API_BASE)
+   # Renseigner :
+   #  - ANTHROPIC_AUTH_TOKEN, ANTHROPIC_BASE_URL
+   #  - OPENROUTER_API_KEY (si transcription)
+   #  - ELEVENLABS_API_KEY (optionnel)
+   #  - MAX_AUDIO_MB (valeur par défaut 500)
+   #  - VITE_API_BASE (http://localhost:8000 en dev)
+   #  - SCENARIO_DEFAULT_CONFIG (optionnel pour override de config agent)
    ```
 
-> Sans clés Anthropic/ELEVENLABS valides, le chatbot et la synthèse vocale retourneront des erreurs 401/400. Vérifiez `.env` et la présence des fichiers `data/projects/<projet>/config.json`.
+2. **Dépendances**
+   ```bash
+   make install PLATFORM=mac        # ou PLATFORM=linux
+   # -> uv sync (backend) + npm install (frontend)
+   ```
+
+3. **Back uniquement**
+   ```bash
+   uv run uvicorn server.app:create_app --factory --reload
+   # http://127.0.0.1:8000  (Swagger: /docs, Health: /health)
+   ```
+
+4. **Front uniquement**
+   ```bash
+   cd app && npm run dev            # http://127.0.0.1:5173
+   # Vite utilise VITE_API_BASE comme proxy API
+   ```
+
+5. **Build complet (prod-like)**
+   ```bash
+   make run-app                     # uv sync + npm install + npm run build + uvicorn
+   ```
+
+> La synthèse vocale et la génération de scénarios exigent des clés Anthropic/Qwen valides. Sans `voice_instructions` définies pour un projet, la route `/sessions/{id}/scenario-audio` refusera la génération (400).
 
 ---
 
@@ -53,119 +73,145 @@ Mémoire des Territoires orchestre la génération de récits audio historiques 
 
 | Commande | Description |
 | --- | --- |
-| `make install PLATFORM=<mac|linux>` | Installe Python (via `uv sync`) et npm (`app/`). |
-| `make docker-build PLATFORM=<mac|linux>` | Build multi-stage : Node build → `npm run build` → `pip install -e .`. |
-| `make docker-run PLATFORM=<mac|linux>` | `docker run --platform linux/arm64 -p 8000:8000 --env-file .env memoire-des-territoires-app`. |
-| `make docker-refresh` | Enchaîne install → build → run. |
-| `make docker-push GITPAT=<token>` | Login GHCR (`echo $GITPAT | docker login ghcr.io -u julienRactM --password-stdin`), tag/push `ghcr.io/laplateformeio/julienRactM`. |
-| `make download-qwen-model` | Télécharge le modèle Qwen3-TTS (via Hugging Face) dans `models/qwen3-tts/` pour une synthèse hors ligne. |
+| `make install PLATFORM=<mac|linux>` | Installe dépendances Python (uv) + front (npm). |
+| `make run-app` | Étapes enchaînées : `uv sync` → `npm install --legacy-peer-deps` → `npm run build` → `uv run uvicorn server.app:create_app --factory --reload`. |
+| `make docker-build PLATFORM=<mac|linux>` | Build multi-stage (Node build + uv). Résout Apple Silicon (`--platform linux/arm64`). |
+| `make docker-run PLATFORM=<mac|linux>` | Lance le container avec `--env-file .env -p 8000:8000`. |
+| `make docker-refresh-<mac|linux>` | Rebuild + run en un seul raccourci. |
+| `make docker-push GITPAT=<token>` | Push de l’image sur GHCR (`ghcr.io/laplateformeio/julienRactM`). |
+| `make download-qwen-model` | Télécharge `Qwen3TTSModel` pour exécuter le TTS hors connexion. |
 
-`.dockerignore` élimine `models/`, `notebooks/`, `node_modules/`, les exports audio lourds, etc., pour éviter les contextes > 10 Go.
+`.dockerignore` ignore les gros artefacts (`data/audio`, `models`, `node_modules`, exports) pour éviter des contextes > 10 Go.
 
 ---
 
-## 4. Parcours produit côté Front
+## 4. Parcours produit & UX
 
-| Étape | Intitulé | Contenu & automatisations |
+| # | Vue | Détails UI + automations |
 | --- | --- | --- |
-| 1 | **Sélection de projet** | Création / sélection d’un projet. Backend crée `data/projects/<nom>` et initialise `data/projects/<nom>/config.json`. |
-| 2 | **Détails du projet** | Brief narratif (FR/EN) envoyé au chatbot. `update_project_notes` + `project_config_builder`. |
-| 3 | **Sélection des sources audios** | Upload (validation extension/codecs, taille < `MAX_AUDIO_MB`). Sélection manuelle + suggestions background. Automatisations : transcription → stockage DuckDB, mise à jour de la config projet. |
-| 4 | **Consulter les scénarios** | Appel pipeline Agent 0→3 (ScenarioMakerSkill). Progression live (préparation, vérif des sources, génération multi-agents, consolidation). Sélection d’un scénario → synthèse TTS immédiate. |
-| 5 | **Modifier le scénario** | Édition manuelle (titre, parties, texte libre). Sauvegarde via API, régénération audio (Qwen3 TTS) accessible sur place, interactions LLM via chat. |
-| 6 | **Validation finale** | Double confirmation. Stockage des chemins (texte, audio, voix, background) dans `config.json` du projet. Prêt pour export/diffusion. |
+| 1 | **Sélection de Projet** | Crée/charge un projet. Backend initialise `data/projects/<nom>/` (sous-dossiers `audio/`, `notes/`, `outputs/`). Le chat est désactivé à cette étape. |
+| 2 | **Détails du projet** | Brief narratif + nouveaux champs optionnels : contexte, public cible (select sur la base `config/default_config.json`), ton narratif, consignes vocales (avec traduction auto côté skill), durée cible (slider 30 s–10 min). `advanceStep` sauvegarde tout et déclenche `update_project_notes` + `project_config_builder`. |
+| 3 | **Sélection des sources audios** | Uploads `.wav/.mp3` (validation extension/taux, conversion possible via pydub). Sélection de 1 voix + jusqu’à 2 ambiances. Automations : transcription (OpenRouter), stockage DuckDB, inventaire des backgrounds. |
+| 4 | **Consulter les scénarios** | Lancement ScenarioMakerSkill (Agents 0→3). Progress UI en 4 jalons (préparation → contrôles audio → génération → consolidation). Résultats classés (ranking LLM). On peut écouter chaque pitch (TTS) et afficher le “sourcing” (mapping phrase → segments transcription). |
+| 5 | **Modifier le scénario** | Édition du scénario retenu (titres, contenu, sourcing). Régénération audio (Qwen) et diaporama (MoviePy) via boutons dédiés. Les audios mixés sont stockés dans `data/projects/<nom>/outputs/audio_<slug>.wav`, le slideshow dans `video_<slug>.mp4`. |
+| 6 | **Validation finale** | Copie des assets générés vers le dossier `outputs/`, écriture des métadonnées (`final_scenario`, `final_audio`, `final_slideshow`, `finalized_at`) dans la config projet. Raccourcis pour télécharger audio/vidéo. |
 
-Chaque étape possède son placeholder de chat, son set de skills autorisés et des garde-fous (ex : impossible d’accéder à “Consulter les scénarios” tant qu’aucune piste vocale n’est sélectionnée).
+Chaque étape active un sous-ensemble de skills côté chatbot (cf. `config/step_config.json`) et met à jour l’état `useSessionStore` (scénarios prêts, audio prêt, scenarioEdited, etc.). Les projets finalisés conservent l’accès aux vues 4/5 pour itérations ultérieures.
 
 ---
 
-## 5. API & endpoints clés
+## 5. Backend & API principales
+
+### Routes REST
 
 | Méthode | Route | Description |
 | --- | --- | --- |
-| `POST /projects` | Crée un projet + fichier `data/projects/<nom>/config.json`. |
-| `GET /projects` | Liste nom + `scenario_target`. |
-| `POST /sessions` | Démarre une session (garde en mémoire scénario cible). |
-| `GET/POST /sessions/{id}/step` | Avance ou consulte les métadonnées d’étape. |
-| `POST /projects/{name}/audio` | Upload audio (validation `soundfile`). |
-| `GET/POST /sessions/{id}/audio-selection` | Pistes voix/ambiances choisies. |
-| `GET/POST /background-sounds` | Bibliothèque commune + upload (stocké dans `data/audio/background_sounds/<slug>`). |
-| `POST /scenarios/generate` | Déclenche ScenarioMakerSkill + progress tracking. |
-| `GET /sessions/{id}/scenarios` | Scénarios générés. |
-| `GET/POST /sessions/{id}/scenario-selection` | Scénario retenu (stocké dans session). |
-| `GET/POST /sessions/{id}/scenario-audio` | Métadonnées TTS (Qwen) + régénération. |
-| `GET /sessions/{id}/scenario-audio/file` | Streaming WAV. |
-| `GET /steps` | Définitions front (nombre d’étapes, descriptions, skills). |
-| `WS /ws/chat?session_id=…` | Chatbot multi-outils (Anthropic Claude). |
+| `POST /projects` | Crée un projet, initialise le dossier et `config.json`. |
+| `GET /projects` | Liste des projets (nom, scénario cible, statuts audio/vidéo). |
+| `GET /projects/{name}` | Renvoie le profil projet (notes, voix, ton/public/durée, préférences par défaut, scénarios, assets finaux). |
+| `POST /sessions` | Démarre une session liée à un projet (stockée dans `data/sessions/*.json`). |
+| `POST /sessions/{id}/step` | Avance une étape (`project_details`, `audio_sources`, etc.) → déclenche automations. |
+| `GET/POST /projects/{name}/audio` | Upload/énumère les pistes déposées. |
+| `GET/POST /sessions/{id}/audio-selection` | Sauvegarde la sélection de voix/ambiances pour la session. |
+| `POST /background-sounds/upload` | Ajoute une ambiance partagée (slug automatique, stockage dans `data/audio/background_sounds`). |
+| `GET /background-sounds` | Recherche par mot-clé. |
+| `POST /scenarios/generate` | Lance ScenarioMakerSkill. Suivi via `GET /sessions/{id}/scenario-progress`. |
+| `GET/POST /sessions/{id}/scenario-selection` | Choisit / consulte le scénario retenu. |
+| `GET/POST /sessions/{id}/scenario-audio` | Génère ou renvoie le dernier TTS (métadonnées + chemin). |
+| `GET /sessions/{id}/scenario-audio/file` | Streaming WAV (range requests supportées). |
+| `POST /sessions/{id}/slideshow` | Génère le MP4 (images + audio). |
+| `GET /sessions/{id}/slideshow/file` | Télécharge le MP4 généré. |
+| `GET /steps` | Liste des étapes (libellés FR/EN, skills, automations). |
+| `GET /health` | Status minimal pour le LB. |
 
-Tous les appels respectent les validations de taille, cohérence projet/session et utilisent `SessionStore` (fichiers JSON dans `settings.session_store`).
+### WebSocket
+
+`/ws/chat?session_id=...` ouvre une session Anthropic multi-outils. Chaque réponse peut contenir une liste d’invocations (par ex. transcription, mixage, scenario_maker). Les résultats sont renvoyés au front (diff apparition) et loggés dans `data/sessions/<session>.json`.
+
+### Logs clés
+
+- `SCENARIO_STAGE` : progression Agent pipeline.
+- `SCENARIO_AUDIO_START` / `_DONE` / `_FAILED` : génération TTS.
+- `SCENARIO_SLIDESHOW_START` : timeline video.
+- `Project preferences updated` : audit des champs ton/public/durée/voice quand un utilisateur valide “Détails du projet”.
+- `Voice instructions missing` : fallback auto (extraction du brief) si aucune consigne n’est fournie.
+
+Les logs incluent session/project pour faciliter le débogage multi-utilisateur.
 
 ---
 
-## 6. Chatbot & orchestrateur
+## 6. Skills catalogue (résumé)
 
-- **`main.py`** définit `TOOLS`, charge les skills complexes (transcription, mixage, scenario maker, etc.) et route les appels du LLM vers les fonctions Python correspondantes (`execute_tool`).
-- **`ScenarioMakerSkill`** + **`ScenarioMakerOrchestrator`** (Agent 0→3) orchestrent : extraction configuration, génération structures, rédaction scénarios, timeline audio.
-- Le **chat WebSocket** (front) affiche chaque appel d’outil avec ses entrées/sorties pour audit. Les étapes activent/désactivent certains skills (ex : pas de `web_search` à l’étape 1).
-- Les **voix** sont définies par projet via `voice_instructions`. Avant de générer le premier audio, pensez à appeler le skill `generate_voice_instructions` ou `edit_voice_instructions` (sinon TTS renvoie 400).
-
----
-
-## 7. Tableau des skills principaux
-
-| Skill | Objectif | Entrées principales | Tech / module |
+| Skill | Rôle | Paramètres principaux | Notes |
 | --- | --- | --- | --- |
-| `analysis_storage` / `analysis_storage_query` | Stocker / lire transcriptions & analyses dans DuckDB. | `analysis_type`, `source_path`, `result` | DuckDB, Pandas. |
-| `transcription` | Chunk + transcription (OpenRouter Gemini). | `path`, `chunk_duration_s`, `model` | `faster-whisper`, OpenRouter. |
-| `analysis_storage_background` | Sauvegarder les analyses d’ambiances. | `source_path`, `result` | DuckDB. |
-| `background_sounds_description` | Décrire techniquement un bruit (outil, intensité, contexte). | `path`, `context` | Librosa, heuristiques. |
-| `background_sound_finder` | Rechercher dans `data/audio/background_sounds`. | `keyword`, `limit` | FS scanning. |
-| `adjust_audio_volume` | Appliquer un gain logarithmique, préserver la dynamique. | `input_file`, `volume_percent` | Pydub, Numpy. |
-| `mix_voice_with_noise` | Mixer narration + ambiance avec SNR maîtrisé. | `voice_file`, `noise_file`, `snr_db` | Pydub. |
-| `insert_background_sounds` | Orchestration SFX ↔ narration. | `voice_file`, `noise_file`, timings | Pydub & outils internes. |
-| `text_to_speech_with_instructions` | Synthèse Qwen3 VoiceDesign guidée par instructions projet. | `text`, `project_name`, `language` | `qwen-tts`, Torch, SoundFile. |
-| `generate_voice_instructions` | Générer un brief vocal à partir d’un scénario. | `scenario`, `project_name` | Anthropic (LLM). |
-| `edit_voice_instructions` | Mettre à jour la voix dans `data/projects/<nom>/config.json`. | `project_name`, `voice_instructions` | JSON helper. |
-| `project_config_builder` | Adapter la configuration Agent 0 selon le brief. | `project_description`, `mode` | ScenarioConfigBuilderSkill. |
-| `scenario_maker` / `generate_historical_scenario` | Pipeline Agent 0→3 complet (structures, textes, timeline). | `prompt`, `mode`, `config_path` | Orchestrateur. |
-| `scenario_ranking` | Évaluer des scénarios vs la config. | `config_path`, `scenarios_dir` | Anthropic. |
-| `restricted_web_search` | Recherche web limitée aux domaines autorisés par projet. | `query`, `project_name`, `max_results` | OpenRouter search API. |
-| `json_utils.read_json_file` | Lire un JSON (par projet/clé). | `path`, `project_name`, `key` | Helper interne. |
-| `update_project_notes` | Persist les notes/brief projet dans `data/projects/<nom>/config.json`. | `description`, `project_name` | JSON helper. |
+| `analysis_storage` / `analysis_storage_query` | Sauvegarder / requêter les analyses (DuckDB). | `analysis_type`, `source_path`, `result`. | Utilisé après transcription ou description SFX. |
+| `transcription` | Découpe WAV → envoie sur OpenRouter → reconstitue transcription. | `path`, `chunk_duration_s`, `model`. | Couverture totale du fichier (pas de troncature). |
+| `background_sound_finder` | Liste les ambiances dispo. | `keyword`, `limit`. | Explore `data/audio/background_sounds`. |
+| `background_sounds_description` | Analyse acoustique rapide + tags. | `path`, `context`. | Sert à guider l’agent audio. |
+| `mix_voice_with_noise` | Mix voix + ambiance (SNR contrôlé). | `voice_file`, `noise_file`, `snr_db`, `start_time`. | Construit par pydub. |
+| `insert_background_sounds` | Orchestration ab initio des backgrounds (LLM plan). | `voice_file`, `noise_file`, `plan`. | Utilise un plan généré par Claude (max 2 ambiances). |
+| `adjust_audio_volume` | Ajuste le gain global d’un wav. | `input_file`, `volume_percent`. | Rapporte RMS avant/après. |
+| `project_config_builder` | Fusionne le brief utilisateur avec `default_config`. | `project_description`, `mode`. | Agent 0 complet. |
+| `scenario_maker` | Agents 0→3 (structure, scénario, timeline). | `prompt`, `mode`, `config_path`. | Produit JSON + fichiers sous `output/`. |
+| `scenario_ranking` | Re-classe les scénarios par pertinence. | `config_path`, `scenarios_dir`. | Écrit `scenario_ranking` dans la config. |
+| `generate_voice_instructions` | Rédige un prompt vocal en anglais. | `project_name`, `scenario_text`. | Utilise `VOICE_TRANSLATION_MODEL`. |
+| `edit_voice_instructions` | Sauvegarde une consigne vocale personnalisée. | `project_name`, `voice_instructions`. | Écrit dans `data/projects/<nom>/config.json`. |
+| `text_to_speech_with_instructions` | Synthèse Qwen3 (voix + backgrounds planifiés). | `text`, `project_name`, `language`. | Lit `voice_instructions`, applique plan d’ambiances (5–10 s, jamais chevauchées). |
+| `slideshow` | Convertit N images → vidéo MP4 + audio. | `image_dir`, `audio_file`, `output_path`. | Normalise les images (PIL) et respecte 100 % de la durée audio. |
+| `restricted_web_search` | Recherche web limitée aux domaines autorisés. | `query`, `project_name`, `max_results`. | Exploite OpenRouter search plugin. |
+| `json_utils.read_json_file` | Lit un JSON local (option project/clé). | `path`, `project_name`, `key`. | Utilisé par le chatbot pour inspection de config. |
 
-(Ajoutez vos nouveaux skills dans cette table et documentez-les dans leurs `SKILL.md` respectifs pour que le chatbot les utilise automatiquement.)
-
----
-
-## 8. Données & configuration
-
-- **`data/projects/<nom>`** : workspace du projet (audio importé, notes, outputs). Nettoyez ce dossier si vous supprimez un projet.
-- **`data/audio/background_sounds/*`** : bibliothèque partagée d’ambiances (organisées par dossier). L’API `/background-sounds/upload` slugifie les noms et classe automatiquement les fichiers.
-- **`data/projects/<nom>/config.json`** : mis à jour automatiquement lors de la création de projet (voix, notes, allowed_websites). Les skills `update_project_notes`, `generate_voice_instructions`, TTS et validation finale l’enrichissent avec les chemins des fichiers finaux.
-- **`.env`** : doit être monté dans Docker (`--env-file .env`). Pour un run autonome côté container, un `docker-entrypoint.sh` lit `/app/.env`.
+Chaque skill dispose d’un `SKILL.md` décrivant la procédure à suivre par le LLM.
 
 ---
 
-## 9. Tests & dépannage
+## 7. Données & configuration projet
 
-| Problème | Investigation / Solution |
+- **`data/projects/<nom>/config.json`** centralise : notes, ton/public/durée, instructions vocales, allowed_websites, ranking, scénarios, timelines, chemins d’exports (`outputs/audio_<slug>.wav`, `outputs/video_<slug>.mp4`), dernier état de session. Intègre aussi le `scenario_config` complet utilisé lors de la dernière génération.
+- **`data/projects/<nom>/audio/`** : fichiers uploadés (voix ou ambiances dédiées).
+- **`data/projects/<nom>/outputs/`** : assets finalisés (audio mixé, audio voix-only, slideshow).
+- **`data/sessions/*.json`** : snapshots d’étapes + appels de skills (utile pour audit). Nettoyables sans perdre les projets.
+- **`data/audio/background_sounds/`** : bibliothèque partagée accessible par tous les projets. Le nommage (`slug/filename.wav`) suit le formulaire d’upload.
+- **Variables clés** :
+  - `MAX_AUDIO_MB` : taille max d’upload (convertie en bytes).
+  - `BACKGROUND_PLAN_MODEL` : modèle utilisé pour planifier l’insertion de bruitages.
+  - `VOICE_TRANSLATION_MODEL` : LLM qui traduit les consignes vocales.
+  - `SCENARIO_DEFAULT_CONFIG` : fichier bascule pour les options ton/public/durée dans le front.
+
+---
+
+## 8. Tests, QA & dépannage
+
+| Symptôme | Pistes |
 | --- | --- |
-| Chatbot → `No cookie auth credentials found` | Vérifier `ANTHROPIC_AUTH_TOKEN` + `ANTHROPIC_BASE_URL`. Rebuild/restart le conteneur après mise à jour `.env`. |
-| TTS → `voice_instructions missing` | Appeler `generate_voice_instructions` / `edit_voice_instructions` depuis l’étape 5 avant de régénérer l’audio. |
-| Build Docker très lent (context > 15 Go) | Contrôler les dossiers non ignorés (`node_modules`, `data/audio` bruts, `models`). Réduire en ajoutant dans `.dockerignore`. |
-| `npm run build` échoue | Lancer `cd app && npm run build` en local pour obtenir la stack trace TS complète. |
-| Audio upload rejeté | Vérifier l’extension réelle du fichier (`validate_audio_file` compare header vs extension) et la taille (< `MAX_AUDIO_MB`). |
-| Chat déconnecté étape 1 | C’est voulu : pas de chatbot sur “Sélection de projet” (UI grisée). Activez-le dès l’étape 2. |
+| `ModuleNotFoundError: AutoProcessor` lors de `make run-app` | Vérifiez que `transformers>=4.57` est dans l’environnement uv (cf. `uv pip freeze`). Refaire `uv sync`. |
+| TTS régénéré malgré un audio existant | L’UI impose désormais un check d’audio avant `valider l’édition`. Assurez-vous que `final_audio.path` existe dans la config avant de quitter l’étape. |
+| Slideshow 500 : `TypeError: slideshow() takes 2 positional arguments but 3 were given` | Copier la version récente de `slides.py` (signature `(image_dir, audio_file, output_path)`). |
+| Ambiances jouées en continu | Le background planner place désormais 2 segments max, 5–10 s chacun, jamais superposés. Si vous voyez encore un mix complet, videz `data/projects/<nom>/outputs` et régénérez. |
+| Champs public/ton/durée non persistés | Les logs `Project preferences updated` n’apparaissent pas → vérifier que l’étape “Détails du projet” a bien envoyé les valeurs (front `advanceStep`). |
+| Upload audio rejeté (`invalid audio file`) | Le validateur lit l’entête WAV/MP3 (pydub). Re-encoder en PCM 16/24 bits via `ffmpeg -i input.wav -acodec pcm_s16le output.wav`. |
+| Autoplay vidéo = muet | L’UI désactive l’autoplay et expose un bouton Play → le son est actif dès la lecture manuelle. |
+
+Tests unitaires ciblent les agents (`tests/test_agent_0.py`) et le session store (`tests/test_session_store.py`). Ajoutez vos scénarios dans `tests/` et exécutez `uv run pytest`.
 
 ---
 
-## 10. Pistes d’évolution
+## 9. Évolutions possibles
 
-- Exposer la progression détaillée du pipeline Agent 0→3 (sous-étapes par agent).
-- Automatiser la génération des instructions vocales dès la fin de l’étape “Détails du projet”.
-- Ajouter des tests d’intégration (pytest + mocks Anthropic) pour sécuriser les endpoints critiques (`/sessions/.../scenario-audio`, `/scenarios/generate`).
-- Supporter un export complet (timeline + pistes audio finales) directement depuis la validation finale.
+1. **Historique des scénarios** : conserver toutes les générations (pas seulement la dernière) avec diff textuel & audio.
+2. **Éditeur audio avancé** : ajuster visuellement l’insertion des backgrounds (drag/drop sur la timeline).
+3. **Export complet** : packaging ZIP (script + audio + slideshow + sourcing JSON).
+4. **Monitoring** : brancher Prometheus/OpenTelemetry sur les évènements `SCENARIO_*` et temps d’appel des skills (transcription, TTS).
+5. **Automations récurrentes** : planifier la régénération automatique pour des séries (“scénario du jour”) via le moteur d’automations existant.
 
 ---
 
-La plateforme est prête pour des utilisateurs finaux : navigation guidée, chat outillé, validations de sources audio, génération multi-agents, édition texte/audio avec persistance, et stockage exhaustif des métadonnées projet dans `data/projects/<nom>/config.json`. Utilisez les sections ci-dessus comme référence lors de l’ajout de nouveaux skills, étapes ou intégrations.
+## 10. Références rapides
+
+- **UI** : `app/src/views/ProjectDetailsView.tsx` pour les nouveaux champs, `app/src/components/*` pour les lecteurs audio/vidéo.
+- **Persistences** : `project_store.py` (settings + audio selection), `automation_runner._apply_project_preferences` (ton/public/durée/voice).
+- **TTS** : `src/memoiredesterritoires/text_to_speech_with_instructions/text_to_speech_with_instructions.py` (planification des backgrounds, atténuation -8 dB, insertion non chevauchée).
+- **Slideshow** : `src/memoiredesterritoires/Slideshow/slides.py` (PIL + MoviePy), API route `/sessions/{id}/slideshow`.
+- **Scenario Maker** : Agents décrits en détail dans `AGENTS.md` (Request Parser, Structure Architect, Scenario Writer, Audio Production Engineer).
+
+La plateforme est prête pour une exploitation multi-projets : chaque workspace est isolé dans `data/projects/<nom>`, toutes les instructions sont versionnées, les voix sont paramétrables, les ambiances sont gérées par planification intelligente, et l’utilisateur peut revenir modifier ou régénérer à tout moment. Utilisez ce guide comme référence pour toute contribution (nouveau skill, nouvelle étape, intégration API ou amélioration UX). Bonnes archives ! 

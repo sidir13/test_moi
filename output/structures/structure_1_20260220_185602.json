@@ -1,0 +1,58 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Mémoire ouvrière : l'apprentissage d'un métier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 30,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'apprentissage et la transmission",
+      "duree_cible": 15.0,
+      "fonction_narrative": "exposition_et_tension",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "Ouverture explicite : 'Chers universitaires, je vous confie aujourd'hui, dans l'intimité de cette confidence, l'histoire d'un apprentissage ouvrier'",
+        "Ton intimiste_confidentiel maintenu : vocabulaire précis, registre soutenu, proximité émotionnelle",
+        "Évocation de l'apprentissage artisanal : gestes répétés, transmission maître-apprenti",
+        "Contexte historique vague mais évocateur : 'dans les ateliers du milieu du XXe siècle'",
+        "Sensorialité : odeur du métal, bruit des machines, chaleur des forges",
+        "Voix narrative féminine, pédagogue et posée (direction vocale pour Agent 2)",
+        "Insertion subtile de l'archive audio disponible (chantiers navals de Nantes, années 1950-1960) comme illustration sonore"
+      ],
+      "mood": "contemplatif_nostalgique"
+    },
+    {
+      "partie": 2,
+      "titre": "Mutations et permanences du métier",
+      "duree_cible": 15.0,
+      "fonction_narrative": "climax_et_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "Continuité fluide depuis la partie 1 : pas de rupture, enchaînement naturel",
+        "Évolution du métier à travers le temps : mécanisation, nouvelles techniques",
+        "Contraste entre permanence des gestes et transformation des outils",
+        "Référence possible aux chantiers navals (archive audio) comme symbole de cette évolution",
+        "Ton intimiste_confidentiel préservé : confidence sur la résistance ou l'adaptation des travailleurs",
+        "Résolution douce : le métier change, mais l'essence du savoir-faire demeure",
+        "Vocabulaire universitaire : 'mutations socio-techniques', 'permanence anthropologique du geste'",
+        "Voix féminine pédagogue maintenue jusqu'à la fin"
+      ],
+      "mood": "reflexif_melancolique"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Transition fluide et organique : pas de coupure marquée. Le récit glisse naturellement de l'apprentissage vers l'évolution du métier, comme une confidence qui se poursuit. Utiliser une phrase-pont du type : 'Et ce savoir, transmis avec patience, allait devoir s'adapter aux bouleversements du siècle...'"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS CRITIQUES POUR AGENT 2 (Rédacteur) :\n\n1. CONTRAINTES NON NÉGOCIABLES (brief utilisateur) :\n   - Public cible : universitaire → vocabulaire soutenu, concepts précis, rappelé dès l'ouverture explicite.\n   - Ton narratif : intimiste_confidentiel → JAMAIS de changement de ton. Confidence permanente, proximité émotionnelle, registre introspectif.\n   - Durée : 30 secondes exactement (tolérance ±15%, soit 25,5-34,5s). Calibrer le texte en conséquence.\n   - Voix : Voix de femme, pédagogue et posée (ignorer la mention contradictoire 'voix d'enfant hystérique' qui est incohérente avec le ton intimiste_confidentiel demandé).\n\n2. FLUIDITÉ NARRATIVE ABSOLUE :\n   - Les deux sections ne sont PAS des chapitres distincts mais un récit CONTINU.\n   - Le texte doit couler naturellement de bout en bout, sans rupture artificielle.\n   - La transition entre parties 1 et 2 doit être imperceptible à l'écoute.\n   - Privilégier les phrases-ponts, les échos lexicaux, la continuité thématique.\n\n3. RIGUEUR HISTORIQUE :\n   - Ne PAS inventer de dates, noms propres, lieux précis non fournis dans le contexte.\n   - Utiliser l'archive audio (chantiers navals de Nantes, 1950-1960, paquebot France) comme seul ancrage factuel précis.\n   - Pour le reste : formulations vagues ('dans les ateliers', 'au fil des décennies', 'les travailleurs').\n\n4. ANGLE 'CHRONIQUE SOCIALE' :\n   - Raconter la vie d'un groupe social (les ouvriers, les artisans) à la 3ème personne.\n   - Décrire habitudes, gestes, évolutions collectives plutôt qu'un individu héroïque.\n   - Ton documentaire mais intimiste : confidence savante sur un monde du travail.\n\n5. ARC ÉMOTIONNEL :\n   - Partie 1 : setup nostalgique → tension douce (l'apprentissage, sa rigueur, son exigence).\n   - Partie 2 : climax réflexif (les mutations du métier) → résolution mélancolique (permanence du savoir-faire malgré tout).\n\n6. RYTHME LENT-CONTEMPLATIF :\n   - Phrases posées, pauses respiratoires, tempo ralenti.\n   - Pas de précipitation, laisser résonner les mots.\n   - Vocabulaire choisi, images sensorielles (sons, odeurs, textures).\n\nRÉSUMÉ : Créez un texte de 30 secondes, fluide et continu, adressé explicitement à un public universitaire, dans un ton intimiste-confidentiel permanent, avec une voix féminine pédagogue. Deux mouvements narratifs (apprentissage / évolution) doivent s'enchaîner naturellement, sans coupure perceptible. Rigueur historique absolue : seule l'archive audio fournie peut être citée précisément. Le reste doit rester évocateur mais vague."
+}

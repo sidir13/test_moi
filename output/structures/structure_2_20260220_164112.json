@@ -1,0 +1,80 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Mains d'acier, mémoire de fleuve",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'éveil des mains",
+      "duree_cible": 40.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "Fragments de souvenirs d'apprentissage entrelacés",
+        "Voix multiples évoquant les premiers gestes",
+        "Ambiance sonore des chantiers navals années 1950",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 (extrait 00:00-00:15)",
+        "Sensations tactiles : chaleur du métal, poids des outils",
+        "Transmission maître-apprenti suggérée par bribes"
+      ],
+      "mood": "nostalgique_reverent"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des géants",
+      "duree_cible": 45.0,
+      "fonction_narrative": "developpement_climax",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "Mosaïque de témoignages sur l'apogée des chantiers",
+        "Évocation du paquebot France comme point culminant",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 (extrait sur le France)",
+        "Voix entremêlées de fierté collective",
+        "Rythme plus soutenu, accumulation de fragments",
+        "Contraste entre effort individuel et œuvre monumentale"
+      ],
+      "mood": "epique_fier"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qui demeure",
+      "duree_cible": 35.0,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "Ralentissement du collage sonore",
+        "Fragments de transmission aux générations suivantes",
+        "Écho entre passé et présent",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 (fin évoquant aujourd'hui)",
+        "Voix qui s'estompent comme des souvenirs",
+        "Ouverture sur la mémoire vivante du savoir-faire"
+      ],
+      "mood": "melancolique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "varie",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "acceleration_organique",
+      "duree": 3.0,
+      "description": "Les fragments de souvenirs d'apprentissage se densifient progressivement, les voix se chevauchent davantage, le rythme s'intensifie naturellement vers l'évocation des grandes constructions"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_emotionnel",
+      "duree": 3.0,
+      "description": "L'accumulation de témoignages atteint son apogée puis s'apaise, les voix s'espacent, laissant place à une réflexion plus intime sur ce qui reste"
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR AGENT 2 : Ce scénario repose sur l'entrelacement fluide de fragments de voix et de souvenirs - jamais de ruptures franches. Les sections sont des MOUVEMENTS d'une même symphonie, pas des chapitres séparés. Le texte doit donner l'impression d'un collage sonore organique où les témoignages se répondent, se complètent, parfois se chevauchent. Utiliser l'archive audio comme fil conducteur qui traverse les trois mouvements. Les transitions doivent être imperceptibles à l'écoute : une voix en appelle une autre, un souvenir en déclenche un suivant. Privilégier les formulations vagues pour les détails non sourcés ('un ancien du chantier', 'dans ces années-là'). La perspective à la troisième personne permet de tisser les voix ensemble comme un narrateur-témoin qui rassemble les mémoires."
+}

@@ -1,0 +1,111 @@
+{
+  "scenario_id": 1,
+  "titre": "Mémoire d'un métier : de l'apprentissage à la transformation",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "ton": "intimiste_confidentiel",
+  "duree_estimee": 38.526315789473685,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'apprentissage et la transformation",
+      "duree": 38.526315789473685,
+      "texte_narration": "Chers collègues universitaires, laissez-moi vous confier quelque chose d'intime. Imaginez la Loire en 1950 : les chantiers navals bourdonnaient, des coques immenses prenaient forme. Le paquebot France, 106 000 tonnes de fierté, est né là en 1960. Puis tout s'est tu. Aujourd'hui, seules les grues jaunes témoignent. Le métier a disparu, mais la mémoire, elle, persiste en nous.",
+      "ton": {
+        "global": "intimiste_confidentiel",
+        "tempo_lecture": 95,
+        "pauses": [
+          "Pause contemplative après 'quelque chose d'intime'",
+          "Pause méditative après 'tout s'est tu'",
+          "Pause finale après 'persiste en nous'"
+        ],
+        "intonation": "Voix posée et pédagogue, presque murmurée, comme un secret partagé dans une bibliothèque. Ralentissement progressif vers la fin pour amplifier la dimension mémorielle."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture intimiste : adresse directe au public universitaire avec ton confidentiel",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:04",
+          "action": "Archive audio intégrée : ambiance lointaine de chantier naval (métal, grues) en fond très léger",
+          "duree": 12.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Pivot narratif : silence soudain (coupure des ambiances) marquant la fermeture des chantiers",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:25",
+          "action": "Résonance finale : retour progressif d'une ambiance portuaire actuelle (vagues, mouettes lointaines) symbolisant la permanence de la mémoire",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "ambiance_historique",
+          "description": "Fond sonore léger de chantier naval années 1950 : bruits de métal, grues, activité ouvrière",
+          "debut": "0:04",
+          "fin": "0:18",
+          "volume": "20%"
+        },
+        {
+          "type": "ambiance_contemporaine",
+          "description": "Son de vagues et mouettes lointaines sur la Loire actuelle",
+          "debut": "0:25",
+          "fin": "0:30",
+          "volume": "15%"
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Chers collègues universitaires, laissez-moi vous confier quelque chose d'intime.",
+          "sources": []
+        },
+        {
+          "sentence": "Imaginez la Loire en 1950 : les chantiers navals bourdonnaient, des coques immenses prenaient forme.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité. Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Le paquebot France, 106 000 tonnes de fierté, est né là en 1960.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêves et d'acier."
+          ]
+        },
+        {
+          "sentence": "Puis tout s'est tu.",
+          "sources": []
+        },
+        {
+          "sentence": "Aujourd'hui, seules les grues jaunes témoignent.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Le métier a disparu, mais la mémoire, elle, persiste en nous.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 61,
+    "duree_lecture_estimee": 38.526315789473685,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 2,
+    "coherence_historique": {
+      "accuracy_score": 0.8,
+      "sources_citees": [],
+      "verifications": [
+        "Validation basique effectuée"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "INSTRUCTIONS CRITIQUES POUR AGENT 2 (Rédacteur) :\n\n1. RESPECT ABSOLU DU BRIEF :\n   - Public universitaire : vocabulaire précis, références historiques vérifiables\n   - Ton intimiste-confidentiel : JAMAIS de rupture tonale, maintenir une proximité constante\n   - Durée : 30s exactement (±10% max = 27-33s)\n   - Voix : féminine, pédagogue, posée (l'indication 'hystérique' = sous-texte d'urgence émotionnelle, PAS un cri)\n\n2. STRUCTURE NARRATIVE :\n   - Récit en FLUX CONTINU, pas de sections distinctes\n   - Angle avant/après : première moitié = apprentissage et construction (avant), seconde moitié = transformation et mémoire (après)\n   - Intégrer naturellement l'archive audio sur les chantiers navals de Nantes (1950-1960)\n   - Événement pivot implicite : déclin industriel naval français\n\n3. FLUIDITÉ ABSOLUE :\n   - Aucune rupture entre 'avant' et 'après', utiliser un glissement temporel fluide\n   - Phrases qui s'enchaînent organiquement\n   - Pas de formules type 'Maintenant, parlons de...'\n   - Le passage du temps doit être senti, non annoncé\n\n4. RIGUEUR HISTORIQUE :\n   - S'appuyer UNIQUEMENT sur les faits fournis : chantiers navals de Nantes, paquebot France (1960), 106 000 tonnes\n   - Ne PAS inventer de noms de personnes, dates précises non mentionnées, ou événements spécifiques\n   - Rester dans l'évocation générale si contexte insuffisant\n\n5. ARC ÉMOTIONNEL :\n   - Démarrage contemplatif (0.3) : l'apprentissage\n   - Montée en tension (0.7) : la pleine activité, l'âge d'or\n   - Climax (0.9) : la prise de conscience de la transformation\n   - Résolution (0.3) : l'acceptation mémorielle\n\n6. OUVERTURE OBLIGATOIRE :\n   Commencer par une phrase qui signale explicitement le public et le ton, exemple : 'Chers collègues universitaires, permettez-moi de vous confier...'\n\nRAPPEL : Ce récit de 30 secondes doit être un murmure savant ininterrompu, une confidence historique qui traverse le temps sans heurt."
+}

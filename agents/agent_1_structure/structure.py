@@ -7,6 +7,8 @@ import json
 import logging
 from typing import Dict, Any, List, Optional
 
+from agents.utils import build_user_requirement_block
+
 logger = logging.getLogger(__name__)
 
 
@@ -119,9 +121,19 @@ RÈGLE ABSOLUE — RIGUEUR HISTORIQUE :
         if original_prompt and original_prompt.strip():
             prompt_section = f"\n\nDEMANDE ORIGINALE DE L'UTILISATEUR :\n\"{original_prompt.strip()}\"\n→ Respectez scrupuleusement les intentions et souhaits exprimés ci-dessus."
         
+        user_requirements_block = build_user_requirement_block(config)
+        mission_priority = ""
+        if user_requirements_block:
+            mission_priority = (
+                "\n7. PRIORITÉ ABSOLUE : respecte mot pour mot le brief utilisateur et les paramètres "
+                "verrouillés listés ci-dessus, mais ne les cite jamais explicitement dans les titres ou "
+                "dans les sections. Aucun écart n'est toléré."
+            )
+
         # Build prompt for Claude
         prompt = f"""Créez une structure narrative complète pour un scénario audio historique.
 
+{(user_requirements_block + '\\n\\n') if user_requirements_block else ''}
 PARAMÈTRES :
 - Durée totale : {duree}s
 - Forme : {forme}
@@ -151,7 +163,7 @@ MISSION :
    - Un mood général
 4. Définissez les transitions clés entre sections (si plus d'une section)
 5. Ajoutez des notes de production insistant sur la FLUIDITÉ et la CONTINUITÉ narrative
-6. L'angle de scénarisation ("{angle_scenarisation}") définit la MANIÈRE de raconter. Structurez les sections pour servir cet angle.
+6. L'angle de scénarisation ("{angle_scenarisation}") définit la MANIÈRE de raconter. Structurez les sections pour servir cet angle.{mission_priority}
 
 IMPORTANT : Privilégiez un récit fluide et continu. Les sections sont des repères de rythme, PAS des coupures franches. Le texte final doit couler naturellement d'un bout à l'autre.
 

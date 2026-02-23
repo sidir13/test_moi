@@ -1,0 +1,28 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Fragments d'une mémoire ouvrière : échos des chantiers navals",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 30,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Voix entrelacées d'un savoir transmis",
+      "duree_cible": 30.0,
+      "fonction_narrative": "mosaïque_narrative_unifiée",
+      "position_arc_emotionnel": "tension_vers_resolution",
+      "elements_necessaires": [
+        "ouverture_intimiste_adressée_public_universitaire",
+        "fragment_archive_ElevenLabs_Spuds_Oxley_Loire_1950_chantiers_navals",
+        "évocation_apprentissage_gestes_transmission",
+        "murmure_évolution_métier_disparition_progressive",
+        "collage_sonore_voix_superposées_mémoire_collective"
+      ],
+      "mood": "intimiste_nostalgique_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [],
+  "notes_production": "INSTRUCTIONS CRITIQUES POUR AGENT 2 — Public universitaire, ton intimiste et confidentiel EXCLUSIVEMENT. Voix de femme pédagogue et posée comme narratrice principale. La structure en mosaïque de voix doit se déployer en un flux CONTINU de 30 secondes, sans rupture. Ouvrir par une adresse directe au public universitaire établissant le ton intimiste. Intégrer l'archive audio (Loire 1950, chantiers navals, paquebot France) comme fragment mémoriel central. Entrelacer subtilement : l'apprentissage des gestes (première intention du brief) et l'évolution/disparition du métier (seconde intention). Le collage sonore suggère des voix multiples sans les incarner explicitement — effet de réminiscence collective. Maintenir une intensité émotionnelle qui monte doucement (0.3→0.7→0.9) puis s'apaise en résolution contemplative (0.3). FLUIDITÉ ABSOLUE : le récit doit couler comme une confidence murmurée, jamais comme un exposé segmenté."
+}
