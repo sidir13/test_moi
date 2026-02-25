@@ -44,6 +44,7 @@ install: ensure-env ensure-app
 	$(UV) sync
 	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
 	cd $(APP_DIR) && $(NPM) run build
+	$(MAKE) download-qwen-model
 
 install-mac:
 	$(MAKE) install PLATFORM=mac
