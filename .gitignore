@@ -32,7 +32,6 @@ env/
 *.swp
 *.swo
 *~
-.DS_Store
 
 # Logs
 *.log
@@ -49,8 +48,6 @@ output/gridsearch_config/*
 output/scenarios/*
 output/timelines/*
 output/exports/*
-
-# Garder les dossiers mais pas leur contenu
 !output/local_tests/.gitkeep
 !output/gridsearch/.gitkeep
 !output/gridsearch_config/.gitkeep
@@ -59,9 +56,6 @@ output/exports/*
 !output/exports/.gitkeep
 
 # Cache et temporaires
-*.pyc
-*.pyo
-*.pyd
 .pytest_cache/
 .coverage
 htmlcov/
@@ -79,61 +73,49 @@ config/*_private.json
 *.key
 *.pem
 
-
 # Front
-# package-lock.json
-# package.json
 app/tsconfig.tsbuildinfo
 app/tsconfig.node.tsbuildinfo
 app/vite.config.js
 app/vite.config.d.ts
 
-# devs
-dump
+# Dev files
+dump/
 src/experimental/*
 AGENTS.md
 notebooks/models
+audio_romu/
 
-# secrets
-.env
+# Dependencies
+node_modules/
+.venv-vibe/
 
-# envs
-.venv
-.venv-vibe
+# Data - runtime generated, not tracked
+data/audio/background_sounds/
+data/sound_library/
+data/sessions/
+data/scenarios/
+data/audio_analysis.duckdb
+data/image/
+data/discours/
 
-# dependencies
-node_modules
-# package-lock.json
-# package.json
-
-# Caches
-__pycache__
-__pycache__/*
-*.pyc
-*.DS_Store
-process_number.cpython-312.pyc
-
-
-# data
-## audio files
+# Media files
 *.wav
 *.WAV
 *.mp3
 *.MP3
 *.mp4
 *.MP4
-!data/audio/background_sounds/
-!data/audio/background_sounds/**
-
-## db
-*.duckdb
-*.parquet
-
-# models
-qwen-3-tts
-qwen-3-tts
-
-# images
 *.png
 *.jpg
 *.jpeg
+
+# Database files
+*.duckdb
+*.parquet
+
+# ML Models (downloaded at build/install time)
+models/qwen3-tts/
+
+# Slideshow / generated videos
+slideshow*.mp4
