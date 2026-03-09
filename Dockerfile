@@ -24,30 +24,20 @@ COPY . /app
 RUN pip install --no-cache-dir -e . && \
     pip install --no-cache-dir "moviepy==2.2.1" pillow
 
-# Download Qwen TTS model at build time
-RUN python scripts/download_qwen_tts.py --output-dir /app/models/qwen3-tts
-
 # === Runtime image ===
 FROM python-deps AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app:/app/src
+
+# Point model + logs towards the persistent volume
+ENV QWEN_TTS_LOCAL_DIR=/app/data/models/qwen3-tts
+ENV LOG_FILE=/app/data/logs/memoire_territoires.log
+
 WORKDIR /app
 
 COPY --from=frontend-builder /frontend/dist ./app/dist
 RUN ln -sfn /app/src/server /app/server
-
-# Ensure data directories exist
-RUN mkdir -p /app/data/audio/background_sounds \
-    /app/data/audio/archived_audio \
-    /app/data/audio_analysis \
-    /app/data/generated_speech/archived \
-    /app/data/image \
-    /app/data/projects \
-    /app/data/scenarios \
-    /app/data/sessions \
-    /app/data/sound_library \
-    /app/logs
 
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
