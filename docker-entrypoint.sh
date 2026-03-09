@@ -24,12 +24,19 @@ mkdir -p \
   /app/data/sessions \
   /app/data/sound_library
 
-# --- Download Qwen TTS model on first start only ---
+# --- Download Qwen TTS model in the background ---
+# Uvicorn starts immediately so health checks pass; TTS endpoint
+# returns 503 until the model is ready (checked via READY_FILE).
 MODEL_DIR="${QWEN_TTS_LOCAL_DIR:-/app/data/models/qwen3-tts}"
-if [ ! -f "$MODEL_DIR/config.json" ]; then
-  echo "[entrypoint] Qwen TTS model not found in $MODEL_DIR – downloading..."
-  python /app/scripts/download_qwen_tts.py --output-dir "$MODEL_DIR"
-  echo "[entrypoint] Model download complete."
+READY_FILE="$MODEL_DIR/.ready"
+
+if [ ! -f "$READY_FILE" ]; then
+  echo "[entrypoint] Qwen TTS model not ready – downloading in background..."
+  (
+    python /app/scripts/download_qwen_tts.py --output-dir "$MODEL_DIR" \
+      && touch "$READY_FILE" \
+      && echo "[entrypoint] Model download complete – TTS is now available."
+  ) &
 else
   echo "[entrypoint] Qwen TTS model already present in $MODEL_DIR."
 fi

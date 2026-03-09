@@ -61,6 +61,16 @@ from utils.claude_client import ClaudeClient
 from config.model_registry import get_available_models, resolve_model_id
 
 logger = logging.getLogger(__name__)
+
+# Sentinel written by docker-entrypoint.sh once the Qwen TTS model download finishes.
+_QWEN_TTS_LOCAL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts"))
+_TTS_READY_FILE = _QWEN_TTS_LOCAL_DIR / ".ready"
+
+
+def _tts_model_ready() -> bool:
+    """Return True when the TTS model has been fully downloaded."""
+    return _TTS_READY_FILE.exists()
+
 SCENARIO_DEFAULT_CONFIG_PATH = Path(os.getenv("SCENARIO_DEFAULT_CONFIG", "config/default_config.json")).expanduser()
 BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.15)  # ≈ -16.48 dB
 BACKGROUND_PLAN_MODEL = os.getenv("BACKGROUND_PLAN_MODEL", "anthropic/claude-sonnet-4-5")
@@ -1100,6 +1110,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     async def health_check() -> dict:
         return {
             "status": "ok",
+            "tts_ready": _tts_model_ready(),
             "steps": len(step_registry.steps),
         }
 
@@ -1632,6 +1643,11 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
 
     @app.post("/sessions/{session_id}/scenario-audio", tags=["sessions"])
     async def synthesize_scenario_audio(session_id: str, payload: ScenarioAudioRequest) -> dict:
+        if not _tts_model_ready():
+            raise HTTPException(
+                status_code=503,
+                detail="Le modèle TTS est en cours de téléchargement, réessayez dans quelques minutes.",
+            )
         session = session_store.load_session(session_id)
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
