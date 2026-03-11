@@ -162,10 +162,7 @@
           "chronique_sociale",
           "journee_type",
           "portrait_individuel",
-          "avant_apres_evenement",
-          "mosaique_voix",
-          "lettre_intime",
-          "recit_initiatique"
+          "avant_apres_evenement"
         ],
         "default": "auto",
         "user_specified": false

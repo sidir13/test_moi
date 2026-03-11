@@ -84,6 +84,7 @@ class ScenarioMakerSkill:
 
         # Resolve the LLM model to use (e.g. "opus" → "anthropic/claude-opus-4-5")
         model_id = params.get("model_id")
+        tts_provider = params.get("tts_provider", "qwen")
 
         orchestrator = ScenarioMakerOrchestrator(
             config_path=str(config_path),
@@ -91,6 +92,7 @@ class ScenarioMakerSkill:
             log_level=params.get("log_level", "INFO"),
             model_id=model_id,
             scenario_target_override=forced_scenario_target,
+            tts_provider=tts_provider,
         )
 
         # Ensure orchestrator uses the possibly enriched configuration.

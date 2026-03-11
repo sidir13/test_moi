@@ -34,7 +34,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
     text_to_speech_with_instructions,
 )
 from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
-from memoiredesterritoires.transcription.transcription import transcribe_audio
+from memoiredesterritoires.transcription.transcription_parallelized import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.Slideshow.slides import slideshow
 from memoiredesterritoires.project_config import (
@@ -1383,6 +1383,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "scenario_target": req.scenario_target or session.get("scenario_target", 3),
             "audio_transcriptions": audio_transcriptions,
             "model_id": resolved_model,
+            "tts_provider": project_profile.get("tts_provider", "qwen"),
         }
         if config_overrides:
             params["config_overrides"] = config_overrides

@@ -100,12 +100,43 @@ data/image/
 data/discours/
 
 # Media files
+# dependencies
+node_modules
+node_modules/
+# package-lock.json
+# package.json
+
+# Caches
+__pycache__
+__pycache__/*
+*.pyc
+*.DS_Store
+process_number.cpython-312.pyc
+
+
+# data
+## audio files
 *.wav
 *.WAV
 *.mp3
 *.MP3
 *.mp4
 *.MP4
+!data/audio/background_sounds/
+!data/audio/background_sounds/**
+background_sounds
+!background_sounds/.gitkeep
+## db
+*.duckdb
+*.parquet
+
+# models
+models
+!models/.gitkeep
+qwen-3-tts
+qwen3-tts
+
+# images
 *.png
 *.jpg
 *.jpeg

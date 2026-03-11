@@ -1,0 +1,100 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Nantes, 1950 – Les voix de l'acier",
+  "axe_narratif": "personnage_historique",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bruit des quais",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup — intensité 0.3",
+      "elements_necessaires": [
+        "Ambiance sonore évoquant un chantier naval : métal, outils, rumeur de fleuve",
+        "Voix narratrice posant le décor : la Loire, les chantiers navals de Nantes vers 1950",
+        "Intégration partielle de l'archive ElevenLabs_Spuds_Oxley.mp3 (segment 00:00–00:08 environ) pour ancrer le lieu et l'époque",
+        "Premier fragment de témoignage fictionnalisé mais ancré dans les faits : un regard collectif sur l'activité des quais"
+      ],
+      "mood": "factuel_atmosphérique"
+    },
+    {
+      "partie": 2,
+      "titre": "Des mains, des noms, des métiers",
+      "duree_cible": 30,
+      "fonction_narrative": "montée_en_tension_mosaique",
+      "position_arc_emotionnel": "tension — intensité 0.7",
+      "elements_necessaires": [
+        "Collage de voix courtes évoquant différents métiers : soudeurs, charpentiers, riveurs",
+        "Rythme plus rapide, phrases brèves entrelacées comme des éclats de mémoire",
+        "Suite de l'archive ElevenLabs_Spuds_Oxley.mp3 (segment ~00:08–00:18) décrivant coques et mains expertes",
+        "Vocabulaire accessible : expliquer brièvement les gestes techniques sans jargon",
+        "Sensation de fourmillement humain, de labeur collectif"
+      ],
+      "mood": "dynamique_choral"
+    },
+    {
+      "partie": 3,
+      "titre": "Le géant prend forme",
+      "duree_cible": 35,
+      "fonction_narrative": "climax_narratif",
+      "position_arc_emotionnel": "climax — intensité 0.9",
+      "elements_necessaires": [
+        "Point culminant : le paquebot France, lancé en 1960, 106 000 tonnes",
+        "Archive ElevenLabs_Spuds_Oxley.mp3 (segment ~00:18–00:28) intégrée comme voix-témoin centrale",
+        "Convergence des voix multiples vers un même objet de fierté",
+        "Intensité émotionnelle maîtrisée : fierté nationale, ampleur du projet, dimension humaine derrière le chiffre",
+        "Rythme qui s'élargit, phrases plus longues, souffle épique mais factuel"
+      ],
+      "mood": "intense_solennel"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce qu'il reste sur les rives",
+      "duree_cible": 30,
+      "fonction_narrative": "resolution_reflexive",
+      "position_arc_emotionnel": "résolution — intensité 0.3",
+      "elements_necessaires": [
+        "Retour au présent : les chantiers ont disparu, le fleuve coule toujours",
+        "Fin de l'archive ElevenLabs_Spuds_Oxley.mp3 (segment final, ~00:28–fin) évoquant le silence actuel",
+        "Derniers fragments de voix qui s'éteignent doucement, comme des souvenirs qui s'éloignent",
+        "Question ouverte implicite : que garde-t-on de cette mémoire ouvrière ?",
+        "Ton posé, ralenti, contemplatif mais toujours factuel"
+      ],
+      "mood": "calme_mélancolique"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "varie",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "acceleration_organique",
+      "duree": 2.5,
+      "description": "Le décor posé par la narratrice se fragmente naturellement en plusieurs voix. Le bruit d'ambiance du chantier sert de liant : on passe d'un plan large à des gros plans sonores sur les ouvriers, sans rupture."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "convergence_chorale",
+      "duree": 3.0,
+      "description": "Les fragments de voix et de métiers fusionnent progressivement autour d'un même mot — le France. Le rythme haché se stabilise en une phrase ample. L'archive audio prend le relais comme voix fédératrice."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_temporel",
+      "duree": 2.5,
+      "description": "Un silence bref marque le saut dans le temps. Le son du métal s'estompe, remplacé par le bruit de l'eau. La voix narratrice revient seule, plus lente, comme un écho des voix précédentes."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ET CONTINUITÉ : Ce scénario de 2 minutes est conçu comme un flux continu, pas comme quatre blocs séparés. Les sections sont des repères de rythme pour le montage, mais le texte doit couler sans annonce de chapitre ni pause artificielle. — MOSAÏQUE DE VOIX : La narratrice principale (voix féminine, ton journalistique sobre et clair) tisse le fil conducteur. Autour d'elle, de courts fragments vocaux (phrases de 5 à 10 secondes) évoquent des témoignages ouvriers. Ces fragments ne sont pas des citations inventées avec noms et dates précis : ce sont des impressions collectives ('on entendait le métal chanter', 'les coques montaient jour après jour'). — ARCHIVE AUDIO : L'extrait ElevenLabs_Spuds_Oxley.mp3 doit être découpé et intégré en plusieurs morceaux répartis sur l'ensemble du récit, jamais en un seul bloc. Il sert de colonne vertébrale factuelle. — PUBLIC SECONDAIRE : Le vocabulaire reste accessible. Les termes techniques (soudure, coque, charpente navale) sont contextualisés par l'image sonore plutôt que par des définitions scolaires. Le rythme varié et la brièveté (2 min) maintiennent l'attention. — TON : Journalistique et factuel de bout en bout. L'émotion naît des faits et de l'atmosphère sonore, jamais de commentaires sentimentaux. — VOIX : Voix féminine, posée, précise, capable de varier le débit (plus rapide en partie 2, plus ample en partie 3, plus lente en partie 4) tout en gardant une autorité narrative constante."
+}
