@@ -1,0 +1,56 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui savent — une vie d'artisan",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 80,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube et les premiers gestes",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_et_tension — Ouvrir sur une journée d'apprentissage : le matin tôt, l'atelier qui s'éveille, les gestes maladroits du jeune apprenti sous le regard du maître. Raconter comment on apprend un métier par le corps, par la répétition, par l'erreur. Le narrateur, voix d'homme âgé, se souvient de ses débuts avec une tendresse mêlée de rigueur. On sent la fatigue, l'odeur des matériaux, la fierté naissante quand un geste commence à devenir juste.",
+      "position_arc_emotionnel": "setup_vers_tension — intensité croissante de 0.3 à 0.7",
+      "elements_necessaires": [
+        "Ambiance sonore d'atelier au petit matin (outils posés, bois ou métal, pas sur un sol de pierre)",
+        "Voix narrative grave, posée, avec la chaleur d'un homme qui a vécu ce qu'il raconte",
+        "Évocation sensorielle : odeurs, textures, lumière du matin filtrant dans l'atelier",
+        "Description des gestes d'apprentissage : observer, imiter, recommencer",
+        "Mention du maître artisan comme figure de transmission silencieuse",
+        "Rythme progressif : phrases courtes au début, plus amples à mesure que la confiance du jeune apprenti grandit"
+      ],
+      "mood": "intime_nostalgique_puis_engagé"
+    },
+    {
+      "partie": 2,
+      "titre": "Le plein jour et les années qui passent",
+      "duree_cible": 45,
+      "fonction_narrative": "climax_et_resolution — Glisser depuis le cœur de la journée de travail vers le passage du temps. Le midi, la pleine activité, les commandes, la maîtrise acquise. Puis, sans rupture, le récit bascule : les outils changent, les clients changent, le monde autour de l'atelier se transforme. Le métier évolue — nouvelles techniques, nouvelles attentes — mais le geste fondamental demeure. Le soir tombe, le narrateur range ses outils. Il sait que ce savoir-faire, il l'a reçu et il l'a transmis à son tour. Fin sur une note apaisée, ouverte.",
+      "position_arc_emotionnel": "climax_vers_resolution — intensité de 0.9 redescendant à 0.3",
+      "elements_necessaires": [
+        "Ambiance sonore d'atelier en pleine activité puis ralentissement progressif vers le soir",
+        "Évocation concrète du travail accompli : pièces terminées, satisfaction du geste maîtrisé",
+        "Transition temporelle fluide : le midi d'une journée devient le midi d'une vie, puis le soir",
+        "Mention des changements dans le métier : arrivée de nouveaux outils, nouvelles méthodes, adaptation nécessaire",
+        "Moment de climax émotionnel : le jour où l'artisan réalise qu'il est devenu celui qui transmet",
+        "Fermeture douce : bruit d'un outil qu'on pose, lumière du soir, sentiment d'accomplissement tranquille",
+        "Le narrateur s'adresse subtilement à l'auditeur comme s'il lui montrait l'atelier"
+      ],
+      "mood": "puissant_puis_apaisé_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel_organique",
+      "duree": 3.0,
+      "description": "Pas de coupure franche. Le geste d'apprenti décrit en fin de partie 1 se prolonge et devient, dans la même phrase ou la suivante, le geste du maître accompli. Le son de l'atelier du matin évolue subtilement vers une ambiance de pleine journée. Une phrase-pivot du type 'Et puis un matin, sans que je m'en rende compte, c'est moi qu'on regardait travailler...' assure la bascule entre apprentissage et maîtrise, entre jeunesse et maturité."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ABSOLUE : Ce récit de 80 secondes doit être perçu comme un seul souffle continu, porté par une voix d'homme âgé — chaude, légèrement rocailleuse, sans affectation. Les deux sections sont des repères internes pour le rythme, PAS des chapitres séparés. La transition doit être imperceptible à l'oreille. || ANGLE JOURNÉE TYPE : La structure matin/midi/soir organise le récit, mais elle fonctionne à double niveau — c'est à la fois une journée concrète d'artisan ET la métaphore d'une vie entière. Le matin = les débuts, le plein jour = la maîtrise, le soir = la transmission et le recul. || VOIX : Homme âgé, ton pédagogique et accessible, comme un ancien qui explique son monde à un visiteur curieux. Jamais condescendant, toujours généreux. Il parle simplement, avec des mots concrets. || RIGUEUR HISTORIQUE : Aucun contexte historique précis n'étant fourni, le texte doit rester volontairement non situé dans une époque ou un lieu précis. Utiliser des formulations ouvertes : 'dans l'atelier', 'le maître', 'avec le temps'. NE PAS inventer de dates, de noms propres, de lieux spécifiques. || RYTHME DYNAMIQUE : Varier la longueur des phrases. Phrases courtes et percutantes pour les gestes. Phrases plus amples pour les passages contemplatifs. Silences brefs (0.5-1s) aux moments de bascule émotionnelle. || DURÉE : Viser un débit de ~150 mots/minute, soit environ 200 mots au total pour 80 secondes. Tolérance 68-92 secondes."
+}

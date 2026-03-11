@@ -1,0 +1,55 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Les mains qui savent — Mémoire d'un métier",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 80,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le temps de l'apprentissage",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_vers_tension",
+      "elements_necessaires": [
+        "Ouverture chaleureuse invitant le visiteur à écouter un récit de transmission artisanale, ton accueillant et complice",
+        "Fragment de souvenir évoqué à la troisième personne : un jeune apprenti découvrant l'atelier pour la première fois — odeurs, bruits, gestes observés",
+        "Voix intérieure du maître artisan, restituée comme un écho de mémoire : les premières leçons, la patience exigée, les erreurs formatrices",
+        "Éléments sonores suggérés : ambiance d'atelier lointaine, outils, souffle de travail",
+        "Montée progressive de l'émotion : la fierté naissante du premier ouvrage achevé, le regard du maître qui approuve sans un mot"
+      ],
+      "mood": "nostalgique_intime_chaleureux"
+    },
+    {
+      "partie": 2,
+      "titre": "Le métier à travers les âges",
+      "duree_cible": 45,
+      "fonction_narrative": "developpement_climax_resolution",
+      "position_arc_emotionnel": "climax_vers_resolution",
+      "elements_necessaires": [
+        "Transition fluide depuis le souvenir personnel vers une perspective plus large : le métier qui traverse les décennies",
+        "Collage de fragments temporels entrelacés : évocation des techniques anciennes transmises de génération en génération, puis l'arrivée de nouveaux outils, de nouvelles méthodes",
+        "Tension narrative : le moment où le métier semble menacé par le changement — mécanisation, évolution des modes de vie, risque de disparition du savoir-faire",
+        "Voix multiples suggérées en mosaïque : l'artisan âgé qui se souvient, un écho de voix plus jeunes qui reprennent le flambeau",
+        "Résolution apaisée : le savoir-faire perdure malgré tout, transformé mais vivant, porté par ceux qui ont choisi de continuer",
+        "Fermeture contemplative : invitation douce au visiteur à regarder autour de lui les traces visibles de ce métier dans le lieu qu'il parcourt",
+        "Éléments sonores suggérés : superposition subtile d'ambiances d'époques différentes, puis retour au calme"
+      ],
+      "mood": "epique_puis_apaise_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "varie",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_narratif",
+      "duree": 3.0,
+      "description": "Glissement organique du souvenir personnel vers la fresque temporelle : la voix du narrateur âgé élargit son regard, passant du 'il apprenait' au 'au fil des années, le métier lui-même changeait'. Pas de rupture, mais un élargissement du champ, comme un zoom arrière progressif. Un léger silence ou un changement d'ambiance sonore peut marquer ce passage sans le couper."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 : 1) FLUIDITÉ ABSOLUE — Le récit doit couler comme une seule coulée narrative continue. Les deux sections sont des repères de rythme internes, PAS des chapitres séparés. Aucune annonce de partie, aucun titre lu. 2) VOIX — Écrire pour une voix d'homme âgé : phrases posées, souffle perceptible, rythme de parole mesuré avec des pauses naturelles. Le vocabulaire doit rester simple, imagé, accessible à un visiteur découvrant un lieu. Éviter tout jargon technique non expliqué. 3) MOSAÏQUE DE VOIX — Bien que le narrateur principal soit unique, le texte doit intégrer des fragments rapportés (paroles du maître, échos de voix d'apprentis, bribes de souvenirs) comme un collage sonore. Ces fragments doivent être tissés dans le fil narratif, jamais plaqués. 4) OUVERTURE — Dès les premières secondes, le ton doit être accueillant et chaleureux, donnant au visiteur le sentiment qu'on lui confie un récit précieux. 5) RIGUEUR HISTORIQUE — Le contexte fourni ne contient ni dates, ni lieux, ni noms précis. Ne rien inventer. Rester dans l'évocation universelle d'un artisan, d'un atelier, d'un savoir-faire transmis. Utiliser des formulations ouvertes : 'dans l'atelier', 'le vieux maître', 'avec le temps'. 6) DURÉE — Viser 80 secondes lues à voix haute (environ 180-200 mots pour un débit posé d'homme âgé, soit ~2,3-2,5 mots/seconde). 7) FERMETURE — Terminer sur une note douce et contemplative qui résonne après l'écoute, sans conclusion trop appuyée."
+}

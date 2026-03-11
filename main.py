@@ -928,6 +928,7 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
+    asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/Pont roulant/AV-1-S-OUT-401.wav and analyze it ?"))
     pass
     # asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
     # asyncio.run(main("Décrit le son d'ambiance de chalumeau"))

@@ -1,0 +1,75 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 50,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bourdonnement des quais",
+      "duree_cible": 15,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup_evocateur",
+      "elements_necessaires": [
+        "Ambiance sonore des chantiers navals de Nantes vers 1950",
+        "Voix chorale évoquant le collectif ouvrier : soudeurs, charpentiers, manœuvres",
+        "Tableau sensoriel du quotidien — bruit du métal, odeur de soudure, cris des contremaîtres",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 segment [00:00–00:06] pour ancrer le lieu et l'époque"
+      ],
+      "mood": "vivant_laborieux"
+    },
+    {
+      "partie": 2,
+      "titre": "La fierté prend forme",
+      "duree_cible": 20,
+      "fonction_narrative": "montee_en_puissance_et_climax",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "Accélération du rythme narratif — le chantier converge vers un but commun",
+        "Évocation de la construction du paquebot France, né en 1960, 106 000 tonnes",
+        "Perspective chorale : fierté partagée des ouvriers, de leurs familles, du quartier",
+        "Chronique sociale : sacrifices physiques, solidarité de classe, sens du travail collectif",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 segment [00:06–00:18] pour les détails sur le France et l'élan de fierté nationale"
+      ],
+      "mood": "epique_collectif"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 15,
+      "fonction_narrative": "resolution_melancolique",
+      "position_arc_emotionnel": "resolution_contemplative",
+      "elements_necessaires": [
+        "Contraste temporel : passage au présent, les chantiers ont disparu",
+        "Voix chorale qui s'éteint progressivement — les ouvriers deviennent mémoire",
+        "Ouverture poétique : que reste-t-il de ces mains qui ont façonné l'acier ?",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 segment [00:18–fin] pour la phrase sur l'absence actuelle"
+      ],
+      "mood": "nostalgique_digne"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "acceleration_organique",
+      "duree": 2.0,
+      "description": "Le bruit des marteaux sur les coques devient rythme, le quotidien bascule vers l'épopée collective. Pas de rupture : la phrase qui clôt la partie 1 lance naturellement l'élan de la partie 2, comme un souffle qui s'amplifie."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_temporel_doux",
+      "duree": 2.5,
+      "description": "Un silence bref après l'évocation du France à son apogée. Puis la voix reprend, plus lente, plus grave — le temps a passé. La transition est portée par un changement de tempo vocal, pas par une coupure franche."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ABSOLUE : Ce récit de 50 secondes doit être perçu comme un seul souffle continu en trois mouvements, jamais comme trois blocs séparés. Les sections sont des repères de rythme interne, pas des chapitres. — PERSPECTIVE CHORALE : Alterner entre un narrateur principal et des évocations de voix collectives (« ils soudaient », « ils savaient », « on disait sur les quais... »). Le 'on' et le 'ils' portent la chronique sociale. Jamais de personnage nommé inventé. — TON PÉDAGOGIQUE ACCESSIBLE : Phrases courtes, vocabulaire concret et imagé. Pas de jargon naval excessif. Chaque fait historique (Nantes 1950, le France 1960, 106 000 tonnes) doit être intégré naturellement dans le flux narratif, jamais asséné comme une fiche. — ARCHIVE AUDIO : Utiliser les segments de ElevenLabs_Spuds_Oxley.mp3 comme socle narratif. Le texte écrit doit prolonger, enrichir et habiller ces extraits, pas les répéter. Veiller à ce que l'intégration soit fluide et que l'archive ne sonne pas comme une citation plaquée. — CRESCENDO ÉMOTIONNEL : L'intensité monte de 0.3 (évocation calme du quotidien) à 0.9 (fierté collective au lancement du France) puis redescend à 0.3 (mélancolie digne du présent). Le rythme dynamique se traduit par des phrases plus rapides et plus courtes au climax, plus longues et suspendues en résolution. — DURÉE : Viser 48 à 52 secondes au total. Chaque section peut varier de ±2s mais la somme doit rester dans la tolérance."
+}

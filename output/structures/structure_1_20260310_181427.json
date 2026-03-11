@@ -1,0 +1,56 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui savent — Une vie d'artisan",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 80,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube et les premiers gestes",
+      "duree_cible": 38,
+      "fonction_narrative": "exposition_et_montee — Présenter l'homme à travers le souvenir de ses débuts : les matins d'apprentissage, les gestes maladroits répétés sous l'œil d'un maître, la découverte patiente du métier. On ancre le récit dans le concret d'une journée type de ses premières années — l'odeur de l'atelier au petit matin, les outils qu'on apprend à tenir, la fatigue des premières heures.",
+      "position_arc_emotionnel": "setup → tension (0.0 à 0.5)",
+      "elements_necessaires": [
+        "Voix posée et grave d'homme âgé, comme un souvenir raconté avec tendresse",
+        "Ambiance sonore d'atelier au matin : outils discrets, bois ou métal, pas sur un sol de pierre",
+        "Évocation sensorielle : les mains jeunes, le froid du matin, l'apprentissage par imitation",
+        "Mention du maître artisan sans nom inventé — 'le patron', 'celui qui m'a appris'",
+        "Rythme lent, phrases courtes, pauses contemplatives",
+        "Ton pédagogique et chaleureux : expliquer ce qu'est l'apprentissage d'un métier manuel"
+      ],
+      "mood": "nostalgique_intime_montant_en_intensite"
+    },
+    {
+      "partie": 2,
+      "titre": "Le soir d'une longue carrière",
+      "duree_cible": 42,
+      "fonction_narrative": "climax_et_resolution — Basculer vers le présent et les années qui ont transformé le métier. La journée type d'aujourd'hui n'est plus celle d'hier : les outils ont changé, la clientèle aussi, mais les gestes fondamentaux demeurent. On atteint le climax émotionnel sur la fierté et la mélancolie mêlées, puis on résout sur la transmission — le savoir-faire qui passe à d'autres mains, comme un relais silencieux en fin de journée.",
+      "position_arc_emotionnel": "climax → resolution (0.5 à 1.0)",
+      "elements_necessaires": [
+        "Voix qui prend de l'ampleur émotionnelle puis s'apaise doucement",
+        "Contraste temporel : 'autrefois… aujourd'hui…' sans dates inventées",
+        "Évocation des changements : nouveaux outils, nouvelles méthodes, mais permanence du geste essentiel",
+        "Moment de climax : la fierté d'avoir tenu, d'avoir traversé les transformations du métier",
+        "Résolution douce : image du soir qui tombe, de l'atelier qu'on ferme, du savoir transmis",
+        "Fin contemplative — une phrase suspendue, comme un regard en arrière avant d'éteindre la lumière",
+        "Ton toujours accessible : rendre universel ce parcours singulier"
+      ],
+      "mood": "fier_melancolique_puis_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel_naturel",
+      "duree": 3.0,
+      "description": "Pas de coupure franche. La voix glisse du souvenir d'apprentissage vers le constat du temps passé, comme si le narrateur relevait la tête de son établi pour regarder par la fenêtre et mesurer les années écoulées. Un léger changement d'ambiance sonore — l'atelier du matin cède la place à une atmosphère de fin de journée — accompagne ce passage sans le souligner lourdement."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 :\n\n1. FLUIDITÉ ABSOLUE : Ce récit est un monologue intérieur continu, pas deux blocs séparés. Les deux parties doivent couler l'une dans l'autre comme une seule respiration. Le découpage n'est qu'un repère de rythme pour la production.\n\n2. VOIX : Homme âgé, voix grave et posée, chaleur naturelle. Il parle comme s'il racontait à quelqu'un qui visite son atelier pour la première fois. Pas de surjeu, pas de dramatisation — la simplicité est l'émotion.\n\n3. FORME INTERVIEW : Le texte doit sonner comme un témoignage spontané, avec les hésitations et la sagesse de quelqu'un qui se souvient. On peut imaginer une question implicite qui lance le récit, mais pas de voix d'interviewer audible — seulement sa parole à lui.\n\n4. RYTHME : Lent et contemplatif. Laisser respirer les silences. Les pauses font partie du récit. Compter environ 2 mots/seconde pour respecter les 80 secondes.\n\n5. TON PÉDAGOGIQUE ACCESSIBLE : Il explique son monde sans jargon, avec des images concrètes. Un visiteur de passage doit comprendre et ressentir.\n\n6. RIGUEUR HISTORIQUE : Aucune date, aucun nom propre, aucun lieu précis ne doivent être inventés. Rester dans le générique évocateur : 'l'atelier', 'le patron', 'dans le temps', 'les années ont passé'.\n\n7. ANGLE JOURNÉE TYPE : Structurer le récit du matin au soir — les premières heures d'apprentissage dans la partie 1, le crépuscule d'une carrière dans la partie 2. Le cycle d'une journée comme métaphore d'une vie de travail.\n\n8. DURÉE : 80 secondes ± 12 secondes. Viser environ 160-170 mots au total."
+}

@@ -74,9 +74,15 @@ class AutomationRunner:
         tone = payload.get("tone")
         target_duration = payload.get("target_duration")
         voice_instructions = payload.get("voice_instructions")
+        tts_provider = payload.get("tts_provider")
+        tts_voice_id = payload.get("tts_voice_id")
+        if isinstance(tts_provider, str):
+            tts_provider = tts_provider.strip().lower()
+        if isinstance(tts_voice_id, str):
+            tts_voice_id = tts_voice_id.strip()
         has_updates = any(
             value is not None and (value != "" if isinstance(value, str) else True)
-            for value in (audience, tone, target_duration, voice_instructions)
+            for value in (audience, tone, target_duration, voice_instructions, tts_provider, tts_voice_id)
         )
         if not has_updates:
             return {}
@@ -128,6 +134,19 @@ class AutomationRunner:
                 entry["voice_instructions_source"] = "manual"
                 updated["voice_instructions"] = "manual"
                 changed = True
+
+        allowed_providers = {"qwen", "elevenlabs"}
+        if tts_provider in allowed_providers:
+            entry["tts_provider"] = tts_provider
+            updated["tts_provider"] = tts_provider
+            if tts_provider != "elevenlabs":
+                entry.pop("tts_voice_id", None)
+            changed = True
+
+        if tts_voice_id and (tts_provider == "elevenlabs" or entry.get("tts_provider") == "elevenlabs"):
+            entry["tts_voice_id"] = tts_voice_id
+            updated["tts_voice_id"] = tts_voice_id
+            changed = True
 
         if changed:
             save_project_config(

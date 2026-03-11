@@ -1,0 +1,200 @@
+{
+  "scenario_id": 1,
+  "titre": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "chronique_sociale",
+  "ton": "pedagogique_accessible",
+  "duree_estimee": 93.13428571428571,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bourdonnement des quais",
+      "duree": 21.5,
+      "texte_narration": "Sur les bords de la Loire, vers 1950, les chantiers navals de Nantes bourdonnaient d'activité. Soudeurs, charpentiers, manœuvres — des centaines de mains s'affairaient chaque matin dans le fracas du métal, l'odeur âcre de la soudure et les cris des contremaîtres.",
+      "ton": {
+        "global": "immersif, vivant, ancré dans le concret sensoriel",
+        "tempo_lecture": 120,
+        "pauses": [
+          "Micro-pause après 'vers 1950' pour laisser l'image se poser",
+          "Légère suspension après 'manœuvres' avant l'énumération sensorielle"
+        ],
+        "intonation": "Voix posée, descriptive, légèrement montante pour installer l'énergie du lieu"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ambiance sonore industrielle en fond : martèlements lointains, grincements métalliques, murmure de foule ouvrière",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Le son s'intensifie légèrement à l'énumération des métiers, effet choral suggéré",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:11",
+          "action": "Pic sonore bref sur 'fracas du métal' puis retombée vers l'odeur et les cris",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Sur les bords de la Loire, vers 1950, les chantiers navals de Nantes bourdonnaient d'activité.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité."
+          ]
+        },
+        {
+          "sentence": "Soudeurs, charpentiers, manœuvres — des centaines de mains s'affairaient chaque matin dans le fracas du métal, l'odeur âcre de la soudure et les cris des contremaîtres.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La fierté prend forme",
+      "duree": 37.92,
+      "texte_narration": "Année après année, les coques immenses prenaient forme. Et puis vint le jour où tout converge : 1960, le paquebot France. Cent six mille tonnes de rêves et d'acier, nées de ces mains calleuses. Dans les rues du quartier, les familles levaient les yeux vers la coque géante. On serrait les dents, on tenait les cadences — mais on savait, ensemble, qu'on bâtissait quelque chose de plus grand que soi. Une fierté nationale, forgée dans la solidarité de classe.",
+      "ton": {
+        "global": "épique et collectif, montée en puissance progressive vers le climax émotionnel",
+        "tempo_lecture": 125,
+        "pauses": [
+          "Pause marquée avant '1960, le paquebot France' — effet d'annonce",
+          "Légère respiration après 'rêves et d'acier' pour laisser résonner le chiffre",
+          "Ralentissement sur 'quelque chose de plus grand que soi'"
+        ],
+        "intonation": "Crescendo narratif : voix qui s'élève progressivement, chaleur et gravité mêlées, souffle épique sur le climax"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "Transition musicale : une nappe orchestrale basse commence à monter sous la narration",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:20",
+          "action": "Climax sonore sur 'cent six mille tonnes de rêves et d'acier' — accord musical ample ou son de corne de navire lointain",
+          "duree": 2.5
+        },
+        {
+          "timestamp": "0:30",
+          "action": "Retour à une chaleur intime sur l'évocation des familles et de la solidarité, musique qui se stabilise",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Année après année, les coques immenses prenaient forme.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Et puis vint le jour où tout converge : 1960, le paquebot France.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+          ]
+        },
+        {
+          "sentence": "Cent six mille tonnes de rêves et d'acier, nées de ces mains calleuses.",
+          "sources": [
+            "[00:00] 106 000 tonnes de rêves et d'acier."
+          ]
+        },
+        {
+          "sentence": "Dans les rues du quartier, les familles levaient les yeux vers la coque géante.",
+          "sources": []
+        },
+        {
+          "sentence": "On serrait les dents, on tenait les cadences — mais on savait, ensemble, qu'on bâtissait quelque chose de plus grand que soi.",
+          "sources": []
+        },
+        {
+          "sentence": "Une fierté nationale, forgée dans la solidarité de classe.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "duree": 33.714285714285715,
+      "texte_narration": "Aujourd'hui, les cales sont vides. Seules les grues jaunes témoignent encore de ce passé glorieux. Les voix se sont tues, les ouvriers sont devenus mémoire. Mais que reste-t-il de ces mains qui ont façonné l'acier ? Peut-être ceci : le souvenir têtu d'un fleuve qui portait des navires — et la fierté de tout un peuple.",
+      "ton": {
+        "global": "nostalgique, digne, contemplatif — le souffle retombe avec élégance",
+        "tempo_lecture": 105,
+        "pauses": [
+          "Pause après 'les cales sont vides' — silence habité",
+          "Suspension avant la question 'Mais que reste-t-il…'",
+          "Silence final de 2 secondes après le dernier mot"
+        ],
+        "intonation": "Voix qui descend progressivement, murmure presque intime sur la question finale, dernière phrase posée avec douceur et dignité"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:35",
+          "action": "Retrait total des sons industriels — silence soudain, puis un léger souffle de vent sur l'eau",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:42",
+          "action": "Question rhétorique suspendue — la musique se réduit à une note tenue, fragile",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:48",
+          "action": "Dernière phrase puis fondu au silence complet",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, les cales sont vides.",
+          "sources": []
+        },
+        {
+          "sentence": "Seules les grues jaunes témoignent encore de ce passé glorieux.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Les voix se sont tues, les ouvriers sont devenus mémoire.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais que reste-t-il de ces mains qui ont façonné l'acier ?",
+          "sources": []
+        },
+        {
+          "sentence": "Peut-être ceci : le souvenir têtu d'un fleuve qui portait des navires — et la fierté de tout un peuple.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 181,
+    "duree_lecture_estimee": 93.13428571428571,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 0.8,
+      "sources_citees": [],
+      "verifications": [
+        "Validation basique effectuée"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "FLUIDITÉ ABSOLUE : Ce récit de 50 secondes doit être perçu comme un seul souffle continu en trois mouvements, jamais comme trois blocs séparés. Les sections sont des repères de rythme interne, pas des chapitres. — PERSPECTIVE CHORALE : Alterner entre un narrateur principal et des évocations de voix collectives (« ils soudaient », « ils savaient », « on disait sur les quais... »). Le 'on' et le 'ils' portent la chronique sociale. Jamais de personnage nommé inventé. — TON PÉDAGOGIQUE ACCESSIBLE : Phrases courtes, vocabulaire concret et imagé. Pas de jargon naval excessif. Chaque fait historique (Nantes 1950, le France 1960, 106 000 tonnes) doit être intégré naturellement dans le flux narratif, jamais asséné comme une fiche. — ARCHIVE AUDIO : Utiliser les segments de ElevenLabs_Spuds_Oxley.mp3 comme socle narratif. Le texte écrit doit prolonger, enrichir et habiller ces extraits, pas les répéter. Veiller à ce que l'intégration soit fluide et que l'archive ne sonne pas comme une citation plaquée. — CRESCENDO ÉMOTIONNEL : L'intensité monte de 0.3 (évocation calme du quotidien) à 0.9 (fierté collective au lancement du France) puis redescend à 0.3 (mélancolie digne du présent). Le rythme dynamique se traduit par des phrases plus rapides et plus courtes au climax, plus longues et suspendues en résolution. — DURÉE : Viser 48 à 52 secondes au total. Chaque section peut varier de ±2s mais la somme doit rester dans la tolérance."
+}
