@@ -107,14 +107,12 @@
       },
       
       "perspective_narrative": {
-        "value": "troisieme_personne",
+        "value": "voix_off_omnisciente",
         "options": [
-          "premiere_personne",
           "troisieme_personne",
-          "voix_off_omnisciente",
-          "chorale_multiple_voix"
+          "voix_off_omnisciente"
         ],
-        "default": "troisieme_personne",
+        "default": "voix_off_omnisciente",
         "user_specified": false
       },
       
@@ -158,7 +156,6 @@
       "angle_scenarisation": {
         "value": "auto",
         "options": [
-          "temoignage_croise",
           "chronique_sociale",
           "journee_type",
           "portrait_individuel",

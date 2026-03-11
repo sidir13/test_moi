@@ -17,7 +17,6 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 ANGLE_POOL = [
-    "temoignage_croise",
     "chronique_sociale",
     "journee_type",
     "portrait_individuel",
@@ -35,10 +34,6 @@ SOFT_VARIABILITY_PARAMS = [
 ]
 
 ANGLE_DESCRIPTIONS: Dict[str, str] = {
-    "temoignage_croise": (
-        "Récit à la 1ère personne avec plusieurs témoins qui se relaient. "
-        "Chaque voix apporte un regard différent sur le même vécu."
-    ),
     "chronique_sociale": (
         "Chronique à la 3ème personne racontant la vie d'un groupe social, "
         "ses habitudes, son quotidien, ses luttes."
@@ -48,8 +43,9 @@ ANGLE_DESCRIPTIONS: Dict[str, str] = {
         "le concret des gestes et des heures."
     ),
     "portrait_individuel": (
-        "Portrait intime d'un individu, son parcours, ses pensées, "
-        "son évolution au fil du récit."
+        "Portrait d'un individu raconté de l'extérieur — son parcours, "
+        "son quotidien, son rôle dans les événements — sans monologue "
+        "intérieur ni 1ère personne."
     ),
     "avant_apres_evenement": (
         "Structure en diptyque : la vie avant un événement marquant, "
