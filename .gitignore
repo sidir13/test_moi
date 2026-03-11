@@ -103,6 +103,7 @@ notebooks/models
 
 # dependencies
 node_modules
+node_modules/
 # package-lock.json
 # package.json
 
@@ -130,8 +131,10 @@ process_number.cpython-312.pyc
 *.parquet
 
 # models
+models
+!models/.gitkeep
 qwen-3-tts
-qwen-3-tts
+qwen3-tts
 
 # images
 *.png
