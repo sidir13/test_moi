@@ -656,7 +656,11 @@ class RequestParserAgent:
             "5. Si des transcriptions audio sont fournies, UTILISEZ-LES : "
             "intégrez les mots et témoignages réels.\n"
             "6. Pour chaque partie : 2-3 moments clés + directions de ton.\n"
-            "7. Respectez strictement les durées cibles (~2.5 mots/seconde).\n\n"
+            "7. Respectez strictement les durées cibles (~2.5 mots/seconde).\n"
+            "8. SOURCING OBLIGATOIRE : après avoir rédigé le texte, découpez-le "
+            "en phrases et pour chaque phrase listez les lignes de transcription "
+            "qui l'ont inspirée (citations exactes ou très proches). "
+            "Si aucune transcription n'est pertinente, laissez la liste vide.\n\n"
             "RIGUEUR HISTORIQUE (non négociable) :\n"
             "- EXCLUSIVEMENT basé sur le contexte et transcriptions fournis.\n"
             "- N'INVENTEZ JAMAIS de dates, noms, lieux ou événements absents "
@@ -678,7 +682,11 @@ class RequestParserAgent:
             '      "moments_cles": [\n'
             '        {"timestamp": "0:XX", "action": "...", "duree": 2.0}\n'
             "      ],\n"
-            '      "ambiances_continues": []\n'
+            '      "ambiances_continues": [],\n'
+            '      "sentence_sources": [\n'
+            '        {"sentence": "Phrase complète numéro 1.", "sources": ["[00:12] Citation exacte de la transcription...", "[00:35] ..."]},\n'
+            '        {"sentence": "Phrase 2 sans source.", "sources": []}\n'
+            "      ]\n"
             "    }\n"
             "  ]\n"
             "}\n\n"
