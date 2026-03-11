@@ -1,0 +1,275 @@
+{
+  "scenario_id": 1,
+  "titre": "Les mains qui savent — une vie d'artisan",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "ton": "pedagogique_accessible",
+  "duree_estimee": 171.42857142857144,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube et les premiers gestes",
+      "duree": 75.42857142857143,
+      "texte_narration": "Venez. Approchez-vous. Laissez-moi vous montrer où tout a commencé.\n\nIl faisait encore nuit quand je poussais la porte de l'atelier. J'avais quinze ans. L'odeur du bois frais, celle de la colle chaude, me saisissaient à la gorge. Le maître était déjà là, penché sur l'établi, sans un mot. Il ne m'a jamais dit comment faire. Il faisait — et moi, je regardais. Puis j'imitais. Mes mains tremblaient. Le rabot glissait de travers, le ciseau mordait là où il ne fallait pas. Recommencer. Encore. Toujours. Le sol de pierre était froid sous mes pieds, la lumière du matin entrait à peine par la lucarne. Mais un jour, un geste est devenu juste. Un seul. Et j'ai su que le métier, lentement, entrait dans mes mains.",
+      "ton": {
+        "global": "intime, nostalgique, chaleureux — la voix d'un vieil homme qui revoit ses débuts avec tendresse et gravité",
+        "tempo_lecture": 105,
+        "pauses": [
+          "Pause de 1,5 s après « où tout a commencé »",
+          "Pause de 1 s après « sans un mot »",
+          "Pause de 1 s après « Encore. Toujours. »",
+          "Pause de 1,5 s avant « Et j'ai su »"
+        ],
+        "intonation": "Voix basse et posée au début, presque murmurée. Les phrases courtes sont détachées, sèches. L'intonation s'élève doucement vers la fin de la partie, portée par la fierté naissante."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ambiance d'atelier au petit matin : craquement de porte en bois, pas lents sur un sol de pierre, silence habité",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:12",
+          "action": "Sons discrets d'outils : rabot sur bois, ciseau qui frappe, évoquant les gestes maladroits de l'apprenti",
+          "duree": 2.5
+        },
+        {
+          "timestamp": "0:30",
+          "action": "Un son net et propre d'un outil bien manié — un coup juste — marquant le premier geste réussi",
+          "duree": 1.5
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Venez.",
+          "sources": []
+        },
+        {
+          "sentence": "Approchez-vous.",
+          "sources": []
+        },
+        {
+          "sentence": "Laissez-moi vous montrer où tout a commencé.",
+          "sources": []
+        },
+        {
+          "sentence": "Il faisait encore nuit quand je poussais la porte de l'atelier.",
+          "sources": []
+        },
+        {
+          "sentence": "J'avais quinze ans.",
+          "sources": []
+        },
+        {
+          "sentence": "L'odeur du bois frais, celle de la colle chaude, me saisissaient à la gorge.",
+          "sources": []
+        },
+        {
+          "sentence": "Le maître était déjà là, penché sur l'établi, sans un mot.",
+          "sources": []
+        },
+        {
+          "sentence": "Il ne m'a jamais dit comment faire.",
+          "sources": []
+        },
+        {
+          "sentence": "Il faisait — et moi, je regardais.",
+          "sources": [
+            "« maîtrise acquise par une personne du fait de la pratique sur une durée suffisante »"
+          ]
+        },
+        {
+          "sentence": "Puis j'imitais.",
+          "sources": []
+        },
+        {
+          "sentence": "Mes mains tremblaient.",
+          "sources": []
+        },
+        {
+          "sentence": "Le rabot glissait de travers, le ciseau mordait là où il ne fallait pas.",
+          "sources": []
+        },
+        {
+          "sentence": "Recommencer.",
+          "sources": []
+        },
+        {
+          "sentence": "Encore.",
+          "sources": []
+        },
+        {
+          "sentence": "Toujours.",
+          "sources": []
+        },
+        {
+          "sentence": "Le sol de pierre était froid sous mes pieds, la lumière du matin entrait à peine par la lucarne.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais un jour, un geste est devenu juste.",
+          "sources": [
+            "« degré de maîtrise acquis par une personne ou une organisation du fait de la pratique sur une durée suffisante »"
+          ]
+        },
+        {
+          "sentence": "Un seul.",
+          "sources": []
+        },
+        {
+          "sentence": "Et j'ai su que le métier, lentement, entrait dans mes mains.",
+          "sources": [
+            "« exercice par une personne d'une activité dans un domaine professionnel »"
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le plein jour et les années qui passent",
+      "duree": 96.0,
+      "texte_narration": "Ensuite, le temps a fait son œuvre. À midi, l'atelier battait son plein. Les commandes s'empilaient, les pièces prenaient forme sous mes doigts devenus sûrs. Je connaissais chaque essence de bois, chaque caprice du métal. Le métier n'était plus une épreuve — c'était ma langue.\n\nMais le monde, autour, n'est pas resté le même. De nouveaux outils sont arrivés. De nouvelles méthodes. Les clients demandaient autre chose, autrement. Il a fallu apprendre encore — toujours apprendre. Depuis mille sept cent quatre-vingt, quand le duc de La Rochefoucauld-Liancourt a fondé la première école des arts et métiers, notre pays a compris cela : le savoir-faire se transmet, mais il se renouvelle aussi.\n\nEt puis un matin, un gamin est entré dans mon atelier. Il avait les mains qui tremblaient, comme moi autrefois. Alors j'ai fait comme le maître avait fait : j'ai travaillé devant lui, sans un mot.\n\nVous entendez ? Ce silence, là, c'est celui d'un outil qu'on pose. Le soir tombe. L'atelier est calme. Et le geste, lui, continue — dans d'autres mains, désormais.",
+      "ton": {
+        "global": "D'abord ample et puissant, porté par la fierté de la maîtrise, puis progressivement contemplatif et apaisé",
+        "tempo_lecture": 115,
+        "pauses": [
+          "Pause de 1 s après « c'était ma langue »",
+          "Pause de 1 s après « toujours apprendre »",
+          "Pause de 1,5 s après « sans un mot »",
+          "Pause de 2 s après « Vous entendez ? »",
+          "Pause de 1,5 s avant « Et le geste, lui, continue »"
+        ],
+        "intonation": "Voix assurée et pleine dans la première moitié — le narrateur est au faîte de son art. L'intonation se charge d'émotion contenue à l'évocation du jeune apprenti. Les dernières phrases sont murmurées, lentes, presque suspendues, comme un soir qui tombe."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:35",
+          "action": "Atelier en pleine activité : martèlements réguliers, sciage, voix lointaines — énergie du travail accompli",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:55",
+          "action": "Transition sonore : les bruits d'atelier changent subtilement — sons plus modernes, rythme différent, marquant le passage du temps",
+          "duree": 2.5
+        },
+        {
+          "timestamp": "1:12",
+          "action": "Son net d'un outil posé sur l'établi, puis silence habité — quelques secondes de calme avant la dernière phrase",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Ensuite, le temps a fait son œuvre.",
+          "sources": []
+        },
+        {
+          "sentence": "À midi, l'atelier battait son plein.",
+          "sources": []
+        },
+        {
+          "sentence": "Les commandes s'empilaient, les pièces prenaient forme sous mes doigts devenus sûrs.",
+          "sources": []
+        },
+        {
+          "sentence": "Je connaissais chaque essence de bois, chaque caprice du métal.",
+          "sources": []
+        },
+        {
+          "sentence": "Le métier n'était plus une épreuve — c'était ma langue.",
+          "sources": [
+            "« exercice par une personne d'une activité dans un domaine professionnel »",
+            "« maîtrise acquise par une personne du fait de la pratique sur une durée suffisante »"
+          ]
+        },
+        {
+          "sentence": "Mais le monde, autour, n'est pas resté le même.",
+          "sources": []
+        },
+        {
+          "sentence": "De nouveaux outils sont arrivés.",
+          "sources": [
+            "« amélioration des pratiques »"
+          ]
+        },
+        {
+          "sentence": "De nouvelles méthodes.",
+          "sources": []
+        },
+        {
+          "sentence": "Les clients demandaient autre chose, autrement.",
+          "sources": [
+            "« recenser les besoins de formation »"
+          ]
+        },
+        {
+          "sentence": "Il a fallu apprendre encore — toujours apprendre.",
+          "sources": [
+            "« rendre le salarié acteur de son évolution professionnelle »",
+            "« actions de formation professionnelle »"
+          ]
+        },
+        {
+          "sentence": "Depuis mille sept cent quatre-vingt, quand le duc de La Rochefoucauld-Liancourt a fondé la première école des arts et métiers, notre pays a compris cela : le savoir-faire se transmet, mais il se renouvelle aussi.",
+          "sources": [
+            "Fondation de l'École nationale supérieure d'arts et métiers par le duc de La Rochefoucauld-Liancourt (1780)",
+            "« tradition ancienne d'apprentissage des arts et métiers qui s'est modernisée et internationalisée »"
+          ]
+        },
+        {
+          "sentence": "Et puis un matin, un gamin est entré dans mon atelier.",
+          "sources": []
+        },
+        {
+          "sentence": "Il avait les mains qui tremblaient, comme moi autrefois.",
+          "sources": []
+        },
+        {
+          "sentence": "Alors j'ai fait comme le maître avait fait : j'ai travaillé devant lui, sans un mot.",
+          "sources": [
+            "« l'apprentissage du métier, la formation continue et la transmission des compétences sont des piliers du système professionnel français »"
+          ]
+        },
+        {
+          "sentence": "Vous entendez ?",
+          "sources": []
+        },
+        {
+          "sentence": "Ce silence, là, c'est celui d'un outil qu'on pose.",
+          "sources": []
+        },
+        {
+          "sentence": "Le soir tombe.",
+          "sources": []
+        },
+        {
+          "sentence": "L'atelier est calme.",
+          "sources": []
+        },
+        {
+          "sentence": "Et le geste, lui, continue — dans d'autres mains, désormais.",
+          "sources": [
+            "« la transmission du savoir-faire »"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 316,
+    "duree_lecture_estimee": 171.42857142857144,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 0.8,
+      "sources_citees": [],
+      "verifications": [
+        "Validation basique effectuée"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "FLUIDITÉ ABSOLUE : Ce récit de 80 secondes doit être perçu comme un seul souffle continu, porté par une voix d'homme âgé — chaude, légèrement rocailleuse, sans affectation. Les deux sections sont des repères internes pour le rythme, PAS des chapitres séparés. La transition doit être imperceptible à l'oreille. || ANGLE JOURNÉE TYPE : La structure matin/midi/soir organise le récit, mais elle fonctionne à double niveau — c'est à la fois une journée concrète d'artisan ET la métaphore d'une vie entière. Le matin = les débuts, le plein jour = la maîtrise, le soir = la transmission et le recul. || VOIX : Homme âgé, ton pédagogique et accessible, comme un ancien qui explique son monde à un visiteur curieux. Jamais condescendant, toujours généreux. Il parle simplement, avec des mots concrets. || RIGUEUR HISTORIQUE : Aucun contexte historique précis n'étant fourni, le texte doit rester volontairement non situé dans une époque ou un lieu précis. Utiliser des formulations ouvertes : 'dans l'atelier', 'le maître', 'avec le temps'. NE PAS inventer de dates, de noms propres, de lieux spécifiques. || RYTHME DYNAMIQUE : Varier la longueur des phrases. Phrases courtes et percutantes pour les gestes. Phrases plus amples pour les passages contemplatifs. Silences brefs (0.5-1s) aux moments de bascule émotionnelle. || DURÉE : Viser un débit de ~150 mots/minute, soit environ 200 mots au total pour 80 secondes. Tolérance 68-92 secondes."
+}

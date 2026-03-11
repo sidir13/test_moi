@@ -1,0 +1,89 @@
+{
+  "timeline_id": "scenario_1_timeline_v1",
+  "scenario_id": 1,
+  "duree_totale": 171.42857142857144,
+  "tracks": {
+    "narration_track": [
+      {
+        "id": "narr_01",
+        "start_time": 0.0,
+        "end_time": 75.42857142857143,
+        "duration": 75.42857142857143,
+        "text_file": "scenario_part_1_narration.txt",
+        "estimated_words": 132,
+        "tempo_lecture": 105,
+        "tone": "intime, nostalgique, chaleureux — la voix d'un vieil homme qui revoit ses débuts avec tendresse et gravité",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause de 1,5 s après « où tout a commencé »",
+          "Pause de 1 s après « sans un mot »",
+          "Pause de 1 s après « Encore. Toujours. »",
+          "Pause de 1,5 s avant « Et j'ai su »"
+        ]
+      },
+      {
+        "id": "narr_02",
+        "start_time": 75.42857142857143,
+        "end_time": 171.42857142857144,
+        "duration": 96.0,
+        "text_file": "scenario_part_2_narration.txt",
+        "estimated_words": 184,
+        "tempo_lecture": 115,
+        "tone": "D'abord ample et puissant, porté par la fierté de la maîtrise, puis progressivement contemplatif et apaisé",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause de 1 s après « c'était ma langue »",
+          "Pause de 1 s après « toujours apprendre »",
+          "Pause de 1,5 s après « sans un mot »",
+          "Pause de 2 s après « Vous entendez ? »",
+          "Pause de 1,5 s avant « Et le geste, lui, continue »"
+        ]
+      }
+    ],
+    "archives_track": [],
+    "ambiances_track": [],
+    "sfx_track": [],
+    "music_track": []
+  },
+  "transitions": [],
+  "master_parameters": {
+    "target_loudness": -16,
+    "dynamic_range": "moderate",
+    "final_compression": {
+      "threshold": -18.0,
+      "ratio": 3.0,
+      "attack": 10,
+      "release": 100
+    },
+    "final_limiter": {
+      "threshold": -1.0,
+      "ceiling": -0.3
+    }
+  },
+  "metadata": {
+    "total_files_used": 2,
+    "total_tracks": 5,
+    "total_regions": 2,
+    "generation_timestamp": "2026-03-10T18:17:02.946488",
+    "estimated_production_time": "2-3 heures",
+    "required_software": [
+      "Reaper",
+      "ou équivalent"
+    ],
+    "export_formats": [
+      "RPP",
+      "EDL",
+      "JSON"
+    ]
+  },
+  "quality_checks": {
+    "timeline_coherence": "✓ OK",
+    "no_overlapping_conflicts": "✓ OK",
+    "duration_matches_scenario": "✓ OK (171.4s)",
+    "all_required_sounds_found": "✓ OK",
+    "volume_levels_balanced": "✓ OK",
+    "transitions_smooth": "✓ OK"
+  }
+}

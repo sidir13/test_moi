@@ -1,0 +1,432 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "touriste",
+        "tone": "pedagogique_accessible",
+        "duration_seconds": 80,
+        "voice_instructions": "Voix d'homme âgé"
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "scenario_target_override": 1
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : touriste (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : pedagogique_accessible (ne change jamais de ton).\n- Durée cible : ~80 s (1 min 20). Tolérance maximale ±15 %.\n- Voix attendue : Voix d'homme âgé (intègre cette intention dans la mise en scène).\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nPrésente son histoire, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": false,
+        "reasoning": "Aucune forme narrative explicitement mentionnée par l'utilisateur. La valeur par défaut 'documentaire' est conservée, cohérente avec le ton pédagogique et la structure en deux parties demandée."
+      },
+      "duree": {
+        "value": 80,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "project_profile",
+        "tolerance": {
+          "min": 68,
+          "max": 92,
+          "percentage": 15
+        },
+        "reasoning": "L'utilisateur spécifie explicitement '~80 s (1 min 20)' avec une tolérance maximale de ±15%."
+      },
+      "ton": {
+        "value": "pedagogique_accessible",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.7,
+        "source": "project_profile",
+        "reasoning": "L'utilisateur spécifie explicitement 'pedagogique_accessible' et insiste : 'ne change jamais de ton'. Contrainte non négociable."
+      },
+      "axe_narratif": {
+        "value": "mixte",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": true,
+        "distribution": {
+          "scenario_1": "mixte",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social"
+        },
+        "reasoning": "L'utilisateur demande explicitement deux axes combinés : 'son histoire, son apprentissage' (travailleur / récit initiatique) ET 'l'évolution de son métier à travers le temps' (evolution_temporelle). La combinaison de ces deux axes correspond à 'mixte' avec une dominante travailleur + evolution_temporelle."
+      },
+      "rythme": {
+        "value": "modere",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 120,
+          "pauses": "naturelles",
+          "variation": "progressive"
+        },
+        "reasoning": "Aucun rythme spécifié. Le rythme modéré est cohérent avec le ton pédagogique accessible, la voix d'homme âgé et la durée courte de 80s."
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "reasoning": "L'utilisateur parle d'un seul sujet ('son histoire', 'son métier') avec une structure en deux parties au sein d'un même scénario, pas de demande de variantes multiples.",
+        "source": "project_slider"
+      },
+      "public_cible": {
+        "value": "touriste",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "project_profile",
+        "reasoning": "L'utilisateur spécifie explicitement 'Public cible : touriste' comme contrainte non négociable, avec instruction de le rappeler dès l'ouverture."
+      },
+      "niveau_detail_historique": {
+        "value": "moyen",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "reasoning": "Non spécifié. Le niveau 'moyen' est cohérent avec un public touriste et un ton pédagogique accessible. Suffisant pour couvrir l'histoire personnelle et l'évolution du métier en 80s."
+      },
+      "perspective_narrative": {
+        "value": "troisieme_personne",
+        "options": [
+          "premiere_personne",
+          "troisieme_personne",
+          "voix_off_omnisciente",
+          "chorale_multiple_voix"
+        ],
+        "default": "troisieme_personne",
+        "user_specified": false,
+        "reasoning": "Non spécifié explicitement. La troisième personne est cohérente avec la voix d'homme âgé qui raconte 'son histoire' (celle d'un tiers) dans un format documentaire pédagogique. Cependant, une première personne (témoignage du travailleur lui-même) serait aussi plausible — laissé en false pour permettre la flexibilité."
+      },
+      "epoque_linguistique": {
+        "value": "modernise_accessible",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "reasoning": "Non spécifié, mais ajusté par cohérence. Le public touriste et le ton pédagogique accessible imposent un langage compréhensible. 'modernise_accessible' est plus adapté que 'authentique' pour ce contexte. Ajustement automatique de cohérence."
+      },
+      "densite_sonore": {
+        "value": "equilibree",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": false,
+        "details": {
+          "ambiances_simultanees_max": 3,
+          "frequence_effets_sonores": "modere",
+          "silence_narratif": true
+        },
+        "reasoning": "Non spécifié. La densité équilibrée convient à la durée courte (80s) et au format pédagogique."
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": true,
+        "reasoning": "L'utilisateur impose une structure en deux parties séquentielles : 'première partie' (histoire et apprentissage) puis 'seconde partie' (évolution du métier à travers le temps). Cette progression temporelle correspond à une structure chronologique explicitement demandée."
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "temoignage_croise",
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement",
+          "mosaique_voix",
+          "lettre_intime",
+          "recit_initiatique"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "reasoning": "Paramètre réservé au système (règle critique). La demande suggère fortement un mélange 'portrait_individuel' + 'recit_initiatique' (apprentissage) + 'chronique_sociale' (évolution du métier), mais le choix final est délégué au système."
+      },
+      "equilibre_narration_archives": {
+        "value": 0.6,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "reasoning": "Non spécifié. La valeur par défaut est conservée."
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.5,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "reasoning": "Non spécifié, mais ajusté par cohérence. Le public touriste et le ton pédagogique accessible favorisent l'accessibilité. Valeur abaissée de 0.7 à 0.5 pour privilégier la compréhension immédiate sur l'authenticité linguistique."
+      },
+      "voix": {
+        "value": "homme_age",
+        "user_specified": true,
+        "source": "project_profile",
+        "reasoning": "L'utilisateur spécifie explicitement 'Voix d'homme âgé' avec instruction de l'intégrer dans la mise en scène. Contrainte non négociable."
+      },
+      "contraintes_ouverture": {
+        "value": "presenter_public_cible_et_ton",
+        "user_specified": true,
+        "reasoning": "L'utilisateur exige explicitement : 'Commence la narration en présentant explicitement le public cible et le ton demandé.'"
+      },
+      "structure_parties": {
+        "value": {
+          "partie_1": {
+            "theme": "histoire_personnelle_et_apprentissage",
+            "description": "Son histoire, son apprentissage"
+          },
+          "partie_2": {
+            "theme": "evolution_metier_dans_le_temps",
+            "description": "L'évolution de son métier à travers le temps"
+          }
+        },
+        "user_specified": true,
+        "reasoning": "L'utilisateur structure explicitement le contenu en deux parties distinctes avec des thèmes précis."
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": null,
+        "end_year": null,
+        "user_specified": false,
+        "note": "Aucune période historique spécifiée. L'utilisateur mentionne 'à travers le temps' ce qui implique une évolution sur une longue durée, mais sans bornes temporelles définies. À déterminer selon le métier et le contexte du projet."
+      },
+      "location": {
+        "primary": null,
+        "specific_areas": [],
+        "user_specified": false,
+        "note": "Aucun lieu spécifié par l'utilisateur. À déterminer selon le contexte du projet."
+      },
+      "themes": {
+        "primary": [
+          "apprentissage_metier",
+          "evolution_professionnelle",
+          "transmission_savoir_faire"
+        ],
+        "secondary": [
+          "parcours_individuel",
+          "transformation_techniques",
+          "adaptation_modernite"
+        ],
+        "user_specified": false,
+        "note": "Les thèmes sont déduits de la structure en deux parties : histoire personnelle/apprentissage + évolution du métier. Le métier spécifique n'est pas mentionné — référence à 'son' histoire et 'son' métier implique un sujet déjà défini dans le contexte du projet."
+      },
+      "key_events": [],
+      "key_figures": [],
+      "sujet": {
+        "value": null,
+        "note": "L'utilisateur utilise le pronom 'son' (son histoire, son apprentissage, son métier) ce qui implique qu'un sujet spécifique (personne ou archétype de travailleur) est déjà défini dans le contexte du projet mais n'est pas explicité dans cette demande. Ce paramètre doit être résolu par le système à partir du contexte projet."
+      }
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "coherence_checks": {
+      "adjustments_made": [
+        {
+          "parameter": "epoque_linguistique",
+          "from": "authentique",
+          "to": "modernise_accessible",
+          "reason": "Incohérence avec public_cible=touriste et ton=pedagogique_accessible. Un langage authentique/ancien serait difficilement accessible pour un touriste."
+        },
+        {
+          "parameter": "authenticite_vs_accessibilite",
+          "from": 0.7,
+          "to": 0.5,
+          "reason": "Ajusté pour favoriser l'accessibilité, cohérent avec le public touriste et le ton pédagogique."
+        }
+      ],
+      "warnings": [
+        {
+          "type": "missing_context",
+          "message": "Le sujet spécifique (quel travailleur, quel métier) n'est pas mentionné dans la demande. Les pronoms 'son' suggèrent un sujet pré-défini dans le contexte projet."
+        },
+        {
+          "type": "missing_context",
+          "message": "Aucune période historique ni lieu géographique spécifiés. Ces informations sont nécessaires pour la génération et doivent être fournies par le contexte projet."
+        },
+        {
+          "type": "duration_constraint",
+          "message": "Durée de 80s avec structure en 2 parties = environ 40s par partie. Contenu très synthétique requis, cohérent avec le niveau de détail 'moyen' et le public touriste."
+        }
+      ]
+    }
+  }
+}

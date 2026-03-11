@@ -1,0 +1,76 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains de la Loire — Une journée aux chantiers navals de Nantes",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 50,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube sur les quais",
+      "duree_cible": 14,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup — intensité 0.3",
+      "elements_necessaires": [
+        "Ambiance sonore suggérée : brume matinale sur la Loire, pas sur les pavés, sirène lointaine d'usine",
+        "Voix off omnisciente posée et confidentielle, comme un murmure complice",
+        "Évocation sensorielle : le froid du petit matin, l'odeur du fleuve, les silhouettes d'ouvriers convergeant vers les chantiers navals de Nantes dans les années 1950",
+        "Ancrage temporel : les premières heures du jour, le rituel quotidien de milliers de travailleurs"
+      ],
+      "mood": "intimiste_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le fracas de l'acier",
+      "duree_cible": 20,
+      "fonction_narrative": "montee_en_tension_et_climax",
+      "position_arc_emotionnel": "tension vers climax — intensité 0.7 à 0.9",
+      "elements_necessaires": [
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 : utiliser le segment décrivant les chantiers navals bourdonnant d'activité, les coques immenses, les mains expertes des soudeurs et charpentiers, et la naissance du paquebot France en 1960 (106 000 tonnes de rêves et d'acier)",
+        "Intensification progressive du rythme narratif : du geste individuel au chantier collectif",
+        "Évocation du contexte social : la fierté ouvrière, la sueur, le bruit assourdissant, la cadence imposée par la journée de travail",
+        "Climax émotionnel : le moment où la coque prend forme, où le travail de milliers de mains devient visible — un navire qui se dresse au-dessus du fleuve",
+        "Ambiance sonore suggérée : martèlements, arcs de soudure, voix étouffées sous le vacarme"
+      ],
+      "mood": "intense_vibrant"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence après la sirène",
+      "duree_cible": 16,
+      "fonction_narrative": "resolution_et_resonance",
+      "position_arc_emotionnel": "résolution — intensité redescend à 0.3",
+      "elements_necessaires": [
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 : utiliser le segment final ('Aujourd'hui, seules...') pour amorcer la bascule vers le présent et l'absence",
+        "Retour au calme : la sirène de fin de journée, les ouvriers qui quittent le chantier, le fleuve qui reprend ses droits dans le silence du soir",
+        "Résonance mélancolique : ce que ces journées ont construit — et ce qui a disparu depuis",
+        "Voix off qui se fait plus douce, presque un souffle, comme un souvenir confié à l'oreille",
+        "Ouverture finale : les quais aujourd'hui, vides, où l'on devine encore l'écho des marteaux"
+      ],
+      "mood": "melancolique_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "La brume du matin se dissipe dans le premier coup de marteau. Le murmure de la voix off se fond dans le montage sonore du chantier qui s'éveille. Pas de coupure : le silence matinal est progressivement envahi par le bourdonnement industriel. L'archive audio prend naturellement le relais de la narration."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_emotionnel",
+      "duree": 2.0,
+      "description": "Le vacarme du chantier s'éteint avec la sirène de fin de journée. Un dernier écho métallique résonne, puis le fleuve reprend sa voix. La narration omnisciente revient au premier plan, plus basse, plus lente, comme un confident qui achève son récit. L'archive audio sert de pivot vers le présent."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ET CONTINUITÉ : Ce récit de 50 secondes doit être perçu comme un seul souffle narratif continu, pas trois blocs séparés. Les trois sections sont des repères de rythme internes, pas des chapitres. — La voix off omnisciente adopte un ton intimiste et confidentiel du début à la fin, comme si elle confiait un souvenir personnel à l'auditeur. Vocabulaire accessible, phrases courtes et concrètes, pas de jargon technique. — L'archive audio (ElevenLabs_Spuds_Oxley.mp3) constitue le cœur du récit : l'intégrer organiquement dans la partie centrale et la résolution, en la tissant avec la narration originale plutôt qu'en la plaquant comme un insert. — L'angle 'journée type' structure tout : on suit le fil des heures (aube → journée de labeur → soir) comme colonne vertébrale. Chaque sensation est ancrée dans un moment précis de la journée. — Rythme modéré : ne jamais précipiter. Laisser respirer les silences, notamment dans la partie 1 et la fin de la partie 3. — ATTENTION À LA DURÉE : 50 secondes au total, tolérance 42-58 secondes. Chaque mot compte. Viser environ 120-130 mots de narration totale (rythme audio naturel ~2,5 mots/seconde). — Ne jamais mentionner explicitement les consignes, le public cible ou le ton dans le texte final."
+}

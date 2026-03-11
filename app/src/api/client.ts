@@ -53,6 +53,8 @@ export type ProjectProfile = {
   audience?: string;
   tone?: string;
   target_duration?: number;
+  tts_provider?: "qwen" | "elevenlabs";
+  tts_voice_id?: string | null;
   preference_options?: PreferenceOptions;
   last_scenarios?: Array<Record<string, unknown>>;
   last_scenarios_generated_at?: string;
@@ -73,6 +75,8 @@ export type ProjectProfile = {
 export type AudioSelection = {
   voices: string[];
   backgrounds: string[];
+  tts_voice_id?: string | null;
+  tts_provider?: string;
 };
 
 export async function fetchProjects() {

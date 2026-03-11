@@ -33,6 +33,7 @@ from memoiredesterritoires.background_sound_finder.background_sound_finder impor
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
     text_to_speech_with_instructions,
 )
+from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
 from memoiredesterritoires.transcription.transcription import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.Slideshow.slides import slideshow
@@ -497,6 +498,7 @@ class AudioSelectionPayload(BaseModel):
     project_name: str
     voices: List[str] = Field(default_factory=list)
     backgrounds: List[str] = Field(default_factory=list)
+    tts_voice_id: Optional[str] = Field(default=None, description="Selected ElevenLabs voice identifier")
 
 
 class ScenarioAudioRequest(BaseModel):
@@ -810,6 +812,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         entry.setdefault("allowed_websites", ["wikipedia.org"])
         entry.setdefault("voice_instructions", "")
         entry.setdefault("voice_instructions_source", "")
+        entry.setdefault("tts_provider", "qwen")
         for key, value in updates.items():
             if value is not None:
                 entry[key] = value
@@ -1195,6 +1198,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "audience": audience_value,
             "tone": tone_value,
             "target_duration": target_duration,
+            "tts_provider": profile.get("tts_provider", "qwen"),
+            "tts_voice_id": profile.get("tts_voice_id"),
             "preference_options": preference_options,
             "last_scenarios": profile.get("last_scenarios") or [],
             "last_scenarios_generated_at": profile.get("last_scenarios_generated_at"),
@@ -1647,33 +1652,61 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             project=session["project_name"],
             language=payload.language or "French",
         )
-        def synthesize() -> dict:
+        profile = load_project_profile(session["project_name"])
+        provider = (profile.get("tts_provider") or "qwen").lower()
+        voice_id = profile.get("tts_voice_id")
+
+        def synthesize_qwen() -> dict:
             return text_to_speech_with_instructions(
                 text=text,
                 project_name=session["project_name"],
                 language=payload.language or "French",
             )
 
-        try:
-            result = synthesize()
-        except ValueError as exc:
-            message = str(exc)
-            lowered = message.lower()
-            if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
-                logger.info("Voice instructions missing for %s – composing default", session["project_name"])
-                try:
-                    ensure_voice_instructions(session["project_name"], text, payload.language or "French")
-                except Exception as inner_exc:  # pragma: no cover - fallback message
-                    raise HTTPException(status_code=400, detail=str(inner_exc)) from inner_exc
-                try:
-                    result = synthesize()
-                except Exception as retry_exc:
-                    raise HTTPException(status_code=400, detail=str(retry_exc)) from retry_exc
-            else:
-                raise HTTPException(status_code=400, detail=message) from exc
-        except Exception as exc:  # pragma: no cover - propagate to client
-            logger.exception("Scenario audio synthesis failed for session %s", session_id)
-            raise HTTPException(status_code=500, detail=str(exc)) from exc
+        if provider == "elevenlabs":
+            if not voice_id:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Sélectionnez une voix ElevenLabs avant de générer l'audio."
+                )
+            try:
+                result = eleven_labs_tts(
+                    text=text,
+                    voice_id=voice_id,
+                )
+            except Exception as exc:  # pragma: no cover - propagate
+                logger.exception("ElevenLabs synthesis failed for session %s", session_id)
+                raise HTTPException(status_code=500, detail=str(exc)) from exc
+            result.setdefault("language", payload.language or "French")
+            result.setdefault("sample_rate", 44100)
+            try:
+                segment = AudioSegment.from_file(result["path"])
+                result["num_samples"] = int(segment.frame_count())
+            except Exception:
+                result.setdefault("num_samples", 0)
+            result["tts_provider"] = "elevenlabs"
+        else:
+            try:
+                result = synthesize_qwen()
+            except ValueError as exc:
+                message = str(exc)
+                lowered = message.lower()
+                if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
+                    logger.info("Voice instructions missing for %s – composing default", session["project_name"])
+                    try:
+                        ensure_voice_instructions(session["project_name"], text, payload.language or "French")
+                    except Exception as inner_exc:  # pragma: no cover - fallback message
+                        raise HTTPException(status_code=400, detail=str(inner_exc)) from inner_exc
+                    try:
+                        result = synthesize_qwen()
+                    except Exception as retry_exc:
+                        raise HTTPException(status_code=400, detail=str(retry_exc)) from retry_exc
+                else:
+                    raise HTTPException(status_code=400, detail=message) from exc
+            except Exception as exc:  # pragma: no cover - propagate to client
+                logger.exception("Scenario audio synthesis failed for session %s", session_id)
+                raise HTTPException(status_code=500, detail=str(exc)) from exc
+            result["tts_provider"] = "qwen"
 
         backgrounds_applied = 0
         backgrounds_requested = 0
@@ -2043,6 +2076,14 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
         selection = load_audio_selection(session["project_name"])
+        profile = load_project_profile(session["project_name"])
+        provider = profile.get("tts_provider", "qwen")
+        selection["tts_provider"] = provider
+        if provider == "elevenlabs":
+            if profile.get("tts_voice_id"):
+                selection["tts_voice_id"] = profile.get("tts_voice_id")
+        else:
+            selection["tts_voice_id"] = None
         return selection
 
     @app.get("/sessions/{session_id}/scenario-progress", tags=["sessions"])
@@ -2063,7 +2104,17 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         available_voices = set(list_project_audio_files(payload.project_name))
         voices = [track for track in payload.voices if track in available_voices][:3]
         backgrounds = payload.backgrounds[:2]
-        saved = save_audio_selection(payload.project_name, {"voices": voices, "backgrounds": backgrounds})
+        selection_payload: Dict[str, Any] = {"voices": voices, "backgrounds": backgrounds}
+        if payload.tts_voice_id:
+            selection_payload["tts_voice_id"] = payload.tts_voice_id.strip()
+        saved = save_audio_selection(payload.project_name, selection_payload)
+        if payload.tts_voice_id:
+            upsert_project_config_entry(
+                payload.project_name,
+                {
+                    "tts_voice_id": payload.tts_voice_id.strip(),
+                },
+            )
         log_progress(
             "AUDIO_SELECTION_UPDATED",
             session=session_id,

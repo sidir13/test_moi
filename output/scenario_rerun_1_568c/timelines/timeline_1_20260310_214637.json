@@ -1,0 +1,102 @@
+{
+  "timeline_id": "scenario_1_timeline_v1",
+  "scenario_id": 1,
+  "duree_totale": 93.13428571428571,
+  "tracks": {
+    "narration_track": [
+      {
+        "id": "narr_01",
+        "start_time": 0.0,
+        "end_time": 21.5,
+        "duration": 21.5,
+        "text_file": "scenario_part_1_narration.txt",
+        "estimated_words": 43,
+        "tempo_lecture": 120,
+        "tone": "immersif, vivant, ancré dans le concret sensoriel",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Micro-pause après 'vers 1950' pour laisser l'image se poser",
+          "Légère suspension après 'manœuvres' avant l'énumération sensorielle"
+        ]
+      },
+      {
+        "id": "narr_02",
+        "start_time": 21.5,
+        "end_time": 59.42,
+        "duration": 37.92,
+        "text_file": "scenario_part_2_narration.txt",
+        "estimated_words": 79,
+        "tempo_lecture": 125,
+        "tone": "épique et collectif, montée en puissance progressive vers le climax émotionnel",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause marquée avant '1960, le paquebot France' — effet d'annonce",
+          "Légère respiration après 'rêves et d'acier' pour laisser résonner le chiffre",
+          "Ralentissement sur 'quelque chose de plus grand que soi'"
+        ]
+      },
+      {
+        "id": "narr_03",
+        "start_time": 59.42,
+        "end_time": 93.13428571428571,
+        "duration": 33.714285714285715,
+        "text_file": "scenario_part_3_narration.txt",
+        "estimated_words": 59,
+        "tempo_lecture": 105,
+        "tone": "nostalgique, digne, contemplatif — le souffle retombe avec élégance",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause après 'les cales sont vides' — silence habité",
+          "Suspension avant la question 'Mais que reste-t-il…'",
+          "Silence final de 2 secondes après le dernier mot"
+        ]
+      }
+    ],
+    "archives_track": [],
+    "ambiances_track": [],
+    "sfx_track": [],
+    "music_track": []
+  },
+  "transitions": [],
+  "master_parameters": {
+    "target_loudness": -16,
+    "dynamic_range": "moderate",
+    "final_compression": {
+      "threshold": -18.0,
+      "ratio": 3.0,
+      "attack": 10,
+      "release": 100
+    },
+    "final_limiter": {
+      "threshold": -1.0,
+      "ceiling": -0.3
+    }
+  },
+  "metadata": {
+    "total_files_used": 3,
+    "total_tracks": 5,
+    "total_regions": 3,
+    "generation_timestamp": "2026-03-10T21:46:37.157681",
+    "estimated_production_time": "2-3 heures",
+    "required_software": [
+      "Reaper",
+      "ou équivalent"
+    ],
+    "export_formats": [
+      "RPP",
+      "EDL",
+      "JSON"
+    ]
+  },
+  "quality_checks": {
+    "timeline_coherence": "✓ OK",
+    "no_overlapping_conflicts": "✓ OK",
+    "duration_matches_scenario": "✓ OK (93.1s)",
+    "all_required_sounds_found": "✓ OK",
+    "volume_levels_balanced": "✓ OK",
+    "transitions_smooth": "✓ OK"
+  }
+}

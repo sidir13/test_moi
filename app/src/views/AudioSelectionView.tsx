@@ -10,7 +10,8 @@ import {
   uploadBackgroundSound,
   fetchProjectAudio,
   fetchAudioSelection,
-  saveAudioSelection
+  saveAudioSelection,
+  fetchProjectProfile
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -22,6 +23,13 @@ const formatDuration = (seconds?: number) => {
   return mins > 0 ? `${mins} min ${secs.toString().padStart(2, "0")} s` : `${secs} s`;
 };
 
+const ELEVEN_LABS_VOICE_OPTIONS = [
+  { id: "5l4ttmr4SKNgi0HnOelT", label: "Voix 1 — 5l4ttmr4..." },
+  { id: "flHkNRp1BlvT73UL6gyz", label: "Voix 2 — flHkNRp1..." },
+  { id: "jK7dAsiVAhbApIS8KkWB", label: "Voix 3 — jK7dAsi..." },
+  { id: "NOpBlnGInO9m6vDvFkFC", label: "Voix 4 — NOpBlnGI..." }
+];
+
 export function AudioSelectionView() {
   const { sessionId, projectName, setCurrentStep, updateProgress } = useSessionStore();
   const navigate = useNavigate();
@@ -31,6 +39,7 @@ export function AudioSelectionView() {
   const [selectionError, setSelectionError] = useState<string | null>(null);
   const [selectedBackgrounds, setSelectedBackgrounds] = useState<string[]>([]);
   const [selectedVoices, setSelectedVoices] = useState<string[]>([]);
+  const [selectedVoiceId, setSelectedVoiceId] = useState<string | null>(null);
   const [backgroundTitle, setBackgroundTitle] = useState("");
   const [backgroundFile, setBackgroundFile] = useState<File | null>(null);
   const [backgroundStatus, setBackgroundStatus] = useState<string | null>(null);
@@ -46,13 +55,19 @@ export function AudioSelectionView() {
     queryFn: () => fetchProjectAudio(projectName!),
     enabled: Boolean(projectName)
   });
+  const profileQuery = useQuery({
+    queryKey: ["project-profile", projectName],
+    queryFn: () => fetchProjectProfile(projectName!),
+    enabled: Boolean(projectName)
+  });
   const selectionQuery = useQuery({
     queryKey: ["audio-selection", sessionId],
     queryFn: () => fetchAudioSelection(sessionId!),
     enabled: Boolean(sessionId)
   });
+  const ttsProvider = profileQuery.data?.tts_provider === "elevenlabs" ? "elevenlabs" : "qwen";
   const saveSelection = useMutation({
-    mutationFn: (payload: { voices: string[]; backgrounds: string[] }) =>
+    mutationFn: (payload: { voices: string[]; backgrounds: string[]; tts_voice_id?: string | null }) =>
       saveAudioSelection(sessionId!, { project_name: projectName!, ...payload }),
     onSuccess: (data) => {
       selectionQuery.refetch();
@@ -61,6 +76,13 @@ export function AudioSelectionView() {
       }
     }
   });
+  const persistSelection = (voices: string[], backgrounds: string[], voiceId?: string | null) => {
+    const payload: { voices: string[]; backgrounds: string[]; tts_voice_id?: string | null } = { voices, backgrounds };
+    if (voiceId) {
+      payload.tts_voice_id = voiceId;
+    }
+    saveSelection.mutate(payload);
+  };
 
   if (!sessionId || !projectName) {
     return <p>Sélectionnez d'abord un projet.</p>;
@@ -72,8 +94,14 @@ export function AudioSelectionView() {
       const voices = selectionQuery.data.voices || [];
       setSelectedVoices(voices);
       voicesRef.current = voices;
+      setSelectedVoiceId(selectionQuery.data.tts_voice_id ?? null);
     }
   }, [selectionQuery.data]);
+  useEffect(() => {
+    if (ttsProvider !== "elevenlabs") {
+      setSelectedVoiceId(null);
+    }
+  }, [ttsProvider]);
 
   useEffect(() => {
     const handler = () => selectionQuery.refetch();
@@ -121,8 +149,15 @@ export function AudioSelectionView() {
     evt.preventDefault();
   };
 
+  const handleVoiceIdChange = (value: string) => {
+    setSelectionError(null);
+    const normalized = value || null;
+    setSelectedVoiceId(normalized);
+    persistSelection(selectedVoices, selectedBackgrounds, normalized);
+  };
+
   const updateSelection = (voices: string[], backgrounds: string[]) => {
-    saveSelection.mutate({ voices, backgrounds });
+    persistSelection(voices, backgrounds, selectedVoiceId);
   };
 
   const goNext = async () => {
@@ -131,11 +166,16 @@ export function AudioSelectionView() {
       setSelectionError("Sélectionnez au moins une piste vocale avant de continuer.");
       return;
     }
+    if (ttsProvider === "elevenlabs" && !selectedVoiceId) {
+      setSelectionError("Sélectionnez une voix ElevenLabs avant de continuer.");
+      return;
+    }
     try {
       setNextStatus("Validation des sources...");
       await advanceStep(sessionId, "audio_sources", {
         files: voices,
-        backgrounds: selectedBackgrounds
+        backgrounds: selectedBackgrounds,
+        tts_voice_id: selectedVoiceId ?? undefined
       });
       updateProgress({ audioReady: true });
       setCurrentStep("scenario_review");
@@ -287,6 +327,27 @@ export function AudioSelectionView() {
           {!backgroundSounds?.length && <p>Aucun son trouvé. Ajoutez-en via l'upload ci-dessus.</p>}
         </div>
       </section>
+
+      {ttsProvider === "elevenlabs" && (
+        <section className="card">
+          <h3>Choisir une voix ElevenLabs</h3>
+          <p>Ces voix sont codées en dur pour l’instant. Sélectionnez celle qui correspond le mieux à votre narration.</p>
+          <label className="field-block">
+            <span>Voix disponible</span>
+            <select
+              value={selectedVoiceId ?? ""}
+              onChange={(e) => handleVoiceIdChange(e.target.value)}
+            >
+              <option value="">Sélectionner une voix</option>
+              {ELEVEN_LABS_VOICE_OPTIONS.map((voice) => (
+                <option key={voice.id} value={voice.id}>
+                  {voice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </section>
+      )}
 
       {nextStatus && <p>{nextStatus}</p>}
       <button className="link" onClick={goNext} disabled={!sessionId}>

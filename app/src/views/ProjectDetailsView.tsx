@@ -15,6 +15,7 @@ export function ProjectDetailsView() {
   const [tone, setTone] = useState("");
   const [voiceInstructions, setVoiceInstructions] = useState("");
   const [targetDuration, setTargetDuration] = useState(DEFAULT_DURATION_SECONDS);
+  const [ttsProvider, setTtsProvider] = useState<"qwen" | "elevenlabs">("qwen");
   const [status, setStatus] = useState<string | null>(null);
   const notesPrefilledFor = useRef<string | null>(null);
   const progressPrefilledFor = useRef<string | null>(null);
@@ -59,6 +60,8 @@ export function ProjectDetailsView() {
     setAudience(profileQuery.data.audience ?? "");
     setTone(profileQuery.data.tone ?? "");
     setVoiceInstructions(profileQuery.data.voice_instructions ?? "");
+    const providerValue = profileQuery.data.tts_provider === "elevenlabs" ? "elevenlabs" : "qwen";
+    setTtsProvider(providerValue);
     const fallbackDuration =
       profileQuery.data.target_duration ??
       durationSettings?.default ??
@@ -132,7 +135,8 @@ export function ProjectDetailsView() {
       audience: audience || undefined,
       tone: tone || undefined,
       target_duration: targetDuration,
-      voice_instructions: voiceInstructions?.trim() || undefined
+      voice_instructions: voiceInstructions?.trim() || undefined,
+      tts_provider: ttsProvider
     });
     setStatus("Notes enregistrées");
     setTimeout(() => setStatus(null), 2000);
@@ -189,6 +193,36 @@ export function ProjectDetailsView() {
             onChange={(e) => setVoiceInstructions(e.target.value)}
             placeholder="Ex: Use a female narrator, warm and composed..."
           />
+        </label>
+        <label className="field-block">
+          <span>Moteur de synthèse vocale</span>
+          <div className="radio-row">
+            <label>
+              <input
+                type="radio"
+                name="tts-provider"
+                value="qwen"
+                checked={ttsProvider === "qwen"}
+                onChange={() => setTtsProvider("qwen")}
+              />
+              Qwen local (instructions textuelles)
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="tts-provider"
+                value="elevenlabs"
+                checked={ttsProvider === "elevenlabs"}
+                onChange={() => setTtsProvider("elevenlabs")}
+              />
+              ElevenLabs (voix pré-définies)
+            </label>
+          </div>
+          {ttsProvider === "elevenlabs" ? (
+            <small>La voix sera choisie à l’étape suivante parmi la liste ElevenLabs disponible.</small>
+          ) : (
+            <small>La voix sera générée localement selon vos consignes textuelles.</small>
+          )}
         </label>
 
         <label className="field-block slider-field">
