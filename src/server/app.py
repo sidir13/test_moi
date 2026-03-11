@@ -34,7 +34,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
     text_to_speech_with_instructions,
 )
 from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
-from memoiredesterritoires.transcription.transcription import transcribe_audio
+from memoiredesterritoires.transcription.transcription_parallelized import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.Slideshow.slides import slideshow
 from memoiredesterritoires.project_config import (
