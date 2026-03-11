@@ -31,6 +31,7 @@ class ScenarioMakerOrchestrator:
         log_level: str = "INFO",
         model_id: Optional[str] = None,
         scenario_target_override: Optional[int] = None,
+        tts_provider: str = "qwen",
     ):
         # Setup logging
         log_file = os.getenv("LOG_FILE", "./logs/memoire_territoires.log")
@@ -45,6 +46,10 @@ class ScenarioMakerOrchestrator:
         self.model_id = model_id
         if model_id:
             logger.info("Model override: %s", model_id)
+
+        # TTS provider — Agent 3 only runs when elevenlabs is selected
+        self.tts_provider = (tts_provider or "qwen").lower()
+        logger.info("TTS provider: %s", self.tts_provider)
 
         # Scenario target override (slider)
         self.scenario_target_override: Optional[int] = None
@@ -368,21 +373,29 @@ class ScenarioMakerOrchestrator:
             scenario.get("duree_estimee", 0),
         )
 
-        # ---- Agent 3: ElevenLabs tagging ----
-        agent3 = self._get_agent("agent_3_production")
-        agent3.set_skills(self.skills)
+        # ---- Agent 3: ElevenLabs tagging (only when provider is elevenlabs) ----
+        taggedOutput = None
+        if self.tts_provider == "elevenlabs":
+            agent3 = self._get_agent("agent_3_production")
+            agent3.set_skills(self.skills)
 
-        a3_logger = AgentLogger(f"Agent 3 (#{snum})")
-        a3_logger.log_start("Format with ElevenLabs tags")
-        taggedOutput = agent3.formatWithTags(scenario, baseConfig)
-        a3_logger.log_end("Tagging", status="success")
+            a3_logger = AgentLogger(f"Agent 3 (#{snum})")
+            a3_logger.log_start("Format with ElevenLabs tags")
+            taggedOutput = agent3.formatWithTags(scenario, baseConfig)
+            a3_logger.log_end("Tagging", status="success")
 
-        logger.info(
-            "[Chain %d] Agent 3 done — %d voice tags, %d sound tags",
-            snum,
-            taggedOutput.get("metadata", {}).get("voiceTags", 0),
-            taggedOutput.get("metadata", {}).get("soundTags", 0),
-        )
+            logger.info(
+                "[Chain %d] Agent 3 done — %d voice tags, %d sound tags",
+                snum,
+                taggedOutput.get("metadata", {}).get("voiceTags", 0),
+                taggedOutput.get("metadata", {}).get("soundTags", 0),
+            )
+        else:
+            logger.info(
+                "[Chain %d] Agent 3 skipped (tts_provider=%s, not elevenlabs)",
+                snum,
+                self.tts_provider,
+            )
 
         return {
             "structure": structure,
@@ -461,21 +474,13 @@ class ScenarioMakerOrchestrator:
         "journee_type",
         "portrait_individuel",
         "avant_apres_evenement",
-        "mosaique_voix",
-        "lettre_intime",
-        "recit_initiatique",
     ]
 
     _SOFT_VARIABILITY_PARAMS = [
-        "ton",
         "structure_narrative",
-        "perspective_narrative",
-        "forme",
         "rythme",
         "densite_sonore",
-        "epoque_linguistique",
         "niveau_detail_historique",
-        "axe_narratif",
     ]
 
     def _vary_config_for_scenario(

@@ -22,21 +22,16 @@ ANGLE_POOL = [
     "journee_type",
     "portrait_individuel",
     "avant_apres_evenement",
-    "mosaique_voix",
-    "lettre_intime",
-    "recit_initiatique",
 ]
 
+# Only parameters that add variety without risking off-topic results.
+# Excluded: forme, perspective_narrative, epoque_linguistique, ton, axe_narratif
+# (these are either too structuring or project-dependent to randomize).
 SOFT_VARIABILITY_PARAMS = [
-    "ton",
     "structure_narrative",
-    "perspective_narrative",
-    "forme",
     "rythme",
     "densite_sonore",
-    "epoque_linguistique",
     "niveau_detail_historique",
-    "axe_narratif",
 ]
 
 ANGLE_DESCRIPTIONS: Dict[str, str] = {
@@ -59,18 +54,6 @@ ANGLE_DESCRIPTIONS: Dict[str, str] = {
     "avant_apres_evenement": (
         "Structure en diptyque : la vie avant un événement marquant, "
         "puis la transformation après."
-    ),
-    "mosaique_voix": (
-        "Fragments de voix, de souvenirs et de témoignages entrelacés "
-        "comme un collage sonore."
-    ),
-    "lettre_intime": (
-        "Sous forme de lettre ou de journal intime — ton confidentiel "
-        "et personnel."
-    ),
-    "recit_initiatique": (
-        "Parcours d'apprentissage ou de découverte — le narrateur entre "
-        "dans un monde inconnu et le comprend peu à peu."
     ),
 }
 
@@ -483,7 +466,6 @@ class RequestParserAgent:
             f"- Forme narrative : {_val('forme')}",
             f"- Durée cible : {_val('duree')} secondes",
             f"- Ton : {_val('ton')}",
-            f"- Public cible : {_val('public_cible')}",
             f"- Axe narratif : {_val('axe_narratif')}",
             f"- Structure narrative : {_val('structure_narrative')}",
             f"- Rythme : {_val('rythme')}",
@@ -494,6 +476,9 @@ class RequestParserAgent:
             f"- Niveau de détail historique : {_val('niveau_detail_historique')}",
             f"- Équilibre narration/archives : {_val('equilibre_narration_archives')}",
             f"- Authenticité vs accessibilité : {_val('authenticite_vs_accessibilite')}",
+            f"- Public cible : {_val('public_cible')}  "
+            "(influence le registre de langue et la complexité, "
+            "PAS le format narratif — le récit reste une voix off)",
         ]
 
         # Historical context
@@ -586,6 +571,16 @@ class RequestParserAgent:
             f"Créez une structure narrative ET un résumé d'histoire pour le "
             f"scénario audio historique #{scenarioNum}.\n\n"
             f"{paramsBlock}\n\n"
+            "=== STYLE NARRATIF — VOIX OFF ===\n"
+            "Le scénario sera lu comme une VOIX OFF narrative racontant "
+            "l'histoire d'une personne, d'un lieu ou d'un événement.\n"
+            "- NE JAMAIS adresser le public directement (pas de « Chers "
+            "auditeurs », « Bienvenue dans ce documentaire », « Chers "
+            "lycéens »).\n"
+            "- Les invitations immersives sont ENCOURAGÉES : « Imaginez la "
+            "Loire en 1950… », « Nous sommes en février 1905… ».\n"
+            "- Le public cible influence le REGISTRE DE LANGUE (complexité, "
+            "longueur des phrases), PAS le style d'adresse.\n\n"
             "=== VOTRE MISSION (Agent 1 — Architecte Narratif) ===\n"
             "1. Concevez la structure narrative en décidant librement du nombre "
             "de sections (1 à 7) selon ce qui est NATUREL pour ce récit.\n"
@@ -645,6 +640,16 @@ class RequestParserAgent:
             f"{paramsBlock}\n\n"
             "=== STRUCTURE NARRATIVE ET RÉSUMÉ (fournis par l'architecte) ===\n"
             "<<STRUCTURE_ET_RESUME>>\n\n"
+            "=== STYLE NARRATIF — VOIX OFF ===\n"
+            "Vous écrivez une VOIX OFF narrative — un narrateur raconte "
+            "l'histoire d'une personne, d'un lieu ou d'un événement.\n"
+            "- NE JAMAIS adresser le public directement (pas de « Chers "
+            "auditeurs », « Bienvenue dans ce documentaire », « Chers "
+            "lycéens »).\n"
+            "- Les invitations immersives sont ENCOURAGÉES : « Imaginez… », "
+            "« Nous sommes en… », « Fermons les yeux… ».\n"
+            "- Le public cible détermine la complexité du vocabulaire et la "
+            "longueur des phrases, PAS le style d'adresse.\n\n"
             "=== VOTRE MISSION (Agent 2 — Scénariste Historique) ===\n"
             "1. Écrivez le texte narratif complet pour TOUTES les parties en "
             "une seule réponse cohérente et FLUIDE.\n"
@@ -652,7 +657,9 @@ class RequestParserAgent:
             "rythme, pas des coupures.\n"
             f"3. L'angle « {angle} » définit la MANIÈRE de raconter — "
             "suivez-le fidèlement.\n"
-            "4. Adaptez le vocabulaire au public cible et à l'époque.\n"
+            "4. Adaptez le registre de langue au public cible (complexité, "
+            "longueur des phrases) et à l'époque, sans jamais apostrophe "
+            "directe.\n"
             "5. Si des transcriptions audio sont fournies, UTILISEZ-LES : "
             "intégrez les mots et témoignages réels.\n"
             "6. Pour chaque partie : 2-3 moments clés + directions de ton.\n"

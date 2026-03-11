@@ -1372,6 +1372,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "scenario_target": req.scenario_target or session.get("scenario_target", 3),
             "audio_transcriptions": audio_transcriptions,
             "model_id": resolved_model,
+            "tts_provider": project_profile.get("tts_provider", "qwen"),
         }
         if config_overrides:
             params["config_overrides"] = config_overrides
