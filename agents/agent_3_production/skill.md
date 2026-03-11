@@ -1,17 +1,15 @@
-# Agent 3 : Audio Production Engineer
+# Agent 3 : Audio Tag Engineer (ElevenLabs)
 
 ## Role
 
-Ingénieur de production audio. Reçoit le scénario d'Agent 2 et le transforme en timeline technique précise prête pour l'édition audio.
+Ingénieur de balisage audio. Reçoit le scénario d'Agent 2 et le transforme en **texte balisé** prêt pour la synthèse vocale ElevenLabs et le design sonore.
 
 Responsabilités :
-- Créer la timeline technique complète avec tous les tracks
-- Sélectionner les sons d'ambiance optimaux
-- Calculer les timings à la milliseconde
-- Résoudre les overlaps et gérer les transitions
-- Appliquer les règles de mixing (volumes, ducking, EQ)
-- Générer les exports (Reaper RPP, EDL, JSON)
-- Valider la cohérence technique
+- Insérer des **balises vocales ElevenLabs** `[]` dans le texte narratif pour guider la voix TTS
+- Insérer des **marqueurs de sons d'ambiance** `{}` aux endroits stratégiques
+- Préserver intégralement le texte narratif (aucune réécriture)
+- Adapter l'intensité des balises au ton de chaque partie
+- Séparer le texte balisé par parties pour un traitement granulaire
 
 ## Model Configuration
 
@@ -19,143 +17,167 @@ Responsabilités :
 - Temperature: 0.3
 - Max tokens: 8000
 
-Raison : Température basse pour précision technique, tokens élevés pour timelines complexes.
+Raison : Température basse pour précision technique du balisage, tokens élevés pour traiter des scénarios complets.
 
-## Python Tools
+## System Prompt
 
-Enabled: true
+Vous êtes un ingénieur de production audio spécialisé dans le balisage de textes pour la synthèse vocale (ElevenLabs) et le design sonore.
 
-Utilisé pour :
-- Calculs de timing précis (millisecondes)
-- Scoring de sons (formules mathématiques)
-- Génération de fichiers d'export (RPP, EDL)
-- Validation de cohérence technique
+Votre rôle est de prendre un scénario narratif et d'y insérer :
+1. Des **balises vocales ElevenLabs** entre crochets [] — elles indiquent au moteur TTS comment prononcer le texte.
+   Exemples : [pause 2s], [rire], [murmure], [stupeur], [ton grave], [ton joyeux], [acceleration], [ralentissement], [soupir], [voix forte], [chuchotement], [ton solennel], [hésitation], [émotion contenue], [colère], [tristesse].
+2. Des **marqueurs de sons d'ambiance** entre accolades {} — ils indiquent où insérer des fichiers audio d'ambiance.
+   Exemples : {ambiance_port_brume.wav}, {foule_agitee.wav}, {clapotis_eau.wav}, {vent_mer.wav}, {pas_sur_paves.wav}.
+
+Règles :
+- Insérez les balises [] DANS le texte, au bon endroit pour que la lecture soit naturelle.
+- Les balises {sons} peuvent être placées en début de paragraphe ou à des transitions narratives.
+- Ne modifiez JAMAIS le texte narratif lui-même (pas de réécriture).
+- Soyez subtil : pas trop de balises — un balisage excessif nuit à la qualité.
+- Nommez les fichiers d'ambiance de manière descriptive : snake_case, extension .wav.
+- Adaptez l'intensité et le type des balises au ton du scénario.
 
 ## Functions
 
-### create_audio_timeline
+### formatWithTags ⭐ (point d'entrée principal)
 
-Génère la timeline technique complète avec tous les tracks.
+Annote le texte narratif d'un scénario avec des balises ElevenLabs et des marqueurs d'ambiance.
 
 **Input** :
 ```json
 {
-  "scenario": dict,
-  "sound_library": dict,
-  "config": dict
+  "scenario": "dict (scénario complet d'Agent 2 avec 'parties' contenant 'texte_narration')",
+  "config": "dict (optionnel, config pipeline — utilisé pour voice_instructions, ton, etc.)"
 }
 ```
 
-**Output** : Timeline JSON complète prête pour export
+**Output** :
+```json
+{
+  "scenario_id": 1,
+  "titre": "Voix des quais",
+  "taggedText": "=== PARTIE 1 : L'aube ===\n{ambiance_port_brume.wav}\n[ton grave] En ce matin de février... [pause 2s] Les pavés luisent...",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube",
+      "taggedText": "{ambiance_port_brume.wav}\n[ton grave] En ce matin de février... [pause 2s] Les pavés luisent..."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 12,
+    "soundTags": 4,
+    "originalWordCount": 387
+  }
+}
+```
 
-**Usage** : Fonction principale pour générer la timeline
+**Usage** : Point d'entrée unique dans le pipeline (Agent 2 → Agent 3).
 
 **Comportement** :
-1. Crée les tracks vides (narration, archives, ambiances, SFX, musique)
-2. Pour chaque partie du scénario :
-   - Place la narration avec timings précis
-   - Sélectionne et place les sons d'ambiance (skill `ambiance_sound_selector`)
-   - Place les archives audio avec fades
-   - Ajoute SFX aux moments clés
-3. Utilise `audio_timeline_composer` pour résoudre overlaps et appliquer mixing
-4. Calcule paramètres master (compression, limiting)
-5. Génère metadata et quality checks
-6. Retourne timeline complète
+1. Extrait le contexte : `voice_instructions`, `ton`, `notes_pour_agent_3`
+2. Pour chaque partie du scénario, collecte :
+   - Texte narratif
+   - Ton (global + intonation)
+   - Ambiances suggérées par Agent 2
+   - Moments clés
+3. Assemble le texte complet avec des marqueurs `=== PARTIE N : Titre ===`
+4. Construit un prompt via `_buildTaggingPrompt` avec le texte + contexte
+5. Appelle le LLM qui insère les balises `[]` et `{}` dans le texte
+6. Sépare le texte balisé par parties via `_splitTaggedTextByParts`
+7. Compte les balises et retourne le résultat structuré
 
-**Robustesse** :
-- Valide que chaque `part`, `moment_cle` et `ambiance` est bien un `dict` avant traitement (skip sinon)
-- Normalise le champ `ton` en dict si le LLM a retourné une string
-- Parse les timestamps robustement (accepte str, int, float, formats "M:SS" et "H:MM:SS")
-- Log les éléments malformés au lieu de crasher
+**Fallback** : En cas d'erreur, retourne le texte original non balisé avec metadata d'erreur.
 
-### select_optimal_sound
+### create_audio_timeline (legacy — déprécié)
 
-Sélectionne le son optimal selon critères multiples avec scoring.
+Génère une timeline technique complète avec tous les tracks (narration, archives, ambiances, SFX, musique).
 
-**Input** :
-```json
-{
-  "required_tags": list,
-  "mood": str,
-  "period": str,
-  "duration": float,
-  "candidates": list
-}
-```
+**Usage** : Conservé pour rétrocompatibilité uniquement. Émet un warning si appelé.
 
-**Output** : `{"file": str, "relevance_score": float, "metadata": dict}`
+## Types de balises
 
-**Usage** : Pour chaque ambiance/effet à placer
+### Balises vocales ElevenLabs `[]`
 
-**Scoring** :
-- Tags match : 40%
-- Mood compatibility : 30%
-- Period accuracy : 20%
-- Duration fit : 10%
+Insérées **dans** le texte narratif pour guider la synthèse vocale :
 
-### calculate_precise_timing
+| Balise | Description | Exemple d'usage |
+|--------|------------|-----------------|
+| `[pause 2s]` | Pause de N secondes | Après une phrase forte, avant une révélation |
+| `[rire]` | Rire du narrateur | Moment léger, anecdote amusante |
+| `[murmure]` | Passage murmuré | Ton confidentiel, secret |
+| `[stupeur]` | Stupéfaction | Annonce surprenante |
+| `[ton grave]` | Voix grave, solennelle | Moments dramatiques, annonces sombres |
+| `[ton joyeux]` | Voix joyeuse | Célébration, bonne nouvelle |
+| `[acceleration]` | Accélération du débit | Tension montante, urgence |
+| `[ralentissement]` | Ralentissement du débit | Moments contemplatifs, conclusions |
+| `[soupir]` | Soupir | Lassitude, résignation, soulagement |
+| `[voix forte]` | Volume élevé | Cris, discours, emphase |
+| `[chuchotement]` | Voix très basse | Intimité, secret, peur |
+| `[ton solennel]` | Ton cérémonieux | Hommages, moments historiques |
+| `[hésitation]` | Hésitation vocale | Doute, émotion qui submerge |
+| `[émotion contenue]` | Émotion retenue | Moments poignants sans dramatisation |
+| `[colère]` | Voix en colère | Injustice, révolte |
+| `[tristesse]` | Voix triste | Perte, nostalgie |
 
-Calcule timings à la milliseconde pour placement temporel.
+### Marqueurs de sons d'ambiance `{}`
 
-**Input** :
-```json
-{
-  "elements": list,
-  "total_duration": float,
-  "gaps": list
-}
-```
+Placés en début de paragraphe ou aux transitions narratives :
 
-**Output** : Liste des timings avec start/end précis
+| Format | Description | Exemple |
+|--------|------------|---------|
+| `{nom_descriptif.wav}` | Fichier d'ambiance | `{ambiance_port_brume.wav}` |
 
-### export_timeline
+**Convention de nommage** :
+- snake_case
+- Extension `.wav`
+- Nom descriptif du son : `{foule_agitee.wav}`, `{vent_mer.wav}`, `{pas_sur_paves.wav}`, `{cloches_eglise.wav}`
 
-Exporte timeline vers formats DAW (Reaper RPP, EDL).
+## Règles de balisage
 
-**Input** :
-```json
-{
-  "timeline": dict,
-  "format": str,
-  "output_path": str
-}
-```
-
-**Output** : Chemin du fichier généré
-
-**Formats supportés** :
-- **RPP** (Reaper Project) : Format complet avec tracks, régions, effets
-- **EDL** (Edit Decision List) : Format standard d'interchange
-- **JSON** : Format de backup/debug
+1. **Subtilité** : Maximum 2-3 balises vocales par paragraphe, 1-2 sons d'ambiance par partie
+2. **Préservation** : Le texte narratif ne doit JAMAIS être modifié — uniquement des balises ajoutées
+3. **Cohérence** : Les balises doivent correspondre au ton de chaque partie
+4. **Marqueurs de partie** : Les séparateurs `=== PARTIE N : Titre ===` sont conservés pour permettre le re-découpage
+5. **Adaptation** : Les consignes vocales de l'utilisateur (si fournies) sont prioritaires
 
 ## Notes
 
-### Règles de mixing automatique
+### Flux de données Agent 2 → Agent 3
 
-**Ducking narration/ambiances** :
-- Quand narration active : réduire ambiances à 30% de leur volume normal
-- Créer fades automatiques (0.5-1.0s) pour éviter coupures brutales
+Agent 3 exploite les informations suivantes du scénario :
+- `parties[].texte_narration` : le texte brut à baliser
+- `parties[].ton.global` et `parties[].ton.intonation` : guide le choix des balises vocales
+- `parties[].ambiances_continues` : suggestions d'ambiances d'Agent 2
+- `parties[].moments_cles` : indications de moments à marquer
+- `notes_pour_agent_3` : directives spéciales de production
 
-**Volumes par type de track** :
-- Narration : 0.8 (priorité absolue)
-- Archives : 0.7 (audibles mais pas dominantes)
-- Ambiances : 0.3-0.4 (support)
-- SFX : 0.6 (ponctuels, perceptibles)
-- Musique : 0.2-0.3 (fond très léger)
+### Contexte supplémentaire depuis la config
 
-### Gestion des données malformées du LLM
+- `config.voice_instructions` : consignes vocales spécifiques de l'utilisateur
+- `config.scenario_config.generation_parameters.ton.value` : ton global du scénario
 
-L'Agent 3 reçoit des données structurées de l'Agent 2, mais le LLM peut produire des formats inattendus. Stratégies de robustesse :
-- Chaque élément (`part`, `moment`, `ambiance`) est vérifié comme `dict` avant traitement
-- Les champs `ton`, `moments_cles`, `ambiances_continues` sont normalisés
-- Les timestamps non parsables sont remplacés par 0.0 avec un warning
-- Les éléments malformés sont ignorés (logged) plutôt que de faire crasher la pipeline
+### Gestion des erreurs
 
-### Quality checks automatiques
+**Si le LLM ne retourne pas un texte balisé correct** :
+- Retourne le texte original non balisé
+- Metadata contient `error` avec le message d'erreur
+- `voiceTags` et `soundTags` à 0
 
-- **timeline_coherence** : Pas de trous inexpliqués, transitions logiques
-- **no_overlapping_conflicts** : Pas de conflits sur track narration
-- **duration_matches** : Durée finale ±2s de la cible
-- **sounds_found** : % de sons trouvés vs demandés
-- **volumes_balanced** : Pas de pics > -3dB, pas de régions silencieuses
-- **transitions_smooth** : Toutes transitions ont fade in/out
+**Si les marqueurs de partie sont absents du texte balisé** :
+- Le texte complet est assigné à la première partie
+- Les autres parties reçoivent un texte vide
+
+### Migration depuis l'ancienne architecture
+
+L'Agent 3 a été **refondu** depuis une architecture de timeline audio technique vers une architecture de balisage ElevenLabs :
+
+| Avant (legacy) | Après (actuel) |
+|----------------|----------------|
+| `create_audio_timeline` | `formatWithTags` |
+| Timeline JSON multi-tracks | Texte balisé `[]` et `{}` |
+| Sélection de sons dans une bibliothèque | Suggestions de noms de fichiers d'ambiance |
+| Calculs de timing à la milliseconde | Balisage sémantique pour TTS |
+| Export Reaper/EDL | Texte prêt pour ElevenLabs |
+
+Les méthodes legacy (`create_audio_timeline`, `_create_narration_region`, etc.) sont conservées pour rétrocompatibilité mais émettent un warning.

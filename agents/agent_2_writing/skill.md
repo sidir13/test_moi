@@ -2,7 +2,7 @@
 
 ## Role
 
-Scénariste historique et conteur. Prend la structure narrative d'Agent 1 et écrit le scénario complet avec texte de narration, placement des archives audio, et directions de ton. Garant de la rigueur historique.
+Scénariste historique et conteur. Reçoit soit un **prompt template pré-construit d'Agent 0** (complété avec la structure d'Agent 1), soit la structure narrative directement (legacy). Écrit le scénario complet avec texte de narration, placement des archives audio, et directions de ton. Garant de la rigueur historique.
 
 Responsabilités :
 - Écrire le texte narratif complet pour chaque partie
@@ -17,66 +17,81 @@ Responsabilités :
 
 - Model: claude-opus-4-5
 - Temperature: 0.8
-- Max tokens: 6000
+- Max tokens: 8000
 
 Raison : Opus pour qualité d'écriture supérieure, température élevée pour créativité narrative tout en maintenant cohérence.
 
 ## System Prompt
 
-Vous êtes un expert historien ET conteur spécialisé en histoire sociale française. Votre mission est de créer des récits émotionnellement engageants, historiquement rigoureux, et parfaitement adaptés au format audio.
+Vous êtes un auteur et historien polyvalent. Vous savez adapter votre plume à n'importe quel territoire, époque ou thématique. Votre mission est de créer des récits audio historiquement rigoureux.
 
-Règles d'écriture :
-1. **Rigueur historique absolue** : Pas d'anachronismes, vocabulaire d'époque
-2. **Narratif audio** : Écrivez pour l'oreille, pas pour l'œil
-3. **Rythme varié** : Alternez passages descriptifs et dynamiques
-4. **Ancrage sensoriel** : Sons, odeurs, sensations tactiles
-5. **Timing précis** : Respectez strictement les durées cibles
-6. **Accessibilité** : Adaptez au public sans trahir l'Histoire
+Principes invariants :
+1. **Écrivez pour l'oreille** : phrases fluides, rythme naturel.
+2. **Respectez les durées cibles** : le nombre de mots doit correspondre à la durée demandée.
+3. **Adaptez-vous** : ton, rythme, style narratif définis par la configuration — suivez-les fidèlement.
 
-Techniques narratives :
-- Show, don't tell : Scènes concrètes plutôt qu'explications
-- Détails vivants : Un détail précis vaut mieux que généralités
-- Transitions fluides : Chaque partie s'enchaîne naturellement
-- Pauses narratives : Silences qui laissent résonner
-- Placement stratégique des archives : Illustrer, pas interrompre
+RIGUEUR HISTORIQUE (non négociable) :
+- Basez-vous EXCLUSIVEMENT sur les documents, transcriptions et sources fournis.
+- N'INVENTEZ JAMAIS de dates, noms, lieux ou événements absents des sources.
+- Restez volontairement vague si le contexte manque.
+- Atmosphères et émotions : créatives. Faits : traçables.
 
 ## Functions
 
-### write_complete_scenario
+### writeFromPromptTemplate ⭐ (point d'entrée principal)
 
-Écrit le scénario complet avec texte, placement audio et directions.
+Écrit un scénario complet depuis un prompt template fourni par Agent 0, complété avec la structure et le résumé d'Agent 1.
 
 **Input** :
 ```json
 {
-  "structure": dict,  // Structure de Agent 1
-  "config": dict,
-  "historical_context": dict,  // Contexte enrichi par skill
-  "audio_transcriptions": list  // Archives disponibles avec transcriptions
+  "promptTemplate": "str (template d'Agent 0 contenant <<STRUCTURE_ET_RESUME>>)",
+  "structureData": "dict (sortie d'Agent 1 : structure + resumeHistoire)"
+}
+```
+
+**Output** : Scénario JSON complet (voir structure retournée ci-dessous)
+
+**Usage** : Point d'entrée principal dans le nouveau pipeline (Agent 0 → Agent 1 → Agent 2 → Agent 3).
+
+**Comportement** :
+1. Extrait le résumé et la structure des parties depuis `structureData`
+2. Construit un bloc de texte lisible avec : titre, résumé, arc émotionnel, notes de production, et détails de chaque partie (durée cible, mots attendus, fonction, mood, arc, éléments)
+3. Remplace `<<STRUCTURE_ET_RESUME>>` dans le template par ce bloc
+4. Appelle le LLM avec le prompt complet + system prompt
+5. Post-traite les parties retournées (normalisation ton, moments_cles, ambiances, sentence_sources)
+6. Recalcule les durées via `calculate_narration_timing`
+7. Assemble le scénario final avec metadata
+
+**Avantage** : Le prompt contient déjà TOUS les paramètres (contexte historique, transcriptions, consignes vocales, paramètres verrouillés) grâce à Agent 0 — pas besoin de les reconstruire.
+
+### write_complete_scenario (legacy)
+
+Écrit le scénario complet à partir de la structure (chemin legacy).
+
+**Input** :
+```json
+{
+  "structure": "dict (Structure d'Agent 1)",
+  "config": "dict",
+  "historical_context": "dict (optionnel, contexte enrichi par skill)",
+  "audio_transcriptions": "list (optionnel, archives avec transcriptions)"
 }
 ```
 
 **Output** : Scénario JSON complet
 
-**Usage** : Fonction principale pour générer le scénario
+**Usage** : Conservé pour rétrocompatibilité. Dans le nouveau pipeline, `writeFromPromptTemplate` est préféré.
 
-**Comportement** :
-1. Pour chaque partie de la structure :
-   - Utilise le skill `narrative_scenario_builder` pour générer le texte
-   - Calcule la durée de lecture avec `calculate_narration_timing`
-   - Place les archives audio aux moments appropriés
-   - Définit les ambiances continues
-   - Crée les transitions
-2. Valide cohérence historique avec `validate_historical_accuracy`
-3. Génère metadata complètes
-4. Retourne scénario formaté pour Agent 3
+### Structure retournée (commune aux deux méthodes)
 
-**Structure retournée** :
 ```json
 {
   "scenario_id": 1,
   "titre": "La grève des dockers",
   "axe_narratif": "travailleur",
+  "angle_scenarisation": "temoignage_croise",
+  "resumeHistoire": "Résumé narratif de l'histoire...",
   "duree_estimee": 180.5,
   "parties": [
     {
@@ -88,8 +103,7 @@ Techniques narratives :
         "global": "contemplatif",
         "tempo_lecture": 110,
         "pauses": ["après 'brume'", "avant transition"],
-        "intonation": "douce",
-        "intensite_emotionnelle": 0.3
+        "intonation": "douce"
       },
       "moments_cles": [
         {
@@ -103,12 +117,6 @@ Techniques narratives :
           "volume": 0.7,
           "processing": ["eq_vintage", "noise_reduction_light"],
           "justification_narrative": "Illustre les conditions de travail"
-        },
-        {
-          "timestamp": "0:35",
-          "action": "pause_dramatique",
-          "duree": 2.0,
-          "consigne": "Silence pour laisser résonner l'archive"
         }
       ],
       "ambiances_continues": [
@@ -119,6 +127,12 @@ Techniques narratives :
           "volume": 0.3,
           "description": "Ambiance portuaire matinale"
         }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "En ce matin de février 1905...",
+          "sources": ["Archives Municipales"]
+        }
       ]
     }
   ],
@@ -126,23 +140,9 @@ Techniques narratives :
     "nombre_mots": 1250,
     "duree_lecture_estimee": 180.5,
     "nombre_archives_utilisees": 3,
-    "nombre_ambiances": 5,
-    "coherence_historique": {
-      "accuracy_score": 0.95,
-      "sources_citees": ["Archives Municipales", "Témoignage Dupont"],
-      "verifications": [
-        "Dates : 1905-02-12 ✓",
-        "Vocabulaire : docker, portefaix, quintal ✓",
-        "Localisation : Quai principal ✓"
-      ],
-      "vocabulaire_epoque": ["docker", "portefaix", "quintal", "tonneau"]
-    }
+    "nombre_ambiances": 5
   },
-  "notes_pour_agent_3": [
-    "Privilégier ambiances naturelles en partie 1",
-    "Augmenter intensité sonore progressivement",
-    "Transition partie 2-3 : contraste fort"
-  ]
+  "notes_pour_agent_3": "Privilégier ambiances naturelles en partie 1..."
 }
 ```
 
@@ -153,27 +153,21 @@ Vérifie dates, lieux, vocabulaire pour cohérence historique.
 **Input** :
 ```json
 {
-  "scenario": dict,
-  "period": {"start_year": int, "end_year": int},
-  "strict_mode": bool
+  "scenario": "dict",
+  "period": {"start_year": "int", "end_year": "int"},
+  "strict_mode": "bool"
 }
 ```
 
 **Output** : Validation result avec score, erreurs, warnings
 
-**Usage** : Après écriture, avant passage à Agent 3
+**Usage** : Après écriture, utilisé dans le chemin legacy
 
 **Comportement** :
-- Utilise le skill `historical_context_analyzer.detect_anachronisms`
+- Utilise le skill `historical_context_analyzer.detect_anachronisms` si disponible
 - Vérifie cohérence des dates mentionnées
 - Valide les localisations
 - Calcule un score d'exactitude (0.0-1.0)
-- Retourne liste d'erreurs critiques et warnings
-
-**Critères de validation** :
-- Score > 0.9 : Excellent, validation automatique
-- Score 0.7-0.9 : Acceptable avec corrections mineures
-- Score < 0.7 : Nécessite révision
 
 ### calculate_narration_timing
 
@@ -182,10 +176,10 @@ Calcule durée de lecture précise avec pauses.
 **Input** :
 ```json
 {
-  "text": str,
-  "tempo_wpm": int,  // Mots par minute
-  "pauses": list,  // Liste des pauses avec durées
-  "include_buffer": bool  // Ajouter 10% buffer
+  "text": "str",
+  "tempo_wpm": "int (mots par minute)",
+  "pauses": "list (pauses avec durées)",
+  "include_buffer": "bool (ajouter 10% buffer)"
 }
 ```
 
@@ -200,28 +194,12 @@ Calcule durée de lecture précise avec pauses.
 }
 ```
 
-**Usage** : Pour chaque partie, calculer timing précis
-
-**Formule** :
-- reading_time = (word_count / tempo_wpm) * 60
-- pauses_time = sum(pause durations)
-- duration = reading_time + pauses_time + buffer
-
 **Tempos standards** :
 - Très lent (contemplatif) : 90-100 WPM
 - Lent (posé) : 100-110 WPM
 - Modéré : 110-130 WPM
 - Rapide (dynamique) : 130-150 WPM
 - Très rapide (urgent) : 150-170 WPM
-
-## Python Tools
-
-Enabled: true
-
-Utilisé pour :
-- Calculs de timing précis (word count, durées)
-- Validation de cohérence (somme durées vs durée cible)
-- Extraction metadata depuis archives audio
 
 ## Notes
 
@@ -234,11 +212,6 @@ Utilisé pour :
 4. **Durée adaptée** : Max 10-15s par archive pour maintenir rythme
 5. **Qualité variable** : Assumer le grain vintage, ajouter processing si besoin
 
-**Moment idéal** :
-- Après une description qui prépare
-- Au point d'intensité émotionnelle
-- Pas en début/fin de partie (sauf exception)
-
 ### Vocabulaire d'époque vs accessibilité
 
 **Stratégie selon `authenticite_vs_accessibilite`** :
@@ -246,32 +219,34 @@ Utilisé pour :
 **Haute authenticité (> 0.8)** :
 - Vocabulaire d'époque préservé
 - Expressions idiomatiques conservées
-- Unités de mesure historiques
-- Note : Risque de moindre accessibilité
 
 **Équilibré (0.5-0.8)** :
 - Termes d'époque + explication contextuelle
 - Ex: "Les portefaix, ces travailleurs du port..."
-- Préférer implicite à parenthèses
 
 **Haute accessibilité (< 0.5)** :
 - Termes modernes équivalents
 - Simplifications assumées
-- Priorité à la compréhension
+
+### Post-traitement des parties
+
+Agent 2 normalise automatiquement la sortie du LLM :
+- `ton` : convertit en dict si le LLM retourne une string
+- `moments_cles` : filtre les éléments non-dict
+- `ambiances_continues` : filtre les éléments non-dict
+- `sentence_sources` : normalise les entrées (sentence + sources)
+- Recalcule la durée de chaque partie via `calculate_narration_timing`
 
 ### Gestion des erreurs
 
 **Si historical_context manquant** :
 - Utiliser connaissances générales de la période
 - Ajouter disclaimer en metadata
-- Score d'accuracy réduit
 
 **Si audio_transcriptions vide** :
 - Créer scénario sans archives
 - Suggérer ambiances et effets alternatifs
-- Noter l'absence en metadata
 
 **Si dépassement de durée** :
 - Réduire parties proportionnellement
 - Éliminer détails secondaires
-- Prioriser fonction narrative
