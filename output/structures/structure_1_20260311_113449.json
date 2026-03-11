@@ -1,0 +1,76 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Nantes, des chantiers navals au silence des cales",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le temps des coques et des étincelles",
+      "duree_cible": 45,
+      "fonction_narrative": "exposition_et_montee_en_tension",
+      "position_arc_emotionnel": "setup_vers_tension (intensité 0.3 → 0.7)",
+      "elements_necessaires": [
+        "Ouverture factuelle situant le sujet : les chantiers navals de Nantes au milieu du XXe siècle",
+        "Évocation sensorielle sobre de l'activité industrielle : bruit des soudures, odeur de métal, silhouettes des coques en construction",
+        "Dimension sociale : des milliers de travailleurs, des familles entières vivant au rythme des chantiers, un quartier structuré par l'industrie",
+        "Point culminant de la fierté collective : la construction du paquebot France, lancé en 1960, 106 000 tonnes d'acier",
+        "Intégration de l'archive audio ElevenLabs_Spuds_Oxley.mp3 (segment 00:00–00:20 environ) pour ancrer l'atmosphère sonore et poser le décor"
+      ],
+      "mood": "vivant_industriel_fierte_collective"
+    },
+    {
+      "partie": 2,
+      "titre": "Le basculement",
+      "duree_cible": 30,
+      "fonction_narrative": "climax_pivot_narratif",
+      "position_arc_emotionnel": "climax (intensité 0.9)",
+      "elements_necessaires": [
+        "Transition temporelle marquée mais fluide : passage des années fastes aux premières difficultés économiques",
+        "Évocation factuelle de la crise de la construction navale et de la fermeture progressive des chantiers nantais",
+        "Impact humain : licenciements, reconversions forcées, un savoir-faire qui disparaît",
+        "Intégration possible d'un extrait de l'archive audio (segment évoquant la fin de l'activité) pour renforcer le contraste"
+      ],
+      "mood": "grave_sobre_tension_maximale"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce qu'il reste sur les quais",
+      "duree_cible": 45,
+      "fonction_narrative": "resolution_et_ouverture",
+      "position_arc_emotionnel": "resolution (intensité 0.9 → 0.3)",
+      "elements_necessaires": [
+        "Description factuelle du paysage actuel : les anciens chantiers transformés, l'île de Nantes réaménagée",
+        "Mémoire ouvrière : traces visibles et invisibles de cette histoire industrielle",
+        "Ouverture réflexive sobre : que reste-t-il d'une communauté quand l'activité qui la définissait disparaît ?",
+        "Conclusion posée, sans sentimentalisme, laissant l'auditeur avec une question plutôt qu'une réponse fermée",
+        "Intégration possible du segment final de l'archive audio (« Aujourd'hui, seules… ») pour boucler le récit"
+      ],
+      "mood": "contemplatif_factuel_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "contraste_temporel",
+      "duree": 3.0,
+      "description": "La narration glisse du bruit des chantiers en activité vers un silence progressif. Une phrase-pivot lie les deux époques sans rupture brutale : le récit passe de l'effervescence industrielle à l'annonce des fermetures par un ralentissement du débit et un changement de fond sonore (du métal au calme)."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.5,
+      "description": "Après le pic de tension du basculement, la voix reprend un souffle plus lent. La transition s'opère par un déplacement spatial : on quitte les ateliers fermés pour marcher sur les quais d'aujourd'hui. Le ton descend en intensité, passant de la gravité à une contemplation factuelle."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ET CONTINUITÉ : Le récit doit être écrit comme un seul texte continu de ~120 secondes, sans annonce de parties ni ruptures visibles. Les trois sections sont des repères de rythme pour la production, pas des chapitres. La voix féminine adopte un débit régulier, journalistique et clair, accessible à des élèves du secondaire : phrases courtes, vocabulaire précis mais sans jargon. Le vocabulaire technique (coque, soudeur, charpentier) est intégré naturellement, jamais expliqué de manière condescendante. L'archive audio ElevenLabs_Spuds_Oxley.mp3 doit être utilisée comme amorce ou comme contrepoint sonore, idéalement en ouverture pour capter l'attention, puis en écho vers la fin pour créer un effet de boucle. L'angle avant/après structure tout le récit en diptyque : la vie vibrante des chantiers AVANT la fermeture, puis le paysage transformé APRÈS. Le point de bascule (partie 2) est le pivot central, traité avec sobriété et gravité. Aucune invention de dates, noms ou événements au-delà de ce que fournit le contexte (paquebot France, 1960, 106 000 tonnes, chantiers navals de Nantes, la Loire). Pour tout détail non sourcé, utiliser des formulations ouvertes : « des milliers de travailleurs », « au fil des décennies », « sur les quais ». Le ton reste strictement journalistique et factuel du début à la fin : pas de lyrisme excessif, pas d'exclamations, pas d'adresse directe à l'auditeur de type « vous allez découvrir ». La question finale de la partie 3 est une ouverture réflexive, pas une interpellation."
+}

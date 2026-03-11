@@ -1,0 +1,100 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les voix de la Loire — Mémoires des chantiers navals de Nantes",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "mosaique_voix",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bruit des coques",
+      "duree_cible": 30,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "setup",
+      "elements_necessaires": [
+        "Ambiance sonore industrielle : marteaux, soudure, vent sur la Loire",
+        "Voix narratrice posant le cadre : les chantiers navals de Nantes dans les années 1950",
+        "Premier fragment de témoignage évoquant l'activité bouillonnante des quais",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 [00:00–00:08] : introduction sur la Loire en 1950 et l'activité des chantiers"
+      ],
+      "mood": "factuel_vivant"
+    },
+    {
+      "partie": 2,
+      "titre": "Des mains, de l'acier, un paquebot",
+      "duree_cible": 35,
+      "fonction_narrative": "montee_en_tension_et_fierte",
+      "position_arc_emotionnel": "tension_vers_climax",
+      "elements_necessaires": [
+        "Accélération du rythme narratif : collage de voix entrelacées — soudeurs, charpentiers, familles",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 [00:08–00:22] : construction du paquebot France, fierté nationale, 106 000 tonnes",
+        "Fragments courts de descriptions sensorielles : chaleur des ateliers, odeur du métal, clameur des ouvriers",
+        "Mention du lancement du France en 1960 comme point culminant de l'effort collectif",
+        "Voix narratrice tissant les fragments ensemble avec précision journalistique"
+      ],
+      "mood": "intense_epique"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 30,
+      "fonction_narrative": "climax_emotionnel_et_bascule",
+      "position_arc_emotionnel": "climax",
+      "elements_necessaires": [
+        "Contraste sonore brutal : du vacarme industriel au silence progressif",
+        "Archive audio ElevenLabs_Spuds_Oxley.mp3 [00:22–fin] : transition vers le présent, les vestiges, le vide",
+        "Voix multiples évoquant la fermeture des chantiers et la disparition d'un monde",
+        "Fragment de voix suggérant la perte d'identité ouvrière : formulations génériques sans noms inventés",
+        "Pause narrative marquée — le silence comme élément sonore à part entière"
+      ],
+      "mood": "grave_poignant"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce qui reste sur les quais",
+      "duree_cible": 25,
+      "fonction_narrative": "resolution_et_ouverture",
+      "position_arc_emotionnel": "resolution",
+      "elements_necessaires": [
+        "Retour à un rythme apaisé, voix narratrice seule puis rejointe par un dernier écho de voix ouvrière",
+        "Évocation de la mémoire collective : ce que les habitants transmettent encore aujourd'hui",
+        "Ouverture vers le présent : les quais de Nantes transformés, mais porteurs de traces",
+        "Dernière phrase de clôture sobre et factuelle, laissant l'auditeur avec une image mentale forte",
+        "Ambiance sonore finale : eau de la Loire, vent léger, silence habité"
+      ],
+      "mood": "contemplatif_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "varie",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "acceleration_par_collage",
+      "duree": 2.5,
+      "description": "Le son d'ambiance industrielle s'intensifie, la voix narratrice accélère légèrement son débit et les premiers fragments de voix multiples s'entrelacent sans rupture, comme si les témoignages émergeaient du bruit des chantiers."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_sonore_progressive",
+      "duree": 3.0,
+      "description": "Le vacarme des chantiers décroît progressivement jusqu'à un quasi-silence. La voix narratrice baisse d'un ton. Un dernier écho métallique résonne avant que le calme s'installe — le passage du temps se fait sentir physiquement."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_douce",
+      "duree": 2.0,
+      "description": "Du silence grave émerge le son discret de l'eau de la Loire. La voix narratrice reprend avec douceur et assurance, portant le récit vers sa conclusion sans sentimentalisme, avec la précision d'un constat journalistique."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 — ÉCRITURE DU SCRIPT FINAL :\n\n1. FLUIDITÉ ABSOLUE : Les quatre sections sont des repères de rythme internes, PAS des chapitres séparés. Le texte doit couler d'un seul tenant, sans annonce de parties ni titres lus à voix haute. Les transitions se font par le son, le débit et le ton — jamais par des formules artificielles.\n\n2. MOSAÏQUE DE VOIX : Le récit est un collage sonore. La voix narratrice principale (voix féminine, posée, claire) tisse le fil conducteur, mais des fragments courts — comme des bribes de souvenirs ouvriers, des descriptions à la première personne — s'intercalent naturellement. Ces fragments ne sont PAS des dialogues théâtraux : ce sont des éclats de parole, brefs et percutants (5 à 10 secondes chacun maximum).\n\n3. TON JOURNALISTIQUE FACTUEL : Pas de lyrisme excessif ni de pathos. Les faits parlent d'eux-mêmes. Les émotions naissent du contraste entre l'activité passée et le silence présent, pas de commentaires appuyés. Vocabulaire précis, phrases nettes.\n\n4. PUBLIC SCOLAIRE SECONDAIRE : Vocabulaire accessible mais jamais condescendant. Expliquer implicitement les termes techniques (ex : 'les cales — ces immenses fosses où l'on construisait les navires'). Phrases courtes à moyennes. Rythme soutenu pour maintenir l'attention.\n\n5. ARCHIVE AUDIO : Intégrer l'archive ElevenLabs_Spuds_Oxley.mp3 comme élément structurant. Elle peut être utilisée en ouverture directe ou en fragments intercalés dans la narration. Ne pas la plaquer artificiellement : elle doit s'insérer dans le flux narratif.\n\n6. RIGUEUR HISTORIQUE : S'en tenir strictement aux faits mentionnés dans le contexte fourni (chantiers navals de Nantes, années 1950, paquebot France lancé en 1960, 106 000 tonnes). Ne PAS inventer de noms d'ouvriers, de dates supplémentaires ou d'événements non documentés. Utiliser des formulations génériques pour les voix de témoignage ('un soudeur se souvient...', 'sur les quais, on raconte...').\n\n7. DURÉE : Le script final doit tenir en environ 120 secondes de lecture à voix haute (environ 280-320 mots pour une lecture posée). Viser la concision.\n\n8. MISE EN SCÈNE VOCALE : La voix féminine principale doit alterner entre un registre narratif factuel (majorité du texte) et des moments légèrement plus intimes quand elle porte les fragments de voix ouvrières. Prévoir des indications de débit et de silence dans le script."
+}

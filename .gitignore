@@ -125,7 +125,8 @@ process_number.cpython-312.pyc
 *.MP4
 !data/audio/background_sounds/
 !data/audio/background_sounds/**
-
+background_sounds
+!background_sounds/.gitkeep
 ## db
 *.duckdb
 *.parquet
@@ -140,3 +141,5 @@ qwen3-tts
 *.png
 *.jpg
 *.jpeg
+
+

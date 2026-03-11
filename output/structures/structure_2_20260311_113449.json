@@ -1,0 +1,101 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Lettre d'un soudeur de la Loire",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "lettre_intime",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Aujourd'hui, sur les quais silencieux",
+      "duree_cible": 25,
+      "fonction_narrative": "ancrage_present_et_amorce_flashback",
+      "position_arc_emotionnel": "setup — intensité 0.3",
+      "elements_necessaires": [
+        "Voix féminine posée, rythme lent, ton journalistique sobre",
+        "Présentation implicite : une lettre retrouvée, lue à voix haute, adressée à un proche",
+        "Ambiance sonore : vent léger sur les quais déserts de Nantes aujourd'hui",
+        "Mention factuelle : les chantiers navals de Nantes, aujourd'hui silencieux, où seules subsistent les traces du passé",
+        "Phrase d'amorce du flashback : l'auteur de la lettre se souvient de ce qu'étaient ces quais autrefois"
+      ],
+      "mood": "mélancolique_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le bourdonnement des chantiers",
+      "duree_cible": 35,
+      "fonction_narrative": "flashback_immersion_dans_le_travail",
+      "position_arc_emotionnel": "tension — intensité montant de 0.5 à 0.7",
+      "elements_necessaires": [
+        "Intégration de l'archive audio ElevenLabs_Spuds_Oxley.mp3 (segment décrivant la Loire en 1950, les chantiers navals, les soudeurs et charpentiers)",
+        "La lettre décrit le quotidien : le bruit, la chaleur des soudures, la fatigue des corps, la camaraderie",
+        "Vocabulaire accessible : descriptions concrètes et sensorielles (métal brûlant, étincelles, odeur de fer)",
+        "Rythme toujours lent mais densité narrative croissante : accumulation de détails du labeur",
+        "Perspective à la troisième personne : on lit les mots d'un travailleur, rapportés par la narratrice"
+      ],
+      "mood": "vivant_industriel_physique"
+    },
+    {
+      "partie": 3,
+      "titre": "La coque du France prend forme",
+      "duree_cible": 35,
+      "fonction_narrative": "climax_emotionnel_fierte_collective",
+      "position_arc_emotionnel": "climax — intensité 0.9",
+      "elements_necessaires": [
+        "Point culminant de la lettre : le jour où la coque du paquebot France a été achevée, 1960, 106 000 tonnes d'acier",
+        "Émotion contenue mais intense : fierté d'avoir participé à cette construction, sentiment d'avoir bâti quelque chose de plus grand que soi",
+        "La lettre confie : ce navire porte le travail de centaines de mains anonymes",
+        "Rythme légèrement suspendu, pauses respiratoires pour laisser l'émotion résonner",
+        "Intégration possible du segment d'archive mentionnant le France et les 106 000 tonnes"
+      ],
+      "mood": "solennel_ému_fier"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce qu'il reste de nous",
+      "duree_cible": 25,
+      "fonction_narrative": "resolution_retour_au_present",
+      "position_arc_emotionnel": "résolution — intensité redescendant à 0.3",
+      "elements_necessaires": [
+        "Retour au présent : la narratrice referme la lettre",
+        "Constat factuel et sobre : les chantiers ont fermé, les quais se sont tus",
+        "Dernière phrase de la lettre, tournée vers l'avenir : un espoir que quelqu'un se souvienne de ce travail",
+        "Ambiance sonore : retour au silence des quais, peut-être un son d'eau de la Loire",
+        "Clôture douce, sans sentimentalisme excessif, fidèle au ton journalistique"
+      ],
+      "mood": "apaisé_mélancolique_ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "tension_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel_par_la_voix",
+      "duree": 3.0,
+      "description": "La narratrice lit une phrase de la lettre qui fait basculer dans le souvenir. Pas de coupure : le son ambiant des quais déserts se mêle progressivement aux bruits industriels du passé. La voix garde le même rythme posé."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "crescendo_narratif_naturel",
+      "duree": 2.0,
+      "description": "Le récit du quotidien ouvrier glisse sans rupture vers l'évocation du paquebot France. La phrase de liaison relie le geste répété du soudeur à l'ampleur du navire qui émerge. L'intensité monte par le choix des mots, pas par un changement de ton."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_contemplatif",
+      "duree": 3.0,
+      "description": "Après l'évocation du France, un silence bref. La narratrice reprend sa propre voix, hors de la lettre, pour ramener l'auditeur au présent. Les sons industriels s'éteignent, remplacés par le calme de la Loire. Transition fluide, comme un fondu sonore."
+    }
+  ],
+  "notes_production": "INSTRUCTIONS PRIORITAIRES POUR L'AGENT 2 — 1) VOIX : voix féminine, posée, sobre, journalistique. Pas de dramatisation excessive. Le ton confidentiel de la lettre doit transparaître dans une retenue élégante, jamais dans l'emphase. 2) FLUIDITÉ : le récit est UN SEUL FLUX CONTINU. Les quatre sections sont des repères internes de rythme, PAS des chapitres séparés. Aucune pause longue, aucun jingle, aucune annonce de section. Le texte doit couler comme une lecture ininterrompue. 3) ARCHIVE AUDIO : intégrer l'extrait ElevenLabs_Spuds_Oxley.mp3 dans les sections 2-3, en le fondant dans la narration (la narratrice peut introduire les mots de l'archive comme s'ils prolongeaient la lettre). 4) RYTHME : lent et contemplatif sur l'ensemble. Les variations d'intensité viennent du CONTENU (choix des mots, densité des images) et non de l'accélération du débit. Prévoir des micro-pauses respiratoires aux moments clés du climax (section 3). 5) DURÉE : viser 120 secondes ±15 %. Chaque section est calibrée pour un débit de lecture d'environ 2,5 mots par seconde, adapté au rythme lent. 6) PUBLIC : vocabulaire clair et accessible pour des élèves du secondaire. Pas de jargon technique non expliqué. Les termes navals (coque, chantier naval, soudeur) sont suffisamment courants mais peuvent être brièvement contextualisés dans le flux narratif. 7) ANGLE LETTRE INTIME : le texte alterne entre la voix de la narratrice-journaliste (troisième personne, contextualisation) et les passages lus de la lettre (plus personnels, plus sensoriels). Cette alternance doit être NATURELLE, sans annonces du type 'il écrivait'. Privilégier des formulations comme 'Les mots sur le papier jauni racontent...' puis glisser dans le contenu de la lettre. 8) RIGUEUR HISTORIQUE : ne rien inventer au-delà de ce que le contexte fournit. Les chantiers navals de Nantes, le paquebot France (1960, 106 000 tonnes), les soudeurs et charpentiers — ce sont les seuls faits attestés. Tout le reste doit rester volontairement vague (pas de nom de personnage inventé, pas de date précise non sourcée)."
+}

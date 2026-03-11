@@ -1,0 +1,329 @@
+{
+  "scenario_id": 1,
+  "titre": "Les voix de la Loire — Mémoires des chantiers navals de Nantes",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "mosaique_voix",
+  "ton": "journalistique_factuel",
+  "duree_estimee": 189.76602870813397,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bruit des coques",
+      "duree": 38.18181818181818,
+      "texte_narration": "Nantes, bords de Loire, années mille neuf cent cinquante. Fermez les yeux. Écoutez. Des marteaux frappent l'acier sans relâche. Le vent glisse sur le fleuve et porte avec lui l'odeur âcre de la soudure. Sur les quais, les chantiers navals bourdonnent d'activité. Des coques immenses prennent forme, jour après jour, sous les mains de centaines d'ouvriers. Ici, on construit des navires. Ici, on construit un avenir.",
+      "ton": {
+        "global": "factuel_vivant",
+        "tempo_lecture": 110,
+        "pauses": [
+          "Pause de 1 seconde après 'Écoutez.'",
+          "Pause de 0.5 seconde après 'Sans relâche.'",
+          "Micro-pause avant 'Ici, on construit un avenir.'"
+        ],
+        "intonation": "Voix posée, claire, légèrement montante sur les descriptions sensorielles, ton de reportage immersif."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ambiance sonore industrielle : coups de marteaux métalliques, grésillement de soudure, vent sur l'eau. Volume modéré, en fond sous la voix.",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:04",
+          "action": "Intégration de l'archive audio ElevenLabs_Spuds_Oxley.mp3 [00:00–00:08] en fondu sous la narration : 'Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité.' — mixée à faible volume comme écho documentaire.",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:22",
+          "action": "Léger crescendo des bruits de chantier pour appuyer 'on construit des navires', puis retombée avant la phrase finale.",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nantes, bords de Loire, années mille neuf cent cinquante.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        },
+        {
+          "sentence": "Fermez les yeux.",
+          "sources": []
+        },
+        {
+          "sentence": "Écoutez.",
+          "sources": []
+        },
+        {
+          "sentence": "Des marteaux frappent l'acier sans relâche.",
+          "sources": []
+        },
+        {
+          "sentence": "Le vent glisse sur le fleuve et porte avec lui l'odeur âcre de la soudure.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur les quais, les chantiers navals bourdonnent d'activité.",
+          "sources": [
+            "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+          ]
+        },
+        {
+          "sentence": "Des coques immenses prennent forme, jour après jour, sous les mains de centaines d'ouvriers.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Ici, on construit des navires.",
+          "sources": []
+        },
+        {
+          "sentence": "Ici, on construit un avenir.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Des mains, de l'acier, un paquebot",
+      "duree": 50.5,
+      "texte_narration": "Les soudeurs courbent le dos dans la chaleur des ateliers. Les charpentiers ajustent chaque pièce de bois au millimètre. Les familles, elles, attendent sur le seuil des maisons, le soir, quand les sirènes marquent la fin du travail. Tout un quartier vit au rythme du chantier. Et puis, un projet hors norme prend forme : le paquebot France. Cent six mille tonnes de rêves et d'acier. En mille neuf cent soixante, il naît ici, à Nantes, sur les bords de la Loire. C'est un géant. C'est une fierté nationale. Des milliers de mains l'ont façonné — et chacune compte.",
+      "ton": {
+        "global": "intense_epique",
+        "tempo_lecture": 120,
+        "pauses": [
+          "Pause de 0.5 seconde après 'la fin du travail.'",
+          "Pause de 0.8 seconde après 'le paquebot France.' pour laisser l'information résonner",
+          "Pause brève avant 'et chacune compte.'"
+        ],
+        "intonation": "Rythme progressivement accéléré, voix qui monte en intensité, phrases courtes martelées à la fin comme des coups de rivet. Ton de reportage qui bascule vers l'épique."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:30",
+          "action": "Archive audio ElevenLabs_Spuds_Oxley.mp3 [00:08–00:22] intégrée en collage : fragments 'Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêves et d'acier.' — mixés en alternance avec la voix narratrice.",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "0:38",
+          "action": "Crescendo de l'ambiance industrielle : superposition de voix lointaines d'ouvriers, martèlements plus rapides, sirène de chantier.",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:58",
+          "action": "Point culminant sonore sur 'fierté nationale' — bref éclat de cuivres ou nappe musicale sobre, puis retombée.",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Les soudeurs courbent le dos dans la chaleur des ateliers.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Les charpentiers ajustent chaque pièce de bois au millimètre.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Les familles, elles, attendent sur le seuil des maisons, le soir, quand les sirènes marquent la fin du travail.",
+          "sources": []
+        },
+        {
+          "sentence": "Tout un quartier vit au rythme du chantier.",
+          "sources": []
+        },
+        {
+          "sentence": "Et puis, un projet hors norme prend forme : le paquebot France.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+          ]
+        },
+        {
+          "sentence": "Cent six mille tonnes de rêves et d'acier.",
+          "sources": [
+            "[00:00] 106 000 tonnes de rêves et d'acier."
+          ]
+        },
+        {
+          "sentence": "En mille neuf cent soixante, il naît ici, à Nantes, sur les bords de la Loire.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+          ]
+        },
+        {
+          "sentence": "C'est un géant.",
+          "sources": []
+        },
+        {
+          "sentence": "C'est une fierté nationale.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale"
+          ]
+        },
+        {
+          "sentence": "Des milliers de mains l'ont façonné — et chacune compte.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "duree": 53.68421052631579,
+      "texte_narration": "Et puis, un jour, les marteaux se taisent. Les grues s'immobilisent. Les cales se vident. Les chantiers ferment. Un ouvrier se souvient : « On a posé nos outils, et personne n'est venu les reprendre. » Un autre murmure : « C'est tout un monde qui a disparu avec les navires. » Le silence s'installe sur les quais de Nantes — un silence lourd, presque assourdissant après des décennies de vacarme. Un métier, une fierté, une identité : tout cela s'efface, lentement, comme la brume sur la Loire.",
+      "ton": {
+        "global": "grave_poignant",
+        "tempo_lecture": 95,
+        "pauses": [
+          "Pause de 1.5 seconde après 'Les chantiers ferment.' — silence complet, aucun fond sonore",
+          "Pause de 1 seconde après 'personne n'est venu les reprendre.'",
+          "Pause de 2 secondes avant la dernière phrase — silence habité"
+        ],
+        "intonation": "Voix qui descend progressivement en intensité et en hauteur. Ton sobre, presque murmuré sur les citations ouvrières. Ralentissement net par rapport à la partie précédente."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Coupure brutale de l'ambiance industrielle. Transition vers le silence. Seul un léger clapotis d'eau persiste.",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:10",
+          "action": "Archive audio ElevenLabs_Spuds_Oxley.mp3 [00:22–fin de la partie pertinente] : fragment 'Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux.' — diffusé en écho lointain, comme un souvenir qui s'estompe.",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Silence total de 2 secondes. Aucun son. Pause narrative complète avant la transition vers la partie 4.",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Et puis, un jour, les marteaux se taisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Les grues s'immobilisent.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Les cales se vident.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers ferment.",
+          "sources": []
+        },
+        {
+          "sentence": "Un ouvrier se souvient : « On a posé nos outils, et personne n'est venu les reprendre. »",
+          "sources": []
+        },
+        {
+          "sentence": "Un autre murmure : « C'est tout un monde qui a disparu avec les navires. »",
+          "sources": []
+        },
+        {
+          "sentence": "Le silence s'installe sur les quais de Nantes — un silence lourd, presque assourdissant après des décennies de vacarme.",
+          "sources": []
+        },
+        {
+          "sentence": "Un métier, une fierté, une identité : tout cela s'efface, lentement, comme la brume sur la Loire.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Ce qui reste sur les quais",
+      "duree": 47.400000000000006,
+      "texte_narration": "Aujourd'hui, les quais de Nantes ont changé de visage. Les hangars sont devenus des lieux de culture, les cales accueillent des promeneurs. Mais regardez bien. Les grues jaunes sont toujours là, dressées face au ciel, comme des sentinelles. Elles témoignent de ce passé glorieux. Et si vous tendez l'oreille, peut-être entendrez-vous encore, portée par le vent de la Loire, la rumeur lointaine d'un chantier qui n'a jamais tout à fait cessé de vivre.",
+      "ton": {
+        "global": "contemplatif_sobre",
+        "tempo_lecture": 100,
+        "pauses": [
+          "Pause de 0.5 seconde après 'Mais regardez bien.'",
+          "Pause de 0.8 seconde après 'de ce passé glorieux.'",
+          "Légère suspension avant 'la rumeur lointaine' — laisser l'image se former"
+        ],
+        "intonation": "Voix apaisée, posée, presque douce. Dernière phrase légèrement suspendue, comme une question ouverte. Ton de clôture sobre et lumineux."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:35",
+          "action": "Retour progressif d'une ambiance naturelle : eau de la Loire, vent léger, cris de mouettes au loin.",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:48",
+          "action": "Écho très lointain et filtré d'un coup de marteau unique — comme un souvenir sonore — puis silence.",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:55",
+          "action": "Ambiance finale : clapotis d'eau, vent, silence habité. Fondu de 3 secondes vers le silence complet.",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, les quais de Nantes ont changé de visage.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Les hangars sont devenus des lieux de culture, les cales accueillent des promeneurs.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais regardez bien.",
+          "sources": []
+        },
+        {
+          "sentence": "Les grues jaunes sont toujours là, dressées face au ciel, comme des sentinelles.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Elles témoignent de ce passé glorieux.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Et si vous tendez l'oreille, peut-être entendrez-vous encore, portée par le vent de la Loire, la rumeur lointaine d'un chantier qui n'a jamais tout à fait cessé de vivre.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 335,
+    "duree_lecture_estimee": 189.76602870813397,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0,
+    "coherence_historique": {
+      "accuracy_score": 0.8,
+      "sources_citees": [],
+      "verifications": [
+        "Validation basique effectuée"
+      ],
+      "vocabulaire_epoque": []
+    }
+  },
+  "notes_pour_agent_3": "INSTRUCTIONS ESSENTIELLES POUR L'AGENT 2 — ÉCRITURE DU SCRIPT FINAL :\n\n1. FLUIDITÉ ABSOLUE : Les quatre sections sont des repères de rythme internes, PAS des chapitres séparés. Le texte doit couler d'un seul tenant, sans annonce de parties ni titres lus à voix haute. Les transitions se font par le son, le débit et le ton — jamais par des formules artificielles.\n\n2. MOSAÏQUE DE VOIX : Le récit est un collage sonore. La voix narratrice principale (voix féminine, posée, claire) tisse le fil conducteur, mais des fragments courts — comme des bribes de souvenirs ouvriers, des descriptions à la première personne — s'intercalent naturellement. Ces fragments ne sont PAS des dialogues théâtraux : ce sont des éclats de parole, brefs et percutants (5 à 10 secondes chacun maximum).\n\n3. TON JOURNALISTIQUE FACTUEL : Pas de lyrisme excessif ni de pathos. Les faits parlent d'eux-mêmes. Les émotions naissent du contraste entre l'activité passée et le silence présent, pas de commentaires appuyés. Vocabulaire précis, phrases nettes.\n\n4. PUBLIC SCOLAIRE SECONDAIRE : Vocabulaire accessible mais jamais condescendant. Expliquer implicitement les termes techniques (ex : 'les cales — ces immenses fosses où l'on construisait les navires'). Phrases courtes à moyennes. Rythme soutenu pour maintenir l'attention.\n\n5. ARCHIVE AUDIO : Intégrer l'archive ElevenLabs_Spuds_Oxley.mp3 comme élément structurant. Elle peut être utilisée en ouverture directe ou en fragments intercalés dans la narration. Ne pas la plaquer artificiellement : elle doit s'insérer dans le flux narratif.\n\n6. RIGUEUR HISTORIQUE : S'en tenir strictement aux faits mentionnés dans le contexte fourni (chantiers navals de Nantes, années 1950, paquebot France lancé en 1960, 106 000 tonnes). Ne PAS inventer de noms d'ouvriers, de dates supplémentaires ou d'événements non documentés. Utiliser des formulations génériques pour les voix de témoignage ('un soudeur se souvient...', 'sur les quais, on raconte...').\n\n7. DURÉE : Le script final doit tenir en environ 120 secondes de lecture à voix haute (environ 280-320 mots pour une lecture posée). Viser la concision.\n\n8. MISE EN SCÈNE VOCALE : La voix féminine principale doit alterner entre un registre narratif factuel (majorité du texte) et des moments légèrement plus intimes quand elle porte les fragments de voix ouvrières. Prévoir des indications de débit et de silence dans le script."
+}

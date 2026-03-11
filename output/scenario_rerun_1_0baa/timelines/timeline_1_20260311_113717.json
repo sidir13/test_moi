@@ -1,0 +1,120 @@
+{
+  "timeline_id": "scenario_1_timeline_v1",
+  "scenario_id": 1,
+  "duree_totale": 189.76602870813397,
+  "tracks": {
+    "narration_track": [
+      {
+        "id": "narr_01",
+        "start_time": 0.0,
+        "end_time": 38.18181818181818,
+        "duration": 38.18181818181818,
+        "text_file": "scenario_part_1_narration.txt",
+        "estimated_words": 70,
+        "tempo_lecture": 110,
+        "tone": "factuel_vivant",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause de 1 seconde après 'Écoutez.'",
+          "Pause de 0.5 seconde après 'Sans relâche.'",
+          "Micro-pause avant 'Ici, on construit un avenir.'"
+        ]
+      },
+      {
+        "id": "narr_02",
+        "start_time": 38.18181818181818,
+        "end_time": 88.68181818181819,
+        "duration": 50.5,
+        "text_file": "scenario_part_2_narration.txt",
+        "estimated_words": 101,
+        "tempo_lecture": 120,
+        "tone": "intense_epique",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause de 0.5 seconde après 'la fin du travail.'",
+          "Pause de 0.8 seconde après 'le paquebot France.' pour laisser l'information résonner",
+          "Pause brève avant 'et chacune compte.'"
+        ]
+      },
+      {
+        "id": "narr_03",
+        "start_time": 88.68181818181819,
+        "end_time": 142.36602870813397,
+        "duration": 53.68421052631579,
+        "text_file": "scenario_part_3_narration.txt",
+        "estimated_words": 85,
+        "tempo_lecture": 95,
+        "tone": "grave_poignant",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause de 1.5 seconde après 'Les chantiers ferment.' — silence complet, aucun fond sonore",
+          "Pause de 1 seconde après 'personne n'est venu les reprendre.'",
+          "Pause de 2 secondes avant la dernière phrase — silence habité"
+        ]
+      },
+      {
+        "id": "narr_04",
+        "start_time": 142.36602870813397,
+        "end_time": 189.76602870813397,
+        "duration": 47.400000000000006,
+        "text_file": "scenario_part_4_narration.txt",
+        "estimated_words": 79,
+        "tempo_lecture": 100,
+        "tone": "contemplatif_sobre",
+        "volume": 0.8,
+        "effects": [],
+        "pauses": [
+          "Pause de 0.5 seconde après 'Mais regardez bien.'",
+          "Pause de 0.8 seconde après 'de ce passé glorieux.'",
+          "Légère suspension avant 'la rumeur lointaine' — laisser l'image se former"
+        ]
+      }
+    ],
+    "archives_track": [],
+    "ambiances_track": [],
+    "sfx_track": [],
+    "music_track": []
+  },
+  "transitions": [],
+  "master_parameters": {
+    "target_loudness": -16,
+    "dynamic_range": "moderate",
+    "final_compression": {
+      "threshold": -18.0,
+      "ratio": 3.0,
+      "attack": 10,
+      "release": 100
+    },
+    "final_limiter": {
+      "threshold": -1.0,
+      "ceiling": -0.3
+    }
+  },
+  "metadata": {
+    "total_files_used": 4,
+    "total_tracks": 5,
+    "total_regions": 4,
+    "generation_timestamp": "2026-03-11T11:37:17.827316",
+    "estimated_production_time": "2-3 heures",
+    "required_software": [
+      "Reaper",
+      "ou équivalent"
+    ],
+    "export_formats": [
+      "RPP",
+      "EDL",
+      "JSON"
+    ]
+  },
+  "quality_checks": {
+    "timeline_coherence": "✓ OK",
+    "no_overlapping_conflicts": "✓ OK",
+    "duration_matches_scenario": "✓ OK (189.8s)",
+    "all_required_sounds_found": "✓ OK",
+    "volume_levels_balanced": "✓ OK",
+    "transitions_smooth": "✓ OK"
+  }
+}

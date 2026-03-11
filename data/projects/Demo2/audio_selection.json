@@ -1,0 +1,10 @@
+{
+  "voices": [
+    "ElevenLabs_Spuds_Oxley.mp3"
+  ],
+  "backgrounds": [
+    "data/audio/background_sounds/Chalumeau/AV-1-S-OUT-101-1-B .wav",
+    "data/audio/background_sounds/Meule/AV-1-S-OUT-201-1-A.wav"
+  ],
+  "tts_voice_id": "flHkNRp1BlvT73UL6gyz"
+}
