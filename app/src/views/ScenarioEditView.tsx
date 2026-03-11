@@ -519,6 +519,17 @@ export function ScenarioEditView() {
   );
 }
 
+function extractErrorMessage(err: unknown): string | null {
+  if (axios.isAxiosError(err)) {
+    const detail = err.response?.data?.detail;
+    if (typeof detail === "string" && detail.trim().length > 0) return detail;
+    if (typeof err.message === "string" && err.message.trim().length > 0) return err.message;
+  } else if (err instanceof Error) {
+    return err.message;
+  }
+  return null;
+}
+
 function extractScenario(raw: Record<string, any>): Record<string, any> {
   if (raw?.scenario && typeof raw.scenario === "object") {
     return raw.scenario;
