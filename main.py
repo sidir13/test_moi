@@ -49,7 +49,7 @@ def check_available_skills():
             if tool_dir.is_dir():
                 skill_file = tool_dir / "SKILL.md"
                 if skill_file.exists():
-                    with open(skill_file, 'r') as f:
+                    with open(skill_file, 'r', encoding='utf-8') as f:
                         content = f.read()
                     available_skills.append({
                         "name": tool_dir.name,
