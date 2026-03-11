@@ -217,12 +217,27 @@ export async function fetchScenarioProgress(sessionId: string) {
 }
 
 export type ScenarioAudioMetadata = {
-  status?: string;
-  path: string;
-  language: string;
-  sample_rate: number;
-  generated_at: string;
+  status?: "pending" | "running" | "done" | "failed";
+  job_id?: string;
+  path?: string;
+  language?: string;
+  sample_rate?: number;
+  generated_at?: string;
   text_length?: number;
+  error?: string;
+  requested_at?: string;
+  started_at?: string;
+  finished_at?: string;
+  tts_provider?: string;
+  backgrounds_applied?: number;
+  background_tracks_requested?: number;
+  voice_only_path?: string;
+  background_plan?: Array<{
+    background: string;
+    start_seconds: number;
+    duration_seconds: number;
+    note?: string | null;
+  }>;
 };
 
 export async function fetchScenarioAudio(sessionId: string) {

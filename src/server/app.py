@@ -13,7 +13,7 @@ import tempfile
 from functools import lru_cache
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TypedDict
 from urllib.parse import quote
 from uuid import uuid4
 
@@ -97,6 +97,17 @@ FRENCH_HINT_KEYWORDS = {
     "lent",
     "accent",
 }
+
+
+class TTSJob(TypedDict):
+    job_id: str
+    session_id: str
+    project_name: str
+    text: str
+    language: str
+    provider: str
+    voice_id: Optional[str]
+    requested_at: str
 
 
 @lru_cache(maxsize=1)
@@ -524,6 +535,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     settings = settings or get_settings()
     os.environ.setdefault("PROJECTS_DIR", str(settings.projects_dir))
     app = FastAPI(title="Mémoire des Territoires API", version="0.1.0")
+    app.state.tts_queue = None
+    app.state.tts_worker = None
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
@@ -1048,6 +1061,184 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if ensure:
             path.mkdir(parents=True, exist_ok=True)
         return path
+
+    async def _process_tts_job(job: TTSJob) -> None:
+        session_id = job["session_id"]
+        job_id = job["job_id"]
+        current_meta = session_store.get_scenario_audio(session_id) or {}
+        if current_meta.get("job_id") != job_id:
+            return
+        running_meta = {
+            **current_meta,
+            "status": "running",
+            "started_at": datetime.utcnow().isoformat(),
+        }
+        session_store.save_scenario_audio(session_id, running_meta)
+        log_progress(
+            "SCENARIO_AUDIO_START",
+            session=session_id,
+            project=job["project_name"],
+            job=job_id,
+            provider=job["provider"],
+        )
+        loop = asyncio.get_running_loop()
+
+        def _run_sync() -> Dict[str, Any]:
+            return _execute_tts_job(job)
+
+        try:
+            metadata = await loop.run_in_executor(None, _run_sync)
+        except Exception as exc:
+            log_progress(
+                "SCENARIO_AUDIO_FAILED",
+                session=session_id,
+                project=job["project_name"],
+                job=job_id,
+                error=str(exc),
+            )
+            failure_meta = {
+                "status": "failed",
+                "job_id": job_id,
+                "error": str(exc),
+                "project": job["project_name"],
+                "language": job["language"],
+                "requested_at": job["requested_at"],
+                "finished_at": datetime.utcnow().isoformat(),
+                "tts_provider": job["provider"],
+            }
+            session_store.save_scenario_audio(session_id, failure_meta)
+            return
+
+        latest = session_store.get_scenario_audio(session_id) or {}
+        if latest.get("job_id") != job_id:
+            return
+        metadata["requested_at"] = job["requested_at"]
+        metadata["started_at"] = running_meta.get("started_at")
+        metadata["finished_at"] = datetime.utcnow().isoformat()
+        session_store.save_scenario_audio(session_id, metadata)
+
+        if metadata.get("backgrounds_applied"):
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_APPLIED",
+                session=session_id,
+                project=job["project_name"],
+                layers=metadata.get("backgrounds_applied"),
+            )
+        elif metadata.get("background_tracks_requested"):
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_SKIPPED",
+                session=session_id,
+                project=job["project_name"],
+                reason="mix_failed",
+            )
+
+        log_progress(
+            "SCENARIO_AUDIO_DONE",
+            session=session_id,
+            project=job["project_name"],
+            job=job_id,
+            path=metadata.get("path"),
+            duration=metadata.get("num_samples"),
+        )
+
+    async def _tts_worker() -> None:
+        queue: asyncio.Queue[TTSJob] = app.state.tts_queue
+        try:
+            while True:
+                job = await queue.get()
+                await _process_tts_job(job)
+        except asyncio.CancelledError:
+            logger.info("TTS worker cancelled")
+            raise
+
+    def _execute_tts_job(job: TTSJob) -> Dict[str, Any]:
+        text = job["text"]
+        language = job["language"] or "French"
+        project_name = job["project_name"]
+        provider = job["provider"] or "qwen"
+        voice_id = job.get("voice_id")
+
+        def _synthesize_qwen() -> Dict[str, Any]:
+            return text_to_speech_with_instructions(
+                text=text,
+                project_name=project_name,
+                language=language,
+            )
+
+        if provider == "elevenlabs":
+            if not voice_id:
+                raise ValueError("Aucune voix ElevenLabs sélectionnée pour ce projet.")
+            result = eleven_labs_tts(
+                text=text,
+                voice_id=voice_id,
+            )
+            result.setdefault("sample_rate", 44100)
+        else:
+            try:
+                result = _synthesize_qwen()
+            except ValueError as exc:
+                message = str(exc)
+                lowered = message.lower()
+                if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
+                    ensure_voice_instructions(project_name, text, language)
+                    result = _synthesize_qwen()
+                else:
+                    raise
+            provider = "qwen"
+
+        voice_path = Path(result["path"])
+        (
+            layered_path,
+            backgrounds_applied,
+            dry_voice_path,
+            backgrounds_requested,
+            background_plan,
+        ) = apply_background_selection(voice_path, project_name, text)
+        result["path"] = str(layered_path)
+        if dry_voice_path:
+            result["voice_only_path"] = str(dry_voice_path)
+        if background_plan:
+            result["background_plan"] = background_plan
+
+        if not result.get("sample_rate") or not result.get("num_samples"):
+            try:
+                segment = AudioSegment.from_file(layered_path)
+                result.setdefault("sample_rate", segment.frame_rate)
+                result.setdefault("num_samples", int(segment.frame_count()))
+            except Exception:
+                pass
+
+        metadata = {
+            **result,
+            "status": "done",
+            "language": language,
+            "text_length": len(text),
+            "generated_at": datetime.utcnow().isoformat(),
+            "backgrounds_applied": backgrounds_applied,
+            "background_tracks_requested": backgrounds_requested,
+            "tts_provider": provider,
+            "job_id": job["job_id"],
+        }
+        return metadata
+
+    async def _start_tts_worker() -> None:
+        if app.state.tts_queue is None:
+            app.state.tts_queue = asyncio.Queue()
+        if app.state.tts_worker is None:
+            app.state.tts_worker = asyncio.create_task(_tts_worker())
+
+    async def _stop_tts_worker() -> None:
+        worker = getattr(app.state, "tts_worker", None)
+        if worker:
+            worker.cancel()
+            try:
+                await worker
+            except asyncio.CancelledError:
+                pass
+            app.state.tts_worker = None
+
+    app.add_event_handler("startup", _start_tts_worker)
+    app.add_event_handler("shutdown", _stop_tts_worker)
 
     def project_outputs_directory(project_name: str, ensure: bool = False) -> Path:
         path = settings.projects_dir / project_name / "outputs"
@@ -1663,122 +1854,49 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         text = (payload.text or scenario_to_text(scenario)).strip()
         if not text:
             raise HTTPException(status_code=400, detail="Impossible de générer l'audio : texte vide")
-        log_progress(
-            "SCENARIO_AUDIO_START",
-            session=session_id,
-            project=session["project_name"],
-            language=payload.language or "French",
-        )
         profile = load_project_profile(session["project_name"])
         provider = (profile.get("tts_provider") or "qwen").lower()
         voice_id = profile.get("tts_voice_id")
-
-        def synthesize_qwen() -> dict:
-            return text_to_speech_with_instructions(
-                text=text,
-                project_name=session["project_name"],
-                language=payload.language or "French",
+        if provider == "elevenlabs" and not voice_id:
+            raise HTTPException(
+                status_code=400,
+                detail="Sélectionnez une voix ElevenLabs avant de générer l'audio."
             )
-
-        if provider == "elevenlabs":
-            if not voice_id:
-                raise HTTPException(
-                    status_code=400,
-                    detail="Sélectionnez une voix ElevenLabs avant de générer l'audio."
-                )
-            try:
-                result = eleven_labs_tts(
-                    text=text,
-                    voice_id=voice_id,
-                )
-            except Exception as exc:  # pragma: no cover - propagate
-                logger.exception("ElevenLabs synthesis failed for session %s", session_id)
-                raise HTTPException(status_code=500, detail=str(exc)) from exc
-            result.setdefault("language", payload.language or "French")
-            result.setdefault("sample_rate", 44100)
-            try:
-                segment = AudioSegment.from_file(result["path"])
-                result["num_samples"] = int(segment.frame_count())
-            except Exception:
-                result.setdefault("num_samples", 0)
-            result["tts_provider"] = "elevenlabs"
-        else:
-            try:
-                result = synthesize_qwen()
-            except ValueError as exc:
-                message = str(exc)
-                lowered = message.lower()
-                if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
-                    logger.info("Voice instructions missing for %s – composing default", session["project_name"])
-                    try:
-                        ensure_voice_instructions(session["project_name"], text, payload.language or "French")
-                    except Exception as inner_exc:  # pragma: no cover - fallback message
-                        raise HTTPException(status_code=400, detail=str(inner_exc)) from inner_exc
-                    try:
-                        result = synthesize_qwen()
-                    except Exception as retry_exc:
-                        raise HTTPException(status_code=400, detail=str(retry_exc)) from retry_exc
-                else:
-                    raise HTTPException(status_code=400, detail=message) from exc
-            except Exception as exc:  # pragma: no cover - propagate to client
-                logger.exception("Scenario audio synthesis failed for session %s", session_id)
-                raise HTTPException(status_code=500, detail=str(exc)) from exc
-            result["tts_provider"] = "qwen"
-
-        backgrounds_applied = 0
-        backgrounds_requested = 0
-        dry_voice_path: Optional[Path] = None
-        background_plan: List[Dict[str, Any]] = []
-        try:
-            voice_path = Path(result["path"])
-            (
-                layered_path,
-                backgrounds_applied,
-                dry_voice_path,
-                backgrounds_requested,
-                background_plan,
-            ) = apply_background_selection(voice_path, session["project_name"], text)
-            result["path"] = str(layered_path)
-        except Exception as exc:  # pragma: no cover - defensive
-            logger.exception("Background layering failed for session %s: %s", session_id, exc)
-            backgrounds_applied = 0
-            background_plan = []
-
+        language = payload.language or "French"
+        job_id = uuid4().hex
+        requested_at = datetime.utcnow().isoformat()
         metadata = {
-            **result,
-            "generated_at": datetime.utcnow().isoformat(),
+            "status": "pending",
+            "job_id": job_id,
+            "language": language,
             "text_length": len(text),
-            "language": payload.language or "French",
-            "backgrounds_applied": backgrounds_applied,
-            "background_tracks_requested": backgrounds_requested,
+            "requested_at": requested_at,
+            "tts_provider": provider,
         }
-        if background_plan:
-            metadata["background_plan"] = background_plan
-        if dry_voice_path:
-            metadata["voice_only_path"] = str(dry_voice_path)
         session_store.save_scenario_audio(session_id, metadata)
-
-        if backgrounds_applied:
-            log_progress(
-                "SCENARIO_AUDIO_BACKGROUND_APPLIED",
-                session=session_id,
-                project=session["project_name"],
-                layers=backgrounds_applied,
-            )
-        elif backgrounds_requested:
-            log_progress(
-                "SCENARIO_AUDIO_BACKGROUND_SKIPPED",
-                session=session_id,
-                project=session["project_name"],
-                reason="mix_failed",
-            )
-
+        queue: asyncio.Queue = getattr(app.state, "tts_queue", None)
+        if queue is None:
+            app.state.tts_queue = asyncio.Queue()
+            queue = app.state.tts_queue
+            if getattr(app.state, "tts_worker", None) is None:
+                app.state.tts_worker = asyncio.create_task(_tts_worker())
+        job: TTSJob = {
+            "job_id": job_id,
+            "session_id": session_id,
+            "project_name": session["project_name"],
+            "text": text,
+            "language": language,
+            "provider": provider,
+            "voice_id": voice_id,
+            "requested_at": requested_at,
+        }
+        await queue.put(job)
         log_progress(
-            "SCENARIO_AUDIO_DONE",
+            "SCENARIO_AUDIO_QUEUED",
             session=session_id,
             project=session["project_name"],
-            path=metadata.get("path"),
-            duration=metadata.get("num_samples"),
+            job=job_id,
+            provider=provider,
         )
         return metadata
 

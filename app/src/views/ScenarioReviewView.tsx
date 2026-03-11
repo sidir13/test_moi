@@ -127,7 +127,12 @@ export function ScenarioReviewView() {
     setIsAdvancing(true);
     setStatus("Préparation de l'audio du scénario sélectionné…");
     try {
-      await synthesizeScenarioAudio(sessionId);
+      const job = await synthesizeScenarioAudio(sessionId);
+      if (job?.status && job.status !== "done") {
+        setStatus("Génération de l'audio en arrière-plan…");
+      } else {
+        setStatus("Audio généré.");
+      }
     } catch (err) {
       console.error("Audio synthesis failed", err);
       setAdvanceError(extractErrorMessage(err) ?? "Audio non généré. Vérifiez vos instructions vocales.");
