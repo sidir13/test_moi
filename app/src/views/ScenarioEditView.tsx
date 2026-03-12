@@ -22,6 +22,7 @@ import {
 import { useSessionStore } from "../hooks/useSessionStore";
 
 type ScenarioPartDraft = { titre: string; texte_narration: string };
+type TaggedPartDraft = { titre: string; taggedText: string };
 
 export function ScenarioEditView() {
   const { sessionId, setCurrentStep, updateProgress } = useSessionStore();
@@ -29,6 +30,8 @@ export function ScenarioEditView() {
   const queryClient = useQueryClient();
   const [title, setTitle] = useState("");
   const [partsDraft, setPartsDraft] = useState<ScenarioPartDraft[]>([]);
+  const [taggedPartsDraft, setTaggedPartsDraft] = useState<TaggedPartDraft[]>([]);
+  const [showTags, setShowTags] = useState(false);
   const [freeText, setFreeText] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const [audioStatus, setAudioStatus] = useState<string | null>(null);
@@ -64,7 +67,8 @@ export function ScenarioEditView() {
 
   useEffect(() => {
     if (!selectionQuery.data) return;
-    const payload = extractScenario(selectionQuery.data);
+    const raw = selectionQuery.data as any;
+    const payload = extractScenario(raw);
     setTitle(payload.titre ?? "");
     if (Array.isArray(payload.parties) && payload.parties.length > 0) {
       setPartsDraft(
@@ -77,6 +81,18 @@ export function ScenarioEditView() {
     } else {
       setPartsDraft([]);
       setFreeText(payload.texte_narration ?? payload.texte ?? "");
+    }
+    // Load tagged parts (ElevenLabs)
+    const taggedParties = raw?.taggedOutput?.parties;
+    if (Array.isArray(taggedParties) && taggedParties.length > 0) {
+      setTaggedPartsDraft(
+        taggedParties.map((tp: any, idx: number) => ({
+          titre: tp?.titre ?? `Partie ${idx + 1}`,
+          taggedText: tp?.taggedText ?? ""
+        }))
+      );
+    } else {
+      setTaggedPartsDraft([]);
     }
   }, [selectionQuery.data]);
 
@@ -133,7 +149,7 @@ export function ScenarioEditView() {
 
   const persistScenario = async () => {
     if (!sessionId || !selectionQuery.data) return;
-    const updated = buildUpdatedScenario(selectionQuery.data, title, partsDraft, freeText);
+    const updated = buildUpdatedScenario(selectionQuery.data, title, partsDraft, freeText, taggedPartsDraft);
     await selectScenario(sessionId, updated);
     await queryClient.invalidateQueries({ queryKey: ["selected-scenario", sessionId] });
   };
@@ -290,6 +306,7 @@ export function ScenarioEditView() {
     setPartsDraft((prev) => prev.filter((_, idx) => idx !== index));
   };
 
+  const hasTaggedText = taggedPartsDraft.length > 0;
   const scenarioTitle = title?.trim();
   const heading = scenarioTitle && scenarioTitle.length > 0 ? `Modifier le scénario — ${scenarioTitle}` : "Modifier le scénario";
 
@@ -299,8 +316,55 @@ export function ScenarioEditView() {
       <form onSubmit={handleSubmit} className="form-grid">
 
         <section className="card">
-          <h3>Structure narrative</h3>
-          {partsDraft.length === 0 ? (
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+            <h3 style={{ margin: 0 }}>Structure narrative</h3>
+            {hasTaggedText && (
+              <button
+                type="button"
+                className="link sourcing-toggle"
+                onClick={() => setShowTags((prev) => !prev)}
+                style={{ fontSize: "0.85em" }}
+              >
+                {showTags ? "Voir le texte brut" : "Voir / modifier les balises ElevenLabs"}
+              </button>
+            )}
+          </div>
+          {showTags && hasTaggedText ? (
+            <>
+              <p style={{ fontSize: "0.85em", opacity: 0.75, marginTop: 0 }}>
+                Texte balisé envoyé à ElevenLabs. Les balises <code>[pause]</code>, <code>[posé]</code>, etc. seront interprétées par le moteur vocal.
+              </p>
+              {taggedPartsDraft.map((tp, idx) => (
+                <div className="card" key={idx}>
+                  <div
+                    style={{
+                      border: "1px solid var(--border, #d0d7de)",
+                      borderRadius: 6,
+                      padding: "0.4rem 0.6rem",
+                      background: "var(--card-bg, #f5f6f8)",
+                      marginBottom: "0.5rem",
+                      fontWeight: 600
+                    }}
+                  >
+                    {tp.titre || `Partie ${idx + 1}`}
+                  </div>
+                  <label>
+                    Texte balisé
+                    <textarea
+                      rows={8}
+                      value={tp.taggedText}
+                      style={{ fontFamily: "monospace", fontSize: "0.88em" }}
+                      onChange={(e) =>
+                        setTaggedPartsDraft((prev) =>
+                          prev.map((p, i) => (i === idx ? { ...p, taggedText: e.target.value } : p))
+                        )
+                      }
+                    />
+                  </label>
+                </div>
+              ))}
+            </>
+          ) : partsDraft.length === 0 ? (
             <>
               <label>
                 Corps du scénario
@@ -541,7 +605,8 @@ function buildUpdatedScenario(
   original: Record<string, any>,
   title: string,
   parts: ScenarioPartDraft[],
-  freeText: string
+  freeText: string,
+  taggedParts: TaggedPartDraft[] = []
 ) {
   const base = { ...original };
   const target = base.scenario && typeof base.scenario === "object" ? { ...base.scenario } : { ...base };
@@ -557,8 +622,24 @@ function buildUpdatedScenario(
     delete target.parties;
     target.texte_narration = freeText;
   }
+
+  // Persist tagged parts (ElevenLabs) if edited
+  let updated: Record<string, any>;
   if (base.scenario && typeof base.scenario === "object") {
-    return { ...base, scenario: target };
+    updated = { ...base, scenario: target };
+  } else {
+    updated = target;
   }
-  return target;
+  if (taggedParts.length > 0 && base.taggedOutput && typeof base.taggedOutput === "object") {
+    const updatedTaggedOutput = {
+      ...base.taggedOutput,
+      parties: taggedParts.map((tp, idx) => ({
+        ...(Array.isArray(base.taggedOutput?.parties) ? (base.taggedOutput.parties[idx] ?? {}) : {}),
+        titre: tp.titre || `Partie ${idx + 1}`,
+        taggedText: tp.taggedText ?? ""
+      }))
+    };
+    updated = { ...updated, taggedOutput: updatedTaggedOutput };
+  }
+  return updated;
 }
