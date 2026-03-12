@@ -14,7 +14,7 @@ load_dotenv()
 import sys
 sys.path.append(str(Path(__file__).parent / "src"))
 from memoiredesterritoires.background_sounds_description.background_sounds_description import analyse_audio_industriel
-from memoiredesterritoires.transcription.transcription  import transcribe_audio
+from memoiredesterritoires.transcription.transcription_parallelized  import transcribe_audio
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_instructions import (
     text_to_speech_with_instructions as synthesize_voice,
@@ -49,7 +49,7 @@ def check_available_skills():
             if tool_dir.is_dir():
                 skill_file = tool_dir / "SKILL.md"
                 if skill_file.exists():
-                    with open(skill_file, 'r') as f:
+                    with open(skill_file, 'r', encoding='utf-8') as f:
                         content = f.read()
                     available_skills.append({
                         "name": tool_dir.name,
@@ -928,13 +928,13 @@ async def main(user_message: str = None):
 
 
 if __name__ == "__main__":
-    asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/Pont roulant/AV-1-S-OUT-401.wav and analyze it ?"))
+    asyncio.run(main("can u transcript the audio at the path data/audio/archived_audio/Gilles.Hamon-Dessinateur.WAV"))
+    # asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/Pont roulant/AV-1-S-OUT-401.wav and analyze it ?"))
     pass
     # asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
     # asyncio.run(main("Décrit le son d'ambiance de chalumeau"))
 #     asyncio.run(main("""We were interrupted during our previous task, here is all that was done, can you continue and complete the task ? It is very important you evaluate all models in a same table based on your average evaluar
 #     tion of the 3 scenarios generated each !
-                     
 #                                            task: call scenario maker with following openrouter models: openai/gpt-5.2; and evaluate all of the generated scenarios without missing any to determine how each performed in: properly using source transcription and not inventing things, overall quality, story remaining historically interesting and not litterature
 
 # Stop reason: tool_use

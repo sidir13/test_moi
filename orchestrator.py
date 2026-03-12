@@ -1,12 +1,14 @@
 """
 Main orchestrator for Mémoire des Territoires.
 Coordinates all agents and skills for scenario generation.
+Supports parallel execution of scenario chains via ThreadPoolExecutor.
 """
 
 import os
 import json
 import logging
 import random
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from pathlib import Path
 from typing import Dict, Any, Union, List, Optional
@@ -20,10 +22,8 @@ logger = logging.getLogger(__name__)
 
 
 class ScenarioMakerOrchestrator:
-    """
-    Main orchestrator that coordinates all agents and skills.
-    """
-    
+    """Main orchestrator that coordinates all agents and skills."""
+
     def __init__(
         self,
         config_path: Optional[str] = None,
@@ -31,467 +31,456 @@ class ScenarioMakerOrchestrator:
         log_level: str = "INFO",
         model_id: Optional[str] = None,
         scenario_target_override: Optional[int] = None,
+        tts_provider: str = "qwen",
     ):
-        """
-        Initialize the orchestrator.
-        
-        Args:
-            config_path: Path to configuration file (defaults to config/default_config.json)
-            api_key: Anthropic API key (defaults to env variable ANTHROPIC_AUTH_TOKEN)
-            log_level: Logging level
-            model_id: Full OpenRouter model ID to use for all agents (e.g. "anthropic/claude-opus-4-5")
-        """
         # Setup logging
         log_file = os.getenv("LOG_FILE", "./logs/memoire_territoires.log")
         self.logger = setup_logger(
-            name="memoire_territoires",
-            level=log_level,
-            log_file=log_file
+            name="memoire_territoires", level=log_level, log_file=log_file
         )
-        
+
         logger.info("=" * 80)
         logger.info("Initializing Mémoire des Territoires Orchestrator")
         logger.info("=" * 80)
-        
-        # Store model override (will be applied to agents after loading)
+
         self.model_id = model_id
         if model_id:
-            logger.info(f"Model override: {model_id}")
+            logger.info("Model override: %s", model_id)
 
-        # Store scenario target override (slider)
+        # TTS provider — Agent 3 only runs when elevenlabs is selected
+        self.tts_provider = (tts_provider or "qwen").lower()
+        logger.info("TTS provider: %s", self.tts_provider)
+
+        # Scenario target override (slider)
         self.scenario_target_override: Optional[int] = None
         if scenario_target_override is not None:
             try:
-                forced_value = int(scenario_target_override)
-                if forced_value < 1:
+                forced = int(scenario_target_override)
+                if forced < 1:
                     raise ValueError
-                self.scenario_target_override = forced_value
-                logger.info("Scenario target override active: %d", forced_value)
+                self.scenario_target_override = forced
+                logger.info("Scenario target override active: %d", forced)
             except Exception:
                 logger.warning(
                     "Ignoring invalid scenario_target_override=%r",
                     scenario_target_override,
                 )
-        
-        # Initialize Claude client (uses OpenRouter via ANTHROPIC_BASE_URL env var)
+
+        # Claude client
         try:
             self.client = ClaudeClient(api_key=api_key)
-            logger.info("Claude client initialized successfully (OpenRouter)")
+            logger.info("Claude client initialized (OpenRouter)")
         except Exception as e:
-            logger.error(f"Failed to initialize Claude client: {e}")
+            logger.error("Failed to initialize Claude client: %s", e)
             raise
-        
+
         # Load default configuration
         self.config_path = config_path or "config/default_config.json"
         self.default_config = self._load_config(self.config_path)
-        logger.info(f"Loaded configuration from {self.config_path}")
-        
+        logger.info("Loaded configuration from %s", self.config_path)
+
         # Load agents and skills
-        self.agents = {}
-        self.skills = {}
+        self.agents: Dict[str, Any] = {}
+        self.skills: Dict[str, Any] = {}
         self._load_all_skills()
-        
-        # Apply model override to all agents if provided
+
         if self.model_id:
             self._apply_model_override(self.model_id)
-        
+
         logger.info("Orchestrator initialization complete")
-        logger.info(f"Loaded {len(self.agents)} agents, {len(self.skills)} skills")
-    
+        logger.info(
+            "Loaded %d agents, %d skills", len(self.agents), len(self.skills)
+        )
+
+    # ==================================================================
+    # Config & setup
+    # ==================================================================
+
     def _load_config(self, config_path: str) -> Dict[str, Any]:
-        """Load configuration from JSON file."""
         path = Path(config_path)
         if not path.exists():
-            logger.warning(f"Config file not found: {config_path}, using empty config")
+            logger.warning("Config file not found: %s", config_path)
             return {}
-        
         try:
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception as e:
-            logger.error(f"Error loading config: {e}")
+            logger.error("Error loading config: %s", e)
             return {}
-    
+
     def _load_all_skills(self):
-        """Load all agents and skills from their directories."""
-        # Load agents
         agents_dir = Path("agents")
         if agents_dir.exists():
             logger.info("Loading agents...")
             self.agents = SkillLoader.load_all_skills(
-                agents_dir,
-                self.client,
-                skill_type="agents"
+                agents_dir, self.client, skill_type="agents"
             )
-            logger.info(f"Loaded {len(self.agents)} agents: {list(self.agents.keys())}")
+            logger.info(
+                "Loaded %d agents: %s", len(self.agents), list(self.agents.keys())
+            )
         else:
             logger.warning("Agents directory not found")
-        
-        # Load skills
+
         skills_dir = Path("skills")
         if skills_dir.exists():
             logger.info("Loading skills...")
             self.skills = SkillLoader.load_all_skills(
-                skills_dir,
-                self.client,
-                skill_type="skills"
+                skills_dir, self.client, skill_type="skills"
             )
-            logger.info(f"Loaded {len(self.skills)} skills: {list(self.skills.keys())}")
+            logger.info(
+                "Loaded %d skills: %s", len(self.skills), list(self.skills.keys())
+            )
         else:
             logger.warning("Skills directory not found")
 
     def _apply_model_override(self, model_id: str):
-        """Override the model used by all agents (Agent 0–3) and skills."""
-        for name, agent_data in self.agents.items():
-            instance = agent_data.get("instance")
-            if instance and hasattr(instance, "model"):
-                old = getattr(instance, "model", None)
-                instance.model = model_id
-                logger.info(f"Model override [{name}]: {old} → {model_id}")
-
-        for name, skill_data in self.skills.items():
-            instance = skill_data.get("instance")
-            if instance and hasattr(instance, "model"):
-                old = getattr(instance, "model", None)
-                instance.model = model_id
-                logger.info(f"Model override [{name}]: {old} → {model_id}")
+        for name, data in self.agents.items():
+            inst = data.get("instance")
+            if inst and hasattr(inst, "model"):
+                old = getattr(inst, "model", None)
+                inst.model = model_id
+                logger.info("Model override [%s]: %s → %s", name, old, model_id)
+        for name, data in self.skills.items():
+            inst = data.get("instance")
+            if inst and hasattr(inst, "model"):
+                old = getattr(inst, "model", None)
+                inst.model = model_id
+                logger.info("Model override [%s]: %s → %s", name, old, model_id)
 
     def _apply_scenario_target_override(self, config: Dict[str, Any]) -> None:
-        """Force nombre_scenarios to match the project slider selection."""
         if self.scenario_target_override is None:
             return
-        forced_value = self.scenario_target_override
-        scenario_config = config.setdefault("scenario_config", {})
-        gen_params = scenario_config.setdefault("generation_parameters", {})
-        nombre = gen_params.setdefault("nombre_scenarios", {})
-        previous_value = nombre.get("value")
-        nombre["value"] = forced_value
+        forced = self.scenario_target_override
+        sc = config.setdefault("scenario_config", {})
+        gp = sc.setdefault("generation_parameters", {})
+        nombre = gp.setdefault("nombre_scenarios", {})
+        prev = nombre.get("value")
+        nombre["value"] = forced
         nombre["user_specified"] = True
         nombre["source"] = "project_slider"
-        scenario_config.setdefault("metadata", {})[
-            "scenario_target_override"
-        ] = forced_value
-        if previous_value != forced_value:
-            logger.info(
-                "Scenario count override applied: %s → %s",
-                previous_value,
-                forced_value,
-            )
-        else:
-            logger.info(
-                "Scenario count confirmed at %s via override",
-                forced_value,
-            )
+        sc.setdefault("metadata", {})["scenario_target_override"] = forced
+        if prev != forced:
+            logger.info("Scenario count override: %s → %s", prev, forced)
+
+    # ==================================================================
+    # Main pipeline (NEW — parallel)
+    # ==================================================================
 
     def create_scenarios(
         self,
         user_input: Union[str, Dict],
         mode: str = "simple",
-        output_dir: Optional[str] = None
+        output_dir: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """
-        Main pipeline to create scenarios - Full pipeline v2.
-        
-        Args:
-            user_input: User prompt (str) or expert config (dict)
-            mode: "simple" or "expert"
-            output_dir: Directory to save outputs (defaults to ./output)
-            
-        Returns:
-            Dict with generation results including scenarios and metadata
-        """
-        logger.info("=" * 80)
-        logger.info(f"Starting FULL scenario generation pipeline (mode: {mode})")
-        logger.info("=" * 80)
-        
-        start_time = datetime.now()
-        
-        try:
-            # Step 1: Parse request with Agent 0
-            config = self._run_agent_0(user_input, mode)
-            
-            # Store the original user prompt so downstream agents can read it
-            user_input_section = config.setdefault("scenario_config", {}).setdefault("user_input", {})
-            if isinstance(user_input, str):
-                user_input_section["original_prompt"] = user_input
-            else:
-                user_input_section["original_prompt"] = user_input.get("prompt", "")
-            
-            # Get number of scenarios to generate
-            num_scenarios = config.get('scenario_config', {}).get('generation_parameters', {}).get('nombre_scenarios', {}).get('value', 3)
-            
-            scenarios_complete = []
-            
-            # Track used values for diversity
-            used_values: Dict[str, List[str]] = {}
+        """Full pipeline v3: Agent 0 → parallel (Agent 1 → 2 → 3) chains.
 
-            # Generate each scenario
-            for i in range(num_scenarios):
-                logger.info(f"\n{'='*80}")
-                logger.info(f"Generating scenario {i+1}/{num_scenarios}")
-                logger.info(f"{'='*80}\n")
-                
-                # Create a varied copy of the config for this scenario
-                varied_config = self._vary_config_for_scenario(config, i + 1, used_values)
-                
-                try:
-                    # Agent 1: Structure
-                    structure = self._run_agent_1(varied_config, i + 1)
-                    
-                    # Agent 2: Writing
-                    scenario = self._run_agent_2(structure, varied_config)
-                    
-                    # Agent 3: Production
-                    timeline = self._run_agent_3(scenario, varied_config)
-                    
-                    scenarios_complete.append({
-                        'structure': structure,
-                        'scenario': scenario,
-                        'timeline': timeline
-                    })
-                    
-                    logger.info(f"\n✓ Scenario {i+1} completed successfully")
-                    
-                except Exception as e:
-                    logger.error(f"Error generating scenario {i+1}: {e}", exc_info=True)
-                    scenarios_complete.append({
-                        'error': str(e),
-                        'scenario_id': i + 1
-                    })
-            
-            # Build final result
+        Parameters
+        ----------
+        user_input : str or dict
+            User prompt (simple) or expert config (dict).
+        mode : str
+            ``"simple"`` or ``"expert"``.
+        output_dir : str, optional
+            Directory to save outputs.
+
+        Returns
+        -------
+        dict with config, scenarios, generation_time, status.
+        """
+        logger.info("=" * 80)
+        logger.info("Starting PARALLEL scenario generation pipeline (mode: %s)", mode)
+        logger.info("=" * 80)
+
+        start_time = datetime.now()
+
+        try:
+            # ----------------------------------------------------------
+            # Step 1: Agent 0 — parse + prepare scenario prompts
+            # ----------------------------------------------------------
+            agent0 = self._get_agent("agent_0_request_parser")
+            a0_logger = AgentLogger("Agent 0")
+
+            # Get audio transcriptions from default config
+            audio_transcriptions = self._extract_audio_transcriptions(
+                self.default_config
+            )
+
+            a0_logger.log_start("Parse request + prepare scenario prompts")
+
+            # Apply scenario target override to default config before parsing
+            default_cfg = deepcopy(self.default_config)
+            self._apply_scenario_target_override(default_cfg)
+
+            a0_output = agent0.parseAndPrepareScenarios(
+                userInput=user_input,
+                mode=mode,
+                defaultConfig=default_cfg,
+                audioTranscriptions=audio_transcriptions,
+            )
+            a0_logger.log_end("Parse + prepare", status="success")
+
+            config = a0_output["config"]
+            scenarioPrompts = a0_output["scenarioPrompts"]
+
+            # Enforce scenario target override on the resulting config too
+            self._apply_scenario_target_override(config)
+
+            # Validate
+            validation = agent0.validate_configuration(config)
+            for w in validation.get("warnings", []):
+                logger.warning("Config: %s", w)
+            if not validation["valid"]:
+                raise ValueError(f"Configuration invalid: {validation['errors']}")
+
+            logger.info(
+                "Agent 0 produced %d scenario prompts", len(scenarioPrompts)
+            )
+
+            # ----------------------------------------------------------
+            # Step 2: Run scenario chains in parallel
+            # ----------------------------------------------------------
+            scenarios_complete: List[Dict[str, Any]] = [None] * len(
+                scenarioPrompts
+            )
+
+            max_workers = min(len(scenarioPrompts), 5)
+            logger.info(
+                "Launching %d parallel chains (max_workers=%d)",
+                len(scenarioPrompts),
+                max_workers,
+            )
+
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                future_to_idx = {}
+                for idx, sp in enumerate(scenarioPrompts):
+                    future = executor.submit(
+                        self._runScenarioChain,
+                        sp,
+                        config,
+                    )
+                    future_to_idx[future] = idx
+
+                for future in as_completed(future_to_idx):
+                    idx = future_to_idx[future]
+                    snum = scenarioPrompts[idx]["scenarioNum"]
+                    try:
+                        result = future.result()
+                        scenarios_complete[idx] = result
+                        logger.info("✓ Scenario %d completed", snum)
+                    except Exception as e:
+                        logger.error(
+                            "✗ Scenario %d failed: %s", snum, e, exc_info=True
+                        )
+                        scenarios_complete[idx] = {
+                            "error": str(e),
+                            "scenario_id": snum,
+                        }
+
+            # ----------------------------------------------------------
+            # Step 3: Build result
+            # ----------------------------------------------------------
             result = {
-                'config': config,
-                'scenarios': scenarios_complete,
-                'generation_time': (datetime.now() - start_time).total_seconds(),
-                'status': 'success',
-                'message': f'Pipeline completed: {len(scenarios_complete)} scenarios generated'
+                "config": config,
+                "scenarios": scenarios_complete,
+                "generation_time": (
+                    datetime.now() - start_time
+                ).total_seconds(),
+                "status": "success",
+                "message": (
+                    f"Pipeline completed: {len(scenarios_complete)} scenarios"
+                ),
             }
-            
-            # Save outputs
+
             if output_dir:
                 self._save_complete_outputs(result, output_dir)
-            
+
             logger.info("=" * 80)
-            logger.info(f"FULL PIPELINE completed in {result['generation_time']:.2f}s")
-            logger.info(f"Generated {len(scenarios_complete)} scenarios")
+            logger.info(
+                "PARALLEL PIPELINE completed in %.2fs", result["generation_time"]
+            )
+            logger.info("Generated %d scenarios", len(scenarios_complete))
             logger.info("=" * 80)
-            
+
             return result
-            
+
         except Exception as e:
-            logger.error(f"Pipeline error: {e}", exc_info=True)
+            logger.error("Pipeline error: %s", e, exc_info=True)
             return {
-                'status': 'error',
-                'error': str(e),
-                'generation_time': (datetime.now() - start_time).total_seconds()
+                "status": "error",
+                "error": str(e),
+                "generation_time": (
+                    datetime.now() - start_time
+                ).total_seconds(),
             }
-    
-    def _run_agent_0(self, user_input: Union[str, Dict], mode: str) -> Dict:
-        """Run Agent 0: Request Parser."""
-        if 'agent_0_request_parser' not in self.agents:
-            raise ValueError("Agent 0 not loaded")
-        
-        agent_0 = self.agents['agent_0_request_parser']['instance']
-        agent_0_logger = AgentLogger("Agent 0")
-        
-        agent_0_logger.log_start("Parse request and build configuration")
-        config = agent_0.parse(user_input, mode, self.default_config)
-        agent_0_logger.log_end("Parse request", status="success")
 
-        # Log full Agent 0 output for debugging
-        logger.debug("[Agent 0] Full config output: %s", json.dumps(config, indent=2, ensure_ascii=False, default=str)[:5000])
+    # ==================================================================
+    # Single scenario chain (Agent 1 → 2 → 3)
+    # ==================================================================
 
-        # Enforce scenario count override if provided
-        self._apply_scenario_target_override(config)
-        
-        # Validate
-        validation = agent_0.validate_configuration(config)
-        if validation['warnings']:
-            for warning in validation['warnings']:
-                logger.warning(f"Config: {warning}")
-        
-        if not validation['valid']:
-            raise ValueError(f"Configuration invalid: {validation['errors']}")
-        
-        return config
-    
-    def _run_agent_1(self, config: Dict, scenario_num: int) -> Dict:
-        """Run Agent 1: Narrative Structure."""
-        if 'agent_1_structure' not in self.agents:
-            raise ValueError("Agent 1 not loaded")
-        
-        agent_1 = self.agents['agent_1_structure']['instance']
-        agent_1_logger = AgentLogger("Agent 1")
-        
-        # Extract audio transcriptions for Agent 1
-        audio_transcriptions = self._extract_audio_transcriptions(config)
-        logger.info("[Agent 1] Audio transcriptions available: %d", len(audio_transcriptions))
-        
-        agent_1_logger.log_start(f"Create narrative structure #{scenario_num}")
-        structure = agent_1.create_narrative_structure(
-            config, 
-            scenario_num,
-            audio_metadata=audio_transcriptions
+    def _runScenarioChain(
+        self,
+        scenarioPrompt: Dict[str, Any],
+        baseConfig: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        """Execute the full chain for ONE scenario (thread-safe).
+
+        Parameters
+        ----------
+        scenarioPrompt : dict
+            One entry from Agent 0's scenarioPrompts list.
+        baseConfig : dict
+            Base config (for skills injection, etc.).
+
+        Returns
+        -------
+        dict with structure, scenario, taggedOutput.
+        """
+        snum = scenarioPrompt["scenarioNum"]
+        promptAgent1 = scenarioPrompt["promptAgent1"]
+        promptTemplateAgent2 = scenarioPrompt["promptTemplateAgent2"]
+
+        logger.info("[Chain %d] Starting Agent 1 → 2 → 3", snum)
+
+        # ---- Agent 1: Structure + Resume ----
+        agent1 = self._get_agent("agent_1_structure")
+        a1_logger = AgentLogger(f"Agent 1 (#{snum})")
+        a1_logger.log_start("Create structure from prompt")
+        structure = agent1.createStructureFromPrompt(promptAgent1)
+        a1_logger.log_end("Structure", status="success")
+
+        logger.info(
+            "[Chain %d] Agent 1 done — %s / resume: %s...",
+            snum,
+            structure.get("titre_global", "?"),
+            structure.get("resumeHistoire", "")[:60],
         )
-        agent_1_logger.log_end("Create structure", status="success")
 
-        # Log full Agent 1 output for debugging
-        logger.debug("[Agent 1] Structure #%d: %s", scenario_num, json.dumps(structure, indent=2, ensure_ascii=False, default=str)[:5000])
-        
-        return structure
-    
-    def _run_agent_2(self, structure: Dict, config: Dict) -> Dict:
-        """Run Agent 2: Scenario Writer."""
-        if 'agent_2_writing' not in self.agents:
-            raise ValueError("Agent 2 not loaded")
-        
-        agent_2 = self.agents['agent_2_writing']['instance']
-        
-        # Inject skills
-        agent_2.set_skills(self.skills)
-        
-        agent_2_logger = AgentLogger("Agent 2")
-        
-        audio_transcriptions = self._extract_audio_transcriptions(config)
-        logger.info("[Agent 2] Audio transcriptions available: %d", len(audio_transcriptions))
-        agent_2_logger.log_start("Write complete scenario")
-        scenario = agent_2.write_complete_scenario(
-            structure,
-            config,
-            audio_transcriptions=audio_transcriptions
+        # ---- Agent 2: Writing ----
+        agent2 = self._get_agent("agent_2_writing")
+        agent2.set_skills(self.skills)
+
+        a2_logger = AgentLogger(f"Agent 2 (#{snum})")
+        a2_logger.log_start("Write scenario from template")
+        scenario = agent2.writeFromPromptTemplate(
+            promptTemplateAgent2, structure
         )
-        agent_2_logger.log_end("Write scenario", status="success")
+        a2_logger.log_end("Writing", status="success")
 
-        # Log full Agent 2 output for debugging
-        logger.debug("[Agent 2] Scenario output: %s", json.dumps(scenario, indent=2, ensure_ascii=False, default=str)[:5000])
-        
-        return scenario
-    
-    def _run_agent_3(self, scenario: Dict, config: Dict) -> Dict:
-        """Run Agent 3: Production Engineer."""
-        if 'agent_3_production' not in self.agents:
-            raise ValueError("Agent 3 not loaded")
-        
-        agent_3 = self.agents['agent_3_production']['instance']
-        
-        # Inject skills
-        agent_3.set_skills(self.skills)
-        
-        agent_3_logger = AgentLogger("Agent 3")
-        
-        agent_3_logger.log_start("Create audio timeline")
-        timeline = agent_3.create_audio_timeline(scenario, None, config)
-        agent_3_logger.log_end("Create timeline", status="success")
+        logger.info(
+            "[Chain %d] Agent 2 done — %d words, %.1fs",
+            snum,
+            scenario.get("metadata", {}).get("nombre_mots", 0),
+            scenario.get("duree_estimee", 0),
+        )
 
-        # Log full Agent 3 output for debugging
-        logger.debug("[Agent 3] Timeline output: %s", json.dumps(timeline, indent=2, ensure_ascii=False, default=str)[:5000])
-        
-        return timeline
-    
-    def _save_complete_outputs(self, result: Dict, output_dir: str):
-        """Save all outputs to directory."""
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
-        
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Save config (Agent 0 output)
-        config_file = output_path / "scenarios" / f"config_{timestamp}.json"
-        config_file.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(config_file, 'w', encoding='utf-8') as f:
-            json.dump(result['config'], f, indent=2, ensure_ascii=False)
-        logger.info(f"[Agent 0] Config saved to {config_file}")
-        
-        # Save each scenario, structure and timeline
-        for i, scenario_data in enumerate(result.get('scenarios', [])):
-            if 'error' in scenario_data:
-                continue
-            
-            # Save structure (Agent 1 output)
-            if 'structure' in scenario_data:
-                structure_file = output_path / "structures" / f"structure_{i+1}_{timestamp}.json"
-                structure_file.parent.mkdir(parents=True, exist_ok=True)
-                with open(structure_file, 'w', encoding='utf-8') as f:
-                    json.dump(scenario_data['structure'], f, indent=2, ensure_ascii=False)
-                logger.info(f"[Agent 1] Structure #{i+1} saved to {structure_file}")
-            
-            # Save scenario (Agent 2 output)
-            scenario_file = output_path / "scenarios" / f"scenario_{i+1}_{timestamp}.json"
-            with open(scenario_file, 'w', encoding='utf-8') as f:
-                json.dump(scenario_data['scenario'], f, indent=2, ensure_ascii=False)
-            logger.info(f"[Agent 2] Scenario #{i+1} saved to {scenario_file}")
-            
-            # Save timeline (Agent 3 output)
-            timeline_file = output_path / "timelines" / f"timeline_{i+1}_{timestamp}.json"
-            timeline_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(timeline_file, 'w', encoding='utf-8') as f:
-                json.dump(scenario_data['timeline'], f, indent=2, ensure_ascii=False)
-            logger.info(f"[Agent 3] Timeline #{i+1} saved to {timeline_file}")
-        
-        logger.info(f"All agent outputs saved to {output_dir}")
-    
-    def _save_output(self, result: Dict, output_dir: str):
-        """Save generation results to output directory."""
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
-        
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = output_path / f"config_{timestamp}.json"
-        
-        try:
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(result, f, indent=2, ensure_ascii=False)
-            logger.info(f"Output saved to {output_file}")
-        except Exception as e:
-            logger.error(f"Error saving output: {e}")
-    
-    def list_available_skills(self) -> Dict[str, List[str]]:
-        """List all available agents and skills."""
+        # ---- Agent 3: ElevenLabs tagging (only when provider is elevenlabs) ----
+        taggedOutput = None
+        if self.tts_provider == "elevenlabs":
+            agent3 = self._get_agent("agent_3_production")
+            agent3.set_skills(self.skills)
+
+            a3_logger = AgentLogger(f"Agent 3 (#{snum})")
+            a3_logger.log_start("Format with ElevenLabs tags")
+            taggedOutput = agent3.formatWithTags(scenario, baseConfig)
+            a3_logger.log_end("Tagging", status="success")
+
+            logger.info(
+                "[Chain %d] Agent 3 done — %d voice tags, %d sound tags",
+                snum,
+                taggedOutput.get("metadata", {}).get("voiceTags", 0),
+                taggedOutput.get("metadata", {}).get("soundTags", 0),
+            )
+        else:
+            logger.info(
+                "[Chain %d] Agent 3 skipped (tts_provider=%s, not elevenlabs)",
+                snum,
+                self.tts_provider,
+            )
+
         return {
-            'agents': list(self.agents.keys()),
-            'skills': list(self.skills.keys())
+            "structure": structure,
+            "scenario": scenario,
+            "taggedOutput": taggedOutput,
         }
-    
-    def get_skill_info(self, skill_name: str) -> Optional[Dict]:
-        """Get detailed information about a skill."""
-        if skill_name in self.agents:
-            return self.agents[skill_name]['config']
-        elif skill_name in self.skills:
-            return self.skills[skill_name]['config']
-        return None
 
-    # ------------------------------------------------------------------
-    # Scenario variation helpers
-    # ------------------------------------------------------------------
+    # ==================================================================
+    # Helper: get agent instance
+    # ==================================================================
 
-    # Available angles de scénarisation — the PRIMARY diversity driver.
-    # Each scenario gets a unique angle; this is the ONLY parameter the
-    # system forces, and it is NOT a user choice.
+    def _get_agent(self, agent_key: str):
+        """Return the agent instance or raise if not loaded."""
+        if agent_key not in self.agents:
+            raise ValueError(f"Agent '{agent_key}' not loaded")
+        return self.agents[agent_key]["instance"]
+
+    # ==================================================================
+    # Legacy run methods (backward compat)
+    # ==================================================================
+
+    def _run_agent_0(self, user_input: Union[str, Dict], mode: str) -> Dict:
+        """Run Agent 0: Request Parser (legacy sequential path)."""
+        agent_0 = self._get_agent("agent_0_request_parser")
+        a0_logger = AgentLogger("Agent 0")
+        a0_logger.log_start("Parse request and build configuration")
+        config = agent_0.parse(user_input, mode, self.default_config)
+        a0_logger.log_end("Parse request", status="success")
+        self._apply_scenario_target_override(config)
+        validation = agent_0.validate_configuration(config)
+        for w in validation.get("warnings", []):
+            logger.warning("Config: %s", w)
+        if not validation["valid"]:
+            raise ValueError(f"Configuration invalid: {validation['errors']}")
+        return config
+
+    def _run_agent_1(self, config: Dict, scenario_num: int) -> Dict:
+        agent_1 = self._get_agent("agent_1_structure")
+        audio_transcriptions = self._extract_audio_transcriptions(config)
+        a1_logger = AgentLogger("Agent 1")
+        a1_logger.log_start(f"Create structure #{scenario_num}")
+        structure = agent_1.create_narrative_structure(
+            config, scenario_num, audio_metadata=audio_transcriptions
+        )
+        a1_logger.log_end("Create structure", status="success")
+        return structure
+
+    def _run_agent_2(self, structure: Dict, config: Dict) -> Dict:
+        agent_2 = self._get_agent("agent_2_writing")
+        agent_2.set_skills(self.skills)
+        audio_transcriptions = self._extract_audio_transcriptions(config)
+        a2_logger = AgentLogger("Agent 2")
+        a2_logger.log_start("Write complete scenario")
+        scenario = agent_2.write_complete_scenario(
+            structure, config, audio_transcriptions=audio_transcriptions
+        )
+        a2_logger.log_end("Write scenario", status="success")
+        return scenario
+
+    def _run_agent_3(self, scenario: Dict, config: Dict) -> Dict:
+        agent_3 = self._get_agent("agent_3_production")
+        agent_3.set_skills(self.skills)
+        a3_logger = AgentLogger("Agent 3")
+        a3_logger.log_start("Create audio timeline")
+        timeline = agent_3.create_audio_timeline(scenario, None, config)
+        a3_logger.log_end("Create timeline", status="success")
+        return timeline
+
+    # ==================================================================
+    # Variation logic (legacy — kept for backward compat, now in Agent 0)
+    # ==================================================================
+
     _ANGLE_POOL = [
         "temoignage_croise",
         "chronique_sociale",
         "journee_type",
         "portrait_individuel",
         "avant_apres_evenement",
-        "mosaique_voix",
-        "lettre_intime",
-        "recit_initiatique",
     ]
 
-    # All other params that CAN be varied — but ONLY when user_specified
-    # is False.  No parameter is ever forced over a user choice.
     _SOFT_VARIABILITY_PARAMS = [
-        "ton",
         "structure_narrative",
-        "perspective_narrative",
-        "forme",
         "rythme",
         "densite_sonore",
-        "epoque_linguistique",
         "niveau_detail_historique",
-        "axe_narratif",
     ]
 
     def _vary_config_for_scenario(
@@ -500,75 +489,141 @@ class ScenarioMakerOrchestrator:
         scenario_num: int,
         used_values: Dict[str, List[str]],
     ) -> Dict:
-        """Return a deep copy of *base_config* with a unique
-        ``angle_scenarisation`` and soft variation on non-user-specified
-        parameters.
-
-        Rules:
-        1. ``angle_scenarisation`` always gets a UNIQUE value per scenario.
-           This is the main diversity driver.  It describes *how* the story
-           is told, not *what* the story is about.
-        2. Every other parameter is varied ONLY when ``user_specified`` is
-           False.  If the user asked for something, we respect it exactly.
-
-        *used_values* is mutated so the next call avoids repeating values.
-        """
+        """Legacy variation logic (now in Agent 0)."""
         config = deepcopy(base_config)
-        gen_params = config.get("scenario_config", {}).get("generation_parameters", {})
-
+        gp = config.get("scenario_config", {}).get("generation_parameters", {})
         changed: List[str] = []
 
-        # --- 1. Assign a UNIQUE angle_scenarisation -------------------
-        angle_param = gen_params.get("angle_scenarisation")
+        angle_param = gp.get("angle_scenarisation")
         if isinstance(angle_param, dict):
-            already_used = used_values.get("angle_scenarisation", [])
-            remaining = [a for a in self._ANGLE_POOL if a not in already_used]
+            already = used_values.get("angle_scenarisation", [])
+            remaining = [a for a in self._ANGLE_POOL if a not in already]
             if not remaining:
                 remaining = list(self._ANGLE_POOL)
-            chosen_angle = random.choice(remaining)
-            angle_param["value"] = chosen_angle
-            already_used.append(chosen_angle)
-            used_values["angle_scenarisation"] = already_used
-            changed.append(f"angle_scenarisation={chosen_angle}")
+            chosen = random.choice(remaining)
+            angle_param["value"] = chosen
+            already.append(chosen)
+            used_values["angle_scenarisation"] = already
+            changed.append(f"angle_scenarisation={chosen}")
 
-        # --- 2. Soft variation (ONLY when not user-specified) ---------
-        for param_key in self._SOFT_VARIABILITY_PARAMS:
-            param = gen_params.get(param_key)
-            if param is None or not isinstance(param, dict):
+        for pk in self._SOFT_VARIABILITY_PARAMS:
+            p = gp.get(pk)
+            if not isinstance(p, dict) or p.get("user_specified", False):
                 continue
-            if param.get("user_specified", False):
+            opts = p.get("options")
+            if not opts or not isinstance(opts, list) or len(opts) < 2:
                 continue
-            options = param.get("options")
-            if not options or not isinstance(options, list) or len(options) < 2:
-                continue
-
-            already_used = used_values.get(param_key, [])
-            candidates = [v for v in options if v not in already_used]
-            if not candidates:
-                candidates = list(options)
-            chosen = random.choice(candidates)
-            param["value"] = chosen
-            already_used.append(chosen)
-            used_values[param_key] = already_used
-            changed.append(f"{param_key}={chosen}")
+            already = used_values.get(pk, [])
+            cands = [v for v in opts if v not in already]
+            if not cands:
+                cands = list(opts)
+            chosen = random.choice(cands)
+            p["value"] = chosen
+            already.append(chosen)
+            used_values[pk] = already
+            changed.append(f"{pk}={chosen}")
 
         logger.info(
-            "[Variation] Scenario %d — %d params changed: %s",
+            "[Variation] Scenario %d — %d changed: %s",
             scenario_num,
             len(changed),
             ", ".join(changed) if changed else "(none)",
         )
-
         return config
 
+    # ==================================================================
+    # Output & utilities
+    # ==================================================================
+
     def _extract_audio_transcriptions(self, config: Dict) -> List[Dict[str, Any]]:
-        """Fetch user-provided audio transcriptions from configuration."""
         try:
-            data_sources = config.get('scenario_config', {}).get('data_sources', {})
-            user_provided = data_sources.get('user_provided', {})
-            transcriptions = user_provided.get('audio_transcriptions') or []
+            ds = config.get("scenario_config", {}).get("data_sources", {})
+            up = ds.get("user_provided", {})
+            transcriptions = up.get("audio_transcriptions") or []
             if isinstance(transcriptions, list):
                 return [t for t in transcriptions if isinstance(t, dict)]
         except Exception as exc:
-            logger.warning(f"Failed to extract audio transcriptions: {exc}")
+            logger.warning("Failed to extract audio transcriptions: %s", exc)
         return []
+
+    def _save_complete_outputs(self, result: Dict, output_dir: str):
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        # Save config
+        cfg_file = output_path / "scenarios" / f"config_{ts}.json"
+        cfg_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(cfg_file, "w", encoding="utf-8") as f:
+            json.dump(result["config"], f, indent=2, ensure_ascii=False)
+        logger.info("[Agent 0] Config saved to %s", cfg_file)
+
+        for i, sd in enumerate(result.get("scenarios", [])):
+            if "error" in sd:
+                continue
+
+            # Structure
+            if "structure" in sd:
+                sf = output_path / "structures" / f"structure_{i+1}_{ts}.json"
+                sf.parent.mkdir(parents=True, exist_ok=True)
+                with open(sf, "w", encoding="utf-8") as f:
+                    json.dump(sd["structure"], f, indent=2, ensure_ascii=False)
+                logger.info("[Agent 1] Structure #%d saved to %s", i + 1, sf)
+
+            # Scenario
+            if "scenario" in sd:
+                scf = output_path / "scenarios" / f"scenario_{i+1}_{ts}.json"
+                with open(scf, "w", encoding="utf-8") as f:
+                    json.dump(sd["scenario"], f, indent=2, ensure_ascii=False)
+                logger.info("[Agent 2] Scenario #%d saved to %s", i + 1, scf)
+
+            # Tagged output (Agent 3)
+            if "taggedOutput" in sd:
+                tof = output_path / "tagged" / f"tagged_{i+1}_{ts}.json"
+                tof.parent.mkdir(parents=True, exist_ok=True)
+                with open(tof, "w", encoding="utf-8") as f:
+                    json.dump(
+                        sd["taggedOutput"], f, indent=2, ensure_ascii=False
+                    )
+                logger.info("[Agent 3] Tagged output #%d saved to %s", i + 1, tof)
+
+                # Also save the raw tagged text for easy review
+                txt_file = output_path / "tagged" / f"tagged_{i+1}_{ts}.txt"
+                with open(txt_file, "w", encoding="utf-8") as f:
+                    f.write(sd["taggedOutput"].get("taggedText", ""))
+                logger.info("[Agent 3] Tagged text #%d saved to %s", i + 1, txt_file)
+
+            # Legacy timeline (if present)
+            if "timeline" in sd:
+                tlf = output_path / "timelines" / f"timeline_{i+1}_{ts}.json"
+                tlf.parent.mkdir(parents=True, exist_ok=True)
+                with open(tlf, "w", encoding="utf-8") as f:
+                    json.dump(sd["timeline"], f, indent=2, ensure_ascii=False)
+                logger.info("[Agent 3] Timeline #%d saved to %s", i + 1, tlf)
+
+        logger.info("All outputs saved to %s", output_dir)
+
+    def _save_output(self, result: Dict, output_dir: str):
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        of = output_path / f"config_{ts}.json"
+        try:
+            with open(of, "w", encoding="utf-8") as f:
+                json.dump(result, f, indent=2, ensure_ascii=False)
+            logger.info("Output saved to %s", of)
+        except Exception as e:
+            logger.error("Error saving output: %s", e)
+
+    def list_available_skills(self) -> Dict[str, List[str]]:
+        return {
+            "agents": list(self.agents.keys()),
+            "skills": list(self.skills.keys()),
+        }
+
+    def get_skill_info(self, skill_name: str) -> Optional[Dict]:
+        if skill_name in self.agents:
+            return self.agents[skill_name]["config"]
+        if skill_name in self.skills:
+            return self.skills[skill_name]["config"]
+        return None

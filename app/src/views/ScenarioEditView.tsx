@@ -48,6 +48,7 @@ export function ScenarioEditView() {
     queryFn: () => fetchScenarioAudio(sessionId!),
     enabled: Boolean(sessionId)
   });
+  const refetchAudio = audioQuery.refetch;
 
   const imagesQuery = useQuery({
     queryKey: ["scenario-images", sessionId],
@@ -79,12 +80,41 @@ export function ScenarioEditView() {
     }
   }, [selectionQuery.data]);
 
+  const audioJobStatus = audioQuery.data?.status;
+  const isAudioProcessing = audioJobStatus === "pending" || audioJobStatus === "running";
+  const hasAudioError = audioJobStatus === "failed";
+  const audioReady = audioJobStatus === "done" && Boolean(audioQuery.data?.path);
+
+  useEffect(() => {
+    if (!sessionId) return;
+    if (isAudioProcessing) {
+      const interval = setInterval(() => {
+        refetchAudio();
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [sessionId, isAudioProcessing, refetchAudio]);
+
+  useEffect(() => {
+    if (isAudioProcessing) {
+      setAudioStatus("Audio en cours de génération…");
+    } else if (hasAudioError) {
+      setAudioStatus(
+        audioQuery.data?.error
+          ? `Échec de la génération : ${audioQuery.data.error}`
+          : "Impossible de générer l'audio."
+      );
+    } else if (audioJobStatus === "done") {
+      setAudioStatus("Audio disponible.");
+    }
+  }, [audioJobStatus, isAudioProcessing, hasAudioError, audioQuery.data?.error]);
+
   const audioSrc = useMemo(() => {
-    if (!sessionId || !audioQuery.data?.path) return null;
+    if (!sessionId || !audioReady || !audioQuery.data?.path) return null;
     const base = getScenarioAudioUrl(sessionId).replace(/\/$/, "");
     const cacheBust = audioQuery.data.generated_at ? `?ts=${encodeURIComponent(audioQuery.data.generated_at)}` : "";
     return `${base}${cacheBust}`;
-  }, [audioQuery.data, sessionId]);
+  }, [audioQuery.data, sessionId, audioReady]);
 
   const slideshowSrc = useMemo(() => {
     if (!sessionId || !slideshowQuery.data?.path) return null;
@@ -237,9 +267,18 @@ export function ScenarioEditView() {
     if (!sessionId) return;
     setAudioStatus("Génération d'un nouvel audio...");
     await persistScenario();
-    await synthesizeScenarioAudio(sessionId);
-    await audioQuery.refetch();
-    setAudioStatus("Audio régénéré.");
+    try {
+      const job = await synthesizeScenarioAudio(sessionId);
+      if (job?.status && job.status !== "done") {
+        setAudioStatus("Audio en cours de génération…");
+      } else {
+        setAudioStatus("Audio régénéré.");
+      }
+      await audioQuery.refetch();
+    } catch (err) {
+      console.error("Audio regeneration failed", err);
+      setAudioStatus(extractErrorMessage(err) ?? "Impossible de régénérer l'audio.");
+    }
   };
 
   const addPart = () => {
@@ -323,8 +362,15 @@ export function ScenarioEditView() {
               )}
             </>
           )}
-          {!audioSrc && !audioQuery.isFetching && <p>Aucun audio disponible pour l'instant.</p>}
-          <button type="button" onClick={regenerateAudio}>
+          {!audioSrc && !audioQuery.isFetching && (
+            <p>{isAudioProcessing ? "Audio en cours de génération…" : "Aucun audio disponible pour l'instant."}</p>
+          )}
+          {hasAudioError && (
+            <p className="alert error">
+              {audioQuery.data?.error ?? "Impossible de générer l'audio. Vérifiez vos paramètres vocaux."}
+            </p>
+          )}
+          <button type="button" onClick={regenerateAudio} disabled={isAudioProcessing}>
             Régénérer l'audio
           </button>
           <p className="hint">
@@ -471,6 +517,17 @@ export function ScenarioEditView() {
       {status && <p>{status}</p>}
     </div>
   );
+}
+
+function extractErrorMessage(err: unknown): string | null {
+  if (axios.isAxiosError(err)) {
+    const detail = err.response?.data?.detail;
+    if (typeof detail === "string" && detail.trim().length > 0) return detail;
+    if (typeof err.message === "string" && err.message.trim().length > 0) return err.message;
+  } else if (err instanceof Error) {
+    return err.message;
+  }
+  return null;
 }
 
 function extractScenario(raw: Record<string, any>): Record<string, any> {

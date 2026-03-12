@@ -127,7 +127,12 @@ export function ScenarioReviewView() {
     setIsAdvancing(true);
     setStatus("Préparation de l'audio du scénario sélectionné…");
     try {
-      await synthesizeScenarioAudio(sessionId);
+      const job = await synthesizeScenarioAudio(sessionId);
+      if (job?.status && job.status !== "done") {
+        setStatus("Génération de l'audio en arrière-plan…");
+      } else {
+        setStatus("Audio généré.");
+      }
     } catch (err) {
       console.error("Audio synthesis failed", err);
       setAdvanceError(extractErrorMessage(err) ?? "Audio non généré. Vérifiez vos instructions vocales.");
@@ -229,6 +234,7 @@ function ScenarioCard({
   onSelect: () => void;
 }) {
   const [showSourcing, setShowSourcing] = useState(false);
+  const [showTags, setShowTags] = useState(false);
   const raw = scenario as any;
   const payload = raw?.scenario ?? raw;
   const scenarioTitle =
@@ -245,6 +251,12 @@ function ScenarioCard({
     payload?.texte ??
     payload?.texte_narration ??
     (Array.isArray(parties) && parties.length === 0 && typeof payload === "object" ? JSON.stringify(payload, null, 2) : "");
+
+  // Tagged text from Agent 3 (ElevenLabs mode only)
+  const taggedOutput = raw?.taggedOutput;
+  const taggedParties: Array<{ partie_id: any; titre: string; taggedText: string }> =
+    Array.isArray(taggedOutput?.parties) ? taggedOutput.parties : [];
+  const hasTaggedText = taggedParties.length > 0;
 
   const angleLabels: Record<string, string> = {
     temoignage_croise: "Témoignages croisés (1ère personne)",
@@ -294,12 +306,20 @@ function ScenarioCard({
         {ton && <span title="Ton">🎵 {ton}</span>}
       </div>
       {parties.length > 0
-        ? parties.map((part: any, idxPart: number) => (
-            <div key={idxPart}>
-              {part.titre && <strong>{part.titre}</strong>}
-              {part.texte_narration && <p>{part.texte_narration}</p>}
-            </div>
-          ))
+        ? (showTags && hasTaggedText
+            ? taggedParties.map((tp, idxPart) => (
+                <div key={idxPart}>
+                  {tp.titre && <strong>{tp.titre}</strong>}
+                  {tp.taggedText && <p style={{ whiteSpace: "pre-wrap", fontFamily: "monospace", fontSize: "0.9em" }}>{tp.taggedText}</p>}
+                </div>
+              ))
+            : parties.map((part: any, idxPart: number) => (
+                <div key={idxPart}>
+                  {part.titre && <strong>{part.titre}</strong>}
+                  {part.texte_narration && <p>{part.texte_narration}</p>}
+                </div>
+              ))
+          )
         : fallbackText && <pre>{fallbackText}</pre>}
       {sources.length > 0 && (
         <details style={{ marginTop: "0.5rem", fontSize: "0.85em" }}>
@@ -312,17 +332,26 @@ function ScenarioCard({
         </details>
       )}
       <div className="scenario-card-actions">
-        {hasSourcing ? (
-          <button
-            type="button"
-            className="link sourcing-toggle"
-            onClick={() => setShowSourcing((prev) => !prev)}
-          >
-            {showSourcing ? "Masquer le sourcing" : "Afficher le sourcing"}
-          </button>
-        ) : (
-          <span />
-        )}
+        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          {hasSourcing && (
+            <button
+              type="button"
+              className="link sourcing-toggle"
+              onClick={() => setShowSourcing((prev) => !prev)}
+            >
+              {showSourcing ? "Masquer le sourcing" : "Afficher le sourcing"}
+            </button>
+          )}
+          {hasTaggedText && (
+            <button
+              type="button"
+              className="link sourcing-toggle"
+              onClick={() => setShowTags((prev) => !prev)}
+            >
+              {showTags ? "Voir le texte brut" : "Voir les balises"}
+            </button>
+          )}
+        </div>
         <button onClick={onSelect} className="link">
           {isSelected ? "Scénario sélectionné" : "Choisir ce scénario"}
         </button>
