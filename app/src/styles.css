@@ -200,6 +200,139 @@ button.step:disabled {
   font-weight: 600;
 }
 
+.toggle-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.toggle-field input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #2563eb;
+}
+
+.voice-selection-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.voice-selection-header h3 {
+  margin: 0;
+}
+
+.voice-selection-header p {
+  margin: 0.25rem 0 0;
+  color: #475569;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.voice-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.85rem 1rem 1rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.voice-card.selected {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.voice-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.voice-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.voice-select-indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #cbd5f5;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.voice-select-indicator.active {
+  border-color: #2563eb;
+  background: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.voice-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.voice-preview-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  width: fit-content;
+  background: linear-gradient(120deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.voice-preview-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.voice-card audio {
+  width: 100%;
+  margin-top: 0.2rem;
+  outline: none;
+}
+
+.voice-card .error.tiny {
+  margin: 0;
+  color: #dc2626;
+  font-size: 0.85rem;
+}
+
 .project-entry.last-active {
   border-color: #f97316;
   box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.22);

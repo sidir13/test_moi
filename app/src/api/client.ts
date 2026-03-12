@@ -201,6 +201,14 @@ export async function fetchProjectAudio(projectName: string) {
   return data.files as string[];
 }
 
+export async function fetchVoicePreview(voiceId: string): Promise<Blob> {
+  const response = await api.get("/tts/preview", {
+    params: { voice_id: voiceId },
+    responseType: "blob"
+  });
+  return response.data as Blob;
+}
+
 export async function fetchAudioSelection(sessionId: string) {
   const { data } = await api.get(`/sessions/${sessionId}/audio-selection`);
   return data as AudioSelection;

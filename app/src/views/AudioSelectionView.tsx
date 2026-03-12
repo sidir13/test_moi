@@ -1,4 +1,4 @@
-import { DragEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { DragEvent, FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -12,7 +12,8 @@ import {
   fetchAudioSelection,
   saveAudioSelection,
   fetchProjectProfile,
-  BackgroundSelection
+  BackgroundSelection,
+  fetchVoicePreview
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -48,12 +49,16 @@ export function AudioSelectionView() {
   const [autoBackgrounds, setAutoBackgrounds] = useState(false);
   const [selectedVoices, setSelectedVoices] = useState<string[]>([]);
   const [selectedVoiceId, setSelectedVoiceId] = useState<string | null>(null);
+  const [voicePreviewUrls, setVoicePreviewUrls] = useState<Record<string, string>>({});
+  const [voicePreviewLoading, setVoicePreviewLoading] = useState<Record<string, boolean>>({});
+  const [voicePreviewErrors, setVoicePreviewErrors] = useState<Record<string, string | null>>({});
   const [backgroundTitle, setBackgroundTitle] = useState("");
   const [backgroundFile, setBackgroundFile] = useState<File | null>(null);
   const [backgroundStatus, setBackgroundStatus] = useState<string | null>(null);
   const [nextStatus, setNextStatus] = useState<string | null>(null);
   const hiddenBackgroundInput = useRef<HTMLInputElement | null>(null);
   const voicesRef = useRef<string[]>([]);
+  const voicePreviewUrlsRef = useRef<Record<string, string>>({});
   const { data: backgroundSounds } = useQuery({
     queryKey: ["background-sounds"],
     queryFn: () => fetchBackgroundSounds()
@@ -128,6 +133,14 @@ export function AudioSelectionView() {
     window.addEventListener("audio-selection-updated", handler);
     return () => window.removeEventListener("audio-selection-updated", handler);
   }, [selectionQuery]);
+  useEffect(() => {
+    voicePreviewUrlsRef.current = voicePreviewUrls;
+  }, [voicePreviewUrls]);
+  useEffect(() => {
+    return () => {
+      Object.values(voicePreviewUrlsRef.current).forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, []);
 
   const handleUpload = async (evt: FormEvent) => {
     evt.preventDefault();
@@ -178,6 +191,39 @@ export function AudioSelectionView() {
       { ambient: selectedAmbient, punctual: selectedPunctual },
       normalized
     );
+  };
+
+  const handlePreviewVoice = async (voiceId: string) => {
+    setVoicePreviewErrors((prev) => ({ ...prev, [voiceId]: null }));
+    setVoicePreviewLoading((prev) => ({ ...prev, [voiceId]: true }));
+    try {
+      const blob = await fetchVoicePreview(voiceId);
+      const url = URL.createObjectURL(blob);
+      setVoicePreviewUrls((prev) => {
+        const next = { ...prev };
+        if (prev[voiceId]) {
+          URL.revokeObjectURL(prev[voiceId]);
+        }
+        next[voiceId] = url;
+        return next;
+      });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Impossible de charger l'aperçu.";
+      setVoicePreviewErrors((prev) => ({ ...prev, [voiceId]: message }));
+    } finally {
+      setVoicePreviewLoading((prev) => ({ ...prev, [voiceId]: false }));
+    }
+  };
+
+  const handleVoiceCardSelect = (voiceId: string) => {
+    handleVoiceIdChange(voiceId);
+  };
+
+  const handleVoiceCardKeyDown = (voiceId: string, event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleVoiceCardSelect(voiceId);
+    }
   };
 
   const goNext = async () => {
@@ -458,23 +504,66 @@ export function AudioSelectionView() {
       </section>
 
       {ttsProvider === "elevenlabs" && (
-        <section className="card">
-          <h3>Choisir une voix ElevenLabs</h3>
-          <p>Ces voix sont codées en dur pour l’instant. Sélectionnez celle qui correspond le mieux à votre narration.</p>
-          <label className="field-block">
-            <span>Voix disponible</span>
-            <select
-              value={selectedVoiceId ?? ""}
-              onChange={(e) => handleVoiceIdChange(e.target.value)}
-            >
-              <option value="">Sélectionner une voix</option>
-              {ELEVEN_LABS_VOICE_OPTIONS.map((voice) => (
-                <option key={voice.id} value={voice.id}>
-                  {voice.label}
-                </option>
-              ))}
-            </select>
-          </label>
+        <section className="card voice-selection-card">
+          <div className="voice-selection-header">
+            <div>
+              <h3>Choisir une voix ElevenLabs</h3>
+              <p>Écoutez un extrait de chaque voix et touchez la carte pour la sélectionner.</p>
+            </div>
+          </div>
+          <div className="voice-grid">
+            {ELEVEN_LABS_VOICE_OPTIONS.map((voice, index) => {
+              const isSelected = selectedVoiceId === voice.id;
+              return (
+                <div
+                  key={voice.id}
+                  className={`voice-card${isSelected ? " selected" : ""}`}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleVoiceCardSelect(voice.id)}
+                  onKeyDown={(event) => handleVoiceCardKeyDown(voice.id, event)}
+                >
+                  <input
+                    type="radio"
+                    name="voice-choice"
+                    checked={isSelected}
+                    readOnly
+                    className="sr-only"
+                  />
+                  <div className="voice-card-header">
+                    <span className="voice-pill">Voix {index + 1}</span>
+                    <span
+                      className={`voice-select-indicator${isSelected ? " active" : ""}`}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div className="voice-card-actions">
+                    <button
+                      type="button"
+                      className="voice-preview-button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handlePreviewVoice(voice.id);
+                      }}
+                      disabled={Boolean(voicePreviewLoading[voice.id])}
+                      aria-label={`Écouter la voix ${index + 1}`}
+                    >
+                      {voicePreviewLoading[voice.id] ? "…" : "▶"}
+                    </button>
+                    {voicePreviewErrors[voice.id] && <p className="error tiny">{voicePreviewErrors[voice.id]}</p>}
+                    {voicePreviewUrls[voice.id] && (
+                      <audio
+                        controls
+                        src={voicePreviewUrls[voice.id]}
+                        preload="none"
+                        onClick={(event) => event.stopPropagation()}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </section>
       )}
 

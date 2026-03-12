@@ -94,6 +94,23 @@ FRENCH_HINT_KEYWORDS = {
     "lent",
     "accent",
 }
+VOICE_PREVIEW_TEXT = (
+    "Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité. "
+    "Des coques immenses prenaient forme sous les mains expertes des soudeurs et des "
+    "charpentiers. Le Paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes "
+    "de rêves et d'acier. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+)
+ELEVENLABS_DEFAULT_VOICE_IDS = [
+    "5l4ttmr4SKNgi0HnOelT",
+    "flHkNRp1BlvT73UL6gyz",
+    "jK7dAsiVAhbApIS8KkWB",
+    "NOpBlnGInO9m6vDvFkFC",
+    "jUHQdLfy668sllNiNTSW",
+    "tKaoyJLW05zqV0tIH9FD",
+    "T4BwQ2ZwlS2BbHIfci4H",
+    "GYzIdoKkRyANjBvkKYfO",
+    "TojRWZatQyy9dujEdiQ1",
+]
 
 
 class TTSJob(TypedDict):
@@ -212,6 +229,50 @@ def _extract_json_object(payload: str) -> Dict[str, Any]:
         except json.JSONDecodeError:
             return {}
     return {}
+
+
+def _voice_preview_directory(settings: AppSettings) -> Path:
+    return (Path.cwd() / settings.data_dir / "generated_speech" / "voice_previews").resolve()
+
+
+def _voice_preview_path(settings: AppSettings, voice_id: str) -> Path:
+    normalized = voice_id.strip()
+    if not normalized:
+        raise ValueError("voice_id must not be empty")
+    preview_root = _voice_preview_directory(settings)
+    preview_root.mkdir(parents=True, exist_ok=True)
+    safe_name = re.sub(r"[^A-Za-z0-9_-]+", "_", normalized)
+    return preview_root / f"{safe_name}.mp3"
+
+
+async def _ensure_voice_preview_file(settings: AppSettings, voice_id: str) -> Path:
+    preview_path = _voice_preview_path(settings, voice_id)
+    if preview_path.exists():
+        return preview_path
+    loop = asyncio.get_running_loop()
+
+    def _generate() -> None:
+        eleven_labs_tts(
+            text=VOICE_PREVIEW_TEXT,
+            voice_id=voice_id.strip(),
+            output_path=str(preview_path),
+        )
+
+    try:
+        await loop.run_in_executor(None, _generate)
+        log_progress(
+            "TTS_PREVIEW_GENERATED",
+            voice=voice_id,
+            path=str(preview_path),
+        )
+    except Exception:
+        if preview_path.exists():
+            try:
+                preview_path.unlink()
+            except OSError:
+                pass
+        raise
+    return preview_path
 
 
 def _match_background_choice(choice: Optional[str], candidates: List[str]) -> Optional[str]:
@@ -1541,7 +1602,17 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 pass
             app.state.tts_worker = None
 
+    async def _prefetch_voice_previews_task() -> None:
+        async def _run() -> None:
+            for voice_id in ELEVENLABS_DEFAULT_VOICE_IDS:
+                try:
+                    await _ensure_voice_preview_file(settings, voice_id)
+                except Exception as exc:  # pragma: no cover - best-effort warmup
+                    logger.warning("Voice preview warmup failed for %s: %s", voice_id, exc)
+        asyncio.create_task(_run())
+
     app.add_event_handler("startup", _start_tts_worker)
+    app.add_event_handler("startup", _prefetch_voice_previews_task)
     app.add_event_handler("shutdown", _stop_tts_worker)
 
     def project_outputs_directory(project_name: str, ensure: bool = False) -> Path:
@@ -2556,6 +2627,27 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if not audio_path.exists():
             raise HTTPException(status_code=404, detail="Fichier audio introuvable")
         return FileResponse(audio_path)
+
+    @app.get("/tts/preview", tags=["tts"])
+    async def get_voice_preview(
+        voice_id: str = Query(..., description="Identifiant ElevenLabs de la voix pour pré-écoute"),
+    ):
+        normalized = voice_id.strip()
+        if not normalized:
+            raise HTTPException(status_code=400, detail="La voix demandée est invalide.")
+        try:
+            preview_path = await _ensure_voice_preview_file(settings, normalized)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except Exception as exc:  # pragma: no cover - external API
+            logger.warning("ElevenLabs preview failed for %s: %s", normalized, exc)
+            raise HTTPException(status_code=502, detail=f"Impossible de générer l'aperçu audio: {exc}") from exc
+
+        return FileResponse(
+            preview_path,
+            media_type="audio/mpeg",
+            filename=preview_path.name,
+        )
 
     @app.get("/projects/{project_name}/slideshow", tags=["projects"])
     async def stream_project_slideshow(project_name: str):

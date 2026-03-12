@@ -1,34 +1,11 @@
 {
-  "created_at": "2026-03-12T12:59:35.739040",
-  "allowed_websites": [
-    "wikipedia.org"
-  ],
-  "voice_instructions": "",
-  "voice_instructions_source": "",
-  "tts_provider": "elevenlabs",
+  "session_id": "a6c3729d-adbc-4b6b-8c5c-68b1e18779af",
+  "project_name": "Demo5",
+  "current_step": "project_selection",
+  "steps": {},
+  "chat_history": [],
   "scenario_target": 2,
-  "project_notes": "Une histoire nostalgique",
-  "scenario_config": {
-    "generation_parameters": {
-      "public_cible": {
-        "value": "universitaire",
-        "user_specified": true
-      },
-      "ton": {
-        "value": "dramatique_immersif",
-        "user_specified": true
-      },
-      "duree": {
-        "value": 40,
-        "user_specified": true
-      }
-    }
-  },
-  "audience": "universitaire",
-  "tone": "dramatique_immersif",
-  "target_duration": 40,
-  "tts_voice_id": "5l4ttmr4SKNgi0HnOelT",
-  "last_scenarios": [
+  "scenarios": [
     {
       "structure": {
         "scenario_id": 2,
@@ -622,9 +599,7 @@
       "quality_rank": 2
     }
   ],
-  "last_scenarios_generated_at": "2026-03-12T13:10:42.756102",
-  "finalized_at": "2026-03-12T13:26:28.453338",
-  "final_scenario": {
+  "selected_scenario": {
     "structure": {
       "scenario_id": 2,
       "titre_global": "Les mains de la Loire — Chronique des chantiers oubliés",
@@ -770,7 +745,8 @@
     },
     "quality_rank": 1
   },
-  "final_audio": {
+  "scenario_progress": [],
+  "scenario_audio": {
     "status": "done",
     "path": "data/projects/Demo5/outputs/audio_demo5.mp3",
     "voice_id": "GYzIdoKkRyANjBvkKYfO",
@@ -811,5 +787,7 @@
     "requested_at": "2026-03-12T13:17:36.755675",
     "started_at": "2026-03-12T13:17:36.764201",
     "finished_at": "2026-03-12T13:18:02.592637"
-  }
+  },
+  "scenario_images": [],
+  "scenario_slideshow": null
 }
