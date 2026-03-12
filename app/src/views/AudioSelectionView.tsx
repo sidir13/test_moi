@@ -11,7 +11,8 @@ import {
   fetchProjectAudio,
   fetchAudioSelection,
   saveAudioSelection,
-  fetchProjectProfile
+  fetchProjectProfile,
+  BackgroundSelection
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -42,7 +43,9 @@ export function AudioSelectionView() {
   const [file, setFile] = useState<File | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [selectionError, setSelectionError] = useState<string | null>(null);
-  const [selectedBackgrounds, setSelectedBackgrounds] = useState<string[]>([]);
+  const [selectedAmbient, setSelectedAmbient] = useState<string | null>(null);
+  const [selectedPunctual, setSelectedPunctual] = useState<string[]>([]);
+  const [autoBackgrounds, setAutoBackgrounds] = useState(false);
   const [selectedVoices, setSelectedVoices] = useState<string[]>([]);
   const [selectedVoiceId, setSelectedVoiceId] = useState<string | null>(null);
   const [backgroundTitle, setBackgroundTitle] = useState("");
@@ -70,9 +73,9 @@ export function AudioSelectionView() {
     queryFn: () => fetchAudioSelection(sessionId!),
     enabled: Boolean(sessionId)
   });
-  const ttsProvider = profileQuery.data?.tts_provider === "elevenlabs" ? "elevenlabs" : "qwen";
+  const ttsProvider = profileQuery.data?.tts_provider === "qwen" ? "qwen" : "elevenlabs";
   const saveSelection = useMutation({
-    mutationFn: (payload: { voices: string[]; backgrounds: string[]; tts_voice_id?: string | null }) =>
+    mutationFn: (payload: { voices: string[]; backgrounds: BackgroundSelection; auto_backgrounds?: boolean; tts_voice_id?: string | null }) =>
       saveAudioSelection(sessionId!, { project_name: projectName!, ...payload }),
     onSuccess: (data) => {
       selectionQuery.refetch();
@@ -81,8 +84,17 @@ export function AudioSelectionView() {
       }
     }
   });
-  const persistSelection = (voices: string[], backgrounds: string[], voiceId?: string | null) => {
-    const payload: { voices: string[]; backgrounds: string[]; tts_voice_id?: string | null } = { voices, backgrounds };
+  const persistSelection = (
+    voices: string[],
+    backgrounds: BackgroundSelection,
+    voiceId?: string | null,
+    autoFlag = autoBackgrounds
+  ) => {
+    const payload: { voices: string[]; backgrounds: BackgroundSelection; auto_backgrounds?: boolean; tts_voice_id?: string | null } = {
+      voices,
+      backgrounds,
+      auto_backgrounds: autoFlag
+    };
     if (voiceId) {
       payload.tts_voice_id = voiceId;
     }
@@ -95,7 +107,10 @@ export function AudioSelectionView() {
 
   useEffect(() => {
     if (selectionQuery.data) {
-      setSelectedBackgrounds(selectionQuery.data.backgrounds || []);
+      const backgrounds = selectionQuery.data.backgrounds || { ambient: null, punctual: [] };
+      setSelectedAmbient(backgrounds.ambient ?? null);
+      setSelectedPunctual(backgrounds.punctual ?? []);
+      setAutoBackgrounds(Boolean(selectionQuery.data.auto_backgrounds));
       const voices = selectionQuery.data.voices || [];
       setSelectedVoices(voices);
       voicesRef.current = voices;
@@ -158,11 +173,11 @@ export function AudioSelectionView() {
     setSelectionError(null);
     const normalized = value || null;
     setSelectedVoiceId(normalized);
-    persistSelection(selectedVoices, selectedBackgrounds, normalized);
-  };
-
-  const updateSelection = (voices: string[], backgrounds: string[]) => {
-    persistSelection(voices, backgrounds, selectedVoiceId);
+    persistSelection(
+      selectedVoices,
+      { ambient: selectedAmbient, punctual: selectedPunctual },
+      normalized
+    );
   };
 
   const goNext = async () => {
@@ -179,7 +194,11 @@ export function AudioSelectionView() {
       setNextStatus("Validation des sources...");
       await advanceStep(sessionId, "audio_sources", {
         files: voices,
-        backgrounds: selectedBackgrounds,
+        backgrounds: {
+          ambient: selectedAmbient,
+          punctual: selectedPunctual
+        },
+        auto_backgrounds: autoBackgrounds,
         tts_voice_id: selectedVoiceId ?? undefined
       });
       updateProgress({ audioReady: true, transcriptionsReviewed: false });
@@ -193,25 +212,10 @@ export function AudioSelectionView() {
     }
   };
 
-  const toggleBackground = (sound: BackgroundSound) => {
-    setSelectionError(null);
-    setSelectedBackgrounds((prev) => {
-      let next = prev;
-      if (prev.includes(sound.path)) {
-        next = prev.filter((p) => p !== sound.path);
-      } else {
-        if (prev.length >= 2) {
-          setSelectionError("Vous pouvez choisir au maximum deux ambiances simultanées.");
-          next = prev;
-        } else {
-          next = [...prev, sound.path];
-        }
-      }
-      if (next !== prev) setSelectionError(null);
-      updateSelection(selectedVoices, next);
-      return next;
-    });
-  };
+  const currentBackgroundSelection = (): BackgroundSelection => ({
+    ambient: selectedAmbient,
+    punctual: selectedPunctual
+  });
 
   const toggleVoice = (track: string) => {
     setSelectedVoices((prev) => {
@@ -232,10 +236,83 @@ export function AudioSelectionView() {
       }
       setSelectionError(null);
       voicesRef.current = next;
-      updateSelection(next, selectedBackgrounds);
+      persistSelection(next, currentBackgroundSelection(), selectedVoiceId);
       updateProgress({ transcriptionsReviewed: false });
       return next;
     });
+  };
+
+  const handleAmbientSelect = (path: string | null) => {
+    setSelectionError(null);
+    setAutoBackgrounds(false);
+    const updatedPunctual = path ? selectedPunctual.filter((p) => p !== path) : selectedPunctual;
+    setSelectedPunctual(updatedPunctual);
+    setSelectedAmbient(path);
+    persistSelection(selectedVoices, { ambient: path, punctual: updatedPunctual }, selectedVoiceId, false);
+  };
+
+  const handlePunctualToggle = (path: string) => {
+    setSelectionError(null);
+    setAutoBackgrounds(false);
+    setSelectedPunctual((prev) => {
+      if (prev.includes(path)) {
+        const next = prev.filter((p) => p !== path);
+        persistSelection(selectedVoices, { ambient: selectedAmbient, punctual: next }, selectedVoiceId, false);
+        return next;
+      }
+      if (prev.length >= 2) {
+        setSelectionError("Vous pouvez ajouter au maximum deux sons ponctuels.");
+        return prev;
+      }
+      const next = [...prev, path];
+      if (selectedAmbient === path) {
+        setSelectedAmbient(null);
+      }
+      persistSelection(selectedVoices, { ambient: selectedAmbient === path ? null : selectedAmbient, punctual: next }, selectedVoiceId, false);
+      return next;
+    });
+  };
+
+  const applyAutoBackgroundSelection = (): boolean => {
+    if (!backgroundSounds?.length) {
+      setSelectionError("Aucune ambiance disponible pour la sélection automatique.");
+      return false;
+    }
+    const [ambientCandidate, ...rest] = backgroundSounds;
+    const ambientPath = ambientCandidate?.path ?? null;
+    const punctualPaths = rest.filter((sound) => sound.path !== ambientPath).slice(0, 2).map((sound) => sound.path);
+    setSelectedAmbient(ambientPath);
+    setSelectedPunctual(punctualPaths);
+    setAutoBackgrounds(true);
+    setSelectionError(null);
+    persistSelection(
+      selectedVoices,
+      { ambient: ambientPath, punctual: punctualPaths },
+      selectedVoiceId,
+      true
+    );
+    return true;
+  };
+
+  const handleAutoBackgroundSelection = () => {
+    applyAutoBackgroundSelection();
+  };
+
+  const handleAutoToggleChange = (enabled: boolean) => {
+    if (enabled) {
+      const success = applyAutoBackgroundSelection();
+      if (!success) {
+        setAutoBackgrounds(false);
+      }
+      return;
+    }
+    setAutoBackgrounds(false);
+    persistSelection(
+      selectedVoices,
+      currentBackgroundSelection(),
+      selectedVoiceId,
+      false
+    );
   };
 
   return (
@@ -318,20 +395,62 @@ export function AudioSelectionView() {
 
       <section className="card">
         <h3>Bibliothèque des sons d'ambiance</h3>
-        <p>Pré-écoutez et choisissez jusqu'à deux sons pour enrichir la scénarisation.</p>
+        <p>
+          Choisissez un fond continu (0 ou 1) et jusqu'à deux sons ponctuels pour rythmer votre narration.
+          Utilisez la sélection automatique pour laisser l'application proposer un mix de base.
+        </p>
         {selectionError && <p className="error">{selectionError}</p>}
+        <div className="background-actions-row">
+          <button type="button" onClick={handleAutoBackgroundSelection} disabled={!backgroundSounds?.length}>
+            Sélection automatique des ambiances
+          </button>
+          <label className="toggle-field">
+            <input
+              type="checkbox"
+              checked={autoBackgrounds}
+              onChange={(e) => handleAutoToggleChange(e.target.checked)}
+            />
+            Mode auto (mise à jour continue)
+          </label>
+          {autoBackgrounds && <span className="hint">Sélection automatique active</span>}
+        </div>
+        <div className="ambient-none-option">
+          <label>
+            <input
+              type="radio"
+              name="ambient-choice"
+              checked={!selectedAmbient}
+              onChange={() => handleAmbientSelect(null)}
+            />
+            Aucun fond continu
+          </label>
+        </div>
         <div className="background-library">
           {backgroundSounds?.map((sound) => (
             <div key={sound.path} className="background-item">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={selectedBackgrounds.includes(sound.path)}
-                  onChange={() => toggleBackground(sound)}
-                />
-                {sound.name}
-              </label>
-              <audio controls src={sound.preview} />
+              <div className="background-header">
+                <strong>{sound.name}</strong>
+                <audio controls src={sound.preview} />
+              </div>
+              <div className="background-selectors">
+                <label>
+                  <input
+                    type="radio"
+                    name="ambient-choice"
+                    checked={selectedAmbient === sound.path}
+                    onChange={() => handleAmbientSelect(sound.path)}
+                  />
+                  Fond continu
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={selectedPunctual.includes(sound.path)}
+                    onChange={() => handlePunctualToggle(sound.path)}
+                  />
+                  Son ponctuel
+                </label>
+              </div>
             </div>
           ))}
           {!backgroundSounds?.length && <p>Aucun son trouvé. Ajoutez-en via l'upload ci-dessus.</p>}

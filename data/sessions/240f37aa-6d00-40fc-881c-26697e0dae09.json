@@ -1,0 +1,793 @@
+{
+  "session_id": "240f37aa-6d00-40fc-881c-26697e0dae09",
+  "project_name": "Demo5",
+  "current_step": "project_selection",
+  "steps": {},
+  "chat_history": [],
+  "scenario_target": 2,
+  "scenarios": [
+    {
+      "structure": {
+        "scenario_id": 2,
+        "titre_global": "Les mains de la Loire — Chronique des chantiers oubliés",
+        "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 le cœur battant d'une communauté ouvrière soudée par le labeur et la fierté collective. Soudeurs, charpentiers et riveurs façonnaient des coques immenses, donnant naissance en 1960 au paquebot France, 106 000 tonnes de rêves et d'acier, symbole d'une nation qui se relevait. Puis le silence est venu, lent, inexorable, recouvrant les cales et les quais. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'un monde englouti, et avec elles la mémoire d'un groupe social dont les gestes, les voix et les rituels se sont dissous dans le passage du temps.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "duree_totale": 40,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Le bourdonnement des cales",
+            "duree_cible": 15.0,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "nostalgie_lumineuse",
+            "elements_necessaires": [
+              "Invitation immersive temporelle — Loire, années 1950",
+              "Évocation sensorielle des chantiers navals de Nantes en activité",
+              "Portrait collectif : soudeurs, charpentiers — gestes, rythmes, solidarité ouvrière",
+              "Mention du paquebot France, 1960, 106 000 tonnes — fierté nationale née de leurs mains",
+              "Ambiance sonore riche : métal, voix, machines, fleuve"
+            ],
+            "mood": "dramatique_chaleureux — grandeur laborieuse, souffle épique contenu"
+          },
+          {
+            "partie": 2,
+            "titre": "Le silence des grues",
+            "duree_cible": 14.0,
+            "fonction_narrative": "basculement_élégiaque",
+            "position_arc_emotionnel": "perte_contemplative",
+            "elements_necessaires": [
+              "Transition temporelle fluide vers le présent — effacement progressif",
+              "Disparition du monde ouvrier : les sons se taisent, les gestes s'oublient",
+              "Les grues jaunes comme vestiges — seuls témoins encore debout",
+              "Chronique sociale de la transformation : un groupe entier s'efface avec son industrie",
+              "Ralentissement du rythme narratif, registre élégiaque"
+            ],
+            "mood": "dramatique_sombre — mélancolie dense, gravité du temps qui passe"
+          },
+          {
+            "partie": 3,
+            "titre": "Ce que le fleuve retient",
+            "duree_cible": 11.0,
+            "fonction_narrative": "coda_mémorielle",
+            "position_arc_emotionnel": "recueillement_suspendu",
+            "elements_necessaires": [
+              "Résonance finale : la mémoire collective comme seul navire encore à flot",
+              "Image conclusive ouverte — le fleuve coule, porteur de traces invisibles",
+              "Pas de résolution consolatrice — suspension dramatique, question implicite sur ce qui reste",
+              "Registre authentique, phrasé contemplatif, souffle long"
+            ],
+            "mood": "contemplatif_grave — suspension émotionnelle, silence habité"
+          }
+        ],
+        "arc_emotionnel_global": "arc_élégiaque_descendant — de la lumière ouvrière à l'absence, sans consolation facile",
+        "rythme_general": "lent_contemplatif — phrases longues, respirations marquées, tempo qui ralentit progressivement jusqu'à la suspension finale",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "fondu_temporel",
+            "duree": 2.5,
+            "description": "La dernière image sonore des chantiers en activité se dissout lentement. Une phrase-pivot marque le passage du temps sans rupture brutale — le bourdonnement s'éteint, le silence s'installe comme un personnage. La voix off baisse légèrement en intensité, le débit ralentit."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "glissement_intérieur",
+            "duree": 2.0,
+            "description": "Des grues immobiles, le regard narratif descend vers le fleuve. Transition par continuité spatiale — on reste sur les bords de Loire mais on passe du constat de l'absence à la méditation sur la mémoire. Le ton se fait plus intime, presque murmuré."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit former un seul souffle continu, sans annonce de parties ni ruptures perceptibles. Les trois sections sont des mouvements internes d'une même coulée narrative, comme les mouvements d'une pièce musicale lente. — REGISTRE : Vocabulaire soutenu, syntaxe ample, adapté à un public universitaire. Éviter toute simplification condescendante mais rester dans l'émotion incarnée, jamais dans l'abstraction sèche. — ANGLE CHRONIQUE SOCIALE : Le sujet n'est pas le paquebot France en soi, mais le groupe humain qui l'a fait naître — leurs mains, leur quotidien, leur effacement. Le navire est un symptôme, pas le centre. — TON DRAMATIQUE IMMERSIF : Maintenir une gravité constante, une tension émotionnelle sourde. Pas d'exclamations, pas d'effets rhétoriques appuyés — la dramaturgie naît de la retenue et du contraste entre la vie passée et le vide présent. — AMBIANCE SONORE RICHE : Prévoir des nappes sonores évolutives (bruits industriels qui s'amenuisent, eau du fleuve qui persiste, silence final habité). Les archives audio disponibles offrent une base textuelle à réinterpréter — ne pas les citer mot à mot mais en extraire la substance factuelle. — DURÉE : 40 secondes ± 15 %. Chaque mot compte. Privilégier la densité poétique à l'accumulation informative."
+      },
+      "scenario": {
+        "scenario_id": 2,
+        "titre": "Les mains de la Loire — Chronique des chantiers oubliés",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 le cœur battant d'une communauté ouvrière soudée par le labeur et la fierté collective. Soudeurs, charpentiers et riveurs façonnaient des coques immenses, donnant naissance en 1960 au paquebot France, 106 000 tonnes de rêves et d'acier, symbole d'une nation qui se relevait. Puis le silence est venu, lent, inexorable, recouvrant les cales et les quais. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'un monde englouti, et avec elles la mémoire d'un groupe social dont les gestes, les voix et les rituels se sont dissous dans le passage du temps.",
+        "duree_estimee": 82.62857142857143,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le bourdonnement des cales",
+            "duree": 27.428571428571427,
+            "texte_narration": "Nantes, années cinquante. Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, et de ce labeur collectif naquit en 1960 le paquebot France, cent six mille tonnes de rêves et d'acier.",
+            "ton": {
+              "global": "dramatique_chaleureux — grandeur laborieuse, souffle épique contenu",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 'souveraine' (1s)",
+                "après 'riveurs' (0.5s)",
+                "après 'd'acier' (1.5s)"
+              ],
+              "intonation": "Voix grave et ample, portée par une admiration retenue. Chaque mot posé avec la lenteur d'un geste artisan. Légère montée d'intensité sur 'cent six mille tonnes de rêves et d'acier'."
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture sur l'ancrage spatial et temporel — Nantes, années 1950, immersion immédiate",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:05",
+                "action": "Portrait collectif des ouvriers — gestes, métiers, solidarité du labeur",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:11",
+                "action": "Naissance du paquebot France — aboutissement de la fierté ouvrière",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Nantes, années cinquante.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              },
+              {
+                "sentence": "Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+                ]
+              },
+              {
+                "sentence": "Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, et de ce labeur collectif naquit en 1960 le paquebot France, cent six mille tonnes de rêves et d'acier.",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.",
+                  "[00:00] Le Paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêves et d'acier."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le silence des grues",
+            "duree": 31.200000000000003,
+            "texte_narration": "Puis le silence est venu. Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'une communauté que le temps a engloutie.",
+            "ton": {
+              "global": "dramatique_sombre — mélancolie dense, gravité élégiaque",
+              "tempo_lecture": 100,
+              "pauses": [
+                "après 'venu' (1.5s)",
+                "après 'inexorable' (1s)",
+                "après 'dissous' (1s)",
+                "après 'souffle' (1s)"
+              ],
+              "intonation": "Voix qui s'assombrit progressivement. Ralentissement marqué. Chaque phrase plus basse, plus lente que la précédente. 'Sentinelles muettes' prononcé avec une gravité suspendue."
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:15",
+                "action": "Basculement temporel — l'arrivée du silence, rupture avec la vie d'avant",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:20",
+                "action": "Effacement progressif du monde ouvrier — sons, gestes, présences qui disparaissent",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:25",
+                "action": "Les grues jaunes comme vestiges ultimes — image de la perte collective",
+                "duree": 5.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Puis le silence est venu.",
+                "sources": []
+              },
+              {
+                "sentence": "Lent, inexorable.",
+                "sources": []
+              },
+              {
+                "sentence": "Les arcs de soudure se sont éteints, les voix se sont tues, et avec elles tout un monde s'est dissous.",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              },
+              {
+                "sentence": "Les cales ont rendu leur dernier souffle.",
+                "sources": []
+              },
+              {
+                "sentence": "Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'une communauté que le temps a engloutie.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Ce que le fleuve retient",
+            "duree": 24.0,
+            "texte_narration": "La Loire, elle, continue de couler. Elle porte en elle ce que nul registre ne conserve — la chaleur des paumes sur l'acier, le poids d'une fierté partagée. Mémoire sans voix, que le fleuve seul veille encore.",
+            "ton": {
+              "global": "contemplatif_grave — suspension émotionnelle, silence habité",
+              "tempo_lecture": 95,
+              "pauses": [
+                "après 'couler' (1.5s)",
+                "après 'partagée' (2s)",
+                "après 'encore' (silence final prolongé, 3s)"
+              ],
+              "intonation": "Voix au plus bas de son registre, presque murmurée. Souffle long, phrasé suspendu. La dernière phrase prononcée comme une offrande au silence qui suit. Aucune résolution — le récit reste ouvert, en suspens."
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:29",
+                "action": "Le fleuve comme dépositaire — image de la permanence face à l'effacement",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:34",
+                "action": "Évocation sensorielle de ce qui a disparu — chaleur, fierté, gestes oubliés",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:38",
+                "action": "Suspension finale — la mémoire sans consolation, question ouverte",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "La Loire, elle, continue de couler.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              },
+              {
+                "sentence": "Elle porte en elle ce que nul registre ne conserve — la chaleur des paumes sur l'acier, le poids d'une fierté partagée.",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.",
+                  "[00:00] Le Paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêves et d'acier."
+                ]
+              },
+              {
+                "sentence": "Mémoire sans voix, que le fleuve seul veille encore.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 138,
+          "duree_lecture_estimee": 82.62857142857143,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit doit former un seul souffle continu, sans annonce de parties ni ruptures perceptibles. Les trois sections sont des mouvements internes d'une même coulée narrative, comme les mouvements d'une pièce musicale lente. — REGISTRE : Vocabulaire soutenu, syntaxe ample, adapté à un public universitaire. Éviter toute simplification condescendante mais rester dans l'émotion incarnée, jamais dans l'abstraction sèche. — ANGLE CHRONIQUE SOCIALE : Le sujet n'est pas le paquebot France en soi, mais le groupe humain qui l'a fait naître — leurs mains, leur quotidien, leur effacement. Le navire est un symptôme, pas le centre. — TON DRAMATIQUE IMMERSIF : Maintenir une gravité constante, une tension émotionnelle sourde. Pas d'exclamations, pas d'effets rhétoriques appuyés — la dramaturgie naît de la retenue et du contraste entre la vie passée et le vide présent. — AMBIANCE SONORE RICHE : Prévoir des nappes sonores évolutives (bruits industriels qui s'amenuisent, eau du fleuve qui persiste, silence final habité). Les archives audio disponibles offrent une base textuelle à réinterpréter — ne pas les citer mot à mot mais en extraire la substance factuelle. — DURÉE : 40 secondes ± 15 %. Chaque mot compte. Privilégier la densité poétique à l'accumulation informative.",
+        "quality_rank": 1
+      },
+      "taggedOutput": {
+        "scenario_id": 2,
+        "titre": "Les mains de la Loire — Chronique des chantiers oubliés",
+        "taggedText": "=== PARTIE 1 : Le bourdonnement des cales ===\n\n{bourdonnement_chantier_naval_lointain.wav}\n\n[ton grave] Nantes, années cinquante. [pause 2s] Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, [émotion contenue] et de ce labeur collectif naquit en 1960 le paquebot France, [ralentissement] cent six mille tonnes de rêves et d'acier.\n\n=== PARTIE 2 : Le silence des grues ===\n\n{metal_refroidissement_silence.wav}\n\n[pause 2s] Puis le silence est venu. [ralentissement] Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, [ton grave] et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. [pause 1s] [émotion contenue] Aujourd'hui, seules les grues jaunes demeurent, [ralentissement] sentinelles muettes d'une communauté que le temps a engloutie.\n\n=== PARTIE 3 : Ce que le fleuve retient ===\n\n{clapotis_loire_lent.wav}\n\n[murmure] La Loire, elle, continue de couler. [pause 1s] Elle porte en elle ce que nul registre ne conserve — [émotion contenue] la chaleur des paumes sur l'acier, le poids d'une fierté partagée. [ralentissement] Mémoire sans voix, que le fleuve seul veille encore. [pause 3s]",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le bourdonnement des cales",
+            "taggedText": "{bourdonnement_chantier_naval_lointain.wav}\n\n[ton grave] Nantes, années cinquante. [pause 2s] Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, [émotion contenue] et de ce labeur collectif naquit en 1960 le paquebot France, [ralentissement] cent six mille tonnes de rêves et d'acier."
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le silence des grues",
+            "taggedText": "{metal_refroidissement_silence.wav}\n\n[pause 2s] Puis le silence est venu. [ralentissement] Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, [ton grave] et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. [pause 1s] [émotion contenue] Aujourd'hui, seules les grues jaunes demeurent, [ralentissement] sentinelles muettes d'une communauté que le temps a engloutie."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Ce que le fleuve retient",
+            "taggedText": "{clapotis_loire_lent.wav}\n\n[murmure] La Loire, elle, continue de couler. [pause 1s] Elle porte en elle ce que nul registre ne conserve — [émotion contenue] la chaleur des paumes sur l'acier, le poids d'une fierté partagée. [ralentissement] Mémoire sans voix, que le fleuve seul veille encore. [pause 3s]"
+          }
+        ],
+        "metadata": {
+          "voiceTags": 15,
+          "soundTags": 3,
+          "originalWordCount": 138
+        }
+      },
+      "scenario_index": 2,
+      "compliance_report": {
+        "is_compliant": false,
+        "issues": [
+          "Ton attendu 'dramatique_immersif' mais obtenu 'inconnu'.",
+          "Durée 82s hors tolérance autour de 40s.",
+          "L'introduction ne rappelle pas le public cible fixé."
+        ]
+      },
+      "quality_rank": 1
+    },
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Les chantiers endormis — Une journée sur les bords de Loire",
+        "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes incarnaient autrefois une effervescence industrielle quotidienne. Dès l'aube, soudeurs et charpentiers façonnaient des coques immenses, donnant naissance en 1960 au Paquebot France, 106 000 tonnes de rêves et d'acier. Ce récit retrace une journée type de cette époque révolue — du matin vibrant d'activité au crépuscule silencieux d'aujourd'hui — pour mesurer l'épaisseur de ce qui a disparu. À travers le passage des heures se dessine le passage du temps, et les grues jaunes qui subsistent deviennent les sentinelles muettes d'une mémoire collective en sursis.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "journee_type",
+        "duree_totale": 40,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "L'aube des chantiers",
+            "duree_cible": 14.0,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "éveil_nostalgique",
+            "elements_necessaires": [
+              "Loire années 1950",
+              "chantiers navals de Nantes",
+              "activité bourdonnante dès le matin",
+              "gestes des soudeurs et charpentiers",
+              "coques immenses en construction"
+            ],
+            "mood": "dramatique, concret, sensoriel — bruits de métal, lumière matinale sur le fleuve"
+          },
+          {
+            "partie": 2,
+            "titre": "Le zénith — naissance d'un géant",
+            "duree_cible": 14.0,
+            "fonction_narrative": "climax_emotionnel",
+            "position_arc_emotionnel": "fierté_culminante",
+            "elements_necessaires": [
+              "Paquebot France né en 1960",
+              "106 000 tonnes de rêves et d'acier",
+              "fierté nationale",
+              "apogée du labeur quotidien",
+              "transformation de la matière brute en symbole"
+            ],
+            "mood": "épique, solennel — crescendo dramatique, le travail du matin trouve son accomplissement"
+          },
+          {
+            "partie": 3,
+            "titre": "Le crépuscule des grues",
+            "duree_cible": 12.0,
+            "fonction_narrative": "resolution_elegique",
+            "position_arc_emotionnel": "mélancolie_contemplative",
+            "elements_necessaires": [
+              "aujourd'hui — silence des chantiers",
+              "grues jaunes comme derniers témoins",
+              "passé glorieux révolu",
+              "perte et mémoire collective",
+              "suspension émotionnelle finale"
+            ],
+            "mood": "élégiaque, suspendu — le soir tombe sur ce qui n'existe plus"
+          }
+        ],
+        "arc_emotionnel_global": "crescendo_emotionnel_vers_elegie",
+        "rythme_general": "Progression du concret sensoriel (matin, gestes) vers l'abstraction mémorielle (crépuscule, absence). Le rythme s'accélère au zénith puis ralentit délibérément dans la dernière section pour laisser résonner la perte.",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "amplification_narrative",
+            "duree": 1.5,
+            "description": "Du labeur quotidien des ouvriers à l'objet monumental qu'ils engendrent — la transition s'opère par élévation du regard, des mains au travail vers la coque achevée. Pas de rupture : le geste du matin accouche du géant."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "basculement_temporel",
+            "duree": 2.0,
+            "description": "Rupture temporelle douce : du passé glorieux au présent silencieux. Un marqueur temporel explicite ('Aujourd'hui') opère le basculement. Le ton passe de l'épique au contemplatif sans brutalité — comme un fondu sonore du vacarme des chantiers vers le silence du fleuve."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit l'arc d'une journée type (matin → midi → soir) qui se superpose à l'arc historique (activité → apogée → disparition). Cette double temporalité — la journée et l'époque — doit rester implicite, ressentie plutôt qu'explicitée. Le registre est universitaire : phrases complexes mais fluides, lexique précis (ne pas simplifier 'charpentiers' ou '106 000 tonnes'). Le ton dramatique immersif est constant — jamais didactique, toujours incarné. La voix off omnisciente ne s'adresse jamais directement à l'auditeur mais peut utiliser des invitations immersives ('Imaginez…'). L'archive audio disponible couvre l'ensemble du récit ; le scénariste peut s'en inspirer directement tout en restructurant selon l'angle journée type. Ratio narration/archives : 0.7 — la voix off domine, les éléments d'archive (ambiances, citations) viennent ponctuer. Aucun fait inventé : seuls les éléments présents dans le contexte (Loire, Nantes, chantiers navals, soudeurs, charpentiers, Paquebot France, 1960, 106 000 tonnes, grues jaunes) sont mobilisés."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Les chantiers endormis — Une journée sur les bords de Loire",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "journee_type",
+        "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes incarnaient autrefois une effervescence industrielle quotidienne. Dès l'aube, soudeurs et charpentiers façonnaient des coques immenses, donnant naissance en 1960 au Paquebot France, 106 000 tonnes de rêves et d'acier. Ce récit retrace une journée type de cette époque révolue — du matin vibrant d'activité au crépuscule silencieux d'aujourd'hui — pour mesurer l'épaisseur de ce qui a disparu. À travers le passage des heures se dessine le passage du temps, et les grues jaunes qui subsistent deviennent les sentinelles muettes d'une mémoire collective en sursis.",
+        "duree_estimee": 69.35,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "L'aube des chantiers",
+            "duree": 21.714285714285715,
+            "texte_narration": "Imaginez l'aube sur la Loire, aux alentours de 1950. Les chantiers navals de Nantes s'éveillent. Un bourdonnement sourd monte des cales — soudeurs et charpentiers, mains expertes, façonnent des coques immenses dans la lumière rasante du matin.",
+            "ton": {
+              "global": "dramatique_immersif, sensoriel, évocateur",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 'de 1950' (1.5s)",
+                "après 's'éveillent' (1s)"
+              ],
+              "intonation": "grave et posée, montée progressive d'intensité"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture immersive — invitation à visualiser la Loire à l'aube",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:05",
+                "action": "Éveil des chantiers — premier bourdonnement, gestes des ouvriers",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:10",
+                "action": "Image des coques immenses prenant forme dans la lumière matinale",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Imaginez l'aube sur la Loire, aux alentours de 1950.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              },
+              {
+                "sentence": "Les chantiers navals de Nantes s'éveillent.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+                ]
+              },
+              {
+                "sentence": "Un bourdonnement sourd monte des cales — soudeurs et charpentiers, mains expertes, façonnent des coques immenses dans la lumière rasante du matin.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité.",
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le zénith — naissance d'un géant",
+            "duree": 23.03571428571429,
+            "texte_narration": "Et de ce labeur quotidien, un géant naît. En 1960, le Paquebot France glisse hors de ces mêmes cales : cent six mille tonnes de rêves et d'acier, fierté nationale forgée rivet après rivet. L'apogée d'un savoir-faire porté à incandescence.",
+            "ton": {
+              "global": "dramatique_immersif, épique, solennel",
+              "tempo_lecture": 112,
+              "pauses": [
+                "après 'naît' (1.5s)",
+                "après 'd'acier' (1s)"
+              ],
+              "intonation": "crescendo majestueux, voix qui s'élève sur 'fierté nationale'"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:14",
+                "action": "Transition du quotidien vers l'accomplissement — annonce du Paquebot France",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:19",
+                "action": "Climax épique — 106 000 tonnes, fierté nationale, dimension symbolique",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:24",
+                "action": "Suspension solennelle — apogée du savoir-faire",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Et de ce labeur quotidien, un géant naît.",
+                "sources": []
+              },
+              {
+                "sentence": "En 1960, le Paquebot France glisse hors de ces mêmes cales : cent six mille tonnes de rêves et d'acier, fierté nationale forgée rivet après rivet.",
+                "sources": [
+                  "[00:00] Le Paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêves et d'acier."
+                ]
+              },
+              {
+                "sentence": "L'apogée d'un savoir-faire porté à incandescence.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le crépuscule des grues",
+            "duree": 24.599999999999998,
+            "texte_narration": "Aujourd'hui, le soir tombe sur des rives muettes. Les cales sont vides, les voix se sont tues. Seules les grues jaunes demeurent, sentinelles immobiles d'un passé glorieux — témoins obstinés de ce que la mémoire collective refuse encore d'abandonner.",
+            "ton": {
+              "global": "dramatique_immersif, élégiaque, suspendu",
+              "tempo_lecture": 100,
+              "pauses": [
+                "après 'muettes' (2s)",
+                "après 'se sont tues' (1.5s)",
+                "après 'glorieux' (1.5s)"
+              ],
+              "intonation": "voix qui descend progressivement, souffle retenu, suspension finale"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:28",
+                "action": "Rupture temporelle — passage brutal au présent, silence des rives",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:32",
+                "action": "Image des grues jaunes — derniers vestiges, sentinelles du passé",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:36",
+                "action": "Suspension élégiaque finale — mémoire collective en sursis",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Aujourd'hui, le soir tombe sur des rives muettes.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              },
+              {
+                "sentence": "Les cales sont vides, les voix se sont tues.",
+                "sources": []
+              },
+              {
+                "sentence": "Seules les grues jaunes demeurent, sentinelles immobiles d'un passé glorieux — témoins obstinés de ce que la mémoire collective refuse encore d'abandonner.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 122,
+          "duree_lecture_estimee": 69.35,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit suit l'arc d'une journée type (matin → midi → soir) qui se superpose à l'arc historique (activité → apogée → disparition). Cette double temporalité — la journée et l'époque — doit rester implicite, ressentie plutôt qu'explicitée. Le registre est universitaire : phrases complexes mais fluides, lexique précis (ne pas simplifier 'charpentiers' ou '106 000 tonnes'). Le ton dramatique immersif est constant — jamais didactique, toujours incarné. La voix off omnisciente ne s'adresse jamais directement à l'auditeur mais peut utiliser des invitations immersives ('Imaginez…'). L'archive audio disponible couvre l'ensemble du récit ; le scénariste peut s'en inspirer directement tout en restructurant selon l'angle journée type. Ratio narration/archives : 0.7 — la voix off domine, les éléments d'archive (ambiances, citations) viennent ponctuer. Aucun fait inventé : seuls les éléments présents dans le contexte (Loire, Nantes, chantiers navals, soudeurs, charpentiers, Paquebot France, 1960, 106 000 tonnes, grues jaunes) sont mobilisés.",
+        "quality_rank": 2
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Les chantiers endormis — Une journée sur les bords de Loire",
+        "taggedText": "=== PARTIE 1 : L'aube des chantiers ===\n\n{brume_loire_aube.wav}\n\n[ton grave] Imaginez l'aube sur la Loire, aux alentours de 1950. [pause 2s] Les chantiers navals de Nantes s'éveillent. Un bourdonnement sourd monte des cales — [ralentissement] soudeurs et charpentiers, mains expertes, façonnent des coques immenses dans la lumière rasante du matin.\n\n=== PARTIE 2 : Le zénith — naissance d'un géant ===\n\n{martellement_rivets_cale.wav}\n\nEt de ce labeur quotidien, [pause 1s] un géant naît. En 1960, le Paquebot France glisse hors de ces mêmes cales : [ton solennel] cent six mille tonnes de rêves et d'acier, fierté nationale forgée rivet après rivet. [émotion contenue] L'apogée d'un savoir-faire porté à incandescence.\n\n=== PARTIE 3 : Le crépuscule des grues ===\n\n{vent_rives_desertes.wav}\n\n[pause 2s] Aujourd'hui, le soir tombe sur des rives muettes. [murmure] Les cales sont vides, les voix se sont tues. Seules les grues jaunes demeurent, sentinelles immobiles d'un passé glorieux — [ralentissement] témoins obstinés de ce que la mémoire collective refuse encore d'abandonner.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "L'aube des chantiers",
+            "taggedText": "{brume_loire_aube.wav}\n\n[ton grave] Imaginez l'aube sur la Loire, aux alentours de 1950. [pause 2s] Les chantiers navals de Nantes s'éveillent. Un bourdonnement sourd monte des cales — [ralentissement] soudeurs et charpentiers, mains expertes, façonnent des coques immenses dans la lumière rasante du matin."
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le zénith — naissance d'un géant",
+            "taggedText": "{martellement_rivets_cale.wav}\n\nEt de ce labeur quotidien, [pause 1s] un géant naît. En 1960, le Paquebot France glisse hors de ces mêmes cales : [ton solennel] cent six mille tonnes de rêves et d'acier, fierté nationale forgée rivet après rivet. [émotion contenue] L'apogée d'un savoir-faire porté à incandescence."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le crépuscule des grues",
+            "taggedText": "{vent_rives_desertes.wav}\n\n[pause 2s] Aujourd'hui, le soir tombe sur des rives muettes. [murmure] Les cales sont vides, les voix se sont tues. Seules les grues jaunes demeurent, sentinelles immobiles d'un passé glorieux — [ralentissement] témoins obstinés de ce que la mémoire collective refuse encore d'abandonner."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 9,
+          "soundTags": 3,
+          "originalWordCount": 122
+        }
+      },
+      "scenario_index": 1,
+      "compliance_report": {
+        "is_compliant": false,
+        "issues": [
+          "Ton attendu 'dramatique_immersif' mais obtenu 'inconnu'.",
+          "L'introduction ne rappelle pas le public cible fixé."
+        ]
+      },
+      "quality_rank": 2
+    }
+  ],
+  "selected_scenario": {
+    "structure": {
+      "scenario_id": 2,
+      "titre_global": "Les mains de la Loire — Chronique des chantiers oubliés",
+      "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 le cœur battant d'une communauté ouvrière soudée par le labeur et la fierté collective. Soudeurs, charpentiers et riveurs façonnaient des coques immenses, donnant naissance en 1960 au paquebot France, 106 000 tonnes de rêves et d'acier, symbole d'une nation qui se relevait. Puis le silence est venu, lent, inexorable, recouvrant les cales et les quais. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'un monde englouti, et avec elles la mémoire d'un groupe social dont les gestes, les voix et les rituels se sont dissous dans le passage du temps.",
+      "axe_narratif": "mixte",
+      "angle_scenarisation": "chronique_sociale",
+      "duree_totale": 40,
+      "structure": [
+        {
+          "partie": 1,
+          "titre": "Le bourdonnement des cales",
+          "duree_cible": 15,
+          "fonction_narrative": "exposition_immersive",
+          "position_arc_emotionnel": "nostalgie_lumineuse",
+          "elements_necessaires": [
+            "Invitation immersive temporelle — Loire, années 1950",
+            "Évocation sensorielle des chantiers navals de Nantes en activité",
+            "Portrait collectif : soudeurs, charpentiers — gestes, rythmes, solidarité ouvrière",
+            "Mention du paquebot France, 1960, 106 000 tonnes — fierté nationale née de leurs mains",
+            "Ambiance sonore riche : métal, voix, machines, fleuve"
+          ],
+          "mood": "dramatique_chaleureux — grandeur laborieuse, souffle épique contenu"
+        },
+        {
+          "partie": 2,
+          "titre": "Le silence des grues",
+          "duree_cible": 14,
+          "fonction_narrative": "basculement_élégiaque",
+          "position_arc_emotionnel": "perte_contemplative",
+          "elements_necessaires": [
+            "Transition temporelle fluide vers le présent — effacement progressif",
+            "Disparition du monde ouvrier : les sons se taisent, les gestes s'oublient",
+            "Les grues jaunes comme vestiges — seuls témoins encore debout",
+            "Chronique sociale de la transformation : un groupe entier s'efface avec son industrie",
+            "Ralentissement du rythme narratif, registre élégiaque"
+          ],
+          "mood": "dramatique_sombre — mélancolie dense, gravité du temps qui passe"
+        },
+        {
+          "partie": 3,
+          "titre": "Ce que le fleuve retient",
+          "duree_cible": 11,
+          "fonction_narrative": "coda_mémorielle",
+          "position_arc_emotionnel": "recueillement_suspendu",
+          "elements_necessaires": [
+            "Résonance finale : la mémoire collective comme seul navire encore à flot",
+            "Image conclusive ouverte — le fleuve coule, porteur de traces invisibles",
+            "Pas de résolution consolatrice — suspension dramatique, question implicite sur ce qui reste",
+            "Registre authentique, phrasé contemplatif, souffle long"
+          ],
+          "mood": "contemplatif_grave — suspension émotionnelle, silence habité"
+        }
+      ],
+      "arc_emotionnel_global": "arc_élégiaque_descendant — de la lumière ouvrière à l'absence, sans consolation facile",
+      "rythme_general": "lent_contemplatif — phrases longues, respirations marquées, tempo qui ralentit progressivement jusqu'à la suspension finale",
+      "transitions_cles": [
+        {
+          "entre_parties": [
+            1,
+            2
+          ],
+          "type": "fondu_temporel",
+          "duree": 2.5,
+          "description": "La dernière image sonore des chantiers en activité se dissout lentement. Une phrase-pivot marque le passage du temps sans rupture brutale — le bourdonnement s'éteint, le silence s'installe comme un personnage. La voix off baisse légèrement en intensité, le débit ralentit."
+        },
+        {
+          "entre_parties": [
+            2,
+            3
+          ],
+          "type": "glissement_intérieur",
+          "duree": 2,
+          "description": "Des grues immobiles, le regard narratif descend vers le fleuve. Transition par continuité spatiale — on reste sur les bords de Loire mais on passe du constat de l'absence à la méditation sur la mémoire. Le ton se fait plus intime, presque murmuré."
+        }
+      ],
+      "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit former un seul souffle continu, sans annonce de parties ni ruptures perceptibles. Les trois sections sont des mouvements internes d'une même coulée narrative, comme les mouvements d'une pièce musicale lente. — REGISTRE : Vocabulaire soutenu, syntaxe ample, adapté à un public universitaire. Éviter toute simplification condescendante mais rester dans l'émotion incarnée, jamais dans l'abstraction sèche. — ANGLE CHRONIQUE SOCIALE : Le sujet n'est pas le paquebot France en soi, mais le groupe humain qui l'a fait naître — leurs mains, leur quotidien, leur effacement. Le navire est un symptôme, pas le centre. — TON DRAMATIQUE IMMERSIF : Maintenir une gravité constante, une tension émotionnelle sourde. Pas d'exclamations, pas d'effets rhétoriques appuyés — la dramaturgie naît de la retenue et du contraste entre la vie passée et le vide présent. — AMBIANCE SONORE RICHE : Prévoir des nappes sonores évolutives (bruits industriels qui s'amenuisent, eau du fleuve qui persiste, silence final habité). Les archives audio disponibles offrent une base textuelle à réinterpréter — ne pas les citer mot à mot mais en extraire la substance factuelle. — DURÉE : 40 secondes ± 15 %. Chaque mot compte. Privilégier la densité poétique à l'accumulation informative."
+    },
+    "scenario": {
+      "scenario_id": 2,
+      "titre": "Les mains de la Loire — Chronique des chantiers oubliés",
+      "axe_narratif": "mixte",
+      "angle_scenarisation": "chronique_sociale",
+      "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 le cœur battant d'une communauté ouvrière soudée par le labeur et la fierté collective. Soudeurs, charpentiers et riveurs façonnaient des coques immenses, donnant naissance en 1960 au paquebot France, 106 000 tonnes de rêves et d'acier, symbole d'une nation qui se relevait. Puis le silence est venu, lent, inexorable, recouvrant les cales et les quais. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'un monde englouti, et avec elles la mémoire d'un groupe social dont les gestes, les voix et les rituels se sont dissous dans le passage du temps.",
+      "duree_estimee": 82.62857142857143,
+      "parties": [
+        {
+          "titre": "Le bourdonnement des cales",
+          "texte_narration": "Nantes, années cinquante. Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, et de ce labeur collectif naquit en 1960 le paquebot France, cent six mille tonnes de rêves et d'acier."
+        },
+        {
+          "titre": "Le silence des grues",
+          "texte_narration": "Puis le silence est venu. Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'une communauté que le temps a engloutie."
+        },
+        {
+          "titre": "Ce que le fleuve retient",
+          "texte_narration": "La Loire, elle, continue de couler. Elle porte en elle ce que nul registre ne conserve — la chaleur des paumes sur l'acier, le poids d'une fierté partagée. Mémoire sans voix, que le fleuve seul veille encore."
+        }
+      ],
+      "metadata": {
+        "nombre_mots": 138,
+        "duree_lecture_estimee": 82.62857142857143,
+        "nombre_archives_utilisees": 0,
+        "nombre_ambiances": 0
+      },
+      "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit doit former un seul souffle continu, sans annonce de parties ni ruptures perceptibles. Les trois sections sont des mouvements internes d'une même coulée narrative, comme les mouvements d'une pièce musicale lente. — REGISTRE : Vocabulaire soutenu, syntaxe ample, adapté à un public universitaire. Éviter toute simplification condescendante mais rester dans l'émotion incarnée, jamais dans l'abstraction sèche. — ANGLE CHRONIQUE SOCIALE : Le sujet n'est pas le paquebot France en soi, mais le groupe humain qui l'a fait naître — leurs mains, leur quotidien, leur effacement. Le navire est un symptôme, pas le centre. — TON DRAMATIQUE IMMERSIF : Maintenir une gravité constante, une tension émotionnelle sourde. Pas d'exclamations, pas d'effets rhétoriques appuyés — la dramaturgie naît de la retenue et du contraste entre la vie passée et le vide présent. — AMBIANCE SONORE RICHE : Prévoir des nappes sonores évolutives (bruits industriels qui s'amenuisent, eau du fleuve qui persiste, silence final habité). Les archives audio disponibles offrent une base textuelle à réinterpréter — ne pas les citer mot à mot mais en extraire la substance factuelle. — DURÉE : 40 secondes ± 15 %. Chaque mot compte. Privilégier la densité poétique à l'accumulation informative.",
+      "quality_rank": 1
+    },
+    "taggedOutput": {
+      "scenario_id": 2,
+      "titre": "Les mains de la Loire — Chronique des chantiers oubliés",
+      "taggedText": "=== PARTIE 1 : Le bourdonnement des cales ===\n\n{bourdonnement_chantier_naval_lointain.wav}\n\n[ton grave] Nantes, années cinquante. [pause 2s] Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, [émotion contenue] et de ce labeur collectif naquit en 1960 le paquebot France, [ralentissement] cent six mille tonnes de rêves et d'acier.\n\n=== PARTIE 2 : Le silence des grues ===\n\n{metal_refroidissement_silence.wav}\n\n[pause 2s] Puis le silence est venu. [ralentissement] Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, [ton grave] et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. [pause 1s] [émotion contenue] Aujourd'hui, seules les grues jaunes demeurent, [ralentissement] sentinelles muettes d'une communauté que le temps a engloutie.\n\n=== PARTIE 3 : Ce que le fleuve retient ===\n\n{clapotis_loire_lent.wav}\n\n[murmure] La Loire, elle, continue de couler. [pause 1s] Elle porte en elle ce que nul registre ne conserve — [émotion contenue] la chaleur des paumes sur l'acier, le poids d'une fierté partagée. [ralentissement] Mémoire sans voix, que le fleuve seul veille encore. [pause 3s]",
+      "parties": [
+        {
+          "partie_id": 1,
+          "titre": "Le bourdonnement des cales",
+          "taggedText": "{bourdonnement_chantier_naval_lointain.wav}\n\n[ton grave] Nantes, années cinquante. [pause 2s] Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, [émotion contenue] et de ce labeur collectif naquit en 1960 le paquebot France, [ralentissement] cent six mille tonnes de rêves et d'acier."
+        },
+        {
+          "partie_id": 2,
+          "titre": "Le silence des grues",
+          "taggedText": "{metal_refroidissement_silence.wav}\n\n[pause 2s] Puis le silence est venu. [ralentissement] Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, [ton grave] et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. [pause 1s] [émotion contenue] Aujourd'hui, seules les grues jaunes demeurent, [ralentissement] sentinelles muettes d'une communauté que le temps a engloutie."
+        },
+        {
+          "partie_id": 3,
+          "titre": "Ce que le fleuve retient",
+          "taggedText": "{clapotis_loire_lent.wav}\n\n[murmure] La Loire, elle, continue de couler. [pause 1s] Elle porte en elle ce que nul registre ne conserve — [émotion contenue] la chaleur des paumes sur l'acier, le poids d'une fierté partagée. [ralentissement] Mémoire sans voix, que le fleuve seul veille encore. [pause 3s]"
+        }
+      ],
+      "metadata": {
+        "voiceTags": 15,
+        "soundTags": 3,
+        "originalWordCount": 138
+      }
+    },
+    "scenario_index": 2,
+    "compliance_report": {
+      "is_compliant": false,
+      "issues": [
+        "Ton attendu 'dramatique_immersif' mais obtenu 'inconnu'.",
+        "Durée 82s hors tolérance autour de 40s.",
+        "L'introduction ne rappelle pas le public cible fixé."
+      ]
+    },
+    "quality_rank": 1
+  },
+  "scenario_progress": [],
+  "scenario_audio": {
+    "status": "done",
+    "path": "data/projects/Demo5/outputs/audio_demo5.mp3",
+    "voice_id": "GYzIdoKkRyANjBvkKYfO",
+    "model_id": "eleven_multilingual_v2",
+    "sample_rate": 44100,
+    "voice_only_path": "data/generated_speech/elevenlabs_output_dry.mp3",
+    "background_plan": [
+      {
+        "type": "ambient",
+        "background": "AV-1-S-OUT-201-1-C.wav",
+        "start_seconds": 4.0,
+        "duration_seconds": 44.9,
+        "note": "Ambiance de meule évoquant le travail continu des chantiers navals, démarre après l'introduction et s'arrête avant la conclusion poétique sur la Loire"
+      },
+      {
+        "type": "punctual",
+        "background": "AV-1-S-OUT-101-1-A.wav",
+        "start_seconds": 12.0,
+        "duration_seconds": 8.0,
+        "note": "Son de chalumeau pendant l'évocation des soudeurs et de la construction du paquebot France, moment d'apogée industrielle"
+      },
+      {
+        "type": "punctual",
+        "background": "AV-1-S-OUT-201-1-B.wav",
+        "start_seconds": 32.0,
+        "duration_seconds": 7.0,
+        "note": "Dernier écho de meule lors de l'évocation du silence qui vient et des arcs de soudure qui s'éteignent, transition vers la fin"
+      }
+    ],
+    "num_samples": 2375667,
+    "language": "French",
+    "text_length": 811,
+    "generated_at": "2026-03-12T13:18:02.591926",
+    "backgrounds_applied": 3,
+    "background_tracks_requested": 3,
+    "tts_provider": "elevenlabs",
+    "job_id": "97b6d9c1c4884decbbadf8747e1fdf4c",
+    "requested_at": "2026-03-12T13:17:36.755675",
+    "started_at": "2026-03-12T13:17:36.764201",
+    "finished_at": "2026-03-12T13:18:02.592637"
+  },
+  "scenario_images": [],
+  "scenario_slideshow": null
+}

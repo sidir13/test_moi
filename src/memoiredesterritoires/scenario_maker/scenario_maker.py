@@ -84,7 +84,7 @@ class ScenarioMakerSkill:
 
         # Resolve the LLM model to use (e.g. "opus" → "anthropic/claude-opus-4-5")
         model_id = params.get("model_id")
-        tts_provider = params.get("tts_provider", "qwen")
+        tts_provider = params.get("tts_provider", "elevenlabs")
 
         orchestrator = ScenarioMakerOrchestrator(
             config_path=str(config_path),

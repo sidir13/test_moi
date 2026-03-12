@@ -1,0 +1,17 @@
+=== PARTIE 1 : Le bourdonnement des cales ===
+
+{bourdonnement_chantier_naval_lointain.wav}
+
+[ton grave] Nantes, années cinquante. [pause 2s] Sur les bords de la Loire, les chantiers navals bourdonnaient d'une vie âpre et souveraine. Soudeurs, charpentiers, riveurs — leurs mains façonnaient des coques immenses, [émotion contenue] et de ce labeur collectif naquit en 1960 le paquebot France, [ralentissement] cent six mille tonnes de rêves et d'acier.
+
+=== PARTIE 2 : Le silence des grues ===
+
+{metal_refroidissement_silence.wav}
+
+[pause 2s] Puis le silence est venu. [ralentissement] Lent, inexorable. Les arcs de soudure se sont éteints, les voix se sont tues, [ton grave] et avec elles tout un monde s'est dissous. Les cales ont rendu leur dernier souffle. [pause 1s] [émotion contenue] Aujourd'hui, seules les grues jaunes demeurent, [ralentissement] sentinelles muettes d'une communauté que le temps a engloutie.
+
+=== PARTIE 3 : Ce que le fleuve retient ===
+
+{clapotis_loire_lent.wav}
+
+[murmure] La Loire, elle, continue de couler. [pause 1s] Elle porte en elle ce que nul registre ne conserve — [émotion contenue] la chaleur des paumes sur l'acier, le poids d'une fierté partagée. [ralentissement] Mémoire sans voix, que le fleuve seul veille encore. [pause 3s]

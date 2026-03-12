@@ -72,9 +72,15 @@ export type ProjectProfile = {
   audio_selection?: AudioSelection;
 };
 
+export type BackgroundSelection = {
+  ambient?: string | null;
+  punctual: string[];
+};
+
 export type AudioSelection = {
   voices: string[];
-  backgrounds: string[];
+  backgrounds: BackgroundSelection;
+  auto_backgrounds?: boolean;
   tts_voice_id?: string | null;
   tts_provider?: string;
 };

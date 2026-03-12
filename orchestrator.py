@@ -31,7 +31,7 @@ class ScenarioMakerOrchestrator:
         log_level: str = "INFO",
         model_id: Optional[str] = None,
         scenario_target_override: Optional[int] = None,
-        tts_provider: str = "qwen",
+        tts_provider: str = "elevenlabs",
     ):
         # Setup logging
         log_file = os.getenv("LOG_FILE", "./logs/memoire_territoires.log")
@@ -48,7 +48,7 @@ class ScenarioMakerOrchestrator:
             logger.info("Model override: %s", model_id)
 
         # TTS provider — Agent 3 only runs when elevenlabs is selected
-        self.tts_provider = (tts_provider or "qwen").lower()
+        self.tts_provider = (tts_provider or "elevenlabs").lower()
         logger.info("TTS provider: %s", self.tts_provider)
 
         # Scenario target override (slider)

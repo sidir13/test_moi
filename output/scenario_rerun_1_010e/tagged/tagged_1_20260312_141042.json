@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Les mains du fleuve — Portrait d'un charpentier de la Loire",
+  "taggedText": "=== PARTIE 1 : Le fleuve et les mains ===\n\n{silence_fleuve_lointain.wav}\n\n[ton grave] La Loire, années 1950. [pause 2s] Sur les cales de Nantes, les chantiers navals bourdonnaient d'activité. Un charpentier de marine, parmi d'autres, posait ses mains expertes sur des coques immenses, [ralentissement] façonnant la membrure d'acier rib après rib. {marteau_isole_sur_tole.wav}\n\n=== PARTIE 2 : 106 000 tonnes de rêves ===\n\nEn 1960, [émotion contenue] le paquebot France quittait ces mêmes cales [pause 2s] — cent six mille tonnes de rêves et d'acier, fierté nationale. Cet homme anonyme avait contribué, de ses gestes répétés, [ton grave] à l'édification d'un monument que le monde entier contemplerait.\n\n=== PARTIE 3 : Les grues jaunes ===\n\n{vent_doux_sur_eau.wav}\n\n[murmure] Aujourd'hui, seules les grues jaunes de Nantes témoignent de ce passé glorieux. [pause 2s] Le charpentier s'est effacé avec les cales. [ralentissement] Et le fleuve, indifférent, continue de couler là où ses mains ont cessé d'œuvrer.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et les mains",
+      "taggedText": "{silence_fleuve_lointain.wav}\n\n[ton grave] La Loire, années 1950. [pause 2s] Sur les cales de Nantes, les chantiers navals bourdonnaient d'activité. Un charpentier de marine, parmi d'autres, posait ses mains expertes sur des coques immenses, [ralentissement] façonnant la membrure d'acier rib après rib. {marteau_isole_sur_tole.wav}"
+    },
+    {
+      "partie_id": 2,
+      "titre": "106 000 tonnes de rêves",
+      "taggedText": "En 1960, [émotion contenue] le paquebot France quittait ces mêmes cales [pause 2s] — cent six mille tonnes de rêves et d'acier, fierté nationale. Cet homme anonyme avait contribué, de ses gestes répétés, [ton grave] à l'édification d'un monument que le monde entier contemplerait."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les grues jaunes",
+      "taggedText": "{vent_doux_sur_eau.wav}\n\n[murmure] Aujourd'hui, seules les grues jaunes de Nantes témoignent de ce passé glorieux. [pause 2s] Le charpentier s'est effacé avec les cales. [ralentissement] Et le fleuve, indifférent, continue de couler là où ses mains ont cessé d'œuvrer."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 9,
+    "soundTags": 3,
+    "originalWordCount": 114
+  }
+}

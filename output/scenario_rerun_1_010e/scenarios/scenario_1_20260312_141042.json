@@ -1,0 +1,151 @@
+{
+  "scenario_id": 1,
+  "titre": "Les mains du fleuve — Portrait d'un charpentier de la Loire",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 une activité industrielle intense où soudeurs et charpentiers façonnaient des coques immenses. Parmi eux, un charpentier anonyme consacra ses mains expertes à l'édification du paquebot France, lancé en 1960 — 106 000 tonnes de rêves et d'acier, fierté nationale. Ce portrait retrace, depuis l'extérieur, le parcours d'un homme dont le geste quotidien s'inscrivait dans une œuvre collective monumentale. Aujourd'hui, seules les grues jaunes de Nantes témoignent de ce passé glorieux, et avec elles s'efface la mémoire des artisans qui donnèrent forme à l'acier. L'histoire interroge ce que le passage du temps fait aux lieux, aux métiers et aux hommes qui les ont habités.",
+  "duree_estimee": 65.13246753246753,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et les mains",
+      "duree": 21.714285714285715,
+      "texte_narration": "La Loire, années 1950. Sur les cales de Nantes, les chantiers navals bourdonnaient d'activité. Un charpentier de marine, parmi d'autres, posait ses mains expertes sur des coques immenses, façonnant la membrure d'acier rib après rib.",
+      "ton": {
+        "global": "dramatique_contemplatif",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après '1950' (1.5s)",
+          "après 'd'activité' (1s)"
+        ],
+        "intonation": "grave, posée, évocatrice — chaque mot pèse comme un geste d'artisan"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le silence du fleuve, puis souffle lointain de métal",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:06",
+          "action": "Évocation des mains sur la coque — un son isolé de marteau sur tôle",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "La Loire, années 1950.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        },
+        {
+          "sentence": "Sur les cales de Nantes, les chantiers navals bourdonnaient d'activité.",
+          "sources": [
+            "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+          ]
+        },
+        {
+          "sentence": "Un charpentier de marine, parmi d'autres, posait ses mains expertes sur des coques immenses, façonnant la membrure d'acier rib après rib.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "106 000 tonnes de rêves",
+      "duree": 21.81818181818182,
+      "texte_narration": "En 1960, le paquebot France quittait ces mêmes cales — cent six mille tonnes de rêves et d'acier, fierté nationale. Cet homme anonyme avait contribué, de ses gestes répétés, à l'édification d'un monument que le monde entier contemplerait.",
+      "ton": {
+        "global": "épique_retenu",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'cales' (1s)",
+          "après 'fierté nationale' (1.5s)"
+        ],
+        "intonation": "montée progressive en intensité contenue — la grandeur sans emphase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:14",
+          "action": "Nom du paquebot France prononcé avec gravité — silence bref autour",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:22",
+          "action": "Tension entre l'anonymat de l'artisan et l'immensité de l'œuvre",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "En 1960, le paquebot France quittait ces mêmes cales — cent six mille tonnes de rêves et d'acier, fierté nationale.",
+          "sources": [
+            "[00:00] Le Paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêves et d'acier."
+          ]
+        },
+        {
+          "sentence": "Cet homme anonyme avait contribué, de ses gestes répétés, à l'édification d'un monument que le monde entier contemplerait.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les grues jaunes",
+      "duree": 21.599999999999998,
+      "texte_narration": "Aujourd'hui, seules les grues jaunes de Nantes témoignent de ce passé glorieux. Le charpentier s'est effacé avec les cales. Et le fleuve, indifférent, continue de couler là où ses mains ont cessé d'œuvrer.",
+      "ton": {
+        "global": "mélancolique_suspendu",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'glorieux' (2s)",
+          "après 'les cales' (1.5s)"
+        ],
+        "intonation": "descente progressive vers le murmure — la voix se retire comme la mémoire"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:28",
+          "action": "Basculement temporel — le silence s'installe, un souffle de vent sur l'eau",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:36",
+          "action": "Dernière phrase suspendue — le fleuve seul, sans résolution",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, seules les grues jaunes de Nantes témoignent de ce passé glorieux.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Le charpentier s'est effacé avec les cales.",
+          "sources": []
+        },
+        {
+          "sentence": "Et le fleuve, indifférent, continue de couler là où ses mains ont cessé d'œuvrer.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 114,
+    "duree_lecture_estimee": 65.13246753246753,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est un portrait vu de l'extérieur — le charpentier n'est jamais nommé (le contexte ne fournit pas de nom), il est désigné par ses gestes, son métier, ses mains. Ne jamais recourir au monologue intérieur ni à la première personne. La voix off omnisciente observe et restitue. — REGISTRE : Universitaire — lexique précis de l'histoire maritime et industrielle, phrases complexes mais fluides, sans didactisme ni adresse directe au public. — TON : Dramatique immersif maintenu de bout en bout, sans rupture comique ni légèreté. La gravité croît section après section. — DENSITÉ SONORE : Minimaliste — privilégier le silence et de rares éléments sonores (métal, eau, vent) plutôt qu'une nappe continue. — ARCHIVES : L'extrait disponible couvre l'essentiel des faits ; le scénariste peut y puiser directement pour la section 1 et 2. Le ratio narration/archives (0.7) implique que ~30 % du temps peut intégrer l'archive ou s'en inspirer textuellement. — RIGUEUR : Aucun fait inventé. Le charpentier est une figure archétypale construite à partir des éléments factuels ('mains expertes des soudeurs et des charpentiers'). Ne pas lui attribuer de biographie fictive."
+}
