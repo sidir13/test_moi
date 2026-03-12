@@ -117,28 +117,28 @@ TOOLS = [
                     "description": "Décalage de lecture dans le fichier bruit (secondes)",
                     "default": 2
                 },
-                "fade_in_s": {                  # Ô£à ICI
+                "fade_in_s": {
                 "type": "number",
-                "description": "Dur├®e fade in sur le son ins├®r├® (d├®faut: 0.3s)",
+                "description": "Durée fade in sur le son inséré (défaut: 0.3s)",
                 "default": 0.3
-            },
-            "fade_out_s": {
-                "type": "number",
-                "description": "Dur├®e fade out sur le son ins├®r├® (d├®faut: 0.5s)",
-                "default": 0.5
-            },
-            "fade_in_type": {
-                "type": "string",
-                "enum": ["linear", "exponential", "logarithmic", "equal_power", "sigmoid"],
-                "description": "Courbe fade in (d├®faut: logarithmic Ô¡É)",
-                "default": "logarithmic"
-            },
-            "fade_out_type": {
-                "type": "string",
-                "enum": ["linear", "exponential", "logarithmic", "equal_power", "sigmoid"],
-                "description": "Courbe fade out (d├®faut: exponential Ô¡É)",
-                "default": "exponential"
-            } 
+                },
+                "fade_out_s": {
+                    "type": "number",
+                    "description": "Durée fade out sur le son inséré (défaut: 0.5s)",
+                    "default": 0.5
+                },
+                "fade_in_type": {
+                    "type": "string",
+                    "enum": ["linear", "exponential", "logarithmic", "equal_power", "sigmoid"],
+                    "description": "Courbe fade in (défaut: logarithmic ⭐)",
+                    "default": "logarithmic"
+                },
+                "fade_out_type": {
+                    "type": "string",
+                    "enum": ["linear", "exponential", "logarithmic", "equal_power", "sigmoid"],
+                    "description": "Courbe fade out (défaut: exponential ⭐)",
+                    "default": "exponential"
+                }
             },
             "required": ["voice_file", "noise_file"]
         }
@@ -651,21 +651,22 @@ TOOLS = [
     },
     {
     "name": "get_audio_info",
-    "description": "Analyse un fichier audio et retourne ses m├®tadonn├®es techniques (dur├®e, RMS, SNR...). Appeler EN PREMIER avant tout mixage.",
+    "description": "Analyse un fichier audio et retourne ses métadonnées techniques (durée, RMS, SNR...). Appeler EN PREMIER avant tout mixage.",
     "input_schema": {
         "type": "object",
         "properties": {
             "audio_file": {
                 "type": "string",
-                "description": "Chemin vers le fichier audio ├á analyser"
-                }
-            },
+                "description": "Chemin vers le fichier audio à analyser"
+            }
+        },
         "required": ["audio_file"]
         }
     },
+
     {
     "name": "mix_voice_with_background",
-    "description": "Ajoute un fond sonore continu sur toute la dur├®e de la voix. Appeler EN DERNIER apr├¿s tous les sons ponctuels.",
+    "description": "Ajoute un fond sonore continu sur toute la durée de la voix. Appeler EN DERNIER après tous les sons ponctuels.",
     "input_schema": {
         "type": "object",
         "properties": {
@@ -679,21 +680,21 @@ TOOLS = [
             },
             "output_file": {
                 "type": "string",
-                "description": "Chemin de sortie (d├®faut: data/generated_speech/output_mix.wav)"
+                "description": "Chemin de sortie (défaut: data/generated_speech/output_mix.wav)"
             },
             "voice_bg_ratio_db": {
                 "type": "number",
-                "description": "├ëcart dB voix/fond (-10 l├®ger, -12 narration, -18 tr├¿s discret)",
+                "description": "Écart dB voix/fond (-10 léger, -12 narration, -18 très discret)",
                 "default": -20.0
             },
             "fade_in_s": {
                 "type": "number",
-                "description": "Dur├®e fade in du fond en secondes",
+                "description": "Durée fade in du fond en secondes",
                 "default": 2.0
             },
             "fade_out_s": {
                 "type": "number",
-                "description": "Dur├®e fade out du fond en secondes",
+                "description": "Durée fade out du fond en secondes",
                 "default": 2.0
             },
             "fade_in_type": {
@@ -707,21 +708,21 @@ TOOLS = [
                 "enum": ["linear", "exponential", "logarithmic", "equal_power", "sigmoid"],
                 "description": "Courbe fade out",
                 "default": "exponential"
-                },
+            },
             "start_time": {
                 "type": "number",
-                "description": "Timestamp (s) o├╣ le fond d├®marre (d├®faut: 0 = d├¿s le d├®but)",
-                "default": 4.0
+                "description": "Timestamp (s) où le fond démarre (défaut: 0 = dès le début)",
+                "default": 0.0
             },
             "end_offset": {
                 "type": "number",
-                "description": "Secondes avant la fin de la voix o├╣ le fond s'arr├¬te (ex: 5 = se termine 5s avant la fin)",
-                "default": 4.0
+                "description": "Secondes avant la fin de la voix où le fond s'arrête (ex: 5 = se termine 5s avant la fin)",
+                "default": 0.0
             }
-            },
-            "required": ["voice_file", "background_file"]
+        },
+        "required": ["voice_file", "background_file"]
         }
-    },
+    }
 ]
 
 def auto_select_project_audio(project_name: str, max_voice_tracks: int, max_backgrounds: int, background_keyword: str | None):
@@ -1026,28 +1027,29 @@ async def main(user_message: str = None):
 
 if __name__ == "__main__":
     asyncio.run(main("""
-Tu dois cr├®er un mix audio professionnel pour cr├®er une ambiance audio immersive. Voici les instructions d├®taill├®es :
+Tu dois créer un mix audio professionnel pour créer une ambiance audio immersive. Voici les instructions détaillées :
 
 **Fichiers sources :**
 - Voix : data/audio_tts/ElevenLabs_Spuds_Oxley_Creatif.wav
 
-**├ëtape 1 ÔÇö Sons ponctuels :**
-Explore data/eng/ et s├®lectionne entre 4 et 6 sons industriels vari├®s.
+**Étape 1 — Sons ponctuels :**
+Explore data/eng/ et sélectionne entre 4 et 6 sons industriels variés.
 Pour chaque son ponctuel :
-- Dur├®e : entre 6 et 10 secondes
+- Durée : entre 6 et 10 secondes
 - Volume : 30 dB en dessous de la voix
-- Placement : entre 3s et fin-5s de la voix, non superpos├®s, espac├®s d'au moins 1s
-- Les sons doivent ├¬tre r├®parti entre le d├®but, le milieu et la fin de l'audio pour cr├®er une dynamique immersive, sans surcharger une partie sp├®cifique.
+- Placement : entre 3s et fin-5s de la voix, non superposés, espacés d'au moins 1s
+- Les sons doivent être réparti entre le début, le milieu et la fin de l'audio pour créer une dynamique immersive, sans surcharger une partie spécifique.
 
-**├ëtape 2 ÔÇö Fond continu :**
+**Étape 2 — Fond continu :**
 - Choisi dans le dossier data/eng/ un son riche qui servira de fond continu pour l'audio afin de renforcer l'immersion.
-- D├®marre ├á 4s, se termine 5s avant la fin de l'audio
+- Démarre à 4s, se termine 5s avant la fin de l'audio
 - Volume : 30 dB en dessous de la voix
 
 **Sortie finale :** data/output/mix_final.wav
 
-Supprime les fichiers temporaires apr├¿s avoir cr├®├® le r├®sultat final, et assure-toi que le mixage final est ├®quilibr├® et professionnel, avec une voix claire et des effets sonores bien int├®gr├®s pour cr├®er une ambiance immersive.
-""")) 
+Supprime les fichiers temporaires après avoir créé le résultat final, et assure-toi que le mixage final est équilibré et professionnel, avec une voix claire et des effets sonores bien intégrés pour créer une ambiance immersive.
+"""
+)) 
     pass
 # asyncio.run(main("can you find the relevant part of the audio in data/audio/background_sounds/AV-1-S-OUT-201-1-A (1).wav"))
 # asyncio.run(main("D├®crit le son d'ambiance de chalumeau"))
