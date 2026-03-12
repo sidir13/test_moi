@@ -1,0 +1,93 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui forgèrent le France",
+  "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 une industrie à son apogée. Parmi les soudeurs et charpentiers, un ouvrier anonyme participait à l'édification du paquebot France, ce géant de 106 000 tonnes lancé en 1960, fierté d'une nation entière. Son portrait se dessine à travers le fracas des coques en construction, l'expertise de ses gestes et la grandeur du navire qu'il contribua à faire naître. Mais le temps a effacé ces hommes : aujourd'hui, seules les grues jaunes de Nantes se dressent comme les vestiges silencieux de cette épopée industrielle révolue.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 40,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et l'acier",
+      "duree_cible": 10.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "montée_initiale",
+      "elements_necessaires": [
+        "Évocation sensorielle de la Loire et des chantiers navals de Nantes en 1950",
+        "Introduction d'une figure ouvrière anonyme parmi les soudeurs et charpentiers",
+        "Registre universitaire : lexique précis (chantiers navals, carcasses métalliques)"
+      ],
+      "mood": "dramatique_évocateur"
+    },
+    {
+      "partie": 2,
+      "titre": "Le colosse prend forme",
+      "duree_cible": 14.0,
+      "fonction_narrative": "développement_climax",
+      "position_arc_emotionnel": "sommet_épique",
+      "elements_necessaires": [
+        "Le paquebot France, 1960, 106 000 tonnes",
+        "Portrait extérieur de l'ouvrier : ses mains, son geste, son rôle dans l'édification",
+        "Dimension collective et fierté nationale cristallisée dans un individu"
+      ],
+      "mood": "grandiose_dramatique"
+    },
+    {
+      "partie": 3,
+      "titre": "Les grues orphelines",
+      "duree_cible": 10.0,
+      "fonction_narrative": "rupture_élégiaque",
+      "position_arc_emotionnel": "chute_mélancolique",
+      "elements_necessaires": [
+        "Basculement temporel vers aujourd'hui",
+        "Les grues jaunes comme vestiges",
+        "Effacement de l'ouvrier et de son monde"
+      ],
+      "mood": "mélancolique_solennel"
+    },
+    {
+      "partie": 4,
+      "titre": "Mémoire d'acier",
+      "duree_cible": 6.0,
+      "fonction_narrative": "clausule_réflexive",
+      "position_arc_emotionnel": "résonance_finale",
+      "elements_necessaires": [
+        "Phrase de clôture liant l'homme anonyme à la permanence de l'acier",
+        "Ouverture sur la mémoire industrielle"
+      ],
+      "mood": "contemplatif_grave"
+    }
+  ],
+  "arc_emotionnel_global": "ascension_épique_puis_élégie",
+  "rythme_general": "dynamique — accélération vers le climax industriel, puis décélération contemplative vers le silence final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "amplification_continue",
+      "duree": 1.5,
+      "description": "Du paysage fluvial, le regard se resserre sur les mains de l'ouvrier puis s'élargit au navire en construction — transition fluide par zoom narratif, sans rupture."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "fracture_temporelle",
+      "duree": 2.0,
+      "description": "Bascule nette du passé glorieux au présent silencieux. Un bref silence ou un ralentissement du débit vocal marque le passage du temps. La voix change de registre : de l'épique au mélancolique."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "fondu_réflexif",
+      "duree": 1.0,
+      "description": "Glissement naturel du constat d'absence vers une phrase conclusive de portée mémorielle — pas de rupture, la clausule prolonge l'élégie."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un arc unique centré sur un ouvrier anonyme des chantiers nantais — jamais nommé, jamais individualisé par un monologue, mais rendu présent par ses gestes et son environnement. La voix off féminine adopte un ton dramatique immersif constant : grave et habité dans les parties 1-2, plus retenu et solennel dans les parties 3-4. REGISTRE : vocabulaire soutenu et précis (universitaire) sans didactisme — pas d'adresse au public. DENSITÉ SONORE MINIMALISTE : privilégier le silence et un éventuel son d'ambiance discret (métal, eau) plutôt qu'une nappe musicale. RATIO NARRATION/ARCHIVES : 70 % narration originale, 30 % éléments issus de l'archive (faits, images sonores). RIGUEUR : tous les faits (Loire, Nantes, 1950, paquebot France, 1960, 106 000 tonnes, grues jaunes) proviennent strictement de l'archive fournie — aucune invention factuelle. L'invitation immersive d'ouverture (« Imaginez… ») peut être reprise ou réinventée, mais jamais transformée en adresse directe."
+}

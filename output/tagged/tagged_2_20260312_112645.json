@@ -1,0 +1,27 @@
+{
+  "scenario_id": 2,
+  "titre": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+  "taggedText": "=== PARTIE 1 : Le fleuve et les hommes ===\n\n{rumeur_fleuve_loire_lointaine.wav}\n\n[ton grave] Nous sommes sur les rives de la Loire, en 1950. [pause 2s] {martelements_metal_lointains.wav} Les chantiers navals de Nantes bourdonnent d'activité. [ralentissement] Soudeurs, charpentiers — des centaines de mains expertes courbées sur des coques immenses.\n\n=== PARTIE 2 : La naissance d'un géant ===\n\n{martelements_chantier_soutenus.wav}\n\n[acceleration] Jour après jour, leur labeur converge vers un seul aboutissement. [pause 1s] En 1960, le paquebot France glisse hors des cales — [ton solennel] cent six mille tonnes de rêve et d'acier. {coque_glissement_eau_clameur.wav} [émotion contenue] Fierté d'une communauté ouvrière tout entière, [pause 1s] fierté d'une nation.\n\n=== PARTIE 3 : Les grues jaunes du silence ===\n\n{silence_vent_fleuve_mouettes.wav}\n\n[ralentissement] [ton grave] Puis les cales se sont tues. [pause 2s] Les hommes sont partis. [pause 2s] [murmure] Aujourd'hui, sur les berges de Nantes, seules les grues jaunes demeurent — sentinelles muettes d'un monde englouti, [pause 1s] dressées face au fleuve qui, lui, [émotion contenue] n'a jamais cessé de couler. {clapotis_loire_seul.wav}",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et les hommes",
+      "taggedText": "{rumeur_fleuve_loire_lointaine.wav}\n\n[ton grave] Nous sommes sur les rives de la Loire, en 1950. [pause 2s] {martelements_metal_lointains.wav} Les chantiers navals de Nantes bourdonnent d'activité. [ralentissement] Soudeurs, charpentiers — des centaines de mains expertes courbées sur des coques immenses."
+    },
+    {
+      "partie_id": 2,
+      "titre": "La naissance d'un géant",
+      "taggedText": "{martelements_chantier_soutenus.wav}\n\n[acceleration] Jour après jour, leur labeur converge vers un seul aboutissement. [pause 1s] En 1960, le paquebot France glisse hors des cales — [ton solennel] cent six mille tonnes de rêve et d'acier. {coque_glissement_eau_clameur.wav} [émotion contenue] Fierté d'une communauté ouvrière tout entière, [pause 1s] fierté d'une nation."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les grues jaunes du silence",
+      "taggedText": "{silence_vent_fleuve_mouettes.wav}\n\n[ralentissement] [ton grave] Puis les cales se sont tues. [pause 2s] Les hommes sont partis. [pause 2s] [murmure] Aujourd'hui, sur les berges de Nantes, seules les grues jaunes demeurent — sentinelles muettes d'un monde englouti, [pause 1s] dressées face au fleuve qui, lui, [émotion contenue] n'a jamais cessé de couler. {clapotis_loire_seul.wav}"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 15,
+    "soundTags": 6,
+    "originalWordCount": 109
+  }
+}

@@ -25,6 +25,7 @@ type SessionState = {
   scenarioTarget: number;
   progress: {
     audioReady: boolean;
+    transcriptionsReviewed: boolean;
     scenariosReady: boolean;
     scenarioChosen: boolean;
     scenarioEdited: boolean;
@@ -48,6 +49,7 @@ export const useSessionStore = create<SessionState>((set) => ({
   scenarioTarget: 3,
   progress: {
     audioReady: false,
+    transcriptionsReviewed: false,
     scenariosReady: false,
     scenarioChosen: false,
     scenarioEdited: false
@@ -56,6 +58,7 @@ export const useSessionStore = create<SessionState>((set) => ({
     set({
       progress: {
         audioReady: progress.audioReady,
+        transcriptionsReviewed: progress.transcriptionsReviewed,
         scenariosReady: progress.scenariosReady,
         scenarioChosen: progress.scenarioChosen,
         scenarioEdited: progress.scenarioEdited
@@ -65,6 +68,7 @@ export const useSessionStore = create<SessionState>((set) => ({
     set({
       progress: {
         audioReady: false,
+        transcriptionsReviewed: false,
         scenariosReady: false,
         scenarioChosen: false,
         scenarioEdited: false

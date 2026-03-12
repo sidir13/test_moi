@@ -43,8 +43,26 @@
       ]
     },
     {
-      "id": "scenario_review",
+      "id": "transcription_review",
       "order": 4,
+      "name": {"fr": "Révision des transcriptions", "en": "Transcription Review"},
+      "description": {
+        "fr": "Vérifiez, corrigez et exportez les transcriptions générées à partir de vos pistes vocales.",
+        "en": "Inspect, edit, and export the transcripts generated from your voice tracks."
+      },
+      "chat_placeholder": {
+        "fr": "Souhaitez-vous qu'on vérifie certaines transcriptions pour vous ?",
+        "en": "Need help double-checking any transcript?"
+      },
+      "skills": [
+        "analysis_storage_query",
+        "json_utils"
+      ],
+      "automations": []
+    },
+    {
+      "id": "scenario_review",
+      "order": 5,
       "name": {"fr": "Consulter les scénarios", "en": "Review Scenarios"},
       "description": {"fr": "Comparez les scénarios générés et choisissez le meilleur.", "en": "Review generated scenarios and choose one."},
       "chat_placeholder": {"fr": "Souhaitez vous qu'on vous aide à choisir le meilleur scénario ?", "en": "Need help picking the best scenario?"},
@@ -73,7 +91,7 @@
     },
     {
       "id": "scenario_edit",
-      "order": 5,
+      "order": 6,
       "name": {"fr": "Modifier le scénario", "en": "Edit Scenario"},
       "description": {"fr": "Affinez le texte et la timeline audio.", "en": "Refine text and timeline."},
       "chat_placeholder": {"fr": "Comment souhaitez vous éditer votre scénario ?", "en": "How would you like to edit your scenario?"},
@@ -98,7 +116,7 @@
     },
     {
       "id": "final_validation",
-      "order": 6,
+      "order": 7,
       "name": {"fr": "Validation finale", "en": "Final Validation"},
       "description": {"fr": "Confirmez l'audio final et archivez les chemins.", "en": "Confirm final audio and archive paths."},
       "chat_placeholder": {"fr": "", "en": ""},

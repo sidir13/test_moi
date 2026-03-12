@@ -1,0 +1,17 @@
+=== PARTIE 1 : Le fleuve et les hommes ===
+
+{rumeur_fleuve_loire_lointaine.wav}
+
+[ton grave] Nous sommes sur les rives de la Loire, en 1950. [pause 2s] {martelements_metal_lointains.wav} Les chantiers navals de Nantes bourdonnent d'activité. [ralentissement] Soudeurs, charpentiers — des centaines de mains expertes courbées sur des coques immenses.
+
+=== PARTIE 2 : La naissance d'un géant ===
+
+{martelements_chantier_soutenus.wav}
+
+[acceleration] Jour après jour, leur labeur converge vers un seul aboutissement. [pause 1s] En 1960, le paquebot France glisse hors des cales — [ton solennel] cent six mille tonnes de rêve et d'acier. {coque_glissement_eau_clameur.wav} [émotion contenue] Fierté d'une communauté ouvrière tout entière, [pause 1s] fierté d'une nation.
+
+=== PARTIE 3 : Les grues jaunes du silence ===
+
+{silence_vent_fleuve_mouettes.wav}
+
+[ralentissement] [ton grave] Puis les cales se sont tues. [pause 2s] Les hommes sont partis. [pause 2s] [murmure] Aujourd'hui, sur les berges de Nantes, seules les grues jaunes demeurent — sentinelles muettes d'un monde englouti, [pause 1s] dressées face au fleuve qui, lui, [émotion contenue] n'a jamais cessé de couler. {clapotis_loire_seul.wav}

@@ -79,6 +79,23 @@ export type AudioSelection = {
   tts_provider?: string;
 };
 
+export type TranscriptionTopic = {
+  title: string;
+  summary: string;
+  keywords?: string[];
+};
+
+export type ProjectTranscription = {
+  file_name: string;
+  transcription: string;
+  summary?: {
+    global_summary?: string;
+    topics?: TranscriptionTopic[];
+  };
+  source?: string;
+  language?: string;
+};
+
 export async function fetchProjects() {
   const { data } = await api.get("/projects");
   return data.projects as ProjectSummary[];
@@ -186,6 +203,19 @@ export async function fetchAudioSelection(sessionId: string) {
 export async function saveAudioSelection(sessionId: string, payload: AudioSelection & { project_name: string }) {
   const { data } = await api.post(`/sessions/${sessionId}/audio-selection`, payload);
   return data as AudioSelection;
+}
+
+export async function fetchProjectTranscriptions(projectName: string) {
+  const { data } = await api.get(`/projects/${encodeURIComponent(projectName)}/transcriptions`);
+  return (data.transcriptions ?? []) as ProjectTranscription[];
+}
+
+export async function updateProjectTranscription(
+  projectName: string,
+  payload: { file_name: string; transcription: string }
+) {
+  const { data } = await api.post(`/projects/${encodeURIComponent(projectName)}/transcriptions`, payload);
+  return data as ProjectTranscription;
 }
 
 export async function fetchScenarios(sessionId: string) {

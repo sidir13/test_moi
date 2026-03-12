@@ -1,0 +1,77 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Nantes, de l'acier au silence",
+  "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 une puissance industrielle vibrante, où soudeurs et charpentiers façonnaient des coques immenses. L'apogée de cette épopée fut la naissance du paquebot France en 1960, 106 000 tonnes de rêve et d'acier, fierté nationale lancée depuis ces quais. Puis vint le déclin, lent et irréversible, qui réduisit au silence les halls autrefois bourdonnants. Aujourd'hui, seules les grues jaunes se dressent comme des sentinelles muettes, témoins d'un passé glorieux que la ville porte encore dans sa mémoire. Le récit s'ouvre et se referme sur la Loire, fleuve immuable face à la transformation radicale de ses rives.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 40,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et le fracas",
+      "duree_cible": 14.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "montée_en_puissance",
+      "elements_necessaires": [
+        "Évocation sensorielle de la Loire comme point d'ancrage circulaire",
+        "Chantiers navals de Nantes dans les années 1950",
+        "Activité bourdonnante, mains expertes des soudeurs et charpentiers",
+        "Coques immenses prenant forme",
+        "Registre universitaire : lexique précis, phrases articulées"
+      ],
+      "mood": "dramatique_vibrant"
+    },
+    {
+      "partie": 2,
+      "titre": "106 000 tonnes de rêve",
+      "duree_cible": 12.0,
+      "fonction_narrative": "climax_historique",
+      "position_arc_emotionnel": "apogée",
+      "elements_necessaires": [
+        "Naissance du paquebot France en 1960",
+        "106 000 tonnes, fierté nationale",
+        "Dimension symbolique : aboutissement d'un savoir-faire collectif",
+        "Ton dramatique à son intensité maximale"
+      ],
+      "mood": "solennel_épique"
+    },
+    {
+      "partie": 3,
+      "titre": "Les grues et le silence",
+      "duree_cible": 14.0,
+      "fonction_narrative": "resolution_circulaire",
+      "position_arc_emotionnel": "descente_contemplative",
+      "elements_necessaires": [
+        "Contraste avant/après : du bourdonnement au silence",
+        "Grues jaunes comme vestiges, témoins solitaires",
+        "Retour au fleuve — la Loire toujours présente, les rives transformées",
+        "Clôture circulaire : écho à l'ouverture, même lieu, autre réalité",
+        "Ton élégiaque, gravité universitaire"
+      ],
+      "mood": "mélancolique_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "ascension_puis_élégie_circulaire",
+  "rythme_general": "modere — phrases amples dans l'exposition, resserrées au climax, ralenties dans la résolution",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "La description de l'effervescence des chantiers culmine naturellement vers l'évocation du France : le récit passe du collectif anonyme à l'objet monumental, sans rupture, par une montée en intensité syntaxique."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "bascule_temporelle_contrastive",
+      "duree": 2.0,
+      "description": "Transition pivot du diptyque avant/après. Un silence narratif implicite marque la fracture temporelle — le ton passe de l'épique au contemplatif. La voix ralentit, le registre se fait plus grave, signalant le passage du temps et la perte."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est un mouvement unique en trois temps, non trois blocs séparés. La Loire sert de fil conducteur circulaire — elle ouvre et ferme le récit, ancrage spatial immuable face à la mutation humaine. VOIX : Femme, timbre mature et contemplatif, cohérent avec l'archive disponible. En partie 1, débit légèrement soutenu pour rendre la vitalité industrielle ; en partie 2, ralentissement solennel sur l'évocation du France ; en partie 3, tempo lent, pauses respiratoires, poids des mots. DENSITÉ SONORE MINIMALISTE : Pas de surcharge — la voix porte l'essentiel. Éventuellement un léger fond métallique en partie 1, un silence presque total en partie 3. REGISTRE UNIVERSITAIRE : Vocabulaire précis sans être jargonnant, syntaxe travaillée, références contextualisées. Pas d'adresse directe au public. L'invitation immersive (« Imaginez… ») est permise en ouverture. ANGLE AVANT/APRÈS : La partie 2 constitue le point de bascule — tout ce qui précède est le monde d'avant (vitalité), tout ce qui suit est le monde d'après (absence). La structure circulaire superpose ces deux temporalités dans le retour final au fleuve. RIGUEUR : Tous les faits (Loire, Nantes, chantiers navals années 1950, paquebot France 1960, 106 000 tonnes, grues jaunes) sont issus strictement de l'archive fournie. Aucun ajout factuel."
+}

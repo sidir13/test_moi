@@ -20,8 +20,10 @@ export function StepNavigator() {
       case "project_details":
       case "audio_sources":
         return true;
+      case "transcription_review":
+        return progress.audioReady;
       case "scenario_review":
-        return progress.scenariosReady;
+        return progress.transcriptionsReviewed;
       case "scenario_edit":
         return progress.scenariosReady && progress.scenarioChosen;
       case "final_validation":

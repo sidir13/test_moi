@@ -28,8 +28,18 @@ const deriveProgressFromSession = (
   const selectedScenario = session?.selected_scenario;
   const audioMeta = session?.scenario_audio;
   const audioSources = steps && typeof steps === "object" ? (steps as any).audio_sources : undefined;
+  const transcriptionStepDone = Boolean(steps && (steps as any).transcription_review);
+  const progressedBeyondTranscription =
+    Boolean(
+      (steps as any)?.scenario_review ||
+        (steps as any)?.scenario_edit ||
+        (steps as any)?.final_validation
+    ) ||
+    Boolean(selectedScenario) ||
+    Boolean(audioMeta?.path);
   return {
     audioReady: Boolean(audioSources || audioMeta?.path),
+    transcriptionsReviewed: transcriptionStepDone || progressedBeyondTranscription,
     scenariosReady: Boolean(storedScenarios.length > 0 || selectedScenario),
     scenarioChosen: Boolean(selectedScenario),
     scenarioEdited: requireFreshEdit ? false : Boolean(audioMeta?.path)

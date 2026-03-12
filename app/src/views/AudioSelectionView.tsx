@@ -27,7 +27,12 @@ const ELEVEN_LABS_VOICE_OPTIONS = [
   { id: "5l4ttmr4SKNgi0HnOelT", label: "Voix 1 — 5l4ttmr4..." },
   { id: "flHkNRp1BlvT73UL6gyz", label: "Voix 2 — flHkNRp1..." },
   { id: "jK7dAsiVAhbApIS8KkWB", label: "Voix 3 — jK7dAsi..." },
-  { id: "NOpBlnGInO9m6vDvFkFC", label: "Voix 4 — NOpBlnGI..." }
+  { id: "NOpBlnGInO9m6vDvFkFC", label: "Voix 4 — NOpBlnGI..." },
+  { id: "jUHQdLfy668sllNiNTSW", label: "Voix 5 — jUHQdLf..." },
+  { id: "tKaoyJLW05zqV0tIH9FD", label: "Voix 6 — tKaoyJL..." },
+  { id: "T4BwQ2ZwlS2BbHIfci4H", label: "Voix 7 — T4BwQ2Z..." },
+  { id: "GYzIdoKkRyANjBvkKYfO", label: "Voix 8 — GYzIdoK..." },
+  { id: "TojRWZatQyy9dujEdiQ1", label: "Voix 9 — TojRWZa..." }
 ];
 
 export function AudioSelectionView() {
@@ -177,9 +182,9 @@ export function AudioSelectionView() {
         backgrounds: selectedBackgrounds,
         tts_voice_id: selectedVoiceId ?? undefined
       });
-      updateProgress({ audioReady: true });
-      setCurrentStep("scenario_review");
-      navigate("/step/scenario_review");
+      updateProgress({ audioReady: true, transcriptionsReviewed: false });
+      setCurrentStep("transcription_review");
+      navigate("/step/transcription_review");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Impossible de passer à l'étape suivante.";
       setSelectionError(message);
@@ -211,19 +216,24 @@ export function AudioSelectionView() {
   const toggleVoice = (track: string) => {
     setSelectedVoices((prev) => {
       let next = prev;
+      let changed = false;
       if (prev.includes(track)) {
         next = prev.filter((p) => p !== track);
+        changed = next !== prev;
+      } else if (prev.length >= 3) {
+        setSelectionError("Sélectionnez 3 pistes maximum.");
+        changed = false;
       } else {
-        if (prev.length >= 3) {
-          setSelectionError("Sélectionnez 3 pistes maximum.");
-          next = prev;
-        } else {
-          next = [...prev, track];
-        }
+        next = [...prev, track];
+        changed = true;
       }
-      if (next !== prev) setSelectionError(null);
+      if (!changed) {
+        return prev;
+      }
+      setSelectionError(null);
       voicesRef.current = next;
       updateSelection(next, selectedBackgrounds);
+      updateProgress({ transcriptionsReviewed: false });
       return next;
     });
   };

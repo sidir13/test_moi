@@ -80,8 +80,11 @@ export function ProjectDetailsView() {
     const scenariosReady = hasStoredScenarios || hasFinalScenario;
     const scenarioChosen = hasFinalScenario;
     const audioReady = Boolean(profileQuery.data.final_audio?.path || profileQuery.data.audio_selection?.voices?.length);
+    const legacyTranscriptionsReviewed =
+      Boolean(profileQuery.data.final_audio?.path) || hasStoredScenarios || hasFinalScenario;
     setProgress({
       audioReady,
+      transcriptionsReviewed: legacyTranscriptionsReviewed,
       scenariosReady,
       scenarioChosen,
       scenarioEdited: false

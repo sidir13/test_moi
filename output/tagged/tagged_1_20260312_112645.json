@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Les mains qui forgèrent le France",
+  "taggedText": "=== PARTIE 1 : Le fleuve et l'acier ===\n\n{clapotis_loire_lent.wav}\n\n[ton grave] Nantes, années cinquante. [pause 2s] La Loire charrie les reflets des chantiers navals. Parmi les soudeurs, un homme sans nom courbe l'échine sur les carcasses d'acier.\n\n=== PARTIE 2 : Le colosse prend forme ===\n\n{soudure_metal_distant.wav}\n\nSes mains expertes tracent l'arc des soudures sur des coques immenses. [acceleration] Rivet après rivet, il édifie ce que la nation entière attend. [pause 1s] [ton solennel] En 1960, le paquebot France glisse vers le large — cent six mille tonnes de rêve et d'acier, [ralentissement] fierté d'un pays cristallisée dans le geste d'un seul.\n\n=== PARTIE 3 : Les grues orphelines ===\n\n{vent_estuaire_silence.wav}\n\n[pause 2s] [émotion contenue] Aujourd'hui, le silence a recouvert les cales. [ralentissement] Les grues jaunes se dressent seules au-dessus de la Loire, vestiges orphelins d'une épopée que nul ouvrier ne viendra plus revendiquer.\n\n=== PARTIE 4 : Mémoire d'acier ===\n\n[murmure] L'acier, lui, se souvient. [pause 2s] Il porte encore la marque de ces mains anonymes. [pause 3s]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et l'acier",
+      "taggedText": "{clapotis_loire_lent.wav}\n\n[ton grave] Nantes, années cinquante. [pause 2s] La Loire charrie les reflets des chantiers navals. Parmi les soudeurs, un homme sans nom courbe l'échine sur les carcasses d'acier."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le colosse prend forme",
+      "taggedText": "{soudure_metal_distant.wav}\n\nSes mains expertes tracent l'arc des soudures sur des coques immenses. [acceleration] Rivet après rivet, il édifie ce que la nation entière attend. [pause 1s] [ton solennel] En 1960, le paquebot France glisse vers le large — cent six mille tonnes de rêve et d'acier, [ralentissement] fierté d'un pays cristallisée dans le geste d'un seul."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les grues orphelines",
+      "taggedText": "{vent_estuaire_silence.wav}\n\n[pause 2s] [émotion contenue] Aujourd'hui, le silence a recouvert les cales. [ralentissement] Les grues jaunes se dressent seules au-dessus de la Loire, vestiges orphelins d'une épopée que nul ouvrier ne viendra plus revendiquer."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Mémoire d'acier",
+      "taggedText": "[murmure] L'acier, lui, se souvient. [pause 2s] Il porte encore la marque de ces mains anonymes. [pause 3s]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 12,
+    "soundTags": 3,
+    "originalWordCount": 123
+  }
+}

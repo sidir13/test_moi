@@ -19,7 +19,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, WebSocket, WebSocketDisconnect, Query, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, PlainTextResponse
 from pydantic import BaseModel, Field
 
 logging.basicConfig(
@@ -35,6 +35,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
 )
 from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
 from memoiredesterritoires.transcription.transcription_parallelized import transcribe_audio
+from memoiredesterritoires.transcription.transcription_sum import summarize_transcript_robust
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.Slideshow.slides import slideshow
 from memoiredesterritoires.project_config import (
@@ -48,6 +49,7 @@ from project_store import (
     load_audio_selection,
     save_audio_selection,
     list_project_audio_files,
+    get_project_audio_file,
 )
 from pydub import AudioSegment
 
@@ -510,6 +512,11 @@ class AudioSelectionPayload(BaseModel):
     voices: List[str] = Field(default_factory=list)
     backgrounds: List[str] = Field(default_factory=list)
     tts_voice_id: Optional[str] = Field(default=None, description="Selected ElevenLabs voice identifier")
+
+
+class TranscriptionUpdateRequest(BaseModel):
+    file_name: str = Field(..., description="Audio file name within the project")
+    transcription: str = Field(..., description="Edited transcript content")
 
 
 class ScenarioAudioRequest(BaseModel):
@@ -979,12 +986,24 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         def _run_transcription() -> str:
             return transcribe_audio(str(audio_path))
 
+        def _summarize_transcript(text: str) -> Dict[str, Any]:
+            return summarize_transcript_robust(text)
+
         try:
             transcript = await loop.run_in_executor(None, _run_transcription)
+            summary_payload: Optional[Dict[str, Any]] = None
+            if transcript and transcript.strip():
+                try:
+                    summary_payload = await loop.run_in_executor(None, _summarize_transcript, transcript)
+                except Exception as exc:  # pragma: no cover - external API failures are non-critical
+                    logger.warning("Transcript summary failed for %s: %s", audio_path.name, exc)
+            result_payload: Dict[str, Any] = {"transcription": transcript}
+            if summary_payload:
+                result_payload["summary"] = summary_payload
             save_analysis_result(
                 analysis_type="transcription",
                 source_path=str(audio_path),
-                result={"transcription": transcript},
+                result=result_payload,
                 title=audio_path.name,
                 metadata={
                     "project": project_name,
@@ -1017,17 +1036,24 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 limit=50,
             )
             transcriptions: List[Dict[str, Any]] = []
+            seen_titles: set[str] = set()
             for entry in data.get("entries", []):
                 result = entry.get("result", {})
                 text = result.get("transcription") if isinstance(result, dict) else None
+                summary = result.get("summary") if isinstance(result, dict) else None
                 title = entry.get("title") or Path(entry.get("source_path", "")).name
-                if text and title:
-                    transcriptions.append({
-                        "file_name": title,
-                        "transcription": text,
-                        "language": "fr",
-                        "source": entry.get("source_path"),
-                    })
+                if not text or not title or title in seen_titles:
+                    continue
+                seen_titles.add(title)
+                payload: Dict[str, Any] = {
+                    "file_name": title,
+                    "transcription": text,
+                    "language": "fr",
+                    "source": entry.get("source_path"),
+                }
+                if summary:
+                    payload["summary"] = summary
+                transcriptions.append(payload)
             log_progress(
                 "TRANSCRIPTIONS_FETCHED",
                 project=project_name,
@@ -1399,6 +1425,61 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "final_slideshow": profile.get("final_slideshow"),
             "audio_selection": audio_selection,
         }
+
+    @app.get("/projects/{project_name}/transcriptions", tags=["projects"])
+    async def get_project_transcriptions(project_name: str) -> dict:
+        project_dir = settings.projects_dir / project_name
+        if not project_dir.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+        entries = fetch_project_transcriptions(project_name)
+        return {"project": project_name, "transcriptions": entries}
+
+    @app.post("/projects/{project_name}/transcriptions", tags=["projects"])
+    async def update_project_transcription(project_name: str, payload: TranscriptionUpdateRequest) -> dict:
+        if not payload.file_name.strip():
+            raise HTTPException(status_code=400, detail="Nom de fichier manquant")
+        audio_path = get_project_audio_file(project_name, payload.file_name)
+        if not audio_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier audio introuvable")
+        loop = asyncio.get_running_loop()
+        summary_payload: Optional[Dict[str, Any]] = None
+        text = payload.transcription or ""
+        if text.strip():
+            try:
+                summary_payload = await loop.run_in_executor(None, summarize_transcript_robust, text)
+            except Exception as exc:  # pragma: no cover - best effort summarization
+                logger.warning("Manual transcription summary failed for %s/%s: %s", project_name, payload.file_name, exc)
+        result_payload: Dict[str, Any] = {"transcription": text}
+        if summary_payload:
+            result_payload["summary"] = summary_payload
+        save_analysis_result(
+            analysis_type="transcription",
+            source_path=str(audio_path),
+            result=result_payload,
+            title=payload.file_name,
+            metadata={"project": project_name, "manual_edit": True},
+            is_partial=False,
+        )
+        log_progress(
+            "TRANSCRIPTION_UPDATED",
+            project=project_name,
+            file=payload.file_name,
+        )
+        return {"file_name": payload.file_name, "transcription": text, "summary": summary_payload}
+
+    @app.get("/projects/{project_name}/transcriptions/{file_name}/download", tags=["projects"])
+    async def download_project_transcription(project_name: str, file_name: str) -> PlainTextResponse:
+        project_dir = settings.projects_dir / project_name
+        if not project_dir.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+        entries = fetch_project_transcriptions(project_name)
+        entry = next((item for item in entries if item.get("file_name") == file_name), None)
+        if not entry:
+            raise HTTPException(status_code=404, detail="Transcription introuvable")
+        text = entry.get("transcription", "")
+        response = PlainTextResponse(content=text or "")
+        response.headers["Content-Disposition"] = f'attachment; filename="{file_name}.txt"'
+        return response
 
     @app.post("/sessions", tags=["sessions"])
     async def create_session(payload: SessionCreateRequest) -> dict:

@@ -1,0 +1,13 @@
+=== PARTIE 1 : Le fleuve et le fracas ===
+
+{resonance_metallique_lointaine.wav}
+
+[ton contemplatif] Imaginez la Loire en 1950. [pause 1s] Sur ses rives, les chantiers navals de Nantes bourdonnaient d'une activité incessante. [acceleration] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.
+
+=== PARTIE 2 : 106 000 tonnes de rêve ===
+
+[pause 2s] [ton solennel] Puis, en 1960, [ralentissement] l'aboutissement. [pause 1.5s] Le paquebot France, fierté nationale, naissait ici — [ton grave] cent six mille tonnes de rêve et d'acier, arrachées aux berges du fleuve par un savoir-faire collectif porté à son apogée.
+
+=== PARTIE 3 : Les grues et le silence ===
+
+[pause 3s] [murmure] Aujourd'hui, le bourdonnement s'est tu. [pause 2s] [émotion contenue] Seules les grues jaunes se dressent encore, sentinelles muettes d'un passé glorieux. [pause 1.5s] [ralentissement] Et la Loire, elle, coule toujours — [ton grave] immuable, indifférente aux rives qu'elle ne reconnaît plus. {murmure_eau_loire.wav}

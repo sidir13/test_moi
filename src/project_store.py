@@ -63,3 +63,10 @@ def list_project_audio_files(project_name: str) -> List[str]:
     if not audio_dir.exists():
         return []
     return sorted([f.name for f in audio_dir.iterdir() if f.is_file()])
+
+
+def get_project_audio_file(project_name: str, file_name: str) -> Path:
+    """Return the full path to an audio file within a project."""
+    audio_dir = _project_dir(project_name) / "audio"
+    audio_dir.mkdir(parents=True, exist_ok=True)
+    return audio_dir / file_name
