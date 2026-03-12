@@ -82,6 +82,12 @@ class ScenarioMakerSkill:
         if audio_transcriptions:
             self._inject_audio_transcriptions(config_data, audio_transcriptions)
 
+        # Inject citation / source usage preferences into config
+        include_citations = params.get("include_citations", True)
+        source_usage_level = params.get("source_usage_level", "modere")
+        config_data["include_citations"] = include_citations
+        config_data["source_usage_level"] = source_usage_level
+
         # Resolve the LLM model to use (e.g. "opus" → "anthropic/claude-opus-4-5")
         model_id = params.get("model_id")
         tts_provider = params.get("tts_provider", "qwen")

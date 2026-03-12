@@ -16,6 +16,8 @@ export function ProjectDetailsView() {
   const [voiceInstructions, setVoiceInstructions] = useState("");
   const [targetDuration, setTargetDuration] = useState(DEFAULT_DURATION_SECONDS);
   const [ttsProvider, setTtsProvider] = useState<"qwen" | "elevenlabs">("qwen");
+  const [includeCitations, setIncludeCitations] = useState(true);
+  const [sourceUsageLevel, setSourceUsageLevel] = useState<"leger" | "modere" | "central">("modere");
   const [status, setStatus] = useState<string | null>(null);
   const notesPrefilledFor = useRef<string | null>(null);
   const progressPrefilledFor = useRef<string | null>(null);
@@ -62,6 +64,11 @@ export function ProjectDetailsView() {
     setVoiceInstructions(profileQuery.data.voice_instructions ?? "");
     const providerValue = profileQuery.data.tts_provider === "elevenlabs" ? "elevenlabs" : "qwen";
     setTtsProvider(providerValue);
+    setIncludeCitations(profileQuery.data.include_citations !== false);
+    const savedSourceLevel = profileQuery.data.source_usage_level;
+    if (savedSourceLevel === "leger" || savedSourceLevel === "modere" || savedSourceLevel === "central") {
+      setSourceUsageLevel(savedSourceLevel);
+    }
     const fallbackDuration =
       profileQuery.data.target_duration ??
       durationSettings?.default ??
@@ -136,7 +143,9 @@ export function ProjectDetailsView() {
       tone: tone || undefined,
       target_duration: targetDuration,
       voice_instructions: voiceInstructions?.trim() || undefined,
-      tts_provider: ttsProvider
+      tts_provider: ttsProvider,
+      include_citations: includeCitations,
+      source_usage_level: sourceUsageLevel
     });
     setStatus("Notes enregistrées");
     setTimeout(() => setStatus(null), 2000);
@@ -224,6 +233,26 @@ export function ProjectDetailsView() {
             <small>La voix sera générée localement selon vos consignes textuelles.</small>
           )}
         </label>
+
+        <div className="preference-grid">
+          <label className="field-block">
+            <span>Utilisation des sources audio</span>
+            <select value={sourceUsageLevel} onChange={(e) => setSourceUsageLevel(e.target.value as "leger" | "modere" | "central")}>
+              <option value="leger">Léger — contexte uniquement</option>
+              <option value="modere">Modéré — sourcing équilibré</option>
+              <option value="central">Central — élément narratif majeur</option>
+            </select>
+            <small>Détermine l'importance des transcriptions dans le récit.</small>
+          </label>
+          <label className="field-block" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.5rem" }}>
+            <input
+              type="checkbox"
+              checked={includeCitations}
+              onChange={(e) => setIncludeCitations(e.target.checked)}
+            />
+            <span>Inclure les citations directes des sources</span>
+          </label>
+        </div>
 
         <label className="field-block slider-field">
           <div className="slider-header">
