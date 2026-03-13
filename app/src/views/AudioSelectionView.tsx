@@ -1,4 +1,4 @@
-import { DragEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { DragEvent, FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -11,7 +11,9 @@ import {
   fetchProjectAudio,
   fetchAudioSelection,
   saveAudioSelection,
-  fetchProjectProfile
+  fetchProjectProfile,
+  BackgroundSelection,
+  fetchVoicePreview
 } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
@@ -42,15 +44,21 @@ export function AudioSelectionView() {
   const [file, setFile] = useState<File | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [selectionError, setSelectionError] = useState<string | null>(null);
-  const [selectedBackgrounds, setSelectedBackgrounds] = useState<string[]>([]);
+  const [selectedAmbient, setSelectedAmbient] = useState<string | null>(null);
+  const [selectedPunctual, setSelectedPunctual] = useState<string[]>([]);
+  const [autoBackgrounds, setAutoBackgrounds] = useState(false);
   const [selectedVoices, setSelectedVoices] = useState<string[]>([]);
   const [selectedVoiceId, setSelectedVoiceId] = useState<string | null>(null);
+  const [voicePreviewUrls, setVoicePreviewUrls] = useState<Record<string, string>>({});
+  const [voicePreviewLoading, setVoicePreviewLoading] = useState<Record<string, boolean>>({});
+  const [voicePreviewErrors, setVoicePreviewErrors] = useState<Record<string, string | null>>({});
   const [backgroundTitle, setBackgroundTitle] = useState("");
   const [backgroundFile, setBackgroundFile] = useState<File | null>(null);
   const [backgroundStatus, setBackgroundStatus] = useState<string | null>(null);
   const [nextStatus, setNextStatus] = useState<string | null>(null);
   const hiddenBackgroundInput = useRef<HTMLInputElement | null>(null);
   const voicesRef = useRef<string[]>([]);
+  const voicePreviewUrlsRef = useRef<Record<string, string>>({});
   const { data: backgroundSounds } = useQuery({
     queryKey: ["background-sounds"],
     queryFn: () => fetchBackgroundSounds()
@@ -70,9 +78,9 @@ export function AudioSelectionView() {
     queryFn: () => fetchAudioSelection(sessionId!),
     enabled: Boolean(sessionId)
   });
-  const ttsProvider = profileQuery.data?.tts_provider === "elevenlabs" ? "elevenlabs" : "qwen";
+  const ttsProvider = profileQuery.data?.tts_provider === "qwen" ? "qwen" : "elevenlabs";
   const saveSelection = useMutation({
-    mutationFn: (payload: { voices: string[]; backgrounds: string[]; tts_voice_id?: string | null }) =>
+    mutationFn: (payload: { voices: string[]; backgrounds: BackgroundSelection; auto_backgrounds?: boolean; tts_voice_id?: string | null }) =>
       saveAudioSelection(sessionId!, { project_name: projectName!, ...payload }),
     onSuccess: (data) => {
       selectionQuery.refetch();
@@ -81,8 +89,17 @@ export function AudioSelectionView() {
       }
     }
   });
-  const persistSelection = (voices: string[], backgrounds: string[], voiceId?: string | null) => {
-    const payload: { voices: string[]; backgrounds: string[]; tts_voice_id?: string | null } = { voices, backgrounds };
+  const persistSelection = (
+    voices: string[],
+    backgrounds: BackgroundSelection,
+    voiceId?: string | null,
+    autoFlag = autoBackgrounds
+  ) => {
+    const payload: { voices: string[]; backgrounds: BackgroundSelection; auto_backgrounds?: boolean; tts_voice_id?: string | null } = {
+      voices,
+      backgrounds,
+      auto_backgrounds: autoFlag
+    };
     if (voiceId) {
       payload.tts_voice_id = voiceId;
     }
@@ -95,7 +112,10 @@ export function AudioSelectionView() {
 
   useEffect(() => {
     if (selectionQuery.data) {
-      setSelectedBackgrounds(selectionQuery.data.backgrounds || []);
+      const backgrounds = selectionQuery.data.backgrounds || { ambient: null, punctual: [] };
+      setSelectedAmbient(backgrounds.ambient ?? null);
+      setSelectedPunctual(backgrounds.punctual ?? []);
+      setAutoBackgrounds(Boolean(selectionQuery.data.auto_backgrounds));
       const voices = selectionQuery.data.voices || [];
       setSelectedVoices(voices);
       voicesRef.current = voices;
@@ -113,6 +133,14 @@ export function AudioSelectionView() {
     window.addEventListener("audio-selection-updated", handler);
     return () => window.removeEventListener("audio-selection-updated", handler);
   }, [selectionQuery]);
+  useEffect(() => {
+    voicePreviewUrlsRef.current = voicePreviewUrls;
+  }, [voicePreviewUrls]);
+  useEffect(() => {
+    return () => {
+      Object.values(voicePreviewUrlsRef.current).forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, []);
 
   const handleUpload = async (evt: FormEvent) => {
     evt.preventDefault();
@@ -158,11 +186,44 @@ export function AudioSelectionView() {
     setSelectionError(null);
     const normalized = value || null;
     setSelectedVoiceId(normalized);
-    persistSelection(selectedVoices, selectedBackgrounds, normalized);
+    persistSelection(
+      selectedVoices,
+      { ambient: selectedAmbient, punctual: selectedPunctual },
+      normalized
+    );
   };
 
-  const updateSelection = (voices: string[], backgrounds: string[]) => {
-    persistSelection(voices, backgrounds, selectedVoiceId);
+  const handlePreviewVoice = async (voiceId: string) => {
+    setVoicePreviewErrors((prev) => ({ ...prev, [voiceId]: null }));
+    setVoicePreviewLoading((prev) => ({ ...prev, [voiceId]: true }));
+    try {
+      const blob = await fetchVoicePreview(voiceId);
+      const url = URL.createObjectURL(blob);
+      setVoicePreviewUrls((prev) => {
+        const next = { ...prev };
+        if (prev[voiceId]) {
+          URL.revokeObjectURL(prev[voiceId]);
+        }
+        next[voiceId] = url;
+        return next;
+      });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Impossible de charger l'aperçu.";
+      setVoicePreviewErrors((prev) => ({ ...prev, [voiceId]: message }));
+    } finally {
+      setVoicePreviewLoading((prev) => ({ ...prev, [voiceId]: false }));
+    }
+  };
+
+  const handleVoiceCardSelect = (voiceId: string) => {
+    handleVoiceIdChange(voiceId);
+  };
+
+  const handleVoiceCardKeyDown = (voiceId: string, event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleVoiceCardSelect(voiceId);
+    }
   };
 
   const goNext = async () => {
@@ -179,7 +240,11 @@ export function AudioSelectionView() {
       setNextStatus("Validation des sources...");
       await advanceStep(sessionId, "audio_sources", {
         files: voices,
-        backgrounds: selectedBackgrounds,
+        backgrounds: {
+          ambient: selectedAmbient,
+          punctual: selectedPunctual
+        },
+        auto_backgrounds: autoBackgrounds,
         tts_voice_id: selectedVoiceId ?? undefined
       });
       updateProgress({ audioReady: true, transcriptionsReviewed: false });
@@ -193,25 +258,10 @@ export function AudioSelectionView() {
     }
   };
 
-  const toggleBackground = (sound: BackgroundSound) => {
-    setSelectionError(null);
-    setSelectedBackgrounds((prev) => {
-      let next = prev;
-      if (prev.includes(sound.path)) {
-        next = prev.filter((p) => p !== sound.path);
-      } else {
-        if (prev.length >= 2) {
-          setSelectionError("Vous pouvez choisir au maximum deux ambiances simultanées.");
-          next = prev;
-        } else {
-          next = [...prev, sound.path];
-        }
-      }
-      if (next !== prev) setSelectionError(null);
-      updateSelection(selectedVoices, next);
-      return next;
-    });
-  };
+  const currentBackgroundSelection = (): BackgroundSelection => ({
+    ambient: selectedAmbient,
+    punctual: selectedPunctual
+  });
 
   const toggleVoice = (track: string) => {
     setSelectedVoices((prev) => {
@@ -232,10 +282,83 @@ export function AudioSelectionView() {
       }
       setSelectionError(null);
       voicesRef.current = next;
-      updateSelection(next, selectedBackgrounds);
+      persistSelection(next, currentBackgroundSelection(), selectedVoiceId);
       updateProgress({ transcriptionsReviewed: false });
       return next;
     });
+  };
+
+  const handleAmbientSelect = (path: string | null) => {
+    setSelectionError(null);
+    setAutoBackgrounds(false);
+    const updatedPunctual = path ? selectedPunctual.filter((p) => p !== path) : selectedPunctual;
+    setSelectedPunctual(updatedPunctual);
+    setSelectedAmbient(path);
+    persistSelection(selectedVoices, { ambient: path, punctual: updatedPunctual }, selectedVoiceId, false);
+  };
+
+  const handlePunctualToggle = (path: string) => {
+    setSelectionError(null);
+    setAutoBackgrounds(false);
+    setSelectedPunctual((prev) => {
+      if (prev.includes(path)) {
+        const next = prev.filter((p) => p !== path);
+        persistSelection(selectedVoices, { ambient: selectedAmbient, punctual: next }, selectedVoiceId, false);
+        return next;
+      }
+      if (prev.length >= 2) {
+        setSelectionError("Vous pouvez ajouter au maximum deux sons ponctuels.");
+        return prev;
+      }
+      const next = [...prev, path];
+      if (selectedAmbient === path) {
+        setSelectedAmbient(null);
+      }
+      persistSelection(selectedVoices, { ambient: selectedAmbient === path ? null : selectedAmbient, punctual: next }, selectedVoiceId, false);
+      return next;
+    });
+  };
+
+  const applyAutoBackgroundSelection = (): boolean => {
+    if (!backgroundSounds?.length) {
+      setSelectionError("Aucune ambiance disponible pour la sélection automatique.");
+      return false;
+    }
+    const [ambientCandidate, ...rest] = backgroundSounds;
+    const ambientPath = ambientCandidate?.path ?? null;
+    const punctualPaths = rest.filter((sound) => sound.path !== ambientPath).slice(0, 2).map((sound) => sound.path);
+    setSelectedAmbient(ambientPath);
+    setSelectedPunctual(punctualPaths);
+    setAutoBackgrounds(true);
+    setSelectionError(null);
+    persistSelection(
+      selectedVoices,
+      { ambient: ambientPath, punctual: punctualPaths },
+      selectedVoiceId,
+      true
+    );
+    return true;
+  };
+
+  const handleAutoBackgroundSelection = () => {
+    applyAutoBackgroundSelection();
+  };
+
+  const handleAutoToggleChange = (enabled: boolean) => {
+    if (enabled) {
+      const success = applyAutoBackgroundSelection();
+      if (!success) {
+        setAutoBackgrounds(false);
+      }
+      return;
+    }
+    setAutoBackgrounds(false);
+    persistSelection(
+      selectedVoices,
+      currentBackgroundSelection(),
+      selectedVoiceId,
+      false
+    );
   };
 
   return (
@@ -318,20 +441,62 @@ export function AudioSelectionView() {
 
       <section className="card">
         <h3>Bibliothèque des sons d'ambiance</h3>
-        <p>Pré-écoutez et choisissez jusqu'à deux sons pour enrichir la scénarisation.</p>
+        <p>
+          Choisissez un fond continu (0 ou 1) et jusqu'à deux sons ponctuels pour rythmer votre narration.
+          Utilisez la sélection automatique pour laisser l'application proposer un mix de base.
+        </p>
         {selectionError && <p className="error">{selectionError}</p>}
+        <div className="background-actions-row">
+          <button type="button" onClick={handleAutoBackgroundSelection} disabled={!backgroundSounds?.length}>
+            Sélection automatique des ambiances
+          </button>
+          <label className="toggle-field">
+            <input
+              type="checkbox"
+              checked={autoBackgrounds}
+              onChange={(e) => handleAutoToggleChange(e.target.checked)}
+            />
+            Mode auto (mise à jour continue)
+          </label>
+          {autoBackgrounds && <span className="hint">Sélection automatique active</span>}
+        </div>
+        <div className="ambient-none-option">
+          <label>
+            <input
+              type="radio"
+              name="ambient-choice"
+              checked={!selectedAmbient}
+              onChange={() => handleAmbientSelect(null)}
+            />
+            Aucun fond continu
+          </label>
+        </div>
         <div className="background-library">
           {backgroundSounds?.map((sound) => (
             <div key={sound.path} className="background-item">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={selectedBackgrounds.includes(sound.path)}
-                  onChange={() => toggleBackground(sound)}
-                />
-                {sound.name}
-              </label>
-              <audio controls src={sound.preview} />
+              <div className="background-header">
+                <strong>{sound.name}</strong>
+                <audio controls src={sound.preview} />
+              </div>
+              <div className="background-selectors">
+                <label>
+                  <input
+                    type="radio"
+                    name="ambient-choice"
+                    checked={selectedAmbient === sound.path}
+                    onChange={() => handleAmbientSelect(sound.path)}
+                  />
+                  Fond continu
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={selectedPunctual.includes(sound.path)}
+                    onChange={() => handlePunctualToggle(sound.path)}
+                  />
+                  Son ponctuel
+                </label>
+              </div>
             </div>
           ))}
           {!backgroundSounds?.length && <p>Aucun son trouvé. Ajoutez-en via l'upload ci-dessus.</p>}
@@ -339,23 +504,66 @@ export function AudioSelectionView() {
       </section>
 
       {ttsProvider === "elevenlabs" && (
-        <section className="card">
-          <h3>Choisir une voix ElevenLabs</h3>
-          <p>Ces voix sont codées en dur pour l’instant. Sélectionnez celle qui correspond le mieux à votre narration.</p>
-          <label className="field-block">
-            <span>Voix disponible</span>
-            <select
-              value={selectedVoiceId ?? ""}
-              onChange={(e) => handleVoiceIdChange(e.target.value)}
-            >
-              <option value="">Sélectionner une voix</option>
-              {ELEVEN_LABS_VOICE_OPTIONS.map((voice) => (
-                <option key={voice.id} value={voice.id}>
-                  {voice.label}
-                </option>
-              ))}
-            </select>
-          </label>
+        <section className="card voice-selection-card">
+          <div className="voice-selection-header">
+            <div>
+              <h3>Choisir une voix ElevenLabs</h3>
+              <p>Écoutez un extrait de chaque voix et touchez la carte pour la sélectionner.</p>
+            </div>
+          </div>
+          <div className="voice-grid">
+            {ELEVEN_LABS_VOICE_OPTIONS.map((voice, index) => {
+              const isSelected = selectedVoiceId === voice.id;
+              return (
+                <div
+                  key={voice.id}
+                  className={`voice-card${isSelected ? " selected" : ""}`}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleVoiceCardSelect(voice.id)}
+                  onKeyDown={(event) => handleVoiceCardKeyDown(voice.id, event)}
+                >
+                  <input
+                    type="radio"
+                    name="voice-choice"
+                    checked={isSelected}
+                    readOnly
+                    className="sr-only"
+                  />
+                  <div className="voice-card-header">
+                    <span className="voice-pill">Voix {index + 1}</span>
+                    <span
+                      className={`voice-select-indicator${isSelected ? " active" : ""}`}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div className="voice-card-actions">
+                    <button
+                      type="button"
+                      className="voice-preview-button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handlePreviewVoice(voice.id);
+                      }}
+                      disabled={Boolean(voicePreviewLoading[voice.id])}
+                      aria-label={`Écouter la voix ${index + 1}`}
+                    >
+                      {voicePreviewLoading[voice.id] ? "…" : "▶"}
+                    </button>
+                    {voicePreviewErrors[voice.id] && <p className="error tiny">{voicePreviewErrors[voice.id]}</p>}
+                    {voicePreviewUrls[voice.id] && (
+                      <audio
+                        controls
+                        src={voicePreviewUrls[voice.id]}
+                        preload="none"
+                        onClick={(event) => event.stopPropagation()}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </section>
       )}
 

@@ -72,9 +72,15 @@ export type ProjectProfile = {
   audio_selection?: AudioSelection;
 };
 
+export type BackgroundSelection = {
+  ambient?: string | null;
+  punctual: string[];
+};
+
 export type AudioSelection = {
   voices: string[];
-  backgrounds: string[];
+  backgrounds: BackgroundSelection;
+  auto_backgrounds?: boolean;
   tts_voice_id?: string | null;
   tts_provider?: string;
 };
@@ -193,6 +199,14 @@ export async function generateScenarios(
 export async function fetchProjectAudio(projectName: string) {
   const { data } = await api.get(`/projects/${projectName}/audio`);
   return data.files as string[];
+}
+
+export async function fetchVoicePreview(voiceId: string): Promise<Blob> {
+  const response = await api.get("/tts/preview", {
+    params: { voice_id: voiceId },
+    responseType: "blob"
+  });
+  return response.data as Blob;
 }
 
 export async function fetchAudioSelection(sessionId: string) {

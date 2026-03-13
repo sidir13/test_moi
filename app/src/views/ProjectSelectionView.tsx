@@ -81,7 +81,7 @@ const DownloadIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path
       fill="currentColor"
-      d="M5 20h14v-2H5v2zm7-18l-5.5 5.5h4v6h3v-6h4L12 2z"
+      d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"
     />
   </svg>
 );

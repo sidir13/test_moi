@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Les chantiers endormis — Une journée sur les bords de Loire",
+  "taggedText": "=== PARTIE 1 : L'aube des chantiers ===\n\n{brume_loire_aube.wav}\n\n[ton grave] Imaginez l'aube sur la Loire, aux alentours de 1950. [pause 2s] Les chantiers navals de Nantes s'éveillent. Un bourdonnement sourd monte des cales — [ralentissement] soudeurs et charpentiers, mains expertes, façonnent des coques immenses dans la lumière rasante du matin.\n\n=== PARTIE 2 : Le zénith — naissance d'un géant ===\n\n{martellement_rivets_cale.wav}\n\nEt de ce labeur quotidien, [pause 1s] un géant naît. En 1960, le Paquebot France glisse hors de ces mêmes cales : [ton solennel] cent six mille tonnes de rêves et d'acier, fierté nationale forgée rivet après rivet. [émotion contenue] L'apogée d'un savoir-faire porté à incandescence.\n\n=== PARTIE 3 : Le crépuscule des grues ===\n\n{vent_rives_desertes.wav}\n\n[pause 2s] Aujourd'hui, le soir tombe sur des rives muettes. [murmure] Les cales sont vides, les voix se sont tues. Seules les grues jaunes demeurent, sentinelles immobiles d'un passé glorieux — [ralentissement] témoins obstinés de ce que la mémoire collective refuse encore d'abandonner.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube des chantiers",
+      "taggedText": "{brume_loire_aube.wav}\n\n[ton grave] Imaginez l'aube sur la Loire, aux alentours de 1950. [pause 2s] Les chantiers navals de Nantes s'éveillent. Un bourdonnement sourd monte des cales — [ralentissement] soudeurs et charpentiers, mains expertes, façonnent des coques immenses dans la lumière rasante du matin."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le zénith — naissance d'un géant",
+      "taggedText": "{martellement_rivets_cale.wav}\n\nEt de ce labeur quotidien, [pause 1s] un géant naît. En 1960, le Paquebot France glisse hors de ces mêmes cales : [ton solennel] cent six mille tonnes de rêves et d'acier, fierté nationale forgée rivet après rivet. [émotion contenue] L'apogée d'un savoir-faire porté à incandescence."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le crépuscule des grues",
+      "taggedText": "{vent_rives_desertes.wav}\n\n[pause 2s] Aujourd'hui, le soir tombe sur des rives muettes. [murmure] Les cales sont vides, les voix se sont tues. Seules les grues jaunes demeurent, sentinelles immobiles d'un passé glorieux — [ralentissement] témoins obstinés de ce que la mémoire collective refuse encore d'abandonner."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 9,
+    "soundTags": 3,
+    "originalWordCount": 122
+  }
+}

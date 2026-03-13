@@ -15,7 +15,7 @@ export function ProjectDetailsView() {
   const [tone, setTone] = useState("");
   const [voiceInstructions, setVoiceInstructions] = useState("");
   const [targetDuration, setTargetDuration] = useState(DEFAULT_DURATION_SECONDS);
-  const [ttsProvider, setTtsProvider] = useState<"qwen" | "elevenlabs">("qwen");
+  const [ttsProvider, setTtsProvider] = useState<"qwen" | "elevenlabs">("elevenlabs");
   const [status, setStatus] = useState<string | null>(null);
   const notesPrefilledFor = useRef<string | null>(null);
   const progressPrefilledFor = useRef<string | null>(null);
@@ -60,7 +60,7 @@ export function ProjectDetailsView() {
     setAudience(profileQuery.data.audience ?? "");
     setTone(profileQuery.data.tone ?? "");
     setVoiceInstructions(profileQuery.data.voice_instructions ?? "");
-    const providerValue = profileQuery.data.tts_provider === "elevenlabs" ? "elevenlabs" : "qwen";
+    const providerValue = profileQuery.data.tts_provider === "qwen" ? "qwen" : "elevenlabs";
     setTtsProvider(providerValue);
     const fallbackDuration =
       profileQuery.data.target_duration ??
@@ -130,6 +130,10 @@ export function ProjectDetailsView() {
       .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
       .join(" ");
 
+  const isElevenLabsProvider = ttsProvider === "elevenlabs";
+  const toggleProvider = () => {
+    setTtsProvider((prev) => (prev === "elevenlabs" ? "qwen" : "elevenlabs"));
+  };
   const handleSubmit = async (evt: FormEvent) => {
     evt.preventDefault();
     setStatus("Envoi en cours...");
@@ -199,33 +203,24 @@ export function ProjectDetailsView() {
         </label>
         <label className="field-block">
           <span>Moteur de synthèse vocale</span>
-          <div className="radio-row">
-            <label>
-              <input
-                type="radio"
-                name="tts-provider"
-                value="qwen"
-                checked={ttsProvider === "qwen"}
-                onChange={() => setTtsProvider("qwen")}
-              />
-              Qwen local (instructions textuelles)
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="tts-provider"
-                value="elevenlabs"
-                checked={ttsProvider === "elevenlabs"}
-                onChange={() => setTtsProvider("elevenlabs")}
-              />
-              ElevenLabs (voix pré-définies)
-            </label>
+          <div className="provider-switch">
+            <span className={`provider-label ${!isElevenLabsProvider ? "active" : ""}`}>Qwen local</span>
+            <button
+              type="button"
+              className={`switch-toggle ${isElevenLabsProvider ? "on" : ""}`}
+              onClick={toggleProvider}
+              aria-pressed={isElevenLabsProvider}
+              aria-label="Basculer entre Qwen local et ElevenLabs"
+            >
+              <span className="thumb" />
+            </button>
+            <span className={`provider-label ${isElevenLabsProvider ? "active" : ""}`}>ElevenLabs</span>
           </div>
-          {ttsProvider === "elevenlabs" ? (
-            <small>La voix sera choisie à l’étape suivante parmi la liste ElevenLabs disponible.</small>
-          ) : (
-            <small>La voix sera générée localement selon vos consignes textuelles.</small>
-          )}
+          <p className="field-hint">
+            {isElevenLabsProvider
+              ? "Voix ElevenLabs hébergées (qualité et expressivité maximales)."
+              : "Synthèse locale Qwen : aucune dépendance cloud, voix générée d'après vos consignes."}
+          </p>
         </label>
 
         <label className="field-block slider-field">
