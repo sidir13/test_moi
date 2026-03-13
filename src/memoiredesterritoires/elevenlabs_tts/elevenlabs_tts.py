@@ -127,7 +127,7 @@ def eleven_labs_tts(
                     fh.write(piece)
 
     return {
-        "status": "generated",
+        "status": "done",
         "path": str(target_path),
         "voice_id": voice_id,
         "model_id": model_id,
