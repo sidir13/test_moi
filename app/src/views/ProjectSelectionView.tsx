@@ -28,8 +28,18 @@ const deriveProgressFromSession = (
   const selectedScenario = session?.selected_scenario;
   const audioMeta = session?.scenario_audio;
   const audioSources = steps && typeof steps === "object" ? (steps as any).audio_sources : undefined;
+  const transcriptionStepDone = Boolean(steps && (steps as any).transcription_review);
+  const progressedBeyondTranscription =
+    Boolean(
+      (steps as any)?.scenario_review ||
+        (steps as any)?.scenario_edit ||
+        (steps as any)?.final_validation
+    ) ||
+    Boolean(selectedScenario) ||
+    Boolean(audioMeta?.path);
   return {
     audioReady: Boolean(audioSources || audioMeta?.path),
+    transcriptionsReviewed: transcriptionStepDone || progressedBeyondTranscription,
     scenariosReady: Boolean(storedScenarios.length > 0 || selectedScenario),
     scenarioChosen: Boolean(selectedScenario),
     scenarioEdited: requireFreshEdit ? false : Boolean(audioMeta?.path)
@@ -71,7 +81,7 @@ const DownloadIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path
       fill="currentColor"
-      d="M5 20h14v-2H5v2zm7-18l-5.5 5.5h4v6h3v-6h4L12 2z"
+      d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"
     />
   </svg>
 );

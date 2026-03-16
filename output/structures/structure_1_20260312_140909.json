@@ -1,0 +1,78 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les chantiers endormis — Une journée sur les bords de Loire",
+  "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes incarnaient autrefois une effervescence industrielle quotidienne. Dès l'aube, soudeurs et charpentiers façonnaient des coques immenses, donnant naissance en 1960 au Paquebot France, 106 000 tonnes de rêves et d'acier. Ce récit retrace une journée type de cette époque révolue — du matin vibrant d'activité au crépuscule silencieux d'aujourd'hui — pour mesurer l'épaisseur de ce qui a disparu. À travers le passage des heures se dessine le passage du temps, et les grues jaunes qui subsistent deviennent les sentinelles muettes d'une mémoire collective en sursis.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 40,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube des chantiers",
+      "duree_cible": 14.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "éveil_nostalgique",
+      "elements_necessaires": [
+        "Loire années 1950",
+        "chantiers navals de Nantes",
+        "activité bourdonnante dès le matin",
+        "gestes des soudeurs et charpentiers",
+        "coques immenses en construction"
+      ],
+      "mood": "dramatique, concret, sensoriel — bruits de métal, lumière matinale sur le fleuve"
+    },
+    {
+      "partie": 2,
+      "titre": "Le zénith — naissance d'un géant",
+      "duree_cible": 14.0,
+      "fonction_narrative": "climax_emotionnel",
+      "position_arc_emotionnel": "fierté_culminante",
+      "elements_necessaires": [
+        "Paquebot France né en 1960",
+        "106 000 tonnes de rêves et d'acier",
+        "fierté nationale",
+        "apogée du labeur quotidien",
+        "transformation de la matière brute en symbole"
+      ],
+      "mood": "épique, solennel — crescendo dramatique, le travail du matin trouve son accomplissement"
+    },
+    {
+      "partie": 3,
+      "titre": "Le crépuscule des grues",
+      "duree_cible": 12.0,
+      "fonction_narrative": "resolution_elegique",
+      "position_arc_emotionnel": "mélancolie_contemplative",
+      "elements_necessaires": [
+        "aujourd'hui — silence des chantiers",
+        "grues jaunes comme derniers témoins",
+        "passé glorieux révolu",
+        "perte et mémoire collective",
+        "suspension émotionnelle finale"
+      ],
+      "mood": "élégiaque, suspendu — le soir tombe sur ce qui n'existe plus"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_vers_elegie",
+  "rythme_general": "Progression du concret sensoriel (matin, gestes) vers l'abstraction mémorielle (crépuscule, absence). Le rythme s'accélère au zénith puis ralentit délibérément dans la dernière section pour laisser résonner la perte.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "amplification_narrative",
+      "duree": 1.5,
+      "description": "Du labeur quotidien des ouvriers à l'objet monumental qu'ils engendrent — la transition s'opère par élévation du regard, des mains au travail vers la coque achevée. Pas de rupture : le geste du matin accouche du géant."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "basculement_temporel",
+      "duree": 2.0,
+      "description": "Rupture temporelle douce : du passé glorieux au présent silencieux. Un marqueur temporel explicite ('Aujourd'hui') opère le basculement. Le ton passe de l'épique au contemplatif sans brutalité — comme un fondu sonore du vacarme des chantiers vers le silence du fleuve."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit l'arc d'une journée type (matin → midi → soir) qui se superpose à l'arc historique (activité → apogée → disparition). Cette double temporalité — la journée et l'époque — doit rester implicite, ressentie plutôt qu'explicitée. Le registre est universitaire : phrases complexes mais fluides, lexique précis (ne pas simplifier 'charpentiers' ou '106 000 tonnes'). Le ton dramatique immersif est constant — jamais didactique, toujours incarné. La voix off omnisciente ne s'adresse jamais directement à l'auditeur mais peut utiliser des invitations immersives ('Imaginez…'). L'archive audio disponible couvre l'ensemble du récit ; le scénariste peut s'en inspirer directement tout en restructurant selon l'angle journée type. Ratio narration/archives : 0.7 — la voix off domine, les éléments d'archive (ambiances, citations) viennent ponctuer. Aucun fait inventé : seuls les éléments présents dans le contexte (Loire, Nantes, chantiers navals, soudeurs, charpentiers, Paquebot France, 1960, 106 000 tonnes, grues jaunes) sont mobilisés."
+}

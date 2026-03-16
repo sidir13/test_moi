@@ -13,13 +13,13 @@ import tempfile
 from functools import lru_cache
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple, TypedDict
 from urllib.parse import quote
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, WebSocket, WebSocketDisconnect, Query, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, PlainTextResponse
 from pydantic import BaseModel, Field
 
 logging.basicConfig(
@@ -35,6 +35,7 @@ from memoiredesterritoires.text_to_speech_with_instructions.text_to_speech_with_
 )
 from memoiredesterritoires.elevenlabs_tts.elevenlabs_tts import eleven_labs_tts
 from memoiredesterritoires.transcription.transcription_parallelized import transcribe_audio
+from memoiredesterritoires.transcription.transcription_sum import summarize_transcript_robust
 from memoiredesterritoires.analysis_storage.analysis_storage import save_analysis_result, fetch_analysis_results
 from memoiredesterritoires.Slideshow.slides import slideshow
 from memoiredesterritoires.project_config import (
@@ -48,6 +49,7 @@ from project_store import (
     load_audio_selection,
     save_audio_selection,
     list_project_audio_files,
+    get_project_audio_file,
 )
 from pydub import AudioSegment
 
@@ -73,12 +75,17 @@ def _tts_model_ready() -> bool:
     return _TTS_READY_FILE.exists()
 
 SCENARIO_DEFAULT_CONFIG_PATH = Path(os.getenv("SCENARIO_DEFAULT_CONFIG", "config/default_config.json")).expanduser()
-BACKGROUND_ATTENUATION_DB = 20 * math.log10(0.15)  # ≈ -16.48 dB
+PUNCTUAL_GAIN_DB = -24.0
+AMBIENT_GAIN_DB = -30.0
 BACKGROUND_PLAN_MODEL = os.getenv("BACKGROUND_PLAN_MODEL", "anthropic/claude-sonnet-4-5")
 VOICE_TRANSLATION_MODEL = os.getenv("VOICE_TRANSLATION_MODEL", "anthropic/claude-3-haiku-20240307")
-MIN_BACKGROUND_SEGMENT = 5.0
-MAX_BACKGROUND_SEGMENT = 10.0
-BACKGROUND_SEGMENT_GAP = 0.5
+PUNCTUAL_MIN_DURATION = 6.0
+PUNCTUAL_MAX_DURATION = 10.0
+PUNCTUAL_GAP_SECONDS = 1.0
+PUNCTUAL_START_MIN = 3.0
+PUNCTUAL_END_PADDING = 5.0
+AMBIENT_START_OFFSET = 4.0
+AMBIENT_END_PADDING = 5.0
 _background_plan_client: Optional[ClaudeClient] = None
 _voice_translation_client: Optional[ClaudeClient] = None
 FRENCH_HINT_KEYWORDS = {
@@ -97,6 +104,23 @@ FRENCH_HINT_KEYWORDS = {
     "lent",
     "accent",
 }
+VOICE_PREVIEW_TEXT = (
+    "Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité. "
+    "Des coques immenses prenaient forme sous les mains expertes des soudeurs et des "
+    "charpentiers. Le Paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes "
+    "de rêves et d'acier. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+)
+ELEVENLABS_DEFAULT_VOICE_IDS = [
+    "5l4ttmr4SKNgi0HnOelT",
+    "flHkNRp1BlvT73UL6gyz",
+    "jK7dAsiVAhbApIS8KkWB",
+    "NOpBlnGInO9m6vDvFkFC",
+    "jUHQdLfy668sllNiNTSW",
+    "tKaoyJLW05zqV0tIH9FD",
+    "T4BwQ2ZwlS2BbHIfci4H",
+    "GYzIdoKkRyANjBvkKYfO",
+    "TojRWZatQyy9dujEdiQ1",
+]
 
 
 @lru_cache(maxsize=1)
@@ -188,84 +212,335 @@ def _extract_json_array(payload: str) -> List[Dict[str, Any]]:
     return []
 
 
-def _fallback_background_plan(duration_seconds: float, background_count: int) -> List[Dict[str, float]]:
-    if background_count <= 0 or duration_seconds <= 0:
-        return []
-    slot_duration = min(MAX_BACKGROUND_SEGMENT, max(MIN_BACKGROUND_SEGMENT, duration_seconds * 0.1))
-    spacing = duration_seconds / (background_count + 1)
-    plan: List[Dict[str, float]] = []
-    for idx in range(background_count):
-        start = spacing * (idx + 1) - slot_duration / 2
-        start = max(0.0, min(start, max(0.0, duration_seconds - slot_duration)))
-        plan.append(
+def _extract_json_object(payload: str) -> Dict[str, Any]:
+    try:
+        parsed = json.loads(payload)
+        if isinstance(parsed, dict):
+            return parsed
+    except json.JSONDecodeError:
+        pass
+    match = re.search(r"\{[\s\S]+\}", payload)
+    if match:
+        try:
+            parsed = json.loads(match.group(0))
+            if isinstance(parsed, dict):
+                return parsed
+        except json.JSONDecodeError:
+            return {}
+    return {}
+
+
+def _voice_preview_directory(settings: AppSettings) -> Path:
+    return (Path.cwd() / settings.data_dir / "generated_speech" / "voice_previews").resolve()
+
+
+def _voice_preview_path(settings: AppSettings, voice_id: str) -> Path:
+    normalized = voice_id.strip()
+    if not normalized:
+        raise ValueError("voice_id must not be empty")
+    preview_root = _voice_preview_directory(settings)
+    preview_root.mkdir(parents=True, exist_ok=True)
+    safe_name = re.sub(r"[^A-Za-z0-9_-]+", "_", normalized)
+    return preview_root / f"{safe_name}.mp3"
+
+
+async def _ensure_voice_preview_file(settings: AppSettings, voice_id: str) -> Path:
+    preview_path = _voice_preview_path(settings, voice_id)
+    if preview_path.exists():
+        return preview_path
+    loop = asyncio.get_running_loop()
+
+    def _generate() -> None:
+        eleven_labs_tts(
+            text=VOICE_PREVIEW_TEXT,
+            voice_id=voice_id.strip(),
+            output_path=str(preview_path),
+        )
+
+    try:
+        await loop.run_in_executor(None, _generate)
+        log_progress(
+            "TTS_PREVIEW_GENERATED",
+            voice=voice_id,
+            path=str(preview_path),
+        )
+    except Exception:
+        if preview_path.exists():
+            try:
+                preview_path.unlink()
+            except OSError:
+                pass
+        raise
+    return preview_path
+
+
+def _match_background_choice(choice: Optional[str], candidates: List[str]) -> Optional[str]:
+    if not choice:
+        return None
+    normalized = choice.strip()
+    if not normalized:
+        return None
+    for candidate in candidates:
+        if normalized == candidate:
+            return candidate
+        if normalized == Path(candidate).name:
+            return candidate
+    return None
+
+
+def _fallback_mix_plan(
+    duration_seconds: float,
+    ambient_path: Optional[str],
+    punctual_paths: List[str],
+) -> Dict[str, Any]:
+    plan: Dict[str, Any] = {"ambient": None, "punctual": []}
+    if duration_seconds <= 0:
+        return plan
+
+    if ambient_path and duration_seconds > (AMBIENT_START_OFFSET + AMBIENT_END_PADDING + 1.0):
+        start = max(0.0, min(AMBIENT_START_OFFSET, duration_seconds - AMBIENT_END_PADDING - 1.0))
+        end = max(start + PUNCTUAL_MIN_DURATION, duration_seconds - AMBIENT_END_PADDING)
+        end = min(end, max(start + 1.0, duration_seconds - 0.2))
+        plan["ambient"] = {
+            "file": ambient_path,
+            "start_seconds": round(start, 3),
+            "end_seconds": round(end, 3),
+            "gain_db": AMBIENT_GAIN_DB,
+            "note": "Fallback fond continu",
+        }
+
+    window = max(0.0, duration_seconds - (PUNCTUAL_START_MIN + PUNCTUAL_END_PADDING))
+    if not punctual_paths or window <= PUNCTUAL_MIN_DURATION:
+        return plan
+
+    spacing = window / (len(punctual_paths) + 1)
+    slot_duration = min(
+        PUNCTUAL_MAX_DURATION,
+        max(PUNCTUAL_MIN_DURATION, duration_seconds * 0.08),
+    )
+    last_end = 0.0
+    for idx, path in enumerate(punctual_paths):
+        start = PUNCTUAL_START_MIN + spacing * (idx + 1) - slot_duration / 2
+        start = max(PUNCTUAL_START_MIN, start)
+        max_start = max(PUNCTUAL_START_MIN, duration_seconds - PUNCTUAL_END_PADDING - slot_duration)
+        start = min(start, max_start)
+        if start < last_end + PUNCTUAL_GAP_SECONDS:
+            start = last_end + PUNCTUAL_GAP_SECONDS
+        if start + slot_duration > duration_seconds - 0.2:
+            break
+        last_end = start + slot_duration
+        plan["punctual"].append(
             {
-                "background_index": idx,
-                "start_seconds": start,
-                "duration_seconds": slot_duration,
-                "note": "Fallback placement",
+                "file": path,
+                "start_seconds": round(start, 3),
+                "duration_seconds": round(slot_duration, 3),
+                "gain_db": PUNCTUAL_GAIN_DB,
+                "note": "Fallback son ponctuel",
             }
         )
     return plan
 
 
-def _sanitize_background_plan(
-    raw_plan: List[Dict[str, Any]],
+def _sanitize_mix_plan(
+    raw_plan: Dict[str, Any],
     duration_seconds: float,
-    background_count: int,
-) -> List[Dict[str, float]]:
-    if duration_seconds <= 0 or background_count <= 0:
-        return []
-    sanitized: List[Dict[str, float]] = []
-    used_indexes: set[int] = set()
-    last_end = 0.0
-    for entry in sorted(raw_plan, key=lambda item: float(item.get("start_seconds", 0.0))):
-        try:
-            idx = int(entry.get("background_index"))
-        except (TypeError, ValueError):
-            continue
-        if idx < 0 or idx >= background_count or idx in used_indexes:
-            continue
-        try:
-            start = float(entry.get("start_seconds", 0.0))
-        except (TypeError, ValueError):
-            start = 0.0
-        try:
-            duration = float(entry.get("duration_seconds", MIN_BACKGROUND_SEGMENT))
-        except (TypeError, ValueError):
-            duration = MIN_BACKGROUND_SEGMENT
-        duration = max(MIN_BACKGROUND_SEGMENT, min(MAX_BACKGROUND_SEGMENT, duration))
-        if start < last_end + BACKGROUND_SEGMENT_GAP:
-            start = last_end + BACKGROUND_SEGMENT_GAP
-        if start + duration > duration_seconds:
-            start = max(0.0, duration_seconds - duration)
-        if start < last_end + BACKGROUND_SEGMENT_GAP:
-            continue
-        if start + duration > duration_seconds or duration < MIN_BACKGROUND_SEGMENT:
-            continue
-        note = entry.get("note") or entry.get("context") or entry.get("moment")
-        sanitized.append(
-            {
-                "background_index": idx,
+    ambient_path: Optional[str],
+    punctual_paths: List[str],
+) -> Dict[str, Any]:
+    sanitized: Dict[str, Any] = {"ambient": None, "punctual": []}
+    if duration_seconds <= 0:
+        return sanitized
+
+    ambient_data = raw_plan.get("fond_continu") or raw_plan.get("ambient")
+    ambient_options = [ambient_path] if ambient_path else []
+    if isinstance(ambient_data, dict) and ambient_options:
+        matched = _match_background_choice(ambient_data.get("file"), ambient_options)
+        if matched:
+            try:
+                start = float(ambient_data.get("start_seconds", AMBIENT_START_OFFSET))
+            except (TypeError, ValueError):
+                start = AMBIENT_START_OFFSET
+            try:
+                end = float(ambient_data.get("end_seconds", 0.0))
+            except (TypeError, ValueError):
+                end = 0.0
+            if end <= 0:
+                try:
+                    duration_value = float(ambient_data.get("duration_seconds", 0.0))
+                except (TypeError, ValueError):
+                    duration_value = 0.0
+                end = start + max(duration_value, duration_seconds - AMBIENT_END_PADDING - start)
+            start = max(0.0, min(start, max(0.0, duration_seconds - 1.0)))
+            end = min(max(start + 1.0, end), duration_seconds - 0.1)
+            try:
+                gain = float(ambient_data.get("gain_db", AMBIENT_GAIN_DB))
+            except (TypeError, ValueError):
+                gain = AMBIENT_GAIN_DB
+            note = ambient_data.get("note")
+            sanitized["ambient"] = {
+                "file": matched,
                 "start_seconds": round(start, 3),
-                "duration_seconds": round(duration, 3),
+                "end_seconds": round(end, 3),
+                "gain_db": gain,
                 "note": note.strip() if isinstance(note, str) else None,
             }
-        )
-        used_indexes.add(idx)
-        last_end = start + duration
-        if len(sanitized) >= background_count:
-            break
+
+    raw_punctual = raw_plan.get("sons_ponctuels") or raw_plan.get("punctual") or raw_plan.get("sons")
+    if isinstance(raw_punctual, list):
+        last_end = 0.0
+        used_files: set[str] = set()
+        for entry in sorted(raw_punctual, key=lambda item: float(item.get("start_seconds", 0.0))):
+            if len(sanitized["punctual"]) >= len(punctual_paths):
+                break
+            if not isinstance(entry, dict):
+                continue
+            matched = _match_background_choice(entry.get("file"), punctual_paths)
+            if not matched or matched in used_files:
+                continue
+            try:
+                start = float(entry.get("start_seconds", PUNCTUAL_START_MIN))
+            except (TypeError, ValueError):
+                start = PUNCTUAL_START_MIN
+            try:
+                duration = float(entry.get("duration_seconds", PUNCTUAL_MIN_DURATION))
+            except (TypeError, ValueError):
+                duration = PUNCTUAL_MIN_DURATION
+            duration = max(PUNCTUAL_MIN_DURATION, min(PUNCTUAL_MAX_DURATION, duration))
+            start = max(PUNCTUAL_START_MIN, start)
+            max_start = max(PUNCTUAL_START_MIN, duration_seconds - PUNCTUAL_END_PADDING - duration)
+            start = min(start, max_start)
+            if start < last_end + PUNCTUAL_GAP_SECONDS:
+                start = last_end + PUNCTUAL_GAP_SECONDS
+            if start + duration > duration_seconds - 0.1:
+                continue
+            try:
+                gain = float(entry.get("gain_db", PUNCTUAL_GAIN_DB))
+            except (TypeError, ValueError):
+                gain = PUNCTUAL_GAIN_DB
+            note = entry.get("note") or entry.get("commentaire")
+            sanitized["punctual"].append(
+                {
+                    "file": matched,
+                    "start_seconds": round(start, 3),
+                    "duration_seconds": round(duration, 3),
+                    "gain_db": gain,
+                    "note": note.strip() if isinstance(note, str) else None,
+                }
+            )
+            used_files.add(matched)
+            last_end = start + duration
+
     return sanitized
 
 
-def plan_background_segments(
-    scenario_text: Optional[str],
+def _build_background_prompt(
+    voice_path: Path,
     duration_seconds: float,
-    background_files: List[Path],
-) -> List[Dict[str, float]]:
-    background_count = len(background_files)
-    if background_count == 0 or duration_seconds <= MIN_BACKGROUND_SEGMENT:
-        return []
+    scenario_excerpt: str,
+    ambient_path: Optional[str],
+    punctual_paths: List[str],
+) -> str:
+    try:
+        voice_display = voice_path.relative_to(Path.cwd())
+    except ValueError:
+        voice_display = voice_path
+    lines = [
+        "Tu dois créer un mix audio professionnel pour renforcer une narration historique.",
+        f"Durée approximative de la voix : {duration_seconds:.1f} secondes.",
+        "",
+        "**Fichiers sources :**",
+        f"- Voix : {voice_display}",
+    ]
+    if ambient_path:
+        lines.append(f"- Fond continu potentiel : {ambient_path}")
+    if punctual_paths:
+        lines.append("**Sons ponctuels disponibles (copie exactement les chemins ci-dessous) :**")
+        for path in punctual_paths:
+            lines.append(f"- {path}")
+    if scenario_excerpt:
+        lines.append("")
+        lines.append("**Extrait de la narration :**")
+        lines.append(scenario_excerpt)
+
+    if punctual_paths:
+        lines.append("")
+        lines.append("**Étape 1 — Sons ponctuels :**")
+        lines.append("Sélectionne entre 0 et 2 sons ponctuels parmi la liste fournie.")
+        lines.append("- Durée : entre 6 et 10 secondes")
+        lines.append("- Volume : 24 dB en dessous de la voix")
+        lines.append("- Placement : après 3 s et au plus tard 5 s avant la fin, sans chevauchement, espacé d'au moins 1 s")
+        lines.append("- Répartis-les entre début / milieu / fin en fonction du récit.")
+
+    if ambient_path:
+        lines.append("")
+        lines.append("**Étape 2 — Fond continu :**")
+        lines.append("Utilise le fond continu disponible.")
+        lines.append("- Démarre à 4 s")
+        lines.append("- Termine 5 s avant la fin de la narration")
+        lines.append("- Volume : 30 dB en dessous de la voix")
+
+    lines.append("")
+    lines.append("**Contraintes :**")
+    lines.append("- N'invente aucun autre fichier audio.")
+    lines.append("- Si un type n'est pas disponible, retourne null ou une liste vide pour ce type.")
+    lines.append("- Ne renvoie que la structure JSON.")
+
+    lines.append("")
+    lines.append("**Format de réponse (JSON strict) :**")
+    lines.append("{")
+    lines.append('  "fond_continu": {')
+    lines.append('    "file": "chemin_exact",')
+    lines.append('    "start_seconds": 4.0,')
+    lines.append('    "end_seconds": 120.0,')
+    lines.append('    "gain_db": -30,')
+    lines.append('    "note": "raison du placement"')
+    lines.append("  } ou null,")
+    lines.append('  "sons_ponctuels": [')
+    lines.append("    {")
+    lines.append('      "file": "chemin_exact",')
+    lines.append('      "start_seconds": 9.5,')
+    lines.append('      "duration_seconds": 8.0,')
+    lines.append('      "gain_db": -24,')
+    lines.append('      "note": "moment clé de l\'histoire"')
+    lines.append("    }")
+    lines.append("  ]")
+    lines.append("}")
+    return "\n".join(lines)
+
+
+def _summarize_background_plan(plan: Dict[str, Any]) -> Tuple[str, str]:
+    ambient = plan.get("ambient")
+    ambient_summary = "none"
+    if isinstance(ambient, dict):
+        ambient_summary = (
+            f"{ambient.get('file')}@{ambient.get('start_seconds')}s→{ambient.get('end_seconds')}s "
+            f"({ambient.get('gain_db')} dB)"
+        )
+    punctual_summary = "none"
+    punctual_entries = plan.get("punctual") or []
+    if isinstance(punctual_entries, list) and punctual_entries:
+        parts: List[str] = []
+        for entry in punctual_entries:
+            if not isinstance(entry, dict):
+                continue
+            parts.append(
+                f"{entry.get('file')}@{entry.get('start_seconds')}s+{entry.get('duration_seconds')}s "
+                f"({entry.get('gain_db')} dB)"
+            )
+        if parts:
+            punctual_summary = "; ".join(parts)
+    return ambient_summary, punctual_summary
+
+
+def build_background_mix_plan(
+    scenario_text: Optional[str],
+    voice_path: Path,
+    duration_seconds: float,
+    ambient_path: Optional[str],
+    punctual_paths: List[str],
+) -> Dict[str, Any]:
+    if (not ambient_path and not punctual_paths) or duration_seconds <= 1.0:
+        return {"ambient": None, "punctual": []}
 
     scenario_excerpt = ""
     if scenario_text:
@@ -274,55 +549,59 @@ def plan_background_segments(
         if len(scenario_excerpt) > max_chars:
             scenario_excerpt = scenario_excerpt[:max_chars] + "…"
 
-    raw_plan: List[Dict[str, Any]] = []
-    client = _get_background_plan_client() if scenario_excerpt else None
-    if client:
-        available_lines = [
-            f"{idx}: {bg.name}"
-            for idx, bg in enumerate(background_files)
-        ]
-        available_listing = "\n".join(available_lines)
-        user_prompt = (
-            "You plan short ambience cues under a narration. "
-            "Constraints:\n"
-            "- Each ambience plays exactly once.\n"
-            "- Each cue must last between 5 and 10 seconds.\n"
-            "- Cues must never overlap; keep at least 0.5s gap.\n"
-            "- Never exceed the narration length.\n\n"
-            f"Narration duration: {duration_seconds:.1f} seconds.\n"
-            "Available ambiences (index: file):\n"
-            f"{available_listing}\n\n"
-            "Script excerpt:\n"
-            f"{scenario_excerpt}\n\n"
-            "Return ONLY a JSON array like:\n"
-            '[{"background_index": 0, "start_seconds": 12.5, "duration_seconds": 7.0, "note": "support intro"}]\n'
-            "Use narrative cues to place the backgrounds."
+    raw_plan: Dict[str, Any] = {}
+    llm_attempted = False
+    client = _get_background_plan_client()
+    if client and (ambient_path or punctual_paths):
+        llm_attempted = True
+        user_prompt = _build_background_prompt(
+            voice_path=voice_path,
+            duration_seconds=duration_seconds,
+            scenario_excerpt=scenario_excerpt,
+            ambient_path=ambient_path,
+            punctual_paths=punctual_paths,
         )
         try:
             response = client.create_message(
                 model=BACKGROUND_PLAN_MODEL,
-                system="You are an audio post-production planner who schedules short ambience cues.",
+                system="Tu es un ingénieur du son spécialisé dans les ambiances industrielles.",
                 messages=[{"role": "user", "content": user_prompt}],
                 temperature=0.2,
-                max_tokens=600,
+                max_tokens=800,
             )
             raw_text = ""
             if response and getattr(response, "content", None):
                 raw_text = response.content[0].text  # type: ignore[attr-defined]
-            raw_plan = _extract_json_array(raw_text)
+            raw_plan = _extract_json_object(raw_text)
         except Exception as exc:  # pragma: no cover - network
             logger.warning("Background planning via LLM failed: %s", exc)
 
-    if not raw_plan:
-        raw_plan = _fallback_background_plan(duration_seconds, background_count)
+    plan = _sanitize_mix_plan(raw_plan, duration_seconds, ambient_path, punctual_paths)
+    if llm_attempted:
+        ambient_summary, punctual_summary = _summarize_background_plan(plan)
+        if plan["ambient"] or plan["punctual"]:
+            logger.info(
+                "LLM background plan for %s: ambient=%s | punctual=%s",
+                voice_path.name,
+                ambient_summary,
+                punctual_summary,
+            )
+        else:
+            logger.info(
+                "LLM background plan for %s returned no usable cues; falling back to deterministic layout",
+                voice_path.name,
+            )
 
-    plan = _sanitize_background_plan(raw_plan, duration_seconds, background_count)
-    if not plan:
-        plan = _sanitize_background_plan(
-            _fallback_background_plan(duration_seconds, background_count),
-            duration_seconds,
-            background_count,
+    if not plan["ambient"] and not plan["punctual"]:
+        plan = _fallback_mix_plan(duration_seconds, ambient_path, punctual_paths)
+        ambient_summary, punctual_summary = _summarize_background_plan(plan)
+        logger.info(
+            "Fallback background plan for %s: ambient=%s | punctual=%s",
+            voice_path.name,
+            ambient_summary,
+            punctual_summary,
         )
+
     return plan
 
 
@@ -343,17 +622,36 @@ def apply_background_selection(
         logger.warning("Unable to load audio selection for %s: %s", project_name, exc)
         selection = {}
 
-    raw_backgrounds = selection.get("backgrounds") or []
-    normalized_paths: List[Path] = []
-    for entry in raw_backgrounds:
-        if not entry:
-            continue
-        resolved = Path(entry)
-        if not resolved.is_absolute():
-            resolved = (Path.cwd() / resolved).resolve()
-        normalized_paths.append(resolved)
+    background_selection = selection.get("backgrounds") or {}
+    ambient_raw = background_selection.get("ambient") if isinstance(background_selection, dict) else None
+    punctual_raws = background_selection.get("punctual") if isinstance(background_selection, dict) else background_selection
+    punctual_raws = punctual_raws or []
 
-    requested_layers = len(normalized_paths)
+    def _resolve_background(raw_value: str) -> Optional[Path]:
+        candidate = Path(raw_value)
+        if not candidate.is_absolute():
+            candidate = (Path.cwd() / candidate).resolve()
+        else:
+            candidate = candidate.resolve()
+        return candidate if candidate.exists() else None
+
+    ambient_selection: Optional[Dict[str, Any]] = None
+    if isinstance(ambient_raw, str):
+        resolved = _resolve_background(ambient_raw)
+        if resolved:
+            ambient_selection = {"raw": ambient_raw, "path": resolved}
+
+    punctual_selections: List[Dict[str, Any]] = []
+    for raw in punctual_raws:
+        if not isinstance(raw, str):
+            continue
+        resolved = _resolve_background(raw)
+        if resolved:
+            punctual_selections.append({"raw": raw, "path": resolved})
+        if len(punctual_selections) >= 2:
+            break
+
+    requested_layers = (1 if ambient_selection else 0) + len(punctual_selections)
     if requested_layers == 0:
         return voice_path, 0, None, requested_layers, []
     if AudioSegment is None:
@@ -374,59 +672,111 @@ def apply_background_selection(
         return voice_path, 0, None, requested_layers, []
 
     duration_seconds = len(voice_segment) / 1000.0
-    plan = plan_background_segments(scenario_text, duration_seconds, normalized_paths)
-    if not plan:
+    plan = build_background_mix_plan(
+        scenario_text=scenario_text,
+        voice_path=resolved_voice,
+        duration_seconds=duration_seconds,
+        ambient_path=ambient_selection["raw"] if ambient_selection else None,
+        punctual_paths=[entry["raw"] for entry in punctual_selections],
+    )
+    if not plan["ambient"] and not plan["punctual"]:
         logger.info("No background plan generated for %s; leaving narration dry", project_name)
         return voice_path, 0, None, requested_layers, []
 
     mixed_segment = voice_segment
-    used_indexes: set[int] = set()
     plan_metadata: List[Dict[str, Any]] = []
-    background_cache: Dict[int, AudioSegment] = {}
+    background_cache: Dict[str, AudioSegment] = {}
 
-    total_backgrounds = len(normalized_paths)
-    for slot in plan:
-        idx = int(slot["background_index"])
-        if idx < 0 or idx >= total_backgrounds:
-            continue
-        bg_path = normalized_paths[idx]
-        if not bg_path.exists():
-            logger.warning("Background sound not found: %s", bg_path)
-            continue
-        background_segment = background_cache.get(idx)
+    def _get_segment(selection_entry: Dict[str, Any]) -> Optional[AudioSegment]:
+        raw_value = selection_entry["raw"]
+        cached = background_cache.get(raw_value)
+        if cached is not None:
+            return cached
         try:
-            if background_segment is None:
-                background_segment = AudioSegment.from_file(bg_path)
-                background_cache[idx] = background_segment
+            loaded = AudioSegment.from_file(selection_entry["path"])
         except Exception as exc:
-            logger.warning("Failed to load background %s: %s", bg_path, exc)
+            logger.warning("Failed to load background %s: %s", selection_entry["path"], exc)
+            return None
+        background_cache[raw_value] = loaded
+        return loaded
+
+    layers_applied = 0
+    ambient_lookup = {ambient_selection["raw"]: ambient_selection} if ambient_selection else {}
+    punctual_lookup = {entry["raw"]: entry for entry in punctual_selections}
+
+    ambient_instruction = plan.get("ambient")
+    if ambient_instruction:
+        entry = ambient_lookup.get(ambient_instruction.get("file"))
+        if entry:
+            segment = _get_segment(entry)
+            if segment:
+                start_ms = max(0, int(float(ambient_instruction.get("start_seconds", 0.0)) * 1000))
+                end_ms = max(start_ms + 1, int(float(ambient_instruction.get("end_seconds", 0.0)) * 1000))
+                duration_ms = end_ms - start_ms
+                if start_ms < len(mixed_segment) and duration_ms > 0:
+                    available = len(mixed_segment) - start_ms
+                    if available > 0:
+                        duration_ms = min(duration_ms, available)
+                        snippet = segment
+                        if len(snippet) < duration_ms:
+                            repeats = max(1, math.ceil(duration_ms / max(len(snippet), 1)))
+                            snippet = snippet * repeats
+                        snippet = snippet[:duration_ms]
+                        try:
+                            gain = float(ambient_instruction.get("gain_db", AMBIENT_GAIN_DB))
+                        except (TypeError, ValueError):
+                            gain = AMBIENT_GAIN_DB
+                        snippet = snippet + gain
+                        mixed_segment = mixed_segment.overlay(snippet, position=start_ms)
+                        layers_applied += 1
+                        plan_metadata.append(
+                            {
+                                "type": "ambient",
+                                "background": entry["path"].name,
+                                "start_seconds": round(start_ms / 1000, 2),
+                                "duration_seconds": round(duration_ms / 1000, 2),
+                                "note": ambient_instruction.get("note"),
+                            }
+                        )
+
+    for instruction in plan.get("punctual", []):
+        entry = punctual_lookup.get(instruction.get("file"))
+        if not entry:
             continue
-        start_ms = max(0, int(slot["start_seconds"] * 1000))
-        duration_ms = max(1, int(slot["duration_seconds"] * 1000))
+        segment = _get_segment(entry)
+        if not segment:
+            continue
+        start_ms = max(0, int(float(instruction.get("start_seconds", 0.0)) * 1000))
+        duration_ms = max(1, int(float(instruction.get("duration_seconds", PUNCTUAL_MIN_DURATION)) * 1000))
         if start_ms >= len(mixed_segment):
             continue
-        snippet = background_segment
+        available = len(mixed_segment) - start_ms
+        if available <= 0:
+            continue
+        duration_ms = min(duration_ms, available)
+        snippet = segment
         if len(snippet) < duration_ms:
             repeats = max(1, math.ceil(duration_ms / max(len(snippet), 1)))
             snippet = snippet * repeats
         snippet = snippet[:duration_ms]
-        snippet = snippet + BACKGROUND_ATTENUATION_DB
-        available = len(mixed_segment) - start_ms
-        if available <= 0:
-            continue
-        snippet = snippet[:available]
+        try:
+            gain = float(instruction.get("gain_db", PUNCTUAL_GAIN_DB))
+        except (TypeError, ValueError):
+            gain = PUNCTUAL_GAIN_DB
+        snippet = snippet + gain
         mixed_segment = mixed_segment.overlay(snippet, position=start_ms)
-        used_indexes.add(idx)
+        layers_applied += 1
         plan_metadata.append(
             {
-                "background": bg_path.name,
+                "type": "punctual",
+                "background": entry["path"].name,
                 "start_seconds": round(start_ms / 1000, 2),
-                "duration_seconds": round(len(snippet) / 1000, 2),
-                "note": slot.get("note"),
+                "duration_seconds": round(duration_ms / 1000, 2),
+                "note": instruction.get("note"),
             }
         )
 
-    if not used_indexes:
+    if layers_applied == 0:
         return voice_path, 0, None, requested_layers, []
 
     output_format = resolved_voice.suffix.replace(".", "") or "wav"
@@ -460,7 +810,7 @@ def apply_background_selection(
             except ValueError:
                 dry_relative = dry_path
 
-    return final_path, len(used_indexes), dry_relative, requested_layers, plan_metadata
+    return final_path, layers_applied, dry_relative, requested_layers, plan_metadata
 
 
 class ProjectCreateRequest(BaseModel):
@@ -507,8 +857,14 @@ class ScenarioSelectionResponse(BaseModel):
 class AudioSelectionPayload(BaseModel):
     project_name: str
     voices: List[str] = Field(default_factory=list)
-    backgrounds: List[str] = Field(default_factory=list)
+    backgrounds: Any = Field(default_factory=list)
+    auto_backgrounds: bool = Field(default=False)
     tts_voice_id: Optional[str] = Field(default=None, description="Selected ElevenLabs voice identifier")
+
+
+class TranscriptionUpdateRequest(BaseModel):
+    file_name: str = Field(..., description="Audio file name within the project")
+    transcription: str = Field(..., description="Edited transcript content")
 
 
 class ScenarioAudioRequest(BaseModel):
@@ -898,7 +1254,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         entry.setdefault("allowed_websites", ["wikipedia.org"])
         entry.setdefault("voice_instructions", "")
         entry.setdefault("voice_instructions_source", "")
-        entry.setdefault("tts_provider", "qwen")
+        entry.setdefault("tts_provider", "elevenlabs")
         for key, value in updates.items():
             if value is not None:
                 entry[key] = value
@@ -1052,12 +1408,24 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         def _run_transcription() -> str:
             return transcribe_audio(str(audio_path))
 
+        def _summarize_transcript(text: str) -> Dict[str, Any]:
+            return summarize_transcript_robust(text)
+
         try:
             transcript = await loop.run_in_executor(None, _run_transcription)
+            summary_payload: Optional[Dict[str, Any]] = None
+            if transcript and transcript.strip():
+                try:
+                    summary_payload = await loop.run_in_executor(None, _summarize_transcript, transcript)
+                except Exception as exc:  # pragma: no cover - external API failures are non-critical
+                    logger.warning("Transcript summary failed for %s: %s", audio_path.name, exc)
+            result_payload: Dict[str, Any] = {"transcription": transcript}
+            if summary_payload:
+                result_payload["summary"] = summary_payload
             save_analysis_result(
                 analysis_type="transcription",
                 source_path=str(audio_path),
-                result={"transcription": transcript},
+                result=result_payload,
                 title=audio_path.name,
                 metadata={
                     "project": project_name,
@@ -1090,17 +1458,24 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 limit=50,
             )
             transcriptions: List[Dict[str, Any]] = []
+            seen_titles: set[str] = set()
             for entry in data.get("entries", []):
                 result = entry.get("result", {})
                 text = result.get("transcription") if isinstance(result, dict) else None
+                summary = result.get("summary") if isinstance(result, dict) else None
                 title = entry.get("title") or Path(entry.get("source_path", "")).name
-                if text and title:
-                    transcriptions.append({
-                        "file_name": title,
-                        "transcription": text,
-                        "language": "fr",
-                        "source": entry.get("source_path"),
-                    })
+                if not text or not title or title in seen_titles:
+                    continue
+                seen_titles.add(title)
+                payload: Dict[str, Any] = {
+                    "file_name": title,
+                    "transcription": text,
+                    "language": "fr",
+                    "source": entry.get("source_path"),
+                }
+                if summary:
+                    payload["summary"] = summary
+                transcriptions.append(payload)
             log_progress(
                 "TRANSCRIPTIONS_FETCHED",
                 project=project_name,
@@ -1124,6 +1499,194 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         if ensure:
             path.mkdir(parents=True, exist_ok=True)
         return path
+
+    async def _process_tts_job(job: TTSJob) -> None:
+        session_id = job["session_id"]
+        job_id = job["job_id"]
+        current_meta = session_store.get_scenario_audio(session_id) or {}
+        if current_meta.get("job_id") != job_id:
+            return
+        running_meta = {
+            **current_meta,
+            "status": "running",
+            "started_at": datetime.utcnow().isoformat(),
+        }
+        session_store.save_scenario_audio(session_id, running_meta)
+        log_progress(
+            "SCENARIO_AUDIO_START",
+            session=session_id,
+            project=job["project_name"],
+            job=job_id,
+            provider=job["provider"],
+        )
+        loop = asyncio.get_running_loop()
+
+        def _run_sync() -> Dict[str, Any]:
+            return _execute_tts_job(job)
+
+        try:
+            metadata = await loop.run_in_executor(None, _run_sync)
+        except Exception as exc:
+            log_progress(
+                "SCENARIO_AUDIO_FAILED",
+                session=session_id,
+                project=job["project_name"],
+                job=job_id,
+                error=str(exc),
+            )
+            failure_meta = {
+                "status": "failed",
+                "job_id": job_id,
+                "error": str(exc),
+                "project": job["project_name"],
+                "language": job["language"],
+                "requested_at": job["requested_at"],
+                "finished_at": datetime.utcnow().isoformat(),
+                "tts_provider": job["provider"],
+            }
+            session_store.save_scenario_audio(session_id, failure_meta)
+            return
+
+        latest = session_store.get_scenario_audio(session_id) or {}
+        if latest.get("job_id") != job_id:
+            return
+        metadata["requested_at"] = job["requested_at"]
+        metadata["started_at"] = running_meta.get("started_at")
+        metadata["finished_at"] = datetime.utcnow().isoformat()
+        session_store.save_scenario_audio(session_id, metadata)
+
+        if metadata.get("backgrounds_applied"):
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_APPLIED",
+                session=session_id,
+                project=job["project_name"],
+                layers=metadata.get("backgrounds_applied"),
+            )
+        elif metadata.get("background_tracks_requested"):
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_SKIPPED",
+                session=session_id,
+                project=job["project_name"],
+                reason="mix_failed",
+            )
+
+        log_progress(
+            "SCENARIO_AUDIO_DONE",
+            session=session_id,
+            project=job["project_name"],
+            job=job_id,
+            path=metadata.get("path"),
+            duration=metadata.get("num_samples"),
+        )
+
+    async def _tts_worker() -> None:
+        queue: asyncio.Queue[TTSJob] = app.state.tts_queue
+        try:
+            while True:
+                job = await queue.get()
+                await _process_tts_job(job)
+        except asyncio.CancelledError:
+            logger.info("TTS worker cancelled")
+            raise
+
+    def _execute_tts_job(job: TTSJob) -> Dict[str, Any]:
+        text = job["text"]
+        language = job["language"] or "French"
+        project_name = job["project_name"]
+        provider = job["provider"] or "elevenlabs"
+        voice_id = job.get("voice_id")
+
+        def _synthesize_qwen() -> Dict[str, Any]:
+            return text_to_speech_with_instructions(
+                text=text,
+                project_name=project_name,
+                language=language,
+            )
+
+        if provider == "elevenlabs":
+            if not voice_id:
+                raise ValueError("Aucune voix ElevenLabs sélectionnée pour ce projet.")
+            result = eleven_labs_tts(
+                text=text,
+                voice_id=voice_id,
+            )
+            result.setdefault("sample_rate", 44100)
+        else:
+            try:
+                result = _synthesize_qwen()
+            except ValueError as exc:
+                message = str(exc)
+                lowered = message.lower()
+                if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
+                    ensure_voice_instructions(project_name, text, language)
+                    result = _synthesize_qwen()
+                else:
+                    raise
+            provider = "qwen"
+
+        voice_path = Path(result["path"])
+        (
+            layered_path,
+            backgrounds_applied,
+            dry_voice_path,
+            backgrounds_requested,
+            background_plan,
+        ) = apply_background_selection(voice_path, project_name, text)
+        result["path"] = str(layered_path)
+        if dry_voice_path:
+            result["voice_only_path"] = str(dry_voice_path)
+        if background_plan:
+            result["background_plan"] = background_plan
+
+        if not result.get("sample_rate") or not result.get("num_samples"):
+            try:
+                segment = AudioSegment.from_file(layered_path)
+                result.setdefault("sample_rate", segment.frame_rate)
+                result.setdefault("num_samples", int(segment.frame_count()))
+            except Exception:
+                pass
+
+        metadata = {
+            **result,
+            "status": "done",
+            "language": language,
+            "text_length": len(text),
+            "generated_at": datetime.utcnow().isoformat(),
+            "backgrounds_applied": backgrounds_applied,
+            "background_tracks_requested": backgrounds_requested,
+            "tts_provider": provider,
+            "job_id": job["job_id"],
+        }
+        return metadata
+
+    async def _start_tts_worker() -> None:
+        if app.state.tts_queue is None:
+            app.state.tts_queue = asyncio.Queue()
+        if app.state.tts_worker is None:
+            app.state.tts_worker = asyncio.create_task(_tts_worker())
+
+    async def _stop_tts_worker() -> None:
+        worker = getattr(app.state, "tts_worker", None)
+        if worker:
+            worker.cancel()
+            try:
+                await worker
+            except asyncio.CancelledError:
+                pass
+            app.state.tts_worker = None
+
+    async def _prefetch_voice_previews_task() -> None:
+        async def _run() -> None:
+            for voice_id in ELEVENLABS_DEFAULT_VOICE_IDS:
+                try:
+                    await _ensure_voice_preview_file(settings, voice_id)
+                except Exception as exc:  # pragma: no cover - best-effort warmup
+                    logger.warning("Voice preview warmup failed for %s: %s", voice_id, exc)
+        asyncio.create_task(_run())
+
+    app.add_event_handler("startup", _start_tts_worker)
+    app.add_event_handler("startup", _prefetch_voice_previews_task)
+    app.add_event_handler("shutdown", _stop_tts_worker)
 
     def project_outputs_directory(project_name: str, ensure: bool = False) -> Path:
         path = settings.projects_dir / project_name / "outputs"
@@ -1285,7 +1848,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "audience": audience_value,
             "tone": tone_value,
             "target_duration": target_duration,
-            "tts_provider": profile.get("tts_provider", "qwen"),
+            "tts_provider": profile.get("tts_provider", "elevenlabs"),
             "tts_voice_id": profile.get("tts_voice_id"),
             "include_citations": profile.get("include_citations", True),
             "source_usage_level": profile.get("source_usage_level", "modere"),
@@ -1297,6 +1860,61 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "final_slideshow": profile.get("final_slideshow"),
             "audio_selection": audio_selection,
         }
+
+    @app.get("/projects/{project_name}/transcriptions", tags=["projects"])
+    async def get_project_transcriptions(project_name: str) -> dict:
+        project_dir = settings.projects_dir / project_name
+        if not project_dir.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+        entries = fetch_project_transcriptions(project_name)
+        return {"project": project_name, "transcriptions": entries}
+
+    @app.post("/projects/{project_name}/transcriptions", tags=["projects"])
+    async def update_project_transcription(project_name: str, payload: TranscriptionUpdateRequest) -> dict:
+        if not payload.file_name.strip():
+            raise HTTPException(status_code=400, detail="Nom de fichier manquant")
+        audio_path = get_project_audio_file(project_name, payload.file_name)
+        if not audio_path.exists():
+            raise HTTPException(status_code=404, detail="Fichier audio introuvable")
+        loop = asyncio.get_running_loop()
+        summary_payload: Optional[Dict[str, Any]] = None
+        text = payload.transcription or ""
+        if text.strip():
+            try:
+                summary_payload = await loop.run_in_executor(None, summarize_transcript_robust, text)
+            except Exception as exc:  # pragma: no cover - best effort summarization
+                logger.warning("Manual transcription summary failed for %s/%s: %s", project_name, payload.file_name, exc)
+        result_payload: Dict[str, Any] = {"transcription": text}
+        if summary_payload:
+            result_payload["summary"] = summary_payload
+        save_analysis_result(
+            analysis_type="transcription",
+            source_path=str(audio_path),
+            result=result_payload,
+            title=payload.file_name,
+            metadata={"project": project_name, "manual_edit": True},
+            is_partial=False,
+        )
+        log_progress(
+            "TRANSCRIPTION_UPDATED",
+            project=project_name,
+            file=payload.file_name,
+        )
+        return {"file_name": payload.file_name, "transcription": text, "summary": summary_payload}
+
+    @app.get("/projects/{project_name}/transcriptions/{file_name}/download", tags=["projects"])
+    async def download_project_transcription(project_name: str, file_name: str) -> PlainTextResponse:
+        project_dir = settings.projects_dir / project_name
+        if not project_dir.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+        entries = fetch_project_transcriptions(project_name)
+        entry = next((item for item in entries if item.get("file_name") == file_name), None)
+        if not entry:
+            raise HTTPException(status_code=404, detail="Transcription introuvable")
+        text = entry.get("transcription", "")
+        response = PlainTextResponse(content=text or "")
+        response.headers["Content-Disposition"] = f'attachment; filename="{file_name}.txt"'
+        return response
 
     @app.post("/sessions", tags=["sessions"])
     async def create_session(payload: SessionCreateRequest) -> dict:
@@ -1369,7 +1987,19 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         project_name = session["project_name"]
         selection = load_audio_selection(project_name)
         voices = selection.get("voices", [])
-        backgrounds = selection.get("backgrounds", [])
+        raw_backgrounds = selection.get("backgrounds") or []
+        if isinstance(raw_backgrounds, dict):
+            backgrounds = []
+            ambient_value = raw_backgrounds.get("ambient")
+            if isinstance(ambient_value, str) and ambient_value.strip():
+                backgrounds.append(ambient_value.strip())
+            punctual_values = raw_backgrounds.get("punctual") or []
+            if isinstance(punctual_values, list):
+                for candidate in punctual_values:
+                    if isinstance(candidate, str) and candidate.strip():
+                        backgrounds.append(candidate.strip())
+        else:
+            backgrounds = [bg for bg in raw_backgrounds if isinstance(bg, str) and bg.strip()]
         if not voices:
             raise HTTPException(status_code=400, detail="Aucune piste vocale sélectionnée pour ce projet.")
         progress_template = [
@@ -1461,7 +2091,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "scenario_target": req.scenario_target or session.get("scenario_target", 3),
             "audio_transcriptions": audio_transcriptions,
             "model_id": resolved_model,
-            "tts_provider": project_profile.get("tts_provider", "qwen"),
+            "tts_provider": project_profile.get("tts_provider", "elevenlabs"),
             "include_citations": project_profile.get("include_citations", True),
             "source_usage_level": project_profile.get("source_usage_level", "modere"),
         }
@@ -1737,7 +2367,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=400, detail="Aucun scénario sélectionné")
         
         profile = load_project_profile(session["project_name"])
-        provider = (profile.get("tts_provider") or "qwen").lower()
+        provider = (profile.get("tts_provider") or "elevenlabs").lower()
         voice_id = profile.get("tts_voice_id")
         
         # Check TTS model readiness only for Qwen (ElevenLabs uses API, no local model needed)
@@ -2209,6 +2839,27 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Fichier audio introuvable")
         return FileResponse(audio_path)
 
+    @app.get("/tts/preview", tags=["tts"])
+    async def get_voice_preview(
+        voice_id: str = Query(..., description="Identifiant ElevenLabs de la voix pour pré-écoute"),
+    ):
+        normalized = voice_id.strip()
+        if not normalized:
+            raise HTTPException(status_code=400, detail="La voix demandée est invalide.")
+        try:
+            preview_path = await _ensure_voice_preview_file(settings, normalized)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except Exception as exc:  # pragma: no cover - external API
+            logger.warning("ElevenLabs preview failed for %s: %s", normalized, exc)
+            raise HTTPException(status_code=502, detail=f"Impossible de générer l'aperçu audio: {exc}") from exc
+
+        return FileResponse(
+            preview_path,
+            media_type="audio/mpeg",
+            filename=preview_path.name,
+        )
+
     @app.get("/projects/{project_name}/slideshow", tags=["projects"])
     async def stream_project_slideshow(project_name: str):
         profile = load_project_profile(project_name)
@@ -2229,7 +2880,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Session not found")
         selection = load_audio_selection(session["project_name"])
         profile = load_project_profile(session["project_name"])
-        provider = profile.get("tts_provider", "qwen")
+        provider = profile.get("tts_provider", "elevenlabs")
         selection["tts_provider"] = provider
         if provider == "elevenlabs":
             if profile.get("tts_voice_id"):
@@ -2255,8 +2906,63 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=400, detail="Project mismatch for session")
         available_voices = set(list_project_audio_files(payload.project_name))
         voices = [track for track in payload.voices if track in available_voices][:3]
-        backgrounds = payload.backgrounds[:2]
-        selection_payload: Dict[str, Any] = {"voices": voices, "backgrounds": backgrounds}
+
+        def _sanitize_background(path_value: Optional[str]) -> Optional[str]:
+            if not path_value:
+                return None
+            try:
+                resolved = resolve_background_path(path_value)
+            except HTTPException:
+                return None
+            if not resolved.exists():
+                return None
+            return path_value
+
+        ambient_choice: Optional[str] = None
+        punctual_choices: List[str] = []
+        raw_backgrounds = payload.backgrounds
+        if isinstance(raw_backgrounds, dict):
+            ambient_choice = _sanitize_background(raw_backgrounds.get("ambient"))
+            punctual_source = raw_backgrounds.get("punctual") or []
+        else:
+            punctual_source = raw_backgrounds if isinstance(raw_backgrounds, list) else []
+        for candidate in punctual_source:
+            path_value = _sanitize_background(candidate)
+            if path_value and path_value not in punctual_choices:
+                punctual_choices.append(path_value)
+            if len(punctual_choices) >= 2:
+                break
+
+        def _auto_select_backgrounds() -> tuple[Optional[str], List[str]]:
+            try:
+                listing = find_background_sounds(limit=20)
+            except Exception as exc:
+                logger.warning("Auto background lookup failed: %s", exc)
+                return ambient_choice, punctual_choices
+            files = listing.get("files") or []
+            sanitized_candidates: List[str] = []
+            for candidate in files:
+                path_value = _sanitize_background(candidate)
+                if path_value and path_value not in sanitized_candidates:
+                    sanitized_candidates.append(path_value)
+            if not sanitized_candidates:
+                return ambient_choice, punctual_choices
+            new_ambient = sanitized_candidates[0]
+            remaining = [item for item in sanitized_candidates if item != new_ambient]
+            new_punctual = remaining[:2]
+            return new_ambient, new_punctual
+
+        if payload.auto_backgrounds:
+            ambient_choice, punctual_choices = _auto_select_backgrounds()
+
+        selection_payload: Dict[str, Any] = {
+            "voices": voices,
+            "backgrounds": {
+                "ambient": ambient_choice,
+                "punctual": punctual_choices,
+            },
+            "auto_backgrounds": payload.auto_backgrounds,
+        }
         if payload.tts_voice_id:
             selection_payload["tts_voice_id"] = payload.tts_voice_id.strip()
         saved = save_audio_selection(payload.project_name, selection_payload)
@@ -2267,12 +2973,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                     "tts_voice_id": payload.tts_voice_id.strip(),
                 },
             )
+        total_backgrounds = (1 if ambient_choice else 0) + len(punctual_choices)
         log_progress(
             "AUDIO_SELECTION_UPDATED",
             session=session_id,
             project=payload.project_name,
             voices=len(voices),
-            backgrounds=len(backgrounds),
+            backgrounds=total_backgrounds,
         )
         return saved
 

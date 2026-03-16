@@ -1,0 +1,75 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+  "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 le labeur collectif d'une communauté ouvrière soudée par le métal et le feu. Soudeurs, charpentiers, riveurs : des centaines de mains façonnaient des coques immenses, donnant naissance en 1960 au paquebot France, 106 000 tonnes de rêve et d'acier, fierté d'une nation entière. Ce récit retrace la vie quotidienne de ces ouvriers, leur savoir-faire, la cadence implacable des chantiers, et l'élan de fierté qui les portait. Puis vient le silence : les cales se sont tues, les hommes sont partis, et seules les grues jaunes demeurent, sentinelles muettes d'un monde englouti.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 40,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et les hommes",
+      "duree_cible": 12.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_sensoriel",
+      "elements_necessaires": [
+        "Invitation immersive : la Loire en 1950",
+        "Ambiance sonore des chantiers navals de Nantes",
+        "Présentation du groupe social : soudeurs, charpentiers, ouvriers",
+        "Registre académique, phrases denses et rythmées"
+      ],
+      "mood": "solennel_industriel"
+    },
+    {
+      "partie": 2,
+      "titre": "La naissance d'un géant",
+      "duree_cible": 14.0,
+      "fonction_narrative": "crescendo_dramatique",
+      "position_arc_emotionnel": "montee_en_puissance",
+      "elements_necessaires": [
+        "Le labeur quotidien qui converge vers un aboutissement",
+        "Le paquebot France, 1960, 106 000 tonnes",
+        "Fierté collective — dimension sociale et nationale",
+        "Intensification du rythme narratif"
+      ],
+      "mood": "epique_collectif"
+    },
+    {
+      "partie": 3,
+      "titre": "Les grues jaunes du silence",
+      "duree_cible": 14.0,
+      "fonction_narrative": "chute_elegique",
+      "position_arc_emotionnel": "sommet_emotionnel_puis_declin",
+      "elements_necessaires": [
+        "Rupture temporelle vers le présent",
+        "Disparition du monde ouvrier des chantiers",
+        "Les grues jaunes comme vestiges mémoriels",
+        "Phrase de clôture à résonance mélancolique et académique"
+      ],
+      "mood": "melancolique_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_vers_elegie",
+  "rythme_general": "progression_du_dense_vers_le_suspendu",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "acceleration_narrative",
+      "duree": 1.5,
+      "description": "Du tableau social quotidien, la narration glisse sans rupture vers l'accomplissement collectif : la phrase finale de la section 1 amorce déjà l'élan de construction du France, le rythme s'accélère, la voix gagne en intensité."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "bascule_temporelle_par_contraste",
+      "duree": 2.0,
+      "description": "Au sommet de la fierté collective, un silence bref marque la fracture. La voix ralentit, le ton s'assombrit. Le passage au présent s'opère par une phrase pivot qui oppose l'effervescence passée au vide actuel. Transition la plus dramatique du récit."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un arc unique en trois mouvements indissociables — il ne s'agit pas de trois segments juxtaposés mais d'une seule coulée narrative dont le tempo et l'émotion évoluent. La voix féminine doit incarner une autorité savante teintée d'empathie : registre académique soutenu, sans froideur. En section 1, débit posé, phrases amples, pour installer le monde sensoriel des chantiers. En section 2, le débit s'intensifie légèrement, les phrases se resserrent, portées par l'élan épique de la construction du France. En section 3, décélération marquée, pauses plus longues entre les groupes de souffle, pour laisser résonner l'absence. Le ton dramatique immersif ne doit jamais verser dans le pathos : la gravité naît du contraste entre la vie ouvrière grouillante et le silence présent. L'ambiance sonore immersive (martèlements, soudures, rumeur du fleuve puis silence progressif) soutient la narration sans la couvrir — ratio narration/archives 0.7. Le public universitaire attend une précision factuelle irréprochable : ne mentionner que les faits attestés par la source (Loire, Nantes, chantiers navals, soudeurs, charpentiers, paquebot France, 1960, 106 000 tonnes, grues jaunes). Aucune invention de dates, noms ou événements supplémentaires."
+}

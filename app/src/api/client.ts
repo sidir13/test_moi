@@ -74,11 +74,34 @@ export type ProjectProfile = {
   audio_selection?: AudioSelection;
 };
 
+export type BackgroundSelection = {
+  ambient?: string | null;
+  punctual: string[];
+};
+
 export type AudioSelection = {
   voices: string[];
-  backgrounds: string[];
+  backgrounds: BackgroundSelection;
+  auto_backgrounds?: boolean;
   tts_voice_id?: string | null;
   tts_provider?: string;
+};
+
+export type TranscriptionTopic = {
+  title: string;
+  summary: string;
+  keywords?: string[];
+};
+
+export type ProjectTranscription = {
+  file_name: string;
+  transcription: string;
+  summary?: {
+    global_summary?: string;
+    topics?: TranscriptionTopic[];
+  };
+  source?: string;
+  language?: string;
 };
 
 export async function fetchProjects() {
@@ -184,6 +207,14 @@ export async function fetchProjectAudio(projectName: string) {
   return data.files as string[];
 }
 
+export async function fetchVoicePreview(voiceId: string): Promise<Blob> {
+  const response = await api.get("/tts/preview", {
+    params: { voice_id: voiceId },
+    responseType: "blob"
+  });
+  return response.data as Blob;
+}
+
 export async function fetchAudioSelection(sessionId: string) {
   const { data } = await api.get(`/sessions/${sessionId}/audio-selection`);
   return data as AudioSelection;
@@ -192,6 +223,19 @@ export async function fetchAudioSelection(sessionId: string) {
 export async function saveAudioSelection(sessionId: string, payload: AudioSelection & { project_name: string }) {
   const { data } = await api.post(`/sessions/${sessionId}/audio-selection`, payload);
   return data as AudioSelection;
+}
+
+export async function fetchProjectTranscriptions(projectName: string) {
+  const { data } = await api.get(`/projects/${encodeURIComponent(projectName)}/transcriptions`);
+  return (data.transcriptions ?? []) as ProjectTranscription[];
+}
+
+export async function updateProjectTranscription(
+  projectName: string,
+  payload: { file_name: string; transcription: string }
+) {
+  const { data } = await api.post(`/projects/${encodeURIComponent(projectName)}/transcriptions`, payload);
+  return data as ProjectTranscription;
 }
 
 export async function fetchScenarios(sessionId: string) {

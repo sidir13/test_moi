@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Nantes, de l'acier au silence",
+  "taggedText": "=== PARTIE 1 : Le fleuve et le fracas ===\n\n{resonance_metallique_lointaine.wav}\n\n[ton contemplatif] Imaginez la Loire en 1950. [pause 1s] Sur ses rives, les chantiers navals de Nantes bourdonnaient d'une activité incessante. [acceleration] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.\n\n=== PARTIE 2 : 106 000 tonnes de rêve ===\n\n[pause 2s] [ton solennel] Puis, en 1960, [ralentissement] l'aboutissement. [pause 1.5s] Le paquebot France, fierté nationale, naissait ici — [ton grave] cent six mille tonnes de rêve et d'acier, arrachées aux berges du fleuve par un savoir-faire collectif porté à son apogée.\n\n=== PARTIE 3 : Les grues et le silence ===\n\n[pause 3s] [murmure] Aujourd'hui, le bourdonnement s'est tu. [pause 2s] [émotion contenue] Seules les grues jaunes se dressent encore, sentinelles muettes d'un passé glorieux. [pause 1.5s] [ralentissement] Et la Loire, elle, coule toujours — [ton grave] immuable, indifférente aux rives qu'elle ne reconnaît plus. {murmure_eau_loire.wav}",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et le fracas",
+      "taggedText": "{resonance_metallique_lointaine.wav}\n\n[ton contemplatif] Imaginez la Loire en 1950. [pause 1s] Sur ses rives, les chantiers navals de Nantes bourdonnaient d'une activité incessante. [acceleration] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+    },
+    {
+      "partie_id": 2,
+      "titre": "106 000 tonnes de rêve",
+      "taggedText": "[pause 2s] [ton solennel] Puis, en 1960, [ralentissement] l'aboutissement. [pause 1.5s] Le paquebot France, fierté nationale, naissait ici — [ton grave] cent six mille tonnes de rêve et d'acier, arrachées aux berges du fleuve par un savoir-faire collectif porté à son apogée."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les grues et le silence",
+      "taggedText": "[pause 3s] [murmure] Aujourd'hui, le bourdonnement s'est tu. [pause 2s] [émotion contenue] Seules les grues jaunes se dressent encore, sentinelles muettes d'un passé glorieux. [pause 1.5s] [ralentissement] Et la Loire, elle, coule toujours — [ton grave] immuable, indifférente aux rives qu'elle ne reconnaît plus. {murmure_eau_loire.wav}"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 15,
+    "soundTags": 2,
+    "originalWordCount": 102
+  }
+}

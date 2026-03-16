@@ -1,0 +1,77 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Les mains de la Loire — Chronique des chantiers oubliés",
+  "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 le cœur battant d'une communauté ouvrière soudée par le labeur et la fierté collective. Soudeurs, charpentiers et riveurs façonnaient des coques immenses, donnant naissance en 1960 au paquebot France, 106 000 tonnes de rêves et d'acier, symbole d'une nation qui se relevait. Puis le silence est venu, lent, inexorable, recouvrant les cales et les quais. Aujourd'hui, seules les grues jaunes demeurent, sentinelles muettes d'un monde englouti, et avec elles la mémoire d'un groupe social dont les gestes, les voix et les rituels se sont dissous dans le passage du temps.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 40,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bourdonnement des cales",
+      "duree_cible": 15.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "nostalgie_lumineuse",
+      "elements_necessaires": [
+        "Invitation immersive temporelle — Loire, années 1950",
+        "Évocation sensorielle des chantiers navals de Nantes en activité",
+        "Portrait collectif : soudeurs, charpentiers — gestes, rythmes, solidarité ouvrière",
+        "Mention du paquebot France, 1960, 106 000 tonnes — fierté nationale née de leurs mains",
+        "Ambiance sonore riche : métal, voix, machines, fleuve"
+      ],
+      "mood": "dramatique_chaleureux — grandeur laborieuse, souffle épique contenu"
+    },
+    {
+      "partie": 2,
+      "titre": "Le silence des grues",
+      "duree_cible": 14.0,
+      "fonction_narrative": "basculement_élégiaque",
+      "position_arc_emotionnel": "perte_contemplative",
+      "elements_necessaires": [
+        "Transition temporelle fluide vers le présent — effacement progressif",
+        "Disparition du monde ouvrier : les sons se taisent, les gestes s'oublient",
+        "Les grues jaunes comme vestiges — seuls témoins encore debout",
+        "Chronique sociale de la transformation : un groupe entier s'efface avec son industrie",
+        "Ralentissement du rythme narratif, registre élégiaque"
+      ],
+      "mood": "dramatique_sombre — mélancolie dense, gravité du temps qui passe"
+    },
+    {
+      "partie": 3,
+      "titre": "Ce que le fleuve retient",
+      "duree_cible": 11.0,
+      "fonction_narrative": "coda_mémorielle",
+      "position_arc_emotionnel": "recueillement_suspendu",
+      "elements_necessaires": [
+        "Résonance finale : la mémoire collective comme seul navire encore à flot",
+        "Image conclusive ouverte — le fleuve coule, porteur de traces invisibles",
+        "Pas de résolution consolatrice — suspension dramatique, question implicite sur ce qui reste",
+        "Registre authentique, phrasé contemplatif, souffle long"
+      ],
+      "mood": "contemplatif_grave — suspension émotionnelle, silence habité"
+    }
+  ],
+  "arc_emotionnel_global": "arc_élégiaque_descendant — de la lumière ouvrière à l'absence, sans consolation facile",
+  "rythme_general": "lent_contemplatif — phrases longues, respirations marquées, tempo qui ralentit progressivement jusqu'à la suspension finale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "fondu_temporel",
+      "duree": 2.5,
+      "description": "La dernière image sonore des chantiers en activité se dissout lentement. Une phrase-pivot marque le passage du temps sans rupture brutale — le bourdonnement s'éteint, le silence s'installe comme un personnage. La voix off baisse légèrement en intensité, le débit ralentit."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "glissement_intérieur",
+      "duree": 2.0,
+      "description": "Des grues immobiles, le regard narratif descend vers le fleuve. Transition par continuité spatiale — on reste sur les bords de Loire mais on passe du constat de l'absence à la méditation sur la mémoire. Le ton se fait plus intime, presque murmuré."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit former un seul souffle continu, sans annonce de parties ni ruptures perceptibles. Les trois sections sont des mouvements internes d'une même coulée narrative, comme les mouvements d'une pièce musicale lente. — REGISTRE : Vocabulaire soutenu, syntaxe ample, adapté à un public universitaire. Éviter toute simplification condescendante mais rester dans l'émotion incarnée, jamais dans l'abstraction sèche. — ANGLE CHRONIQUE SOCIALE : Le sujet n'est pas le paquebot France en soi, mais le groupe humain qui l'a fait naître — leurs mains, leur quotidien, leur effacement. Le navire est un symptôme, pas le centre. — TON DRAMATIQUE IMMERSIF : Maintenir une gravité constante, une tension émotionnelle sourde. Pas d'exclamations, pas d'effets rhétoriques appuyés — la dramaturgie naît de la retenue et du contraste entre la vie passée et le vide présent. — AMBIANCE SONORE RICHE : Prévoir des nappes sonores évolutives (bruits industriels qui s'amenuisent, eau du fleuve qui persiste, silence final habité). Les archives audio disponibles offrent une base textuelle à réinterpréter — ne pas les citer mot à mot mais en extraire la substance factuelle. — DURÉE : 40 secondes ± 15 %. Chaque mot compte. Privilégier la densité poétique à l'accumulation informative."
+}

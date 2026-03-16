@@ -11,6 +11,7 @@ import { useSessionStore } from "./hooks/useSessionStore";
 import { ProjectSelectionView } from "./views/ProjectSelectionView";
 import { ProjectDetailsView } from "./views/ProjectDetailsView";
 import { AudioSelectionView } from "./views/AudioSelectionView";
+import { TranscriptionReviewView } from "./views/TranscriptionReviewView";
 import { ScenarioReviewView } from "./views/ScenarioReviewView";
 import { ScenarioEditView } from "./views/ScenarioEditView";
 import { FinalValidationView } from "./views/FinalValidationView";
@@ -19,6 +20,7 @@ const STEP_COMPONENTS: Record<string, JSX.Element> = {
   project_selection: <ProjectSelectionView />,
   project_details: <ProjectDetailsView />,
   audio_sources: <AudioSelectionView />,
+  transcription_review: <TranscriptionReviewView />,
   scenario_review: <ScenarioReviewView />,
   scenario_edit: <ScenarioEditView />,
   final_validation: <FinalValidationView />

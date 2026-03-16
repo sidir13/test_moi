@@ -1,0 +1,75 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains du fleuve — Portrait d'un charpentier de la Loire",
+  "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 une activité industrielle intense où soudeurs et charpentiers façonnaient des coques immenses. Parmi eux, un charpentier anonyme consacra ses mains expertes à l'édification du paquebot France, lancé en 1960 — 106 000 tonnes de rêves et d'acier, fierté nationale. Ce portrait retrace, depuis l'extérieur, le parcours d'un homme dont le geste quotidien s'inscrivait dans une œuvre collective monumentale. Aujourd'hui, seules les grues jaunes de Nantes témoignent de ce passé glorieux, et avec elles s'efface la mémoire des artisans qui donnèrent forme à l'acier. L'histoire interroge ce que le passage du temps fait aux lieux, aux métiers et aux hommes qui les ont habités.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 40,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et les mains",
+      "duree_cible": 14.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "évocation_sensorielle",
+      "elements_necessaires": [
+        "Invitation immersive : la Loire en 1950",
+        "Atmosphère sonore des chantiers navals de Nantes",
+        "Introduction du charpentier par son geste — mains expertes, coques immenses",
+        "Registre universitaire : lexique précis (charpentier de marine, membrure, cale)"
+      ],
+      "mood": "dramatique_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "106 000 tonnes de rêves",
+      "duree_cible": 14.0,
+      "fonction_narrative": "climax_thématique",
+      "position_arc_emotionnel": "fierté_et_grandeur",
+      "elements_necessaires": [
+        "Le paquebot France, 1960, 106 000 tonnes — fierté nationale",
+        "Le rôle du charpentier dans cette œuvre collective",
+        "Tension entre l'individu anonyme et le monument qu'il a contribué à bâtir",
+        "Ton dramatique immersif à son apogée"
+      ],
+      "mood": "épique_retenu"
+    },
+    {
+      "partie": 3,
+      "titre": "Les grues jaunes",
+      "duree_cible": 12.0,
+      "fonction_narrative": "résolution_élégiaque",
+      "position_arc_emotionnel": "nostalgie_et_perte",
+      "elements_necessaires": [
+        "Basculement temporel vers aujourd'hui",
+        "Les grues jaunes comme seuls vestiges du passé glorieux",
+        "Absence du charpentier — effacement de la mémoire ouvrière",
+        "Interrogation implicite sur ce que le temps emporte"
+      ],
+      "mood": "mélancolique_suspendu"
+    }
+  ],
+  "arc_emotionnel_global": "ascension_vers_élégie — de l'évocation sensorielle à la grandeur collective, puis chute vers la perte et le silence",
+  "rythme_general": "modéré — phrases amples et cadencées, respirations entre les sections, sans précipitation",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Du geste quotidien du charpentier, la narration s'élargit vers l'objet monumental qu'il contribue à créer — transition par élargissement de focale, du détail des mains à la masse du paquebot."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 1.5,
+      "description": "Un marqueur temporel simple ('Aujourd'hui') fait basculer le récit du passé glorieux au présent dépouillé. Le ton passe de l'épique retenu à la mélancolie. Le silence remplace le bruit des chantiers."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est un portrait vu de l'extérieur — le charpentier n'est jamais nommé (le contexte ne fournit pas de nom), il est désigné par ses gestes, son métier, ses mains. Ne jamais recourir au monologue intérieur ni à la première personne. La voix off omnisciente observe et restitue. — REGISTRE : Universitaire — lexique précis de l'histoire maritime et industrielle, phrases complexes mais fluides, sans didactisme ni adresse directe au public. — TON : Dramatique immersif maintenu de bout en bout, sans rupture comique ni légèreté. La gravité croît section après section. — DENSITÉ SONORE : Minimaliste — privilégier le silence et de rares éléments sonores (métal, eau, vent) plutôt qu'une nappe continue. — ARCHIVES : L'extrait disponible couvre l'essentiel des faits ; le scénariste peut y puiser directement pour la section 1 et 2. Le ratio narration/archives (0.7) implique que ~30 % du temps peut intégrer l'archive ou s'en inspirer textuellement. — RIGUEUR : Aucun fait inventé. Le charpentier est une figure archétypale construite à partir des éléments factuels ('mains expertes des soudeurs et des charpentiers'). Ne pas lui attribuer de biographie fictive."
+}

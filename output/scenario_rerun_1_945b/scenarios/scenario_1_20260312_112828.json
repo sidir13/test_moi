@@ -1,0 +1,188 @@
+{
+  "scenario_id": 1,
+  "titre": "Nantes, de l'acier au silence",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes incarnaient dans les années 1950 une puissance industrielle vibrante, où soudeurs et charpentiers façonnaient des coques immenses. L'apogée de cette épopée fut la naissance du paquebot France en 1960, 106 000 tonnes de rêve et d'acier, fierté nationale lancée depuis ces quais. Puis vint le déclin, lent et irréversible, qui réduisit au silence les halls autrefois bourdonnants. Aujourd'hui, seules les grues jaunes se dressent comme des sentinelles muettes, témoins d'un passé glorieux que la ville porte encore dans sa mémoire. Le récit s'ouvre et se referme sur la Loire, fleuve immuable face à la transformation radicale de ses rives.",
+  "duree_estimee": 48.12900143334926,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et le fracas",
+      "duree": 13.714285714285714,
+      "texte_narration": "Imaginez la Loire en 1950. Sur ses rives, les chantiers navals de Nantes bourdonnaient d'une activité incessante. Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.",
+      "ton": {
+        "global": "dramatique_vibrant",
+        "tempo_lecture": 140,
+        "pauses": [
+          "après 'en 1950' (1s)",
+          "après 'incessante' (0.5s)"
+        ],
+        "intonation": "Voix de femme, timbre mature et contemplatif. Attaque enveloppante sur 'Imaginez', montée progressive en intensité, débit légèrement soutenu pour traduire la vitalité industrielle."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture immersive — ancrage sur la Loire, point de départ circulaire",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Évocation de l'activité bourdonnante des chantiers navals",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Image sensorielle des coques et du savoir-faire ouvrier",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "fond_metallique_leger",
+          "description": "Résonance métallique lointaine, très discrète, évoquant le travail de l'acier — ne couvre jamais la voix"
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Imaginez la Loire en 1950.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        },
+        {
+          "sentence": "Sur ses rives, les chantiers navals de Nantes bourdonnaient d'une activité incessante.",
+          "sources": [
+            "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+          ]
+        },
+        {
+          "sentence": "Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "106 000 tonnes de rêve",
+      "duree": 16.153846153846153,
+      "texte_narration": "Puis, en 1960, l'aboutissement. Le paquebot France, fierté nationale, naissait ici — cent six mille tonnes de rêve et d'acier, arrachées aux berges du fleuve par un savoir-faire collectif porté à son apogée.",
+      "ton": {
+        "global": "solennel_épique",
+        "tempo_lecture": 130,
+        "pauses": [
+          "après 'l'aboutissement' (1.5s)",
+          "après 'ici' (0.5s)",
+          "après 'd'acier' (1s)"
+        ],
+        "intonation": "Ralentissement solennel. Le mot 'aboutissement' est posé avec gravité. 'Cent six mille tonnes' prononcé avec poids, chaque syllabe détachée. Intensité dramatique maximale sur 'fierté nationale'."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:14",
+          "action": "Point de bascule — annonce du climax historique avec 'l'aboutissement'",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Évocation du paquebot France, données factuelles chargées d'émotion",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:22",
+          "action": "Dimension symbolique — savoir-faire collectif à son zénith",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "silence_habite",
+          "description": "Le fond métallique s'estompe, laissant la voix seule, nue, dans un espace presque sacré"
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Puis, en 1960, l'aboutissement.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960"
+          ]
+        },
+        {
+          "sentence": "Le paquebot France, fierté nationale, naissait ici — cent six mille tonnes de rêve et d'acier, arrachées aux berges du fleuve par un savoir-faire collectif porté à son apogée.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêve et d'acier."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les grues et le silence",
+      "duree": 18.26086956521739,
+      "texte_narration": "Aujourd'hui, le bourdonnement s'est tu. Seules les grues jaunes se dressent encore, sentinelles muettes d'un passé glorieux. Et la Loire, elle, coule toujours — immuable, indifférente aux rives qu'elle ne reconnaît plus.",
+      "ton": {
+        "global": "mélancolique_contemplatif",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 's'est tu' (2s)",
+          "après 'glorieux' (1.5s)",
+          "après 'toujours' (1s)"
+        ],
+        "intonation": "Tempo lent, pauses respiratoires profondes. Voix qui descend en registre. 'S'est tu' suspendu dans le silence. 'Immuable, indifférente' prononcé avec une douceur grave, élégiaque. La dernière phrase retombe comme un souffle."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:26",
+          "action": "Contraste brutal — du fracas au silence, le monde d'après",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:30",
+          "action": "Les grues jaunes comme vestiges, image visuelle forte et solitaire",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:35",
+          "action": "Retour circulaire à la Loire — clôture en écho à l'ouverture, même lieu, autre réalité",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "silence_quasi_total",
+          "description": "Aucun fond sonore. Seule la voix et, peut-être, un infime murmure d'eau sur les trois dernières secondes pour boucler le cercle avec le fleuve de l'ouverture"
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, le bourdonnement s'est tu.",
+          "sources": [
+            "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité.",
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Seules les grues jaunes se dressent encore, sentinelles muettes d'un passé glorieux.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Et la Loire, elle, coule toujours — immuable, indifférente aux rives qu'elle ne reconnaît plus.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 102,
+    "duree_lecture_estimee": 48.12900143334926,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 3
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est un mouvement unique en trois temps, non trois blocs séparés. La Loire sert de fil conducteur circulaire — elle ouvre et ferme le récit, ancrage spatial immuable face à la mutation humaine. VOIX : Femme, timbre mature et contemplatif, cohérent avec l'archive disponible. En partie 1, débit légèrement soutenu pour rendre la vitalité industrielle ; en partie 2, ralentissement solennel sur l'évocation du France ; en partie 3, tempo lent, pauses respiratoires, poids des mots. DENSITÉ SONORE MINIMALISTE : Pas de surcharge — la voix porte l'essentiel. Éventuellement un léger fond métallique en partie 1, un silence presque total en partie 3. REGISTRE UNIVERSITAIRE : Vocabulaire précis sans être jargonnant, syntaxe travaillée, références contextualisées. Pas d'adresse directe au public. L'invitation immersive (« Imaginez… ») est permise en ouverture. ANGLE AVANT/APRÈS : La partie 2 constitue le point de bascule — tout ce qui précède est le monde d'avant (vitalité), tout ce qui suit est le monde d'après (absence). La structure circulaire superpose ces deux temporalités dans le retour final au fleuve. RIGUEUR : Tous les faits (Loire, Nantes, chantiers navals années 1950, paquebot France 1960, 106 000 tonnes, grues jaunes) sont issus strictement de l'archive fournie. Aucun ajout factuel."
+}

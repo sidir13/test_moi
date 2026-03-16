@@ -1,0 +1,21 @@
+=== PARTIE 1 : Le fleuve et l'acier ===
+
+{clapotis_loire_lent.wav}
+
+[ton grave] Nantes, années cinquante. [pause 2s] La Loire charrie les reflets des chantiers navals. Parmi les soudeurs, un homme sans nom courbe l'échine sur les carcasses d'acier.
+
+=== PARTIE 2 : Le colosse prend forme ===
+
+{soudure_metal_distant.wav}
+
+Ses mains expertes tracent l'arc des soudures sur des coques immenses. [acceleration] Rivet après rivet, il édifie ce que la nation entière attend. [pause 1s] [ton solennel] En 1960, le paquebot France glisse vers le large — cent six mille tonnes de rêve et d'acier, [ralentissement] fierté d'un pays cristallisée dans le geste d'un seul.
+
+=== PARTIE 3 : Les grues orphelines ===
+
+{vent_estuaire_silence.wav}
+
+[pause 2s] [émotion contenue] Aujourd'hui, le silence a recouvert les cales. [ralentissement] Les grues jaunes se dressent seules au-dessus de la Loire, vestiges orphelins d'une épopée que nul ouvrier ne viendra plus revendiquer.
+
+=== PARTIE 4 : Mémoire d'acier ===
+
+[murmure] L'acier, lui, se souvient. [pause 2s] Il porte encore la marque de ces mains anonymes. [pause 3s]
