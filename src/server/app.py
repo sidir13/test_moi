@@ -465,7 +465,7 @@ def _build_background_prompt(
     if punctual_paths:
         lines.append("")
         lines.append("**Étape 1 — Sons ponctuels :**")
-        lines.append("Sélectionne des sons ponctuels parmi la liste fournie.")
+        lines.append("Sélectionne des sons ponctuels et variés parmi la liste fournie.")
         lines.append("- Durée : entre 6 et 10 secondes")
         lines.append("- Volume : 20 dB en dessous de la voix")
         lines.append("- Placement : après 3 s et au plus tard 5 s avant la fin, sans chevauchement, espacé d'au moins 1 s")
@@ -474,7 +474,7 @@ def _build_background_prompt(
     if ambient_path:
         lines.append("")
         lines.append("**Étape 2 — Fond continu :**")
-        lines.append("Utilise le fond continu disponible.")
+        lines.append(" Choisi dans un son riche qui servira de fond continu pour l'audio afin de renforcer l'immersion.")
         lines.append("- Démarre à 4 s")
         lines.append("- Termine 5 s avant la fin de la narration")
         lines.append("- Volume : 20 dB en dessous de la voix")
@@ -492,7 +492,7 @@ def _build_background_prompt(
     lines.append('    "file": "chemin_exact",')
     lines.append('    "start_seconds": 4.0,')
     lines.append('    "end_seconds": 120.0,')
-    lines.append('    "gain_db": -30,')
+    lines.append('    "gain_db": -20,')
     lines.append('    "note": "raison du placement"')
     lines.append("  } ou null,")
     lines.append('  "sons_ponctuels": [')
