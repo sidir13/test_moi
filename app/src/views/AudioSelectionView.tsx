@@ -106,10 +106,6 @@ export function AudioSelectionView() {
     saveSelection.mutate(payload);
   };
 
-  if (!sessionId || !projectName) {
-    return <p>Sélectionnez d'abord un projet.</p>;
-  }
-
   useEffect(() => {
     if (selectionQuery.data) {
       const backgrounds = selectionQuery.data.backgrounds || { ambient: null, punctual: [] };
@@ -141,6 +137,10 @@ export function AudioSelectionView() {
       Object.values(voicePreviewUrlsRef.current).forEach((url) => URL.revokeObjectURL(url));
     };
   }, []);
+
+  if (!sessionId || !projectName) {
+    return <p>Sélectionnez d'abord un projet.</p>;
+  }
 
   const handleUpload = async (evt: FormEvent) => {
     evt.preventDefault();
