@@ -1,0 +1,37 @@
+{
+  "scenario_id": 2,
+  "titre": "Le trait et la coque — Une journée de dessinateur aux chantiers navals de Nantes",
+  "taggedText": "=== PARTIE 1 : Le silence d'aujourd'hui ===\n\n{vent_ile_de_nantes.wav}\n\n[posé] Sur l'Île de Nantes, le vent glisse là où s'élevaient les coques d'acier. [pause] Les chantiers navals se sont tus. [pause] [atténué] Mais il fut un temps…\n\n=== PARTIE 2 : L'aube aux grilles des chantiers ===\n\n{pas_sur_paves_matin.wav}\n\nChaque matin, Jean Penaud franchissait les grilles des chantiers navals de Nantes. Pas sur les pavés, sirène au loin. {sirene_chantier_lointaine.wav} Il rejoignait le bureau de dessin, à mi-chemin entre les ingénieurs qui concevaient et les traceurs qui reportaient à l'échelle un. [pause] [posé] « On arrivait le matin, on prenait sa planche, et on se mettait au travail. »\n\n=== PARTIE 3 : La salle à tracer ===\n\n{ambiance_salle_dessin.wav}\n\nPenché sur sa planche, Penaud traçait les courbes de coque au crayon dur, reportait les cotes sur le calque, vérifiait chaque galbe. [posé] Le dessinateur traduisait les calculs de l'ingénieur en formes lisibles par l'atelier. [pause] [accentué] « Il fallait être précis au dixième de millimètre. [pause] Une erreur sur le plan, c'était une erreur sur la tôle. » [atténué] Autour de lui, les règles glissaient, les équerres claquaient doucement sur le papier.\n\n=== PARTIE 4 : Du trait au navire ===\n\n{marteaux_chaudronnerie.wav}\n\nLe plan achevé descendait vers les ateliers de la Prairie-au-Duc. Là, les traceurs le reportaient grandeur nature sur le sol de la salle à tracer, puis les chaudronniers découpaient l'acier. [pause] [posé] « Quand on voyait le bateau sur la cale, on se disait : [accentué] ça, c'est parti de mon trait. » [pause] Le dessin de Penaud devenait coque, étrave, navire.\n\n=== PARTIE 5 : Le soir tombe sur la Loire ===\n\n{sirene_fin_poste.wav}\n\nLe soir, la sirène sonnait. Penaud rangeait ses instruments, quittait les grilles. [pause] Les chantiers ont fermé depuis. [ralentit] {vent_loire_soir.wav} Mais dans le silence de l'Île de Nantes, [pause] chaque navire qui a pris la mer porte encore la mémoire d'un trait de crayon.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le silence d'aujourd'hui",
+      "taggedText": "{vent_ile_de_nantes.wav}\n\n[posé] Sur l'Île de Nantes, le vent glisse là où s'élevaient les coques d'acier. [pause] Les chantiers navals se sont tus. [pause] [atténué] Mais il fut un temps…"
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'aube aux grilles des chantiers",
+      "taggedText": "{pas_sur_paves_matin.wav}\n\nChaque matin, Jean Penaud franchissait les grilles des chantiers navals de Nantes. Pas sur les pavés, sirène au loin. {sirene_chantier_lointaine.wav} Il rejoignait le bureau de dessin, à mi-chemin entre les ingénieurs qui concevaient et les traceurs qui reportaient à l'échelle un. [pause] [posé] « On arrivait le matin, on prenait sa planche, et on se mettait au travail. »"
+    },
+    {
+      "partie_id": 3,
+      "titre": "La salle à tracer",
+      "taggedText": "{ambiance_salle_dessin.wav}\n\nPenché sur sa planche, Penaud traçait les courbes de coque au crayon dur, reportait les cotes sur le calque, vérifiait chaque galbe. [posé] Le dessinateur traduisait les calculs de l'ingénieur en formes lisibles par l'atelier. [pause] [accentué] « Il fallait être précis au dixième de millimètre. [pause] Une erreur sur le plan, c'était une erreur sur la tôle. » [atténué] Autour de lui, les règles glissaient, les équerres claquaient doucement sur le papier."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Du trait au navire",
+      "taggedText": "{marteaux_chaudronnerie.wav}\n\nLe plan achevé descendait vers les ateliers de la Prairie-au-Duc. Là, les traceurs le reportaient grandeur nature sur le sol de la salle à tracer, puis les chaudronniers découpaient l'acier. [pause] [posé] « Quand on voyait le bateau sur la cale, on se disait : [accentué] ça, c'est parti de mon trait. » [pause] Le dessin de Penaud devenait coque, étrave, navire."
+    },
+    {
+      "partie_id": 5,
+      "titre": "Le soir tombe sur la Loire",
+      "taggedText": "{sirene_fin_poste.wav}\n\nLe soir, la sirène sonnait. Penaud rangeait ses instruments, quittait les grilles. [pause] Les chantiers ont fermé depuis. [ralentit] {vent_loire_soir.wav} Mais dans le silence de l'Île de Nantes, [pause] chaque navire qui a pris la mer porte encore la mémoire d'un trait de crayon."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 18,
+    "soundTags": 7,
+    "originalWordCount": 256
+  }
+}

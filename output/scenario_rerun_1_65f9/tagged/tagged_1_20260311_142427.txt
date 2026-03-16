@@ -1,0 +1,56 @@
+=== PARTIE 1 : Ouverture — « Je t'écris depuis le quai » ===
+
+{ambiance_loire_vent_mouettes.wav}
+
+Ce récit s'adresse à tous, sur un ton simplement informatif — comme une lettre qu'on lirait à voix haute, au bord de l'eau.
+
+[murmure] Je t'écris depuis le Quai des Antilles, sur l'Île de Nantes.
+Tu es là, devant moi — ta silhouette jaune découpée contre le ciel, au-dessus de la Loire.
+[pause 1.5s]
+Je ne sais pas si on écrit aux grues. [ton intime] Mais toi, tu mérites qu'on te parle.
+
+=== PARTIE 2 : Le temps des cales — Mémoire des chantiers ===
+
+{resonances_metalliques_lointaines.wav}
+
+Si je ferme les yeux, je peux remonter le temps. [ralentissement] Ici même, sur cette île qu'on appelait la Prairie-au-Duc, il y avait des hommes qui construisaient des navires.
+Le Chantier de la Loire. Dubigeon. Des noms que cette terre porte encore.
+
+[pause 1s]
+
+L'un de ces hommes s'appelait Jean Penaud.
+
+[ARCHIVE — voix de Jean Penaud, brute, authentique]
+« Première embauche : le 5 février 1957. »
+« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets. »
+« Et après... moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Comme charpentier de fer. Moi j'suis allé à bord directement. »
+
+[ton doux] Les goussets, le fer à boudin, le petit train qui amenait les pièces à bord… Toi, tu voyais tout ça d'en haut. Tu étais leur outil. [émotion contenue] Pas encore leur symbole.
+
+=== PARTIE 3 : Le silence des cales — Fermeture et absence ===
+
+{vent_fleuve_silence.wav}
+
+[pause 1.5s]
+
+[ton grave] Et puis un jour, les chantiers se sont tus.
+Les cales se sont vidées. Les hommes sont partis. [ralentissement] Sur l'île, il n'est resté que des friches, du béton, du silence.
+[pause 1s]
+[murmure] Et toi.
+Toi, tu es restée debout — seule sur le quai, face au fleuve, quand tout autour avait disparu.
+
+=== PARTIE 4 : Retour au quai — « Tu es toujours là » ===
+
+{rumeur_urbaine_promeneurs_mouettes.wav}
+
+Aujourd'hui, l'île a changé. On a choisi de ne pas tout raser — de garder les traces plutôt que de les enfouir. On a fait de la mémoire un projet.
+Et toi, on t'a gardée.
+[pause 1s]
+Tu es devenue ce que personne n'avait prévu : un repère. [ton posé] Un symbole. Quand on dit Nantes, souvent, c'est ta silhouette jaune qui apparaît.
+
+[pause 1.5s]
+
+Je suis toujours là, sur le Quai des Antilles. La Loire coule. Le vent n'a pas changé.
+[émotion contenue] Mais moi, depuis que je t'ai écrit cette lettre, je ne te regarde plus de la même façon.
+
+{ambiance_loire_vent_mouettes_fondu_final.wav}

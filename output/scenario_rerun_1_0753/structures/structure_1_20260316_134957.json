@@ -1,0 +1,101 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Jean Penaud, dessinateur des chantiers nantais",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals nantais, des dessinateurs comme Jean Penaud traduisaient en plans précis les navires qui prendraient forme sur les cales. Avant le déclin de la construction navale, ce métier exigeant mêlait rigueur technique et savoir-faire artisanal, au cœur d'une industrie qui faisait battre Nantes. Le récit suit le quotidien de ces hommes penchés sur leurs planches à dessin, puis évoque la transformation irréversible lorsque les chantiers ferment et que ce savoir-faire s'efface du paysage nantais. De l'effervescence des ateliers à la Prairie-au-Duc silencieuse, c'est l'histoire d'un geste technique devenu patrimoine.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le trait sur le papier",
+      "duree_cible": 15,
+      "fonction_narrative": "ouverture_immersive",
+      "position_arc_emotionnel": "ancrage_sensoriel",
+      "elements_necessaires": [
+        "Ambiance sonore du bureau d'études : crayons, règles, murmures techniques",
+        "Évocation visuelle du dessinateur penché sur sa planche",
+        "Localisation : chantiers navals nantais, bords de Loire",
+        "Registre grand public, ton neutre informatif, langage accessible"
+      ],
+      "mood": "contemplatif_précis"
+    },
+    {
+      "partie": 2,
+      "titre": "Le monde d'avant — dessiner les navires",
+      "duree_cible": 30,
+      "fonction_narrative": "exposition_avant_evenement",
+      "position_arc_emotionnel": "montee_en_intensite",
+      "elements_necessaires": [
+        "Rôle du dessinateur industriel naval dans la chaîne de construction",
+        "Jean Penaud et son travail quotidien au bureau d'études",
+        "Citation directe issue des témoignages sur le métier de dessinateur",
+        "Lien entre le trait sur le papier et la coque sur la cale",
+        "Organisation du travail : bureau d'études, ateliers, cales",
+        "Ambiance sonore des chantiers en activité en arrière-plan"
+      ],
+      "mood": "documentaire_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 25,
+      "fonction_narrative": "bascule_apres_evenement",
+      "position_arc_emotionnel": "rupture_emotionnelle",
+      "elements_necessaires": [
+        "Évocation du déclin et de la fermeture des chantiers navals nantais",
+        "Disparition progressive du métier de dessinateur",
+        "Citation directe sur la fin ou la transformation du travail",
+        "Contraste sonore : du bruit industriel au silence",
+        "Prairie-au-Duc qui se vide, paysage transformé"
+      ],
+      "mood": "melancolique_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce que la main savait",
+      "duree_cible": 20,
+      "fonction_narrative": "resolution_patrimoniale",
+      "position_arc_emotionnel": "apaisement_reflexif",
+      "elements_necessaires": [
+        "Valeur patrimoniale du savoir-faire des dessinateurs",
+        "Mémoire de Jean Penaud et des travailleurs des chantiers",
+        "Ouverture sur ce que l'Île de Nantes conserve de cette histoire",
+        "Image finale évocatrice : le geste du dessinateur comme trace"
+      ],
+      "mood": "recueillement_digne"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_montee_rupture_apaisement",
+  "rythme_general": "modere — phrases posées dans les parties 1 et 4, rythme plus dense et narratif dans les parties 2 et 3",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "elargissement_contextuel",
+      "duree": 2.0,
+      "description": "Du geste intime du dessinateur, on élargit naturellement vers le rôle de ce métier dans l'ensemble du chantier. La phrase finale de la partie 1 nomme le chantier ; la partie 2 y entre de plain-pied."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 3.0,
+      "description": "Transition pivot du récit. Une phrase charnière marque le basculement temporel — un mot comme « puis » ou « un jour » suffit. Le paysage sonore change : les bruits de chantier s'éteignent progressivement pour laisser place au silence. C'est le cœur de l'angle avant/après."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_reflexive",
+      "duree": 2.0,
+      "description": "Du constat de la disparition, on glisse vers la mémoire et la trace. La dernière phrase de la partie 3 évoque ce qui reste ; la partie 4 répond en nommant ce qui demeure."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un seul mouvement en quatre temps, pas quatre blocs séparés. Chaque section doit se fondre dans la suivante par le fil conducteur du geste du dessinateur — le trait tiré sur le papier. — PARTIE 1 : Attaque in medias res sensorielle. On entend avant de comprendre. Pas d'introduction méta. Ambiance sonore riche dès la première seconde (crayon sur calque, respiration, fond industriel lointain). — PARTIE 2 : Cœur documentaire. Les citations directes de témoignages doivent s'intégrer dans le flux narratif, introduites par la voix off puis restituées comme parole vivante. Jean Penaud est nommé ici. Le débit peut légèrement s'accélérer pour transmettre l'énergie du chantier en activité. — PARTIE 3 : Contraste maximal. Le design sonore est aussi important que le texte : raréfaction des sons, écho, vent. Les phrases se raccourcissent. La citation directe ici doit porter l'émotion du vécu. — PARTIE 4 : Conclusion ouverte, ni nostalgique ni triomphale. Dignité du souvenir. Dernière phrase courte et évocatrice. — ÉQUILIBRE NARRATION/ARCHIVES (0.6) : Environ 40 % du temps total devrait être occupé par ou construit autour de citations et témoignages directs, le reste par la voix off narrative. — DÉBIT : ~2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque mot compte. Privilégier la concision et la force des images. — AUTHENTICITÉ LINGUISTIQUE : Vocabulaire technique naval utilisé avec naturel (cale, coque, bureau d'études, plan de formes) mais toujours compréhensible en contexte."
+}

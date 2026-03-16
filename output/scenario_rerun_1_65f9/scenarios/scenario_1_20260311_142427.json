@@ -1,0 +1,305 @@
+{
+  "scenario_id": 1,
+  "titre": "Lettre à la grue jaune — Mémoire vive des bords de Loire",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "lettre_intime",
+  "resumeHistoire": "Sous la forme d'une lettre intime adressée à la grue jaune elle-même, une narratrice retrace le fil du temps sur l'Île de Nantes. Elle évoque d'abord le souvenir des chantiers navals en activité — les charpentiers de fer comme Jean Penaud, embauché en 1957, qui triait les goussets et montait à bord des navires en construction sur les cales de Dubigeon et du Chantier de la Loire. Puis la lettre traverse la désindustrialisation, le silence tombé sur les quais, avant de revenir au présent où la grue, restée debout sur le Quai des Antilles, est devenue le symbole d'une ville qui a choisi de ne pas effacer sa mémoire ouvrière. La boucle se referme : la lettre, commencée face à la grue, s'achève par la même image, transformée par tout ce qui a été dit.",
+  "duree_estimee": 270.7681535855449,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Ouverture — « Je t'écris depuis le quai »",
+      "duree": 49.14285714285714,
+      "texte_narration": "Ce récit s'adresse à tous, sur un ton simplement informatif — comme une lettre qu'on lirait à voix haute, au bord de l'eau.\n\n[AMBIANCE : eau de Loire, vent léger, mouettes, rumeur urbaine très lointaine]\n\nJe t'écris depuis le Quai des Antilles, sur l'Île de Nantes.\nTu es là, devant moi — ta silhouette jaune découpée contre le ciel, au-dessus de la Loire.\n[pause 1,5s]\nJe ne sais pas si on écrit aux grues. Mais toi, tu mérites qu'on te parle.",
+      "ton": {
+        "global": "intime, contemplatif, confidentiel — comme l'ouverture d'une lettre lue à soi-même",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après « au bord de l'eau » (1,5s — transition vers la lettre proprement dite)",
+          "après « au-dessus de la Loire » (1,5s — laisser l'image s'installer)",
+          "après « qu'on te parle » (2s — respiration avant la plongée temporelle)"
+        ],
+        "intonation": "voix posée, douce, registre bas, presque murmurée sur la dernière phrase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Entrée de l'ambiance sonore : eau, vent, mouettes — la narratrice commence à lire sa lettre",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Adresse directe à la grue — la silhouette jaune, la Loire, ancrage géographique",
+          "duree": 7.0
+        },
+        {
+          "timestamp": "0:14",
+          "action": "Phrase de confidence — justification de la lettre, ton intime installé",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Ce récit s'adresse à tous, sur un ton simplement informatif — comme une lettre qu'on lirait à voix haute, au bord de l'eau.",
+          "sources": []
+        },
+        {
+          "sentence": "Je t'écris depuis le Quai des Antilles, sur l'Île de Nantes.",
+          "sources": []
+        },
+        {
+          "sentence": "Tu es là, devant moi — ta silhouette jaune découpée contre le ciel, au-dessus de la Loire.",
+          "sources": []
+        },
+        {
+          "sentence": "Je ne sais pas si on écrit aux grues.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais toi, tu mérites qu'on te parle.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des cales — Mémoire des chantiers",
+      "duree": 97.04347826086956,
+      "texte_narration": "[TRANSITION SONORE : l'ambiance d'eau et de vent se charge progressivement de sons métalliques lointains — résonances, chocs sourds, activité industrielle]\n\nSi je ferme les yeux, je peux remonter le temps. Ici même, sur cette île qu'on appelait la Prairie-au-Duc, il y avait des hommes qui construisaient des navires.\nLe Chantier de la Loire. Dubigeon. Des noms que cette terre porte encore.\n\n[pause 1s]\n\nL'un de ces hommes s'appelait Jean Penaud.\n\n[ARCHIVE — voix de Jean Penaud, brute, authentique]\n« Première embauche : le 5 février 1957. »\n« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets. »\n« Et après... moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Comme charpentier de fer. Moi j'suis allé à bord directement. »\n\n[RETOUR NARRATION — la voix de la narratrice reprend, plus douce]\n\nLes goussets, le fer à boudin, le petit train qui amenait les pièces à bord… Toi, tu voyais tout ça d'en haut. Tu étais leur outil. Pas encore leur symbole.",
+      "ton": {
+        "global": "neutre informatif, teinté de nostalgie vivante — la narratrice évoque avec précision, sans sentimentalisme excessif",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après « des navires » (1s — laisser l'image des chantiers en activité)",
+          "après « porte encore » (1s — gravité du nom)",
+          "après « Jean Penaud » (0,5s — avant l'entrée de l'archive)",
+          "après la fin de l'archive Penaud (1,5s — laisser la voix résonner avant le retour narration)",
+          "après « leur symbole » (2s — bascule vers la partie suivante)"
+        ],
+        "intonation": "montée d'intensité narrative sur l'introduction de Penaud, retour à la douceur après l'archive — la dernière phrase est presque suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:18",
+          "action": "Transition temporelle — la narratrice ferme les yeux, remonte vers les années 1950, évocation de la Prairie-au-Duc et des chantiers",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:26",
+          "action": "Introduction de Jean Penaud puis insertion de l'archive audio brute — embauche 1957, parc à ferret, goussets, charpentier de fer",
+          "duree": 15.0
+        },
+        {
+          "timestamp": "0:41",
+          "action": "Retour narration — la narratrice reprend le vocabulaire de Penaud et s'adresse à la grue : tu étais leur outil",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Si je ferme les yeux, je peux remonter le temps.",
+          "sources": []
+        },
+        {
+          "sentence": "Ici même, sur cette île qu'on appelait la Prairie-au-Duc, il y avait des hommes qui construisaient des navires.",
+          "sources": []
+        },
+        {
+          "sentence": "Le Chantier de la Loire. Dubigeon. Des noms que cette terre porte encore.",
+          "sources": [
+            "[01:48] J'suis rentré à la Loire, après j'ai été muté à Dubigeon"
+          ]
+        },
+        {
+          "sentence": "L'un de ces hommes s'appelait Jean Penaud.",
+          "sources": [
+            "[01:08] Alors Jean..."
+          ]
+        },
+        {
+          "sentence": "Première embauche : le 5 février 1957.",
+          "sources": [
+            "[02:28] Première embauche : le 5 février 1957."
+          ]
+        },
+        {
+          "sentence": "J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets.",
+          "sources": [
+            "[02:51] J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets et les..."
+          ]
+        },
+        {
+          "sentence": "Et après... moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Comme charpentier de fer. Moi j'suis allé à bord directement.",
+          "sources": [
+            "[03:18] Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Hmm hmm. Comme charpentier de fer.",
+            "[03:22] Moi j'suis allé à bord directement."
+          ]
+        },
+        {
+          "sentence": "Les goussets, le fer à boudin, le petit train qui amenait les pièces à bord…",
+          "sources": [
+            "[02:51] on triait les goussets",
+            "[03:06] Ou des bouts de fer à boudin, des trucs comme ça",
+            "[02:51] il y avait un genre de petit train avec un plateau et il venait chercher les les pièces"
+          ]
+        },
+        {
+          "sentence": "Toi, tu voyais tout ça d'en haut.",
+          "sources": []
+        },
+        {
+          "sentence": "Tu étais leur outil. Pas encore leur symbole.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales — Fermeture et absence",
+      "duree": 50.4,
+      "texte_narration": "[TRANSITION SONORE : les sons métalliques s'éteignent progressivement — un à un — jusqu'à un quasi-silence. Reste le vent, l'eau, plus rien d'autre.]\n\n[pause 1,5s de quasi-silence]\n\nEt puis un jour, les chantiers se sont tus.\nLes cales se sont vidées. Les hommes sont partis. Sur l'île, il n'est resté que des friches, du béton, du silence.\n[pause 1s]\nEt toi.\nToi, tu es restée debout — seule sur le quai, face au fleuve, quand tout autour avait disparu.",
+      "ton": {
+        "global": "grave, dépouillé, sobre — le creux émotionnel du récit, la confidence sur la perte",
+        "tempo_lecture": 100,
+        "pauses": [
+          "1,5s de quasi-silence avant la première phrase (laisser l'absence s'installer)",
+          "après « se sont tus » (1s)",
+          "après « du silence » (1,5s — le mot résonne dans le vide sonore)",
+          "après « Et toi » (1s — isoler ces deux mots, les charger de sens)",
+          "après « avait disparu » (2s — transition vers la résolution)"
+        ],
+        "intonation": "voix plus basse, plus lente, presque factuelle — pas de pathos, la sobriété porte l'émotion. 'Et toi' est dit presque dans un souffle."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:46",
+          "action": "Quasi-silence — extinction des sons industriels, seuls restent l'eau et le vent",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:49",
+          "action": "Évocation de la désindustrialisation — les chantiers se taisent, les friches",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:57",
+          "action": "'Et toi' — la grue restée debout, seul repère dans le paysage vidé",
+          "duree": 7.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Et puis un jour, les chantiers se sont tus.",
+          "sources": []
+        },
+        {
+          "sentence": "Les cales se sont vidées.",
+          "sources": []
+        },
+        {
+          "sentence": "Les hommes sont partis.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur l'île, il n'est resté que des friches, du béton, du silence.",
+          "sources": []
+        },
+        {
+          "sentence": "Et toi.",
+          "sources": []
+        },
+        {
+          "sentence": "Toi, tu es restée debout — seule sur le quai, face au fleuve, quand tout autour avait disparu.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Retour au quai — « Tu es toujours là »",
+      "duree": 74.18181818181819,
+      "texte_narration": "[TRANSITION SONORE : retour progressif des sons de vie — rumeur urbaine, voix lointaines de promeneurs, mouettes, l'eau toujours]\n\nAujourd'hui, l'île a changé. On a choisi de ne pas tout raser — de garder les traces plutôt que de les enfouir. On a fait de la mémoire un projet.\nEt toi, on t'a gardée.\n[pause 1s]\nTu es devenue ce que personne n'avait prévu : un repère. Un symbole. Quand on dit Nantes, souvent, c'est ta silhouette jaune qui apparaît.\n\n[pause 1,5s]\n\nJe suis toujours là, sur le Quai des Antilles. La Loire coule. Le vent n'a pas changé.\nMais moi, depuis que je t'ai écrit cette lettre, je ne te regarde plus de la même façon.\n\n[AMBIANCE FINALE : eau, vent, mouettes — identique à l'ouverture — tenue 3 secondes puis fondu]",
+      "ton": {
+        "global": "apaisé, signifiant, confidentiel — la boucle se referme avec une charge émotionnelle accumulée",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après « un projet » (0,5s)",
+          "après « on t'a gardée » (1s — simplicité chargée de sens)",
+          "après « qui apparaît » (1,5s — laisser l'image iconique résonner)",
+          "après « de la même façon » (2s — silence final avant le fondu sonore)"
+        ],
+        "intonation": "remontée progressive vers la lumière, sans emphase. La dernière phrase revient au ton exact de l'ouverture — même registre, même douceur — mais la voix porte tout ce qui a été dit entre les deux."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:04",
+          "action": "Retour au présent — reconversion de l'île, choix de patrimonialisation, la mémoire comme projet urbain",
+          "duree": 9.0
+        },
+        {
+          "timestamp": "1:13",
+          "action": "La grue devenue symbole identitaire nantais — repère visuel iconique",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "1:21",
+          "action": "Bouclage circulaire — même quai, même fleuve, même vent, mais le regard a changé. Clôture de la lettre.",
+          "duree": 9.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, l'île a changé.",
+          "sources": []
+        },
+        {
+          "sentence": "On a choisi de ne pas tout raser — de garder les traces plutôt que de les enfouir.",
+          "sources": []
+        },
+        {
+          "sentence": "On a fait de la mémoire un projet.",
+          "sources": []
+        },
+        {
+          "sentence": "Et toi, on t'a gardée.",
+          "sources": []
+        },
+        {
+          "sentence": "Tu es devenue ce que personne n'avait prévu : un repère. Un symbole.",
+          "sources": []
+        },
+        {
+          "sentence": "Quand on dit Nantes, souvent, c'est ta silhouette jaune qui apparaît.",
+          "sources": []
+        },
+        {
+          "sentence": "Je suis toujours là, sur le Quai des Antilles.",
+          "sources": []
+        },
+        {
+          "sentence": "La Loire coule.",
+          "sources": []
+        },
+        {
+          "sentence": "Le vent n'a pas changé.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais moi, depuis que je t'ai écrit cette lettre, je ne te regarde plus de la même façon.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 492,
+    "duree_lecture_estimee": 270.7681535855449,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ ET FLUIDITÉ : Le récit entier est UNE SEULE lettre lue à voix haute. Il n'y a pas de ruptures entre sections — seulement des inflexions dans le rythme et le registre temporel. La narratrice (voix femme professionnelle) maintient un fil continu de confidence adressée à la grue. L'archive de Jean Penaud (environ 15-20s d'extraits sélectionnés) s'intègre dans la partie 2 comme un souvenir enchâssé — la narratrice l'introduit et en sort avec fluidité, sans effet de montage brutal. Le format interview du témoignage de Penaud est réinterprété : on garde ses réponses les plus évocatrices (embauche du 5 février 1957, les goussets, le parc à ferret, le passage charpentier de fer) en coupant les questions pour fluidifier. RATIO narration/archives respecté à 0.7 : environ 63s de narration, 27s d'archives ou silences habités. DENSITÉ SONORE riche : nappes continues (Loire, vent, ville), ponctuations (mouettes, métal lointain en partie 2), mais jamais envahissantes — la voix reste au premier plan. AUTHENTICITÉ LINGUISTIQUE : le vocabulaire technique des chantiers (goussets, charpentier de fer, parc à ferret) est conservé tel quel depuis le témoignage — la narratrice peut les reprendre naturellement dans sa lettre. STRUCTURE CIRCULAIRE : la première et la dernière image sont identiques (la narratrice face à la grue jaune, bords de Loire) mais l'écoute de tout le récit entre les deux a transformé ce que cette image signifie. ATTENTION : ne pas inventer de date de fermeture des chantiers ni de date d'installation/construction de la grue — le contexte fourni ne les précise pas. Rester dans l'évocation."
+}

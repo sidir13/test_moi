@@ -1,0 +1,32 @@
+{
+  "scenario_id": 2,
+  "titre": "Le géant qui réveilla la Loire",
+  "taggedText": "=== PARTIE 1 : Un fleuve endormi ===\n\n{clapotis_eau_calme_loire.wav}\n\nCe récit s'adresse à tous, sur un ton neutre et informatif.\n\n[posé] Nantes, au tournant des années deux mille dix. [pause] Les quais sont silencieux. La Loire coule, indifférente, entre des rives où plus aucune coque d'acier ne prend forme. [pause] Le port qui jadis armait des navires pour le monde entier semble s'être assoupi, [atténué] bercé par le souvenir de sa grandeur maritime.\n\n=== PARTIE 2 : Le chantier, cœur battant ===\n\n{ambiance_chantier_industriel.wav}\n\nMais à soixante kilomètres en aval, un autre rythme bat. Les Chantiers de l'Atlantique, à Saint-Nazaire, n'ont jamais cessé de vivre. [accentué] Derrière leurs grues monumentales, des milliers de soudeurs, ingénieurs et ajusteurs façonnent l'acier. Un savoir-faire français transmis de génération en génération. Comme le résument ceux qui y travaillent : [pause] [ARCHIVE : « Ici, on construit les plus grands navires du monde. »]\n\n=== PARTIE 3 : Un colosse prend forme ===\n\n{soudure_metal_lourd.wav}\n\nDans le bassin de Saint-Nazaire, un colosse prend forme. [ralentit] Bloc après bloc, des sections d'acier de plusieurs centaines de tonnes sont assemblées, hissées, soudées. Le paquebot qui émerge dépasse l'imagination : [accentué] une ville flottante, capable d'accueillir des milliers de passagers. [pause] [ARCHIVE : « C'est un défi technique permanent, chaque navire repousse les limites du précédent. »] L'industrie mondiale de la croisière observe, fascinée.\n\n=== PARTIE 4 : Le réveil des rives ===\n\n{foule_quais_estuaire.wav}\n\nEt puis vient le jour. [ralentit] Le géant quitte son berceau d'acier, glisse lentement dans l'estuaire de la Loire. Sur les rives, des milliers de regards le suivent. [pause] {corne_de_brume.wav} Une corne de brume déchire l'air. [accentué] Ce n'est pas seulement un navire qui prend la mer. C'est tout un territoire qui se redresse. Les Chantiers de l'Atlantique ont ramené l'emploi, la fierté, l'identité maritime sur ce bassin que l'on croyait endormi. [pause] [posé] Le fleuve, désormais, a retrouvé son pouls. [atténué] Et dans les cales de Saint-Nazaire, déjà, un autre géant attend.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un fleuve endormi",
+      "taggedText": "{clapotis_eau_calme_loire.wav}\n\nCe récit s'adresse à tous, sur un ton neutre et informatif.\n\n[posé] Nantes, au tournant des années deux mille dix. [pause] Les quais sont silencieux. La Loire coule, indifférente, entre des rives où plus aucune coque d'acier ne prend forme. [pause] Le port qui jadis armait des navires pour le monde entier semble s'être assoupi, [atténué] bercé par le souvenir de sa grandeur maritime."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le chantier, cœur battant",
+      "taggedText": "{ambiance_chantier_industriel.wav}\n\nMais à soixante kilomètres en aval, un autre rythme bat. Les Chantiers de l'Atlantique, à Saint-Nazaire, n'ont jamais cessé de vivre. [accentué] Derrière leurs grues monumentales, des milliers de soudeurs, ingénieurs et ajusteurs façonnent l'acier. Un savoir-faire français transmis de génération en génération. Comme le résument ceux qui y travaillent : [pause] [ARCHIVE : « Ici, on construit les plus grands navires du monde. »]"
+    },
+    {
+      "partie_id": 3,
+      "titre": "Un colosse prend forme",
+      "taggedText": "{soudure_metal_lourd.wav}\n\nDans le bassin de Saint-Nazaire, un colosse prend forme. [ralentit] Bloc après bloc, des sections d'acier de plusieurs centaines de tonnes sont assemblées, hissées, soudées. Le paquebot qui émerge dépasse l'imagination : [accentué] une ville flottante, capable d'accueillir des milliers de passagers. [pause] [ARCHIVE : « C'est un défi technique permanent, chaque navire repousse les limites du précédent. »] L'industrie mondiale de la croisière observe, fascinée."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le réveil des rives",
+      "taggedText": "{foule_quais_estuaire.wav}\n\nEt puis vient le jour. [ralentit] Le géant quitte son berceau d'acier, glisse lentement dans l'estuaire de la Loire. Sur les rives, des milliers de regards le suivent. [pause] {corne_de_brume.wav} Une corne de brume déchire l'air. [accentué] Ce n'est pas seulement un navire qui prend la mer. C'est tout un territoire qui se redresse. Les Chantiers de l'Atlantique ont ramené l'emploi, la fierté, l'identité maritime sur ce bassin que l'on croyait endormi. [pause] [posé] Le fleuve, désormais, a retrouvé son pouls. [atténué] Et dans les cales de Saint-Nazaire, déjà, un autre géant attend."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 17,
+    "soundTags": 5,
+    "originalWordCount": 288
+  }
+}

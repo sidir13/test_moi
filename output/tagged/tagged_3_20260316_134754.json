@@ -1,0 +1,27 @@
+{
+  "scenario_id": 3,
+  "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "taggedText": "=== PARTIE 1 : Le bureau d'études, cœur silencieux du chantier ===\n\n{ambiance_bureau_calme_crayon_calque.wav}\n\n[posé] Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, le silence n'est troublé que par le glissement d'un crayon sur le calque. [pause] Jean Penaud est dessinateur. Chaque matin, il rejoint sa table à dessin, à l'écart du vacarme des cales. Il confie : [posé] [atténué] « On travaillait dans le calme, mais ce qu'on traçait, c'était le navire tout entier. » [pause] Dehors, les grues pivotent au-dessus de la Prairie-au-Duc.\n\n=== PARTIE 2 : Du trait sur le papier au navire sur la cale ===\n\nLe dessinateur est l'intermédiaire invisible entre l'ingénieur et le chaudronnier. [accentué] Chaque courbe de coque, chaque membrure naît d'abord sous sa main, à l'échelle, puis en tracé grandeur nature dans la salle de traçage. [pause] Jean Penaud précise : [posé] [en colère] « Un millimètre d'erreur sur le plan, c'était un problème énorme une fois sur la tôle. » [pause] Cette exigence fait la fierté du métier.\n\n=== PARTIE 3 : Le silence après les lancements ===\n\n{ambiance_vent_fleuve_lointain.wav}\n\n[ralentit] Puis les commandes se raréfient. Les chantiers Dubigeon ferment en 1987. [pause] Les tables à dessin sont rangées, les calques archivés ou dispersés. Là où des centaines d'hommes façonnaient des navires, il ne reste que des friches ouvertes sur le fleuve. [soupire] Jean Penaud se souvient : [posé] [triste] « Quand c'était fini, on n'a pas tout de suite compris que c'était fini pour de bon. » [pause] [atténué] Aujourd'hui, sur l'île de Nantes, seuls quelques témoignages gardent la trace de ces gestes précis, accomplis dans le silence des bureaux d'études.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bureau d'études, cœur silencieux du chantier",
+      "taggedText": "{ambiance_bureau_calme_crayon_calque.wav}\n\n[posé] Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, le silence n'est troublé que par le glissement d'un crayon sur le calque. [pause] Jean Penaud est dessinateur. Chaque matin, il rejoint sa table à dessin, à l'écart du vacarme des cales. Il confie : [posé] [atténué] « On travaillait dans le calme, mais ce qu'on traçait, c'était le navire tout entier. » [pause] Dehors, les grues pivotent au-dessus de la Prairie-au-Duc."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Du trait sur le papier au navire sur la cale",
+      "taggedText": "Le dessinateur est l'intermédiaire invisible entre l'ingénieur et le chaudronnier. [accentué] Chaque courbe de coque, chaque membrure naît d'abord sous sa main, à l'échelle, puis en tracé grandeur nature dans la salle de traçage. [pause] Jean Penaud précise : [posé] [en colère] « Un millimètre d'erreur sur le plan, c'était un problème énorme une fois sur la tôle. » [pause] Cette exigence fait la fierté du métier."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence après les lancements",
+      "taggedText": "{ambiance_vent_fleuve_lointain.wav}\n\n[ralentit] Puis les commandes se raréfient. Les chantiers Dubigeon ferment en 1987. [pause] Les tables à dessin sont rangées, les calques archivés ou dispersés. Là où des centaines d'hommes façonnaient des navires, il ne reste que des friches ouvertes sur le fleuve. [soupire] Jean Penaud se souvient : [posé] [triste] « Quand c'était fini, on n'a pas tout de suite compris que c'était fini pour de bon. » [pause] [atténué] Aujourd'hui, sur l'île de Nantes, seuls quelques témoignages gardent la trace de ces gestes précis, accomplis dans le silence des bureaux d'études."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 17,
+    "soundTags": 2,
+    "originalWordCount": 234
+  }
+}

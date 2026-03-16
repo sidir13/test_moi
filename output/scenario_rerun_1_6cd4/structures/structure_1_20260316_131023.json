@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des hommes comme Jean Penaud ont passé leur vie à tracer les plans des navires qui prendraient la mer. Ce récit retrace le quotidien méconnu du dessinateur naval — un métier de précision et de patience, à mi-chemin entre l'atelier et l'ingénierie, où chaque trait sur le papier calque engageait la sécurité d'un équipage. À travers le parcours de Jean Penaud et la mémoire collective de ces travailleurs de l'ombre, c'est toute une chaîne humaine de conception navale qui se révèle, depuis le bureau d'études jusqu'au fracas du lancement. La chronique de ces dessinateurs est aussi celle d'un savoir-faire nantais qui s'est éteint avec la fermeture des chantiers, emportant avec lui une identité professionnelle et ouvrière profondément ancrée dans l'île de Nantes.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'île aux navires",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_sensoriel",
+      "elements_necessaires": [
+        "Évocation sensorielle des chantiers navals de Nantes (Prairie-au-Duc, île de Nantes)",
+        "Ambiance sonore suggérée : bruits métalliques, rivets, Loire",
+        "Présentation du monde des chantiers comme écosystème humain",
+        "Mention des Ateliers et Chantiers de Nantes ou Chantiers Dubigeon comme repères"
+      ],
+      "mood": "immersif_industriel"
+    },
+    {
+      "partie": 2,
+      "titre": "L'homme au tire-ligne",
+      "duree_cible": 22,
+      "fonction_narrative": "portrait_individuel",
+      "position_arc_emotionnel": "focalisation_intime",
+      "elements_necessaires": [
+        "Introduction de Jean Penaud comme dessinateur aux chantiers navals de Nantes",
+        "Description concrète du geste professionnel : tracer, calculer, dessiner les plans",
+        "Citation directe de Jean Penaud ou d'un témoin si disponible dans les sources",
+        "Situer le bureau d'études dans la chaîne de production du navire"
+      ],
+      "mood": "précis_humain"
+    },
+    {
+      "partie": 3,
+      "titre": "Du plan à la coque",
+      "duree_cible": 22,
+      "fonction_narrative": "élargissement_social",
+      "position_arc_emotionnel": "montée_en_puissance",
+      "elements_necessaires": [
+        "Élargissement du portrait individuel au groupe social des dessinateurs navals",
+        "Le rôle collectif : chaque trait engage la construction, la sécurité, le lancement",
+        "Lien entre le bureau d'études et les ouvriers de cale — interdépendance",
+        "Citation directe illustrant la fierté ou la rigueur du métier"
+      ],
+      "mood": "collectif_valorisant"
+    },
+    {
+      "partie": 4,
+      "titre": "Le dernier trait",
+      "duree_cible": 28,
+      "fonction_narrative": "resolution_memorielle",
+      "position_arc_emotionnel": "gravité_apaisée",
+      "elements_necessaires": [
+        "Évocation de la fermeture des chantiers navals nantais (sans inventer de date précise si non sourcée)",
+        "Ce que la disparition du métier emporte : un savoir-faire, une identité",
+        "Retour sur Jean Penaud comme figure de cette mémoire ouvrière",
+        "Ouverture sur le patrimoine industriel nantais et la transmission de cette mémoire",
+        "Citation directe en clôture si possible — poids émotionnel du témoignage"
+      ],
+      "mood": "élégiaque_digne"
+    }
+  ],
+  "arc_emotionnel_global": "ancrage_focalisation_élargissement_élégie",
+  "rythme_general": "modéré avec accélération légère en partie 3 et ralentissement solennel en partie 4",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du panorama sonore des chantiers, on glisse vers un bureau d'études précis, vers une silhouette penchée sur une table à dessin. Transition par le contraste : du vacarme extérieur au silence concentré du trait sur le calque."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_organique",
+      "duree": 2.0,
+      "description": "Du geste individuel de Jean Penaud, on élargit naturellement au collectif des dessinateurs. Le plan qu'il trace rejoint d'autres plans, d'autres mains — la caméra narrative recule pour montrer l'équipe, puis la chaîne entière de production."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_temporelle",
+      "duree": 2.5,
+      "description": "Le rythme ralentit. On passe de l'activité collective au silence de l'après — les chantiers ferment, les tables à dessin se vident. Transition par contraste temporel : de la vie industrielle à la mémoire qui persiste."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est une voix off omnisciente à la 3ème personne, registre accessible mais précis. Le fil conducteur est le GESTE du dessinateur — le trait tracé — qui relie toutes les sections. En partie 1, on entend le chantier avant de voir le dessinateur. En partie 2, on entre dans son intimité professionnelle. En partie 3, son geste se multiplie et prend sens collectif. En partie 4, le trait s'arrête et devient souvenir. || CITATIONS : Intégrer au minimum 2 citations directes (parties 2 et 4 idéalement), insérées naturellement dans le flux narratif — jamais annoncées par 'il dit' de manière mécanique, mais amenées par le contexte. || DENSITÉ SONORE IMMERSIVE : Le texte doit suggérer des ambiances sonores exploitables en post-production (bruits de chantier, silence du bureau, crissement du tire-ligne, eau de la Loire). || REGISTRE : Grand public, phrases courtes à moyennes, vocabulaire technique limité mais présent (tire-ligne, papier calque, bureau d'études, cale, lancement) — chaque terme technique est rendu compréhensible par le contexte. || DURÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être dense et concise. Pas de remplissage. || RIGUEUR : Ne pas inventer de dates de naissance, d'embauche ou de fermeture non présentes dans les sources. Préférer des formulations comme 'pendant des décennies', 'au fil des années' si les dates précises manquent."
+}

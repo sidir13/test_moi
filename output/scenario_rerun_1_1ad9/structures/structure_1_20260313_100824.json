@@ -1,0 +1,126 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Jean Penaud, dernier témoin d'un port qui s'efface",
+  "resumeHistoire": "Jean Penaud entre comme charpentier-fer au Chantier de la Loire le 5 février 1957, à une époque où le port de Nantes lutte déjà contre l'ensablement de la Loire qui pousse les grandes activités maritimes vers Saint-Nazaire. À travers son parcours — de Nantes à Dubigeon, de Cherbourg aux sous-marins atomiques, puis son retour en juillet 1969 — se dessine le lent déclin d'une ville qui fut l'un des grands ports de commerce français. Des comblements des bras de Loire au XIXe siècle jusqu'à la fermeture des chantiers Dubigeon en 1987, c'est toute une mémoire ouvrière et maritime qui s'éteint avec les derniers coups de marteau sur l'Île de Nantes.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port au sommet de sa puissance",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "grandeur_initiale",
+      "elements_necessaires": [
+        "Évocation du port de Nantes au XVIIIe siècle comme grand port de commerce",
+        "Île Feydeau, quais historiques, négoce maritime",
+        "Ton documentaire grand public, registre accessible",
+        "Présentation implicite du public cible et du ton informatif dès les premières phrases",
+        "Ambiance sonore riche : activité portuaire, eau, voiles"
+      ],
+      "mood": "évocateur_majestueux"
+    },
+    {
+      "partie": 2,
+      "titre": "La Loire se dérobe",
+      "duree_cible": 25.0,
+      "fonction_narrative": "complication",
+      "position_arc_emotionnel": "tension_montante",
+      "elements_necessaires": [
+        "Ensablement progressif de la Loire et difficultés de navigation dans l'estuaire",
+        "Comblement des bras de Loire (Bras de la Bourse, Bras de l'Hôpital) et transformation urbaine",
+        "Tentative du canal de la Martinière pour maintenir l'accès maritime",
+        "Transfert progressif des grandes activités vers Saint-Nazaire",
+        "Dates précises issues du contexte historique connu"
+      ],
+      "mood": "inquiet_factuel"
+    },
+    {
+      "partie": 3,
+      "titre": "Jean Penaud entre en scène",
+      "duree_cible": 30.0,
+      "fonction_narrative": "pivot_portrait",
+      "position_arc_emotionnel": "ancrage_humain",
+      "elements_necessaires": [
+        "Portrait de Jean Penaud, 83 ans, charpentier-fer",
+        "Embauche au Chantier de la Loire le 5 février 1957",
+        "Citation directe de Jean Penaud sur son parcours (entrée à la Loire, mutation à Dubigeon, Cherbourg, sous-marin atomique)",
+        "Retour à Nantes en juillet 1969",
+        "Détails concrets : le parc à fer, les goussets, le petit train à plateau",
+        "Ambiance sonore : métal, chantier naval"
+      ],
+      "mood": "intime_concret"
+    },
+    {
+      "partie": 4,
+      "titre": "Les derniers coups de marteau",
+      "duree_cible": 25.0,
+      "fonction_narrative": "dénouement",
+      "position_arc_emotionnel": "mélancolie_résignée",
+      "elements_necessaires": [
+        "Déclin des chantiers navals nantais dans les années 1970-1980",
+        "Fermeture des chantiers Dubigeon en 1987 sur l'Île de Nantes",
+        "Fin d'une époque pour les ouvriers comme Jean Penaud",
+        "Mémoire ouvrière et patrimoine portuaire",
+        "Ambiance de silence progressif"
+      ],
+      "mood": "élégiaque_sobre"
+    },
+    {
+      "partie": 5,
+      "titre": "Ce qui reste sur les quais",
+      "duree_cible": 15.0,
+      "fonction_narrative": "epilogue",
+      "position_arc_emotionnel": "ouverture_contemplative",
+      "elements_necessaires": [
+        "Reconversion de l'Île de Nantes",
+        "Écho entre passé industriel et présent",
+        "La voix de Jean Penaud comme dernier lien vivant avec cette histoire",
+        "Fermeture narrative sobre et ouverte"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "grandeur_vers_effacement_puis_mémoire",
+  "rythme_general": "modere_avec_ralentissement_progressif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "contraste_temporel",
+      "duree": 2.0,
+      "description": "De l'évocation glorieuse du port au XVIIIe siècle, glissement vers les premiers signes de déclin — la phrase finale de la section 1 amorce déjà la menace de l'ensablement, sans rupture."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "zoom_du_general_au_particulier",
+      "duree": 2.5,
+      "description": "Passage fluide du récit macro-historique (transfert vers Saint-Nazaire) à l'échelle humaine : on entre dans le portrait de Jean Penaud comme si la caméra descendait des cartes vers un homme au travail. Transition par une phrase du type 'C'est dans ce port en sursis qu'un jeune homme de vingt ans pousse la porte du Chantier de la Loire.'"
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_chronologique",
+      "duree": 2.0,
+      "description": "Du retour de Jean Penaud en 1969 à la lente agonie des chantiers — le parcours individuel rejoint le destin collectif. Transition naturelle par le temps qui passe."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "ouverture_contemplative",
+      "duree": 1.5,
+      "description": "Du silence de la fermeture de 1987 à l'Île de Nantes d'aujourd'hui — passage doux, presque un fondu, entre le dernier bruit de chantier et le présent."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un mouvement de rétrécissement progressif — d'un grand port maritime à un seul homme, puis d'un homme à un silence. La voix off reste omnisciente et extérieure tout au long, ne s'adressant jamais à l'auditeur. Jean Penaud n'est jamais en première personne dans la narration, mais ses citations directes (extraites de l'archive audio) sont intégrées comme des îlots de parole vivante dans le flux narratif. Prévoir deux citations clés : son embauche ('Première embauche le 5 février 1957') et son parcours ('J'suis entré à la Loire... après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg'). Le ton reste informatif et accessible (grand public), jamais didactique. La densité sonore riche implique des indications d'ambiance à chaque section (eau, métal, silence) mais celles-ci ne doivent pas couvrir la voix. Le débit cible est d'environ 2 mots/seconde, soit ~240 mots maximum pour 120 secondes. Chaque section doit être dense et concise. Les dates mentionnées doivent être strictement issues du contexte fourni ou de faits historiques vérifiables sur le port de Nantes. ATTENTION : la première phrase du récit doit poser le ton neutre-informatif et le registre grand public sans jamais interpeller directement l'auditeur."
+}

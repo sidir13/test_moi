@@ -1,0 +1,32 @@
+{
+  "scenario_id": 2,
+  "titre": "La Grue Jaune — Sentinelle de la Loire",
+  "taggedText": "=== PARTIE 1 : Un colosse jaune face au fleuve ===\n\n{vent_estuaire_loire.wav}\n\n[ton posé] Sur le quai des Antilles, à la pointe ouest de l'Île de Nantes, une grue jaune se dresse face à la Loire. Massive, immobile, plantée là où le vent remonte le fleuve. [pause 1s] Sa silhouette découpée contre le ciel est devenue l'un des visages de la ville. Mais avant d'être un symbole, [ralentissement] elle était un outil.\n\n=== PARTIE 2 : Le temps des chantiers ===\n\n{ambiance_chantier_naval_lointain.wav}\n\nUn outil au service des chantiers navals qui ont fait battre le cœur industriel de Nantes pendant des décennies. Le Chantier de la Loire, Dubigeon — sur cette île, on construisait des navires. [ton chaleureux] Jean Penaud s'en souvient. Charpentier de fer, il a été embauché le cinq février 1957. Il avait commencé par huit jours au balai, puis on l'avait envoyé au parc à ferret — c'est là qu'on triait les goussets, ces petites pièces de renfort en métal, et les bouts de fer à boudin. [pause 1s] Un petit train venait chercher le tout pour amener les pièces à bord. Très vite, Jean était monté travailler directement sur les coques, aux côtés d'un ancien de soixante-trois ans qui lui avait tout appris.\n\n=== PARTIE 3 : Le silence des cales ===\n\n{silence_quai_deserte.wav}\n\n[ton grave] Puis les chantiers ont fermé. L'un après l'autre, les sites se sont tus. [pause 2s] Les cales où l'on assemblait des coques sont restées vides. La grue, elle, n'a pas bougé. [ralentissement] Désormais orpheline de sa fonction, elle dominait un quai que plus personne ne faisait vibrer. La ville entière portait ce silence, [émotion contenue] comme une mémoire sans voix.\n\n=== PARTIE 4 : Devenir symbole ===\n\n{clapotis_loire_doux.wav}\n\nEt pourtant, la grue jaune est restée. [ton affirmatif] Quand l'Île de Nantes s'est réinventée, elle a été préservée, classée au titre du patrimoine. Aujourd'hui, elle est un repère pour les Nantais — le signe visible d'un passé ouvrier qui refuse de s'effacer. Pour ceux qui, comme Jean Penaud, ont travaillé à ses pieds, elle garde la trace d'un labeur quotidien. [pause 1s] Pour les autres, elle est devenue une icône. [ton solennel] Sentinelle de métal et de mémoire, la grue jaune veille toujours sur la Loire.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un colosse jaune face au fleuve",
+      "taggedText": "{vent_estuaire_loire.wav}\n\n[ton posé] Sur le quai des Antilles, à la pointe ouest de l'Île de Nantes, une grue jaune se dresse face à la Loire. Massive, immobile, plantée là où le vent remonte le fleuve. [pause 1s] Sa silhouette découpée contre le ciel est devenue l'un des visages de la ville. Mais avant d'être un symbole, [ralentissement] elle était un outil."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des chantiers",
+      "taggedText": "{ambiance_chantier_naval_lointain.wav}\n\nUn outil au service des chantiers navals qui ont fait battre le cœur industriel de Nantes pendant des décennies. Le Chantier de la Loire, Dubigeon — sur cette île, on construisait des navires. [ton chaleureux] Jean Penaud s'en souvient. Charpentier de fer, il a été embauché le cinq février 1957. Il avait commencé par huit jours au balai, puis on l'avait envoyé au parc à ferret — c'est là qu'on triait les goussets, ces petites pièces de renfort en métal, et les bouts de fer à boudin. [pause 1s] Un petit train venait chercher le tout pour amener les pièces à bord. Très vite, Jean était monté travailler directement sur les coques, aux côtés d'un ancien de soixante-trois ans qui lui avait tout appris."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "taggedText": "{silence_quai_deserte.wav}\n\n[ton grave] Puis les chantiers ont fermé. L'un après l'autre, les sites se sont tus. [pause 2s] Les cales où l'on assemblait des coques sont restées vides. La grue, elle, n'a pas bougé. [ralentissement] Désormais orpheline de sa fonction, elle dominait un quai que plus personne ne faisait vibrer. La ville entière portait ce silence, [émotion contenue] comme une mémoire sans voix."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Devenir symbole",
+      "taggedText": "{clapotis_loire_doux.wav}\n\nEt pourtant, la grue jaune est restée. [ton affirmatif] Quand l'Île de Nantes s'est réinventée, elle a été préservée, classée au titre du patrimoine. Aujourd'hui, elle est un repère pour les Nantais — le signe visible d'un passé ouvrier qui refuse de s'effacer. Pour ceux qui, comme Jean Penaud, ont travaillé à ses pieds, elle garde la trace d'un labeur quotidien. [pause 1s] Pour les autres, elle est devenue une icône. [ton solennel] Sentinelle de métal et de mémoire, la grue jaune veille toujours sur la Loire."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 12,
+    "soundTags": 4,
+    "originalWordCount": 327
+  }
+}

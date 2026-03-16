@@ -1,0 +1,127 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Nantes, le fleuve et les hommes : chronique d'un port qui a fait la ville",
+  "resumeHistoire": "Bien avant d'être la métropole que l'on connaît, Nantes n'était qu'un modeste port fluvial celte niché au bord de la Loire, où quelques habitants vivaient du commerce et du minerai. Avec la conquête romaine, ce petit comptoir se transforme en véritable chef-lieu, et la vie de ses quais commence à battre au rythme des échanges grandissants. Au fil des siècles, le port façonne la ville et la vie de ceux qui y travaillent — marins, artisans, commerçants — tournant progressivement Nantes vers l'Atlantique et le grand large. Mais cette prospérité porte aussi des ombres, notamment celle du commerce triangulaire et de la traite négrière, qui marquent durablement la mémoire de la cité. Aujourd'hui, les anciens quais et chantiers navals se sont réinventés, mais le fleuve reste le fil conducteur de l'identité nantaise — et le récit revient là où tout a commencé, au bord de l'eau.",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Au bord de l'eau, aujourd'hui",
+      "duree_cible": 12,
+      "fonction_narrative": "ouverture_circulaire",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Ambiance sonore contemporaine des quais de Nantes",
+        "Évocation du fleuve Loire comme fil conducteur",
+        "Adresse directe au grand public, ton pédagogique posé",
+        "Question d'amorce : qui étaient les premiers Nantais du port ?"
+      ],
+      "mood": "contemplatif_invitant"
+    },
+    {
+      "partie": 2,
+      "titre": "Le petit port des Namnètes",
+      "duree_cible": 20,
+      "fonction_narrative": "exposition_historique",
+      "position_arc_emotionnel": "curiosite_montante",
+      "elements_necessaires": [
+        "Corbilo, port fluvial celte entre -900 et -500",
+        "Les Namnètes, peuple celte installé au bord de la Loire",
+        "Vie quotidienne : commerce fluvial, travail du minerai",
+        "Dépôts de fondeurs à la Prairie-au-Mauve, Chantenay, Jardin des Plantes",
+        "Modestie du lieu — une petite communauté de travailleurs"
+      ],
+      "mood": "narratif_posé_evocateur"
+    },
+    {
+      "partie": 3,
+      "titre": "Rome arrive, le port grandit",
+      "duree_cible": 20,
+      "fonction_narrative": "montee_dramatique",
+      "position_arc_emotionnel": "acceleration_enthousiaste",
+      "elements_necessaires": [
+        "Conquête romaine et transformation de Corbilo en Condevicnum",
+        "Essor fulgurant : tribunal, temple de Mars Mullo, thermes, égouts",
+        "Portus Namnetum — le port nommé dans les inscriptions gravées",
+        "Concurrence avec Ratiatum (Rezé)",
+        "Argiotalus, cavalier namnète mort aux frontières — premier Nantais connu",
+        "Vie sociale : les Nantais fournissent des hommes à la légion romaine"
+      ],
+      "mood": "dynamique_pedagogique"
+    },
+    {
+      "partie": 4,
+      "titre": "Le port tourné vers l'Atlantique — grandeur et ombres",
+      "duree_cible": 22,
+      "fonction_narrative": "pivot_emotionnel",
+      "position_arc_emotionnel": "gravite_reflexive",
+      "elements_necessaires": [
+        "Nantes devient carrefour commercial tourné vers l'Atlantique",
+        "Quai de la Fosse, Île Feydeau — lieux de la prospérité marchande",
+        "Vie des travailleurs portuaires : marins, charpentiers, dockers",
+        "Ombre du commerce triangulaire et de la traite négrière",
+        "Chantiers navals sur l'Île de Nantes",
+        "Ton pédagogique : nommer sans esquiver, expliquer sans juger"
+      ],
+      "mood": "grave_mais_accessible"
+    },
+    {
+      "partie": 5,
+      "titre": "Retour au bord de l'eau",
+      "duree_cible": 16,
+      "fonction_narrative": "fermeture_circulaire",
+      "position_arc_emotionnel": "apaisement_ouvert",
+      "elements_necessaires": [
+        "Reconversion contemporaine des quais et chantiers",
+        "Mémoire vivante : le port n'est plus mais le fleuve reste",
+        "Retour à l'image d'ouverture — les quais aujourd'hui",
+        "Phrase de bouclage reliant passé et présent",
+        "Ouverture : la Loire continue de raconter Nantes"
+      ],
+      "mood": "contemplatif_conclusif"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_a_pivot_grave",
+  "rythme_general": "modere_avec_acceleration_centrale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "plongee_temporelle",
+      "duree": 2.0,
+      "description": "De l'image contemporaine des quais, la voix glisse vers le passé lointain avec une formule du type 'Il y a près de trois mille ans, ici même…'. Transition fluide, pas de rupture — le lieu reste le même, seul le temps change."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Le récit accélère légèrement : 'Et puis Rome arrive, et tout change.' Enchaînement chronologique direct, le ton passe de l'évocation douce à l'énergie de la transformation."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ellipse_temporelle_guidee",
+      "duree": 2.0,
+      "description": "Saut de plusieurs siècles signalé clairement : 'Les siècles passent, et le port de Nantes finit par regarder bien au-delà de la Loire…' Le ton se fait plus posé, préparant la gravité du pivot émotionnel."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "retour_au_present",
+      "duree": 2.0,
+      "description": "Remontée vers aujourd'hui, douce et réflexive : 'Aujourd'hui, les grues ont disparu, les cales se sont tues…' Retour à l'ambiance sonore d'ouverture pour boucler la boucle narrative."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est une seule coulée portée par le fleuve comme métaphore structurante — la Loire ouvre, traverse et ferme le reportage. La voix masculine posée doit maintenir un débit régulier (environ 150 mots/min pour le grand public), avec de légères accélérations en partie 3 et un ralentissement marqué en partie 4 lors de l'évocation de la traite. STRUCTURE CIRCULAIRE : La première et la dernière image sont identiques — les quais de Nantes au bord de l'eau — mais le regard du spectateur a changé entre-temps. AMBIANCE SONORE MINIMALISTE : Privilégier un fond d'eau (clapotis de Loire) discret et continu, avec de très ponctuelles ponctuations (cloche de navire, bruit de marteau sur métal pour les chantiers). Pas de musique envahissante. ARCHIVES : Le ratio 0.7 narration / 0.3 archives signifie qu'environ 25-27 secondes peuvent être occupées par des extraits audio. Intégrer si possible un extrait de la source NantesHistoires.mp3 autour de [01:00]-[01:30] (évocation de Corbilo et des Namnètes) et [02:00]-[02:08] (transformation romaine). ANGLE CHRONIQUE SOCIALE : Chaque époque doit être incarnée par les gens qui vivaient du port — fondeurs celtes, légionnaires namnètes, marins et dockers — pas par les grands personnages. Le port est raconté par ceux qui y travaillaient. TON PÉDAGOGIQUE ACCESSIBLE : Expliquer les termes (Namnètes = peuple celte, Condevicnum = nouveau nom romain) sans condescendance, comme un guide passionné qui partage. RIGUEUR : Ne pas inventer de dates ou faits au-delà de ce que le contexte fournit. Pour les périodes non documentées dans les sources (Moyen Âge, époque moderne), rester dans des formulations générales appuyées sur les thèmes secondaires validés (commerce atlantique, traite, chantiers navals, reconversion)."
+}

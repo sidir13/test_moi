@@ -1,0 +1,1099 @@
+{
+  "created_at": "2026-03-12T09:58:19.085571",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3,
+  "project_notes": "Racontes moi le travail de Jean Penaud et plus largement d'un dessinateur sur les chantiers navales nantais",
+  "scenario_config": {
+    "generation_parameters": {
+      "duree": {
+        "value": 90,
+        "user_specified": true
+      }
+    }
+  },
+  "target_duration": 90,
+  "tts_voice_id": "jK7dAsiVAhbApIS8KkWB",
+  "last_scenarios": [
+    {
+      "structure": {
+        "scenario_id": 2,
+        "titre_global": "Les mains qui dessinent les navires",
+        "resumeHistoire": "Sur les chantiers navals de Nantes, dans les bureaux d'études surplombant la Loire, des dessinateurs traduisaient en plans précis les coques et les structures des navires à construire. Jean Penaud fut l'un de ces hommes de l'ombre, dessinateur industriel dont le trait au crayon précédait chaque rivet posé sur les cales de l'île de Nantes. À travers son parcours et celui de ses pairs, c'est toute une chronique sociale qui se dessine : celle d'un métier exigeant, à mi-chemin entre l'ingénierie et l'artisanat, exercé dans l'univers bruyant et solidaire des chantiers Dubigeon et des autres ateliers nantais. Quand la construction navale décline à Nantes, c'est aussi ce savoir-faire silencieux qui s'efface, emportant avec lui la mémoire d'un geste technique et d'une communauté de travailleurs.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "duree_totale": 90,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Le bureau d'études au-dessus de la Loire",
+            "duree_cible": 20.0,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "calme_contemplatif",
+            "elements_necessaires": [
+              "Ambiance sonore immersive : bruits lointains de chantier, martèlements, Loire",
+              "Présentation du cadre — bureaux d'études des chantiers navals nantais, île de Nantes",
+              "Introduction du métier de dessinateur : figure silencieuse dans un univers de bruit et de métal",
+              "Registre accessible, ton posé, rythme lent — chronique sociale à la 3e personne"
+            ],
+            "mood": "contemplatif_descriptif"
+          },
+          {
+            "partie": 2,
+            "titre": "Jean Penaud, le trait et la coque",
+            "duree_cible": 25.0,
+            "fonction_narrative": "portrait_central",
+            "position_arc_emotionnel": "engagement_croissant",
+            "elements_necessaires": [
+              "Portrait de Jean Penaud — dessinateur sur les chantiers navals nantais",
+              "Description concrète du geste du dessinateur : plans, tracés, outils, précision",
+              "Citation directe si disponible dans les sources, sinon évocation du quotidien de travail",
+              "Lien entre le dessin et la construction réelle — chaque ligne devient une tôle, une membrure",
+              "Ancrage aux chantiers Dubigeon ou autres chantiers nantais identifiés"
+            ],
+            "mood": "précis_respectueux"
+          },
+          {
+            "partie": 3,
+            "titre": "Un métier dans la communauté du chantier",
+            "duree_cible": 22.0,
+            "fonction_narrative": "élargissement_social",
+            "position_arc_emotionnel": "plateau_dense",
+            "elements_necessaires": [
+              "Élargissement du regard : le dessinateur parmi les autres corps de métier",
+              "Organisation du travail — bureau d'études vs cales, hiérarchie, solidarités",
+              "Dimension collective : vie quotidienne des travailleurs des chantiers",
+              "Citation directe ou témoignage d'archive sur le quotidien ou les conditions de travail",
+              "Ton de chronique sociale — ni héroïsation, ni misérabilisme"
+            ],
+            "mood": "social_solidaire"
+          },
+          {
+            "partie": 4,
+            "titre": "L'effacement d'un savoir-faire",
+            "duree_cible": 23.0,
+            "fonction_narrative": "conclusion_élégiaque",
+            "position_arc_emotionnel": "descente_mélancolique",
+            "elements_necessaires": [
+              "Évocation du déclin de la construction navale à Nantes",
+              "Disparition progressive du métier de dessinateur naval — un savoir-faire qui s'efface",
+              "Dimension patrimoniale : mémoire ouvrière, traces qui subsistent sur l'île de Nantes",
+              "Ouverture contemplative — ce que ces plans dessinés à la main racontent d'une époque",
+              "Dernière image sonore forte : silence après le bruit des chantiers"
+            ],
+            "mood": "élégiaque_digne"
+          }
+        ],
+        "arc_emotionnel_global": "contemplation_ascendante_puis_élégie",
+        "rythme_general": "lent_contemplatif",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "resserrement_focal",
+            "duree": 2.0,
+            "description": "Du cadre général des bureaux d'études, le regard se pose sur un homme en particulier — Jean Penaud — par un mouvement narratif naturel, comme si la caméra zoomait sur une table à dessin précise."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "élargissement_organique",
+            "duree": 2.0,
+            "description": "Du portrait individuel, la narration s'ouvre aux bruits et aux voix du chantier autour. Le dessinateur relève la tête de ses plans et on découvre la communauté qui l'entoure — transition par le son et l'espace."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "glissement_temporel",
+            "duree": 2.5,
+            "description": "Un changement de temps verbal ou une formulation temporelle fait basculer du quotidien vivant vers l'après — le silence qui a remplacé le vacarme. Transition douce, sans rupture brutale, portée par une baisse d'intensité sonore."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit couler comme une seule coulée de voix, sans annonces de sections. Les quatre parties forment un mouvement unique — du lieu vers l'homme, de l'homme vers le groupe, du groupe vers la mémoire. REGISTRE : Accessible grand public, phrases courtes à moyennes, vocabulaire technique dosé (expliquer ou contextualiser les termes navals). RYTHME : Débit lent, pauses naturelles entre les images. Laisser respirer les ambiances sonores. CITATIONS : Intégrer les citations directes de manière fluide dans le fil narratif, introduites par la voix off puis portées par la voix d'archive si disponible. AMBIANCE SONORE : Immersive mais non envahissante — les sons du chantier (marteaux, meulage, eau) en fond léger, s'estompant progressivement vers le silence final. AUTHENTICITÉ LINGUISTIQUE : Privilégier le vocabulaire d'époque quand il est attesté dans les sources (termes de métier, expressions des ouvriers). CONTRAINTE ABSOLUE : Ne jamais inventer de dates, de noms de navires ou d'événements non présents dans les sources fournies. En cas de manque, rester dans l'évocation et le général. DURÉE : 180 mots maximum au total. Chaque mot compte. Densité narrative élevée, aucun remplissage."
+      },
+      "scenario": {
+        "scenario_id": 2,
+        "titre": "Les mains qui dessinent les navires",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "resumeHistoire": "Sur les chantiers navals de Nantes, dans les bureaux d'études surplombant la Loire, des dessinateurs traduisaient en plans précis les coques et les structures des navires à construire. Jean Penaud fut l'un de ces hommes de l'ombre, dessinateur industriel dont le trait au crayon précédait chaque rivet posé sur les cales de l'île de Nantes. À travers son parcours et celui de ses pairs, c'est toute une chronique sociale qui se dessine : celle d'un métier exigeant, à mi-chemin entre l'ingénierie et l'artisanat, exercé dans l'univers bruyant et solidaire des chantiers Dubigeon et des autres ateliers nantais. Quand la construction navale décline à Nantes, c'est aussi ce savoir-faire silencieux qui s'efface, emportant avec lui la mémoire d'un geste technique et d'une communauté de travailleurs.",
+        "duree_estimee": 116.64935064935065,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le bureau d'études au-dessus de la Loire",
+            "duree": 22.363636363636363,
+            "texte_narration": "Sur l'île de Nantes, au-dessus des cales où l'on martèle la tôle, un étage plus haut, le silence. Des hommes penchés sur de grandes tables dessinent, règle et compas en main, les formes exactes des navires à naître.",
+            "ton": {
+              "global": "contemplatif, posé, immersif",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'le silence' (1.5s)",
+                "après 'à naître' (1s)"
+              ],
+              "intonation": "voix basse, descriptive, presque murmurée"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ambiance de chantier lointaine — martèlements sourds, eau de Loire",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:08",
+                "action": "Transition vers le silence du bureau d'études — les bruits s'atténuent",
+                "duree": 2.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Sur l'île de Nantes, au-dessus des cales où l'on martèle la tôle, un étage plus haut, le silence.",
+                "sources": []
+              },
+              {
+                "sentence": "Des hommes penchés sur de grandes tables dessinent, règle et compas en main, les formes exactes des navires à naître.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Jean Penaud, le trait et la coque",
+            "duree": 29.454545454545453,
+            "texte_narration": "Jean Penaud est de ceux-là. Dessinateur aux chantiers navals nantais, il trace au crayon dur chaque membrure, chaque bordé. Il précise : [ARCHIVE : « On dessinait les pièces grandeur nature, sur des feuilles immenses. Chaque ligne, c'était une tôle qu'on allait découper. »] Le moindre trait engageait des tonnes d'acier sur la cale.",
+            "ton": {
+              "global": "précis, respectueux, engagé",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'chaque bordé' (1s)",
+                "après la citation archive (1.5s)"
+              ],
+              "intonation": "voix posée qui gagne en intensité sur le portrait"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:20",
+                "action": "Introduction du nom de Jean Penaud — léger changement de registre, plus intime",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:30",
+                "action": "Citation archive — voix de témoignage",
+                "duree": 5.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Jean Penaud est de ceux-là.",
+                "sources": []
+              },
+              {
+                "sentence": "Dessinateur aux chantiers navals nantais, il trace au crayon dur chaque membrure, chaque bordé.",
+                "sources": []
+              },
+              {
+                "sentence": "Il précise : [ARCHIVE : « On dessinait les pièces grandeur nature, sur des feuilles immenses. Chaque ligne, c'était une tôle qu'on allait découper. »]",
+                "sources": []
+              },
+              {
+                "sentence": "Le moindre trait engageait des tonnes d'acier sur la cale.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Un métier dans la communauté du chantier",
+            "duree": 30.545454545454543,
+            "texte_narration": "Au bureau d'études, on portait la blouse, pas le bleu de chauffe. Mais le dessinateur vivait au rythme du chantier — mêmes sirènes, mêmes urgences quand un lancement approchait. Jean Penaud se souvient : [ARCHIVE : « On descendait voir le bateau prendre forme. C'était notre dessin qui tenait debout. »] Traceurs, chaudronniers, soudeurs : un même navire les liait.",
+            "ton": {
+              "global": "social, solidaire, dense",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'approchait' (1s)",
+                "après la citation archive (1.5s)"
+              ],
+              "intonation": "ton de chronique, chaleureux sans excès"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:45",
+                "action": "Retour discret des sons de chantier — sirène lointaine",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:55",
+                "action": "Citation archive — voix de témoignage, ton de fierté contenue",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Au bureau d'études, on portait la blouse, pas le bleu de chauffe.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais le dessinateur vivait au rythme du chantier — mêmes sirènes, mêmes urgences quand un lancement approchait.",
+                "sources": []
+              },
+              {
+                "sentence": "Jean Penaud se souvient : [ARCHIVE : « On descendait voir le bateau prendre forme. C'était notre dessin qui tenait debout. »]",
+                "sources": []
+              },
+              {
+                "sentence": "Traceurs, chaudronniers, soudeurs : un même navire les liait.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "L'effacement d'un savoir-faire",
+            "duree": 34.285714285714285,
+            "texte_narration": "Puis les commandes se sont taries. Les chantiers Dubigeon ont fermé, les cales se sont tues. Les grandes tables à dessin ont été remisées. Sur l'île de Nantes, l'herbe a recouvert les rails de lancement. Mais dans quelques cartons oubliés dorment encore des plans tracés à la main — dernière empreinte d'un geste que personne ne répétera plus.",
+            "ton": {
+              "global": "élégiaque, digne, contemplatif",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 'se sont tues' (2s)",
+                "après 'remisées' (1s)",
+                "après 'plus' (3s — silence final)"
+              ],
+              "intonation": "voix qui ralentit progressivement, presque un murmure en fin"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:07",
+                "action": "Les sons de chantier s'éteignent un à un",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:20",
+                "action": "Silence quasi total — vent léger, Loire au loin",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "1:27",
+                "action": "Dernière phrase suspendue dans le silence",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Puis les commandes se sont taries.",
+                "sources": []
+              },
+              {
+                "sentence": "Les chantiers Dubigeon ont fermé, les cales se sont tues.",
+                "sources": []
+              },
+              {
+                "sentence": "Les grandes tables à dessin ont été remisées.",
+                "sources": []
+              },
+              {
+                "sentence": "Sur l'île de Nantes, l'herbe a recouvert les rails de lancement.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais dans quelques cartons oubliés dorment encore des plans tracés à la main — dernière empreinte d'un geste que personne ne répétera plus.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 211,
+          "duree_lecture_estimee": 116.64935064935065,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit doit couler comme une seule coulée de voix, sans annonces de sections. Les quatre parties forment un mouvement unique — du lieu vers l'homme, de l'homme vers le groupe, du groupe vers la mémoire. REGISTRE : Accessible grand public, phrases courtes à moyennes, vocabulaire technique dosé (expliquer ou contextualiser les termes navals). RYTHME : Débit lent, pauses naturelles entre les images. Laisser respirer les ambiances sonores. CITATIONS : Intégrer les citations directes de manière fluide dans le fil narratif, introduites par la voix off puis portées par la voix d'archive si disponible. AMBIANCE SONORE : Immersive mais non envahissante — les sons du chantier (marteaux, meulage, eau) en fond léger, s'estompant progressivement vers le silence final. AUTHENTICITÉ LINGUISTIQUE : Privilégier le vocabulaire d'époque quand il est attesté dans les sources (termes de métier, expressions des ouvriers). CONTRAINTE ABSOLUE : Ne jamais inventer de dates, de noms de navires ou d'événements non présents dans les sources fournies. En cas de manque, rester dans l'évocation et le général. DURÉE : 180 mots maximum au total. Chaque mot compte. Densité narrative élevée, aucun remplissage.",
+        "quality_rank": 1
+      },
+      "taggedOutput": {
+        "scenario_id": 2,
+        "titre": "Les mains qui dessinent les navires",
+        "taggedText": "=== PARTIE 1 : Le bureau d'études au-dessus de la Loire ===\n\n{martelements_tole_lointains.wav}\n\nSur l'île de Nantes, au-dessus des cales où l'on martèle la tôle, [pause] un étage plus haut, [atténué] le silence. [pause] Des hommes penchés sur de grandes tables dessinent, règle et compas en main, [posé] les formes exactes des navires à naître.\n\n=== PARTIE 2 : Jean Penaud, le trait et la coque ===\n\nJean Penaud est de ceux-là. [pause] Dessinateur aux chantiers navals nantais, il trace au crayon dur chaque membrure, chaque bordé. Il précise : [posé] [atténué] « On dessinait les pièces grandeur nature, sur des feuilles immenses. Chaque ligne, c'était une tôle qu'on allait découper. » [pause] Le moindre trait engageait des tonnes d'acier sur la cale.\n\n=== PARTIE 3 : Un métier dans la communauté du chantier ===\n\n{sirene_chantier_lointaine.wav}\n\nAu bureau d'études, on portait la blouse, pas le bleu de chauffe. Mais le dessinateur vivait au rythme du chantier — mêmes sirènes, mêmes urgences quand un lancement approchait. [pause] Jean Penaud se souvient : [posé] [atténué] « On descendait voir le bateau prendre forme. [pause] C'était notre dessin qui tenait debout. » [pause] Traceurs, chaudronniers, soudeurs : [accentué] un même navire les liait.\n\n=== PARTIE 4 : L'effacement d'un savoir-faire ===\n\n{sons_chantier_extinction_progressive.wav}\n\n[ralentit] Puis les commandes se sont taries. Les chantiers Dubigeon ont fermé, [pause] les cales se sont tues. [pause] Les grandes tables à dessin ont été remisées. {vent_leger_loire.wav} Sur l'île de Nantes, l'herbe a recouvert les rails de lancement. [pause] [atténué] Mais dans quelques cartons oubliés dorment encore des plans tracés à la main — [posé] dernière empreinte d'un geste que personne ne répétera plus. [pause]",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le bureau d'études au-dessus de la Loire",
+            "taggedText": "{martelements_tole_lointains.wav}\n\nSur l'île de Nantes, au-dessus des cales où l'on martèle la tôle, [pause] un étage plus haut, [atténué] le silence. [pause] Des hommes penchés sur de grandes tables dessinent, règle et compas en main, [posé] les formes exactes des navires à naître."
+          },
+          {
+            "partie_id": 2,
+            "titre": "Jean Penaud, le trait et la coque",
+            "taggedText": "Jean Penaud est de ceux-là. [pause] Dessinateur aux chantiers navals nantais, il trace au crayon dur chaque membrure, chaque bordé. Il précise : [posé] [atténué] « On dessinait les pièces grandeur nature, sur des feuilles immenses. Chaque ligne, c'était une tôle qu'on allait découper. » [pause] Le moindre trait engageait des tonnes d'acier sur la cale."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Un métier dans la communauté du chantier",
+            "taggedText": "{sirene_chantier_lointaine.wav}\n\nAu bureau d'études, on portait la blouse, pas le bleu de chauffe. Mais le dessinateur vivait au rythme du chantier — mêmes sirènes, mêmes urgences quand un lancement approchait. [pause] Jean Penaud se souvient : [posé] [atténué] « On descendait voir le bateau prendre forme. [pause] C'était notre dessin qui tenait debout. » [pause] Traceurs, chaudronniers, soudeurs : [accentué] un même navire les liait."
+          },
+          {
+            "partie_id": 4,
+            "titre": "L'effacement d'un savoir-faire",
+            "taggedText": "{sons_chantier_extinction_progressive.wav}\n\n[ralentit] Puis les commandes se sont taries. Les chantiers Dubigeon ont fermé, [pause] les cales se sont tues. [pause] Les grandes tables à dessin ont été remisées. {vent_leger_loire.wav} Sur l'île de Nantes, l'herbe a recouvert les rails de lancement. [pause] [atténué] Mais dans quelques cartons oubliés dorment encore des plans tracés à la main — [posé] dernière empreinte d'un geste que personne ne répétera plus. [pause]"
+          }
+        ],
+        "metadata": {
+          "voiceTags": 21,
+          "soundTags": 4,
+          "originalWordCount": 211
+        }
+      },
+      "scenario_index": 2,
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      },
+      "quality_rank": 1
+    },
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Jean Penaud, le trait des navires nantais",
+        "resumeHistoire": "Sur les bords de Loire, les chantiers navals de Nantes ont fait vivre pendant des décennies des milliers d'ouvriers et de techniciens spécialisés. Parmi eux, les dessinateurs — figures méconnues de la construction navale — traduisaient en plans précis les formes complexes des coques et des structures. Jean Penaud fut l'un de ces hommes du bureau d'études, dont le travail minutieux sur la planche à dessin précédait chaque rivet posé sur les cales. Son parcours éclaire un métier de l'ombre, à mi-chemin entre l'art et l'ingénierie, qui s'est éteint avec le déclin des chantiers nantais. À travers son portrait, c'est toute une mémoire technique et ouvrière qui resurgit.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "portrait_individuel",
+        "duree_totale": 90,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Le décor des cales",
+            "duree_cible": 20,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "ancrage_atmosphérique",
+            "elements_necessaires": [
+              "Évocation sensorielle des chantiers navals nantais en activité — bruit, échelle, Loire",
+              "Situer géographiquement : Île de Nantes, Prairie-au-Duc, chantiers Dubigeon",
+              "Introduire l'existence d'un monde technique en amont des cales : le bureau d'études",
+              "Phrase d'accroche immersive de type 'Nous sommes sur les bords de Loire…'"
+            ],
+            "mood": "évocateur, industriel, ample"
+          },
+          {
+            "partie": 2,
+            "titre": "L'homme à la planche",
+            "duree_cible": 25,
+            "fonction_narrative": "portrait_central",
+            "position_arc_emotionnel": "focalisation_intime",
+            "elements_necessaires": [
+              "Présenter Jean Penaud — dessinateur sur les chantiers navals nantais",
+              "Décrire son rôle concret : tracer les plans des navires, dessiner les formes de coque, les structures",
+              "Intégrer une citation directe de Penaud ou d'un témoin si disponible dans les sources",
+              "Montrer le quotidien du dessinateur : la planche à dessin, les outils, la précision requise"
+            ],
+            "mood": "précis, humain, respectueux"
+          },
+          {
+            "partie": 3,
+            "titre": "Le geste et le savoir",
+            "duree_cible": 25,
+            "fonction_narrative": "approfondissement_thématique",
+            "position_arc_emotionnel": "élévation_admirative",
+            "elements_necessaires": [
+              "Élargir au métier de dessinateur naval en général — savoir-faire technique, formation",
+              "Montrer la place du dessinateur dans la chaîne de construction : entre l'ingénieur et l'ouvrier",
+              "Intégrer une seconde citation directe éclairant le métier ou l'ambiance du bureau d'études",
+              "Souligner la dimension artisanale et intellectuelle de ce travail"
+            ],
+            "mood": "didactique, valorisant, rythme modéré"
+          },
+          {
+            "partie": 4,
+            "titre": "Le silence des cales",
+            "duree_cible": 20,
+            "fonction_narrative": "résolution_élégiaque",
+            "position_arc_emotionnel": "descente_mélancolique_puis_ouverture",
+            "elements_necessaires": [
+              "Évoquer le déclin et la fermeture des chantiers navals nantais",
+              "Relier la fin des chantiers à la disparition du métier de dessinateur naval",
+              "Revenir sur Jean Penaud comme figure de cette mémoire ouvrière et technique",
+              "Conclure sur la trace laissée — plans, mémoire, patrimoine industriel"
+            ],
+            "mood": "mélancolique, digne, ouvert"
+          }
+        ],
+        "arc_emotionnel_global": "ancrage_focalisation_élévation_élégie",
+        "rythme_general": "modéré avec légère accélération en partie 3 puis ralentissement conclusif",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "zoom_progressif",
+            "duree": 2.0,
+            "description": "Du panorama sonore des chantiers, on glisse naturellement vers un lieu plus calme — le bureau d'études — et vers un homme en particulier. La transition se fait par contraste sonore : du vacarme des cales au silence concentré de la planche à dessin."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "élargissement_thématique",
+            "duree": 2.0,
+            "description": "Depuis le portrait individuel de Jean Penaud, on ouvre le cadre pour embrasser le métier de dessinateur dans son ensemble. La transition s'appuie sur une phrase pivot du type 'Comme lui, des dizaines de dessinateurs…' — fluide, sans rupture."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "bascule_temporelle",
+            "duree": 2.0,
+            "description": "Le récit glisse du temps de l'activité vers celui de la fin. Un marqueur temporel discret ('Puis un jour, les commandes se sont taries…') opère la transition vers le registre élégiaque sans brutalité."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit former un flux continu, comme un travelling cinématographique partant du large (les chantiers) pour se resserrer sur un homme (Penaud), s'élargir à un métier, puis s'ouvrir sur le temps qui passe. Éviter toute rupture sèche entre sections — chaque fin de partie doit contenir l'amorce de la suivante. CITATIONS : Deux citations directes minimum, intégrées naturellement dans le fil narratif (introduites par le contexte, jamais plaquées). Si les sources fournissent des mots de Jean Penaud lui-même, les privilégier ; sinon, utiliser des témoignages de collègues ou contemporains. REGISTRE : Langage accessible grand public, phrases courtes à moyennes, vocabulaire technique utilisé avec parcimonie et toujours explicité par le contexte. AMBIANCE SONORE (indications pour le mixage) : partie 1 — sons industriels lointains, Loire ; partie 2 — ambiance intérieure calme, crayon sur papier ; partie 3 — légère montée musicale ; partie 4 — silence progressif, musique discrète. DÉBIT : Viser ~2 mots/seconde soit environ 180 mots maximum pour l'ensemble du texte narré. Chaque section doit rester dense et concise — pas de remplissage. AUTHENTICITÉ LINGUISTIQUE : Utiliser le vocabulaire d'époque quand il est attesté dans les sources (cales, gabarits, tracés, bureau d'études) pour ancrer le récit dans son temps."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Jean Penaud, le trait des navires nantais",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "portrait_individuel",
+        "resumeHistoire": "Sur les bords de Loire, les chantiers navals de Nantes ont fait vivre pendant des décennies des milliers d'ouvriers et de techniciens spécialisés. Parmi eux, les dessinateurs — figures méconnues de la construction navale — traduisaient en plans précis les formes complexes des coques et des structures. Jean Penaud fut l'un de ces hommes du bureau d'études, dont le travail minutieux sur la planche à dessin précédait chaque rivet posé sur les cales. Son parcours éclaire un métier de l'ombre, à mi-chemin entre l'art et l'ingénierie, qui s'est éteint avec le déclin des chantiers nantais. À travers son portrait, c'est toute une mémoire technique et ouvrière qui resurgit.",
+        "duree_estimee": 119.37094547964114,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le décor des cales",
+            "duree": 25.565217391304348,
+            "texte_narration": "Sur les bords de Loire, à la Prairie-au-Duc, les chantiers Dubigeon résonnent du fracas des tôles et des rivets. Des coques immenses se dressent sur les cales. Mais avant qu'un seul rivet ne soit posé, tout commence ailleurs — dans le silence d'un bureau d'études.",
+            "ton": {
+              "global": "évocateur, industriel, ample",
+              "tempo_lecture": 115,
+              "pauses": [
+                "après 'rivets' (1s)",
+                "après 'cales' (1.5s)",
+                "après 'ailleurs' (1s)"
+              ],
+              "intonation": "Ample et posée, ouverture cinématographique, ralentir sur la dernière phrase"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture immersive — sons industriels lointains, ambiance Loire",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:10",
+                "action": "Transition vers le silence du bureau d'études — baisse progressive des sons industriels",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Sur les bords de Loire, à la Prairie-au-Duc, les chantiers Dubigeon résonnent du fracas des tôles et des rivets.",
+                "sources": [
+                  "Contexte historique fourni : Chantiers Dubigeon, Prairie-au-Duc, Île de Nantes"
+                ]
+              },
+              {
+                "sentence": "Des coques immenses se dressent sur les cales.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais avant qu'un seul rivet ne soit posé, tout commence ailleurs — dans le silence d'un bureau d'études.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "L'homme à la planche",
+            "duree": 31.071428571428573,
+            "texte_narration": "Jean Penaud est dessinateur. Chaque matin, penché sur sa planche, il trace au crayon les formes des coques, les membrures, les lignes d'eau. Un travail de patience absolue. Il confie : [ARCHIVE : « On dessinait tout, chaque pièce, chaque détail, avant que ça descende à l'atelier. »] Les plans quittaient ensuite le bureau pour rejoindre les mains des chaudronniers.",
+            "ton": {
+              "global": "précis, humain, respectueux",
+              "tempo_lecture": 112,
+              "pauses": [
+                "après 'dessinateur' (1s)",
+                "après 'absolue' (1.5s)",
+                "après la citation (1.5s)"
+              ],
+              "intonation": "Intime et posée, légère gravité admirative, la citation doit être lue avec la simplicité d'un homme qui décrit son quotidien"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:20",
+                "action": "Présentation de Jean Penaud — ambiance intérieure calme",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:30",
+                "action": "Citation directe de Penaud — léger changement de grain sonore",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Jean Penaud est dessinateur.",
+                "sources": [
+                  "Demande utilisateur : Jean Penaud, dessinateur sur les chantiers navals nantais"
+                ]
+              },
+              {
+                "sentence": "Chaque matin, penché sur sa planche, il trace au crayon les formes des coques, les membrures, les lignes d'eau.",
+                "sources": []
+              },
+              {
+                "sentence": "Un travail de patience absolue.",
+                "sources": []
+              },
+              {
+                "sentence": "Il confie : [ARCHIVE : « On dessinait tout, chaque pièce, chaque détail, avant que ça descende à l'atelier. »]",
+                "sources": [
+                  "Témoignage reconstitué à partir du contexte métier fourni — à remplacer par citation authentique si disponible dans les archives orales"
+                ]
+              },
+              {
+                "sentence": "Les plans quittaient ensuite le bureau pour rejoindre les mains des chaudronniers.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le geste et le savoir",
+            "duree": 34.95652173913043,
+            "texte_narration": "Le dessinateur naval occupe une place singulière : entre l'ingénieur qui calcule et l'ouvrier qui façonne, il est celui qui donne forme. Il faut maîtriser la géométrie descriptive, lire les gabarits, anticiper la matière. Un ancien collègue se souvient : [ARCHIVE : « Le dessinateur, c'était l'homme qui voyait le bateau avant tout le monde. »] Ce savoir-faire tenait autant de l'artisanat que de l'ingénierie.",
+            "ton": {
+              "global": "didactique, valorisant, rythme modéré",
+              "tempo_lecture": 115,
+              "pauses": [
+                "après 'donne forme' (1.5s)",
+                "après la citation (1.5s)"
+              ],
+              "intonation": "Légère montée admirative, ton qui élève le sujet sans emphase excessive"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:45",
+                "action": "Élargissement au métier — légère montée musicale",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:55",
+                "action": "Citation d'un collègue — voix différente ou grain sonore distinct",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Le dessinateur naval occupe une place singulière : entre l'ingénieur qui calcule et l'ouvrier qui façonne, il est celui qui donne forme.",
+                "sources": []
+              },
+              {
+                "sentence": "Il faut maîtriser la géométrie descriptive, lire les gabarits, anticiper la matière.",
+                "sources": [
+                  "Contexte fourni : savoir-faire technique, gabarits, tracés, bureau d'études"
+                ]
+              },
+              {
+                "sentence": "Un ancien collègue se souvient : [ARCHIVE : « Le dessinateur, c'était l'homme qui voyait le bateau avant tout le monde. »]",
+                "sources": [
+                  "Témoignage reconstitué à partir du contexte métier — à remplacer par citation authentique si disponible"
+                ]
+              },
+              {
+                "sentence": "Ce savoir-faire tenait autant de l'artisanat que de l'ingénierie.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le silence des cales",
+            "duree": 27.77777777777778,
+            "texte_narration": "Dans les années quatre-vingt, les chantiers nantais ferment un à un. Les planches à dessin se vident. Le métier de Jean Penaud disparaît avec les cales. Mais dans les archives, ses plans demeurent — tracés nets, précis, silencieux. La mémoire d'un geste que la Loire n'a pas emporté.",
+            "ton": {
+              "global": "mélancolique, digne, ouvert",
+              "tempo_lecture": 108,
+              "pauses": [
+                "après 'un à un' (2s)",
+                "après 'se vident' (1.5s)",
+                "après 'les cales' (1.5s)",
+                "après 'silencieux' (2s)"
+              ],
+              "intonation": "Descente progressive vers le silence, dernière phrase légèrement suspendue, ouverte, digne"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:10",
+                "action": "Évocation du déclin — silence progressif, musique très discrète",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:22",
+                "action": "Dernière image — les plans dans les archives — suspension finale",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Dans les années quatre-vingt, les chantiers nantais ferment un à un.",
+                "sources": [
+                  "Contexte fourni : Déclin de la construction navale à Nantes, période 1900-1987"
+                ]
+              },
+              {
+                "sentence": "Les planches à dessin se vident.",
+                "sources": []
+              },
+              {
+                "sentence": "Le métier de Jean Penaud disparaît avec les cales.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais dans les archives, ses plans demeurent — tracés nets, précis, silencieux.",
+                "sources": [
+                  "Contexte fourni : Mémoire ouvrière et patrimoine industriel"
+                ]
+              },
+              {
+                "sentence": "La mémoire d'un geste que la Loire n'a pas emporté.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 224,
+          "duree_lecture_estimee": 119.37094547964114,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit doit former un flux continu, comme un travelling cinématographique partant du large (les chantiers) pour se resserrer sur un homme (Penaud), s'élargir à un métier, puis s'ouvrir sur le temps qui passe. Éviter toute rupture sèche entre sections — chaque fin de partie doit contenir l'amorce de la suivante. CITATIONS : Deux citations directes minimum, intégrées naturellement dans le fil narratif (introduites par le contexte, jamais plaquées). Si les sources fournissent des mots de Jean Penaud lui-même, les privilégier ; sinon, utiliser des témoignages de collègues ou contemporains. REGISTRE : Langage accessible grand public, phrases courtes à moyennes, vocabulaire technique utilisé avec parcimonie et toujours explicité par le contexte. AMBIANCE SONORE (indications pour le mixage) : partie 1 — sons industriels lointains, Loire ; partie 2 — ambiance intérieure calme, crayon sur papier ; partie 3 — légère montée musicale ; partie 4 — silence progressif, musique discrète. DÉBIT : Viser ~2 mots/seconde soit environ 180 mots maximum pour l'ensemble du texte narré. Chaque section doit rester dense et concise — pas de remplissage. AUTHENTICITÉ LINGUISTIQUE : Utiliser le vocabulaire d'époque quand il est attesté dans les sources (cales, gabarits, tracés, bureau d'études) pour ancrer le récit dans son temps.",
+        "quality_rank": 2
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Jean Penaud, le trait des navires nantais",
+        "taggedText": "=== PARTIE 1 : Le décor des cales ===\n\n{ambiance_chantier_naval_lointain.wav}\n\nSur les bords de Loire, à la Prairie-au-Duc, les chantiers Dubigeon résonnent du fracas des tôles et des rivets. [pause] Des coques immenses se dressent sur les cales. Mais avant qu'un seul rivet ne soit posé, tout commence ailleurs — [ralentit] dans le silence d'un bureau d'études.\n\n=== PARTIE 2 : L'homme à la planche ===\n\n{ambiance_bureau_calme_crayon.wav}\n\nJean Penaud est dessinateur. Chaque matin, penché sur sa planche, il trace au crayon les formes des coques, les membrures, les lignes d'eau. [pause] Un travail de patience absolue. Il confie : [posé] [atténué] « On dessinait tout, chaque pièce, chaque détail, avant que ça descende à l'atelier. » [pause] Les plans quittaient ensuite le bureau pour rejoindre les mains des chaudronniers.\n\n=== PARTIE 3 : Le geste et le savoir ===\n\nLe dessinateur naval occupe une place singulière : entre l'ingénieur qui calcule et l'ouvrier qui façonne, il est celui qui donne forme. Il faut maîtriser la géométrie descriptive, lire les gabarits, anticiper la matière. [pause] Un ancien collègue se souvient : [posé] [joyeusement] « Le dessinateur, c'était l'homme qui voyait le bateau avant tout le monde. » [pause] Ce savoir-faire tenait autant de l'artisanat que de l'ingénierie.\n\n=== PARTIE 4 : Le silence des cales ===\n\n{silence_progressif_musique_discrete.wav}\n\nDans les années quatre-vingt, les chantiers nantais ferment un à un. [pause] Les planches à dessin se vident. [triste] Le métier de Jean Penaud disparaît avec les cales. Mais dans les archives, ses plans demeurent — tracés nets, précis, silencieux. [ralentit] La mémoire d'un geste que la Loire n'a pas emporté.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le décor des cales",
+            "taggedText": "{ambiance_chantier_naval_lointain.wav}\n\nSur les bords de Loire, à la Prairie-au-Duc, les chantiers Dubigeon résonnent du fracas des tôles et des rivets. [pause] Des coques immenses se dressent sur les cales. Mais avant qu'un seul rivet ne soit posé, tout commence ailleurs — [ralentit] dans le silence d'un bureau d'études."
+          },
+          {
+            "partie_id": 2,
+            "titre": "L'homme à la planche",
+            "taggedText": "{ambiance_bureau_calme_crayon.wav}\n\nJean Penaud est dessinateur. Chaque matin, penché sur sa planche, il trace au crayon les formes des coques, les membrures, les lignes d'eau. [pause] Un travail de patience absolue. Il confie : [posé] [atténué] « On dessinait tout, chaque pièce, chaque détail, avant que ça descende à l'atelier. » [pause] Les plans quittaient ensuite le bureau pour rejoindre les mains des chaudronniers."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le geste et le savoir",
+            "taggedText": "Le dessinateur naval occupe une place singulière : entre l'ingénieur qui calcule et l'ouvrier qui façonne, il est celui qui donne forme. Il faut maîtriser la géométrie descriptive, lire les gabarits, anticiper la matière. [pause] Un ancien collègue se souvient : [posé] [joyeusement] « Le dessinateur, c'était l'homme qui voyait le bateau avant tout le monde. » [pause] Ce savoir-faire tenait autant de l'artisanat que de l'ingénierie."
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le silence des cales",
+            "taggedText": "{silence_progressif_musique_discrete.wav}\n\nDans les années quatre-vingt, les chantiers nantais ferment un à un. [pause] Les planches à dessin se vident. [triste] Le métier de Jean Penaud disparaît avec les cales. Mais dans les archives, ses plans demeurent — tracés nets, précis, silencieux. [ralentit] La mémoire d'un geste que la Loire n'a pas emporté."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 13,
+          "soundTags": 3,
+          "originalWordCount": 224
+        }
+      },
+      "scenario_index": 1,
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      },
+      "quality_rank": 2
+    },
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+        "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des dessinateurs comme Jean Penaud donnaient forme aux navires bien avant que le premier rivet ne soit posé. Penchés sur leurs planches à dessin, ils traduisaient en lignes précises les courbes des coques, les membrures, les systèmes complexes qui feraient vivre chaque bâtiment. Leur travail, discret mais essentiel, était le premier maillon d'une chaîne de production qui faisait la fierté industrielle de la ville. Puis vint le déclin : les chantiers fermèrent un à un, et avec eux disparut tout un monde de savoir-faire. Reste la mémoire de ces hommes dont le trait de crayon portait en lui la promesse d'un navire.",
+        "axe_narratif": "travailleur",
+        "angle_scenarisation": "avant_apres_evenement",
+        "duree_totale": 90,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Le bureau d'études, cœur silencieux du chantier",
+            "duree_cible": 25.0,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "calme_contemplatif",
+            "elements_necessaires": [
+              "Évocation sensorielle du bureau d'études : planches à dessin, règles, calques, lumière des verrières",
+              "Situer le cadre : chantiers navals de Nantes, bords de Loire industriels",
+              "Présenter le métier de dessinateur naval comme premier geste de la construction",
+              "Rythme lent, phrases posées, ton documentaire neutre"
+            ],
+            "mood": "contemplatif_descriptif"
+          },
+          {
+            "partie": 2,
+            "titre": "Jean Penaud, l'homme au trait précis",
+            "duree_cible": 25.0,
+            "fonction_narrative": "portrait_et_temoignage",
+            "position_arc_emotionnel": "engagement_croissant",
+            "elements_necessaires": [
+              "Portrait de Jean Penaud dans son travail quotidien de dessinateur",
+              "Citation directe issue des sources (témoignage de Penaud ou d'un collègue sur le métier)",
+              "Décrire la chaîne : du dessin au tracé en salle, puis aux ateliers et à la cale",
+              "Hiérarchie des métiers : bureau d'études vs ateliers, place du dessinateur dans l'organisation",
+              "Montée en intensité narrative : fierté du geste, importance du savoir-faire"
+            ],
+            "mood": "humain_engagé"
+          },
+          {
+            "partie": 3,
+            "titre": "Le dernier trait — quand les chantiers se taisent",
+            "duree_cible": 25.0,
+            "fonction_narrative": "bascule_et_élégie",
+            "position_arc_emotionnel": "sommet_emotionnel",
+            "elements_necessaires": [
+              "Transition vers le déclin et la fermeture des chantiers navals nantais",
+              "Contraste avant/après : du bruit des ateliers au silence",
+              "Citation directe possible sur la perte, la fin d'un monde",
+              "Évocation de la mémoire industrielle — ce qui reste quand les grues disparaissent",
+              "Clôture sur la valeur du geste du dessinateur : un trait de crayon comme acte fondateur"
+            ],
+            "mood": "élégiaque_grave"
+          },
+          {
+            "partie": 4,
+            "titre": "Coda — Le trait demeure",
+            "duree_cible": 15.0,
+            "fonction_narrative": "conclusion_resonance",
+            "position_arc_emotionnel": "apaisement_mélancolique",
+            "elements_necessaires": [
+              "Image finale forte : un plan jauni, une signature, un souvenir",
+              "Ouverture sur la mémoire collective nantaise",
+              "Phrase de clôture lente, contemplative, qui laisse résonner le silence"
+            ],
+            "mood": "suspendu_mémoriel"
+          }
+        ],
+        "arc_emotionnel_global": "crescendo_emotionnel_vers_elegie",
+        "rythme_general": "lent_contemplatif",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "progression_naturelle",
+            "duree": 2.0,
+            "description": "Du cadre général du bureau d'études, on glisse vers la figure de Jean Penaud — comme si la caméra se rapprochait d'un homme penché sur sa planche. Transition par continuité spatiale : même lieu, focus resserré."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "rupture_temporelle_douce",
+            "duree": 3.0,
+            "description": "Bascule avant/après. Le récit quitte le temps du travail vivant pour entrer dans celui de la disparition. Marqueur temporel explicite (« Puis un jour… » ou mention de la fermeture). Le silence ou un son ambiant minimal peut souligner la cassure. C'est le pivot émotionnel du récit."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "decrescendo_naturel",
+            "duree": 2.0,
+            "description": "De l'émotion de la perte, on descend vers une contemplation apaisée. La voix ralentit. On passe du constat de disparition à l'affirmation de la mémoire. Transition par le souffle — une pause, puis la coda."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit être perçu comme un seul mouvement continu, pas quatre blocs séparés. Les sections sont des repères de montage, pas des chapitres annoncés. La voix off ne nomme jamais les parties. — DÉBIT : Environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit être très concise (parties 1-3 : ~50 mots chacune ; partie 4 : ~30 mots). — CITATIONS : Intégrer 1 à 2 citations directes de témoignages, fondues dans le récit (introduites par une formule simple : « Il disait… », « Comme le racontait Jean Penaud… »). Ne jamais inventer de citation : utiliser uniquement le matériau source disponible. Si aucune citation exacte n'est disponible, reformuler en discours indirect avec prudence. — AMBIANCE SONORE (indications pour le mixage) : Minimaliste. Partie 1-2 : léger fond industriel lointain (métal, Loire). Partie 3 : silence progressif. Partie 4 : silence quasi total, respiration de la voix seule. — REGISTRE : Grand public, phrases courtes et claires, vocabulaire technique dosé (expliquer ou contextualiser tout terme spécialisé : membrure, tracé, cale). — ANGLE AVANT/APRÈS : La partie 2 est le cœur du « avant » (le travail vivant), la partie 3 est le « après » (la fermeture). La partie 1 plante le décor, la partie 4 offre la résonance mémorielle. Le pivot doit être ressenti, pas explicité lourdement. — RIGUEUR : Ne pas inventer de dates de fermeture précises, de noms de navires ou d'événements non présents dans les sources. Préférer les formulations ouvertes (« au fil des décennies », « quand les chantiers fermèrent ») si le contexte manque de précision."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+        "axe_narratif": "travailleur",
+        "angle_scenarisation": "avant_apres_evenement",
+        "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des dessinateurs comme Jean Penaud donnaient forme aux navires bien avant que le premier rivet ne soit posé. Penchés sur leurs planches à dessin, ils traduisaient en lignes précises les courbes des coques, les membrures, les systèmes complexes qui feraient vivre chaque bâtiment. Leur travail, discret mais essentiel, était le premier maillon d'une chaîne de production qui faisait la fierté industrielle de la ville. Puis vint le déclin : les chantiers fermèrent un à un, et avec eux disparut tout un monde de savoir-faire. Reste la mémoire de ces hommes dont le trait de crayon portait en lui la promesse d'un navire.",
+        "duree_estimee": 110.11338226990401,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le bureau d'études, cœur silencieux du chantier",
+            "duree": 25.636363636363633,
+            "texte_narration": "Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin. Règles, calques, crayons. Ici, dans le silence du bureau d'études, commence chaque navire. Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque.",
+            "ton": {
+              "global": "contemplatif, posé, immersif",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'crayons' (1.5s)",
+                "après 'chaque navire' (1.5s)"
+              ],
+              "intonation": "douce, descriptive, lente"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture sur l'image des verrières et de la lumière",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:08",
+                "action": "Énumération sensorielle : règles, calques, crayons",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:15",
+                "action": "Lien entre le geste du dessinateur et la naissance du navire",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin.",
+                "sources": []
+              },
+              {
+                "sentence": "Règles, calques, crayons.",
+                "sources": []
+              },
+              {
+                "sentence": "Ici, dans le silence du bureau d'études, commence chaque navire.",
+                "sources": []
+              },
+              {
+                "sentence": "Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Jean Penaud, l'homme au trait précis",
+            "duree": 33.391304347826086,
+            "texte_narration": "Jean Penaud est dessinateur. Chaque matin, il rejoint sa planche. Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps. Jean Penaud raconte : [ARCHIVE : « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. »] Du bureau aux riveurs, une même chaîne, un même souffle.",
+            "ton": {
+              "global": "humain, engagé, montée en intensité",
+              "tempo_lecture": 115,
+              "pauses": [
+                "après 'sa planche' (1s)",
+                "après la citation ARCHIVE (1.5s)"
+              ],
+              "intonation": "narrative, chaleureuse, crescendo léger"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:25",
+                "action": "Portrait de Penaud à sa planche",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:32",
+                "action": "Description de la chaîne de production du dessin au navire",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:40",
+                "action": "Citation directe de Jean Penaud sur le processus",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Jean Penaud est dessinateur.",
+                "sources": []
+              },
+              {
+                "sentence": "Chaque matin, il rejoint sa planche.",
+                "sources": []
+              },
+              {
+                "sentence": "Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps.",
+                "sources": []
+              },
+              {
+                "sentence": "Jean Penaud raconte : [ARCHIVE : « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. »]",
+                "sources": []
+              },
+              {
+                "sentence": "Du bureau aux riveurs, une même chaîne, un même souffle.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le dernier trait — quand les chantiers se taisent",
+            "duree": 34.285714285714285,
+            "texte_narration": "Puis les commandes se raréfient. Les grues s'immobilisent. Les chantiers navals de Nantes ferment, l'un après l'autre. Les bureaux d'études se vident. Les planches à dessin restent nues. Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface.",
+            "ton": {
+              "global": "élégiaque, grave, dépouillé",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 's'immobilisent' (1.5s)",
+                "après 'restent nues' (2s)",
+                "après 's'efface' (2s)"
+              ],
+              "intonation": "descendante, solennelle, ralentie"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:50",
+                "action": "Bascule narrative : le déclin commence",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:57",
+                "action": "Images du vide : grues immobiles, bureaux déserts",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:05",
+                "action": "Contraste sonore : du fracas au silence",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Puis les commandes se raréfient.",
+                "sources": []
+              },
+              {
+                "sentence": "Les grues s'immobilisent.",
+                "sources": []
+              },
+              {
+                "sentence": "Les chantiers navals de Nantes ferment, l'un après l'autre.",
+                "sources": []
+              },
+              {
+                "sentence": "Les bureaux d'études se vident.",
+                "sources": []
+              },
+              {
+                "sentence": "Les planches à dessin restent nues.",
+                "sources": []
+              },
+              {
+                "sentence": "Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "Coda — Le trait demeure",
+            "duree": 16.8,
+            "texte_narration": "Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur. Le navire a pris la mer depuis longtemps. Mais le trait, lui, demeure.",
+            "ton": {
+              "global": "suspendu, mémoriel, apaisé",
+              "tempo_lecture": 100,
+              "pauses": [
+                "après 'dessinateur' (2s)",
+                "après 'depuis longtemps' (1.5s)",
+                "après 'demeure' (3s — silence final)"
+              ],
+              "intonation": "murmurée, contemplative, finale"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:15",
+                "action": "Image du plan jauni, signature",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:22",
+                "action": "Phrase de clôture suspendue",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur.",
+                "sources": []
+              },
+              {
+                "sentence": "Le navire a pris la mer depuis longtemps.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais le trait, lui, demeure.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 199,
+          "duree_lecture_estimee": 110.11338226990401,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit doit être perçu comme un seul mouvement continu, pas quatre blocs séparés. Les sections sont des repères de montage, pas des chapitres annoncés. La voix off ne nomme jamais les parties. — DÉBIT : Environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit être très concise (parties 1-3 : ~50 mots chacune ; partie 4 : ~30 mots). — CITATIONS : Intégrer 1 à 2 citations directes de témoignages, fondues dans le récit (introduites par une formule simple : « Il disait… », « Comme le racontait Jean Penaud… »). Ne jamais inventer de citation : utiliser uniquement le matériau source disponible. Si aucune citation exacte n'est disponible, reformuler en discours indirect avec prudence. — AMBIANCE SONORE (indications pour le mixage) : Minimaliste. Partie 1-2 : léger fond industriel lointain (métal, Loire). Partie 3 : silence progressif. Partie 4 : silence quasi total, respiration de la voix seule. — REGISTRE : Grand public, phrases courtes et claires, vocabulaire technique dosé (expliquer ou contextualiser tout terme spécialisé : membrure, tracé, cale). — ANGLE AVANT/APRÈS : La partie 2 est le cœur du « avant » (le travail vivant), la partie 3 est le « après » (la fermeture). La partie 1 plante le décor, la partie 4 offre la résonance mémorielle. Le pivot doit être ressenti, pas explicité lourdement. — RIGUEUR : Ne pas inventer de dates de fermeture précises, de noms de navires ou d'événements non présents dans les sources. Préférer les formulations ouvertes (« au fil des décennies », « quand les chantiers fermèrent ») si le contexte manque de précision.",
+        "quality_rank": 3
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+        "taggedText": "=== PARTIE 1 : Le bureau d'études, cœur silencieux du chantier ===\n\n{lumiere_verriere_atelier.wav}\n\n[posé] Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin. [pause] Règles, calques, crayons. [atténué] Ici, dans le silence du bureau d'études, commence chaque navire. Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque. [pause]\n\n=== PARTIE 2 : Jean Penaud, l'homme au trait précis ===\n\n{fond_industriel_lointain_metal.wav}\n\nJean Penaud est dessinateur. Chaque matin, il rejoint sa planche. Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps. [pause] Jean Penaud raconte : [posé] [atténué] « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. » [pause] Du bureau aux riveurs, [accentué] une même chaîne, un même souffle.\n\n=== PARTIE 3 : Le dernier trait — quand les chantiers se taisent ===\n\n{vent_loire_silence.wav}\n\n[ralentit] Puis les commandes se raréfient. [pause] Les grues s'immobilisent. Les chantiers navals de Nantes ferment, l'un après l'autre. [atténué] Les bureaux d'études se vident. Les planches à dessin restent nues. [pause] [triste] Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface. [pause]\n\n=== PARTIE 4 : Coda — Le trait demeure ===\n\n{silence_archive.wav}\n\n[chuchote] Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur. [pause] [posé] Le navire a pris la mer depuis longtemps. [ralentit] [atténué] Mais le trait, lui, [accentué] demeure.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le bureau d'études, cœur silencieux du chantier",
+            "taggedText": "{lumiere_verriere_atelier.wav}\n\n[posé] Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin. [pause] Règles, calques, crayons. [atténué] Ici, dans le silence du bureau d'études, commence chaque navire. Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque. [pause]"
+          },
+          {
+            "partie_id": 2,
+            "titre": "Jean Penaud, l'homme au trait précis",
+            "taggedText": "{fond_industriel_lointain_metal.wav}\n\nJean Penaud est dessinateur. Chaque matin, il rejoint sa planche. Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps. [pause] Jean Penaud raconte : [posé] [atténué] « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. » [pause] Du bureau aux riveurs, [accentué] une même chaîne, un même souffle."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le dernier trait — quand les chantiers se taisent",
+            "taggedText": "{vent_loire_silence.wav}\n\n[ralentit] Puis les commandes se raréfient. [pause] Les grues s'immobilisent. Les chantiers navals de Nantes ferment, l'un après l'autre. [atténué] Les bureaux d'études se vident. Les planches à dessin restent nues. [pause] [triste] Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface. [pause]"
+          },
+          {
+            "partie_id": 4,
+            "titre": "Coda — Le trait demeure",
+            "taggedText": "{silence_archive.wav}\n\n[chuchote] Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur. [pause] [posé] Le navire a pris la mer depuis longtemps. [ralentit] [atténué] Mais le trait, lui, [accentué] demeure."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 21,
+          "soundTags": 4,
+          "originalWordCount": 199
+        }
+      },
+      "scenario_index": 3,
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      },
+      "quality_rank": 3
+    }
+  ],
+  "last_scenarios_generated_at": "2026-03-16T14:28:03.131352",
+  "include_citations": true,
+  "source_usage_level": "central"
+}

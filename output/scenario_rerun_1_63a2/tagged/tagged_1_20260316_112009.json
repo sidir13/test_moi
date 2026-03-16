@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Portrait d'un dessinateur de chantier naval",
+  "taggedText": "=== PARTIE 1 : L'aube sur le chantier ===\n\n{sirene_chantier_naval_matin.wav}\n\n[posé] La sirène d'embauche déchire le matin. [pause] {fracas_rivets_marteaux_cale.wav} Dans la cale, déjà, le fracas des rivets. Mais à l'écart du vacarme, un homme pousse la porte de la salle à tracer. {pas_sol_salle_tracer.wav} [atténué] Le silence l'accueille.\n\n=== PARTIE 2 : L'homme au trait ===\n\n{crayon_papier_calque.wav}\n\n[posé] Il s'installe devant sa table immense. Compas, pistolets à courbes, lattes flexibles que l'on cintre à la main pour épouser la forme d'une coque. [pause] Chaque outil est un prolongement du corps. [ARCHIVE : « Le dessinateur, c'était quelqu'un qui devait avoir le coup de crayon sûr, [accentué] parce qu'on n'avait pas le droit à l'erreur. »] Sa main glisse, précise, sans trembler.\n\n=== PARTIE 3 : Du plan au navire ===\n\n{salle_gabarits_resonance_pas.wav}\n\nLe plan à échelle réduite ne suffit pas. Dans la salle des gabarits, le dessinateur reproduit chaque courbe en grandeur nature, à même le sol. [accentué] Un millimètre d'écart ici, et ce sont des centimètres de déformation sur la tôle, là-bas, en cale. [pause] [ARCHIVE : [posé] « On savait que si le tracé était faux, c'est tout le bateau qui trinquait. »] {bruits_lointains_cale_metal.wav} Il est le traducteur — celui qui transforme le calcul de l'ingénieur en forme que les mains des ouvriers pourront suivre.\n\n=== PARTIE 4 : Un maillon silencieux ===\n\n[posé] Ni ingénieur, ni ouvrier. Le dessinateur occupe une place à part dans la hiérarchie du chantier. [atténué] Son savoir se transmet sur le tas, de l'ancien au jeune, par le geste et par l'œil. [pause] {coque_glisse_eau_clameur.wav} Et puis un jour, la coque glisse vers l'eau. Personne ne prononce son nom. [pause] [atténué] Mais dans chaque courbe du navire, son trait demeure.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube sur le chantier",
+      "taggedText": "{sirene_chantier_naval_matin.wav}\n\n[posé] La sirène d'embauche déchire le matin. [pause] {fracas_rivets_marteaux_cale.wav} Dans la cale, déjà, le fracas des rivets. Mais à l'écart du vacarme, un homme pousse la porte de la salle à tracer. {pas_sol_salle_tracer.wav} [atténué] Le silence l'accueille."
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'homme au trait",
+      "taggedText": "{crayon_papier_calque.wav}\n\n[posé] Il s'installe devant sa table immense. Compas, pistolets à courbes, lattes flexibles que l'on cintre à la main pour épouser la forme d'une coque. [pause] Chaque outil est un prolongement du corps. [ARCHIVE : « Le dessinateur, c'était quelqu'un qui devait avoir le coup de crayon sûr, [accentué] parce qu'on n'avait pas le droit à l'erreur. »] Sa main glisse, précise, sans trembler."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Du plan au navire",
+      "taggedText": "{salle_gabarits_resonance_pas.wav}\n\nLe plan à échelle réduite ne suffit pas. Dans la salle des gabarits, le dessinateur reproduit chaque courbe en grandeur nature, à même le sol. [accentué] Un millimètre d'écart ici, et ce sont des centimètres de déformation sur la tôle, là-bas, en cale. [pause] [ARCHIVE : [posé] « On savait que si le tracé était faux, c'est tout le bateau qui trinquait. »] {bruits_lointains_cale_metal.wav} Il est le traducteur — celui qui transforme le calcul de l'ingénieur en forme que les mains des ouvriers pourront suivre."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Un maillon silencieux",
+      "taggedText": "[posé] Ni ingénieur, ni ouvrier. Le dessinateur occupe une place à part dans la hiérarchie du chantier. [atténué] Son savoir se transmet sur le tas, de l'ancien au jeune, par le geste et par l'œil. [pause] {coque_glisse_eau_clameur.wav} Et puis un jour, la coque glisse vers l'eau. Personne ne prononce son nom. [pause] [atténué] Mais dans chaque courbe du navire, son trait demeure."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 14,
+    "soundTags": 7,
+    "originalWordCount": 241
+  }
+}

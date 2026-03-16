@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Journée d'un dessinateur au chantier naval",
+  "taggedText": "=== PARTIE 1 : L'aube au bureau de dessin ===\n\n[posé] Six heures du matin. [pause] Un homme pousse la porte du bureau d'études. Autour de lui, des planches à dessin inclinées, des règles, des compas, des tire-lignes alignés comme des instruments de chirurgie. {chantier_lointain_sourd.wav} Le chantier gronde au loin, [pause] mais ici, [atténué] c'est le silence qui travaille.\n\n=== PARTIE 2 : Du trait au tracé grandeur nature ===\n\n{crayon_sur_calque.wav} Le dessinateur se penche sur son calque. Il trace les lignes d'eau du navire — ces courbes qui définissent la forme exacte de la coque. [accentué] Chaque trait doit être juste. Un millimètre d'écart sur le papier, ce sont des centimètres d'erreur sur l'acier. [pause] Puis il descend à la salle à tracer, une immense halle où les plans sont reproduits au sol, grandeur nature. {salle_a_tracer_echo_pas.wav} [posé] « On traçait les formes du bateau à l'échelle un sur le plancher de la salle à tracer, et c'est de là que sortaient les gabarits pour découper les tôles. » [pause] Ces gabarits partent ensuite vers les ateliers.\n\n=== PARTIE 3 : Le dessin prend corps en cale ===\n\nL'après-midi, le dessinateur descend en cale. {vacarme_marteaux_soudure.wav} [accentué] Le vacarme des marteaux et des soudeuses remplace le silence du bureau. Il vient vérifier que ses tracés épousent le réel. [posé] Ici, les charpentiers de marine et les soudeurs lisent ses plans comme on lit une partition. Le dessin est leur langage commun — [pause] le trait sur le papier devient tôle cintrée, membrure, coque.\n\n=== PARTIE 4 : Le soir, la coque garde la trace ===\n\n{fin_de_journee_chantier.wav} [ralentit] Le soir, il quitte le chantier. Derrière lui, la coque en construction porte déjà les lignes qu'il a tracées à l'aube. [pause] Demain, il recommencera. [posé] Et trait après trait, jour après jour, [accentué] un navire naîtra de ses dessins.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube au bureau de dessin",
+      "taggedText": "[posé] Six heures du matin. [pause] Un homme pousse la porte du bureau d'études. Autour de lui, des planches à dessin inclinées, des règles, des compas, des tire-lignes alignés comme des instruments de chirurgie. {chantier_lointain_sourd.wav} Le chantier gronde au loin, [pause] mais ici, [atténué] c'est le silence qui travaille."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Du trait au tracé grandeur nature",
+      "taggedText": "{crayon_sur_calque.wav} Le dessinateur se penche sur son calque. Il trace les lignes d'eau du navire — ces courbes qui définissent la forme exacte de la coque. [accentué] Chaque trait doit être juste. Un millimètre d'écart sur le papier, ce sont des centimètres d'erreur sur l'acier. [pause] Puis il descend à la salle à tracer, une immense halle où les plans sont reproduits au sol, grandeur nature. {salle_a_tracer_echo_pas.wav} [posé] « On traçait les formes du bateau à l'échelle un sur le plancher de la salle à tracer, et c'est de là que sortaient les gabarits pour découper les tôles. » [pause] Ces gabarits partent ensuite vers les ateliers."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le dessin prend corps en cale",
+      "taggedText": "L'après-midi, le dessinateur descend en cale. {vacarme_marteaux_soudure.wav} [accentué] Le vacarme des marteaux et des soudeuses remplace le silence du bureau. Il vient vérifier que ses tracés épousent le réel. [posé] Ici, les charpentiers de marine et les soudeurs lisent ses plans comme on lit une partition. Le dessin est leur langage commun — [pause] le trait sur le papier devient tôle cintrée, membrure, coque."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le soir, la coque garde la trace",
+      "taggedText": "{fin_de_journee_chantier.wav} [ralentit] Le soir, il quitte le chantier. Derrière lui, la coque en construction porte déjà les lignes qu'il a tracées à l'aube. [pause] Demain, il recommencera. [posé] Et trait après trait, jour après jour, [accentué] un navire naîtra de ses dessins."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 15,
+    "soundTags": 5,
+    "originalWordCount": 252
+  }
+}

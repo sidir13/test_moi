@@ -1,0 +1,23 @@
+=== PARTIE 1 : Le dernier trait ===
+
+{bureau_etudes_ventilation_sourde.wav}
+
+[posé] Années soixante. Un bureau d'études, quelque part sur un chantier naval français. [pause] Un homme aux tempes grises pose son tire-ligne. {tire_ligne_cliquetis_metallique.wav} L'odeur de l'encre de Chine flotte encore. [ralentit] Son regard glisse vers la salle des tracés, et le souvenir remonte.
+
+=== PARTIE 2 : La salle à tracer ===
+
+{salle_tracage_pas_plancher_bois_reverberation.wav}
+
+Des années plus tôt, il découvre la salle à tracer. Un sol immense, où les courbes des coques sont dessinées grandeur nature. {compas_tire_lignes_cliquetis.wav} Compas, règles, gabarits : chaque outil a sa fonction, chaque geste exige une précision millimétrique. [pause] [ARCHIVE : « On traçait les formes du bateau à l'échelle un sur le plancher… [accentué] un trait mal placé, et c'est toute la coque qui trinque. »] Les pas résonnent dans cet espace cathédrale. [atténué] Le jeune dessinateur apprend à retenir son souffle.
+
+=== PARTIE 3 : Entre le bureau et l'atelier ===
+
+{atelier_marteaux_rivets_voix_ouvriers.wav}
+
+Au chantier, la hiérarchie est nette. En haut, les ingénieurs. En bas, les ouvriers du métal. [pause] Entre les deux, les dessinateurs. Ce sont eux qui traduisent le calcul en plan lisible, puis descendent aux ateliers vérifier que la tôle épouse le tracé. [ARCHIVE : « Quand on arrivait avec nos plans à l'atelier, fallait que ce soit juste… [accentué] les gars en bas, ils pardonnaient pas l'erreur. »] [ralentit] L'ancien guide la main du nouveau. Le savoir passe ainsi, de table en table.
+
+=== PARTIE 4 : Du trait à la mer ===
+
+{corne_lancement_clameur_foule_lointaine.wav}
+
+Retour aux années soixante. Le dessinateur se lève, s'approche de la fenêtre. [pause] Dehors, une coque glisse vers l'eau. Le jour du lancement, personne ne prononce son nom. Mais chaque courbe de ce navire est née sous ses doigts. [ARCHIVE : [triste] « Notre nom, il était nulle part sur la coque… [pause] mais nous, on savait. »] {tire_ligne_trait_papier.wav} [posé] Il retourne à sa table. Tire une ligne. Droite. Précise. [ralentit] Un autre navire commence.

@@ -1,0 +1,99 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Jean Penaud, le trait et la coque",
+  "resumeHistoire": "Sur les bords de Loire, les chantiers navals de Nantes ont façonné des générations d'hommes et de savoir-faire. Parmi eux, Jean Penaud, dessinateur, a passé ses journées penché sur des plans de coques et de structures, traduisant en lignes précises les navires à naître. Son travail, à mi-chemin entre l'art et la technique, incarnait un maillon essentiel de la chaîne de construction navale — du bureau d'études à la cale de lancement. À travers son portrait, c'est toute la mémoire d'un métier méconnu et d'une industrie disparue qui refait surface, avant que la fermeture des chantiers ne referme ce chapitre de l'histoire nantaise.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et les grues",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Ambiance sonore des bords de Loire — eau, métal, vent",
+        "Évocation visuelle des chantiers navals de Nantes (Prairie-au-Duc, île de Nantes)",
+        "Situer l'époque et le lieu sans date artificielle — atmosphère industrielle du XXe siècle",
+        "Phrase d'ouverture immersive posant le décor"
+      ],
+      "mood": "contemplatif_industriel"
+    },
+    {
+      "partie": 2,
+      "titre": "L'homme au tire-ligne",
+      "duree_cible": 25,
+      "fonction_narrative": "portrait_et_metier",
+      "position_arc_emotionnel": "montee_progressive",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud — dessinateur sur les chantiers navals nantais",
+        "Description concrète du métier : plans de coque, tracés, bureau d'études",
+        "Gestes et outils du dessinateur naval — précision, échelle, encre",
+        "Citation directe de témoignage (source orale) sur le quotidien du dessinateur",
+        "Place du dessinateur dans la hiérarchie : entre ingénieur et ouvrier"
+      ],
+      "mood": "precis_admiratif"
+    },
+    {
+      "partie": 3,
+      "titre": "Du trait au navire",
+      "duree_cible": 22,
+      "fonction_narrative": "elevation_du_sens",
+      "position_arc_emotionnel": "sommet_emotionnel",
+      "elements_necessaires": [
+        "Passage du plan au réel — la salle à tracer, le traceur grandeur nature",
+        "Citation directe évoquant la fierté ou l'émotion de voir un navire prendre forme",
+        "Le lien entre le trait sur le papier et la coque sur la cale",
+        "Dimension collective — le dessinateur comme maillon d'une chaîne humaine"
+      ],
+      "mood": "intense_fierte"
+    },
+    {
+      "partie": 4,
+      "titre": "Le silence des cales",
+      "duree_cible": 25,
+      "fonction_narrative": "denouement_elegique",
+      "position_arc_emotionnel": "descente_emue",
+      "elements_necessaires": [
+        "Évocation du déclin et de la fermeture des chantiers navals de Nantes",
+        "Ce qui reste — mémoire, patrimoine, traces sur l'île de Nantes",
+        "Citation directe ou écho testimonial sur la disparition du métier",
+        "Phrase de clôture ouverte — entre mémoire et hommage, sans sentimentalisme excessif"
+      ],
+      "mood": "elegique_digne"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_avec_retombee_elegique",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du paysage industriel global, la narration resserre naturellement sur une silhouette — celle de Jean Penaud à son poste. L'ambiance sonore passe du chantier extérieur au calme relatif du bureau d'études."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "elevation_narrative",
+      "duree": 2.0,
+      "description": "Du geste technique quotidien, on s'élève vers le sens — le trait devient navire. Transition par une image forte : le dessin qui quitte la table pour devenir acier sur la cale."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_temporelle",
+      "duree": 2.5,
+      "description": "Rupture douce vers le présent ou la fin des chantiers. Le bruit s'estompe, le silence s'installe. On passe de la fierté du lancement à l'absence — les cales vides, les tables à dessin rangées."
+    }
+  ],
+  "notes_production": "CONTINUITÉ ET FLUIDITÉ : Le récit doit se lire comme un texte unique, sans titres de sections audibles ni annonces de parties. Les transitions sont des glissements naturels dans le flux narratif, pas des coupures. — VOIX : Ton posé, sobre, respectueux. Débit lent (~120 mots/min). Laisser respirer les silences, notamment avant et après les citations. — CITATIONS : Intégrer 2 à 3 citations directes issues des sources orales disponibles. Les introduire avec fluidité ('comme le disait…', 'il racontait que…') plutôt que par des formules lourdes. — AMBIANCE SONORE : Fond discret mais constant — Loire, métal, outils — qui évolue avec l'arc : industriel vivant (parties 1-3) puis silence progressif (partie 4). — REGISTRE : Accessible grand public, phrases courtes à moyennes, vocabulaire précis mais non technique. Termes de métier (tire-ligne, salle à tracer, plan de coque) introduits naturellement avec contexte immédiat. — RIGUEUR : Ne pas inventer de dates précises pour Jean Penaud ni d'événements non attestés par les sources. Préférer les formulations ouvertes ('pendant des décennies', 'au fil des années') si les sources manquent. — DURÉE : 90 secondes ≈ 180 mots maximum. Chaque mot compte. Privilégier l'évocation à l'explication."
+}

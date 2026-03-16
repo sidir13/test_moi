@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le géant qui réveilla la Loire",
+  "resumeHistoire": "Au début des années 2010, le port de Nantes et les chantiers de Saint-Nazaire semblaient assoupis, vestiges d'une grandeur maritime passée. Puis, dans les bassins de l'estuaire de la Loire, des paquebots géants ont commencé à prendre forme, redonnant vie à tout un territoire. Ouvriers, ingénieurs et riverains ont vu leur quotidien transformé par cette renaissance industrielle inattendue. Les Chantiers de l'Atlantique, forts d'un savoir-faire séculaire, ont propulsé la région au rang de pôle mondial de la construction navale de croisière, réveillant avec eux la fierté et l'identité maritime de toute une population.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port endormi",
+      "duree_cible": 30.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "mélancolie_calme",
+      "elements_necessaires": [
+        "Évocation du port de Nantes et de l'estuaire de la Loire dans leur torpeur du début des années 2010",
+        "Héritage maritime ancien — mémoire d'un passé glorieux qui semble révolu",
+        "Atmosphère contemplative : quais silencieux, grues immobiles, bassin de Saint-Nazaire en attente",
+        "Registre accessible, phrases courtes, rythme lent"
+      ],
+      "mood": "nostalgique_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le chantier reprend souffle",
+      "duree_cible": 35.0,
+      "fonction_narrative": "développement_montée",
+      "position_arc_emotionnel": "éveil_progressif",
+      "elements_necessaires": [
+        "Annonce de la construction de paquebots géants aux Chantiers de l'Atlantique à Saint-Nazaire",
+        "Citation directe possible d'un acteur ou observateur du renouveau (formulée de manière vraisemblable à partir du contexte)",
+        "Description concrète du chantier : échelle colossale des navires, fourmillement d'ouvriers et d'ingénieurs",
+        "Lien entre savoir-faire français historique et prouesse technique contemporaine",
+        "Transition du silence vers le bruit, du vide vers l'activité"
+      ],
+      "mood": "dynamique_ascendant"
+    },
+    {
+      "partie": 3,
+      "titre": "Un territoire transformé",
+      "duree_cible": 30.0,
+      "fonction_narrative": "pivot_social",
+      "position_arc_emotionnel": "fierté_collective",
+      "elements_necessaires": [
+        "Impact économique et social sur le territoire Nantes/Saint-Nazaire",
+        "Chronique du quotidien transformé : emplois, commerces, vie locale redynamisée",
+        "Dimension chronique sociale — le groupe humain (ouvriers, familles, riverains) au cœur du récit",
+        "Citation directe illustrant la fierté ou le changement vécu par la population"
+      ],
+      "mood": "chaleureux_ancré"
+    },
+    {
+      "partie": 4,
+      "titre": "Le géant prend la mer",
+      "duree_cible": 25.0,
+      "fonction_narrative": "résolution_ouverture",
+      "position_arc_emotionnel": "élévation_contemplative",
+      "elements_necessaires": [
+        "Image finale du paquebot géant quittant l'estuaire de la Loire",
+        "Résonance entre passé maritime et renaissance contemporaine",
+        "Ouverture sur l'identité retrouvée de Nantes/Saint-Nazaire comme pôle de construction navale mondiale",
+        "Retour au calme contemplatif — boucle avec l'ouverture, mais le silence est désormais habité de fierté"
+      ],
+      "mood": "solennel_apaisé"
+    }
+  ],
+  "arc_emotionnel_global": "du_sommeil_à_l_éveil — arc en crescendo mélancolique vers la fierté collective, avec retour contemplatif",
+  "rythme_general": "lent_contemplatif avec accélération progressive en partie 2, stabilisation chaleureuse en partie 3, retour au calme en partie 4",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "contraste_sonore_et_narratif",
+      "duree": 2.5,
+      "description": "Du silence des quais endormis, un premier bruit métallique émerge — une soudure, un marteau — la phrase narrative glisse sans rupture du passé vers le présent du chantier qui reprend vie."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_focal",
+      "duree": 2.0,
+      "description": "Le regard narratif quitte l'intérieur du chantier pour embrasser la ville et ses habitants. Transition fluide : de la coque du navire en construction, on passe aux rues alentour, aux visages des gens dont la vie change."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_vers_le_large",
+      "duree": 2.0,
+      "description": "Le récit social se fond dans une image plus vaste : le navire achevé glisse vers l'océan. La voix ralentit, le ton s'élève légèrement — passage du concret quotidien vers le symbolique."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un mouvement unique et organique — du sommeil au réveil. Éviter toute annonce de section ou rupture audible entre les parties. Les transitions sont des glissements naturels de focale (du lieu vers l'humain, du détail vers le panoramique). DENSITÉ SONORE MINIMALISTE : ambiances suggérées plutôt qu'illustrées — un son d'eau, un écho métallique lointain, pas de musique envahissante. REGISTRE : phrases courtes à moyennes, vocabulaire courant, pas de jargon technique non expliqué. Le ton reste factuel et sobre, mais laisse place à l'émotion par les images évoquées. CITATIONS : intégrer 1 à 2 citations directes courtes, attribuées de manière crédible (ouvrier, responsable, observateur local), sans inventer de noms propres non fournis par le contexte — utiliser des formulations comme « un ouvrier des chantiers confie » ou « on entend dire sur les quais ». DURÉE TOTALE VISÉE : 120 secondes (~240 mots maximum). Chaque section doit être dense et concise. Privilégier une phrase forte par idée plutôt que des développements longs."
+}

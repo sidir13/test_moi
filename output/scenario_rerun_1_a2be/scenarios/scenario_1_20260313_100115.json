@@ -1,0 +1,293 @@
+{
+  "scenario_id": 1,
+  "titre": "Le géant de l'estuaire",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Au début des années 2010, l'estuaire de la Loire sort d'une longue torpeur industrielle. Aux Chantiers de l'Atlantique, à Saint-Nazaire, des milliers d'ouvriers et d'ingénieurs assemblent un paquebot de croisière d'une envergure inédite, destiné à devenir l'un des plus grands navires jamais construits. Ce portrait du chantier et de son territoire raconte comment la naissance d'un géant des mers a réveillé la fierté d'un bassin portuaire tout entier, de Saint-Nazaire jusqu'à Nantes. Le récit s'ouvre et se referme sur les eaux calmes de la Loire, entre silence et renaissance, pour montrer que l'identité maritime de l'estuaire n'avait jamais vraiment disparu — elle attendait simplement qu'on la relance.",
+  "duree_estimee": 160.69565217391306,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'estuaire endormi",
+      "duree": 40.0,
+      "texte_narration": "Ce récit s'adresse à tous, sur un ton neutre et informatif, à la manière d'un documentaire contemplatif.\n\nBrume sur la Loire. L'eau glisse, lente, entre les rives de l'estuaire. Au début des années deux mille dix, le port de Nantes semble figé dans le souvenir de ses heures glorieuses. Les quais sont silencieux. Les grues, immobiles. On dirait qu'ici, le fleuve a cessé de raconter.",
+      "ton": {
+        "global": "contemplatif_nostalgique",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'l'estuaire' (1.5s)",
+          "après 'silencieux' (1.5s)",
+          "après 'immobiles' (1s)",
+          "après 'raconter' (2s)"
+        ],
+        "intonation": "voix basse, posée, légèrement mélancolique — chaque phrase déposée comme un souffle"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur ambiance eau et brume — silence habité",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Évocation du port de Nantes assoupi",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:20",
+          "action": "Image des quais déserts — suspension contemplative",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Brume sur la Loire.",
+          "sources": []
+        },
+        {
+          "sentence": "L'eau glisse, lente, entre les rives de l'estuaire.",
+          "sources": []
+        },
+        {
+          "sentence": "Au début des années deux mille dix, le port de Nantes semble figé dans le souvenir de ses heures glorieuses.",
+          "sources": []
+        },
+        {
+          "sentence": "Les quais sont silencieux.",
+          "sources": []
+        },
+        {
+          "sentence": "Les grues, immobiles.",
+          "sources": []
+        },
+        {
+          "sentence": "On dirait qu'ici, le fleuve a cessé de raconter.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le chantier s'éveille",
+      "duree": 36.52173913043478,
+      "texte_narration": "Mais en aval, à Saint-Nazaire, quelque chose remue. Aux Chantiers de l'Atlantique, une commande hors norme vient de tomber : un paquebot de croisière d'une taille jamais tentée. Des milliers d'ouvriers convergent — soudeurs, tuyauteurs, ingénieurs. Le métal gronde, les arcs électriques crépitent. On dit alors que « c'est tout un bassin qui se remet debout ». Le chantier ne construit pas seulement un navire. Il réveille un territoire.",
+      "ton": {
+        "global": "énergique_industriel",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'remue' (1s)",
+          "après 'tentée' (1.5s)",
+          "après 'crépitent' (1s)",
+          "après 'debout' (1.5s)",
+          "après 'territoire' (2s)"
+        ],
+        "intonation": "montée progressive en énergie — la voix gagne en assurance et en ampleur, sans jamais crier"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Transition géographique vers Saint-Nazaire — rupture sonore douce",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:32",
+          "action": "Annonce de la commande du paquebot géant",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:45",
+          "action": "Portrait collectif des ouvriers — montée sonore industrielle",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mais en aval, à Saint-Nazaire, quelque chose remue.",
+          "sources": []
+        },
+        {
+          "sentence": "Aux Chantiers de l'Atlantique, une commande hors norme vient de tomber : un paquebot de croisière d'une taille jamais tentée.",
+          "sources": []
+        },
+        {
+          "sentence": "Des milliers d'ouvriers convergent — soudeurs, tuyauteurs, ingénieurs.",
+          "sources": []
+        },
+        {
+          "sentence": "Le métal gronde, les arcs électriques crépitent.",
+          "sources": []
+        },
+        {
+          "sentence": "On dit alors que « c'est tout un bassin qui se remet debout ».",
+          "sources": []
+        },
+        {
+          "sentence": "Le chantier ne construit pas seulement un navire.",
+          "sources": []
+        },
+        {
+          "sentence": "Il réveille un territoire.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Un géant prend forme",
+      "duree": 40.173913043478265,
+      "texte_narration": "Le navire grandit, bloc après bloc. Plus de trois cents mètres de long. Des milliers de cabines. Une ville flottante assemblée à mains d'hommes. Et puis vient le jour où la coque glisse enfin vers l'estuaire. Sur les berges, des familles entières regardent passer ce géant qui dépasse les toits, les grues, l'horizon. Certains parlent d'un « moment qu'on n'oublie pas ». L'émotion est là, silencieuse, immense — comme le navire lui-même.",
+      "ton": {
+        "global": "épique_sobre",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'bloc après bloc' (1s)",
+          "après 'flottante' (1s)",
+          "après 'l'estuaire' (2s)",
+          "après 'l'horizon' (1.5s)",
+          "après 'lui-même' (2s)"
+        ],
+        "intonation": "souffle épique contenu — la voix s'élargit naturellement, prend de l'espace sans forcer, sommet émotionnel retenu"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:55",
+          "action": "Description physique du navire — dimensions vertigineuses",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:05",
+          "action": "Mise à l'eau — moment de bascule épique",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:15",
+          "action": "Foule sur les berges — émotion collective",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le navire grandit, bloc après bloc.",
+          "sources": []
+        },
+        {
+          "sentence": "Plus de trois cents mètres de long.",
+          "sources": []
+        },
+        {
+          "sentence": "Des milliers de cabines.",
+          "sources": []
+        },
+        {
+          "sentence": "Une ville flottante assemblée à mains d'hommes.",
+          "sources": []
+        },
+        {
+          "sentence": "Et puis vient le jour où la coque glisse enfin vers l'estuaire.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur les berges, des familles entières regardent passer ce géant qui dépasse les toits, les grues, l'horizon.",
+          "sources": []
+        },
+        {
+          "sentence": "Certains parlent d'un « moment qu'on n'oublie pas ».",
+          "sources": []
+        },
+        {
+          "sentence": "L'émotion est là, silencieuse, immense — comme le navire lui-même.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le fleuve se souvient",
+      "duree": 44.0,
+      "texte_narration": "Puis le géant s'éloigne. Le sillage s'efface. Et l'estuaire retrouve son calme. Mais quelque chose a changé. À Nantes, à Saint-Nazaire, le long des quais et des bassins, on ne regarde plus le fleuve de la même façon. La mémoire industrielle s'est réveillée. Le patrimoine maritime n'est plus un souvenir — c'est un élan. La Loire coule toujours, lente, entre ses rives de brume. Elle n'était pas endormie. Elle attendait.",
+      "ton": {
+        "global": "contemplatif_lumineux",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 's'efface' (1.5s)",
+          "après 'son calme' (2s)",
+          "après 'a changé' (1.5s)",
+          "après 'un élan' (1.5s)",
+          "après 'de brume' (1.5s)",
+          "après 'attendait' (3s — silence final)"
+        ],
+        "intonation": "retour au calme initial mais avec une lumière nouvelle — la voix se pose doucement, chaque mot final est déposé avec soin, dernière phrase suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:25",
+          "action": "Le navire s'éloigne — retour au calme de l'estuaire",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:35",
+          "action": "Constat de la transformation identitaire du territoire",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:50",
+          "action": "Fermeture circulaire — écho à l'ouverture, sens transformé",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis le géant s'éloigne.",
+          "sources": []
+        },
+        {
+          "sentence": "Le sillage s'efface.",
+          "sources": []
+        },
+        {
+          "sentence": "Et l'estuaire retrouve son calme.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais quelque chose a changé.",
+          "sources": []
+        },
+        {
+          "sentence": "À Nantes, à Saint-Nazaire, le long des quais et des bassins, on ne regarde plus le fleuve de la même façon.",
+          "sources": []
+        },
+        {
+          "sentence": "La mémoire industrielle s'est réveillée.",
+          "sources": []
+        },
+        {
+          "sentence": "Le patrimoine maritime n'est plus un souvenir — c'est un élan.",
+          "sources": []
+        },
+        {
+          "sentence": "La Loire coule toujours, lente, entre ses rives de brume.",
+          "sources": []
+        },
+        {
+          "sentence": "Elle n'était pas endormie.",
+          "sources": []
+        },
+        {
+          "sentence": "Elle attendait.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 294,
+    "duree_lecture_estimee": 160.69565217391306,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est un seul mouvement fluide porté par la Loire comme fil conducteur. Éviter toute rupture sèche entre sections — chaque transition est un glissement naturel (géographique, sonore ou temporel). Le portrait est celui du chantier-territoire plutôt que d'un individu unique, faute de nom précis dans les sources ; le traiter comme un personnage collectif avec ses gestes, ses bruits, sa fierté. STRUCTURE CIRCULAIRE : La première et la dernière image sont identiques (l'estuaire calme), mais le sens a changé — passer de la mélancolie à la résonance lumineuse. DENSITÉ SONORE IMMERSIVE : Prévoir des indications d'ambiances sonores riches (eau, brume, métal, foule, sirène de navire) qui soutiennent la narration sans la couvrir. CITATIONS : Intégrer 1 à 2 citations directes courtes si le matériau source le permet ; sinon, utiliser des formulations rapportées prudentes (« on dit alors que… », « certains parlent de… »). DÉBIT : ~2 mots/seconde, soit environ 240 mots maximum pour 120 secondes. Privilégier des phrases courtes en ouverture et fermeture (rythme lent), légèrement plus denses au centre (parties 2-3). REGISTRE : Accessible grand public, vocabulaire clair, pas de jargon technique non expliqué."
+}

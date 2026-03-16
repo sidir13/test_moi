@@ -1,0 +1,294 @@
+{
+  "scenario_id": 1,
+  "titre": "La Grue Jaune — Mémoire d'acier sur les bords de Loire",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "Sur l'Île de Nantes, une grue monumentale de couleur jaune se dresse face à la Loire, vestige silencieux des anciens chantiers navals qui ont façonné l'identité ouvrière de la ville. Pendant des décennies, ce quai a vibré au rythme de la construction navale, où des charpentiers de fer comme Jean Penaud assemblaient des coques et triaient des goussets pour bâtir des navires. Puis la désindustrialisation a frappé, les chantiers ont fermé, et le silence s'est installé sur les cales. Mais la grue, elle, est restée — transformée en monument historique et en symbole de la reconversion urbaine de l'Île de Nantes, elle incarne désormais le passage d'un passé industriel vivant à une mémoire collective assumée, tournée vers l'avenir.",
+  "duree_estimee": 209.66233766233768,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le temps des chantiers",
+      "duree": 44.18181818181818,
+      "texte_narration": "Sur l'Île de Nantes, le long de la Loire, un quai résonne encore du souvenir des chantiers navals. Nous sommes au cœur du vingtième siècle. Ici, aux chantiers Dubigeon et au Chantier de la Loire, des grues monumentales soulèvent des tonnes d'acier au-dessus des coques en construction. Le métal grince, les rivets claquent, et la grue — celle qui deviendra un jour le symbole de toute une ville — n'est encore qu'un outil de travail parmi d'autres.",
+      "ton": {
+        "global": "descriptif, posé, évocateur",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'chantiers navals' (1s)",
+          "après 'vingtième siècle' (1.5s)",
+          "après 'parmi d'autres' (1.5s)"
+        ],
+        "intonation": "Voix calme et assurée, légèrement grave. Poser le décor sans précipitation. L'intonation monte doucement sur 'des grues monumentales' puis redescend sur la fin."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Nappe sonore très discrète : eau de Loire, lointain son métallique",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Léger son industriel en arrière-plan (métal, ambiance de chantier à peine perceptible)",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:17",
+          "action": "Fin de la phrase, micro-silence avant la partie 2",
+          "duree": 1.5
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Sur l'Île de Nantes, le long de la Loire, un quai résonne encore du souvenir des chantiers navals.",
+          "sources": []
+        },
+        {
+          "sentence": "Nous sommes au cœur du vingtième siècle.",
+          "sources": []
+        },
+        {
+          "sentence": "Ici, aux chantiers Dubigeon et au Chantier de la Loire, des grues monumentales soulèvent des tonnes d'acier au-dessus des coques en construction.",
+          "sources": [
+            "[01:48] J'suis rentré à la Loire, après j'ai été muté à Dubigeon"
+          ]
+        },
+        {
+          "sentence": "Le métal grince, les rivets claquent, et la grue — celle qui deviendra un jour le symbole de toute une ville — n'est encore qu'un outil de travail parmi d'autres.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Les hommes du fer",
+      "duree": 63.272727272727266,
+      "texte_narration": "Parmi ces hommes, Jean Penaud. Charpentier de fer. Il est embauché le cinq février 1957 au Chantier de la Loire. Il a à peine vingt ans. [ARCHIVE — Jean Penaud] « J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret. C'est-à-dire qu'on triait les goussets. À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les pièces pour amener à bord. » [FIN ARCHIVE] Les goussets, ce sont ces petites pièces de renfort en métal, essentielles à la solidité d'une coque. Jean apprend le métier directement à bord des navires, guidé par un ancien de soixante-trois ans.",
+      "ton": {
+        "global": "neutre informatif, chaleur contenue, respect du témoignage",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'Charpentier de fer' (1.5s)",
+          "avant l'archive (1s)",
+          "après l'archive (1.5s)",
+          "après 'solidité d'une coque' (0.5s)"
+        ],
+        "intonation": "Ton posé. Légère gravité respectueuse en introduisant Jean Penaud. Retour neutre après l'archive pour contextualiser."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:20",
+          "action": "Transition douce vers le témoignage. Ambiance industrielle s'estompe légèrement.",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:25",
+          "action": "Insertion archive audio Jean Penaud (~12s). La voix réelle surgit dans le récit.",
+          "duree": 12.0
+        },
+        {
+          "timestamp": "0:40",
+          "action": "Retour narratrice. Explication des goussets, ton didactique et fluide.",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Parmi ces hommes, Jean Penaud.",
+          "sources": [
+            "[01:08] Alors Jean..."
+          ]
+        },
+        {
+          "sentence": "Charpentier de fer.",
+          "sources": [
+            "[03:18] Comme charpentier de fer."
+          ]
+        },
+        {
+          "sentence": "Il est embauché le cinq février 1957 au Chantier de la Loire.",
+          "sources": [
+            "[02:28] Première embauche : le 5 février 1957."
+          ]
+        },
+        {
+          "sentence": "Il a à peine vingt ans.",
+          "sources": [
+            "[01:48] Âge d'euh 83 ans."
+          ]
+        },
+        {
+          "sentence": "« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret. C'est-à-dire qu'on triait les goussets. À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les pièces pour amener à bord. »",
+          "sources": [
+            "[02:51] J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets et les... À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les les pièces, quoi, les goussets, les... Pour amener à bord."
+          ]
+        },
+        {
+          "sentence": "Les goussets, ce sont ces petites pièces de renfort en métal, essentielles à la solidité d'une coque.",
+          "sources": [
+            "[02:59] Bah, c'est des soit des trucs pour renforcer, vous voyez, tac, tac, comme ça.",
+            "[03:06] Ou des bouts de fer à boudin, des trucs comme ça, toutes les petites pièces en quelque sorte."
+          ]
+        },
+        {
+          "sentence": "Jean apprend le métier directement à bord des navires, guidé par un ancien de soixante-trois ans.",
+          "sources": [
+            "[03:18] Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans.",
+            "[03:22] Moi j'suis allé à bord directement."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "duree": 40.57142857142858,
+      "texte_narration": "Puis, au fil des décennies suivantes, la désindustrialisation frappe Nantes de plein fouet. Les chantiers navals ferment, les uns après les autres. Les hommes quittent les quais. Les outils se taisent. Sur les cales où l'on assemblait des navires, il ne reste plus que le vent et le bruit sourd de la Loire. La grue, elle, ne bouge plus. Immobile sur son rail, elle se dresse face au fleuve, seule.",
+      "ton": {
+        "global": "solennel, contemplatif, gravité mesurée",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'les uns après les autres' (1.5s)",
+          "après 'se taisent' (2s)",
+          "après 'ne bouge plus' (1.5s)",
+          "après 'seule' (2s)"
+        ],
+        "intonation": "Ralentissement net du débit. La voix descend progressivement. Les phrases se font plus courtes, plus espacées. Le silence entre les phrases est un choix narratif."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:45",
+          "action": "L'ambiance industrielle disparaît totalement. Silence marqué.",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:50",
+          "action": "Éventuellement un son de vent ou d'eau très ténu, presque nu.",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:00",
+          "action": "Pause significative après 'seule'. Le silence porte le poids de la perte.",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis, au fil des décennies suivantes, la désindustrialisation frappe Nantes de plein fouet.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers navals ferment, les uns après les autres.",
+          "sources": []
+        },
+        {
+          "sentence": "Les hommes quittent les quais.",
+          "sources": []
+        },
+        {
+          "sentence": "Les outils se taisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur les cales où l'on assemblait des navires, il ne reste plus que le vent et le bruit sourd de la Loire.",
+          "sources": []
+        },
+        {
+          "sentence": "La grue, elle, ne bouge plus.",
+          "sources": []
+        },
+        {
+          "sentence": "Immobile sur son rail, elle se dresse face au fleuve, seule.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le symbole debout",
+      "duree": 61.63636363636364,
+      "texte_narration": "Mais la grue est restée. Et avec le temps, elle est devenue autre chose. Sur le quai des Antilles, là où s'étendait autrefois la prairie au Duc, l'Île de Nantes s'est transformée. Les anciennes friches industrielles ont laissé place à des espaces de vie, de culture, de promenade. Et au milieu de ce paysage réinventé, la grue jaune. Classée monument historique, elle ne soulève plus d'acier. Elle porte désormais la mémoire de ceux qui, comme Jean Penaud, ont façonné des navires à mains nues sur ces bords de Loire. Sa silhouette jaune, visible de loin, rappelle que l'identité d'une ville ne s'efface pas. Elle se transmet.",
+      "ton": {
+        "global": "inspirant mais mesuré, élévation contenue, ouverture",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'est restée' (1s)",
+          "après 'la grue jaune' (1.5s)",
+          "après 'bords de Loire' (1s)",
+          "après 's'efface pas' (1s)",
+          "après 'se transmet' (2.5s — fin)"
+        ],
+        "intonation": "La voix reprend du souffle après le creux de la partie 3. Ton qui s'élève progressivement sans jamais devenir lyrique. La dernière phrase est posée avec une gravité douce, comme une évidence."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:03",
+          "action": "Légère nappe sonore qui revient, lumineuse et discrète. Pas de musique envahissante.",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:12",
+          "action": "Mention 'la grue jaune' — moment de cristallisation. Micro-pause.",
+          "duree": 1.5
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Dernière phrase. La voix se pose. Silence final prolongé.",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mais la grue est restée.",
+          "sources": []
+        },
+        {
+          "sentence": "Et avec le temps, elle est devenue autre chose.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur le quai des Antilles, là où s'étendait autrefois la prairie au Duc, l'Île de Nantes s'est transformée.",
+          "sources": []
+        },
+        {
+          "sentence": "Les anciennes friches industrielles ont laissé place à des espaces de vie, de culture, de promenade.",
+          "sources": []
+        },
+        {
+          "sentence": "Et au milieu de ce paysage réinventé, la grue jaune.",
+          "sources": []
+        },
+        {
+          "sentence": "Classée monument historique, elle ne soulève plus d'acier.",
+          "sources": []
+        },
+        {
+          "sentence": "Elle porte désormais la mémoire de ceux qui, comme Jean Penaud, ont façonné des navires à mains nues sur ces bords de Loire.",
+          "sources": [
+            "[03:18] Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Comme charpentier de fer.",
+            "[03:22] Moi j'suis allé à bord directement."
+          ]
+        },
+        {
+          "sentence": "Sa silhouette jaune, visible de loin, rappelle que l'identité d'une ville ne s'efface pas.",
+          "sources": []
+        },
+        {
+          "sentence": "Elle se transmet.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 381,
+    "duree_lecture_estimee": 209.66233766233768,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme un diptyque avant/après articulé autour de la fermeture des chantiers (partie 3 = pivot). Les parties 1-2 constituent le volet 'avant' (vie industrielle incarnée), les parties 3-4 le volet 'après' (perte puis transfiguration symbolique). — VOIX : Narratrice professionnelle, ton neutre informatif constant. Pas d'adresse directe au public. Registre accessible grand public : phrases courtes à moyennes, vocabulaire courant, termes techniques toujours explicités naturellement dans le flux narratif (ex. 'les goussets, ces petites pièces de renfort en métal'). — ARCHIVES : L'extrait de Jean Penaud (≈12-15s) doit être intégré dans la partie 2, encadré par la narration pour contextualiser. Privilégier les passages les plus concrets et vivants : l'embauche du 5 février 1957, le parc à ferret, les goussets, la formation avec l'ancien de 63 ans. L'archive doit sembler surgir naturellement du récit, pas être plaquée. — AMBIANCE SONORE MINIMALISTE : Pas de musique envahissante. Suggérer des nappes discrètes, éventuellement un son de Loire ou de métal lointain aux transitions. Le silence est un outil narratif, notamment à la transition 2→3. — RYTHME : Modéré et régulier. La partie 1 pose le cadre sans précipitation. La partie 2 gagne en densité humaine. La partie 3 ralentit volontairement (gravité). La partie 4 reprend un souffle mesuré vers l'élévation. — RIGUEUR HISTORIQUE : Ne pas inventer de date de fermeture précise des chantiers ni de date de classement de la grue si non fournie dans le contexte. Rester sur des formulations ouvertes ('au fil des décennies suivantes', 'quand les chantiers ont fermé'). Les seuls faits datés exploitables : embauche de Jean Penaud le 5 février 1957, retour de Cherbourg en juillet 1969, travail sur les sous-marins atomiques."
+}

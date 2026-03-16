@@ -1,0 +1,102 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Le géant qui réveilla la Loire",
+  "resumeHistoire": "Au début des années 2010, le port de Nantes et l'estuaire de la Loire semblent assoupis, vestiges d'une grandeur maritime passée. Mais à quelques dizaines de kilomètres en aval, les Chantiers de l'Atlantique à Saint-Nazaire donnent naissance à des paquebots de croisière parmi les plus grands du monde, réveillant tout un territoire. Ce récit suit le destin de ce bassin industriel à travers le portrait du chantier lui-même — un lieu devenu personnage — dont le savoir-faire français ressuscite l'identité maritime de Nantes-Saint-Nazaire. De la découpe des premières tôles à la sortie en mer de colosses flottants, c'est l'histoire d'une renaissance industrielle qui redonne un pouls au fleuve et à ses rives.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un fleuve endormi",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_atmospherique",
+      "position_arc_emotionnel": "mélancolie_calme",
+      "elements_necessaires": [
+        "Évocation du port de Nantes au tournant des années 2010, assoupi",
+        "Ambiance sonore : eau calme de la Loire, cris de mouettes lointaines, silence industriel",
+        "Rappel discret de l'héritage maritime et de la construction navale passée",
+        "Registre accessible, phrases courtes, ton posé"
+      ],
+      "mood": "contemplatif_nostalgique"
+    },
+    {
+      "partie": 2,
+      "titre": "Le chantier, cœur battant",
+      "duree_cible": 30.0,
+      "fonction_narrative": "presentation_portrait",
+      "position_arc_emotionnel": "montée_en_puissance",
+      "elements_necessaires": [
+        "Portrait des Chantiers de l'Atlantique à Saint-Nazaire comme personnage central",
+        "Évocation du savoir-faire français en ingénierie navale",
+        "Ambiance sonore : métal, soudures, grues, activité industrielle intense",
+        "Citation directe possible d'un acteur du chantier ou formulation attribuée au milieu industriel",
+        "Transition depuis le silence du port vers le bruit du chantier"
+      ],
+      "mood": "energique_industriel"
+    },
+    {
+      "partie": 3,
+      "titre": "Un colosse prend forme",
+      "duree_cible": 30.0,
+      "fonction_narrative": "climax_narratif",
+      "position_arc_emotionnel": "émerveillement_culminant",
+      "elements_necessaires": [
+        "Description de la construction d'un paquebot géant — dimensions, prouesse technique",
+        "Mosaïque de détails sensoriels : tôles assemblées, sections gigantesques, bassin de Saint-Nazaire",
+        "Évocation de l'impact sur l'industrie de la croisière mondiale",
+        "Ambiance sonore : montée orchestrale, sons mécaniques rythmés",
+        "Citation ou référence directe soulignant l'ampleur du projet"
+      ],
+      "mood": "epique_impressionnant"
+    },
+    {
+      "partie": 4,
+      "titre": "Le réveil des rives",
+      "duree_cible": 35.0,
+      "fonction_narrative": "resolution_ouverture",
+      "position_arc_emotionnel": "fierté_apaisée",
+      "elements_necessaires": [
+        "Impact économique et social sur le territoire Nantes-Saint-Nazaire",
+        "Renaissance de l'identité maritime nantaise",
+        "Sortie du navire vers l'estuaire puis la mer — image de clôture",
+        "Ambiance sonore : corne de brume, foule sur les quais, eau de l'estuaire",
+        "Ouverture vers l'avenir du bassin et de la construction navale",
+        "Ton conclusif mais non fermé"
+      ],
+      "mood": "solennel_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "du_silence_à_la_renaissance",
+  "rythme_general": "progressif_avec_acceleration_centrale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "contraste_sonore",
+      "duree": 2.5,
+      "description": "Du silence quasi-total du port endormi, un premier coup de métal résonne au loin — le son grandit et nous transporte dans le ventre du chantier. La transition est sensorielle, pas explicative."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Le rythme du chantier s'accélère naturellement : des ouvriers aux plans, des plans à la coque qui s'élève. Le récit glisse du portrait du lieu vers l'objet qu'il engendre, sans rupture."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_spatiale",
+      "duree": 2.5,
+      "description": "Le regard narratif recule — du gros plan sur le navire en construction, on passe à un plan large sur l'estuaire. Le son industriel cède la place à l'eau et au vent. Le colosse quitte le bassin, et le récit s'ouvre sur le territoire transformé."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un mouvement unique — du sommeil au réveil — incarné par un lieu-personnage (les Chantiers de l'Atlantique). La voix off omnisciente ne s'adresse jamais directement à l'auditeur. Le portrait est celui du chantier vu de l'extérieur : son activité, son rayonnement, son impact. Les citations directes (1 à 2 maximum) doivent être courtes et percutantes, idéalement issues du milieu industriel ou institutionnel local. La mosaïque se traduit par des fragments sensoriels juxtaposés (son, image mentale, fait) plutôt que par une chronologie linéaire stricte. Le débit cible est d'environ 2 mots par seconde (≈240 mots max). Chaque section doit être dense mais aérée par des pauses sonores. La densité sonore riche implique des ambiances travaillées à chaque section : eau, métal, foule, corne de brume. Le niveau académique se traduit par la précision des faits mentionnés, jamais par un jargon inaccessible. NE JAMAIS INVENTER de noms de navires, de dates précises ou de chiffres non fournis dans le contexte — préférer des formulations évocatrices mais vagues si le sourcing manque."
+}

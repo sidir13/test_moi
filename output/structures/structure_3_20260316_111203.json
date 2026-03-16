@@ -1,0 +1,126 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Le trait et la coque — Chronique des dessinateurs de chantier naval",
+  "resumeHistoire": "Dans les chantiers navals, entre le milieu du XIXe siècle et les années 1960, une corporation discrète œuvre à l'ombre des coques en construction : les dessinateurs et traceurs. Penchés sur leurs planches dans les bureaux d'études ou agenouillés dans les vastes salles à tracer, ces hommes traduisent en lignes précises les formes complexes des navires à naître. Leur quotidien se partage entre le silence concentré du bureau de dessin et le vacarme des ateliers de coque, où leurs plans prennent chair dans l'acier et le rivet. Cette chronique raconte leur savoir-faire minutieux, la hiérarchie rigide qui organise leur travail, et la transmission patiente d'un métier où l'erreur d'un trait peut compromettre un lancement entier. Du compas à la règle de réduction, du calque au grandeur nature, c'est l'histoire d'un geste technique fondamental et pourtant méconnu de la construction navale.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube du bureau de dessin",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_solennel",
+      "elements_necessaires": [
+        "Ouverture sensorielle : ambiance matinale d'un chantier naval, contraste entre le silence du bureau d'études et le bruit lointain des ateliers",
+        "Présentation du dessinateur comme figure centrale mais discrète du chantier",
+        "Registre accessible, ton neutre informatif, époque linguistique authentique",
+        "Indication implicite de la période (XIXe-XXe siècle) sans date inventée",
+        "Ambiance sonore suggérée : pas sur le plancher, froissement de papier calque"
+      ],
+      "mood": "contemplatif_précis"
+    },
+    {
+      "partie": 2,
+      "titre": "La salle à tracer — le geste et l'outil",
+      "duree_cible": 22,
+      "fonction_narrative": "description_technique_incarnée",
+      "position_arc_emotionnel": "montée_en_intensité",
+      "elements_necessaires": [
+        "Description de la salle à tracer : vaste espace au sol, tracés grandeur nature des formes de coque",
+        "Outils du dessinateur-traceur : compas, règles, lattes souples, équerres, crayons de couleur, gabarits",
+        "Le geste technique : tracer les lignes d'eau, les couples, les développées de tôle",
+        "Citation directe possible d'un travailleur évoquant la précision requise",
+        "Ambiance sonore suggérée : crissement du crayon sur le sol, claquement de lattes"
+      ],
+      "mood": "méticuleux_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "La hiérarchie du trait",
+      "duree_cible": 18,
+      "fonction_narrative": "chronique_sociale_structurelle",
+      "position_arc_emotionnel": "tension_sociale",
+      "elements_necessaires": [
+        "Organisation du bureau d'études : ingénieurs, dessinateurs principaux, dessinateurs, calqueurs, apprentis",
+        "Hiérarchie rigide, transmission du savoir par compagnonnage et observation",
+        "Relation entre le bureau de dessin et les ateliers de coque — le plan comme langage commun",
+        "Évocation de la responsabilité : une erreur de tracé se répercute sur la cale de construction",
+        "Citation directe possible sur la discipline ou la fierté du métier"
+      ],
+      "mood": "sobre_documentaire"
+    },
+    {
+      "partie": 4,
+      "titre": "Du plan à la coque — le trait prend chair",
+      "duree_cible": 18,
+      "fonction_narrative": "pivot_concret",
+      "position_arc_emotionnel": "climax_modéré",
+      "elements_necessaires": [
+        "Passage du dessin à la réalisation : les plans descendent du bureau vers les ateliers et la cale",
+        "Mosaïque de fragments : le traceur vérifie un gabarit, l'ouvrier ajuste une tôle, le contremaître compare au plan",
+        "Lien entre précision du dessin et qualité de la construction — moment où le navire prend forme",
+        "Ambiance sonore suggérée : marteaux, riveteuses, ordres criés dans la cale",
+        "Rythme dynamique, montage de micro-scènes"
+      ],
+      "mood": "énergique_concret"
+    },
+    {
+      "partie": 5,
+      "titre": "L'encre et la mémoire",
+      "duree_cible": 14,
+      "fonction_narrative": "résolution_réflexive",
+      "position_arc_emotionnel": "apaisement_mélancolique",
+      "elements_necessaires": [
+        "Évolution des techniques de dessin industriel au fil des décennies",
+        "Évocation de la disparition progressive du tracé manuel",
+        "Hommage sobre au savoir-faire transmis de génération en génération",
+        "Ouverture sur la mémoire de ce métier méconnu",
+        "Ambiance sonore suggérée : silence revenu, écho lointain du chantier"
+      ],
+      "mood": "élégiaque_retenu"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_ascendante_puis_apaisement",
+  "rythme_general": "dynamique — alternance de pauses descriptives courtes et de séquences denses, structure mosaïque avec fragments juxtaposés dans les parties centrales, ouverture et fermeture plus posées",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du panorama du chantier au matin, on resserre sur la salle à tracer. La transition est spatiale : le narrateur suit le dessinateur qui pousse une porte et entre dans la vaste salle. Continuité par le mouvement du personnage."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_social",
+      "duree": 2.0,
+      "description": "Du geste individuel du traceur, on élargit au groupe social. Transition par une observation : le dessinateur lève les yeux de son tracé et croise le regard de l'ingénieur qui supervise. Le rapport hiérarchique s'installe naturellement."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "descente_vers_atelier",
+      "duree": 2.0,
+      "description": "Du bureau d'études, le plan est roulé et emporté vers la cale. Transition physique et sonore : le silence du bureau cède au vacarme de la construction. Le trait de crayon devient découpe de tôle."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "retrait_contemplatif",
+      "duree": 2.0,
+      "description": "Le bruit du chantier s'estompe progressivement. Retour au calme du bureau de dessin, mais cette fois avec la perspective du temps qui passe. Transition temporelle douce, le récit prend du recul."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme une journée symbolique qui se dilate en chronique de plusieurs décennies. Les parties 1 à 4 suivent le parcours d'un plan — de sa conception à sa réalisation — ce qui assure une cohérence organique malgré la structure mosaïque. La partie 5 opère un changement de focale temporelle pour conclure. — FLUIDITÉ : Éviter toute rupture sèche entre sections. Les transitions sont portées par des mouvements concrets (un personnage qui se déplace, un objet qui change de mains, un son qui évolue). — MOSAÏQUE : Dans les parties 2 et 4 notamment, privilégier la juxtaposition de micro-scènes courtes (2-3 phrases chacune) pour créer un effet de kaléidoscope du quotidien ouvrier. — CITATIONS : Intégrer 1 à 2 citations directes (parties 2 et 3 de préférence), formulées de manière générique si aucune source précise n'est disponible, en les attribuant à un dessinateur ou un ancien du chantier sans inventer de nom propre. — DENSITÉ SONORE : Le scénario prévoit des indications d'ambiance riches. Le rédacteur devra intégrer des notations sensorielles (sons, lumière, textures) directement dans le texte narratif pour guider la production sonore. — CONTRAINTE DE DURÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être extrêmement concise : environ 36 mots pour 18 secondes. Privilégier des phrases courtes, des images fortes, un vocabulaire précis. Aucun remplissage. — REGISTRE : Grand public, accessible mais respectueux du vocabulaire technique naval (couple, ligne d'eau, développée, gabarit) — ces termes sont brièvement contextualisés par l'usage, jamais définis de manière didactique."
+}

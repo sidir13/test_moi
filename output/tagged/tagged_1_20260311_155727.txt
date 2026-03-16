@@ -1,0 +1,31 @@
+=== PARTIE 1 : Un géant d'acier au bord de la Loire ===
+
+{clapotis_loire_vent_leger.wav}
+
+[ton posé] Sur l'Île de Nantes, à l'endroit qu'on appelait autrefois la Prairie-au-Duc, une grue monumentale se dresse face à la Loire. [pause 1.5s] Sa silhouette jaune découpe le ciel au-dessus du Quai des Antilles, immobile, massive. [ralentissement] Comme si elle attendait encore quelque chose.
+
+{vent_seul_transition.wav}
+
+[pause 2s]
+
+=== PARTIE 2 : Le temps des chantiers ===
+
+{activite_portuaire_metal.wav}
+
+[ton affirmé] Pendant des décennies, cette grue a travaillé. Elle soulevait des tonnes d'acier au-dessus des cales de construction, là où les chantiers navals Dubigeon et le Chantier de la Loire faisaient naître des navires. [acceleration] Autour d'elle, des centaines d'ouvriers. Parmi eux, Jean Penaud, charpentier de fer, embauché le 5 février 1957. [pause 1s] [ARCHIVE AUDIO — Jean Penaud] « Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans, comme charpentier de fer. Moi j'suis allé à bord directement. » [pause 1s] [ton posé] Il avait d'abord trié des pièces au parc à ferret — des goussets, ces petits renforts de métal — avant de monter à bord des coques en construction.
+
+=== PARTIE 3 : Le silence des cales ===
+
+{silence_vent_craquement_metal.wav}
+
+[pause 2s] [ton grave] Puis, au fil des décennies suivantes, les chantiers navals nantais ont fermé, les uns après les autres. [pause 1s] Le fracas du métal s'est tu. Les ouvriers sont partis. [ralentissement] [murmure] Et la grue est restée là, seule au bord du quai, dans un silence que personne n'avait prévu.
+
+[pause 2s]
+
+=== PARTIE 4 : D'outil oublié à monument vivant ===
+
+{rumeur_urbaine_promeneurs.wav}
+
+[ton lumineux] Mais la grue jaune n'a pas disparu. Classée Monument Historique, elle est devenue le cœur d'une transformation sans précédent. [acceleration] Autour d'elle, l'Île de Nantes s'est réinventée : le Parc des Chantiers a remplacé les cales, les Machines de l'Île et le Hangar à Bananes ont investi les anciens ateliers. [pause 1s] Aujourd'hui, sa silhouette jaune fait partie de la skyline nantaise. Les promeneurs lèvent les yeux vers elle sans toujours savoir ce qu'elle a porté. [ralentissement] [émotion contenue] Mais elle porte encore — la mémoire de ceux qui, comme Jean Penaud, ont bâti des navires à ses pieds. [pause 1s] Un outil devenu symbole. [ton solennel] Celui d'une ville qui se réinvente sans oublier.
+
+{nappe_musicale_ouverture.wav}

@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Lettre à la grue jaune — Mémoire vive des chantiers de Nantes",
+  "taggedText": "=== PARTIE 1 : Chère grue jaune… — L'adresse au monument ===\n\n{clapotis_loire_vent_leger.wav}\n\n[murmure] Chère grue jaune,\n\nJe t'écris depuis le quai des Antilles, sur l'Île de Nantes. [pause 1.5s] La Loire coule en contrebas, lente et grise. Et toi, tu te dresses là, immense silhouette jaune découpée contre le ciel. [pause 2s] Tu ne bouges plus. [ton grave] Mais tu n'as rien oublié.\n\n=== PARTIE 2 : Tu te souviens du bruit — Le temps des chantiers ===\n\n{echo_metallique_lointain.wav}\n\nTu te souviens, n'est-ce pas ? Du vacarme de l'acier, des hommes qui montaient à bord. Ici, sur cette île, les chantiers navals faisaient vivre des centaines de familles. [ton solennel] Dubigeon, le Chantier de la Loire — ces noms résonnaient le long du fleuve.\n\n[ralentissement] Jean Penaud avait vingt ans quand il est entré au Chantier de la Loire. C'était le cinq février mil neuf cent cinquante-sept. [pause 1.5s]\n\n[ARCHIVE AUDIO — Jean Penaud, charpentier de fer, 83 ans]\n« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret. C'est-à-dire que on triait les goussets… il y avait un genre de petit train avec un plateau et il venait chercher les pièces pour amener à bord. »\n\n[pause 1s] Les goussets, ce sont ces petites pièces de métal qui renforcent la coque des navires. Jean, lui, est vite devenu charpentier de fer. Il est allé à bord directement, façonner l'acier de ses mains.\n\n=== PARTIE 3 : Puis le silence est venu — La fermeture et l'abandon ===\n\n{vent_fleuve_silence.wav}\n\n[ralentissement] Et puis le silence est venu, grue jaune. Dans les années soixante-dix, quatre-vingt, les chantiers ont fermé, les uns après les autres. [émotion contenue] Les hommes sont partis. Les cales se sont vidées. L'île tout entière s'est tue. [pause 2s] Mais toi, tu es restée. Immobile au bord du fleuve, comme une question que personne ne posait plus.\n\n[pause 3s]\n\n=== PARTIE 4 : Aujourd'hui tu veilles encore — Symbole et renaissance ===\n\n{ambiance_quai_promeneurs.wav}\n\nAujourd'hui, grue jaune, l'île a changé de visage. Là où l'on construisait des navires, des machines extraordinaires prennent vie, [ton joyeux] un éléphant géant marche le long des anciens quais. L'Île de Nantes s'est réinventée. Et toi, ta couleur jaune éclate toujours dans le ciel nantais, comme un signal. [émotion contenue] Tu es devenue le symbole de ce qu'on a choisi de ne pas effacer. Tu portes la mémoire de Jean et de tous les autres.\n\n[pause 2s] Alors je te le dis, dans cette lettre que le vent emportera peut-être : [murmure] merci de tenir debout. Pour ceux qui se souviennent. Et pour ceux qui découvrent.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Chère grue jaune… — L'adresse au monument",
+      "taggedText": "{clapotis_loire_vent_leger.wav}\n\n[murmure] Chère grue jaune,\n\nJe t'écris depuis le quai des Antilles, sur l'Île de Nantes. [pause 1.5s] La Loire coule en contrebas, lente et grise. Et toi, tu te dresses là, immense silhouette jaune découpée contre le ciel. [pause 2s] Tu ne bouges plus. [ton grave] Mais tu n'as rien oublié."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Tu te souviens du bruit — Le temps des chantiers",
+      "taggedText": "{echo_metallique_lointain.wav}\n\nTu te souviens, n'est-ce pas ? Du vacarme de l'acier, des hommes qui montaient à bord. Ici, sur cette île, les chantiers navals faisaient vivre des centaines de familles. [ton solennel] Dubigeon, le Chantier de la Loire — ces noms résonnaient le long du fleuve.\n\n[ralentissement] Jean Penaud avait vingt ans quand il est entré au Chantier de la Loire. C'était le cinq février mil neuf cent cinquante-sept. [pause 1.5s]\n\n[ARCHIVE AUDIO — Jean Penaud, charpentier de fer, 83 ans]\n« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret. C'est-à-dire que on triait les goussets… il y avait un genre de petit train avec un plateau et il venait chercher les pièces pour amener à bord. »\n\n[pause 1s] Les goussets, ce sont ces petites pièces de métal qui renforcent la coque des navires. Jean, lui, est vite devenu charpentier de fer. Il est allé à bord directement, façonner l'acier de ses mains."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Puis le silence est venu — La fermeture et l'abandon",
+      "taggedText": "{vent_fleuve_silence.wav}\n\n[ralentissement] Et puis le silence est venu, grue jaune. Dans les années soixante-dix, quatre-vingt, les chantiers ont fermé, les uns après les autres. [émotion contenue] Les hommes sont partis. Les cales se sont vidées. L'île tout entière s'est tue. [pause 2s] Mais toi, tu es restée. Immobile au bord du fleuve, comme une question que personne ne posait plus.\n\n[pause 3s]"
+    },
+    {
+      "partie_id": 4,
+      "titre": "Aujourd'hui tu veilles encore — Symbole et renaissance",
+      "taggedText": "{ambiance_quai_promeneurs.wav}\n\nAujourd'hui, grue jaune, l'île a changé de visage. Là où l'on construisait des navires, des machines extraordinaires prennent vie, [ton joyeux] un éléphant géant marche le long des anciens quais. L'Île de Nantes s'est réinventée. Et toi, ta couleur jaune éclate toujours dans le ciel nantais, comme un signal. [émotion contenue] Tu es devenue le symbole de ce qu'on a choisi de ne pas effacer. Tu portes la mémoire de Jean et de tous les autres.\n\n[pause 2s] Alors je te le dis, dans cette lettre que le vent emportera peut-être : [murmure] merci de tenir debout. Pour ceux qui se souviennent. Et pour ceux qui découvrent."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 17,
+    "soundTags": 4,
+    "originalWordCount": 370
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Lettre à la grue jaune — Mémoire vive des bords de Loire",
+  "resumeHistoire": "Sous la forme d'une lettre intime adressée à la grue jaune elle-même, une narratrice retrace le fil du temps sur l'Île de Nantes. Elle évoque d'abord le souvenir des chantiers navals en activité — les charpentiers de fer comme Jean Penaud, embauché en 1957, qui triait les goussets et montait à bord des navires en construction sur les cales de Dubigeon et du Chantier de la Loire. Puis la lettre traverse la désindustrialisation, le silence tombé sur les quais, avant de revenir au présent où la grue, restée debout sur le Quai des Antilles, est devenue le symbole d'une ville qui a choisi de ne pas effacer sa mémoire ouvrière. La boucle se referme : la lettre, commencée face à la grue, s'achève par la même image, transformée par tout ce qui a été dit.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "lettre_intime",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Ouverture — « Je t'écris depuis le quai »",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_circulaire_amorce",
+      "position_arc_emotionnel": "contemplation_calme",
+      "elements_necessaires": [
+        "Adresse directe à la grue jaune, ton confidentiel de lettre",
+        "Présentation implicite du public grand_public et du ton neutre_informatif",
+        "Localisation : Quai des Antilles, Île de Nantes, bords de Loire",
+        "Image visuelle sonore : la silhouette jaune contre le ciel, le fleuve",
+        "Ambiance sonore riche : eau de Loire, vent, mouettes, rumeur urbaine lointaine"
+      ],
+      "mood": "intime_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des cales — Mémoire des chantiers",
+      "duree_cible": 28,
+      "fonction_narrative": "plongee_historique_temoignage",
+      "position_arc_emotionnel": "montee_emotion_nostalgie",
+      "elements_necessaires": [
+        "Transition temporelle vers les années 1950-1960",
+        "Intégration de l'archive Jean Penaud : embauche le 5 février 1957, charpentier de fer",
+        "Vocabulaire authentique d'époque : goussets, parc à ferret, petit train à plateau, fer à boudin",
+        "Évocation des chantiers Dubigeon et Chantier de la Loire sur l'ancienne Prairie-au-Duc",
+        "Le rôle des grues dans la vie quotidienne des ouvriers — outils de travail, pas encore symboles",
+        "Ambiance sonore : métal, rivets, activité industrielle portuaire"
+      ],
+      "mood": "vivant_documentaire_nostalgique"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales — Fermeture et absence",
+      "duree_cible": 18,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "creux_emotionnel_gravite",
+      "elements_necessaires": [
+        "Évocation de la désindustrialisation — fermeture progressive des chantiers navals nantais",
+        "Le vide laissé sur l'île : friches, silence là où il y avait du bruit",
+        "La grue restée debout quand tout le reste a disparu — repère visuel dans le paysage vidé",
+        "Ton de la lettre : confidence sur la perte, registre sobre et factuel"
+      ],
+      "mood": "grave_depouille"
+    },
+    {
+      "partie": 4,
+      "titre": "Retour au quai — « Tu es toujours là »",
+      "duree_cible": 26,
+      "fonction_narrative": "resolution_et_bouclage_circulaire",
+      "position_arc_emotionnel": "remontee_vers_apaisement_et_sens",
+      "elements_necessaires": [
+        "Retour au présent : la reconversion de l'Île de Nantes, la patrimonialisation",
+        "La grue jaune devenue symbole identitaire nantais, repère visuel iconique",
+        "Politique culturelle : choix de conserver plutôt que démolir — la mémoire comme projet urbain",
+        "Bouclage circulaire : même image du quai qu'en ouverture, mais chargée de tout le récit",
+        "Clôture de la lettre : dernière phrase adressée à la grue, ton confidentiel",
+        "Retour de l'ambiance sonore d'ouverture : eau, vent, ville au loin"
+      ],
+      "mood": "apaise_signifiant"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_contemplatif — calme → nostalgie vivante → gravité → apaisement chargé de sens, retour au point de départ transformé",
+  "rythme_general": "varie — lent et intime en ouverture, plus dense et rythmé sur les chantiers, ralenti sur la perte, reprise posée pour la clôture",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel_par_la_lettre",
+      "duree": 2.5,
+      "description": "La narratrice, dans sa lettre, passe du présent au souvenir : « Avant d'être ce que tu es, tu étais un outil… » — le son de Loire cède la place à une ambiance de chantier naval. L'archive de Jean Penaud s'insère naturellement comme une voix convoquée par la mémoire."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "extinction_progressive",
+      "duree": 2.0,
+      "description": "Les sons industriels s'éteignent un à un. La narratrice marque une pause dans sa lettre. Le silence devient narratif — il raconte la fermeture des chantiers sans avoir besoin de la surexpliquer."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "reprise_douce_bouclage",
+      "duree": 2.0,
+      "description": "Le son de la Loire et du vent revient doucement, identique à l'ouverture. La narratrice reprend le fil de sa lettre au présent : « Et pourtant, tu es toujours là… » — le cercle commence à se refermer."
+    }
+  ],
+  "notes_production": "CONTINUITÉ ET FLUIDITÉ : Le récit entier est UNE SEULE lettre lue à voix haute. Il n'y a pas de ruptures entre sections — seulement des inflexions dans le rythme et le registre temporel. La narratrice (voix femme professionnelle) maintient un fil continu de confidence adressée à la grue. L'archive de Jean Penaud (environ 15-20s d'extraits sélectionnés) s'intègre dans la partie 2 comme un souvenir enchâssé — la narratrice l'introduit et en sort avec fluidité, sans effet de montage brutal. Le format interview du témoignage de Penaud est réinterprété : on garde ses réponses les plus évocatrices (embauche du 5 février 1957, les goussets, le parc à ferret, le passage charpentier de fer) en coupant les questions pour fluidifier. RATIO narration/archives respecté à 0.7 : environ 63s de narration, 27s d'archives ou silences habités. DENSITÉ SONORE riche : nappes continues (Loire, vent, ville), ponctuations (mouettes, métal lointain en partie 2), mais jamais envahissantes — la voix reste au premier plan. AUTHENTICITÉ LINGUISTIQUE : le vocabulaire technique des chantiers (goussets, charpentier de fer, parc à ferret) est conservé tel quel depuis le témoignage — la narratrice peut les reprendre naturellement dans sa lettre. STRUCTURE CIRCULAIRE : la première et la dernière image sont identiques (la narratrice face à la grue jaune, bords de Loire) mais l'écoute de tout le récit entre les deux a transformé ce que cette image signifie. ATTENTION : ne pas inventer de date de fermeture des chantiers ni de date d'installation/construction de la grue — le contexte fourni ne les précise pas. Rester dans l'évocation."
+}

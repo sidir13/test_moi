@@ -1,0 +1,29 @@
+=== PARTIE 1 : Un port au sommet de sa puissance ===
+
+{clapotis_eau_loire.wav}
+
+[posé] Ce récit s'adresse à tous ceux qui ignorent ce que Nantes fut autrefois. [pause] Au dix-huitième siècle, le port de Nantes compte parmi les plus puissants de France. Autour de l'île Feydeau, les navires de commerce chargent sucre, épices et toiles. Les armateurs bâtissent des hôtels particuliers face aux quais. [étire] La ville vit au rythme de la Loire et de la mer.
+
+=== PARTIE 2 : La Loire se dérobe ===
+
+{vent_estuaire_lointain.wav}
+
+Mais dès le dix-neuvième siècle, [pause] la Loire s'ensable. L'estuaire se comble, les grands navires peinent à remonter jusqu'à Nantes. En 1903, le canal de la Martinière tente de maintenir un chenal praticable — [atténué] en vain. Les bras de la Bourse et de l'Hôpital sont progressivement comblés, transformant la géographie même de la ville. [pause] Les armateurs se tournent vers Saint-Nazaire, plus proche de l'océan.
+
+=== PARTIE 3 : Jean Penaud entre en scène ===
+
+{ambiance_chantier_naval_marteaux.wav}
+
+C'est dans ce port diminué qu'un jeune homme de Nantes commence sa vie d'ouvrier. [pause] Jean Penaud, charpentier-fer, se souvient avec une précision intacte : [ARCHIVE : « Première embauche le 5 février 1957. »] Il a alors vingt ans. Les cales de l'île de Nantes résonnent encore du fracas des marteaux. [pause] Penaud connaîtra tous les visages du métier : [ARCHIVE : « J'suis entré à la Loire… après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg. »] Sept ans et demi passés à travailler sur des sous-marins, avant de revenir à Nantes en juillet 1969.
+
+=== PARTIE 4 : Les derniers coups de marteau ===
+
+{silence_cale_vide.wav}
+
+Mais le port que Penaud retrouve n'est plus celui qu'il a quitté. [ralentit] Tout au long des années soixante-dix, les commandes se raréfient. Les cales se vident une à une. [pause] En 1987, les chantiers Dubigeon ferment définitivement leurs portes sur la Prairie-au-Duc. [triste] Le dernier navire quitte l'île de Nantes. Des centaines d'ouvriers comme Jean Penaud déposent leurs outils [pause] pour la dernière fois.
+
+=== PARTIE 5 : Ce qui reste sur les quais ===
+
+{vent_quai_present.wav}
+
+[posé] Aujourd'hui, l'île de Nantes se réinvente. Là où l'on courbait l'acier, on trace des esplanades. [pause] Mais dans la voix de Jean Penaud, quatre-vingt-trois ans, le port vit encore — [étire] intact, précis, comme une date que l'on n'oublie pas.

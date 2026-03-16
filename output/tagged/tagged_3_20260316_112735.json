@@ -1,0 +1,32 @@
+{
+  "scenario_id": 3,
+  "titre": "Jean Penaud, le trait et la coque",
+  "taggedText": "=== PARTIE 1 : Le fleuve et les grues ===\n\n{clapotis_loire_vent_mouettes.wav}\n\n[posé] Sur les bords de Loire, à Nantes, des grues se dressent au-dessus de l'île. [pause] Tout au long du vingtième siècle, ici, on a construit des navires. {resonance_metal_lointain.wav} Le métal résonnait du matin au soir sur les cales de la Prairie-au-Duc.\n\n=== PARTIE 2 : L'homme au tire-ligne ===\n\n[pause]\n\nParmi ces hommes, Jean Penaud. [pause] Dessinateur. {tire_ligne_papier_calque.wav} Chaque jour, penché sur sa planche, il traduisait en lignes d'encre les formes des coques à venir. [pause] [posé] « On travaillait au tire-ligne, à l'encre de Chine, sur du calque… [ralentit] Fallait pas trembler. » [pause] Entre l'ingénieur qui concevait et l'ouvrier qui assemblait, le dessinateur était celui qui donnait forme.\n\n=== PARTIE 3 : Du trait au navire ===\n\nDans la salle à tracer, les plans prenaient une autre dimension — [accentué] grandeur nature, sur le sol. Chaque courbe vérifiée, chaque cote reportée. [pause] Et puis venait le jour du lancement. {chaines_glissement_coque_lancement.wav} [joyeusement] « Quand on voyait le bateau descendre sur la cale, on se disait : [ralentit] ça, c'est parti de mon trait. » {clameur_ouvriers_lointaine.wav} [pause] Tout un chantier, des centaines de mains, mais au commencement, [accentué] un dessin.\n\n=== PARTIE 4 : Le silence des cales ===\n\n{vent_eau_calme_silence.wav}\n\n[pause] [triste] Et puis les chantiers ont fermé. Les grues se sont tues. [ralentit] Les planches à dessin ont été rangées. [pause] Sur l'île de Nantes, là où l'on traçait des coques, le silence a remplacé le vacarme. [pause] [atténué] « C'est tout un monde qui a disparu… [pause] mais nous, on sait que c'était là. » [pause] [posé] De Jean Penaud et des dessinateurs comme lui, il reste ce geste patient — [ralentit] un trait d'encre, [pause] mémoire d'un navire qui fut.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le fleuve et les grues",
+      "taggedText": "{clapotis_loire_vent_mouettes.wav}\n\n[posé] Sur les bords de Loire, à Nantes, des grues se dressent au-dessus de l'île. [pause] Tout au long du vingtième siècle, ici, on a construit des navires. {resonance_metal_lointain.wav} Le métal résonnait du matin au soir sur les cales de la Prairie-au-Duc."
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'homme au tire-ligne",
+      "taggedText": "[pause]\n\nParmi ces hommes, Jean Penaud. [pause] Dessinateur. {tire_ligne_papier_calque.wav} Chaque jour, penché sur sa planche, il traduisait en lignes d'encre les formes des coques à venir. [pause] [posé] « On travaillait au tire-ligne, à l'encre de Chine, sur du calque… [ralentit] Fallait pas trembler. » [pause] Entre l'ingénieur qui concevait et l'ouvrier qui assemblait, le dessinateur était celui qui donnait forme."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Du trait au navire",
+      "taggedText": "Dans la salle à tracer, les plans prenaient une autre dimension — [accentué] grandeur nature, sur le sol. Chaque courbe vérifiée, chaque cote reportée. [pause] Et puis venait le jour du lancement. {chaines_glissement_coque_lancement.wav} [joyeusement] « Quand on voyait le bateau descendre sur la cale, on se disait : [ralentit] ça, c'est parti de mon trait. » {clameur_ouvriers_lointaine.wav} [pause] Tout un chantier, des centaines de mains, mais au commencement, [accentué] un dessin."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le silence des cales",
+      "taggedText": "{vent_eau_calme_silence.wav}\n\n[pause] [triste] Et puis les chantiers ont fermé. Les grues se sont tues. [ralentit] Les planches à dessin ont été rangées. [pause] Sur l'île de Nantes, là où l'on traçait des coques, le silence a remplacé le vacarme. [pause] [atténué] « C'est tout un monde qui a disparu… [pause] mais nous, on sait que c'était là. » [pause] [posé] De Jean Penaud et des dessinateurs comme lui, il reste ce geste patient — [ralentit] un trait d'encre, [pause] mémoire d'un navire qui fut."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 25,
+    "soundTags": 6,
+    "originalWordCount": 238
+  }
+}

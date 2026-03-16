@@ -1,0 +1,314 @@
+{
+  "scenario_id": 1,
+  "titre": "Gilles Hamon, traceur de coques",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "En septembre 1958, Gilles Hamon entre comme apprenti aux chantiers de la Bretagne à Nantes. Il a quatorze ans. Pendant près de trois décennies, il apprend puis maîtrise l'art du traçage naval — ce métier singulier qui consiste à transposer en grandeur réelle, à même le parquet de la salle à tracer, les formes complexes d'une coque de navire à partir de points dans l'espace. Des chantiers de la Bretagne aux fusions successives jusqu'à Dubigeon, puis Saint-Nazaire après la fermeture de 1987, son parcours épouse les mutations de la construction navale nantaise. À travers son portrait se dessine un savoir-faire où le corps — à quatre pattes sur le parquet, décamètre et latte flexible en main — dialogue avec la rigueur géométrique du bureau d'études.",
+  "duree_estimee": 221.9693362193362,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un apprenti sur le parquet",
+      "duree": 47.77777777777778,
+      "texte_narration": "Septembre 1958. Aux chantiers de la Bretagne, à Nantes, un garçon de quatorze ans franchit pour la première fois la porte de la salle à tracer. Il s'appelle Gilles Hamon. Devant lui, un vaste parquet de bois clair, strié de lignes fines — c'est ici, à même le sol, à l'échelle un, que naissent les formes des navires. Il entre comme apprenti. Il ne sait pas encore qu'il passera près de trente ans à genoux sur ce plancher, un décamètre à la main.",
+      "ton": {
+        "global": "descriptif, posé, légèrement solennel",
+        "tempo_lecture": 108,
+        "pauses": [
+          "après 'Septembre 1958.' (1.5s)",
+          "après 'Gilles Hamon.' (1s)",
+          "après 'des navires.' (1s)"
+        ],
+        "intonation": "voix calme, registre bas, rythme mesuré, légère gravité sur la dernière phrase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ancrage temporel et géographique : Nantes, chantiers de la Bretagne, 1958",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Présentation de Gilles Hamon, 14 ans, apprenti",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Première évocation sensorielle de la salle à tracer : le parquet, l'échelle 1",
+          "duree": 10.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "ambiance",
+          "description": "Écho lointain et discret de hangar métallique, très bas en fond — un souffle d'espace industriel vide, sans musique",
+          "volume": 0.15
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Septembre 1958.",
+          "sources": [
+            "[01:12] Ah bah oui, c'était au mois de septembre.",
+            "[01:22] 58."
+          ]
+        },
+        {
+          "sentence": "Aux chantiers de la Bretagne, à Nantes, un garçon de quatorze ans franchit pour la première fois la porte de la salle à tracer.",
+          "sources": [
+            "[00:39] Alors au départ, c'était la Bretagne.",
+            "[00:45] À 14 ans."
+          ]
+        },
+        {
+          "sentence": "Il s'appelle Gilles Hamon.",
+          "sources": [
+            "[00:07] Moi c'est Amon Gilles."
+          ]
+        },
+        {
+          "sentence": "Devant lui, un vaste parquet de bois clair, strié de lignes fines — c'est ici, à même le sol, à l'échelle un, que naissent les formes des navires.",
+          "sources": [
+            "[02:30] Alors c'est à l'échelle 1, donc c'était sur un parquet."
+          ]
+        },
+        {
+          "sentence": "Il entre comme apprenti.",
+          "sources": [
+            "[01:45] On a commencé, bah comme apprenti naturellement"
+          ]
+        },
+        {
+          "sentence": "Il ne sait pas encore qu'il passera près de trente ans à genoux sur ce plancher, un décamètre à la main.",
+          "sources": [
+            "[02:30] Donc on travaillait à quatre pattes par terre.",
+            "[02:30] avec un décamètre reporter des points"
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le geste et la mesure",
+      "duree": 85.17857142857143,
+      "texte_narration": "Le métier de traceur commence par des chiffres. Les bureaux d'études transmettent des coordonnées — des points dans l'espace, définis en largeur, en longueur, en profondeur. Le traceur les reporte un à un sur le parquet, au décamètre, en grandeur réelle. Puis vient le geste décisif : il courbe une longue latte flexible entre les points, et vérifie que la ligne épouse une courbe continue — la future coque du navire.\n\n[ARCHIVE — Gilles Hamon] « Il fallait étudier, faire les formes des bateaux. Suivant des données que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous une forme de dessin. Alors c'est à l'échelle 1, donc c'était sur un parquet. Donc on travaillait à quatre pattes par terre. Il fallait avec un décamètre reporter des points… et puis passer une latte… et puis voir les points s'ils se suivaient. »",
+      "ton": {
+        "global": "concret, physique, rythme plus soutenu, fascination technique contenue",
+        "tempo_lecture": 112,
+        "pauses": [
+          "après 'en profondeur.' (0.8s)",
+          "après 'en grandeur réelle.' (1s)",
+          "avant l'archive (1.5s)",
+          "après l'archive (1.5s)"
+        ],
+        "intonation": "voix off légèrement plus animée, phrasé technique mais clair ; l'archive est introduite sans rupture, la voix de Gilles Hamon prend le relais naturellement"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:35",
+          "action": "Explication du processus : coordonnées du bureau d'études reportées au décamètre",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:45",
+          "action": "Le geste de la latte flexible — vérification de la continuité de la courbe",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "0:51",
+          "action": "Archive audio de Gilles Hamon décrivant le traçage en ses propres mots",
+          "duree": 22.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "ambiance",
+          "description": "Fond très discret : craquement léger de bois, écho de pas lointains dans un grand espace couvert — évocation de la salle à tracer, sans musique",
+          "volume": 0.12
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Le métier de traceur commence par des chiffres.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bureaux d'études transmettent des coordonnées — des points dans l'espace, définis en largeur, en longueur, en profondeur.",
+          "sources": [
+            "[02:30] Suivant des données euh que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur"
+          ]
+        },
+        {
+          "sentence": "Le traceur les reporte un à un sur le parquet, au décamètre, en grandeur réelle.",
+          "sources": [
+            "[02:30] Alors c'est à l'échelle 1, donc c'était sur un parquet.",
+            "[02:30] avec un décamètre reporter des points"
+          ]
+        },
+        {
+          "sentence": "Puis vient le geste décisif : il courbe une longue latte flexible entre les points, et vérifie que la ligne épouse une courbe continue — la future coque du navire.",
+          "sources": [
+            "[03:00] et puis passer une latte",
+            "[03:10] Et puis voir les points s'ils se suivaient."
+          ]
+        },
+        {
+          "sentence": "[ARCHIVE — Gilles Hamon] « Il fallait étudier, faire les formes des bateaux. Suivant des données que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous une forme de dessin. Alors c'est à l'échelle 1, donc c'était sur un parquet. Donc on travaillait à quatre pattes par terre. Il fallait avec un décamètre reporter des points… et puis passer une latte… et puis voir les points s'ils se suivaient. »",
+          "sources": [
+            "[02:30] Il fallait étudier, faire... les formes des bateaux. Suivant des données euh que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous sous une forme de dessin. Alors c'est à l'échelle 1, donc c'était sur un parquet. Donc on travaillait à quatre pattes par terre.",
+            "[02:30] il fallait avec un décamètre reporter des points",
+            "[03:00] et puis passer une latte",
+            "[03:10] Et puis voir les points s'ils se suivaient."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "D'un chantier à l'autre",
+      "duree": 62.72727272727273,
+      "texte_narration": "Gilles Hamon ne reste pas apprenti longtemps. Il passe son CAP, suit des cours du soir, apprend le dessin — et finit par intégrer le bureau de dessin.\n\n[ARCHIVE — Gilles Hamon] « En tant qu'ouvrier-traceur, on était déjà très bien placés dans les groupes. J'avais suivi des cours de dessin, puis j'suis passé au bureau d'dessin. Et puis je grimpais en grade… comme j'étais bien vu, j'ai souvent eu des galons. »\n\nAutour de lui, les chantiers nantais se transforment. Les fusions se succèdent — la Bretagne, puis les Chantiers de Nantes, puis Dubigeon. Jusqu'à la fermeture, vers 1987. Gilles Hamon part alors pour Saint-Nazaire, où il termine sa carrière.",
+      "ton": {
+        "global": "narratif, sobre, rythme qui s'élargit, gravité mesurée",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'bureau de dessin.' (1s)",
+          "avant l'archive (1.2s)",
+          "après 'des galons.' (1.2s)",
+          "après 'vers 1987.' (1s)"
+        ],
+        "intonation": "voix off posée, registre factuel, légère gravité croissante à l'évocation des fermetures ; l'archive s'insère comme une confirmation naturelle du parcours"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:15",
+          "action": "Progression professionnelle : CAP, cours du soir, bureau de dessin",
+          "duree": 7.0
+        },
+        {
+          "timestamp": "1:22",
+          "action": "Archive audio sur la montée en grade et la reconnaissance",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "1:33",
+          "action": "Fusions successives et fermeture — départ pour Saint-Nazaire",
+          "duree": 12.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "ambiance",
+          "description": "Fond quasi silencieux — un léger bourdonnement industriel lointain qui s'estompe progressivement, évoquant la disparition des chantiers",
+          "volume": 0.1
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Gilles Hamon ne reste pas apprenti longtemps.",
+          "sources": [
+            "[01:45] On a commencé, bah comme apprenti naturellement, puis après ouvrier..."
+          ]
+        },
+        {
+          "sentence": "Il passe son CAP, suit des cours du soir, apprend le dessin — et finit par intégrer le bureau de dessin.",
+          "sources": [
+            "[01:45] alors je suivais des cours à l'IVET qui m'a permis de passer le brevet",
+            "[02:00] Je termine mon CAP tout de suite au 10e, puis en parallèle après j'avais suivi des cours de dessin pas de dessinateur, puis j'suis passé au bureau d'dessin."
+          ]
+        },
+        {
+          "sentence": "[ARCHIVE — Gilles Hamon] « En tant qu'ouvrier-traceur, on était déjà très bien placés dans les groupes. J'avais suivi des cours de dessin, puis j'suis passé au bureau d'dessin. Et puis je grimpais en grade… comme j'étais bien vu, j'ai souvent eu des galons. »",
+          "sources": [
+            "[01:45] Alors qu'en tant qu'ouvrier-traceur, on était déjà très bien placés dans... dans les groupes hein",
+            "[02:00] j'avais suivi des cours de dessin pas de dessinateur, puis j'suis passé au bureau d'dessin.",
+            "[02:00] Et puis à Chausson ben je je grimpais en grade.",
+            "[02:00] Et euh comme j'étais bien vu, j'ai souvent eu des galons."
+          ]
+        },
+        {
+          "sentence": "Autour de lui, les chantiers nantais se transforment.",
+          "sources": [
+            "[00:51] on a suivi bah toutes les fusions"
+          ]
+        },
+        {
+          "sentence": "Les fusions se succèdent — la Bretagne, puis les Chantiers de Nantes, puis Dubigeon.",
+          "sources": [
+            "[00:51] pour finir aux Chantiers de Nantes et puis aux Chantiers du Dubigeon, ça s'appelait comme ça, qui était la fusion des trois chantiers nantais ou de la région."
+          ]
+        },
+        {
+          "sentence": "Jusqu'à la fermeture, vers 1987.",
+          "sources": [
+            "[00:57] jusqu'à la fermeture fermeture, c'était en 87 par là"
+          ]
+        },
+        {
+          "sentence": "Gilles Hamon part alors pour Saint-Nazaire, où il termine sa carrière.",
+          "sources": [
+            "[01:02] Et puis j'ai viré à Saint-Nazaire.",
+            "[01:07] Ah bah oui."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'empreinte du traceur",
+      "duree": 26.285714285714285,
+      "texte_narration": "Sur le parquet de la salle à tracer, les courbes dessinées par Gilles Hamon ont depuis longtemps été effacées. Mais chaque coque mise à l'eau portait en elle ce geste patient — un homme à quatre pattes, une latte entre les doigts, cherchant la ligne juste.",
+      "ton": {
+        "global": "contemplatif, retenu, ouvert",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'effacées.' (1.5s)",
+          "après 'la ligne juste.' (3s — silence de clôture)"
+        ],
+        "intonation": "voix posée, légèrement plus basse, rythme ralenti, ton de respect sans emphase — laisser la dernière image résonner dans le silence"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:45",
+          "action": "Image finale : le parquet, les courbes tracées — lien entre le dessin et la coque en cale",
+          "duree": 7.0
+        },
+        {
+          "timestamp": "1:52",
+          "action": "Évocation du geste du traceur comme empreinte — clôture ouverte, silence",
+          "duree": 8.0
+        }
+      ],
+      "ambiances_continues": [
+        {
+          "type": "ambiance",
+          "description": "Silence quasi total — peut-être un très léger écho résiduel de hangar qui s'éteint, puis silence complet",
+          "volume": 0.05
+        }
+      ],
+      "sentence_sources": [
+        {
+          "sentence": "Sur le parquet de la salle à tracer, les courbes dessinées par Gilles Hamon ont depuis longtemps été effacées.",
+          "sources": [
+            "[02:30] Alors c'est à l'échelle 1, donc c'était sur un parquet."
+          ]
+        },
+        {
+          "sentence": "Mais chaque coque mise à l'eau portait en elle ce geste patient — un homme à quatre pattes, une latte entre les doigts, cherchant la ligne juste.",
+          "sources": [
+            "[02:30] Donc on travaillait à quatre pattes par terre.",
+            "[03:00] et puis passer une latte",
+            "[03:10] Et puis voir les points s'ils se suivaient."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 406,
+    "duree_lecture_estimee": 221.9693362193362,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 4
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le parquet de la salle à tracer est le fil conducteur visuel et sonore — il apparaît en parties 1, 2 et 4, créant un motif récurrent. La voix off reste extérieure et factuelle (pas de 'je', pas d'adresse au public). Les archives de Gilles Hamon sont intégrées comme des preuves vivantes au sein du flux narratif, jamais comme des ruptures : la voix off introduit le contexte, l'archive confirme ou prolonge, la voix off reprend sans répéter. DENSITÉ SONORE MINIMALISTE : ambiance discrète de chantier (métal lointain, écho de hangar) en fond très bas, jamais de musique illustrative appuyée. REGISTRE : phrases claires, vocabulaire technique employé mais toujours explicité dans le mouvement de la phrase (ex. : 'la latte flexible — une longue règle souple que l'on courbe entre les points'). ÉQUILIBRE narration/archives ~60/40 : environ 70-75 secondes de voix off, 45-50 secondes d'extraits audio de Gilles Hamon. RIGUEUR : tous les faits (dates, lieux, noms de chantiers, âge d'entrée, description du travail) proviennent exclusivement du témoignage de Gilles Hamon."
+}

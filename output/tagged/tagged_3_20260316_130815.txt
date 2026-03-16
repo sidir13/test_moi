@@ -1,0 +1,31 @@
+=== PARTIE 1 : La table à dessin ===
+
+{silence_piece_vide.wav}
+
+[posé] [ralentit] Sur l'Île de Nantes, une table à dessin inclinée repose dans la lumière grise. [pause] Plus personne ne s'y penche. [atténué] Les équerres ont été rangées, les crayons, oubliés. [pause]
+
+=== PARTIE 2 : Le bureau d'études prend vie ===
+
+{crayon_sur_papier.wav}
+
+Pourtant, pendant des décennies, ces tables furent le cœur silencieux des chantiers navals nantais. [pause] Jean Penaud était dessinateur. Chaque matin, il rejoignait le bureau d'études pour tracer des coques, dessiner des structures, traduire en lignes précises ce qui deviendrait un navire d'acier. Il raconte : [posé] [atténué] « On faisait les plans de formes, les développements de tôle… chaque pièce devait être dessinée avant d'aller à l'atelier. » [pause] Sur la cale de lancement, rien ne prenait forme sans être d'abord passé par leurs mains.
+
+=== PARTIE 3 : Du trait de crayon à la coque d'acier ===
+
+{ambiance_atelier_lointain.wav}
+
+[posé] Le dessinateur lisait les formes de carène comme d'autres lisent une partition. Chaque courbe, chaque échelle exigeait une rigueur absolue. Aux Ateliers et Chantiers de Nantes, comme chez Dubigeon, traceurs et dessinateurs travaillaient en étroite collaboration avec les chefs d'atelier. Jean Penaud confie : [posé] [accentué] « Fallait pas se tromper. [pause] Un trait faux, c'est une tôle fausse. » [pause] Les navires naissaient d'abord sur le papier.
+
+=== PARTIE 4 : Les tables se vident ===
+
+[pause]
+
+{vent_estuaire_lointain.wav}
+
+[ralentit] Puis les chantiers ont fermé. [pause] L'un après l'autre, les bureaux d'études se sont éteints. [atténué] Le savoir-faire des dessinateurs navals, transmis de génération en génération, s'est dispersé avec eux. Il murmure : [posé] [triste] « Quand c'est fini, c'est fini. [pause] On emporte ça avec soi. » [pause]
+
+=== PARTIE 5 : Retour à la table vide ===
+
+[pause]
+
+[ralentit] [posé] Sur l'Île de Nantes, la table à dessin repose toujours dans la lumière grise. [pause] [atténué] Mais dans chaque navire sorti de ces rives, il reste la trace invisible d'un trait de crayon. [pause]

@@ -1,0 +1,25 @@
+=== PARTIE 1 : Le fracas des derniers rivets ===
+
+Ce récit s'adresse à toutes celles et ceux qui s'intéressent à l'histoire des villes et des hommes qui les ont bâties. [posé] Le ton sera celui d'un documentaire, sobre et informatif.
+
+{ambiance_chantier_naval_metal.wav} Nous sommes à Nantes, au milieu des années soixante. Sur les cales de Chantenay, le métal gronde. Des centaines d'ouvriers découpent, soudent, assemblent les coques des navires à quelques centaines de mètres du centre-ville. [pause] Parmi eux, un charpentier-fer. Il s'appelle Jean Penaud. [ARCHIVE : « J'suis entré à la Loire… après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg. J'ai travaillé pendant sept ans et demi à Cherbourg, sur les sous-marins puis après le sous-marin atomique. »] Il est revenu au mois de juillet 1969. [pause] Mais ce monde qu'il retrouve a déjà commencé à vaciller.
+
+=== PARTIE 2 : Un port au cœur de la cité ===
+
+Pour comprendre ce qui s'effondre, il faut remonter loin. [posé] En 1532, la Bretagne est rattachée à la France, et Nantes devient un port fluvial de premier plan. Pendant plus de deux siècles, la ville s'organise tout entière autour de son fleuve. {clapotis_quais_loire.wav} Sur le quai de la Fosse, les navires s'alignent bord à bord. L'île Feydeau, encore cernée par les eaux, voit s'élever les hôtels particuliers des armateurs. Aux dix-septième et dix-huitième siècles, le commerce triangulaire et la traite négrière font de Nantes le premier port négrier de France. [pause] [accentué] Une prospérité bâtie sur un crime. Négociants, marins, cordiers, calfats — des milliers de vies dépendent de ces quais où la Loire charrie autant de richesses que de souffrances.
+
+=== PARTIE 3 : Le fleuve qui se dérobe ===
+
+Mais la Loire, [pause] peu à peu, se dérobe. Dès le dix-neuvième siècle, l'envasement du fleuve rend la remontée jusqu'à Nantes de plus en plus périlleuse. Les navires grandissent, leur tirant d'eau augmente, et l'estuaire ne pardonne plus. Paimbœuf, en aval, sert d'abord d'avant-port, accueillant les cargaisons que les grands voiliers ne peuvent plus livrer au cœur de la ville. [précipité] Puis vient un tournant décisif. En 1857, la ligne ferroviaire Nantes–Saint-Nazaire est inaugurée. {sifflet_train_vapeur.wav} Le rail relie les deux villes, et les armateurs comprennent vite l'avantage : pourquoi forcer le passage du fleuve quand Saint-Nazaire offre un accès direct à l'océan ? Les grands navires cessent progressivement de remonter jusqu'à Nantes. [ralentit] Sur les quais du centre-ville, les dockers voient les postes d'amarrage se vider, lentement, inexorablement.
+
+=== PARTIE 4 : Les îles disparaissent ===
+
+Le vingtième siècle achève la métamorphose. Entre les années 1920 et 1940, les bras de Loire qui séparaient les îles du centre-ville sont comblés. L'île Gloriette, l'île de la Madeleine, la Prairie-au-Duc — ces terres entourées d'eau où s'activaient les chantiers — deviennent des quartiers comme les autres. [pause] Le paysage portuaire historique disparaît sous le remblai. {bombardements_lointains.wav} Puis la Seconde Guerre mondiale frappe. Les bombardements ravagent une partie des infrastructures. Quand vient la reconstruction, c'est vers l'aval que l'on regarde : Donges accueille un port pétrolier, Saint-Nazaire se renforce comme port en eau profonde. [atténué] Nantes conserve ses chantiers navals — Dubigeon, les Ateliers et Chantiers de la Loire — mais elle n'est plus un grand port maritime.
+
+=== PARTIE 5 : Les derniers hommes des cales ===
+
+{ambiance_atelier_metal_calme.wav} [ralentit] C'est dans ces chantiers en sursis que Jean Penaud a passé sa vie. Embauché le 5 février 1957, il se souvient de chaque détail. [ARCHIVE : « J'ai été huit jours au balai, et après je suis allé dans le parc à fer on appelait ça. Il y avait un genre de petit train avec un plateau, il venait chercher les pièces, les goussets, pour emmener à bord. »] Des gestes précis, un savoir-faire transmis d'ouvrier en ouvrier. [pause] Mais la désindustrialisation frappe le corridor estuarien. Un à un, les chantiers ferment. [accentué] En 1987, les dernières cales se taisent définitivement. [triste] Avec elles, c'est toute une communauté ouvrière qui perd son lieu, son identité, son monde.
+
+=== PARTIE 6 : Un port devenu mémoire ===
+
+{vent_leger_bord_de_loire.wav} [posé] Aujourd'hui, l'île de Nantes se réinvente là où les navires prenaient forme. Le port de Nantes-Saint-Nazaire vit toujours, mais en aval, dans l'estuaire. [pause] Au cœur de la ville, il ne reste que des traces — un rail oublié dans le bitume, un nom de quai, [ralentit] et la voix de ceux qui, comme Jean Penaud, se souviennent du fracas du métal sur la Loire.

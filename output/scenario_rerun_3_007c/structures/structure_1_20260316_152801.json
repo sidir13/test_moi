@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des dessinateurs comme Jean Penaud donnaient forme aux navires bien avant que le premier rivet ne soit posé. Penchés sur leurs planches à dessin, ils traduisaient en lignes précises les courbes des coques, les membrures, les systèmes complexes qui feraient vivre chaque bâtiment. Leur travail, discret mais essentiel, était le premier maillon d'une chaîne de production qui faisait la fierté industrielle de la ville. Puis vint le déclin : les chantiers fermèrent un à un, et avec eux disparut tout un monde de savoir-faire. Reste la mémoire de ces hommes dont le trait de crayon portait en lui la promesse d'un navire.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bureau d'études, cœur silencieux du chantier",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Évocation sensorielle du bureau d'études : planches à dessin, règles, calques, lumière des verrières",
+        "Situer le cadre : chantiers navals de Nantes, bords de Loire industriels",
+        "Présenter le métier de dessinateur naval comme premier geste de la construction",
+        "Rythme lent, phrases posées, ton documentaire neutre"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Jean Penaud, l'homme au trait précis",
+      "duree_cible": 25.0,
+      "fonction_narrative": "portrait_et_temoignage",
+      "position_arc_emotionnel": "engagement_croissant",
+      "elements_necessaires": [
+        "Portrait de Jean Penaud dans son travail quotidien de dessinateur",
+        "Citation directe issue des sources (témoignage de Penaud ou d'un collègue sur le métier)",
+        "Décrire la chaîne : du dessin au tracé en salle, puis aux ateliers et à la cale",
+        "Hiérarchie des métiers : bureau d'études vs ateliers, place du dessinateur dans l'organisation",
+        "Montée en intensité narrative : fierté du geste, importance du savoir-faire"
+      ],
+      "mood": "humain_engagé"
+    },
+    {
+      "partie": 3,
+      "titre": "Le dernier trait — quand les chantiers se taisent",
+      "duree_cible": 25.0,
+      "fonction_narrative": "bascule_et_élégie",
+      "position_arc_emotionnel": "sommet_emotionnel",
+      "elements_necessaires": [
+        "Transition vers le déclin et la fermeture des chantiers navals nantais",
+        "Contraste avant/après : du bruit des ateliers au silence",
+        "Citation directe possible sur la perte, la fin d'un monde",
+        "Évocation de la mémoire industrielle — ce qui reste quand les grues disparaissent",
+        "Clôture sur la valeur du geste du dessinateur : un trait de crayon comme acte fondateur"
+      ],
+      "mood": "élégiaque_grave"
+    },
+    {
+      "partie": 4,
+      "titre": "Coda — Le trait demeure",
+      "duree_cible": 15.0,
+      "fonction_narrative": "conclusion_resonance",
+      "position_arc_emotionnel": "apaisement_mélancolique",
+      "elements_necessaires": [
+        "Image finale forte : un plan jauni, une signature, un souvenir",
+        "Ouverture sur la mémoire collective nantaise",
+        "Phrase de clôture lente, contemplative, qui laisse résonner le silence"
+      ],
+      "mood": "suspendu_mémoriel"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_vers_elegie",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du cadre général du bureau d'études, on glisse vers la figure de Jean Penaud — comme si la caméra se rapprochait d'un homme penché sur sa planche. Transition par continuité spatiale : même lieu, focus resserré."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 3.0,
+      "description": "Bascule avant/après. Le récit quitte le temps du travail vivant pour entrer dans celui de la disparition. Marqueur temporel explicite (« Puis un jour… » ou mention de la fermeture). Le silence ou un son ambiant minimal peut souligner la cassure. C'est le pivot émotionnel du récit."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_naturel",
+      "duree": 2.0,
+      "description": "De l'émotion de la perte, on descend vers une contemplation apaisée. La voix ralentit. On passe du constat de disparition à l'affirmation de la mémoire. Transition par le souffle — une pause, puis la coda."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit être perçu comme un seul mouvement continu, pas quatre blocs séparés. Les sections sont des repères de montage, pas des chapitres annoncés. La voix off ne nomme jamais les parties. — DÉBIT : Environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit être très concise (parties 1-3 : ~50 mots chacune ; partie 4 : ~30 mots). — CITATIONS : Intégrer 1 à 2 citations directes de témoignages, fondues dans le récit (introduites par une formule simple : « Il disait… », « Comme le racontait Jean Penaud… »). Ne jamais inventer de citation : utiliser uniquement le matériau source disponible. Si aucune citation exacte n'est disponible, reformuler en discours indirect avec prudence. — AMBIANCE SONORE (indications pour le mixage) : Minimaliste. Partie 1-2 : léger fond industriel lointain (métal, Loire). Partie 3 : silence progressif. Partie 4 : silence quasi total, respiration de la voix seule. — REGISTRE : Grand public, phrases courtes et claires, vocabulaire technique dosé (expliquer ou contextualiser tout terme spécialisé : membrure, tracé, cale). — ANGLE AVANT/APRÈS : La partie 2 est le cœur du « avant » (le travail vivant), la partie 3 est le « après » (la fermeture). La partie 1 plante le décor, la partie 4 offre la résonance mémorielle. Le pivot doit être ressenti, pas explicité lourdement. — RIGUEUR : Ne pas inventer de dates de fermeture précises, de noms de navires ou d'événements non présents dans les sources. Préférer les formulations ouvertes (« au fil des décennies », « quand les chantiers fermèrent ») si le contexte manque de précision."
+}

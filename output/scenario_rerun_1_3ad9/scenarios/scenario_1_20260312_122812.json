@@ -1,0 +1,521 @@
+{
+  "scenario_id": 1,
+  "titre": "Jean Penaud, dernier témoin des cales perdues",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Sur les quais de Nantes, un fleuve s'envase lentement et emporte avec lui des siècles d'activité maritime. À travers le parcours de Jean Penaud, charpentier-fer entré aux Chantiers de la Loire le 5 février 1957, c'est toute l'agonie du port nantais qui se dessine — des quais de la Fosse autrefois grouillants de navires négriers aux cales de Dubigeon où l'on assemblait encore des coques d'acier. De mutation en mutation, de Nantes à Cherbourg pour les sous-marins atomiques puis retour en juillet 1969, Jean traverse sans le savoir les dernières décennies d'une histoire portuaire millénaire qui se déplace inexorablement vers l'estuaire et Saint-Nazaire. Quand les chantiers ferment définitivement, c'est un monde entier — celui des goussets, des parcs à fer et des petits trains à plateau — qui sombre dans le silence de la Prairie-au-Duc.",
+  "duree_estimee": 574.716810966811,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un port au sommet du monde",
+      "duree": 82.36363636363637,
+      "texte_narration": "Nantes, dix-huitième siècle. Nous sommes au cœur de l'un des plus grands ports atlantiques du royaume de France. Imaginez les quais de la Fosse, encombrés de cordages et de marchandises, l'île Feydeau où les armateurs font bâtir des hôtels particuliers à la mesure de leur fortune, l'île Gloriette cernée par les eaux vives du fleuve. La Loire, ici, ne coule pas en un seul lit. Elle se divise en bras multiples — le bras de la Bourse, le bras de l'Hôpital — autant d'artères navigables qui font de la ville entière un organisme portuaire. C'est sur ces eaux que transitent les navires du commerce triangulaire, cette traite négrière qui fonde une part considérable de la prospérité nantaise. La richesse est immense. Mais déjà, sous la surface, le fleuve charrie autre chose que de l'or. Il charrie du sable. Et lentement, il commence à se refermer.",
+      "ton": {
+        "global": "majestueux_puis_assombrissant",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'de France' (1.5s)",
+          "après 'du fleuve' (1s)",
+          "après 'organisme portuaire' (1.5s)",
+          "après 'est immense' (2s)",
+          "après 'du sable' (2s)",
+          "après 'se refermer' (2.5s)"
+        ],
+        "intonation": "Ample et posée en ouverture, voix qui s'assombrit progressivement à partir de 'Mais déjà'. Les deux dernières phrases sont prononcées plus lentement, presque murmurées."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture — ambiance portuaire XVIIIe : eau clapotante, voiles qui claquent, rumeur de marché lointain",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:20",
+          "action": "Évocation de l'île Feydeau — léger changement d'ambiance, pas sur pavés, bruit de calèche",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:45",
+          "action": "Transition sombre — l'ambiance portuaire s'assourdit, bruit d'eau plus lourd, courant ralenti",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nantes, dix-huitième siècle.",
+          "sources": []
+        },
+        {
+          "sentence": "Nous sommes au cœur de l'un des plus grands ports atlantiques du royaume de France.",
+          "sources": []
+        },
+        {
+          "sentence": "Imaginez les quais de la Fosse, encombrés de cordages et de marchandises, l'île Feydeau où les armateurs font bâtir des hôtels particuliers à la mesure de leur fortune, l'île Gloriette cernée par les eaux vives du fleuve.",
+          "sources": []
+        },
+        {
+          "sentence": "La Loire, ici, ne coule pas en un seul lit.",
+          "sources": []
+        },
+        {
+          "sentence": "Elle se divise en bras multiples — le bras de la Bourse, le bras de l'Hôpital — autant d'artères navigables qui font de la ville entière un organisme portuaire.",
+          "sources": []
+        },
+        {
+          "sentence": "C'est sur ces eaux que transitent les navires du commerce triangulaire, cette traite négrière qui fonde une part considérable de la prospérité nantaise.",
+          "sources": []
+        },
+        {
+          "sentence": "La richesse est immense.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais déjà, sous la surface, le fleuve charrie autre chose que de l'or.",
+          "sources": []
+        },
+        {
+          "sentence": "Il charrie du sable.",
+          "sources": []
+        },
+        {
+          "sentence": "Et lentement, il commence à se refermer.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le fleuve qui se refuse",
+      "duree": 77.67857142857143,
+      "texte_narration": "Au fil du dix-neuvième siècle, la Loire s'envase. Les bancs de sable s'accumulent, le chenal se rétrécit, et les navires, eux, ne cessent de grossir. Leur tonnage augmente, leur tirant d'eau s'approfondit. Ce qui passait hier ne passe plus aujourd'hui. Nantes, coincée à cinquante kilomètres de l'océan, voit ses quais devenir inaccessibles aux grands bâtiments. On tente pourtant de sauver ce qui peut l'être. Le canal de la Martinière est creusé — un ouvrage ambitieux censé offrir aux navires une voie parallèle au fleuve capricieux. Mais le remède arrive trop tard, et il ne suffit pas. C'est Saint-Nazaire, à l'embouchure même de l'estuaire, qui absorbe désormais le grand trafic maritime. Son port d'estuaire, son bassin de Penhoët accueillent ce que Nantes ne peut plus recevoir. Le centre de gravité bascule vers l'aval.",
+      "ton": {
+        "global": "documentaire_grave",
+        "tempo_lecture": 112,
+        "pauses": [
+          "après 's'envase' (1.5s)",
+          "après 'plus aujourd'hui' (1.5s)",
+          "après 'ne suffit pas' (2s)",
+          "après 'vers l'aval' (2.5s)"
+        ],
+        "intonation": "Ton factuel mais avec une gravité croissante. Rythme qui s'accélère légèrement au milieu (énumération des problèmes) puis ralentit sur la conclusion — constat irréversible."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:55",
+          "action": "Son d'eau épaisse, boueuse — évocation de l'envasement",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:15",
+          "action": "Bruit de pelle, de terrassement — évocation du canal de la Martinière",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:40",
+          "action": "Sirène de navire au loin — Saint-Nazaire prend le relais",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Au fil du dix-neuvième siècle, la Loire s'envase.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bancs de sable s'accumulent, le chenal se rétrécit, et les navires, eux, ne cessent de grossir.",
+          "sources": []
+        },
+        {
+          "sentence": "Leur tonnage augmente, leur tirant d'eau s'approfondit.",
+          "sources": []
+        },
+        {
+          "sentence": "Ce qui passait hier ne passe plus aujourd'hui.",
+          "sources": []
+        },
+        {
+          "sentence": "Nantes, coincée à cinquante kilomètres de l'océan, voit ses quais devenir inaccessibles aux grands bâtiments.",
+          "sources": []
+        },
+        {
+          "sentence": "On tente pourtant de sauver ce qui peut l'être.",
+          "sources": []
+        },
+        {
+          "sentence": "Le canal de la Martinière est creusé — un ouvrage ambitieux censé offrir aux navires une voie parallèle au fleuve capricieux.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais le remède arrive trop tard, et il ne suffit pas.",
+          "sources": []
+        },
+        {
+          "sentence": "C'est Saint-Nazaire, à l'embouchure même de l'estuaire, qui absorbe désormais le grand trafic maritime.",
+          "sources": []
+        },
+        {
+          "sentence": "Son port d'estuaire, son bassin de Penhoët accueillent ce que Nantes ne peut plus recevoir.",
+          "sources": []
+        },
+        {
+          "sentence": "Le centre de gravité bascule vers l'aval.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le 5 février 1957",
+      "duree": 138.88888888888889,
+      "texte_narration": "Pourtant, au milieu du vingtième siècle, il reste quelque chose sur les rives de Nantes. Quelque chose de massif, de bruyant, de vivant. Les chantiers navals. Sur la Prairie-au-Duc, sur l'île de Nantes, on construit encore des coques d'acier. Et c'est là, le cinq février mil neuf cent cinquante-sept, qu'un jeune homme franchit les grilles des Chantiers de la Loire pour la première fois.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« Première embauche le 5 février 1957. »\n\n[REPRISE NARRATION]\nIl s'appelle Jean Penaud. Il a à peine vingt ans. On ne lui confie pas tout de suite les tâches nobles. Pendant huit jours, il pousse un balai. Puis on l'envoie au parc à fer — c'est là qu'on trie les pièces, les goussets, ces renforts métalliques qui viennent consolider les structures des navires.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« J'ai été huit jours au balai, et après je suis allé dans le parc à fer on appelait ça, c'est-à-dire que on triait les goussets et les… à l'époque il y avait un genre de petit train avec un plateau, il venait chercher les pièces quoi, les goussets, les… pour emmener à bord. »\n\n[REPRISE NARRATION]\nUn petit train à plateau qui circule entre les ateliers et les cales. Des pièces de métal qu'on achemine vers les coques en construction. Un monde entier de bruit, de fer et de savoir-faire, dans lequel Jean Penaud prend sa place, jour après jour.",
+      "ton": {
+        "global": "immersif_industriel_nostalgique",
+        "tempo_lecture": 108,
+        "pauses": [
+          "après 'Les chantiers navals' (2s)",
+          "après 'pour la première fois' (2s — transition vers archive)",
+          "après archive 1 (1.5s)",
+          "après 'les structures des navires' (1.5s — transition vers archive)",
+          "après archive 2 (2s)",
+          "après 'jour après jour' (2.5s)"
+        ],
+        "intonation": "Élan narratif au début — on découvre un monde. Voix qui se fait plus intime quand Jean apparaît. Ton presque tendre sur les détails du quotidien (le balai, le parc à fer). Respect et attention dans les transitions vers les archives."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:45",
+          "action": "Ambiance industrielle : marteaux sur métal, soudure, cris d'ouvriers au loin — les chantiers sont vivants",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "2:00",
+          "action": "Première archive Jean Penaud — date d'embauche",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "2:20",
+          "action": "Deuxième archive Jean Penaud — le parc à fer, les goussets, le petit train",
+          "duree": 25.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Pourtant, au milieu du vingtième siècle, il reste quelque chose sur les rives de Nantes.",
+          "sources": []
+        },
+        {
+          "sentence": "Quelque chose de massif, de bruyant, de vivant.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers navals.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur la Prairie-au-Duc, sur l'île de Nantes, on construit encore des coques d'acier.",
+          "sources": []
+        },
+        {
+          "sentence": "Et c'est là, le cinq février mil neuf cent cinquante-sept, qu'un jeune homme franchit les grilles des Chantiers de la Loire pour la première fois.",
+          "sources": [
+            "[02:42] Première embauche le 5 février 1957."
+          ]
+        },
+        {
+          "sentence": "Il s'appelle Jean Penaud.",
+          "sources": [
+            "[02:02] Oui, ben, Teneau Jean."
+          ]
+        },
+        {
+          "sentence": "Il a à peine vingt ans.",
+          "sources": [
+            "[02:08] Euh 83 ans."
+          ]
+        },
+        {
+          "sentence": "On ne lui confie pas tout de suite les tâches nobles.",
+          "sources": [
+            "[02:59] J'ai été huit jours au balai..."
+          ]
+        },
+        {
+          "sentence": "Pendant huit jours, il pousse un balai.",
+          "sources": [
+            "[02:59] J'ai été huit jours au balai..."
+          ]
+        },
+        {
+          "sentence": "Puis on l'envoie au parc à fer — c'est là qu'on trie les pièces, les goussets, ces renforts métalliques qui viennent consolider les structures des navires.",
+          "sources": [
+            "[02:59] ...et après je suis allé dans le parc à fer on appelait ça, c'est-à-dire que on triait les goussets et les…",
+            "[02:59] ...soit des trucs pour renforcer, vous voye"
+          ]
+        },
+        {
+          "sentence": "Un petit train à plateau qui circule entre les ateliers et les cales.",
+          "sources": [
+            "[02:59] ...à l'époque il y avait un genre de petit train avec un plateau, il venait chercher les pièces quoi, les goussets, les… pour emmener à bord."
+          ]
+        },
+        {
+          "sentence": "Des pièces de métal qu'on achemine vers les coques en construction.",
+          "sources": [
+            "[02:59] ...il venait chercher les pièces quoi, les goussets, les… pour emmener à bord."
+          ]
+        },
+        {
+          "sentence": "Un monde entier de bruit, de fer et de savoir-faire, dans lequel Jean Penaud prend sa place, jour après jour.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Les mutations d'un homme, les mutations d'un port",
+      "duree": 106.07142857142857,
+      "texte_narration": "Mais Jean Penaud ne reste pas en place. Les chantiers non plus. Il est d'abord muté de la Loire à Dubigeon, sur ces mêmes rives nantaises. Puis vient l'appel de Cherbourg.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« J'suis entré à la Loire… après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg. J'ai travaillé pendant sept ans et demi à Cherbourg, sur l'sous-marin atomique. Enfin sur les sous-marins puis après le sous-marin atomique. »\n\n[REPRISE NARRATION]\nSept ans et demi loin de Nantes, à assembler les flancs des sous-marins pour la marine nationale. À Indret aussi, non loin de là, on poursuit les constructions navales militaires — l'un des derniers bastions de l'industrie navale ligérienne. Pendant ce temps, le port de Nantes continue de se vider. Saint-Nazaire a pris le relais depuis longtemps. En juillet mil neuf cent soixante-neuf, Jean Penaud revient.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« Oui, j'suis revenu le… au mois de juillet 69. »\n\n[REPRISE NARRATION]\nLe Nantes qu'il retrouve n'est plus tout à fait celui qu'il a quitté. Les quais sont plus silencieux. Les grues tournent moins.",
+      "ton": {
+        "global": "rythmé_mélancolique",
+        "tempo_lecture": 112,
+        "pauses": [
+          "après 'Les chantiers non plus' (2s)",
+          "après archive 1 (1.5s)",
+          "après 'ligérienne' (1s)",
+          "après 'Jean Penaud revient' (2s — transition vers archive)",
+          "après archive 2 (2s)",
+          "après 'tournent moins' (3s)"
+        ],
+        "intonation": "Rythme plus soutenu — les événements s'enchaînent. Ton factuel sur les mutations, mais une note de mélancolie s'installe au retour. Les deux dernières phrases sont prononcées avec une lenteur délibérée."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "2:50",
+          "action": "Première archive — mutations et Cherbourg, sous-marins",
+          "duree": 20.0
+        },
+        {
+          "timestamp": "3:20",
+          "action": "Deuxième archive — retour en juillet 69",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "3:30",
+          "action": "Ambiance qui se raréfie — moins de bruits industriels, plus de vent, d'espace vide",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mais Jean Penaud ne reste pas en place.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers non plus.",
+          "sources": []
+        },
+        {
+          "sentence": "Il est d'abord muté de la Loire à Dubigeon, sur ces mêmes rives nantaises.",
+          "sources": [
+            "[02:19] J'suis entré à la Loire… après j'ai été muté à Dubigeon..."
+          ]
+        },
+        {
+          "sentence": "Puis vient l'appel de Cherbourg.",
+          "sources": [
+            "[02:24] ...j'suis revenu ici en revenant de Cherbourg. J'ai travaillé pendant sept ans et demi à Cherbourg..."
+          ]
+        },
+        {
+          "sentence": "Sept ans et demi loin de Nantes, à assembler les flancs des sous-marins pour la marine nationale.",
+          "sources": [
+            "[02:24] J'ai travaillé pendant sept ans et demi à Cherbourg, sur l'sous-marin atomique. Enfin sur les sous-marins puis après le sous-marin atomique."
+          ]
+        },
+        {
+          "sentence": "À Indret aussi, non loin de là, on poursuit les constructions navales militaires — l'un des derniers bastions de l'industrie navale ligérienne.",
+          "sources": []
+        },
+        {
+          "sentence": "Pendant ce temps, le port de Nantes continue de se vider.",
+          "sources": []
+        },
+        {
+          "sentence": "Saint-Nazaire a pris le relais depuis longtemps.",
+          "sources": []
+        },
+        {
+          "sentence": "En juillet mil neuf cent soixante-neuf, Jean Penaud revient.",
+          "sources": [
+            "[02:29] Oui, j'suis revenu le… au mois de juillet 69."
+          ]
+        },
+        {
+          "sentence": "Le Nantes qu'il retrouve n'est plus tout à fait celui qu'il a quitté.",
+          "sources": []
+        },
+        {
+          "sentence": "Les quais sont plus silencieux.",
+          "sources": []
+        },
+        {
+          "sentence": "Les grues tournent moins.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 5,
+      "titre": "Les cales se taisent",
+      "duree": 169.71428571428572,
+      "texte_narration": "Au fil des décennies qui suivent, Nantes achève sa mue. Les bras de la Loire sont comblés, l'un après l'autre. Le bras de la Bourse, le bras de l'Hôpital disparaissent sous la terre et le bitume. Là où coulait l'eau, on trace désormais des boulevards. La ville se referme sur elle-même, oublie qu'elle fut un port.\n\nLes chantiers navals, eux, ferment progressivement. Dubigeon, le dernier d'entre eux sur les rives nantaises, finit par éteindre ses feux. Les cales de la Prairie-au-Duc, où l'on assemblait des navires depuis des générations, se taisent. Des centaines d'ouvriers, de charpentiers-fer, de soudeurs, de traceurs perdent leur métier — et avec lui, un monde entier de gestes, de bruits et de solidarités.\n\nJean Penaud a traversé tout cela.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« Première embauche le 5 février 1957. »\n\n[REPRISE NARRATION]\nIl a quatre-vingt-trois ans aujourd'hui. Et quand on lui demande la date de son premier jour aux chantiers, il répond sans hésiter. Le cinq février mil neuf cent cinquante-sept. Chaque date est intacte. Chaque souvenir tient bon, comme une coque bien rivetée.\n\nLa Prairie-au-Duc s'appelle désormais l'île de Nantes. On y a construit autre chose — des bâtiments, des jardins, des lieux de culture, là où s'élevaient les portiques. Mais sous le sol, il reste du fer. Et dans la voix de ceux qui y ont travaillé, il reste l'écho des marteaux.\n\nJean Penaud est peut-être l'un des derniers à porter cet écho. Son témoignage, c'est le dernier navire à quai — celui qu'on ne lance plus, mais qu'on garde, parce qu'il contient toute la mémoire d'un fleuve, d'un port, et d'un monde disparu.",
+      "ton": {
+        "global": "élégiaque_puis_lumineux",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'qu'elle fut un port' (2.5s)",
+          "après 'se taisent' (2.5s)",
+          "après 'de solidarités' (2s)",
+          "après 'tout cela' (2s — transition vers archive)",
+          "après archive (2s)",
+          "après 'bien rivetée' (2s)",
+          "après 'les portiques' (1.5s)",
+          "après 'des marteaux' (2.5s)",
+          "après 'monde disparu' (4s — silence final)"
+        ],
+        "intonation": "Ton grave et mesuré sur les fermetures et les comblements. Émotion contenue mais perceptible quand on évoque les ouvriers. Voix qui se réchauffe au moment de Jean et de ses souvenirs. Les dernières phrases sont prononcées lentement, avec une forme de sérénité — ni triomphe ni désespoir, mais la dignité d'une mémoire qui tient."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "3:45",
+          "action": "Ambiance de comblement — bruits de terre, de machines de chantier urbain, puis silence",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "4:05",
+          "action": "Dernier coup de marteau isolé — puis silence des cales",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "4:20",
+          "action": "Archive Jean Penaud — rappel de la date d'embauche, en écho à la partie 3",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "4:55",
+          "action": "Fin — silence quasi total, juste un bruit d'eau très lointain, la Loire qui coule encore",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Au fil des décennies qui suivent, Nantes achève sa mue.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bras de la Loire sont comblés, l'un après l'autre.",
+          "sources": []
+        },
+        {
+          "sentence": "Le bras de la Bourse, le bras de l'Hôpital disparaissent sous la terre et le bitume.",
+          "sources": []
+        },
+        {
+          "sentence": "Là où coulait l'eau, on trace désormais des boulevards.",
+          "sources": []
+        },
+        {
+          "sentence": "La ville se referme sur elle-même, oublie qu'elle fut un port.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers navals, eux, ferment progressivement.",
+          "sources": []
+        },
+        {
+          "sentence": "Dubigeon, le dernier d'entre eux sur les rives nantaises, finit par éteindre ses feux.",
+          "sources": []
+        },
+        {
+          "sentence": "Les cales de la Prairie-au-Duc, où l'on assemblait des navires depuis des générations, se taisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Des centaines d'ouvriers, de charpentiers-fer, de soudeurs, de traceurs perdent leur métier — et avec lui, un monde entier de gestes, de bruits et de solidarités.",
+          "sources": []
+        },
+        {
+          "sentence": "Jean Penaud a traversé tout cela.",
+          "sources": []
+        },
+        {
+          "sentence": "Il a quatre-vingt-trois ans aujourd'hui.",
+          "sources": [
+            "[02:08] Euh 83 ans."
+          ]
+        },
+        {
+          "sentence": "Et quand on lui demande la date de son premier jour aux chantiers, il répond sans hésiter.",
+          "sources": [
+            "[02:47] Oh, c'est fou qu'vous arriviez à vous en r'peler !"
+          ]
+        },
+        {
+          "sentence": "Le cinq février mil neuf cent cinquante-sept.",
+          "sources": [
+            "[02:42] Première embauche le 5 février 1957."
+          ]
+        },
+        {
+          "sentence": "Chaque date est intacte.",
+          "sources": [
+            "[02:47] Oh, c'est fou qu'vous arriviez à vous en r'peler !"
+          ]
+        },
+        {
+          "sentence": "Chaque souvenir tient bon, comme une coque bien rivetée.",
+          "sources": []
+        },
+        {
+          "sentence": "La Prairie-au-Duc s'appelle désormais l'île de Nantes.",
+          "sources": []
+        },
+        {
+          "sentence": "On y a construit autre chose — des bâtiments, des jardins, des lieux de culture, là où s'élevaient les portiques.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais sous le sol, il reste du fer.",
+          "sources": []
+        },
+        {
+          "sentence": "Et dans la voix de ceux qui y ont travaillé, il reste l'écho des marteaux.",
+          "sources": []
+        },
+        {
+          "sentence": "Jean Penaud est peut-être l'un des derniers à porter cet écho.",
+          "sources": []
+        },
+        {
+          "sentence": "Son témoignage, c'est le dernier navire à quai — celui qu'on ne lance plus, mais qu'on garde, parce qu'il contient toute la mémoire d'un fleuve, d'un port, et d'un monde disparu.",
+          "sources": [
+            "[00:30] ...ce serait de monter quelque chose qui puisse autant mêler du de du document d'archive que de l'archive humaine, vraiment avec du témoignage humain..."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 1041,
+    "duree_lecture_estimee": 574.716810966811,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est construit comme un entonnoir — du panorama historique large vers l'intime d'un seul homme. Jean Penaud n'est pas un prétexte illustratif : il EST le fil conducteur à partir de la partie 3, et son parcours structure la seconde moitié du documentaire. Les parties 1-2 préparent son entrée en scène en posant le monde dans lequel il va évoluer. || FLUIDITÉ : Éviter absolument les formules de transition scolaires ('Passons maintenant à…'). Chaque section doit se terminer sur une image ou une phrase qui appelle naturellement la suivante. || ARCHIVES AUDIO : L'archive de Jean Penaud doit être intégrée de manière organique — la voix off pose le contexte, puis la voix de Jean prend le relais sur des passages précis (sa date d'embauche, le parc à fer, Cherbourg, le retour en 69). Le ratio narration/archives (0.6) implique environ 120 secondes d'archives sur 300 — soit 3 à 4 insertions substantielles de 25-35 secondes chacune. || TON : Neutre et informatif mais jamais froid. L'émotion naît des faits, pas du commentaire. Registre accessible au grand public, phrases claires, pas de jargon naval non expliqué (les goussets sont explicités dans l'archive elle-même). || AUTHENTICITÉ LINGUISTIQUE : Respecter le parler de Jean tel qu'il est — ne pas lisser ses formulations dans les citations. La voix off, elle, reste dans un français soutenu mais limpide. || RIGUEUR : Ne pas inventer de dates de fermeture précises des chantiers si elles ne figurent pas dans le contexte fourni — rester sur des formulations comme 'progressivement', 'au fil des décennies suivantes'. Les dates attestées (5 février 1957, juillet 1969, 7 ans et demi à Cherbourg) doivent être reprises avec exactitude. || AMBIANCE SONORE : Immersive — prévoir des nappes d'ambiance portuaire (eau, métal, machines) qui évoluent avec le récit et s'éteignent symboliquement dans la dernière partie."
+}

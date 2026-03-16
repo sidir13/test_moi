@@ -1,0 +1,148 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Quand la Loire a cessé de porter les navires — Chronique du port de Nantes",
+  "resumeHistoire": "Pendant des siècles, le port de Nantes a fait vivre des générations d'ouvriers, de négociants et de marins au cœur même de la ville, sur les quais de la Fosse, autour de l'île Feydeau et dans les chantiers de Chantenay. Mais dès le XIXe siècle, l'envasement de la Loire et l'augmentation du tonnage des navires rendent la navigation de plus en plus difficile, poussant les activités portuaires à glisser vers l'aval — d'abord Paimbœuf, puis Saint-Nazaire et Donges. Les comblements des bras de Loire dans les années 1920-1940, les bombardements de la Seconde Guerre mondiale, puis la désindustrialisation achèvent de transformer le visage du port historique. À travers le regard des travailleurs des chantiers navals — comme Jean Penaud, charpentier-fer entré au Chantier de la Loire en 1957 — c'est toute une communauté ouvrière qui voit son monde disparaître, jusqu'à la fermeture définitive des derniers chantiers en 1987.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fracas des derniers rivets",
+      "duree_cible": 50,
+      "fonction_narrative": "accroche_flashback",
+      "position_arc_emotionnel": "tension_nostalgique",
+      "elements_necessaires": [
+        "Ouverture sur une scène évocatrice des chantiers navals en activité à Nantes, années 1960",
+        "Ambiance sonore suggérée : métal, Loire, activité ouvrière",
+        "Introduction du témoignage de Jean Penaud, charpentier-fer, embauché le 5 février 1957 au Chantier de la Loire",
+        "Citation directe de Jean Penaud sur son parcours : entrée à la Loire, mutation à Dubigeon, départ à Cherbourg pour les sous-marins, retour en juillet 1969",
+        "Poser la question implicite : comment ce monde ouvrier en est-il arrivé à disparaître ?"
+      ],
+      "mood": "immersif_nostalgique"
+    },
+    {
+      "partie": 2,
+      "titre": "Un port au cœur de la cité",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_historique",
+      "position_arc_emotionnel": "calme_descriptif",
+      "elements_necessaires": [
+        "Retour en arrière : Nantes port fluvial majeur depuis le rattachement de la Bretagne à la France (1532)",
+        "Géographie du port historique : quais du centre-ville, Quai de la Fosse, Île Feydeau, îles de la Loire",
+        "Évocation mesurée du commerce triangulaire et de la traite négrière aux XVIIe-XVIIIe siècles comme moteur économique du port",
+        "Chronique sociale : une ville entière organisée autour de son fleuve et de ses quais — négociants, marins, ouvriers"
+      ],
+      "mood": "descriptif_ample"
+    },
+    {
+      "partie": 3,
+      "titre": "Le fleuve qui se dérobe",
+      "duree_cible": 60,
+      "fonction_narrative": "noeud_dramatique_premier",
+      "position_arc_emotionnel": "tension_montante",
+      "elements_necessaires": [
+        "L'envasement progressif de la Loire rend la navigation difficile pour les navires de plus en plus gros",
+        "Déplacement vers l'aval : Paimbœuf comme avant-port",
+        "Tournant majeur : l'ouverture de la ligne ferroviaire Nantes–Saint-Nazaire en 1857 et le basculement des activités vers Saint-Nazaire",
+        "L'augmentation du tonnage des navires au XIXe siècle comme facteur décisif",
+        "Chronique sociale : les travailleurs du port voient les grands navires cesser de remonter jusqu'à Nantes"
+      ],
+      "mood": "narratif_factuel_avec_gravite"
+    },
+    {
+      "partie": 4,
+      "titre": "Les îles disparaissent",
+      "duree_cible": 55,
+      "fonction_narrative": "acceleration_transformation",
+      "position_arc_emotionnel": "basculement",
+      "elements_necessaires": [
+        "Les comblements des bras de Loire dans les années 1920-1940 : les îles (Gloriette, Madeleine, Prairie-au-Duc) cessent d'être des îles",
+        "Le paysage portuaire du centre-ville se transforme radicalement",
+        "Les bombardements de la Seconde Guerre mondiale détruisent une partie des infrastructures portuaires",
+        "Reconstruction d'après-guerre : le port pétrolier de Donges, le renforcement de Saint-Nazaire",
+        "Nantes conserve ses chantiers navals (Dubigeon, ACL) mais perd sa fonction de grand port maritime"
+      ],
+      "mood": "sombre_factuel"
+    },
+    {
+      "partie": 5,
+      "titre": "Les derniers hommes des cales",
+      "duree_cible": 50,
+      "fonction_narrative": "climax_emotionnel",
+      "position_arc_emotionnel": "pic_emotionnel",
+      "elements_necessaires": [
+        "Retour au présent du témoignage : Jean Penaud et les ouvriers des chantiers, derniers représentants d'une tradition séculaire",
+        "Citation de Penaud sur son travail : les goussets, le parc à fer, le petit train qui emmenait les pièces à bord",
+        "La désindustrialisation frappe le corridor estuarien",
+        "Fermeture progressive des chantiers navals nantais, aboutissant à 1987",
+        "Chronique sociale : une communauté ouvrière qui perd son identité et son lieu de travail"
+      ],
+      "mood": "emotionnel_grave"
+    },
+    {
+      "partie": 6,
+      "titre": "Un port devenu mémoire",
+      "duree_cible": 30,
+      "fonction_narrative": "resolution_ouverture",
+      "position_arc_emotionnel": "apaisement_reflexif",
+      "elements_necessaires": [
+        "La reconversion urbaine de l'Île de Nantes sur les anciens espaces portuaires",
+        "Le port de Nantes-Saint-Nazaire existe désormais à l'aval, dans l'estuaire",
+        "Écho final au témoignage de Jean Penaud : la mémoire ouvrière comme dernier lien avec le port disparu",
+        "Ouverture : les traces du passé portuaire dans le paysage urbain actuel"
+      ],
+      "mood": "contemplatif_ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "nostalgie_en_decrescendo — immersion nostalgique initiale, remontée historique ample, tension croissante du déclin, pic émotionnel sur la disparition du monde ouvrier, apaisement réflexif final",
+  "rythme_general": "modere — débit posé avec accélérations ponctuelles lors des tournants historiques (comblements, bombardements, fermetures), respirations sur les passages de témoignage",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "flashback_temporel",
+      "duree": 3.0,
+      "description": "Depuis l'évocation des chantiers des années 1960 et la question posée par le destin de Jean Penaud, la narration remonte le temps — 'Pour comprendre comment ce monde a pu s'éteindre, il faut remonter la Loire et les siècles.' Transition fluide vers l'exposition historique."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du tableau de la prospérité portuaire, glissement vers les premiers signes de fragilité — 'Mais la Loire, qui avait fait la fortune de Nantes, allait aussi sceller son déclin.' Le ton se fait plus grave."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "acceleration_chronologique",
+      "duree": 2.0,
+      "description": "Du XIXe siècle et du basculement vers Saint-Nazaire, on entre dans le XXe siècle et ses transformations radicales — 'Le siècle suivant allait achever ce que le fleuve avait commencé.' Resserrement du rythme."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "retour_au_present_humain",
+      "duree": 2.5,
+      "description": "Des grandes transformations urbaines et portuaires, retour à l'échelle humaine — 'C'est dans ce port diminué, mais encore vivant, que des hommes comme Jean Penaud ont continué à travailler le fer.' Transition vers l'intime."
+    },
+    {
+      "entre_parties": [
+        5,
+        6
+      ],
+      "type": "ouverture_contemplative",
+      "duree": 2.0,
+      "description": "De la fermeture des chantiers et de l'émotion de la perte, passage vers la mémoire et la trace — 'Les cales se sont tues. Mais le port n'a pas tout à fait disparu.' Adoucissement du ton."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit s'ouvre in medias res dans les années 1960, au cœur des chantiers navals encore actifs, porté par la voix de Jean Penaud. Ce flashback initial crée un ancrage émotionnel et humain avant le retour en arrière chronologique. La narration suit ensuite un fil temporel linéaire (XVIe → XXe siècle) mais reste constamment ancrée dans la perspective sociale — ce ne sont pas des dates abstraites, ce sont des vies bouleversées. Les citations de Jean Penaud (embauche le 5 février 1957, travail au parc à fer, mutation Dubigeon, Cherbourg, retour juillet 1969) servent de fil rouge humain qui ouvre et referme le récit. FLUIDITÉ : Éviter toute annonce de section ('Dans cette partie…'). Les transitions sont des phrases narratives intégrées au texte. Le ton reste celui d'un documentaire sobre, sans pathos excessif mais avec une vraie charge émotionnelle sur la partie 5. RYTHME AUDIO : Parties 1 et 6 plus lentes et contemplatives. Parties 3 et 4 légèrement plus rapides pour accompagner l'accélération historique. Partie 5 ralentit à nouveau pour laisser résonner le témoignage. BUDGET MOTS : ~600 mots maximum pour 300 secondes. Répartition indicative : P1 ~100 mots, P2 ~110 mots, P3 ~120 mots, P4 ~110 mots, P5 ~100 mots, P6 ~60 mots. SOURCES : Ne citer que les faits et dates présents dans le contexte fourni. Les atmosphères et émotions sont des créations narratives légitimes, les faits historiques ne le sont pas."
+}

@@ -1,0 +1,29 @@
+=== PARTIE 1 : Le silence d'aujourd'hui ===
+
+{vent_ile_de_nantes.wav}
+
+[posé] Sur l'Île de Nantes, le vent glisse là où s'élevaient les coques d'acier. [pause] Les chantiers navals se sont tus. [pause] [atténué] Mais il fut un temps…
+
+=== PARTIE 2 : L'aube aux grilles des chantiers ===
+
+{pas_sur_paves_matin.wav}
+
+Chaque matin, Jean Penaud franchissait les grilles des chantiers navals de Nantes. Pas sur les pavés, sirène au loin. {sirene_chantier_lointaine.wav} Il rejoignait le bureau de dessin, à mi-chemin entre les ingénieurs qui concevaient et les traceurs qui reportaient à l'échelle un. [pause] [posé] « On arrivait le matin, on prenait sa planche, et on se mettait au travail. »
+
+=== PARTIE 3 : La salle à tracer ===
+
+{ambiance_salle_dessin.wav}
+
+Penché sur sa planche, Penaud traçait les courbes de coque au crayon dur, reportait les cotes sur le calque, vérifiait chaque galbe. [posé] Le dessinateur traduisait les calculs de l'ingénieur en formes lisibles par l'atelier. [pause] [accentué] « Il fallait être précis au dixième de millimètre. [pause] Une erreur sur le plan, c'était une erreur sur la tôle. » [atténué] Autour de lui, les règles glissaient, les équerres claquaient doucement sur le papier.
+
+=== PARTIE 4 : Du trait au navire ===
+
+{marteaux_chaudronnerie.wav}
+
+Le plan achevé descendait vers les ateliers de la Prairie-au-Duc. Là, les traceurs le reportaient grandeur nature sur le sol de la salle à tracer, puis les chaudronniers découpaient l'acier. [pause] [posé] « Quand on voyait le bateau sur la cale, on se disait : [accentué] ça, c'est parti de mon trait. » [pause] Le dessin de Penaud devenait coque, étrave, navire.
+
+=== PARTIE 5 : Le soir tombe sur la Loire ===
+
+{sirene_fin_poste.wav}
+
+Le soir, la sirène sonnait. Penaud rangeait ses instruments, quittait les grilles. [pause] Les chantiers ont fermé depuis. [ralentit] {vent_loire_soir.wav} Mais dans le silence de l'Île de Nantes, [pause] chaque navire qui a pris la mer porte encore la mémoire d'un trait de crayon.

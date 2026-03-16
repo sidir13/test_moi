@@ -1,0 +1,98 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Gilles Hamon, traceur de coques",
+  "resumeHistoire": "En septembre 1958, Gilles Hamon entre comme apprenti aux chantiers de la Bretagne à Nantes. Il a quatorze ans. Pendant près de trois décennies, il apprend puis maîtrise l'art du traçage naval — ce métier singulier qui consiste à transposer en grandeur réelle, à même le parquet de la salle à tracer, les formes complexes d'une coque de navire à partir de points dans l'espace. Des chantiers de la Bretagne aux fusions successives jusqu'à Dubigeon, puis Saint-Nazaire après la fermeture de 1987, son parcours épouse les mutations de la construction navale nantaise. À travers son portrait se dessine un savoir-faire où le corps — à quatre pattes sur le parquet, décamètre et latte flexible en main — dialogue avec la rigueur géométrique du bureau d'études.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un apprenti sur le parquet",
+      "duree_cible": 35.0,
+      "fonction_narrative": "exposition — ancrage dans le temps, le lieu et le personnage",
+      "position_arc_emotionnel": "ouverture sobre, curiosité",
+      "elements_necessaires": [
+        "Nantes, chantiers de la Bretagne, septembre 1958",
+        "Gilles Hamon, 14 ans, apprenti",
+        "Première évocation sensorielle de la salle à tracer : le parquet, l'échelle 1",
+        "Ton documentaire neutre, registre accessible"
+      ],
+      "mood": "descriptif, posé, légèrement solennel"
+    },
+    {
+      "partie": 2,
+      "titre": "Le geste et la mesure",
+      "duree_cible": 40.0,
+      "fonction_narrative": "développement — description concrète du métier de traceur",
+      "position_arc_emotionnel": "montée en intensité, fascination technique",
+      "elements_necessaires": [
+        "Explication du traçage : points dans l'espace (largeur, longueur, profondeur) reportés au décamètre",
+        "Travail à quatre pattes, passage de la latte flexible pour vérifier la continuité des courbes",
+        "Lien entre les données du bureau d'études et le geste physique en salle à tracer",
+        "Archive audio de Gilles Hamon décrivant le travail (extrait ~02:30–03:10)",
+        "Intégration naturelle de l'archive dans le flux narratif"
+      ],
+      "mood": "concret, physique, rythme plus soutenu"
+    },
+    {
+      "partie": 3,
+      "titre": "D'un chantier à l'autre",
+      "duree_cible": 30.0,
+      "fonction_narrative": "élargissement — trajectoire professionnelle et mutations industrielles",
+      "position_arc_emotionnel": "gravité mesurée, perspective historique",
+      "elements_necessaires": [
+        "Progression de carrière : apprenti, ouvrier-traceur, cours du soir, passage au bureau de dessin",
+        "Fusions successives des chantiers nantais jusqu'à Dubigeon",
+        "Fermeture vers 1987, départ pour Saint-Nazaire",
+        "Archive audio sur le parcours professionnel (extrait ~01:45–02:15)"
+      ],
+      "mood": "narratif, sobre, rythme qui s'élargit"
+    },
+    {
+      "partie": 4,
+      "titre": "L'empreinte du traceur",
+      "duree_cible": 15.0,
+      "fonction_narrative": "clôture — résonance du savoir-faire",
+      "position_arc_emotionnel": "apaisement, respect",
+      "elements_necessaires": [
+        "Image finale : le parquet, les courbes tracées, le lien entre le dessin et la coque en cale",
+        "Évocation de la transmission et de la disparition progressive du traçage manuel",
+        "Pas de conclusion sentencieuse — laisser l'image résonner"
+      ],
+      "mood": "contemplatif, retenu, ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_puis_apaisement — de la découverte d'un jeune apprenti à la maîtrise d'un geste, puis à la conscience d'un monde industriel en mutation, avant un silence respectueux",
+  "rythme_general": "dynamique — phrases courtes et factuelles en ouverture, densification technique au cœur, élargissement temporel en troisième section, ralentissement final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_avant",
+      "duree": 2.0,
+      "description": "Du contexte biographique on glisse vers le geste concret : la narration passe du 'qui' au 'comment', en entrant dans la salle à tracer. Transition par une phrase-pont évoquant le parquet sur lequel tout commence."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_temporel",
+      "duree": 2.5,
+      "description": "Depuis le geste quotidien, la narration prend du recul pour embrasser les décennies. L'archive audio sur le parcours professionnel sert de pivot naturel entre le métier et l'histoire industrielle."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo",
+      "duree": 2.0,
+      "description": "Après l'évocation des fermetures et déplacements, retour au parquet — image récurrente qui referme le récit sur le geste fondamental du traceur. Ralentissement du débit, silence avant la dernière phrase."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le parquet de la salle à tracer est le fil conducteur visuel et sonore — il apparaît en parties 1, 2 et 4, créant un motif récurrent. La voix off reste extérieure et factuelle (pas de 'je', pas d'adresse au public). Les archives de Gilles Hamon sont intégrées comme des preuves vivantes au sein du flux narratif, jamais comme des ruptures : la voix off introduit le contexte, l'archive confirme ou prolonge, la voix off reprend sans répéter. DENSITÉ SONORE MINIMALISTE : ambiance discrète de chantier (métal lointain, écho de hangar) en fond très bas, jamais de musique illustrative appuyée. REGISTRE : phrases claires, vocabulaire technique employé mais toujours explicité dans le mouvement de la phrase (ex. : 'la latte flexible — une longue règle souple que l'on courbe entre les points'). ÉQUILIBRE narration/archives ~60/40 : environ 70-75 secondes de voix off, 45-50 secondes d'extraits audio de Gilles Hamon. RIGUEUR : tous les faits (dates, lieux, noms de chantiers, âge d'entrée, description du travail) proviennent exclusivement du témoignage de Gilles Hamon."
+}

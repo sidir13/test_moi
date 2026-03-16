@@ -1,0 +1,102 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Quand la Loire a cessé de porter les navires",
+  "resumeHistoire": "Pendant plus de trois siècles, le port de Nantes a été le cœur battant du commerce maritime français, ses quais de la Fosse et ses îles bruissant de l'activité des charpentiers, des dockers et des armateurs. Mais la Loire, capricieuse, s'est peu à peu ensablée, forçant les grands navires à s'arrêter toujours plus en aval — d'abord à Paimbœuf, puis à Saint-Nazaire. Les chantiers navals nantais, de la Loire à Dubigeon, ont résisté pendant des décennies, construisant encore des coques sur la Prairie-au-Duc tandis que le fleuve se refusait aux gros tonnages. En 1987, la fermeture des chantiers Dubigeon signe la fin d'une époque : des hommes comme Jean Penaud, charpentier-fer embauché en 1957, voient disparaître un monde qu'ils avaient bâti de leurs mains. L'île de Nantes, autrefois résonnante du fracas des rivets, entre alors dans un long silence avant sa reconversion urbaine.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port au sommet de sa puissance",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "assurance_tranquille",
+      "elements_necessaires": [
+        "Évocation du port de Nantes comme grand port maritime depuis le XVIIe siècle",
+        "Mention des quais de la Fosse, de l'île Feydeau, de l'île Gloriette comme lieux d'activité",
+        "Registre grand public, ton documentaire, voix off omnisciente",
+        "Ouverture immersive situant l'auditeur dans l'ambiance portuaire",
+        "Présentation du public cible (grand public) et du ton (neutre informatif) intégrés naturellement dans le registre de langue"
+      ],
+      "mood": "evocateur_solennel"
+    },
+    {
+      "partie": 2,
+      "titre": "Le fleuve qui se dérobe",
+      "duree_cible": 25.0,
+      "fonction_narrative": "complication",
+      "position_arc_emotionnel": "tension_montante",
+      "elements_necessaires": [
+        "Ensablement progressif de la Loire et contraintes de navigation",
+        "Déplacement des escales vers Paimbœuf comme étape intermédiaire",
+        "Ouverture du bassin à flot et du port de Saint-Nazaire comme solution en aval",
+        "Dates précises issues du contexte historique",
+        "Transition fluide depuis la section précédente par le motif de la Loire comme fil conducteur"
+      ],
+      "mood": "factuel_inquiet"
+    },
+    {
+      "partie": 3,
+      "titre": "Les hommes des chantiers",
+      "duree_cible": 35.0,
+      "fonction_narrative": "développement_humain",
+      "position_arc_emotionnel": "attachement_empathie",
+      "elements_necessaires": [
+        "Chronique sociale des ouvriers des chantiers navals nantais (Prairie-au-Duc)",
+        "Citation directe de Jean Penaud : sa date d'embauche au Chantier de la Loire le 5 février 1957",
+        "Son parcours : Chantier de la Loire, mutation à Dubigeon, Cherbourg (sous-marins), retour en juillet 1969",
+        "Mention de son métier de charpentier-fer, du parc à fer, des goussets",
+        "Angle chronique sociale : quotidien ouvrier, gestes du métier, fierté du travail"
+      ],
+      "mood": "intime_documentaire"
+    },
+    {
+      "partie": 4,
+      "titre": "Le dernier rivet",
+      "duree_cible": 35.0,
+      "fonction_narrative": "resolution_elegie",
+      "position_arc_emotionnel": "melancolie_apaisee",
+      "elements_necessaires": [
+        "Fermeture des chantiers Dubigeon en 1987 comme point final",
+        "Silence qui s'installe sur l'île de Nantes après des siècles d'activité",
+        "Évocation sobre de la reconversion urbaine comme héritage post-industriel",
+        "Retour sur la dimension humaine : ce que la fermeture signifie pour les ouvriers",
+        "Clôture narrative ouverte, sans sentimentalisme excessif"
+      ],
+      "mood": "elegiaque_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "declin_progressif_avec_ancrage_humain",
+  "rythme_general": "modere_avec_ralentissement_final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "pivot_causal",
+      "duree": 2.0,
+      "description": "De l'évocation de la puissance portuaire, la narration glisse vers la cause de son déclin : le fleuve lui-même. Le motif de la Loire sert de lien — d'abord nourricière, puis traître."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "changement_focale",
+      "duree": 2.5,
+      "description": "On passe du mouvement géographique (le port qui descend vers l'aval) au regard humain. Transition par une phrase du type 'Mais sur les cales de la Prairie-au-Duc, des hommes continuent de bâtir des navires' — du macro au micro, du fleuve aux mains."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_temporelle",
+      "duree": 2.0,
+      "description": "Le parcours individuel de Jean Penaud et des ouvriers mène naturellement à la question de la fin. La transition s'opère par l'avancée du temps : des années 1960 vers 1987, le récit accélère doucement vers l'inéluctable."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit être lu comme un seul mouvement continu, pas comme quatre blocs séparés. Le fil conducteur est double — la Loire (élément géographique) et les hommes qui travaillent sur ses rives (élément social). Éviter toute rupture de ton entre les sections : la voix off garde un registre constant, neutre et informatif, avec une légère coloration émotionnelle qui s'approfondit dans les parties 3 et 4 sans jamais basculer dans le pathos. CITATIONS : Intégrer la parole de Jean Penaud de manière naturelle, comme un témoignage enchâssé dans le récit (pas comme une interview). Privilégier ses formulations authentiques ('le 5 février 1957', 'le parc à fer', 'les goussets'). RYTHME AUDIO : Les parties 1 et 2 sont plus factuelles et rythmées (phrases courtes, enchaînement de repères). Les parties 3 et 4 ralentissent légèrement pour laisser respirer l'émotion et les silences. AMBIANCE SONORE SUGGÉRÉE : bruits portuaires discrets en fond pour les parties 1-3, silence progressif pour la partie 4. DÉBIT : Viser 2 mots/seconde soit environ 240 mots au total. Chaque section doit être dense mais pas surchargée — privilégier les phrases courtes et les images concrètes. REGISTRE : Grand public, phrases accessibles, pas de jargon maritime non expliqué (sauf quand il vient de la bouche du témoin, auquel cas il est brièvement contextualisé). OUVERTURE DU RÉCIT : Commencer par une image immersive qui situe le registre grand public et le ton informatif sans adresse directe au public."
+}

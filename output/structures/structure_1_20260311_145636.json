@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La Grue Jaune — Sentinelle de la Loire",
+  "resumeHistoire": "Sur le quai des Antilles, à la pointe ouest de l'Île de Nantes, une grue jaune monumentale domine la Loire. Vestige des anciens chantiers navals qui firent battre le cœur industriel de la ville pendant des décennies, elle a connu l'effervescence des ouvriers, le fracas des tôles et le lancement des navires. Puis les chantiers ont fermé, les cales se sont tues, et l'île a basculé dans le silence de la désindustrialisation. Mais là où d'autres villes ont tout rasé, Nantes a choisi de conserver cette grue comme un monument — un trait d'union entre la mémoire ouvrière et le visage contemporain d'une métropole réinventée. Aujourd'hui classée au patrimoine, elle incarne à elle seule la transformation d'une friche industrielle en symbole d'identité collective.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 30.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_sensoriel_montant",
+      "elements_necessaires": [
+        "Localisation précise : quai des Antilles, Île de Nantes, bords de Loire",
+        "Évocation sensorielle de l'activité des chantiers navals (bruit, mouvement, matière)",
+        "Rôle fonctionnel de la grue dans le processus de construction navale",
+        "Présence ouvrière — lien avec le témoignage de Jean Penaud, charpentier de fer, embauché en 1957",
+        "Mention des chantiers Dubigeon et du Chantier de la Loire comme repères historiques",
+        "Vocabulaire du métier : goussets, pièces de renfort, petit train, travail à bord"
+      ],
+      "mood": "vivant_industriel_documentaire"
+    },
+    {
+      "partie": 2,
+      "titre": "Le silence des cales",
+      "duree_cible": 20.0,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "creux_emotionnel_contraste",
+      "elements_necessaires": [
+        "Fermeture progressive des chantiers navals nantais — désindustrialisation",
+        "Contraste saisissant avec la section précédente : du bruit au silence",
+        "L'Île de Nantes comme friche abandonnée, la grue immobile",
+        "Questionnement implicite : que faire de ce patrimoine ?"
+      ],
+      "mood": "melancolique_suspendu"
+    },
+    {
+      "partie": 3,
+      "titre": "Debout, face au fleuve",
+      "duree_cible": 30.0,
+      "fonction_narrative": "resolution_symbolique",
+      "position_arc_emotionnel": "crescendo_final_affirmatif",
+      "elements_necessaires": [
+        "Décision de conservation et classement patrimonial de la grue",
+        "Reconversion urbaine de l'Île de Nantes — nouveau visage du quartier",
+        "La grue jaune comme symbole d'identité locale et de mémoire ouvrière",
+        "Dimension monumentale : visible depuis les bords de Loire, repère dans le paysage",
+        "Ouverture sur la coexistence entre passé industriel et présent culturel"
+      ],
+      "mood": "affirmatif_lumineux_ample"
+    },
+    {
+      "partie": 4,
+      "titre": "Coda — La mémoire debout",
+      "duree_cible": 10.0,
+      "fonction_narrative": "clausule_emotionnelle",
+      "position_arc_emotionnel": "sommet_emotionnel_retenu",
+      "elements_necessaires": [
+        "Image finale forte : la grue face à la Loire, trait d'union entre deux époques",
+        "Phrase de clôture concise, résonante, qui laisse une empreinte"
+      ],
+      "mood": "solennel_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_en_diptyque — ancrage vivant → creux mélancolique → affirmation symbolique → résonance finale",
+  "rythme_general": "dynamique — phrases courtes et images concrètes dans la partie industrielle, ralentissement au creux, reprise d'élan progressive vers le sommet, respiration finale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "rupture_sensorielle_controlee",
+      "duree": 2.5,
+      "description": "Le son et le mouvement de la section 1 s'éteignent dans une phrase pivot : on passe du fracas des chantiers au silence de la friche. La narratrice laisse une micro-pause avant de reprendre sur un ton plus bas. Ambiance sonore : disparition progressive des sons industriels, émergence du vent sur la Loire."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "relance_narrative_progressive",
+      "duree": 2.0,
+      "description": "Transition par une question rhétorique implicite ou un retournement de perspective : là où on attendait la démolition, surgit la décision de conserver. Le rythme reprend, le ton remonte. Ambiance sonore : apparition discrète de sons urbains contemporains, pas, voix lointaines."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decantation_vers_clausule",
+      "duree": 1.5,
+      "description": "Pas de rupture mais un resserrement : la narration se concentre en une image unique. Le rythme ralentit naturellement. L'habillage sonore se simplifie — peut-être un motif musical seul ou le son de l'eau."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est conçu comme un flux continu en voix off omnisciente, sans adresse au public. Les quatre sections ne doivent PAS être perçues comme des blocs séparés — les transitions sont intégrées au texte, pas plaquées. La narratrice (voix femme professionnelle) module son débit et son intensité selon l'arc : énergie descriptive en partie 1, retenue en partie 2, ampleur croissante en partie 3, sobriété en partie 4. || INTÉGRATION ARCHIVES : Le témoignage de Jean Penaud (charpentier de fer, 83 ans, embauché le 5 février 1957 au Chantier de la Loire, muté à Dubigeon, passé par Cherbourg sur les sous-marins) doit être intégré en partie 1 comme ancrage humain — un extrait court (5-8 secondes max) de sa voix évoquant son métier ou son arrivée au chantier, enchâssé dans la narration. Ratio narration/archives ≈ 0.7 respecté. || DENSITÉ SONORE : Riche. Couches suggérées — sons de chantier naval (métal, rivets, grue en mouvement) en partie 1 ; silence habité (vent, eau, mouettes) en partie 2 ; sons urbains contemporains mêlés à un motif musical en parties 3-4. || TON : Neutre informatif tout du long — la montée émotionnelle vient des faits et des images, jamais du pathos. || REGISTRE : Grand public, phrases claires, vocabulaire technique toujours immédiatement explicité (cf. goussets = pièces de renfort dans le témoignage). || DURÉE : 90 secondes ±10 %. Surveiller que la partie 2 (20 s) ne soit ni trop rapide ni trop lente — c'est le pivot du diptyque avant/après."
+}

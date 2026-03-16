@@ -1,0 +1,100 @@
+{
+  "scenario_id": 2,
+  "titre_global": "La Grue Jaune — Sentinelle de la Loire",
+  "resumeHistoire": "Sur le quai des Antilles, à la pointe ouest de l'Île de Nantes, une grue jaune monumentale se dresse face à la Loire. Vestige des anciens chantiers navals qui ont façonné l'identité ouvrière de la ville, elle a survécu à la désindustrialisation et à la fermeture des chantiers. À travers les regards croisés d'un ancien charpentier de fer et d'une voix qui porte la mémoire collective, ce récit retrace comment un simple outil de travail est devenu un symbole urbain, un monument classé et un repère identitaire pour toute une ville en transformation.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "temoignage_croise",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un colosse jaune face au fleuve",
+      "duree_cible": 22.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Description sensorielle de la grue jaune sur le quai des Antilles",
+        "Localisation précise : pointe ouest de l'Île de Nantes, bords de Loire",
+        "Première impression visuelle — silhouette monumentale, couleur jaune, échelle industrielle",
+        "Ambiance sonore suggérée : vent sur la Loire, mouettes, atmosphère portuaire résiduelle"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 28.0,
+      "fonction_narrative": "contextualisation_historique_et_temoignage",
+      "position_arc_emotionnel": "montee_emotionnelle",
+      "elements_necessaires": [
+        "Rôle originel de la grue : outil de levage sur les chantiers navals de l'Île de Nantes",
+        "Évocation des chantiers navals Dubigeon et du Chantier de la Loire comme écosystème industriel",
+        "Intégration du témoignage de Jean Penaud, charpentier de fer, 83 ans — sa première embauche le 5 février 1957, son parcours entre chantiers",
+        "Évocation du quotidien ouvrier : le petit train, le parc à ferret, les goussets, le travail à bord",
+        "Voix de témoin relayée par la narration : restituer la parole ouvrière sans dialogue direct, en voix off"
+      ],
+      "mood": "vivant_nostalgique"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 18.0,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "creux_emotionnel",
+      "elements_necessaires": [
+        "Évocation de la désindustrialisation et de la fermeture progressive des chantiers navals nantais",
+        "La grue devient orpheline de sa fonction — un outil sans navire à construire",
+        "Contraste entre l'activité passée et le silence industriel",
+        "Regard implicite d'un second témoin : la ville elle-même, la mémoire collective face à l'abandon"
+      ],
+      "mood": "melancolique_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Devenir symbole",
+      "duree_cible": 22.0,
+      "fonction_narrative": "resolution_et_elevation",
+      "position_arc_emotionnel": "remontee_vers_apaisement",
+      "elements_necessaires": [
+        "Reconversion urbaine de l'Île de Nantes : la grue préservée dans le nouveau paysage",
+        "Classement patrimonial et reconnaissance comme monument historique",
+        "La grue jaune comme repère identitaire pour les Nantais — symbole de mémoire ouvrière et de transformation",
+        "Croisement final des regards : pour l'ancien ouvrier, un souvenir de labeur ; pour la ville contemporaine, une icône",
+        "Ouverture : la grue veille toujours sur la Loire, trait d'union entre passé industriel et avenir urbain"
+      ],
+      "mood": "affirmatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_nostalgie_perte_renaissance",
+  "rythme_general": "modere_avec_respiration_centrale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.5,
+      "description": "De la contemplation présente de la grue, on glisse vers le passé par une phrase-pivot du type 'Mais pour ceux qui l'ont connue en activité, cette grue raconte une autre histoire'. La voix de Jean Penaud est introduite en relais narratif — la narration omnisciente cède la place au souvenir restitué."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce_par_contraste",
+      "duree": 2.0,
+      "description": "Le bruit et la vie des chantiers s'éteignent progressivement. Une phrase de transition marque le basculement : 'Puis un jour, les marteaux se sont tus'. Le rythme ralentit, la densité sonore se raréfie. Le regard passe du témoin individuel à la mémoire collective silencieuse."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_naturelle_vers_lumiere",
+      "duree": 2.0,
+      "description": "Du silence de la friche, on remonte vers la renaissance. Transition par une image concrète : 'Mais la grue est restée debout'. Le ton passe du mélancolique à l'affirmatif. Les deux regards — ouvrier et contemporain — convergent dans la dernière section."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est une voix off omnisciente unique (narratrice femme professionnelle) qui porte l'ensemble du documentaire. L'angle 'témoignage croisé' se traduit NON par des dialogues ou des changements de voix, mais par l'alternance de perspectives au sein de la narration : (1) le regard du charpentier de fer Jean Penaud, dont les souvenirs et les mots sont restitués en discours indirect ou indirect libre, (2) le regard collectif — celui de la ville, des habitants, de la mémoire partagée. La narratrice fait entendre ces voix sans jamais rompre le fil de la voix off. — RYTHME : Tempo modéré avec une respiration centrale (partie 3) qui crée un creux avant la remontée finale. Les parties 1 et 4 encadrent le récit avec un ton posé ; les parties 2 et 3 portent la charge émotionnelle. — DENSITÉ SONORE IMMERSIVE : Prévoir des ambiances suggérées dans l'écriture (vent, métal, silence) pour guider la post-production, mais le texte doit fonctionner seul. — ARCHIVES : Le témoignage de Jean Penaud (charpentier de fer, embauché le 5 février 1957, passé par le Chantier de la Loire, muté à Dubigeon, 7 ans et demi à Cherbourg sur les sous-marins, retour en juillet 1969) constitue la matière première de la partie 2. Utiliser ses propres mots ('parc à ferret', 'goussets', 'bouts de fer à boudin') pour ancrer l'authenticité. Ratio narration/archives visé : 70 % narration / 30 % matière issue des archives. — RIGUEUR : Ne pas inventer de date de construction ou de classement de la grue si non fournie dans le contexte. Rester dans des formulations ouvertes ('au fil des décennies', 'quand les chantiers ont fermé') pour les faits non sourcés. — TON : Neutre informatif constant — pas de lyrisme excessif, pas de jugement. L'émotion naît des faits et des images, pas de l'emphase. — PUBLIC : Grand public — phrases courtes à moyennes, vocabulaire accessible, termes techniques toujours expliqués en incise."
+}

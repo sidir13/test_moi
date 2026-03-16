@@ -1,0 +1,101 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Le parquet et la latte — Journée d'un dessinateur naval",
+  "resumeHistoire": "À la fin des années 1950, un jeune apprenti de quatorze ans franchit pour la première fois les portes des chantiers navals de Bretagne. Gilles Hamon découvre alors un métier singulier : traceur, puis dessinateur, il apprend à transposer sur un immense parquet de bois les formes des navires à naître, à quatre pattes, un décamètre à la main, reliant des points dans l'espace pour donner corps à des coques qui n'existent encore que sur le papier des bureaux d'études. Ce documentaire retrace une journée type de ce travail méconnu — depuis l'arrivée au chantier dans la lumière du matin jusqu'aux derniers tracés du soir — et suit, à travers les gestes patients de Gilles, l'évolution d'un savoir-faire artisanal qui traversa les fusions successives des chantiers nantais, de la Bretagne à Dubigeon, avant de s'achever à Saint-Nazaire. Une histoire de précision, de labeur silencieux et de navires dessinés à même le sol.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube sur le chantier",
+      "duree_cible": 28,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Ambiance sonore du chantier naval au matin — bruits lointains de métal, eau, pas sur le sol",
+        "Présentation de Gilles Hamon, apprenti à 14 ans, embauché en septembre 1958 aux chantiers de Bretagne",
+        "Évocation du lieu : le vaste atelier de traçage, le parquet de bois au sol",
+        "Registre lent, phrases posées, ton neutre et descriptif"
+      ],
+      "mood": "aube_industrielle_silencieuse"
+    },
+    {
+      "partie": 2,
+      "titre": "À quatre pattes sur le parquet",
+      "duree_cible": 35,
+      "fonction_narrative": "cœur_documentaire_gestes",
+      "position_arc_emotionnel": "montee_en_precision",
+      "elements_necessaires": [
+        "Description détaillée du travail de traceur : reporter des points donnés par les bureaux d'études — largeur, longueur, profondeur",
+        "Le dessin à l'échelle 1 sur le parquet, à quatre pattes",
+        "Les outils : décamètre, latte souple pour relier les points",
+        "Intégration de l'extrait audio de Gilles décrivant les formes des bateaux et le travail au sol",
+        "Rythme contemplatif, insistance sur la lenteur et la minutie du geste"
+      ],
+      "mood": "concentration_artisanale"
+    },
+    {
+      "partie": 3,
+      "titre": "Du trait au bureau de dessin",
+      "duree_cible": 30,
+      "fonction_narrative": "progression_parcours",
+      "position_arc_emotionnel": "elevation_professionnelle",
+      "elements_necessaires": [
+        "Transition du métier de traceur vers le bureau de dessin — passage du sol à la table",
+        "Mention des cours suivis à l'IVET, du CAP, puis des cours de dessinateur",
+        "Statut particulier de l'ouvrier-traceur : bien placé dans la hiérarchie du chantier",
+        "Extrait audio possible : Gilles évoquant son passage au bureau de dessin et ses galons",
+        "Ton toujours neutre mais légère fierté perceptible dans le récit"
+      ],
+      "mood": "ascension_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Le soir tombe sur les chantiers",
+      "duree_cible": 27,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "apaisement_melancolique",
+      "elements_necessaires": [
+        "Évocation des fusions successives des chantiers nantais jusqu'à Dubigeon",
+        "Fermeture du chantier vers 1987, départ vers Saint-Nazaire",
+        "Retour à l'image de la journée qui s'achève : les derniers tracés, le parquet vide",
+        "Résonance entre la fin d'une journée et la fin d'une époque",
+        "Ambiance sonore en decrescendo — silence progressif"
+      ],
+      "mood": "crepuscule_industriel"
+    }
+  ],
+  "arc_emotionnel_global": "arc_contemplatif_en_cloche_douce — calme initial, montée vers la précision du geste, élévation sobre, puis retombée mélancolique vers la disparition d'un savoir-faire",
+  "rythme_general": "lent_contemplatif — phrases longues et posées, silences assumés entre les sections, rythme calé sur la patience du geste artisanal",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_sensoriel",
+      "duree": 2.5,
+      "description": "Du panorama sonore du chantier au matin, on resserre sur le bruit discret des genoux sur le parquet et du décamètre qu'on déroule — passage du général à l'intime du geste."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_temporelle_naturelle",
+      "duree": 2.0,
+      "description": "La voix off glisse du parquet au sol vers la table du bureau de dessin — un même homme, un même trait, mais la posture change. Transition portée par l'idée d'élévation physique et professionnelle."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "elargissement_temporel",
+      "duree": 2.5,
+      "description": "Du parcours individuel de Gilles, on élargit vers le destin collectif des chantiers — les fusions, la fermeture. Le rythme ralentit encore, les sons s'estompent, comme une fin de journée qui est aussi une fin d'époque."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est la journée type — matin, milieu de journée, après-midi, soir — mais cette journée est aussi une métaphore de la carrière entière de Gilles Hamon. Ne jamais rompre cette double lecture. La voix off reste omnisciente, neutre, jamais sentimentale, mais laisse filtrer le respect pour le geste. Les extraits audio de Gilles doivent être intégrés comme des moments de respiration documentaire, pas comme des interruptions — la voix off les amène et les prolonge. Le parquet de traçage est le motif récurrent : il ouvre le récit (section 2) et le ferme (section 4, parquet vide). Ambiance sonore riche mais jamais envahissante : privilégier les sons concrets (métal lointain, pas, crayon, latte sur bois) plutôt que la musique. Le ratio narration/archives à 0.6 implique environ 70-75 secondes de voix off narrative et 45-50 secondes d'extraits ou de paysage sonore. Le registre grand public impose des phrases claires, pas de jargon non expliqué, mais le vocabulaire technique du métier (traceur, latte, décamètre, échelle 1) est conservé car il fait partie de l'authenticité — chaque terme est naturellement contextualisé par le récit."
+}

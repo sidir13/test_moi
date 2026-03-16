@@ -1,0 +1,101 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Les mains qui dessinent les navires",
+  "resumeHistoire": "Sur les chantiers navals de Nantes, dans les bureaux d'études surplombant la Loire, des dessinateurs traduisaient en plans précis les coques et les structures des navires à construire. Jean Penaud fut l'un de ces hommes de l'ombre, dessinateur industriel dont le trait au crayon précédait chaque rivet posé sur les cales de l'île de Nantes. À travers son parcours et celui de ses pairs, c'est toute une chronique sociale qui se dessine : celle d'un métier exigeant, à mi-chemin entre l'ingénierie et l'artisanat, exercé dans l'univers bruyant et solidaire des chantiers Dubigeon et des autres ateliers nantais. Quand la construction navale décline à Nantes, c'est aussi ce savoir-faire silencieux qui s'efface, emportant avec lui la mémoire d'un geste technique et d'une communauté de travailleurs.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bureau d'études au-dessus de la Loire",
+      "duree_cible": 20.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Ambiance sonore immersive : bruits lointains de chantier, martèlements, Loire",
+        "Présentation du cadre — bureaux d'études des chantiers navals nantais, île de Nantes",
+        "Introduction du métier de dessinateur : figure silencieuse dans un univers de bruit et de métal",
+        "Registre accessible, ton posé, rythme lent — chronique sociale à la 3e personne"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Jean Penaud, le trait et la coque",
+      "duree_cible": 25.0,
+      "fonction_narrative": "portrait_central",
+      "position_arc_emotionnel": "engagement_croissant",
+      "elements_necessaires": [
+        "Portrait de Jean Penaud — dessinateur sur les chantiers navals nantais",
+        "Description concrète du geste du dessinateur : plans, tracés, outils, précision",
+        "Citation directe si disponible dans les sources, sinon évocation du quotidien de travail",
+        "Lien entre le dessin et la construction réelle — chaque ligne devient une tôle, une membrure",
+        "Ancrage aux chantiers Dubigeon ou autres chantiers nantais identifiés"
+      ],
+      "mood": "précis_respectueux"
+    },
+    {
+      "partie": 3,
+      "titre": "Un métier dans la communauté du chantier",
+      "duree_cible": 22.0,
+      "fonction_narrative": "élargissement_social",
+      "position_arc_emotionnel": "plateau_dense",
+      "elements_necessaires": [
+        "Élargissement du regard : le dessinateur parmi les autres corps de métier",
+        "Organisation du travail — bureau d'études vs cales, hiérarchie, solidarités",
+        "Dimension collective : vie quotidienne des travailleurs des chantiers",
+        "Citation directe ou témoignage d'archive sur le quotidien ou les conditions de travail",
+        "Ton de chronique sociale — ni héroïsation, ni misérabilisme"
+      ],
+      "mood": "social_solidaire"
+    },
+    {
+      "partie": 4,
+      "titre": "L'effacement d'un savoir-faire",
+      "duree_cible": 23.0,
+      "fonction_narrative": "conclusion_élégiaque",
+      "position_arc_emotionnel": "descente_mélancolique",
+      "elements_necessaires": [
+        "Évocation du déclin de la construction navale à Nantes",
+        "Disparition progressive du métier de dessinateur naval — un savoir-faire qui s'efface",
+        "Dimension patrimoniale : mémoire ouvrière, traces qui subsistent sur l'île de Nantes",
+        "Ouverture contemplative — ce que ces plans dessinés à la main racontent d'une époque",
+        "Dernière image sonore forte : silence après le bruit des chantiers"
+      ],
+      "mood": "élégiaque_digne"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_ascendante_puis_élégie",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "resserrement_focal",
+      "duree": 2.0,
+      "description": "Du cadre général des bureaux d'études, le regard se pose sur un homme en particulier — Jean Penaud — par un mouvement narratif naturel, comme si la caméra zoomait sur une table à dessin précise."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_organique",
+      "duree": 2.0,
+      "description": "Du portrait individuel, la narration s'ouvre aux bruits et aux voix du chantier autour. Le dessinateur relève la tête de ses plans et on découvre la communauté qui l'entoure — transition par le son et l'espace."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.5,
+      "description": "Un changement de temps verbal ou une formulation temporelle fait basculer du quotidien vivant vers l'après — le silence qui a remplacé le vacarme. Transition douce, sans rupture brutale, portée par une baisse d'intensité sonore."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit couler comme une seule coulée de voix, sans annonces de sections. Les quatre parties forment un mouvement unique — du lieu vers l'homme, de l'homme vers le groupe, du groupe vers la mémoire. REGISTRE : Accessible grand public, phrases courtes à moyennes, vocabulaire technique dosé (expliquer ou contextualiser les termes navals). RYTHME : Débit lent, pauses naturelles entre les images. Laisser respirer les ambiances sonores. CITATIONS : Intégrer les citations directes de manière fluide dans le fil narratif, introduites par la voix off puis portées par la voix d'archive si disponible. AMBIANCE SONORE : Immersive mais non envahissante — les sons du chantier (marteaux, meulage, eau) en fond léger, s'estompant progressivement vers le silence final. AUTHENTICITÉ LINGUISTIQUE : Privilégier le vocabulaire d'époque quand il est attesté dans les sources (termes de métier, expressions des ouvriers). CONTRAINTE ABSOLUE : Ne jamais inventer de dates, de noms de navires ou d'événements non présents dans les sources fournies. En cas de manque, rester dans l'évocation et le général. DURÉE : 180 mots maximum au total. Chaque mot compte. Densité narrative élevée, aucun remplissage."
+}

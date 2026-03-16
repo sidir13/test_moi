@@ -1,0 +1,100 @@
+{
+  "scenario_id": 3,
+  "titre_global": "À quatre pattes sur le parquet — Chronique des dessinateurs de chantier naval",
+  "resumeHistoire": "En septembre 1958, Gilles Hamon entre comme apprenti à quatorze ans aux chantiers de la Bretagne, à Nantes. Il y découvre le métier de traceur puis de dessinateur naval : un travail minutieux qui consiste à reporter sur un immense parquet, à l'échelle 1, les formes des coques de navires à partir de points dans l'espace. Au fil des fusions successives des chantiers nantais — jusqu'aux Chantiers Dubigeon — il gravit les échelons, passant du sol de la salle de traçage au bureau de dessin, porté par des cours du soir et une ténacité ouvrière. Sa trajectoire, de Nantes à Saint-Nazaire après la fermeture de 1987, raconte en creux l'histoire d'un savoir-faire collectif, à la fois artisanal et technique, qui a façonné des générations de travailleurs de la construction navale française.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un gamin de quatorze ans entre au chantier",
+      "duree_cible": 30.0,
+      "fonction_narrative": "exposition — ancrage social et temporel",
+      "position_arc_emotionnel": "ouverture sobre, curiosité",
+      "elements_necessaires": [
+        "Évocation sensorielle d'un chantier naval nantais fin des années 1950",
+        "Présentation de Gilles Hamon, apprenti de 14 ans, embauché en septembre 1958",
+        "Contexte des chantiers de la Bretagne à Nantes",
+        "Registre de chronique sociale : un jeune parmi d'autres, entrant dans un monde ouvrier"
+      ],
+      "mood": "descriptif, posé, légèrement solennel — ton documentaire neutre qui installe le décor industriel et humain"
+    },
+    {
+      "partie": 2,
+      "titre": "Le parquet, l'échelle 1 — le geste du traceur",
+      "duree_cible": 40.0,
+      "fonction_narrative": "développement central — immersion dans le métier",
+      "position_arc_emotionnel": "montée en intensité, fascination technique",
+      "elements_necessaires": [
+        "Description concrète du travail de traceur : à quatre pattes sur un parquet, décamètre en main",
+        "Explication du principe : reporter des points dans l'espace (largeur, longueur, profondeur) fournis par les bureaux d'études",
+        "Le tracé à l'échelle 1 des formes de coques — passage de la latte pour vérifier l'alignement des points",
+        "Archive audio de Gilles Hamon décrivant ce travail (extrait clé ~02:30-03:10)",
+        "Dimension collective : un savoir-faire partagé entre ouvriers-traceurs, bien placés dans la hiérarchie ouvrière"
+      ],
+      "mood": "immersif, précis, rythmé — le cœur du récit, où le geste technique devient presque physique pour l'auditeur"
+    },
+    {
+      "partie": 3,
+      "titre": "Du sol au bureau de dessin — monter en grade",
+      "duree_cible": 28.0,
+      "fonction_narrative": "progression — ascension professionnelle et formation",
+      "position_arc_emotionnel": "élan, fierté discrète",
+      "elements_necessaires": [
+        "Passage du CAP, cours du soir à l'IVET, formation en dessin",
+        "Transition du métier de traceur au sol vers le bureau de dessin",
+        "Les galons obtenus au fil des années et des fusions successives des chantiers nantais",
+        "Chronique sociale : l'effort de formation comme levier d'ascension dans le monde ouvrier"
+      ],
+      "mood": "narratif, fluide — rythme légèrement accéléré traduisant le passage du temps et l'évolution"
+    },
+    {
+      "partie": 4,
+      "titre": "Fermetures, fusions — et le cap vers Saint-Nazaire",
+      "duree_cible": 22.0,
+      "fonction_narrative": "résolution — clôture d'un monde, ouverture d'un autre",
+      "position_arc_emotionnel": "gravité contenue, résilience",
+      "elements_necessaires": [
+        "Les fusions des trois chantiers nantais jusqu'aux Chantiers Dubigeon",
+        "La fermeture vers 1987",
+        "Le départ vers Saint-Nazaire pour finir sa carrière",
+        "Dimension de chronique sociale : un destin individuel qui reflète les mutations de toute une industrie",
+        "Ouverture finale sur la mémoire de ce savoir-faire"
+      ],
+      "mood": "sobre, mélancolique sans excès — ton documentaire qui laisse résonner le poids du temps"
+    }
+  ],
+  "arc_emotionnel_global": "arc_ascendant_puis_élégiaque — de la découverte d'un métier à la disparition d'un monde, en passant par la maîtrise et la fierté du geste",
+  "rythme_general": "Démarrage posé, accélération au cœur technique du récit (partie 2), rythme narratif soutenu pour l'ascension (partie 3), ralentissement final méditatif (partie 4)",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_immersif",
+      "duree": 2.0,
+      "description": "De la silhouette du jeune apprenti entrant au chantier, on glisse vers le sol du parquet de traçage — transition par le regard qui se baisse, du portail du chantier au plancher de bois où tout commence."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_temporelle_naturelle",
+      "duree": 2.0,
+      "description": "Du geste répétitif du traceur à genoux, on passe aux cours du soir — la même main qui tenait la latte se met à dessiner sur une table. Transition fluide par le motif de l'apprentissage continu."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_tonale",
+      "duree": 2.0,
+      "description": "De la fierté des galons obtenus, le récit bascule vers les fusions et la fermeture — le ton s'assombrit légèrement, le rythme ralentit, comme un navire qui entre au port pour la dernière fois."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un fil chronologique unique — la carrière de Gilles Hamon — mais l'angle de chronique sociale exige que sa voix représente aussi celle d'un groupe : les traceurs et dessinateurs navals. Éviter toute héroïsation individuelle ; Hamon est un témoin parmi d'autres, son parcours éclaire une condition collective. — FLUIDITÉ : Pas de titres lus ni de ruptures marquées entre sections. Les transitions doivent être tissées dans le texte, portées par des connecteurs temporels naturels ('les années passant', 'quand les chantiers fusionnent') ou des images sensorielles qui glissent d'une époque à l'autre. — ARCHIVES : L'extrait audio de Gilles Hamon (environ 02:30-03:10 de l'enregistrement) constitue le moment d'archive central, à placer en partie 2 pour incarner physiquement le geste décrit par la voix off. Un second extrait plus court peut ponctuer la partie 3 ou 4 (passages sur les fusions, ~00:51-01:02). Ratio narration/archives visé : 60/40. — REGISTRE : Langage clair, phrases de longueur variée, vocabulaire technique expliqué par le contexte sans didactisme lourd. Authenticité lexicale : conserver les termes d'époque (traceur, parquet, latte, décamètre, bureau d'dessin). — AMBIANCE SONORE suggérée : bruits de chantier naval en fond léger (marteaux, métal), silence relatif pour les moments de traçage au sol, aucune musique envahissante — laisser respirer la parole et le geste."
+}

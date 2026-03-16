@@ -91,7 +91,6 @@ node_modules/
 .venv-vibe/
 
 # Data - runtime generated, not tracked
-data/audio/background_sounds/
 data/sound_library/
 data/sessions/
 data/scenarios/

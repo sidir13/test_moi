@@ -1,0 +1,242 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Portrait d'un dessinateur de chantier naval",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Dans la salle à tracer d'un chantier naval, un dessinateur penché sur sa table donne forme aux navires avant même que le premier rivet ne soit posé. Armé de ses compas, de ses pistolets à courbes et de ses lattes flexibles, il traduit les plans des ingénieurs en gabarits grandeur nature, traçant au sol les lignes de coques que les ouvriers suivront en cale de construction. Son métier, situé à la charnière entre le bureau d'études et l'atelier, exige une précision absolue : une erreur d'un millimètre sur le papier devient une déformation de plusieurs centimètres sur la tôle. Ce portrait retrace le quotidien silencieux et essentiel de cet artisan du trait, maillon discret mais indispensable de la construction navale.",
+  "duree_estimee": 126.20750988142292,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube sur le chantier",
+      "duree": 19.09090909090909,
+      "texte_narration": "La sirène d'embauche déchire le matin. Dans la cale, déjà, le fracas des rivets. Mais à l'écart du vacarme, un homme pousse la porte de la salle à tracer. Le silence l'accueille.",
+      "ton": {
+        "global": "atmosphérique, contemplatif, sobre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'le matin' (1s)",
+          "après 'des rivets' (1.5s)",
+          "après 'l'accueille' (2s)"
+        ],
+        "intonation": "posée, lente, descriptive — comme une caméra qui s'approche doucement"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Son de sirène de chantier naval, ambiance portuaire matinale",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Bruits métalliques lointains de rivets et de marteaux",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:12",
+          "action": "Transition vers le silence feutré de la salle à tracer — pas sur le sol",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "La sirène d'embauche déchire le matin.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans la cale, déjà, le fracas des rivets.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais à l'écart du vacarme, un homme pousse la porte de la salle à tracer.",
+          "sources": []
+        },
+        {
+          "sentence": "Le silence l'accueille.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'homme au trait",
+      "duree": 34.434782608695656,
+      "texte_narration": "Il s'installe devant sa table immense. Compas, pistolets à courbes, lattes flexibles que l'on cintre à la main pour épouser la forme d'une coque. Chaque outil est un prolongement du corps. [ARCHIVE : « Le dessinateur, c'était quelqu'un qui devait avoir le coup de crayon sûr, parce qu'on n'avait pas le droit à l'erreur. »] Sa main glisse, précise, sans trembler.",
+      "ton": {
+        "global": "précis, admiratif, attentif au geste",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'immense' (1s)",
+          "après 'd'une coque' (1s)",
+          "après la citation archive (1.5s)"
+        ],
+        "intonation": "montée progressive en intensité — admiration contenue pour le geste artisanal"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:18",
+          "action": "Son d'un crayon glissant sur du papier calque, léger crissement",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:25",
+          "action": "Citation archive — voix d'époque, timbre légèrement granuleux",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:35",
+          "action": "Retour au son du crayon, rythme calme",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Il s'installe devant sa table immense.",
+          "sources": []
+        },
+        {
+          "sentence": "Compas, pistolets à courbes, lattes flexibles que l'on cintre à la main pour épouser la forme d'une coque.",
+          "sources": []
+        },
+        {
+          "sentence": "Chaque outil est un prolongement du corps.",
+          "sources": []
+        },
+        {
+          "sentence": "Le dessinateur, c'était quelqu'un qui devait avoir le coup de crayon sûr, parce qu'on n'avait pas le droit à l'erreur.",
+          "sources": []
+        },
+        {
+          "sentence": "Sa main glisse, précise, sans trembler.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Du plan au navire",
+      "duree": 40.5,
+      "texte_narration": "Le plan à échelle réduite ne suffit pas. Dans la salle des gabarits, le dessinateur reproduit chaque courbe en grandeur nature, à même le sol. Un millimètre d'écart ici, et ce sont des centimètres de déformation sur la tôle, là-bas, en cale. [ARCHIVE : « On savait que si le tracé était faux, c'est tout le bateau qui trinquait. »] Il est le traducteur — celui qui transforme le calcul de l'ingénieur en forme que les mains des ouvriers pourront suivre.",
+      "ton": {
+        "global": "dense, engageant, légère tension technique",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'ne suffit pas' (1s)",
+          "après 'en cale' (1.5s)",
+          "après la citation archive (1.5s)"
+        ],
+        "intonation": "intensité croissante — on mesure l'enjeu, la responsabilité"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:40",
+          "action": "Ambiance de la salle des gabarits — espace vaste, résonance, pas sur le sol peint",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:48",
+          "action": "Citation archive — voix grave, ton de responsabilité",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:55",
+          "action": "Transition sonore — bruits lointains de la cale qui rappellent le lien plan-construction",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le plan à échelle réduite ne suffit pas.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans la salle des gabarits, le dessinateur reproduit chaque courbe en grandeur nature, à même le sol.",
+          "sources": []
+        },
+        {
+          "sentence": "Un millimètre d'écart ici, et ce sont des centimètres de déformation sur la tôle, là-bas, en cale.",
+          "sources": []
+        },
+        {
+          "sentence": "On savait que si le tracé était faux, c'est tout le bateau qui trinquait.",
+          "sources": []
+        },
+        {
+          "sentence": "Il est le traducteur — celui qui transforme le calcul de l'ingénieur en forme que les mains des ouvriers pourront suivre.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Un maillon silencieux",
+      "duree": 32.18181818181818,
+      "texte_narration": "Ni ingénieur, ni ouvrier. Le dessinateur occupe une place à part dans la hiérarchie du chantier. Son savoir se transmet sur le tas, de l'ancien au jeune, par le geste et par l'œil. Et puis un jour, la coque glisse vers l'eau. Personne ne prononce son nom. Mais dans chaque courbe du navire, son trait demeure.",
+      "ton": {
+        "global": "réflexif, élégiaque, reconnaissance sobre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'ni ouvrier' (1.5s)",
+          "après 'par l'œil' (1.5s)",
+          "après 'son nom' (2s)",
+          "après 'demeure' (3s — fin)"
+        ],
+        "intonation": "redescente douce — émotion contenue, respect, ouverture finale"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Ambiance calme — évocation de la transmission, tonalité intime",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:15",
+          "action": "Son d'une coque glissant sur la cale — craquements, eau, clameur lointaine de foule",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Silence progressif — dernière phrase suspendue, résonance finale",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Ni ingénieur, ni ouvrier.",
+          "sources": []
+        },
+        {
+          "sentence": "Le dessinateur occupe une place à part dans la hiérarchie du chantier.",
+          "sources": []
+        },
+        {
+          "sentence": "Son savoir se transmet sur le tas, de l'ancien au jeune, par le geste et par l'œil.",
+          "sources": []
+        },
+        {
+          "sentence": "Et puis un jour, la coque glisse vers l'eau.",
+          "sources": []
+        },
+        {
+          "sentence": "Personne ne prononce son nom.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais dans chaque courbe du navire, son trait demeure.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 241,
+    "duree_lecture_estimee": 126.20750988142292,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit suit une journée-type condensée du dessinateur, du matin à l'accomplissement, ce qui donne un fil chronologique naturel sous la structure thématique. — FLUIDITÉ : Éviter toute rupture sèche entre sections ; chaque transition doit être une phrase-pont, pas un silence. Les ambiances sonores (métal, silence, crayon sur papier, coque à l'eau) assurent la continuité sensorielle. — CITATIONS : Intégrer les citations directes de manière organique dans le flux narratif, introduites par une courte amorce narrative (« comme le dira un traceur… »), jamais plaquées artificiellement. — REGISTRE : Vocabulaire technique utilisé avec parcimonie et toujours contextualisé pour le grand public. Ton sobre, jamais condescendant. — DURÉE : 180 mots maximum. Chaque section doit être dense et concise : partie 1 ≈ 36 mots, partie 2 ≈ 44 mots, partie 3 ≈ 50 mots, partie 4 ≈ 50 mots. — RIGUEUR : Ne mentionner aucun chantier, nom propre ou date spécifique non fourni dans les sources. Rester sur des formulations génériques mais évocatrices."
+}

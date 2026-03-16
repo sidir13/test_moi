@@ -1,0 +1,97 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Portrait d'un dessinateur de chantier naval",
+  "resumeHistoire": "Dans la salle à tracer d'un chantier naval, un dessinateur penché sur sa table donne forme aux navires avant même que le premier rivet ne soit posé. Armé de ses compas, de ses pistolets à courbes et de ses lattes flexibles, il traduit les plans des ingénieurs en gabarits grandeur nature, traçant au sol les lignes de coques que les ouvriers suivront en cale de construction. Son métier, situé à la charnière entre le bureau d'études et l'atelier, exige une précision absolue : une erreur d'un millimètre sur le papier devient une déformation de plusieurs centimètres sur la tôle. Ce portrait retrace le quotidien silencieux et essentiel de cet artisan du trait, maillon discret mais indispensable de la construction navale.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube sur le chantier",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ouverture_calme",
+      "elements_necessaires": [
+        "Ambiance sonore du chantier naval au petit matin — bruits lointains de métal, sirène d'embauche",
+        "Contraste entre le vacarme de la cale et le silence de la salle à tracer",
+        "Présentation du dessinateur arrivant à son poste, figure discrète parmi les ouvriers"
+      ],
+      "mood": "atmosphérique_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "L'homme au trait",
+      "duree_cible": 22,
+      "fonction_narrative": "portrait_et_geste",
+      "position_arc_emotionnel": "montée_en_précision",
+      "elements_necessaires": [
+        "Description des outils : compas, pistolets à courbes, lattes flexibles, grande table à tracer",
+        "Le geste du dessinateur — concentration, minutie, savoir-faire corporel",
+        "Citation directe issue des sources sur le métier ou les outils",
+        "Registre authentique du vocabulaire technique de l'époque"
+      ],
+      "mood": "précis_admiratif"
+    },
+    {
+      "partie": 3,
+      "titre": "Du plan au navire",
+      "duree_cible": 25,
+      "fonction_narrative": "explication_processus",
+      "position_arc_emotionnel": "sommet_narratif",
+      "elements_necessaires": [
+        "Le passage du dessin à l'échelle réduite au tracé grandeur nature dans la salle des gabarits",
+        "L'enjeu de la précision : un millimètre d'erreur sur le plan, des centimètres sur la tôle",
+        "Le lien entre le bureau de dessin et la cale de construction — le dessinateur comme traducteur",
+        "Citation directe sur la responsabilité ou la fierté du traceur"
+      ],
+      "mood": "dense_technique_engageant"
+    },
+    {
+      "partie": 4,
+      "titre": "Un maillon silencieux",
+      "duree_cible": 25,
+      "fonction_narrative": "élargissement_et_clôture",
+      "position_arc_emotionnel": "redescente_émotive_ouverture",
+      "elements_necessaires": [
+        "Place du dessinateur dans la hiérarchie des métiers du chantier — entre ingénieur et ouvrier",
+        "Transmission du savoir-faire, formation sur le tas",
+        "Image finale : le navire quitte la cale, et dans chaque courbe de sa coque, le trait du dessinateur demeure",
+        "Ton de reconnaissance sobre"
+      ],
+      "mood": "réflexif_élégiaque"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_croissante_vers_reconnaissance",
+  "rythme_general": "Ouverture lente et sensorielle, accélération progressive lors de la description du geste et du processus technique, puis ralentissement final méditatif. Le rythme épouse le travail du dessinateur : patience, précision, accomplissement.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du panorama sonore du chantier, on resserre sur la salle à tracer et les mains du dessinateur. Transition par le contraste sonore : le vacarme s'estompe, le silence de la salle s'installe."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_logique",
+      "duree": 2.0,
+      "description": "Des outils et du geste, on glisse vers ce que ce geste produit — le passage du plan au gabarit grandeur nature. Transition par le mouvement : le dessinateur quitte sa table pour la salle des gabarits."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "élargissement_réflexif",
+      "duree": 2.0,
+      "description": "Du processus technique, on s'élève vers la signification humaine du métier. Transition par un changement de focale : du tracé au sol, on passe au navire achevé glissant vers l'eau."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit une journée-type condensée du dessinateur, du matin à l'accomplissement, ce qui donne un fil chronologique naturel sous la structure thématique. — FLUIDITÉ : Éviter toute rupture sèche entre sections ; chaque transition doit être une phrase-pont, pas un silence. Les ambiances sonores (métal, silence, crayon sur papier, coque à l'eau) assurent la continuité sensorielle. — CITATIONS : Intégrer les citations directes de manière organique dans le flux narratif, introduites par une courte amorce narrative (« comme le dira un traceur… »), jamais plaquées artificiellement. — REGISTRE : Vocabulaire technique utilisé avec parcimonie et toujours contextualisé pour le grand public. Ton sobre, jamais condescendant. — DURÉE : 180 mots maximum. Chaque section doit être dense et concise : partie 1 ≈ 36 mots, partie 2 ≈ 44 mots, partie 3 ≈ 50 mots, partie 4 ≈ 50 mots. — RIGUEUR : Ne mentionner aucun chantier, nom propre ou date spécifique non fourni dans les sources. Rester sur des formulations génériques mais évocatrices."
+}

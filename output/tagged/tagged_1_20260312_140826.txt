@@ -1,0 +1,35 @@
+=== PARTIE 1 : Le silence des cales — Un matin sans sirène ===
+
+{aube_brume_loire.wav}
+
+[chuchote] Une aube de brume se lève sur l'Île de Nantes. [pause] L'eau de la Loire glisse sans bruit le long des cales de béton. Aucune sirène ne déchire le petit matin. Aucune portail de tôle ne grince sous la poussée des hommes. {mouettes_lointaines.wav} Les mouettes, seules, occupent l'espace. [pause] Pourtant, il fut un temps — pas si lointain — où, à cette heure exacte, des milliers d'ouvriers franchissaient ces grilles, la gamelle sous le bras, et où le fleuve entier vibrait du fracas des chantiers. [posé] Pour comprendre ce silence, il faut remonter très loin. [pause] Jusqu'à l'époque où Nantes régnait sur l'Atlantique.
+
+=== PARTIE 2 : L'aube dorée — Nantes au faîte de sa puissance ===
+
+{port_voiliers_xviii_agitation.wav}
+
+Nous sommes au dix-huitième siècle. À l'aube, sur le Quai de la Fosse, le spectacle est [accentué] saisissant. Des dizaines de navires à voile se pressent le long des berges, mâts serrés comme une forêt d'hiver. Des gabiers crient depuis les vergues. On décharge le sucre, le café, l'indigo des Antilles. Nantes est alors le premier port colonial de France. Sur l'Île Feydeau, les armateurs ont bâti des hôtels particuliers aux façades sculptées — fortunes érigées, pour une part considérable, sur le commerce triangulaire et la traite négrière. [pause] {charpente_navale_marteaux_bois.wav} En amont, à Chantenay et sur la Prairie-au-Duc, les charpentiers de marine assemblent des coques de chêne. De l'autre côté du fleuve, à Trentemoult, les pêcheurs préparent leurs filets avant le jour. Le port bat au rythme de la marée. [posé] Nantes vit par son fleuve.
+
+=== PARTIE 3 : La matinée s'assombrit — L'ensablement et le glissement vers l'aval ===
+
+{courant_sourd_ensablement.wav}
+
+[pause] Mais la Loire, justement, commence à trahir Nantes. Au dix-neuvième siècle, le fleuve s'ensable. Les bancs de sédiments remontent dans l'estuaire, obstruent le chenal. Les nouveaux navires à vapeur, plus lourds, au tirant d'eau plus profond, peinent à remonter jusqu'au cœur de la ville. Certains restent bloqués en aval, contraints de décharger leur cargaison sur des allèges. [ralentit] Imaginez un matin des années mille-huit-cent-cinquante : un trois-mâts attend, immobilisé à des lieues du quai, tandis que des barges font la navette. [pause] Le port de Nantes s'éloigne de la mer. {machines_vapeur_lointaines.wav} En mille-huit-cent-cinquante-six, un nouveau bassin ouvre à Saint-Nazaire, à l'embouchure même de l'estuaire. Ce qui devait n'être qu'un avant-port provisoire devient, année après année, le véritable débouché maritime. On tente bien de creuser, d'aménager un canal maritime sur la Basse-Loire pour maintenir la navigabilité. Mais les tonnages ne cessent de croître, et le fleuve, lui, ne s'élargit pas. [posé] Lentement, inexorablement, l'activité glisse vers l'aval.
+
+=== PARTIE 4 : L'après-midi aux chantiers — Les mains dans le fer ===
+
+{ambiance_chantier_naval_metal.wav}
+
+Pourtant, au vingtième siècle, les chantiers navals nantais tiennent bon. On ne charge plus guère de marchandises coloniales sur les quais du centre, mais on construit encore des navires. Des coques d'acier, désormais, pas de chêne. Les Chantiers de la Loire, Dubigeon — ces noms résonnent dans toute la ville. [pause] Jean Penaud est charpentier-fer. Il se souvient : [ARCHIVE : « J'suis entré à la Loire… [posé] Première embauche le cinq février mille-neuf-cent-cinquante-sept. »] Il a alors à peine vingt ans. [ARCHIVE : « J'ai été huit jours au balai, et après je suis allé dans le parc à fer, on appelait ça. On triait les goussets… {petit_train_chantier.wav} Il y avait un genre de petit train avec un plateau, il venait chercher les pièces pour emmener à bord. »] Ce petit train qui serpentait entre les ateliers et les cales, c'était le pouls même du chantier, l'après-midi durant. [précipité] Penaud sera muté à Dubigeon, puis envoyé à Cherbourg sept ans et demi, travailler sur les sous-marins — et même le sous-marin atomique. [ARCHIVE : « J'suis revenu le… [pause] au mois de juillet soixante-neuf. »] Il revient à Nantes. [ralentit] Mais la ville qu'il retrouve a déjà changé.
+
+=== PARTIE 5 : Le soir tombe — Fermetures et dernier quart ===
+
+{vent_estuaire_soir.wav}
+
+Car à partir des années soixante, le déclin s'accélère. Les commandes se raréfient. La concurrence internationale broie les chantiers français, l'un après l'autre. À Nantes, les Chantiers de la Loire ferment. [pause] Puis c'est au tour de Dubigeon, en mille-neuf-cent-quatre-vingt-sept. [accentué] Le dernier grand chantier naval nantais. [pause] Ce soir-là — car c'est toujours un soir que ces choses arrivent — la sirène retentit une dernière fois. {sirene_derniere_fois.wav} [ralentit] Les ouvriers franchissent les grilles en sens inverse, pour ne plus revenir. [pause] Derrière eux, des quartiers entiers perdent leur raison d'être. Des familles, des commerces, tout un tissu humain se défait. Saint-Nazaire, à l'embouchure, a récupéré l'essentiel de la construction navale. [posé] Le fleuve, à Nantes, se tait.
+
+=== PARTIE 6 : Après la nuit — La mémoire des quais ===
+
+{aube_eau_calme_mouettes.wav}
+
+[posé] Aujourd'hui, sur l'Île de Nantes, les anciennes cales accueillent des promeneurs. Des noms de rues rappellent les chantiers disparus. [pause] Le silence du matin n'est pas un vide. [accentué] C'est une mémoire. [pause] Et quelque part, la voix de Jean Penaud — cette « archive humaine », comme on dit — continue de porter le bruit du fer, le roulement du petit train, et la fierté d'un monde englouti. {resonance_marteau_metal_lointain.wav}

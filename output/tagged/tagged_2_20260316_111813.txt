@@ -1,0 +1,23 @@
+=== PARTIE 1 : L'arrivée au bureau d'études ===
+
+{grilles_metalliques_chantier_naval.wav}
+
+[posé] Six heures du matin, quelque part sur un chantier naval français. [pause] Un homme franchit les grilles, longe les coques en construction et monte au bureau d'études. Sur sa table l'attendent un tire-ligne, un compas, des gabarits de courbes [pause] — les outils d'un dessinateur.
+
+=== PARTIE 2 : Le tracé des plans ===
+
+{crayon_tire_ligne_sur_calque.wav}
+
+La matinée commence par le tracé des formes de coque. Le tire-ligne glisse sur le calque, guidé d'un geste sûr. [posé] Chaque courbe doit être exacte : [accentué] un dixième de millimètre d'écart, et c'est la membrure entière qui fausse. [pause] [ARCHIVE : « On travaillait à la précision absolue, au tire-ligne, avec de l'encre de Chine. [posé] Il fallait un coup de main, ça s'apprenait pas dans les livres. »] Dans la salle à tracer, ces mêmes lignes sont ensuite reproduites en grandeur réelle, à même le sol.
+
+=== PARTIE 3 : Le lien avec les ateliers ===
+
+{vacarme_riveteuses_atelier.wav}
+
+L'après-midi, le dessinateur descend aux ateliers. [accentué] Le vacarme des riveteuses remplace le silence du bureau. Il déroule ses plans devant les chaudronniers, vérifie qu'une tôle épouse bien la courbe prévue. [pause] [ARCHIVE : « Le dessinateur, c'était celui qui faisait le lien. [posé] Sans lui, l'ouvrier pouvait pas construire, et l'ingénieur pouvait pas voir son bateau sortir. »]
+
+=== PARTIE 4 : Le soir, ranger les instruments ===
+
+{instruments_dessin_rangement_feutre.wav}
+
+[posé] Le soir venu, il nettoie la plume du tire-ligne, essuie l'encre séchée, range chaque compas dans son étui. [pause] Dehors, une coque se dessine sur la cale. Elle est née de ces traits, de cette patience. [ralentit] Plus tard, l'ordinateur remplacera la main. [pause] [atténué] Mais le geste, lui, aura bâti des navires.

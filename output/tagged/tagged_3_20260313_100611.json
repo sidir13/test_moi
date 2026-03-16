@@ -1,0 +1,32 @@
+{
+  "scenario_id": 3,
+  "titre": "Jean Penaud, dernier témoin des cales perdues",
+  "taggedText": "=== PARTIE 1 : Un homme entre aux chantiers ===\n\n[posé] Un homme de quatre-vingt-trois ans se souvient. Jean Penaud, charpentier-fer. [pause] [ARCHIVE : « Première embauche le 5 février 1957. »] Ce jour-là, il franchit les grilles du Chantier de la Loire, sur la Prairie-au-Duc. {odeur_soudure_fracas_toles.wav} L'air charrie l'odeur de la soudure et le fracas des tôles. Huit jours au balai, puis le parc à fer — trier les goussets, ces pièces de renfort qu'un petit train emporte vers les coques en construction.\n\n=== PARTIE 2 : Un fleuve qui se dérobe ===\n\nMais le fleuve sur lequel repose toute cette industrie se dérobe depuis longtemps. [pause] Dès le milieu du dix-septième siècle, l'ensablement de la Loire contraint les grands navires à s'arrêter en aval, à Paimbœuf. En 1856, l'ouverture du bassin à flot de Saint-Nazaire accélère le transfert. On creuse un canal maritime sur la Basse-Loire pour tenter de maintenir Nantes accessible, mais les tirants d'eau ne cessent de diminuer. [posé] Quand Jean Penaud commence à travailler, les plus gros tonnages ne remontent déjà plus jusqu'aux quais de la Fosse.\n\n=== PARTIE 3 : De cale en cale, de port en port ===\n\nLe parcours de Jean Penaud épouse ce mouvement. Muté du Chantier de la Loire à Dubigeon, il part ensuite pour Cherbourg, où il travaille sept ans et demi sur des sous-marins, puis sur le sous-marin atomique. [pause] [ARCHIVE : « J'suis revenu le… [étire] au mois de juillet 69. »] À son retour, Nantes a changé. Les carnets de commandes s'amenuisent. [posé] La concurrence internationale et la crise pétrolière de 1973 frappent une industrie déjà fragilisée.\n\n=== PARTIE 4 : Les dernières coques ===\n\n{silence_cale_vide.wav} En 1987, les chantiers Dubigeon ferment définitivement. La dernière coque glisse hors des cales de la Prairie-au-Duc. [pause] Trois siècles d'activité navale nantaise s'achèvent dans le silence. Saint-Nazaire a absorbé ce que le fleuve a refusé à Nantes. [posé] Jean Penaud, lui, porte la mémoire de ces décennies — le bruit des rivets, le petit train chargé de goussets, les quarts passés dans la poussière de fer. [ralentit] Aujourd'hui, sur l'île de Nantes, des bâtiments culturels occupent l'espace où l'on construisait des navires. Les cales sont toujours là. [pause] Vides.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un homme entre aux chantiers",
+      "taggedText": "[posé] Un homme de quatre-vingt-trois ans se souvient. Jean Penaud, charpentier-fer. [pause] [ARCHIVE : « Première embauche le 5 février 1957. »] Ce jour-là, il franchit les grilles du Chantier de la Loire, sur la Prairie-au-Duc. {odeur_soudure_fracas_toles.wav} L'air charrie l'odeur de la soudure et le fracas des tôles. Huit jours au balai, puis le parc à fer — trier les goussets, ces pièces de renfort qu'un petit train emporte vers les coques en construction."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Un fleuve qui se dérobe",
+      "taggedText": "Mais le fleuve sur lequel repose toute cette industrie se dérobe depuis longtemps. [pause] Dès le milieu du dix-septième siècle, l'ensablement de la Loire contraint les grands navires à s'arrêter en aval, à Paimbœuf. En 1856, l'ouverture du bassin à flot de Saint-Nazaire accélère le transfert. On creuse un canal maritime sur la Basse-Loire pour tenter de maintenir Nantes accessible, mais les tirants d'eau ne cessent de diminuer. [posé] Quand Jean Penaud commence à travailler, les plus gros tonnages ne remontent déjà plus jusqu'aux quais de la Fosse."
+    },
+    {
+      "partie_id": 3,
+      "titre": "De cale en cale, de port en port",
+      "taggedText": "Le parcours de Jean Penaud épouse ce mouvement. Muté du Chantier de la Loire à Dubigeon, il part ensuite pour Cherbourg, où il travaille sept ans et demi sur des sous-marins, puis sur le sous-marin atomique. [pause] [ARCHIVE : « J'suis revenu le… [étire] au mois de juillet 69. »] À son retour, Nantes a changé. Les carnets de commandes s'amenuisent. [posé] La concurrence internationale et la crise pétrolière de 1973 frappent une industrie déjà fragilisée."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Les dernières coques",
+      "taggedText": "{silence_cale_vide.wav} En 1987, les chantiers Dubigeon ferment définitivement. La dernière coque glisse hors des cales de la Prairie-au-Duc. [pause] Trois siècles d'activité navale nantaise s'achèvent dans le silence. Saint-Nazaire a absorbé ce que le fleuve a refusé à Nantes. [posé] Jean Penaud, lui, porte la mémoire de ces décennies — le bruit des rivets, le petit train chargé de goussets, les quarts passés dans la poussière de fer. [ralentit] Aujourd'hui, sur l'île de Nantes, des bâtiments culturels occupent l'espace où l'on construisait des navires. Les cales sont toujours là. [pause] Vides."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 12,
+    "soundTags": 2,
+    "originalWordCount": 338
+  }
+}

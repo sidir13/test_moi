@@ -1,0 +1,102 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Lettre à la grue jaune — Mémoire vive des chantiers de Nantes",
+  "resumeHistoire": "Sur l'Île de Nantes, une grue jaune se dresse face à la Loire, dernier témoin silencieux des chantiers navals qui ont façonné l'identité ouvrière de la ville. À travers une lettre intime adressée à ce monument industriel, plusieurs voix — celle d'une narratrice, celle d'un ancien charpentier de fer — retracent le passage d'un monde de labeur et d'acier à un paysage culturel réinventé. De l'effervescence des chantiers Dubigeon dans les années 1950-1960 à la désindustrialisation, puis à la reconversion de l'île, la grue jaune incarne la mémoire d'une communauté et le refus de l'oubli. Ce récit documentaire, porté par un ton confidentiel, interroge ce que nous devons aux lieux qui nous ont construits.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "lettre_intime",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "« Chère grue jaune… » — L'adresse au monument",
+      "duree_cible": 20.0,
+      "fonction_narrative": "exposition_intime",
+      "position_arc_emotionnel": "ouverture_douce",
+      "elements_necessaires": [
+        "Adresse directe à la grue jaune, ton de lettre intime",
+        "Localisation : Île de Nantes, quai des Antilles, bords de Loire",
+        "Description visuelle sobre : silhouette jaune contre le ciel, la Loire en contrebas",
+        "Voix narratrice femme professionnelle, ton confidentiel et neutre-informatif",
+        "Présentation implicite du public grand public par un vocabulaire accessible"
+      ],
+      "mood": "contemplatif_confidentiel"
+    },
+    {
+      "partie": 2,
+      "titre": "« Tu te souviens du bruit » — Le temps des chantiers",
+      "duree_cible": 30.0,
+      "fonction_narrative": "developpement_historique",
+      "position_arc_emotionnel": "montee_emotionnelle",
+      "elements_necessaires": [
+        "Évocation du rôle de la grue : outil de levage des chantiers navals",
+        "Ancrage dans la mémoire ouvrière : chantiers Dubigeon, chantier de la Loire",
+        "Intégration de l'archive Jean Penaud : embauche le 5 février 1957, parcours de charpentier de fer, le parc à ferret, les goussets, le petit train, le travail à bord",
+        "Perspective chorale : la narratrice tisse sa lettre autour des mots de l'ouvrier",
+        "Vocabulaire technique rendu accessible (goussets = pièces de renfort en métal)"
+      ],
+      "mood": "vivant_documentaire"
+    },
+    {
+      "partie": 3,
+      "titre": "« Puis le silence est venu » — La fermeture et l'abandon",
+      "duree_cible": 18.0,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "creux_emotionnel",
+      "elements_necessaires": [
+        "Désindustrialisation des années 1970-1980, fermeture progressive des chantiers",
+        "La grue reste, immobile, quand les hommes partent",
+        "Ton de la lettre : mélancolie contenue, pas de pathos excessif",
+        "Évocation de l'Île de Nantes vidée de son activité industrielle"
+      ],
+      "mood": "melancolique_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "« Aujourd'hui tu veilles encore » — Symbole et renaissance",
+      "duree_cible": 22.0,
+      "fonction_narrative": "resolution_ouverture",
+      "position_arc_emotionnel": "remontee_apaisee",
+      "elements_necessaires": [
+        "Reconversion de l'Île de Nantes : transformation urbaine et culturelle",
+        "La grue jaune comme monument de patrimoine industriel préservé",
+        "Symbolique de la couleur jaune dans le paysage nantais",
+        "Évocation des Machines de l'île et du renouveau culturel",
+        "Clôture de la lettre : la grue comme gardienne de la mémoire ouvrière",
+        "Ouverture vers l'avenir : ce que la grue transmet aux générations actuelles"
+      ],
+      "mood": "lumineux_apaise"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_ascendante_avec_creux",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "La narratrice passe de l'adresse présente à la grue vers l'évocation du passé, comme si la lettre ouvrait un souvenir. Un léger fondu sonore peut marquer le basculement vers l'ambiance industrielle. La voix de Jean Penaud émerge naturellement, enchâssée dans la lettre."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_narratif",
+      "duree": 2.0,
+      "description": "Le bruit évoqué des chantiers se raréfie dans le texte même. La narratrice marque une pause, un souffle — la lettre change de paragraphe. Transition par le silence, qui devient le sujet."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du silence de l'abandon, la narratrice lève les yeux vers le présent. La lettre reprend un ton plus lumineux, comme un regard qui se relève. Pas de rupture : c'est le même geste d'écriture qui continue."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ET CONTINUITÉ : Le récit est UNE SEULE LETTRE lue à voix haute, adressée à la grue jaune. Il n'y a pas de titres prononcés ni de séparations audibles entre sections — les parties sont des mouvements internes du même texte. La narratrice (voix femme professionnelle) porte l'ensemble avec un ton confidentiel mais informatif, comme si elle lisait une lettre qu'elle a écrite après une visite sur le quai des Antilles. || PERSPECTIVE CHORALE : L'archive de Jean Penaud (charpentier de fer, 83 ans, embauché le 5 février 1957) est intégrée en partie 2, soit en insertion audio directe (extraits courts de 8-12 secondes max), soit paraphrasée par la narratrice dans le corps de la lettre. Privilégier l'insertion directe pour l'authenticité — la narratrice introduit et reprend après l'extrait sans rupture. || ANGLE LETTRE INTIME : Le tutoiement de la grue crée la proximité. Chaque section commence par une adresse implicite ou explicite ('tu', 'toi'). Le ton reste neutre-informatif dans le contenu factuel mais la forme épistolaire apporte la chaleur. || DENSITÉ SONORE ÉQUILIBRÉE : Ambiances suggérées — bords de Loire (eau, vent léger), pas d'habillage musical envahissant. L'archive audio constitue l'élément sonore principal en complément de la voix narratrice. Ratio narration/archives respecté à 60/40. || RIGUEUR : Ne pas inventer de date de construction ou de classement de la grue si non fournie dans le contexte. Rester sur des formulations ouvertes ('depuis des décennies', 'quand les chantiers ont fermé') pour les faits non sourcés précisément."
+}

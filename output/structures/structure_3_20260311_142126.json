@@ -1,0 +1,104 @@
+{
+  "scenario_id": 3,
+  "titre_global": "La Grue Jaune — Sentinelle de la Loire",
+  "resumeHistoire": "Sur l'Île de Nantes, là où résonnaient autrefois les marteaux des charpentiers de fer des chantiers navals, se dresse une grue monumentale peinte en jaune, devenue l'un des symboles les plus reconnaissables de la ville. Le récit nous fait découvrir ce lieu comme un territoire inconnu : d'abord un paysage industriel vibrant où des hommes comme Jean Penaud façonnaient les navires à mains nues, puis un monde qui s'effondre avec la désindustrialisation des années 1970-1980, et enfin une renaissance inattendue. La grue, autrefois simple outil de levage au service des chantiers Dubigeon, est devenue monument patrimonial, trait d'union entre la mémoire ouvrière et le renouveau culturel de l'Île de Nantes. À travers elle, c'est toute une ville qui apprend à regarder son passé industriel non comme une cicatrice, mais comme une fierté.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "recit_initiatique",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un monde inconnu — L'arrivée sur les quais",
+      "duree_cible": 20.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "curiosite_calme",
+      "elements_necessaires": [
+        "Présentation explicite du public (grand public) et du ton (neutre informatif) par la narratrice",
+        "Description sensorielle de l'Île de Nantes aujourd'hui — Quai des Antilles, bords de Loire",
+        "Apparition visuelle de la grue jaune comme premier mystère : qu'est-ce que cet objet monumental fait là ?",
+        "Ambiance sonore immersive : vent sur la Loire, rumeur urbaine contemporaine",
+        "Voix narratrice femme professionnelle, posée, ton neutre informatif"
+      ],
+      "mood": "contemplation_intriguée"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers — Comprendre d'où elle vient",
+      "duree_cible": 30.0,
+      "fonction_narrative": "plongee_historique",
+      "position_arc_emotionnel": "montee_emotionnelle",
+      "elements_necessaires": [
+        "Transition vers le passé industriel : les chantiers navals de l'Île de Nantes (ancienne Prairie-au-Duc)",
+        "Insertion de l'archive audio de Jean Penaud — charpentier de fer, 83 ans, embauché le 5 février 1957 au Chantier de la Loire, muté à Dubigeon",
+        "Extraits recommandés : son premier jour ('j'ai été huit jours au balais'), le parc à ferret, les goussets, le petit train, l'apprentissage avec l'ancien de 63 ans",
+        "La grue replacée dans son contexte fonctionnel : outil de levage des pièces et sections de navires sur les chantiers Dubigeon",
+        "Vocabulaire technique rendu accessible (goussets, charpentier de fer, fer à boudin) — le narrateur initie l'auditeur à ce monde",
+        "Ambiance sonore : sons métalliques reconstitués, activité portuaire, atmosphère de chantier"
+      ],
+      "mood": "vivant_laborieux"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence puis la couleur — Mort et renaissance",
+      "duree_cible": 25.0,
+      "fonction_narrative": "bascule_et_transformation",
+      "position_arc_emotionnel": "creux_puis_elevation",
+      "elements_necessaires": [
+        "Évocation de la désindustrialisation des années 1970-1980 et la fermeture des chantiers navals nantais",
+        "Le silence qui remplace le bruit — la grue reste, immobile, sur les quais désertés",
+        "La décision de préserver la grue comme patrimoine industriel — politique de reconversion de l'Île de Nantes",
+        "La couleur jaune : marqueur visuel devenu symbolique dans le paysage nantais",
+        "Lien avec le renouveau culturel du site (Les Machines de l'île à proximité, transformation urbaine)",
+        "Ambiance sonore : silence industriel, puis retour progressif de la vie — promeneurs, musique lointaine"
+      ],
+      "mood": "melancolique_puis_lumineux"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce que la grue nous apprend",
+      "duree_cible": 15.0,
+      "fonction_narrative": "resolution_initiatique",
+      "position_arc_emotionnel": "apaisement_eclaire",
+      "elements_necessaires": [
+        "Retour au présent — la grue comme monument de mémoire ouvrière et d'identité urbaine",
+        "Le parcours initiatique bouclé : l'auditeur comprend désormais ce qu'il voyait sans savoir",
+        "Ouverture sobre : la grue jaune comme trait d'union entre générations, entre passé industriel et avenir culturel",
+        "Dernière touche sonore : son de la Loire, écho lointain possible d'un extrait de Jean Penaud",
+        "Voix narratrice conclusive, ton neutre maintenu jusqu'au bout"
+      ],
+      "mood": "serein_signifiant"
+    }
+  ],
+  "arc_emotionnel_global": "initiation_par_decouverte — curiosité → immersion → perte → compréhension éclairée",
+  "rythme_general": "Lent et contemplatif en ouverture, dense et vivant au cœur du récit (archive + narration), ralenti mélancolique puis lumineux en troisième section, apaisé en conclusion. Le rythme varie pour épouser l'arc initiatique.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "plongee_temporelle",
+      "duree": 2.5,
+      "description": "La narratrice passe du présent au passé par une question rhétorique ('Mais pour comprendre cette grue, il faut remonter le temps…') tandis que l'ambiance sonore contemporaine se fond progressivement dans des sons de chantier naval. Transition fluide, pas de rupture nette."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "extinction_progressive",
+      "duree": 2.0,
+      "description": "Les sons de chantier s'éteignent un à un — dernier coup de marteau, puis silence. La voix de Jean Penaud s'efface. La narratrice reprend sur un ton plus grave pour évoquer la fin des chantiers. La transition incarne physiquement la désindustrialisation."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "elevation_naturelle",
+      "duree": 1.5,
+      "description": "L'ambiance sonore retrouve les sons du présent (Loire, ville vivante). La narratrice passe de la renaissance du lieu à sa signification, sans rupture — le ton reste neutre mais gagne en profondeur réflexive."
+    }
+  ],
+  "notes_production": "FLUIDITÉ NARRATIVE : Le récit doit être perçu comme un seul mouvement continu, pas quatre blocs séparés. Les sections sont des repères de montage, pas des chapitres annoncés. La narratrice ne nomme jamais les parties. — VOIX : Narratrice femme professionnelle, ton neutre informatif constant. Aucune dramatisation excessive, aucun lyrisme. L'émotion vient des faits et de l'archive, pas de l'emphase vocale. — ARCHIVES : L'extrait de Jean Penaud (charpentier de fer, 83 ans) est le cœur humain du récit. Privilégier les passages sur son embauche ('le 5 février 1957'), ses premiers jours ('huit jours au balais', le parc à ferret) et l'apprentissage avec l'ancien. L'archive doit occuper environ 40 % de la partie 2 (ratio narration/archives global de 0.6). — OUVERTURE OBLIGATOIRE : La narratrice doit ouvrir en situant explicitement le cadre (podcast narratif, grand public, ton informatif) conformément aux contraintes verrouillées. — AUTHENTICITÉ LINGUISTIQUE : Conserver le parler authentique de Jean Penaud dans les extraits (élisions, expressions techniques). La narration traduit si nécessaire pour le grand public. — DENSITÉ SONORE IMMERSIVE : Chaque section a sa palette sonore propre (Loire/ville → chantier naval → silence/renaissance → Loire apaisée). Les sons ne sont jamais décoratifs, ils portent le sens narratif. — RIGUEUR HISTORIQUE : Ne pas inventer l'histoire spécifique de la grue jaune au-delà de ce que le contexte fournit. On sait qu'elle est sur l'Île de Nantes, liée aux anciens chantiers navals Dubigeon, qu'elle est un symbole patrimonial et que sa couleur jaune est significative dans le paysage nantais. Rester dans ces limites factuelles. — DURÉE : 90 secondes cible. La somme des sections (20+30+25+15) = 90s. Les transitions sont incluses dans les durées des sections."
+}

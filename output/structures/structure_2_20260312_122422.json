@@ -1,0 +1,128 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Jean Penaud, dernier témoin des quais perdus",
+  "resumeHistoire": "Le 5 février 1957, un jeune homme de Nantes franchit pour la première fois les grilles du Chantier de la Loire. Jean Penaud ne le sait pas encore, mais il va traverser toute l'agonie d'un port millénaire : l'envasement progressif de la Loire, le départ des grands navires vers Saint-Nazaire, les fusions et fermetures de chantiers navals qui rythment la seconde moitié du XXe siècle. De Nantes à Cherbourg puis de retour sur les bords de Loire en 1969, son parcours de charpentier-fer épouse les soubresauts d'une industrie en déclin. À travers son histoire, c'est celle d'un fleuve, d'une ville et de milliers d'ouvriers qui se raconte — du port triomphant du XVIIIe siècle jusqu'à la fermeture des derniers chantiers Dubigeon en 1987.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un fleuve qui ne pardonne pas",
+      "duree_cible": 55.0,
+      "fonction_narrative": "flashback_contextuel",
+      "position_arc_emotionnel": "gravité_sereine",
+      "elements_necessaires": [
+        "Ouverture sur la Loire telle que Jean Penaud l'a connue dans les années 1950 — un fleuve déjà en difficulté",
+        "Flashback vers les origines du port de Nantes : le commerce colonial depuis 1532, le commerce triangulaire au XVIIIe siècle (sucre, épices, café)",
+        "L'envasement et l'ensablement progressifs de la Loire qui menacent l'accès des navires",
+        "Poser le décor : quais historiques du centre-ville, Île Feydeau, Île Gloriette, le Bras de la Bourse",
+        "Transition vers le déclin : les navires grandissent, le fleuve se rétrécit"
+      ],
+      "mood": "documentaire_ample_et_nostalgique"
+    },
+    {
+      "partie": 2,
+      "titre": "Le 5 février 1957",
+      "duree_cible": 55.0,
+      "fonction_narrative": "ancrage_portrait",
+      "position_arc_emotionnel": "élan_vital",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud par sa date d'embauche au Chantier de la Loire, le 5 février 1957",
+        "Ses premiers jours : huit jours au balai, puis affectation au parc à fer — tri des goussets, pièces de renfort acheminées par petit train à plateau",
+        "Évoquer le quotidien ouvrier à Chantenay et Prairie-au-Duc",
+        "Le contexte industriel : les chantiers navals de Nantes encore actifs mais déjà fragilisés par le déplacement des activités vers l'estuaire",
+        "Intégration de l'archive audio de Jean Penaud (embauche, premiers postes)"
+      ],
+      "mood": "concret_humain_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "Le grand glissement vers l'aval",
+      "duree_cible": 60.0,
+      "fonction_narrative": "développement_historique",
+      "position_arc_emotionnel": "tension_croissante",
+      "elements_necessaires": [
+        "Le transfert progressif des activités portuaires de Nantes vers Saint-Nazaire, lié à l'évolution du tirant d'eau des navires",
+        "Les étapes du déplacement : rôle des ports intermédiaires — Trentemoult, Le Pellerin, Paimboeuf — puis concentration à Saint-Nazaire à l'embouchure de l'estuaire",
+        "Les comblements des bras de Loire et la transformation urbaine de Nantes qui en découle",
+        "Le parcours de Jean Penaud comme miroir : sa mutation de la Loire à Dubigeon, puis son départ pour Cherbourg pour travailler sur les sous-marins, dont le sous-marin atomique — sept ans et demi loin de Nantes",
+        "Intégration de l'archive audio (mutation Dubigeon, départ Cherbourg, sous-marins)"
+      ],
+      "mood": "narratif_factuel_avec_gravité"
+    },
+    {
+      "partie": 4,
+      "titre": "Retour sur une Loire qui a changé",
+      "duree_cible": 50.0,
+      "fonction_narrative": "pivot_émotionnel",
+      "position_arc_emotionnel": "mélancolie_lucide",
+      "elements_necessaires": [
+        "Juillet 1969 : Jean Penaud revient à Nantes après Cherbourg",
+        "Ce qu'il retrouve : un port diminué, des chantiers en sursis, une ville en mutation",
+        "Impact des guerres mondiales sur les infrastructures portuaires évoqué en toile de fond",
+        "L'industrialisation et la mécanisation portuaire qui réduisent les effectifs",
+        "Le contraste entre le Nantes maritime d'avant et celui qu'il retrouve",
+        "Intégration de l'archive audio (retour juillet 69)"
+      ],
+      "mood": "intime_et_désenchanté"
+    },
+    {
+      "partie": 5,
+      "titre": "Les derniers rivets",
+      "duree_cible": 80.0,
+      "fonction_narrative": "résolution_et_ouverture",
+      "position_arc_emotionnel": "apaisement_après_perte",
+      "elements_necessaires": [
+        "La fermeture des chantiers Dubigeon en 1987 — fin d'une ère",
+        "Jean Penaud, 83 ans au moment du témoignage, porteur d'une mémoire ouvrière et d'un patrimoine industriel en voie de disparition",
+        "La reconversion du territoire : l'Île de Nantes, les Machines de l'Île — ce qui naît sur les ruines des chantiers",
+        "Retour au présent : les quais historiques du centre-ville aujourd'hui, là où accostaient les navires",
+        "Clôture sur la valeur du témoignage — la mémoire ouvrière comme archive vivante",
+        "Dernière citation audio possible de Jean Penaud pour ancrer la fin"
+      ],
+      "mood": "solennel_et_ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "nostalgie_progressive_vers_apaisement",
+  "rythme_general": "modere_avec_acceleration_centrale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_temporel",
+      "duree": 3.0,
+      "description": "Du panorama historique des siècles passés, la narration se resserre sur un matin précis — le 5 février 1957 — et sur un homme. Transition fluide par une phrase du type : 'C'est dans ce port déjà menacé qu'un matin de février 1957, un jeune Nantais pousse pour la première fois les grilles du Chantier de la Loire.'"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_contextuel",
+      "duree": 2.5,
+      "description": "Du quotidien concret de Jean Penaud au parc à fer, la narration s'élargit pour montrer que les chantiers eux-mêmes se déplacent — et que Jean avec eux. Transition par le mouvement : 'Mais déjà, le port de Nantes glisse vers l'aval, emportant ses hommes avec lui.'"
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ellipse_temporelle",
+      "duree": 2.5,
+      "description": "Sept ans et demi passent à Cherbourg. La transition marque le saut temporel et le retour : 'En juillet 1969, Jean Penaud revient. Mais la Loire qu'il retrouve n'est plus celle qu'il a quittée.'"
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "progression_vers_conclusion",
+      "duree": 2.0,
+      "description": "Du constat mélancolique du déclin, la narration avance vers l'issue inévitable — la fermeture — puis vers ce qui subsiste. Transition douce : 'Les années passent. Les commandes se raréfient. Et un jour de 1987, les grilles se ferment pour la dernière fois.'"
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme un portrait extérieur de Jean Penaud dont le parcours professionnel sert de fil conducteur pour raconter le déclin du port de Nantes sur plusieurs siècles. La voix off omnisciente ne s'adresse jamais directement à l'auditeur mais peut l'inviter à se projeter ('Nous sommes en février 1957…'). Le flashback initial (partie 1) remonte aux origines du port avant de revenir à l'époque de Jean Penaud, créant la structure en flashback demandée. Les archives audio de Jean Penaud doivent être intégrées naturellement dans les parties 2, 3 et 4, comme des ponctuations documentaires qui authentifient le récit — jamais comme des interruptions. Prévoir des ambiances sonores équilibrées (sons de chantier naval, eau, métal) en arrière-plan sans surcharger. Le ton reste neutre et informatif, avec une coloration émotionnelle qui vient des faits eux-mêmes plutôt que d'un vocabulaire emphatique. Le registre est modernisé et accessible pour le grand public. La partie 5 est volontairement plus longue (80s) pour permettre à la fois la conclusion historique (fermeture 1987), la reconversion contemporaine et un retour apaisé sur la figure de Jean Penaud. ATTENTION DATES : ne mentionner que les dates attestées par le contexte et l'archive (1532 comme borne de période, XVIIIe siècle pour le commerce triangulaire, 5 février 1957 embauche, juillet 1969 retour, 1987 fermeture Dubigeon). Ne pas inventer de dates intermédiaires."
+}

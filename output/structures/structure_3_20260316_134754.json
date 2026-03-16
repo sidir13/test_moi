@@ -1,0 +1,78 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des dessinateurs comme Jean Penaud donnaient forme aux navires bien avant que le premier rivet ne soit posé. Penchés sur leurs tables à dessin, armés de calques et de règles, ils traduisaient en lignes précises les courbes complexes des coques et des structures. Leur travail, méconnu mais essentiel, faisait le lien entre l'ingénieur et l'ouvrier de la cale. Puis vint le déclin des chantiers, et avec lui la disparition de tout un monde de savoir-faire. Ce récit retrace, à travers le geste du dessinateur, la mémoire vivante d'une industrie nantaise aujourd'hui disparue.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bureau d'études, cœur silencieux du chantier",
+      "duree_cible": 30,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Évocation sensorielle du bureau d'études : tables à dessin, calques, silence concentré",
+        "Présentation de Jean Penaud comme dessinateur sur les chantiers navals nantais",
+        "Situer le cadre : chantiers navals de Nantes, bords de Loire",
+        "Citation directe de témoignage si disponible, sur le quotidien du dessinateur",
+        "Registre grand public : phrases courtes, vocabulaire accessible"
+      ],
+      "mood": "descriptif_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Du trait sur le papier au navire sur la cale",
+      "duree_cible": 28,
+      "fonction_narrative": "developpement_technique_et_humain",
+      "position_arc_emotionnel": "montee_admiration",
+      "elements_necessaires": [
+        "Description du processus : du plan au tracé grandeur nature puis à la construction",
+        "Place du dessinateur dans la hiérarchie des métiers — lien entre bureau d'études et ouvriers de la cale",
+        "Fierté du geste technique, précision requise",
+        "Citation directe possible sur la relation entre le dessin et le navire fini",
+        "Rythme légèrement plus dynamique, valorisation du savoir-faire"
+      ],
+      "mood": "narratif_admiratif"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence après les lancements",
+      "duree_cible": 32,
+      "fonction_narrative": "bascule_et_epilogue",
+      "position_arc_emotionnel": "descente_melancolique_puis_apaisement",
+      "elements_necessaires": [
+        "Évocation du déclin et de la fermeture des chantiers navals nantais",
+        "Contraste avec l'activité décrite précédemment — le vide après l'effervescence",
+        "Ce qui reste : mémoire, patrimoine industriel, témoignages",
+        "Citation directe si disponible, sur la disparition ou le souvenir",
+        "Ouverture sobre sur la transmission de cette mémoire"
+      ],
+      "mood": "melancolique_digne"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_admiration_melancolie",
+  "rythme_general": "modere_avec_ralentissement_final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Glissement fluide du décor statique du bureau vers le mouvement de la création : le trait sur le papier prend vie et rejoint la cale. La narration passe de l'observation contemplative à l'action du savoir-faire, sans rupture — comme le crayon qui ne quitte pas la feuille."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_temporel",
+      "duree": 3.0,
+      "description": "Rupture douce marquée par un silence ou un son d'ambiance qui s'éteint. On passe de l'activité vibrante des chantiers en pleine production au calme de l'après-fermeture. Le diptyque avant/après se cristallise ici : le même lieu, vidé de ses gestes et de ses bruits."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un seul souffle en trois temps — observer, comprendre, se souvenir. Éviter toute annonce de plan ou rupture didactique entre sections. La voix off est omnisciente, posée, jamais sentencieuse. Le ton neutre informatif doit laisser transparaître une émotion contenue, portée par les faits et les citations, non par des effets rhétoriques. DENSITÉ SONORE MINIMALISTE : prévoir peu d'éléments sonores — éventuellement un léger fond d'ambiance industrielle (partie 1-2) qui s'efface (partie 3). Les citations directes doivent être intégrées naturellement dans le flux narratif, introduites par la voix off sans effet de montage marqué. RIGUEUR : Jean Penaud est nommé comme dessinateur des chantiers navals nantais conformément au contexte fourni. Ne pas inventer de dates précises d'activité, de noms de navires ou d'événements non attestés par les sources. Si les transcriptions ne fournissent pas de citations exploitables, reformuler en témoignage indirect avec formulation prudente (« il racontait que… », « on se souvient que… »). DURÉE : viser 175-185 mots au total, répartis proportionnellement aux durées des sections (~60, ~56, ~64 mots respectivement). Chaque mot compte — privilégier la densité évocatrice à l'exhaustivité."
+}

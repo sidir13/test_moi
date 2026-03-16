@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La Grue Jaune — Mémoire d'acier sur les bords de Loire",
+  "resumeHistoire": "Sur l'Île de Nantes, une grue monumentale de couleur jaune se dresse face à la Loire, vestige silencieux des anciens chantiers navals qui ont façonné l'identité ouvrière de la ville. Pendant des décennies, ce quai a vibré au rythme de la construction navale, où des charpentiers de fer comme Jean Penaud assemblaient des coques et triaient des goussets pour bâtir des navires. Puis la désindustrialisation a frappé, les chantiers ont fermé, et le silence s'est installé sur les cales. Mais la grue, elle, est restée — transformée en monument historique et en symbole de la reconversion urbaine de l'Île de Nantes, elle incarne désormais le passage d'un passé industriel vivant à une mémoire collective assumée, tournée vers l'avenir.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 20,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_sensoriel",
+      "elements_necessaires": [
+        "Localisation géographique : Île de Nantes, bords de Loire, quai des Antilles",
+        "Évocation sensorielle du paysage industriel des chantiers navals",
+        "Mention des chantiers Dubigeon et du Chantier de la Loire",
+        "Présence de la grue comme outil de travail dans son contexte d'origine"
+      ],
+      "mood": "descriptif_vivant"
+    },
+    {
+      "partie": 2,
+      "titre": "Les hommes du fer",
+      "duree_cible": 25,
+      "fonction_narrative": "incarnation_humaine",
+      "position_arc_emotionnel": "montee_emotionnelle",
+      "elements_necessaires": [
+        "Intégration du témoignage de Jean Penaud, charpentier de fer, 83 ans",
+        "Son parcours : embauche le 5 février 1957 au Chantier de la Loire, mutation à Dubigeon",
+        "Détails concrets du métier : le parc à ferret, les goussets, le petit train, le travail à bord",
+        "Passage de l'apprenti au compagnon — formation avec un ancien de 63 ans"
+      ],
+      "mood": "testimonial_authentique"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 18,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "tension_pivot",
+      "elements_necessaires": [
+        "Évocation de la désindustrialisation et de la fermeture des chantiers navals nantais",
+        "Contraste entre l'activité passée et le vide soudain",
+        "La grue qui reste, immobile, sur un quai désormais silencieux",
+        "Sentiment de perte pour la communauté ouvrière"
+      ],
+      "mood": "solennel_contemplatif"
+    },
+    {
+      "partie": 4,
+      "titre": "Le symbole debout",
+      "duree_cible": 27,
+      "fonction_narrative": "resolution_symbolique",
+      "position_arc_emotionnel": "elevation_finale",
+      "elements_necessaires": [
+        "Reconversion urbaine de l'Île de Nantes et transformation du quai des Antilles",
+        "La grue jaune classée monument historique — passage d'outil à symbole",
+        "Sa couleur jaune comme signal dans le paysage urbain contemporain",
+        "Symbolique : mémoire collective, identité nantaise, lien entre passé industriel et avenir",
+        "Ouverture sur la permanence de la mémoire ouvrière dans le paysage"
+      ],
+      "mood": "inspirant_mesuré"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_narratif",
+      "duree": 2.0,
+      "description": "Du panorama industriel, la narration resserre sur une voix humaine — celle de Jean Penaud. La transition se fait par une phrase de la narratrice qui mène naturellement vers l'archive sonore, comme si le lieu lui-même convoquait un souvenir."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce",
+      "duree": 2.5,
+      "description": "Le témoignage vivant de Jean Penaud s'estompe progressivement. Un bref silence ou un son d'ambiance portuaire lointain marque le passage du temps. La narratrice reprend sur un registre plus grave, signalant que cette époque est révolue."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "renaissance_progressive",
+      "duree": 2.0,
+      "description": "Du silence des cales, la narration pivote vers le présent. Le ton s'élève légèrement — non pas dans l'emphase, mais dans une forme de sérénité. La grue, objet de perte, devient objet de fierté retrouvée."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un diptyque avant/après articulé autour de la fermeture des chantiers (partie 3 = pivot). Les parties 1-2 constituent le volet 'avant' (vie industrielle incarnée), les parties 3-4 le volet 'après' (perte puis transfiguration symbolique). — VOIX : Narratrice professionnelle, ton neutre informatif constant. Pas d'adresse directe au public. Registre accessible grand public : phrases courtes à moyennes, vocabulaire courant, termes techniques toujours explicités naturellement dans le flux narratif (ex. 'les goussets, ces petites pièces de renfort en métal'). — ARCHIVES : L'extrait de Jean Penaud (≈12-15s) doit être intégré dans la partie 2, encadré par la narration pour contextualiser. Privilégier les passages les plus concrets et vivants : l'embauche du 5 février 1957, le parc à ferret, les goussets, la formation avec l'ancien de 63 ans. L'archive doit sembler surgir naturellement du récit, pas être plaquée. — AMBIANCE SONORE MINIMALISTE : Pas de musique envahissante. Suggérer des nappes discrètes, éventuellement un son de Loire ou de métal lointain aux transitions. Le silence est un outil narratif, notamment à la transition 2→3. — RYTHME : Modéré et régulier. La partie 1 pose le cadre sans précipitation. La partie 2 gagne en densité humaine. La partie 3 ralentit volontairement (gravité). La partie 4 reprend un souffle mesuré vers l'élévation. — RIGUEUR HISTORIQUE : Ne pas inventer de date de fermeture précise des chantiers ni de date de classement de la grue si non fournie dans le contexte. Rester sur des formulations ouvertes ('au fil des décennies suivantes', 'quand les chantiers ont fermé'). Les seuls faits datés exploitables : embauche de Jean Penaud le 5 février 1957, retour de Cherbourg en juillet 1969, travail sur les sous-marins atomiques."
+}

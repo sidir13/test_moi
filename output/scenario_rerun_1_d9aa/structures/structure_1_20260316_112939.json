@@ -1,0 +1,101 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des hommes penchés sur leurs planches à dessin donnaient forme aux navires avant même que le premier rivet ne soit posé. Jean Penaud fut l'un de ces dessinateurs industriels, figures discrètes mais essentielles de la construction navale nantaise. À travers son parcours et celui de ses pairs, c'est toute une chronique sociale qui se dessine : celle d'un savoir-faire technique exigeant, d'un quotidien rythmé par le travail de conception, et d'un monde industriel qui finira par s'éteindre avec le déclin des chantiers. Le récit s'ouvre et se referme sur le même geste — le trait de crayon sur le papier calque — pour dire ce qui reste quand les cales ont disparu.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le geste premier",
+      "duree_cible": 15,
+      "fonction_narrative": "ouverture_circulaire",
+      "position_arc_emotionnel": "immersion_calme",
+      "elements_necessaires": [
+        "Image sensorielle du bureau d'études : lumière, bruit lointain des cales, odeur de calque",
+        "Geste fondateur du dessinateur — le trait de crayon sur la planche",
+        "Ancrage spatial : chantiers navals de Nantes, bords de Loire",
+        "Ambiance sonore suggérée : grondement sourd des chantiers en arrière-plan"
+      ],
+      "mood": "contemplatif_immersif"
+    },
+    {
+      "partie": 2,
+      "titre": "Un métier dans l'ombre des coques",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition_sociale",
+      "position_arc_emotionnel": "montée_informative",
+      "elements_necessaires": [
+        "Définition du rôle du dessinateur industriel naval — concevoir les plans des navires",
+        "Place dans la chaîne de production : entre ingénieurs et ouvriers des cales",
+        "Organisation du bureau d'études sur les chantiers (Chantiers de la Loire, Dubigeon)",
+        "Citation directe de Jean Penaud ou d'un témoignage de dessinateur si disponible dans les sources",
+        "Registre technique accessible : planches, échelles, coupes, tracés de coques"
+      ],
+      "mood": "descriptif_documentaire"
+    },
+    {
+      "partie": 3,
+      "titre": "Le quotidien de Jean Penaud",
+      "duree_cible": 25,
+      "fonction_narrative": "portrait_individuel_dans_le_collectif",
+      "position_arc_emotionnel": "sommet_emotionnel",
+      "elements_necessaires": [
+        "Focus sur Jean Penaud — son parcours sur les chantiers nantais",
+        "Citation directe ou témoignage restitué avec authenticité",
+        "Détails concrets du travail quotidien : précision du geste, rigueur, fierté du métier",
+        "Dimension collective : Penaud comme représentant d'un groupe social de dessinateurs",
+        "Ambiance sonore suggérée : silence concentré du bureau, contraste avec le vacarme des cales"
+      ],
+      "mood": "intime_respectueux"
+    },
+    {
+      "partie": 4,
+      "titre": "Le trait qui demeure",
+      "duree_cible": 25,
+      "fonction_narrative": "fermeture_circulaire",
+      "position_arc_emotionnel": "descente_mélancolique_puis_retour_au_calme",
+      "elements_necessaires": [
+        "Évocation du déclin de la construction navale nantaise",
+        "Ce qui reste : les plans, les archives, la mémoire du geste technique",
+        "Retour au motif d'ouverture — le trait de crayon sur le calque",
+        "Dernière image : le bureau d'études vide ou le plan comme trace patrimoniale",
+        "Ambiance sonore suggérée : silence progressif, fin du bruit industriel"
+      ],
+      "mood": "mélancolique_digne"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_contemplatif — du geste au geste, en passant par le portrait social et intime d'un métier disparu",
+  "rythme_general": "modere — phrases posées, tempo narratif régulier avec légère accélération en partie centrale et ralentissement final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "élargissement_contextuel",
+      "duree": 2.0,
+      "description": "Du geste individuel saisi en ouverture, la narration s'élargit naturellement vers l'explication du métier. Transition fluide par continuité spatiale : du crayon sur le calque vers le bureau d'études dans son ensemble, puis vers l'organisation des chantiers."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "focalisation_intime",
+      "duree": 2.0,
+      "description": "Du collectif des dessinateurs, la voix resserre sur Jean Penaud. Transition par une formule du type 'Parmi eux…' ou par l'introduction d'une citation directe qui fait entendre une voix singulière dans le groupe."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "glissement_temporel_élégiaque",
+      "duree": 2.5,
+      "description": "Du quotidien vivant du chantier, passage au temps qui a passé et au déclin. Transition par contraste temporel doux — le même lieu, mais le silence a remplacé le bruit. Retour au motif du trait de crayon pour boucler la structure circulaire."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme une boucle — il s'ouvre et se ferme sur le même geste (le trait du dessinateur), ce qui donne au format court sa cohérence émotionnelle. La voix off est omnisciente, à la 3e personne, sans adresse au public. Le ton est celui d'une chronique sociale respectueuse : ni héroïsation, ni misérabilisme. Jean Penaud n'est pas un héros solitaire mais le représentant d'un groupe professionnel dont on raconte le quotidien avec précision. || REGISTRE : Grand public — phrases claires, vocabulaire technique introduit naturellement et immédiatement explicité. Authenticité linguistique : on peut employer des termes d'époque (calque, tire-ligne, gabarit) sans jargonner. || CITATIONS : Intégrer au moins une citation directe issue des sources (témoignage de Penaud ou d'un collègue dessinateur). La citation doit être enchâssée dans la narration, pas plaquée. || AMBIANCE SONORE (indications pour la production) : Partie 1 — bruit sourd et lointain de chantier, crayon sur papier. Partie 2 — ambiance de bureau d'études, murmures, règles qui glissent. Partie 3 — même ambiance, plus intime. Partie 4 — silence progressif, derniers sons industriels qui s'éteignent. || CONTRAINTE DURÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être dense et concise. Les transitions sont narratives (pas de blanc ni de jingle) et comptées dans la durée des sections adjacentes. || RIGUEUR HISTORIQUE : Ne rien inventer. Si les sources ne fournissent pas de date précise pour le parcours de Penaud, rester dans le vague temporel (« au milieu du siècle », « pendant des décennies »). Les chantiers nommables sont uniquement ceux du contexte : Chantiers de la Loire (Prairie-au-Duc), Chantiers Dubigeon."
+}

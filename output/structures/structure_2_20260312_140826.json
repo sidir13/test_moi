@@ -1,0 +1,150 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Jean Penaud, dernier témoin des cales silencieuses",
+  "resumeHistoire": "Au XVIIIe siècle, Nantes règne sur le commerce atlantique depuis ses quais en bord de Loire, mais l'ensablement progressif du fleuve et l'augmentation du tonnage des navires forcent un lent transfert des activités vers l'aval, puis vers Saint-Nazaire. C'est dans ce déclin déjà amorcé que Jean Penaud, charpentier-fer, entre au Chantier de la Loire le 5 février 1957, découvrant un monde ouvrier encore vibrant mais menacé. De Nantes à Dubigeon, de Cherbourg et ses sous-marins atomiques au retour en juillet 1969, son parcours épouse les derniers soubresauts d'une industrie navale nantaise en sursis. À travers son témoignage, c'est toute la mémoire d'un port qui s'éteint — des quais de la Fosse aux cales de la Prairie-au-Duc — et d'une ville qui tourne définitivement le dos à sa vocation maritime.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port au sommet du monde",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "ancrage_solennel",
+      "elements_necessaires": [
+        "Évocation de Nantes au XVIIIe siècle comme grand port atlantique",
+        "Quai de la Fosse, Île Feydeau, activité commerciale intense",
+        "Mention du commerce colonial et de la traite négrière comme contexte de l'apogée",
+        "Registre académique mais accessible, ton documentaire posé",
+        "Introduction du fil rouge : ce port glorieux va décliner"
+      ],
+      "mood": "majestueux_mais_ombragé"
+    },
+    {
+      "partie": 2,
+      "titre": "Le fleuve se dérobe",
+      "duree_cible": 50.0,
+      "fonction_narrative": "montee_de_tension",
+      "position_arc_emotionnel": "inquietude_croissante",
+      "elements_necessaires": [
+        "Ensablement progressif de la Loire et contraintes de navigabilité",
+        "Augmentation du tonnage des navires (voile vers vapeur, coques plus grandes)",
+        "Premières difficultés pour remonter l'estuaire jusqu'à Nantes",
+        "Tentatives d'aménagements fluviaux et canal maritime de la Basse-Loire",
+        "Transfert progressif des activités vers Saint-Nazaire au XIXe siècle"
+      ],
+      "mood": "factuel_tendu"
+    },
+    {
+      "partie": 3,
+      "titre": "5 février 1957 — Un homme entre en cale",
+      "duree_cible": 65.0,
+      "fonction_narrative": "pivot_narratif",
+      "position_arc_emotionnel": "immersion_humaine",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud, 83 ans au moment du témoignage, charpentier-fer",
+        "Date précise d'embauche : 5 février 1957 au Chantier de la Loire",
+        "Citation directe de Jean Penaud sur son entrée et ses premiers jours (huit jours au balai, puis le parc à fer)",
+        "Évocation sensorielle des chantiers navals de Chantenay / Prairie-au-Duc",
+        "Contraste entre la vitalité ouvrière et le déclin déjà en cours du port commercial"
+      ],
+      "mood": "intime_documentaire"
+    },
+    {
+      "partie": 4,
+      "titre": "De cale en cale, de Nantes à Cherbourg",
+      "duree_cible": 55.0,
+      "fonction_narrative": "developpement",
+      "position_arc_emotionnel": "tension_narrative",
+      "elements_necessaires": [
+        "Parcours de Jean Penaud : Chantier de la Loire, mutation à Dubigeon, départ pour Cherbourg",
+        "Sept ans et demi à Cherbourg sur les sous-marins puis le sous-marin atomique",
+        "Citation directe sur Cherbourg et le sous-marin atomique",
+        "Ce parcours reflète la spécialisation et la dispersion des savoir-faire navals hors de Nantes",
+        "Retour à Nantes en juillet 1969 — un monde qui a changé"
+      ],
+      "mood": "mouvement_nostalgique"
+    },
+    {
+      "partie": 5,
+      "titre": "Les cales se taisent",
+      "duree_cible": 50.0,
+      "fonction_narrative": "climax",
+      "position_arc_emotionnel": "point_culminant_emotionnel",
+      "elements_necessaires": [
+        "Fermeture progressive des chantiers navals nantais (Dubigeon, dernières décennies du XXe siècle)",
+        "Impact social sur les travailleurs portuaires et ouvriers navals",
+        "Le silence qui remplace le bruit des riveteuses et des marteaux",
+        "Jean Penaud comme témoin de cette extinction — son regard d'ancien",
+        "Arrêt définitif des activités navales à Nantes"
+      ],
+      "mood": "grave_poignant"
+    },
+    {
+      "partie": 6,
+      "titre": "Mémoire vive d'un port disparu",
+      "duree_cible": 25.0,
+      "fonction_narrative": "resolution",
+      "position_arc_emotionnel": "apaisement_reflexif",
+      "elements_necessaires": [
+        "Transformation de l'Île de Nantes post-industrielle",
+        "Reconversion patrimoniale et culturelle",
+        "Le témoignage de Jean Penaud comme archive humaine vivante",
+        "Ouverture : la mémoire ouvrière comme héritage",
+        "Phrase de clôture sobre et résonante"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_avec_resolution",
+  "rythme_general": "Démarrage ample et posé sur l'apogée historique, accélération progressive avec le déclin géographique, ralentissement intime à l'entrée du portrait de Jean Penaud, reprise de tension avec les fermetures, puis apaisement final contemplatif. Le rythme épouse la respiration d'un fleuve qui se retire.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "contraste_temporel",
+      "duree": 3.0,
+      "description": "De la splendeur du XVIIIe siècle, glissement vers les premiers signes d'essoufflement. La transition s'opère par l'image du fleuve lui-même : celui qui portait les navires commence à les trahir."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "zoom_du_general_au_particulier",
+      "duree": 3.0,
+      "description": "Passage fluide du récit macro-historique au portrait individuel. On quitte l'histoire des infrastructures pour entrer dans la vie d'un homme. Formule de type : 'C'est dans ce port déjà fragilisé qu'un jeune homme de vingt ans pousse la porte du Chantier de la Loire…'"
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_chronologique",
+      "duree": 2.0,
+      "description": "Enchaînement naturel dans la biographie de Jean Penaud. Le récit suit le fil de sa carrière comme un courant qui porte le personnage d'un chantier à l'autre."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "assombrissement_progressif",
+      "duree": 2.5,
+      "description": "Le retour de Jean Penaud à Nantes en 1969 ouvre sur un monde en déclin. La transition lie son regard personnel à la réalité collective de la fermeture des chantiers. Le tempo ralentit, le ton s'assombrit."
+    },
+    {
+      "entre_parties": [
+        5,
+        6
+      ],
+      "type": "ouverture_apaisee",
+      "duree": 2.0,
+      "description": "Du silence des cales fermées, on glisse vers la mémoire et la transmission. Le témoignage de Jean Penaud devient lui-même un acte de résistance à l'oubli. La lumière revient doucement."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme un mouvement de marée descendante — l'eau (la Loire, le commerce, l'activité) se retire progressivement, et Jean Penaud est le dernier homme debout sur la grève. Ne jamais rompre ce fil métaphorique. — PORTRAIT INDIVIDUEL : Jean Penaud n'est jamais un prétexte ; il est le cœur battant du récit. Les faits historiques macro (ensablement, transfert vers Saint-Nazaire, fermetures) doivent toujours être reliés à son expérience ou à son époque. — CITATIONS : Intégrer naturellement 2 à 3 citations directes de Jean Penaud (embauche du 5 février 1957, les huit jours au balai et le parc à fer, Cherbourg et le sous-marin atomique, retour en juillet 69). Les introduire par des formules narratives fluides, jamais par des annonces méta ('il raconte'). Préférer : 'Ses mots sont précis…', ou simplement enchaîner après une contextualisation. — TON : Neutre et informatif mais jamais froid. L'émotion naît des faits, pas de l'emphase. Registre accessible grand public, phrases courtes à moyennes, vocabulaire précis sans jargon excessif. — AMBIANCE SONORE MINIMALISTE : Suggérer ponctuellement des sons d'ambiance (eau, métal, silence industriel) mais ne jamais surcharger. Le silence est un outil narratif, surtout dans la partie 5. — RIGUEUR : Toutes les dates et faits mentionnés doivent provenir du contexte fourni ou des transcriptions. Ne pas inventer de dates de fermeture précises si elles ne sont pas dans les sources. Utiliser des formulations prudentes ('dans les dernières décennies du XXe siècle') quand la précision manque. — DURÉE : Viser 600 mots maximum pour 300 secondes. Chaque section doit être dense et concise. Pas de remplissage."
+}

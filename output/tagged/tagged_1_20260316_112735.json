@@ -1,0 +1,22 @@
+{
+  "scenario_id": 1,
+  "titre": "Scénario historique",
+  "taggedText": "=== PARTIE 1 : Le trait et la coque ===\n\n{ambiance_chantier_naval_lointain.wav}\n\n[posé] Sur les bords de Loire, entre les cales de la Prairie-au-Duc et les hangars des Ateliers et Chantiers de Nantes, des centaines d'hommes façonnent l'acier. [pause] Mais avant que le moindre rivet ne soit posé, avant que la tôle ne soit découpée, il faut un plan. {silence_bureau_etudes.wav} Dans les bureaux d'études, à l'écart du vacarme des chantiers, des dessinateurs penchés sur leurs tables tracent les lignes de chaque navire. [pause] Jean Penaud est l'un d'eux. [ARCHIVE : « J'étais dessinateur, on faisait les plans de formes des coques, les plans d'ensemble, tout ce qui permettait ensuite aux traceurs et aux ouvriers de travailler. »]\n\n=== PARTIE 2 : Entre précision et fierté ===\n\nLe dessinateur occupe une place singulière dans la hiérarchie du chantier. [posé] Ni ingénieur, ni ouvrier, il est le maillon qui transforme le calcul en geste. Chaque courbe de coque exige une précision absolue — [accentué] un millimètre d'écart sur le papier, et c'est toute une structure qui dévie dans la réalité. [ARCHIVE : « On travaillait à l'échelle un dixième, parfois au vingtième. Fallait pas se louper. [pause] Ce qu'on dessinait, c'était ce qu'on construisait. »] {ambiance_salle_a_tracer.wav} À la salle à tracer, les plans de Penaud et de ses collègues prennent leur dimension réelle, reportés en grandeur nature sur le sol. Les traceurs s'en emparent, puis les chaudronniers, les soudeurs. [pause] Toute la chaîne dépend de ce premier trait. [ralentit] Quand les derniers chantiers ferment dans les années quatre-vingt, c'est aussi ce savoir-faire silencieux qui disparaît [pause] — celui d'hommes dont le crayon a donné forme à des dizaines de navires, [triste] lancés depuis les rives de Nantes vers le large.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le trait et la coque",
+      "taggedText": "{ambiance_chantier_naval_lointain.wav}\n\n[posé] Sur les bords de Loire, entre les cales de la Prairie-au-Duc et les hangars des Ateliers et Chantiers de Nantes, des centaines d'hommes façonnent l'acier. [pause] Mais avant que le moindre rivet ne soit posé, avant que la tôle ne soit découpée, il faut un plan. {silence_bureau_etudes.wav} Dans les bureaux d'études, à l'écart du vacarme des chantiers, des dessinateurs penchés sur leurs tables tracent les lignes de chaque navire. [pause] Jean Penaud est l'un d'eux. [ARCHIVE : « J'étais dessinateur, on faisait les plans de formes des coques, les plans d'ensemble, tout ce qui permettait ensuite aux traceurs et aux ouvriers de travailler. »]"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Entre précision et fierté",
+      "taggedText": "Le dessinateur occupe une place singulière dans la hiérarchie du chantier. [posé] Ni ingénieur, ni ouvrier, il est le maillon qui transforme le calcul en geste. Chaque courbe de coque exige une précision absolue — [accentué] un millimètre d'écart sur le papier, et c'est toute une structure qui dévie dans la réalité. [ARCHIVE : « On travaillait à l'échelle un dixième, parfois au vingtième. Fallait pas se louper. [pause] Ce qu'on dessinait, c'était ce qu'on construisait. »] {ambiance_salle_a_tracer.wav} À la salle à tracer, les plans de Penaud et de ses collègues prennent leur dimension réelle, reportés en grandeur nature sur le sol. Les traceurs s'en emparent, puis les chaudronniers, les soudeurs. [pause] Toute la chaîne dépend de ce premier trait. [ralentit] Quand les derniers chantiers ferment dans les années quatre-vingt, c'est aussi ce savoir-faire silencieux qui disparaît [pause] — celui d'hommes dont le crayon a donné forme à des dizaines de navires, [triste] lancés depuis les rives de Nantes vers le large."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 11,
+    "soundTags": 3,
+    "originalWordCount": 268
+  }
+}

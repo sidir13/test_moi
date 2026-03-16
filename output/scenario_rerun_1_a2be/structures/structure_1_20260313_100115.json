@@ -1,0 +1,101 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le géant de l'estuaire",
+  "resumeHistoire": "Au début des années 2010, l'estuaire de la Loire sort d'une longue torpeur industrielle. Aux Chantiers de l'Atlantique, à Saint-Nazaire, des milliers d'ouvriers et d'ingénieurs assemblent un paquebot de croisière d'une envergure inédite, destiné à devenir l'un des plus grands navires jamais construits. Ce portrait du chantier et de son territoire raconte comment la naissance d'un géant des mers a réveillé la fierté d'un bassin portuaire tout entier, de Saint-Nazaire jusqu'à Nantes. Le récit s'ouvre et se referme sur les eaux calmes de la Loire, entre silence et renaissance, pour montrer que l'identité maritime de l'estuaire n'avait jamais vraiment disparu — elle attendait simplement qu'on la relance.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'estuaire endormi",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_circulaire_ouverture",
+      "position_arc_emotionnel": "calme_mélancolique",
+      "elements_necessaires": [
+        "Image sonore de la Loire silencieuse, brume sur l'estuaire",
+        "Évocation du port de Nantes et de son passé maritime glorieux",
+        "Constat d'un assoupissement industriel — les quais semblent figés",
+        "Registre contemplatif, phrases longues et lentes"
+      ],
+      "mood": "contemplatif_nostalgique"
+    },
+    {
+      "partie": 2,
+      "titre": "Le chantier s'éveille",
+      "duree_cible": 30.0,
+      "fonction_narrative": "développement_montée",
+      "position_arc_emotionnel": "tension_croissante",
+      "elements_necessaires": [
+        "Transition vers Saint-Nazaire et les Chantiers de l'Atlantique",
+        "Commande d'un paquebot géant dans les années 2010 — ampleur du projet",
+        "Portrait collectif du chantier : ingénieurs, soudeurs, corps de métiers",
+        "Citation directe d'un acteur du chantier ou d'un responsable si disponible dans les sources",
+        "Ambiance sonore industrielle : métal, grues, activité intense"
+      ],
+      "mood": "énergique_industriel"
+    },
+    {
+      "partie": 3,
+      "titre": "Un géant prend forme",
+      "duree_cible": 30.0,
+      "fonction_narrative": "climax_émerveillement",
+      "position_arc_emotionnel": "sommet_émotionnel",
+      "elements_necessaires": [
+        "Description physique du navire — dimensions vertigineuses, prouesse technique",
+        "Le moment de la mise à l'eau ou du départ depuis l'estuaire",
+        "Impact visuel et émotionnel sur les habitants du territoire",
+        "Citation possible sur la fierté locale ou l'exploit industriel",
+        "Rythme qui s'élargit — souffle épique contenu"
+      ],
+      "mood": "épique_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Le fleuve se souvient",
+      "duree_cible": 35.0,
+      "fonction_narrative": "résolution_retour_circulaire",
+      "position_arc_emotionnel": "apaisement_résonance",
+      "elements_necessaires": [
+        "Retour à l'image de l'estuaire — même décor qu'en ouverture, mais transformé",
+        "Renaissance portuaire et identitaire de Nantes et Saint-Nazaire",
+        "Réflexion sur le patrimoine maritime vivant, la mémoire industrielle réactivée",
+        "Fermeture circulaire : la Loire n'était pas endormie, elle attendait",
+        "Dernière phrase contemplative, écho à l'ouverture"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_ascendant — du silence mélancolique vers l'émerveillement, puis retour au calme transformé",
+  "rythme_general": "lent_contemplatif avec accélération centrale maîtrisée",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "rupture_sonore_douce",
+      "duree": 2.0,
+      "description": "Du silence brumeux de l'estuaire, un premier bruit métallique lointain émerge — la narration glisse géographiquement de Nantes vers Saint-Nazaire sans coupe franche, comme si le fleuve lui-même portait le son."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "L'activité du chantier se densifie jusqu'à révéler l'objet de toute cette énergie : le navire lui-même. Transition par élargissement du cadre — du détail ouvrier à la vision d'ensemble du géant."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_contemplatif",
+      "duree": 2.5,
+      "description": "Le navire s'éloigne sur l'estuaire. Le bruit s'estompe. La narration revient au paysage fluvial de l'ouverture, mais la lumière a changé — le silence n'est plus celui de l'abandon, c'est celui de l'après."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est un seul mouvement fluide porté par la Loire comme fil conducteur. Éviter toute rupture sèche entre sections — chaque transition est un glissement naturel (géographique, sonore ou temporel). Le portrait est celui du chantier-territoire plutôt que d'un individu unique, faute de nom précis dans les sources ; le traiter comme un personnage collectif avec ses gestes, ses bruits, sa fierté. STRUCTURE CIRCULAIRE : La première et la dernière image sont identiques (l'estuaire calme), mais le sens a changé — passer de la mélancolie à la résonance lumineuse. DENSITÉ SONORE IMMERSIVE : Prévoir des indications d'ambiances sonores riches (eau, brume, métal, foule, sirène de navire) qui soutiennent la narration sans la couvrir. CITATIONS : Intégrer 1 à 2 citations directes courtes si le matériau source le permet ; sinon, utiliser des formulations rapportées prudentes (« on dit alors que… », « certains parlent de… »). DÉBIT : ~2 mots/seconde, soit environ 240 mots maximum pour 120 secondes. Privilégier des phrases courtes en ouverture et fermeture (rythme lent), légèrement plus denses au centre (parties 2-3). REGISTRE : Accessible grand public, vocabulaire clair, pas de jargon technique non expliqué."
+}

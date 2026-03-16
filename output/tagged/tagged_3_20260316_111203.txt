@@ -1,0 +1,27 @@
+=== PARTIE 1 : L'aube du bureau de dessin ===
+
+{silence_bureau_matin.wav}
+
+[posé] Au petit matin, le bureau d'études est encore silencieux. [pause] Derrière les vitres, la cale résonne déjà de ses premiers coups de masse. Ici, un homme s'installe devant sa planche. [ralentit] Le dessinateur — figure discrète et pourtant essentielle du chantier naval.
+
+=== PARTIE 2 : La salle à tracer — le geste et l'outil ===
+
+{crissement_crayon_bois.wav}
+
+Plus bas, dans la salle à tracer, d'autres sont à genoux sur un plancher immense. À l'échelle un, ils dessinent les formes de la coque — lignes d'eau, couples, développées de tôle. [posé] Compas, lattes souples, équerres : chaque outil prolonge la main. Un ancien traceur le résumait ainsi : [accentué] « Un millimètre d'erreur sur le tracé, c'est un centimètre sur la coque. » [pause] Le crissement du crayon sur le bois ne tolère aucune hésitation.
+
+=== PARTIE 3 : La hiérarchie du trait ===
+
+Au bureau d'études, l'ordre est strict. [posé] L'ingénieur conçoit, le dessinateur principal répartit, le calqueur reproduit, l'apprenti observe. On apprend en regardant faire, pendant des mois, avant de toucher un tire-ligne. [pause] Car le plan, une fois signé, descend vers les ateliers — [ralentit] et là, toute erreur se paie en acier gâché.
+
+=== PARTIE 4 : Du plan à la coque — le trait prend chair ===
+
+{vacarme_cale_construction.wav}
+
+[précipité] Dans la cale, le vacarme est assourdissant. Un traceur vérifie un gabarit contre la membrure. Plus loin, un chaudronnier ajuste sa tôle au chalumeau. Le contremaître déplie le plan, compare, approuve d'un geste. [pause] [posé] Sous les coups de rivet, le navire prend forme — fidèle au trait, millimètre par millimètre.
+
+=== PARTIE 5 : L'encre et la mémoire ===
+
+{silence_archive_feutre.wav}
+
+[ralentit] Puis les décennies passent. Le compas cède la place à la machine. [pause] Les salles à tracer se vident. [triste] Mais dans les archives des chantiers, des milliers de plans jaunis gardent la trace de ces mains patientes — [ralentit] et de navires qui leur doivent leurs formes.

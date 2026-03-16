@@ -1,0 +1,37 @@
+{
+  "scenario_id": 3,
+  "titre": "Le trait et la coque — Chronique des dessinateurs de chantier naval",
+  "taggedText": "=== PARTIE 1 : L'aube du bureau de dessin ===\n\n{silence_bureau_matin.wav}\n\n[posé] Au petit matin, le bureau d'études est encore silencieux. [pause] Derrière les vitres, la cale résonne déjà de ses premiers coups de masse. Ici, un homme s'installe devant sa planche. [ralentit] Le dessinateur — figure discrète et pourtant essentielle du chantier naval.\n\n=== PARTIE 2 : La salle à tracer — le geste et l'outil ===\n\n{crissement_crayon_bois.wav}\n\nPlus bas, dans la salle à tracer, d'autres sont à genoux sur un plancher immense. À l'échelle un, ils dessinent les formes de la coque — lignes d'eau, couples, développées de tôle. [posé] Compas, lattes souples, équerres : chaque outil prolonge la main. Un ancien traceur le résumait ainsi : [accentué] « Un millimètre d'erreur sur le tracé, c'est un centimètre sur la coque. » [pause] Le crissement du crayon sur le bois ne tolère aucune hésitation.\n\n=== PARTIE 3 : La hiérarchie du trait ===\n\nAu bureau d'études, l'ordre est strict. [posé] L'ingénieur conçoit, le dessinateur principal répartit, le calqueur reproduit, l'apprenti observe. On apprend en regardant faire, pendant des mois, avant de toucher un tire-ligne. [pause] Car le plan, une fois signé, descend vers les ateliers — [ralentit] et là, toute erreur se paie en acier gâché.\n\n=== PARTIE 4 : Du plan à la coque — le trait prend chair ===\n\n{vacarme_cale_construction.wav}\n\n[précipité] Dans la cale, le vacarme est assourdissant. Un traceur vérifie un gabarit contre la membrure. Plus loin, un chaudronnier ajuste sa tôle au chalumeau. Le contremaître déplie le plan, compare, approuve d'un geste. [pause] [posé] Sous les coups de rivet, le navire prend forme — fidèle au trait, millimètre par millimètre.\n\n=== PARTIE 5 : L'encre et la mémoire ===\n\n{silence_archive_feutre.wav}\n\n[ralentit] Puis les décennies passent. Le compas cède la place à la machine. [pause] Les salles à tracer se vident. [triste] Mais dans les archives des chantiers, des milliers de plans jaunis gardent la trace de ces mains patientes — [ralentit] et de navires qui leur doivent leurs formes.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube du bureau de dessin",
+      "taggedText": "{silence_bureau_matin.wav}\n\n[posé] Au petit matin, le bureau d'études est encore silencieux. [pause] Derrière les vitres, la cale résonne déjà de ses premiers coups de masse. Ici, un homme s'installe devant sa planche. [ralentit] Le dessinateur — figure discrète et pourtant essentielle du chantier naval."
+    },
+    {
+      "partie_id": 2,
+      "titre": "La salle à tracer — le geste et l'outil",
+      "taggedText": "{crissement_crayon_bois.wav}\n\nPlus bas, dans la salle à tracer, d'autres sont à genoux sur un plancher immense. À l'échelle un, ils dessinent les formes de la coque — lignes d'eau, couples, développées de tôle. [posé] Compas, lattes souples, équerres : chaque outil prolonge la main. Un ancien traceur le résumait ainsi : [accentué] « Un millimètre d'erreur sur le tracé, c'est un centimètre sur la coque. » [pause] Le crissement du crayon sur le bois ne tolère aucune hésitation."
+    },
+    {
+      "partie_id": 3,
+      "titre": "La hiérarchie du trait",
+      "taggedText": "Au bureau d'études, l'ordre est strict. [posé] L'ingénieur conçoit, le dessinateur principal répartit, le calqueur reproduit, l'apprenti observe. On apprend en regardant faire, pendant des mois, avant de toucher un tire-ligne. [pause] Car le plan, une fois signé, descend vers les ateliers — [ralentit] et là, toute erreur se paie en acier gâché."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Du plan à la coque — le trait prend chair",
+      "taggedText": "{vacarme_cale_construction.wav}\n\n[précipité] Dans la cale, le vacarme est assourdissant. Un traceur vérifie un gabarit contre la membrure. Plus loin, un chaudronnier ajuste sa tôle au chalumeau. Le contremaître déplie le plan, compare, approuve d'un geste. [pause] [posé] Sous les coups de rivet, le navire prend forme — fidèle au trait, millimètre par millimètre."
+    },
+    {
+      "partie_id": 5,
+      "titre": "L'encre et la mémoire",
+      "taggedText": "{silence_archive_feutre.wav}\n\n[ralentit] Puis les décennies passent. Le compas cède la place à la machine. [pause] Les salles à tracer se vident. [triste] Mais dans les archives des chantiers, des milliers de plans jaunis gardent la trace de ces mains patientes — [ralentit] et de navires qui leur doivent leurs formes."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 16,
+    "soundTags": 4,
+    "originalWordCount": 263
+  }
+}

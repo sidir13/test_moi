@@ -1,0 +1,125 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Le trait et la coque — Mémoire d'un dessinateur de chantier naval",
+  "resumeHistoire": "Dans la salle à tracer d'un chantier naval, un dessinateur trace à l'échelle grandeur les formes d'une coque, perpétuant un savoir-faire transmis de génération en génération. Chaque courbe qu'il dessine sur le plancher de la salle à tracer deviendra tôle, membrure, navire. Son travail minutieux, à la croisée de l'art et de l'ingénierie, relie le bureau d'études aux ateliers où les ouvriers donnent corps à ses plans. Mais l'arrivée progressive des techniques nouvelles de dessin industriel transforme en profondeur ce métier séculaire, effaçant peu à peu le geste du traceur au profit de méthodes modernes. Ce récit en forme de flashback saisit l'essence d'un savoir technique à l'instant où il bascule entre tradition et mutation.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le geste suspendu",
+      "duree_cible": 12,
+      "fonction_narrative": "amorce_flashback",
+      "position_arc_emotionnel": "mélancolie_contemplative",
+      "elements_necessaires": [
+        "Ouverture sur une salle à tracer silencieuse, probablement désaffectée — époque tardive de la période",
+        "Immersion sonore : silence, écho, vastité du lieu vide",
+        "Image d'un plancher de traçage marqué de lignes anciennes",
+        "Amorce du flashback : une voix off qui remonte le temps"
+      ],
+      "mood": "nostalgique_immersif"
+    },
+    {
+      "partie": 2,
+      "titre": "L'homme au compas",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition_avant_evenement",
+      "position_arc_emotionnel": "montée_admiration",
+      "elements_necessaires": [
+        "Portrait du dessinateur-traceur dans son quotidien : arrivée à la salle à tracer",
+        "Description précise des outils — compas, règles flexibles (lattes), équerres, crayons, fil à tracer",
+        "Le travail de tracé grandeur nature au sol : report des formes de la coque",
+        "Hiérarchie du bureau d'études : l'ingénieur conçoit, le dessinateur met en plan, le traceur transpose à l'échelle 1",
+        "Citation directe possible sur le geste ou la précision requise",
+        "Ambiance sonore : crayon sur bois, pas sur le plancher, murmures de concentration"
+      ],
+      "mood": "précis_respectueux"
+    },
+    {
+      "partie": 3,
+      "titre": "Du trait à la tôle",
+      "duree_cible": 20,
+      "fonction_narrative": "developpement_lien_atelier",
+      "position_arc_emotionnel": "intensité_narrative_haute",
+      "elements_necessaires": [
+        "Le passage du plan au réel : comment le tracé devient gabarit, puis pièce de coque",
+        "Lien physique entre salle à tracer et cale de construction — le dessinateur descend parfois vérifier",
+        "Contraste sonore : du silence du bureau au vacarme des ateliers de coque (rivets, marteaux)",
+        "Le savoir-faire comme chaîne humaine : chaque trait engage la sécurité du navire",
+        "Citation possible d'un ouvrier ou témoignage sur la confiance accordée au plan"
+      ],
+      "mood": "dynamique_industriel"
+    },
+    {
+      "partie": 4,
+      "titre": "Le dernier tracé",
+      "duree_cible": 20,
+      "fonction_narrative": "bascule_apres_evenement",
+      "position_arc_emotionnel": "tension_élégiaque",
+      "elements_necessaires": [
+        "Évolution des techniques de dessin industriel : arrivée de méthodes nouvelles",
+        "Le métier de traceur se transforme — le geste manuel cède du terrain",
+        "Retour au présent narratif : la salle à tracer se vide progressivement",
+        "Transmission fragilisée : un savoir qui ne se transmet plus de la même manière",
+        "Contraste avant/après : la même salle, le même plancher, mais un monde différent"
+      ],
+      "mood": "grave_mesuré"
+    },
+    {
+      "partie": 5,
+      "titre": "Lignes de mémoire",
+      "duree_cible": 13,
+      "fonction_narrative": "resolution_contemplative",
+      "position_arc_emotionnel": "apaisement_mélancolique",
+      "elements_necessaires": [
+        "Retour à l'image d'ouverture : le plancher marqué de traits",
+        "Élévation du propos : chaque navire lancé portait en lui la main d'un dessinateur",
+        "Fermeture du flashback — boucle narrative",
+        "Dernière image sonore : le bassin de lancement, l'eau, puis le silence"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_nostalgie_admiration_elegie_apaisement",
+  "rythme_general": "Ouverture lente et immersive, accélération progressive dans les parties centrales (geste technique puis lien avec l'atelier), ralentissement marqué sur la bascule et la résolution — rythme en arche dissymétrique, plus dense au centre.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "flashback_temporel",
+      "duree": 2.0,
+      "description": "Le silence de la salle vide se remplit progressivement de sons passés — un crayon qui gratte, des pas — et la voix off glisse vers le souvenir : 'Il fut un temps où, chaque matin…'. Transition fluide par le son avant le texte."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_spatiale",
+      "duree": 2.0,
+      "description": "Du geste précis du traceur, on suit le gabarit qui quitte la salle à tracer pour descendre vers les ateliers. Transition par le contraste sonore : le calme cède au bruit métallique. Le récit accompagne physiquement le plan dans son voyage vers la matière."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 2.5,
+      "description": "Le vacarme de l'atelier s'estompe lentement, comme un souvenir qui s'éloigne. La voix off marque une pause, puis reprend sur un ton plus grave : 'Puis, un jour…'. On quitte l'âge d'or pour la mutation. Le changement de tempo signale le diptyque avant/après."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "boucle_narrative",
+      "duree": 1.5,
+      "description": "Retour au lieu d'ouverture — la salle à tracer. La voix off referme le flashback par un écho à la première image. Transition par le silence retrouvé, mais chargé désormais de tout ce qui a été raconté."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme un seul mouvement de mémoire — un flashback déclenché par un lieu. La salle à tracer est le fil conducteur spatial et émotionnel : on y entre au début (vide), on y travaille au cœur du récit (pleine), on la quitte à la fin (vidée par le temps). Éviter absolument toute rupture sèche entre sections : chaque transition doit être portée par le son ou par une phrase-pont de la voix off. Le diptyque avant/après ne doit pas être signalé lourdement — il doit se sentir comme un glissement naturel du récit. Les citations directes (si disponibles dans les sources) doivent être intégrées dans le flux narratif, jamais introduites de façon scolaire. Le débit de lecture doit ralentir sensiblement en parties 1 et 5 (≈1,7 mots/sec) et s'accélérer légèrement en partie 3 (≈2,2 mots/sec) pour épouser l'arc émotionnel. Budget total : environ 180 mots maximum, à répartir proportionnellement aux durées. Registre accessible mais précis — vocabulaire technique introduit naturellement, jamais expliqué de façon didactique."
+}

@@ -1,0 +1,25 @@
+=== PARTIE 1 : L'aube sur le chantier ===
+
+{clapotis_eau_coques_loire.wav}
+
+{metal_lointain_chantier.wav}
+
+[ton posé] Nous sommes à la fin des années cinquante. [pause 2s] Un matin de septembre 1958, sur les bords de Loire, un garçon de quatorze ans franchit les grilles des chantiers navals de Bretagne. Il s'appelle Gilles Hamon. [pause 1s] Devant lui s'ouvre un vaste atelier, un sol de bois ciré, immense — le parquet de traçage. {pas_sur_parquet_bois.wav} [ralentissement] C'est là, à même le plancher, que naissent les formes des navires.
+
+=== PARTIE 2 : À quatre pattes sur le parquet ===
+
+{genoux_sur_bois_decametre.wav}
+
+La journée commence au sol. Le jeune apprenti s'agenouille sur le parquet, décamètre en main. Des bureaux d'études parviennent des données — des points dans l'espace, définis en largeur, en longueur, en profondeur. [pause 1s] Il faut les reporter, un à un, à l'échelle un. [ton solennel] Grandeur nature. [pause 1s] Gilles Hamon se souvient : [EXTRAIT AUDIO — Gilles : « Il fallait étudier, faire les formes des bateaux. Suivant des données que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous une forme de dessin. »] {latte_souple_sur_bois_crayon.wav} Alors on passe une latte souple entre les points, on vérifie que la courbe se tient, que les points se suivent. [ralentissement] Chaque geste est lent, mesuré. Chaque trait dessine la coque d'un navire qui n'existe pas encore.
+
+=== PARTIE 3 : Du trait au bureau de dessin ===
+
+{ambiance_bureau_dessin_papier.wav}
+
+Avec les années, Gilles quitte le parquet pour la table à dessin. Il suit des cours du soir, à l'IVET, passe son CAP, puis se forme au dessin technique. [EXTRAIT AUDIO — Gilles : « Je suivais des cours de dessin, pas de dessinateur, puis j'suis passé au bureau d'dessin. Et puis comme j'étais bien vu, j'ai souvent eu des galons. »] [pause 1s] L'ouvrier-traceur, dans la hiérarchie du chantier, occupait déjà un rang à part. [ton légèrement affirmé] Celui qui savait lire les formes dans l'espace, qui savait les faire apparaître sur le bois, puis sur le papier — celui-là montait en grade, [ralentissement] naturellement.
+
+=== PARTIE 4 : Le soir tombe sur les chantiers ===
+
+{marteaux_lointains_decrescendo.wav}
+
+Les chantiers, eux, se transforment. Les fusions se succèdent — la Bretagne, les Chantiers de Nantes, puis Dubigeon, la fusion des trois chantiers nantais. Gilles traverse chacune de ces mutations. [pause 1s] Jusqu'au jour où, vers 1987, les portes se ferment. [pause 2s] Il part alors pour Saint-Nazaire, où il achève sa carrière. [ralentissement] Le soir tombe sur le parquet vide. {craquement_bois_unique.wav} Plus personne ne s'agenouille pour tracer, à l'échelle un, la coque d'un navire à venir. [pause 2s] [ton grave] Le silence a recouvert le bois.

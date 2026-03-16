@@ -1,0 +1,28 @@
+=== PARTIE 1 : Un colosse au bord du fleuve ===
+
+{clapotis_loire_vent_leger.wav}
+
+Sur l'Île de Nantes, à l'extrémité du quai des Antilles, une silhouette jaune se dresse face à la Loire. [pause 1s] Massive, immobile, visible depuis les deux rives. C'est une grue. Une grue de chantier naval, plantée là où s'étendait autrefois la Prairie-au-Duc, [pause 0.5s] au cœur de ce qu'on appelait les chantiers.
+
+=== PARTIE 2 : Le temps des chantiers ===
+
+{ambiance_chantier_naval_metal.wav}
+
+Pendant des décennies, cette grue a soulevé des tonnes d'acier au-dessus des coques en construction. Aux chantiers Dubigeon, aux Chantiers de la Loire, des centaines d'ouvriers travaillaient à son ombre. [pause 0.5s] Parmi eux, les charpentiers de fer. Jean Penaud était l'un d'entre eux. Embauché le 5 février 1957, il se souvient.
+
+[ARCHIVE — Jean Penaud]
+« Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans, comme charpentier de fer. Moi j'suis allé à bord directement. »
+
+À bord, on triait les goussets — ces petites pièces de renfort en métal — on les chargeait sur un petit train à plateau qui les amenait jusqu'aux navires. [ton légèrement appuyé] Le travail était physique, collectif, rythmé par le bruit du fer.
+
+=== PARTIE 3 : Le silence des cales ===
+
+{vent_quai_deserte.wav}
+
+[ralentissement] Puis les chantiers ont fermé. La désindustrialisation a vidé les cales, dispersé les équipes, éteint les bruits de métal. [pause 1.5s] Les navires ont cessé de naître ici. Mais la grue, elle, n'a pas bougé. [ton solennel] Elle est restée là, seule sur le quai désert, tournée vers un fleuve qui continuait de couler sans elle.
+
+=== PARTIE 4 : D'outil à icône ===
+
+{ambiance_promeneurs_ville_contemporaine.wav}
+
+Aujourd'hui, l'Île de Nantes a changé de visage. Autour de la grue, le Parc des Chantiers accueille les promeneurs. Les Machines de l'Île et le Hangar à Bananes ont investi les anciens bâtiments industriels. [pause 1s] Et la grue jaune, classée Monument Historique, veille toujours. Elle n'est plus un outil. [ton affirmatif] Elle est devenue le symbole d'une mémoire ouvrière que Nantes a choisi de ne pas effacer.

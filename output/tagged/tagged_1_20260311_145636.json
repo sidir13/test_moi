@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "La Grue Jaune — Sentinelle de la Loire",
+  "taggedText": "=== PARTIE 1 : Le temps des chantiers ===\n\n{ambiance_chantier_naval_metal_rivets.wav}\n\n[ton posé] Quai des Antilles, Île de Nantes, bords de Loire. [pause 1s] Dans les années cinquante, une grue jaune monumentale domine les chantiers navals. En contrebas, des centaines d'ouvriers s'affairent. {grincement_grue_mouvement.wav} On trie les goussets — ces pièces de renfort en métal —, on les charge sur un petit train à plateau, on les achemine à bord des navires en construction. [pause 1s] {archive_jean_penaud.wav} [ralentissement] Parmi ces hommes, Jean Penaud, charpentier de fer, embauché le 5 février 1957 au Chantier de la Loire.\n\n=== PARTIE 2 : Le silence des cales ===\n\n{vent_clapotis_loire.wav}\n\n[pause 2s] [ton grave] Puis les chantiers ferment. Dubigeon, le Chantier de la Loire — l'un après l'autre, ils cessent leur activité. [ralentissement] La désindustrialisation vide l'Île de Nantes. Là où résonnait le fracas des tôles, il ne reste que le vent, l'eau contre les cales, et une grue immobile, bras tendu au-dessus du fleuve. [pause 2s] {mouettes_lointaines.wav} Que faire de ce géant muet ?\n\n=== PARTIE 3 : Debout, face au fleuve ===\n\n{rumeur_urbaine_pas_velos.wav}\n\n[pause 1s] Là où d'autres villes ont tout rasé, Nantes fait un choix. La grue jaune est conservée, classée au patrimoine. Autour d'elle, l'Île de Nantes se réinvente : les anciennes friches deviennent des lieux de culture, de promenade, de vie. {motif_musical_discret.wav} La silhouette jaune, visible depuis les deux rives de la Loire, s'impose comme un repère dans le paysage. [ton solennel] Elle n'est plus un outil — [pause 1s] elle est devenue un symbole. Celui d'une ville qui a décidé de ne pas effacer sa mémoire ouvrière, mais de bâtir dessus.\n\n=== PARTIE 4 : Coda — La mémoire debout ===\n\n{eau_vent_loire_nu.wav}\n\n[ralentissement] [ton grave] Sur le quai des Antilles, la grue jaune se dresse face à la Loire. Sentinelle d'acier entre deux époques, elle veille — [pause 1s] [émotion contenue] et elle se souvient. [pause 3s] {silence_loire_seule.wav}",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le temps des chantiers",
+      "taggedText": "{ambiance_chantier_naval_metal_rivets.wav}\n\n[ton posé] Quai des Antilles, Île de Nantes, bords de Loire. [pause 1s] Dans les années cinquante, une grue jaune monumentale domine les chantiers navals. En contrebas, des centaines d'ouvriers s'affairent. {grincement_grue_mouvement.wav} On trie les goussets — ces pièces de renfort en métal —, on les charge sur un petit train à plateau, on les achemine à bord des navires en construction. [pause 1s] {archive_jean_penaud.wav} [ralentissement] Parmi ces hommes, Jean Penaud, charpentier de fer, embauché le 5 février 1957 au Chantier de la Loire."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le silence des cales",
+      "taggedText": "{vent_clapotis_loire.wav}\n\n[pause 2s] [ton grave] Puis les chantiers ferment. Dubigeon, le Chantier de la Loire — l'un après l'autre, ils cessent leur activité. [ralentissement] La désindustrialisation vide l'Île de Nantes. Là où résonnait le fracas des tôles, il ne reste que le vent, l'eau contre les cales, et une grue immobile, bras tendu au-dessus du fleuve. [pause 2s] {mouettes_lointaines.wav} Que faire de ce géant muet ?"
+    },
+    {
+      "partie_id": 3,
+      "titre": "Debout, face au fleuve",
+      "taggedText": "{rumeur_urbaine_pas_velos.wav}\n\n[pause 1s] Là où d'autres villes ont tout rasé, Nantes fait un choix. La grue jaune est conservée, classée au patrimoine. Autour d'elle, l'Île de Nantes se réinvente : les anciennes friches deviennent des lieux de culture, de promenade, de vie. {motif_musical_discret.wav} La silhouette jaune, visible depuis les deux rives de la Loire, s'impose comme un repère dans le paysage. [ton solennel] Elle n'est plus un outil — [pause 1s] elle est devenue un symbole. Celui d'une ville qui a décidé de ne pas effacer sa mémoire ouvrière, mais de bâtir dessus."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Coda — La mémoire debout",
+      "taggedText": "{eau_vent_loire_nu.wav}\n\n[ralentissement] [ton grave] Sur le quai des Antilles, la grue jaune se dresse face à la Loire. Sentinelle d'acier entre deux époques, elle veille — [pause 1s] [émotion contenue] et elle se souvient. [pause 3s] {silence_loire_seule.wav}"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 16,
+    "soundTags": 9,
+    "originalWordCount": 250
+  }
+}

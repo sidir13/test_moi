@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le géant qui réveilla la Loire",
+  "taggedText": "=== PARTIE 1 : Un port endormi ===\n\nCe récit s'adresse à tous, dans un ton neutre et informatif, à la manière d'un documentaire contemplatif.\n\n{clapotis_estuaire_calme.wav}\n\n[posé] Au début des années deux mille dix, le port de Nantes sommeille. Le long de l'estuaire de la Loire, les quais sont silencieux. [pause] Les grues, immobiles, contemplent un bassin vide. [atténué] Saint-Nazaire porte encore la mémoire des grands paquebots d'autrefois. Mais cette mémoire semble figée, comme un rêve ancien que personne n'ose plus réveiller. [pause]\n\n=== PARTIE 2 : Le chantier reprend souffle ===\n\nPuis, quelque chose change. [accentué] Les Chantiers de l'Atlantique décrochent des commandes colossales. {metal_chantier_lointain.wav} Dans les bassins de Saint-Nazaire, des coques immenses commencent à s'élever. Des dizaines de mètres de haut. Des centaines de mètres de long. [précipité] Des milliers d'ouvriers et d'ingénieurs convergent vers l'estuaire. On entend dire sur les quais : [pause] « On n'avait pas vu ça depuis des décennies. Le chantier revit. » [posé] Le savoir-faire français, transmis de génération en génération, retrouve une scène à sa mesure.\n\n=== PARTIE 3 : Un territoire transformé ===\n\n{rumeur_ville_douce.wav}\n\nAutour des chantiers, c'est tout un territoire qui se transforme. Des emplois par milliers. Des commerces qui rouvrent. Des familles qui s'installent. [joyeusement] Nantes et Saint-Nazaire retrouvent une vitalité oubliée. [pause] Un ouvrier des chantiers confie : [accentué] « Ici, on construit les plus grands navires du monde. Ça, ça rend fier. » [posé] Cette fierté dépasse les murs des ateliers. [atténué] Elle irrigue les rues, les écoles, les conversations du soir.\n\n=== PARTIE 4 : Le géant prend la mer ===\n\n{corne_brume_lointaine.wav}\n\n[ralentit] Et puis vient le jour du départ. Le géant glisse lentement sur la Loire, vers l'océan. [pause] Sur les berges, on regarde en silence. [accentué] Le port de Nantes n'est plus endormi. Son sommeil est terminé. [pause] [atténué] Dans le sillage du paquebot, c'est toute l'identité maritime d'un territoire qui reprend le large.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un port endormi",
+      "taggedText": "Ce récit s'adresse à tous, dans un ton neutre et informatif, à la manière d'un documentaire contemplatif.\n\n{clapotis_estuaire_calme.wav}\n\n[posé] Au début des années deux mille dix, le port de Nantes sommeille. Le long de l'estuaire de la Loire, les quais sont silencieux. [pause] Les grues, immobiles, contemplent un bassin vide. [atténué] Saint-Nazaire porte encore la mémoire des grands paquebots d'autrefois. Mais cette mémoire semble figée, comme un rêve ancien que personne n'ose plus réveiller. [pause]"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le chantier reprend souffle",
+      "taggedText": "Puis, quelque chose change. [accentué] Les Chantiers de l'Atlantique décrochent des commandes colossales. {metal_chantier_lointain.wav} Dans les bassins de Saint-Nazaire, des coques immenses commencent à s'élever. Des dizaines de mètres de haut. Des centaines de mètres de long. [précipité] Des milliers d'ouvriers et d'ingénieurs convergent vers l'estuaire. On entend dire sur les quais : [pause] « On n'avait pas vu ça depuis des décennies. Le chantier revit. » [posé] Le savoir-faire français, transmis de génération en génération, retrouve une scène à sa mesure."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Un territoire transformé",
+      "taggedText": "{rumeur_ville_douce.wav}\n\nAutour des chantiers, c'est tout un territoire qui se transforme. Des emplois par milliers. Des commerces qui rouvrent. Des familles qui s'installent. [joyeusement] Nantes et Saint-Nazaire retrouvent une vitalité oubliée. [pause] Un ouvrier des chantiers confie : [accentué] « Ici, on construit les plus grands navires du monde. Ça, ça rend fier. » [posé] Cette fierté dépasse les murs des ateliers. [atténué] Elle irrigue les rues, les écoles, les conversations du soir."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le géant prend la mer",
+      "taggedText": "{corne_brume_lointaine.wav}\n\n[ralentit] Et puis vient le jour du départ. Le géant glisse lentement sur la Loire, vers l'océan. [pause] Sur les berges, on regarde en silence. [accentué] Le port de Nantes n'est plus endormi. Son sommeil est terminé. [pause] [atténué] Dans le sillage du paquebot, c'est toute l'identité maritime d'un territoire qui reprend le large."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 18,
+    "soundTags": 4,
+    "originalWordCount": 279
+  }
+}

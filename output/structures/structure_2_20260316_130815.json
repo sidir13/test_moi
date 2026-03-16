@@ -1,0 +1,100 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Jean Penaud, le trait et la coque",
+  "resumeHistoire": "Sur les bords de Loire, les chantiers navals de Nantes ont façonné des générations de navires et d'hommes. Parmi eux, Jean Penaud, dessinateur industriel, a passé ses journées penché sur des plans de coques et de structures, traduisant en lignes précises les vaisseaux qui prendraient vie sur les cales de lancement. Le récit s'ouvre sur la fin d'une époque — la fermeture des chantiers — avant de remonter le temps vers le quotidien minutieux du dessinateur, ce maillon méconnu entre l'ingénieur et le soudeur. À travers son portrait, c'est tout un savoir-faire collectif, une hiérarchie du geste et du trait, qui resurgit — et la mémoire d'un patrimoine industriel aujourd'hui disparu.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le silence des cales",
+      "duree_cible": 18,
+      "fonction_narrative": "accroche_par_la_fin",
+      "position_arc_emotionnel": "mélancolie_contemplative",
+      "elements_necessaires": [
+        "Évocation de l'île de Nantes aujourd'hui, les cales vides",
+        "Contraste entre le silence actuel et le vacarme passé des chantiers",
+        "Mention du déclin et de la fermeture des chantiers navals nantais",
+        "Amorce du flashback : introduire que des hommes ont travaillé ici, dont des dessinateurs"
+      ],
+      "mood": "élégiaque, lent, suspendu — paysage sonore industriel fantôme"
+    },
+    {
+      "partie": 2,
+      "titre": "Le bureau des traceurs",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition_immersive_flashback",
+      "position_arc_emotionnel": "montée_en_intensité",
+      "elements_necessaires": [
+        "Flashback vers l'époque active des chantiers (Ateliers et Chantiers de Nantes, Chantiers Dubigeon)",
+        "Présentation de Jean Penaud, dessinateur industriel naval",
+        "Description du bureau d'études : tables inclinées, plans, outils de traçage",
+        "Citation directe de source si disponible, ou évocation du geste du dessinateur",
+        "Rôle du dessinateur dans la chaîne : traduire les calculs de l'ingénieur en plans exploitables par les ouvriers"
+      ],
+      "mood": "précis, vivant, rythme qui s'accélère — on entre dans le quotidien du métier"
+    },
+    {
+      "partie": 3,
+      "titre": "Du trait à l'acier",
+      "duree_cible": 25,
+      "fonction_narrative": "développement_et_apogée",
+      "position_arc_emotionnel": "apogée_narrative",
+      "elements_necessaires": [
+        "Description du parcours du plan : du dessin à la salle des traceurs, puis à la cale",
+        "Hiérarchie des métiers : du bureau d'études aux soudeurs et riveurs",
+        "Le savoir-faire technique spécifique : dessins de coques, de structures, tracés grandeur nature",
+        "Citation directe illustrant la fierté ou la précision du travail",
+        "Lien entre le trait de Jean Penaud et le navire qui prend forme"
+      ],
+      "mood": "dense, admiratif, rythme soutenu — la mécanique humaine des chantiers en action"
+    },
+    {
+      "partie": 4,
+      "titre": "L'encre et la mémoire",
+      "duree_cible": 22,
+      "fonction_narrative": "résolution_et_ouverture",
+      "position_arc_emotionnel": "retombée_émotionnelle_et_élévation",
+      "elements_necessaires": [
+        "Retour au présent : ce savoir-faire a disparu avec les chantiers",
+        "Dimension patrimoniale : mémoire ouvrière, transmission",
+        "Dernière image de Jean Penaud ou du dessinateur comme figure de cette mémoire",
+        "Phrase de clôture ouverte : le trait survit dans les navires qui ont navigué"
+      ],
+      "mood": "sobre, respectueux, lent — hommage sans nostalgie excessive"
+    }
+  ],
+  "arc_emotionnel_global": "boucle_mélancolique — du silence présent au vacarme passé, puis retour au silence, mais enrichi de sens",
+  "rythme_general": "lent-accéléré-soutenu-lent : ouverture contemplative, immersion croissante dans le métier, apogée descriptive, puis décélération vers l'hommage",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "flashback_temporel",
+      "duree": 2.5,
+      "description": "Transition pivot du récit. Du silence des cales aujourd'hui, on remonte dans le temps par une phrase de bascule temporelle ('Mais quelques décennies plus tôt…' ou similaire). Possible insertion d'un son d'ambiance industrielle naissant pour marquer le saut."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Transition fluide et logique : du bureau d'études où naît le dessin, on suit le plan vers l'atelier et la cale. Le récit accompagne le mouvement physique du document. Pas de rupture, accélération du rythme."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_au_présent",
+      "duree": 2.0,
+      "description": "Bascule douce de l'apogée vers la résolution. Le vacarme des chantiers s'estompe, le récit revient au présent. Ralentissement du débit, ton qui s'adoucit. La boucle narrative se referme sur le lieu d'ouverture."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme une boucle — il s'ouvre et se ferme sur le même lieu (l'île de Nantes / les anciennes cales), mais le regard du spectateur est transformé par le voyage dans le temps. La voix off est omnisciente, extérieure, jamais dans la tête de Jean Penaud. On le décrit, on montre ses gestes, son environnement, son rôle — pas ses pensées. Les citations directes (issues des transcriptions) doivent être intégrées naturellement dans le flux narratif, introduites par le contexte et non par des formules méta ('il dit…'). Privilégier : 'Comme le rappelait un dessinateur des chantiers : [citation]'. Le registre est accessible (grand public) mais le vocabulaire technique naval est bienvenu s'il est immédiatement contextualisé. DÉBIT : environ 2 mots/seconde, soit ~180 mots max. Chaque section doit être dense mais aérée — laisser respirer les images. AMBIANCE SONORE SUGGÉRÉE : partie 1 = vent, eau, silence urbain ; partie 2 = bruissements de papier, crayons ; partie 3 = métal, marteaux, activité ; partie 4 = retour au calme, écho lointain. La narration commence directement dans l'histoire (pas de présentation du format ni du public)."
+}

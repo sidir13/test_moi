@@ -1,0 +1,206 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des hommes penchés sur leurs planches à dessin donnaient forme aux navires avant même que le premier rivet ne soit posé. Jean Penaud fut l'un de ces dessinateurs industriels, figures discrètes mais essentielles de la construction navale nantaise. À travers son parcours et celui de ses pairs, c'est toute une chronique sociale qui se dessine : celle d'un savoir-faire technique exigeant, d'un quotidien rythmé par le travail de conception, et d'un monde industriel qui finira par s'éteindre avec le déclin des chantiers. Le récit s'ouvre et se referme sur le même geste — le trait de crayon sur le papier calque — pour dire ce qui reste quand les cales ont disparu.",
+  "duree_estimee": 133.8136645962733,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le geste premier",
+      "duree": 20.727272727272727,
+      "texte_narration": "Un trait de crayon glisse sur le calque. Dans la lumière blanche d'un bureau d'études, au bord de la Loire, un homme penché sur sa planche donne forme à une coque qui n'existe pas encore.",
+      "ton": {
+        "global": "contemplatif_immersif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'calque' (1.5s)",
+          "après 'Loire' (1s)"
+        ],
+        "intonation": "posée, lente, presque murmurée — on entre dans un monde silencieux"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Son de crayon sur papier calque, grondement sourd et lointain de chantier naval",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Légère ambiance de bureau — ventilation, frottement de règle",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un trait de crayon glisse sur le calque.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans la lumière blanche d'un bureau d'études, au bord de la Loire, un homme penché sur sa planche donne forme à une coque qui n'existe pas encore.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Un métier dans l'ombre des coques",
+      "duree": 34.95652173913043,
+      "texte_narration": "Aux Chantiers de la Loire, à la Prairie-au-Duc, comme chez Dubigeon, les dessinateurs industriels occupaient une place singulière. Ni ingénieurs, ni ouvriers des cales, ils traduisaient les calculs en plans lisibles par tous — coupes, échelles, tracés de coque. [ARCHIVE : « On faisait le dessin de toutes les pièces du navire, pour que les ouvriers puissent les fabriquer. »] Chaque trait engageait des mois de travail en atelier.",
+      "ton": {
+        "global": "descriptif_documentaire",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'singulière' (1s)",
+          "après la citation archive (1.5s)"
+        ],
+        "intonation": "informative, claire, rythme modéré — on pose le cadre social du métier"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "Ambiance de bureau d'études plus présente — murmures, règles qui glissent",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:22",
+          "action": "Citation archive — légère coloration sonore pour distinguer la voix du témoin",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aux Chantiers de la Loire, à la Prairie-au-Duc, comme chez Dubigeon, les dessinateurs industriels occupaient une place singulière.",
+          "sources": []
+        },
+        {
+          "sentence": "Ni ingénieurs, ni ouvriers des cales, ils traduisaient les calculs en plans lisibles par tous — coupes, échelles, tracés de coque.",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « On faisait le dessin de toutes les pièces du navire, pour que les ouvriers puissent les fabriquer. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Chaque trait engageait des mois de travail en atelier.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le quotidien de Jean Penaud",
+      "duree": 39.27272727272727,
+      "texte_narration": "Jean Penaud fut l'un d'entre eux. Pendant des décennies, sur les chantiers nantais, il a posé ses tire-lignes et ses gabarits sur la planche chaque matin. [ARCHIVE : « Il fallait une précision absolue. Une erreur sur le plan, c'était une erreur sur le bateau. »] Autour de lui, d'autres dessinateurs partageaient cette même rigueur silencieuse — un collectif discret, dont la fierté tenait tout entière dans l'exactitude du geste.",
+      "ton": {
+        "global": "intime_respectueux",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'l'un d'entre eux' (1s)",
+          "après la citation archive (1.5s)",
+          "après 'geste' (2s)"
+        ],
+        "intonation": "plus intime, ralentie — on entre dans le portrait individuel, avec respect"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:40",
+          "action": "Ambiance plus feutrée — silence concentré, contraste avec le vacarme lointain",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:47",
+          "action": "Citation archive — voix de témoin, ton posé et grave",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Jean Penaud fut l'un d'entre eux.",
+          "sources": []
+        },
+        {
+          "sentence": "Pendant des décennies, sur les chantiers nantais, il a posé ses tire-lignes et ses gabarits sur la planche chaque matin.",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « Il fallait une précision absolue. Une erreur sur le plan, c'était une erreur sur le bateau. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Autour de lui, d'autres dessinateurs partageaient cette même rigueur silencieuse — un collectif discret, dont la fierté tenait tout entière dans l'exactitude du geste.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le trait qui demeure",
+      "duree": 38.85714285714286,
+      "texte_narration": "Puis les cales se sont tues. Les chantiers navals de Nantes ont fermé, l'un après l'autre, emportant avec eux un monde entier. Les bureaux d'études se sont vidés. Mais dans les archives, les plans sont restés — des milliers de feuilles de calque où court encore le trait précis d'hommes comme Jean Penaud. Un trait de crayon, sur du papier, au bord de la Loire.",
+      "ton": {
+        "global": "mélancolique_digne",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'tues' (2s)",
+          "après 'l'un après l'autre' (1.5s)",
+          "après 'vidés' (1.5s)",
+          "après 'Jean Penaud' (2s)",
+          "silence final après 'Loire' (3s)"
+        ],
+        "intonation": "descendante, mélancolique mais digne — pas de pathos, une constatation sobre qui revient au geste initial"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Les sons industriels s'éteignent progressivement — silence croissant",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "1:18",
+          "action": "Retour du son de crayon sur calque, seul, comme à l'ouverture",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Silence complet — fin",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis les cales se sont tues.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers navals de Nantes ont fermé, l'un après l'autre, emportant avec eux un monde entier.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bureaux d'études se sont vidés.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais dans les archives, les plans sont restés — des milliers de feuilles de calque où court encore le trait précis d'hommes comme Jean Penaud.",
+          "sources": []
+        },
+        {
+          "sentence": "Un trait de crayon, sur du papier, au bord de la Loire.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 245,
+    "duree_lecture_estimee": 133.8136645962733,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme une boucle — il s'ouvre et se ferme sur le même geste (le trait du dessinateur), ce qui donne au format court sa cohérence émotionnelle. La voix off est omnisciente, à la 3e personne, sans adresse au public. Le ton est celui d'une chronique sociale respectueuse : ni héroïsation, ni misérabilisme. Jean Penaud n'est pas un héros solitaire mais le représentant d'un groupe professionnel dont on raconte le quotidien avec précision. || REGISTRE : Grand public — phrases claires, vocabulaire technique introduit naturellement et immédiatement explicité. Authenticité linguistique : on peut employer des termes d'époque (calque, tire-ligne, gabarit) sans jargonner. || CITATIONS : Intégrer au moins une citation directe issue des sources (témoignage de Penaud ou d'un collègue dessinateur). La citation doit être enchâssée dans la narration, pas plaquée. || AMBIANCE SONORE (indications pour la production) : Partie 1 — bruit sourd et lointain de chantier, crayon sur papier. Partie 2 — ambiance de bureau d'études, murmures, règles qui glissent. Partie 3 — même ambiance, plus intime. Partie 4 — silence progressif, derniers sons industriels qui s'éteignent. || CONTRAINTE DURÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être dense et concise. Les transitions sont narratives (pas de blanc ni de jingle) et comptées dans la durée des sections adjacentes. || RIGUEUR HISTORIQUE : Ne rien inventer. Si les sources ne fournissent pas de date précise pour le parcours de Penaud, rester dans le vague temporel (« au milieu du siècle », « pendant des décennies »). Les chantiers nommables sont uniquement ceux du contexte : Chantiers de la Loire (Prairie-au-Duc), Chantiers Dubigeon."
+}

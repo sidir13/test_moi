@@ -1,0 +1,32 @@
+{
+  "scenario_id": 3,
+  "titre": "Le trait et la coque — Une journée de dessinateur aux chantiers navals de Nantes",
+  "taggedText": "=== PARTIE 1 : L'aube sur les cales ===\n\n{brume_loire_clapotis_eau.wav}\n\n[posé] Nantes, un matin des années soixante. [pause] La brume s'accroche à la Loire. {sirene_chantier_naval_lointaine.wav} Sur l'île, la sirène des chantiers navals déchire le silence. {pas_sur_paves_mouilles.wav} Jean Penaud franchit le portail de Dubigeon. [pause] Il est dessinateur.\n\n=== PARTIE 2 : La table à dessin ===\n\n{ambiance_bureau_etudes_calme.wav}\n\nAu bureau d'études, les tables inclinées portent des calques immenses. Règles, équerres, tire-lignes — chaque outil a sa place. {crayon_sur_calque.wav} Penaud trace les lignes d'une coque, courbe après courbe. [posé] Un plan de navire, ce sont des centaines de dessins. Jean Penaud confie : [posé] [atténué] « On dessinait tout, de la quille jusqu'au pont. Chaque pièce avait son plan. » [pause] Le crayon glisse sans trembler sur le papier.\n\n=== PARTIE 3 : Descente sur le chantier ===\n\n{vacarme_chantier_naval_marteaux_soudures.wav}\n\nEn début d'après-midi, Penaud roule ses plans et descend sur la cale. [précipité] Le vacarme le saisit d'un coup — marteaux, soudures, grues qui pivotent. {grue_rotation_metal.wav} Il vérifie que l'acier épouse bien le tracé. Il explique : [posé] [atténué] « Il fallait aller voir, comparer le plan avec la réalité. Parfois, on corrigeait sur place. » [pause] Les ouvriers l'interpellent, un ajustement se négocie au pied de la coque.\n\n=== PARTIE 4 : Le trait qui reste ===\n\n{ambiance_fin_journee_eau_calme.wav}\n\n[ralentit] Le soir, la lumière rasante glisse sur la Loire. Penaud range ses instruments. [pause] En 1987, les chantiers Dubigeon ferment. Les cales se taisent. [pause] Les navires ont pris la mer ou la rouille. Mais dans les archives, les plans demeurent. [posé] Des milliers de traits précis, tracés à la main. {silence_progressif.wav} Jean Penaud se souvient : [posé] [triste] « Le bateau disparaît un jour. Le dessin, lui, il reste. » [pause]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube sur les cales",
+      "taggedText": "{brume_loire_clapotis_eau.wav}\n\n[posé] Nantes, un matin des années soixante. [pause] La brume s'accroche à la Loire. {sirene_chantier_naval_lointaine.wav} Sur l'île, la sirène des chantiers navals déchire le silence. {pas_sur_paves_mouilles.wav} Jean Penaud franchit le portail de Dubigeon. [pause] Il est dessinateur."
+    },
+    {
+      "partie_id": 2,
+      "titre": "La table à dessin",
+      "taggedText": "{ambiance_bureau_etudes_calme.wav}\n\nAu bureau d'études, les tables inclinées portent des calques immenses. Règles, équerres, tire-lignes — chaque outil a sa place. {crayon_sur_calque.wav} Penaud trace les lignes d'une coque, courbe après courbe. [posé] Un plan de navire, ce sont des centaines de dessins. Jean Penaud confie : [posé] [atténué] « On dessinait tout, de la quille jusqu'au pont. Chaque pièce avait son plan. » [pause] Le crayon glisse sans trembler sur le papier."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Descente sur le chantier",
+      "taggedText": "{vacarme_chantier_naval_marteaux_soudures.wav}\n\nEn début d'après-midi, Penaud roule ses plans et descend sur la cale. [précipité] Le vacarme le saisit d'un coup — marteaux, soudures, grues qui pivotent. {grue_rotation_metal.wav} Il vérifie que l'acier épouse bien le tracé. Il explique : [posé] [atténué] « Il fallait aller voir, comparer le plan avec la réalité. Parfois, on corrigeait sur place. » [pause] Les ouvriers l'interpellent, un ajustement se négocie au pied de la coque."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le trait qui reste",
+      "taggedText": "{ambiance_fin_journee_eau_calme.wav}\n\n[ralentit] Le soir, la lumière rasante glisse sur la Loire. Penaud range ses instruments. [pause] En 1987, les chantiers Dubigeon ferment. Les cales se taisent. [pause] Les navires ont pris la mer ou la rouille. Mais dans les archives, les plans demeurent. [posé] Des milliers de traits précis, tracés à la main. {silence_progressif.wav} Jean Penaud se souvient : [posé] [triste] « Le bateau disparaît un jour. Le dessin, lui, il reste. » [pause]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 18,
+    "soundTags": 9,
+    "originalWordCount": 229
+  }
+}

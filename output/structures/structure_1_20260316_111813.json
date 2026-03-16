@@ -1,0 +1,101 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Chronique des dessinateurs de chantiers navals",
+  "resumeHistoire": "Dans les bureaux d'études des chantiers navals français, des hommes penchés sur leurs tables à dessin donnaient naissance aux navires bien avant que le premier rivet ne soit posé. Le récit s'ouvre sur un dessinateur en fin de carrière, dans les années 1960, qui se remémore ses débuts dans la vaste salle des tracés, là où le compas et le tire-ligne transformaient les calculs en courbes grandeur nature. À travers son souvenir, c'est toute une chronique sociale qui se déploie : la hiérarchie rigoureuse du bureau d'études, le lien vital entre les dessinateurs et les ouvriers des ateliers, et la transmission patiente d'un savoir-faire où la précision du trait décidait du sort d'un navire. Du tracé à la cale de lancement, cette histoire rend hommage à ces travailleurs de l'ombre dont les plans étaient la première pierre de chaque construction.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le dernier trait",
+      "duree_cible": 15.0,
+      "fonction_narrative": "ancrage_flashback",
+      "position_arc_emotionnel": "contemplation_nostalgique",
+      "elements_necessaires": [
+        "Ambiance sonore d'un bureau d'études dans les années 1960 — calme relatif, grattement de plumes, murmures",
+        "Un dessinateur en fin de carrière penché sur sa table, regard vers la salle des tracés",
+        "Amorce du flashback : un détail sensoriel déclenche le souvenir (le poids du tire-ligne, l'odeur de l'encre de Chine)",
+        "Présentation implicite du ton documentaire et du registre accessible grand public"
+      ],
+      "mood": "intime_et_posé"
+    },
+    {
+      "partie": 2,
+      "titre": "La salle à tracer",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "montée_en_intensité",
+      "elements_necessaires": [
+        "Description de la salle des tracés : vaste espace au sol, tracés grandeur nature des coques",
+        "Les outils du dessinateur : tire-ligne, compas, règles, gabarits, tables à dessin inclinées",
+        "Le geste technique : précision millimétrique, concentration extrême",
+        "Citation directe évoquant le quotidien du travail de tracé",
+        "Atmosphère sonore immersive : pas sur le sol de la salle, cliquetis d'instruments"
+      ],
+      "mood": "descriptif_et_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "Entre le bureau et l'atelier",
+      "duree_cible": 25.0,
+      "fonction_narrative": "développement_social",
+      "position_arc_emotionnel": "tension_et_fierté",
+      "elements_necessaires": [
+        "Hiérarchie du chantier : du dessinateur débutant à l'ingénieur, place dans l'organigramme",
+        "Le lien entre bureau d'études et ateliers de construction — les plans descendent vers les ouvriers",
+        "Transmission des savoirs : l'ancien forme le jeune, apprentissage sur le tas",
+        "Citation directe sur la relation bureau/atelier ou la hiérarchie",
+        "Dimension chronique sociale : conditions de travail, fierté du métier, conscience de classe"
+      ],
+      "mood": "dynamique_et_engagé"
+    },
+    {
+      "partie": 4,
+      "titre": "Du trait à la mer",
+      "duree_cible": 25.0,
+      "fonction_narrative": "résolution_et_retour_au_présent",
+      "position_arc_emotionnel": "émotion_culminante_puis_apaisement",
+      "elements_necessaires": [
+        "Retour au présent narratif des années 1960 — sortie du flashback",
+        "Évocation du lancement d'un navire : le moment où le trait sur papier devient coque à la mer",
+        "Fierté discrète du dessinateur — son nom n'est nulle part, mais sa main est partout",
+        "Citation directe ou paraphrase sur la fierté ou l'effacement du dessinateur",
+        "Fermeture narrative : le trait final sur la table, écho au titre"
+      ],
+      "mood": "solennel_et_émouvant"
+    }
+  ],
+  "arc_emotionnel_global": "nostalgie_ascendante_vers_fierté",
+  "rythme_general": "dynamique — phrases courtes et rythmées, alternance entre descriptions immersives et citations directes, tempo soutenu adapté aux 90 secondes",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "Le geste du dessinateur sur sa table dans les années 1960 se prolonge et devient le même geste des décennies plus tôt — transition fluide par continuité du mouvement et changement d'ambiance sonore (le bureau feutré laisse place à la vastité de la salle des tracés)."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_spatial",
+      "duree": 2.0,
+      "description": "Du plan serré sur la table à dessin, le récit s'élargit vers le chantier — on suit le plan qui quitte le bureau pour descendre vers les ateliers. Le son des instruments cède la place aux bruits lointains de la construction."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_au_présent",
+      "duree": 2.0,
+      "description": "Transition douce du souvenir vers le présent narratif — la voix passe du passé au présent, les sons du chantier s'estompent, on retrouve le calme du bureau d'études. Le flashback se referme naturellement."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme une boucle — il s'ouvre et se ferme sur le même geste (le trait du dessinateur), créant une unité forte malgré le flashback. La voix off omnisciente maintient un fil constant ; elle ne change jamais de registre brutalement. Les citations directes doivent s'insérer dans le flux narratif comme des respirations naturelles, jamais comme des ruptures. Veiller à ce que chaque transition repose sur un élément concret (un geste, un son, un objet) plutôt que sur une formule artificielle. Le rythme dynamique impose des phrases courtes (8-15 mots en moyenne), mais quelques phrases plus longues peuvent ponctuer les moments contemplatifs (parties 1 et 4). L'ambiance sonore immersive doit être continue et évolutive : elle accompagne les transitions sans les souligner lourdement. BUDGET MOTS : ~180 mots maximum pour 90 secondes. Répartition indicative : partie 1 ≈ 30 mots, partie 2 ≈ 50 mots, partie 3 ≈ 50 mots, partie 4 ≈ 50 mots. Les citations comptent dans ce budget. RIGUEUR HISTORIQUE : Aucun nom propre, date précise ou lieu spécifique n'est inventé. Les formulations restent génériques (« un chantier naval français », « dans les années 1960 ») sauf si les sources fournissent des précisions. Les outils mentionnés (tire-ligne, compas, gabarits, table à dessin) et les lieux (salle des tracés, bureau d'études) sont issus du contexte thématique fourni."
+}

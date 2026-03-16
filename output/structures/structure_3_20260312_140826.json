@@ -1,0 +1,122 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Nantes, le port qui s'éloigne de la mer",
+  "resumeHistoire": "Au XVIIIe siècle, Nantes est l'un des plus grands ports de commerce de France, animé par le négoce colonial et la construction navale. Mais la Loire, capricieuse et sujette à l'ensablement, rend progressivement la navigation des grands navires impossible jusqu'au cœur de la ville. Dès le milieu du XIXe siècle, les activités portuaires glissent vers l'aval, Saint-Nazaire prenant le relais comme port en eau profonde. Les chantiers navals nantais résistent encore un temps, construisant des navires toujours plus modernes, avant de fermer définitivement leurs portes à la fin des années 1980. Des quais autrefois grouillants de dockers et de charpentiers de marine, il ne reste alors que le silence — et la mémoire de ceux qui y ont travaillé.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port au sommet de sa puissance",
+      "duree_cible": 65,
+      "fonction_narrative": "exposition — le diptyque 'avant'",
+      "position_arc_emotionnel": "grandeur_nostalgique",
+      "elements_necessaires": [
+        "Évocation sensorielle du port de Nantes au XVIIIe siècle : quai de la Fosse, île Feydeau, ambiance sonore des quais",
+        "Rappel du commerce colonial et de la traite négrière comme moteur économique majeur",
+        "Mention de la construction navale florissante à Chantenay et sur la Prairie-au-Duc",
+        "Registre grand public, phrases courtes et imagées, ton documentaire neutre"
+      ],
+      "mood": "immersif_evocateur — tableau vivant d'un port prospère"
+    },
+    {
+      "partie": 2,
+      "titre": "Le fleuve se dérobe",
+      "duree_cible": 55,
+      "fonction_narrative": "élément perturbateur — les causes du déclin",
+      "position_arc_emotionnel": "tension_montante",
+      "elements_necessaires": [
+        "Ensablement progressif de la Loire et difficulté croissante de navigation pour les grands navires",
+        "Tentatives d'aménagement du canal maritime de la Basse-Loire au XIXe siècle",
+        "Évolution technologique : passage de la voile à la vapeur, augmentation des tonnages rendant le port de centre-ville obsolète",
+        "Dates précises issues du contexte si disponibles, sinon formulations prudentes (milieu du XIXe siècle, etc.)"
+      ],
+      "mood": "analytique_sobre — constat d'une inadéquation croissante"
+    },
+    {
+      "partie": 3,
+      "titre": "Saint-Nazaire prend le relais",
+      "duree_cible": 55,
+      "fonction_narrative": "pivot — le basculement géographique",
+      "position_arc_emotionnel": "point_de_bascule",
+      "elements_necessaires": [
+        "Transfert progressif des activités portuaires commerciales vers Saint-Nazaire, port en eau profonde sur l'estuaire",
+        "Nantes perd son rôle de port maritime de premier plan",
+        "Impact sur l'économie locale et le tissu social des quartiers portuaires (Trentemoult, quai de la Fosse)",
+        "Transition narrative fluide : ce n'est pas une rupture brutale mais un glissement sur plusieurs décennies"
+      ],
+      "mood": "mélancolique_factuel — un monde qui se déplace"
+    },
+    {
+      "partie": 4,
+      "titre": "Les derniers navires de Nantes",
+      "duree_cible": 75,
+      "fonction_narrative": "climax émotionnel — la résistance puis la fermeture des chantiers",
+      "position_arc_emotionnel": "intensite_maximale",
+      "elements_necessaires": [
+        "Chantiers navals nantais (Chantier de la Loire, Dubigeon) qui poursuivent la construction navale au XXe siècle",
+        "Citation intégrée de Jean Penaud : son embauche le 5 février 1957, son parcours entre Chantier de la Loire, Dubigeon, Cherbourg (sous-marins atomiques), retour en juillet 1969",
+        "Évocation du travail concret : le parc à fer, les goussets, le petit train, les charpentiers de fer",
+        "Fermeture progressive des chantiers navals nantais dans les années 1980",
+        "Section la plus longue car elle porte le poids émotionnel et le témoignage humain"
+      ],
+      "mood": "intime_poignant — la voix de ceux qui ont vécu la fin"
+    },
+    {
+      "partie": 5,
+      "titre": "Le silence des cales",
+      "duree_cible": 50,
+      "fonction_narrative": "résolution — le diptyque 'après' et ouverture",
+      "position_arc_emotionnel": "apaisement_reflexif",
+      "elements_necessaires": [
+        "Transformation de l'île de Nantes post-industrielle : des friches aux projets de reconversion",
+        "Contraste saisissant entre l'activité d'autrefois et le calme actuel des anciens quais",
+        "Dimension patrimoniale et mémorielle : importance de conserver les témoignages",
+        "Phrase de clôture ouverte, sans sentimentalisme excessif, fidèle au ton documentaire neutre"
+      ],
+      "mood": "contemplatif_ouvert — entre mémoire et renouveau"
+    }
+  ],
+  "arc_emotionnel_global": "arc_de_declin_et_memoire — de la grandeur à la disparition, porté par la dignité du souvenir",
+  "rythme_general": "modéré avec accélération progressive dans les parties 2-3, ralentissement intime en partie 4, respiration finale en partie 5",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "contraste_temporel",
+      "duree": 3.0,
+      "description": "Depuis l'évocation vibrante du port prospère, la narration glisse vers un constat : la Loire elle-même commence à trahir la ville. Transition par une image sensorielle — le tirant d'eau qui diminue, les coques qui raclent le fond."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "consequence_logique",
+      "duree": 2.5,
+      "description": "La cause (ensablement, navires trop grands) appelle naturellement l'effet : le regard se déplace vers l'aval, vers l'estuaire, vers Saint-Nazaire. Pas de rupture mais un travelling géographique le long du fleuve."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "resserrement_intime",
+      "duree": 3.0,
+      "description": "Du panorama macro-économique, la narration plonge dans l'échelle humaine. On quitte le grand récit pour entrer dans les souvenirs d'un homme, Jean Penaud, charpentier de fer. Transition par une phrase du type : 'Sur ces quais qui se vident, des hommes travaillent encore.'"
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "silence_puis_ouverture",
+      "duree": 3.0,
+      "description": "Après l'émotion de la fermeture des chantiers, un temps de silence narratif. Puis la voix reprend, plus lente, pour décrire ce que sont devenus ces lieux. Transition par le contraste temporel : 'Aujourd'hui, là où résonnaient les riveteuses…'"
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un fil chronologique strict (XVIIIe → fin XXe → aujourd'hui) mais l'angle avant/après structure le tout en diptyque : parties 1-2-3 forment le 'avant et pendant le déclin', parties 4-5 forment 'la fin vécue et l'après'. — FLUIDITÉ : Éviter toute annonce de section ('Dans cette partie…'). Chaque transition doit être une phrase narrative qui fait pont. — CITATION JEAN PENAUD : Intégrer ses mots au style direct, enchâssés dans la narration ('Le 5 février 1957, je suis entré à la Loire', se souvient Jean Penaud). Ne pas surcharger de citations, en garder 2-3 moments forts : la date d'embauche, le travail au parc à fer, le retour de Cherbourg en juillet 69. — TON : Neutre informatif mais pas froid. L'émotion naît des faits et du témoignage, pas de l'emphase du narrateur. — AMBIANCES SONORES SUGGÉRÉES : partie 1 (bruits de port, gréements, eau), partie 2 (silence progressif, vent sur le fleuve), partie 4 (marteaux, métal, ambiance industrielle), partie 5 (calme urbain contemporain). — DURÉE : Viser 600 mots maximum pour 300 secondes. Chaque section doit rester dense et concise. La partie 4 est volontairement la plus longue (75s ≈ 150 mots) pour porter le témoignage. — REGISTRE : Grand public, phrases claires, vocabulaire accessible. Les termes techniques (goussets, charpentier de fer) sont brièvement explicités dans le flux narratif. — OUVERTURE OBLIGATOIRE : La première phrase du récit doit présenter implicitement le ton et le public par le registre choisi (accessible, factuel, immersif), conformément à la contrainte utilisateur."
+}
