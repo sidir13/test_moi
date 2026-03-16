@@ -445,7 +445,7 @@ def _build_background_prompt(
     except ValueError:
         voice_display = voice_path
     lines = [
-        "Tu dois créer un mix audio professionnel pour renforcer une narration historique.",
+        "Tu dois créer un mix audio professionnel pour créer une ambiance audio immersive. Voici les instructions détaillées :",
         f"Durée approximative de la voix : {duration_seconds:.1f} secondes.",
         "",
         "**Fichiers sources :**",
@@ -465,9 +465,9 @@ def _build_background_prompt(
     if punctual_paths:
         lines.append("")
         lines.append("**Étape 1 — Sons ponctuels :**")
-        lines.append("Sélectionne entre 0 et 2 sons ponctuels parmi la liste fournie.")
+        lines.append("Sélectionne des sons ponctuels parmi la liste fournie.")
         lines.append("- Durée : entre 6 et 10 secondes")
-        lines.append("- Volume : 24 dB en dessous de la voix")
+        lines.append("- Volume : 20 dB en dessous de la voix")
         lines.append("- Placement : après 3 s et au plus tard 5 s avant la fin, sans chevauchement, espacé d'au moins 1 s")
         lines.append("- Répartis-les entre début / milieu / fin en fonction du récit.")
 
@@ -477,7 +477,7 @@ def _build_background_prompt(
         lines.append("Utilise le fond continu disponible.")
         lines.append("- Démarre à 4 s")
         lines.append("- Termine 5 s avant la fin de la narration")
-        lines.append("- Volume : 30 dB en dessous de la voix")
+        lines.append("- Volume : 20 dB en dessous de la voix")
 
     lines.append("")
     lines.append("**Contraintes :**")
@@ -500,7 +500,7 @@ def _build_background_prompt(
     lines.append('      "file": "chemin_exact",')
     lines.append('      "start_seconds": 9.5,')
     lines.append('      "duration_seconds": 8.0,')
-    lines.append('      "gain_db": -24,')
+    lines.append('      "gain_db": -20,')
     lines.append('      "note": "moment clé de l\'histoire"')
     lines.append("    }")
     lines.append("  ]")

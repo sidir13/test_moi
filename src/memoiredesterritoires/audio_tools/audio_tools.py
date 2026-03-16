@@ -249,12 +249,12 @@ def mix_voice_with_noise(
     voice_file:         Path | str,
     noise_file:         Path | str,
     output_file:        Path | str   = Path("data/generated_speech/mixed_output.wav"),
-    snr_db:             float        = 15,
+    snr_db:             float        = 20,
     start_time:         float        = 0,
     noise_duration:     float | None = 3,
     noise_start_offset: float        = 0,
-    fade_in_s:          float        = 0.3,
-    fade_out_s:         float        = 0.5,
+    fade_in_s:          float        = 2,
+    fade_out_s:         float        = 2,
     fade_in_type:       FadeType     = "logarithmic",
     fade_out_type:      FadeType     = "exponential",
 ) -> dict:
@@ -269,8 +269,8 @@ def mix_voice_with_noise(
         start_time:         Timestamp (s) où le son démarre
         noise_duration:     Durée du son en secondes (None = jusqu'à la fin)
         noise_start_offset: Début de lecture dans le fichier son (s)
-        fade_in_s:          Durée fade in (défaut 0.3s)
-        fade_out_s:         Durée fade out (défaut 0.5s)
+        fade_in_s:          Durée fade in (défaut 2s)
+        fade_out_s:         Durée fade out (défaut 2s)
         fade_in_type:       Courbe fade in  (défaut : logarithmic ⭐)
         fade_out_type:      Courbe fade out (défaut : exponential  ⭐)
 
@@ -396,7 +396,7 @@ def mix_voice_with_background(
     voice_file:        Path | str,
     background_file:   Path | str,
     output_file:       Path | str = Path("data/output/output_mix.wav"),
-    voice_bg_ratio_db: float      = -26.0,
+    voice_bg_ratio_db: float      = -20.0,
     fade_in_s:         float      = 2.0,
     fade_out_s:        float      = 2.0,
     fade_in_type:      FadeType   = "logarithmic",
