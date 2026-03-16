@@ -126,6 +126,10 @@ export type BackgroundSound = {
   path: string;
   name: string;
   preview: string;
+  category?: string;
+  tags?: string[];
+  description?: string;
+  duration?: number;
 };
 
 export async function fetchBackgroundSounds(keyword?: string) {

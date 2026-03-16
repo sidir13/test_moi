@@ -2317,13 +2317,34 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             listing = find_background_sounds(keyword=keyword, limit=limit)
         except FileNotFoundError:
             listing = {"files": [], "status": "ok"}
+
+        # Charger l'index de métadonnées (tags, description, catégorie…)
+        sound_index: Dict[str, Any] = {}
+        index_path = background_root / "index.json"
+        if index_path.exists():
+            try:
+                with open(index_path, encoding="utf-8") as _f:
+                    _idx = json.load(_f)
+                for _entry in _idx.get("sounds", []):
+                    _fname = (_entry.get("filename") or "").strip()
+                    if _fname:
+                        sound_index[_fname] = _entry
+            except Exception as _exc:
+                logger.warning("Impossible de lire l'index des sons : %s", _exc)
+
         files = []
         for rel in listing.get("files", []):
+            fname = Path(rel).name
+            meta = sound_index.get(fname, {})
             files.append(
                 {
                     "path": rel,
-                    "name": Path(rel).name,
+                    "name": fname,
                     "preview": f"/background-sounds/preview?path={quote(rel)}",
+                    "category": meta.get("category") or Path(rel).parent.name,
+                    "tags": meta.get("tags") or [],
+                    "description": (meta.get("metadata") or {}).get("description") or "",
+                    "duration": meta.get("duration"),
                 }
             )
         listing["files"] = files

@@ -312,15 +312,36 @@ export function AudioSelectionView() {
         {selectionError && <p className="error">{selectionError}</p>}
         <div className="background-library">
           {backgroundSounds?.map((sound) => (
-            <div key={sound.path} className="background-item">
-              <label>
+            <div
+              key={sound.path}
+              className={`background-item${selectedBackgrounds.includes(sound.path) ? " background-item--selected" : ""}`}
+            >
+              <label className="background-item__header">
                 <input
                   type="checkbox"
                   checked={selectedBackgrounds.includes(sound.path)}
                   onChange={() => toggleBackground(sound)}
                 />
-                {sound.name}
+                <span className="background-item__title">{sound.name}</span>
+                {sound.category && (
+                  <span className="background-item__category">{sound.category}</span>
+                )}
+                {sound.duration != null && (
+                  <span className="background-item__duration">
+                    {formatDuration(sound.duration)}
+                  </span>
+                )}
               </label>
+              {sound.description && (
+                <p className="background-item__description">{sound.description}</p>
+              )}
+              {sound.tags && sound.tags.length > 0 && (
+                <div className="background-item__tags">
+                  {sound.tags.map((tag) => (
+                    <span key={tag} className="background-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
               <audio controls src={sound.preview} />
             </div>
           ))}
