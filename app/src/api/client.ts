@@ -55,6 +55,8 @@ export type ProjectProfile = {
   target_duration?: number;
   tts_provider?: "qwen" | "elevenlabs";
   tts_voice_id?: string | null;
+  include_citations?: boolean;
+  source_usage_level?: "leger" | "modere" | "central";
   preference_options?: PreferenceOptions;
   last_scenarios?: Array<Record<string, unknown>>;
   last_scenarios_generated_at?: string;
@@ -147,6 +149,10 @@ export type BackgroundSound = {
   path: string;
   name: string;
   preview: string;
+  category?: string;
+  tags?: string[];
+  description?: string;
+  duration?: number;
 };
 
 export async function fetchBackgroundSounds(keyword?: string) {

@@ -64,6 +64,16 @@ from utils.claude_client import ClaudeClient
 from config.model_registry import get_available_models, resolve_model_id
 
 logger = logging.getLogger(__name__)
+
+# Sentinel written by docker-entrypoint.sh once the Qwen TTS model download finishes.
+_QWEN_TTS_LOCAL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts"))
+_TTS_READY_FILE = _QWEN_TTS_LOCAL_DIR / ".ready"
+
+
+def _tts_model_ready() -> bool:
+    """Return True when the TTS model has been fully downloaded."""
+    return _TTS_READY_FILE.exists()
+
 SCENARIO_DEFAULT_CONFIG_PATH = Path(os.getenv("SCENARIO_DEFAULT_CONFIG", "config/default_config.json")).expanduser()
 PUNCTUAL_GAIN_DB = -24.0
 AMBIENT_GAIN_DB = -30.0
@@ -111,17 +121,6 @@ ELEVENLABS_DEFAULT_VOICE_IDS = [
     "GYzIdoKkRyANjBvkKYfO",
     "TojRWZatQyy9dujEdiQ1",
 ]
-
-
-class TTSJob(TypedDict):
-    job_id: str
-    session_id: str
-    project_name: str
-    text: str
-    language: str
-    provider: str
-    voice_id: Optional[str]
-    requested_at: str
 
 
 @lru_cache(maxsize=1)
@@ -881,8 +880,6 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     settings = settings or get_settings()
     os.environ.setdefault("PROJECTS_DIR", str(settings.projects_dir))
     app = FastAPI(title="Mémoire des Territoires API", version="0.1.0")
-    app.state.tts_queue = None
-    app.state.tts_worker = None
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
@@ -950,6 +947,82 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             chunks.append(summary.strip())
 
         return "\n\n".join([chunk for chunk in chunks if chunk]).strip()
+
+    def clean_elevenlabs_text(text: str) -> str:
+        """Clean text for ElevenLabs v3 TTS:
+        - [EXTRAIT AUDIO — Nom : "texte réel"] → keep only the quoted text after ':'
+        - [ARCHIVE AUDIO — ...] / [ARCHIVE — ...] without quoted content → remove entirely
+        - Ambient sound markers {filename.wav} → remove (handled by sound pipeline)
+        - Part markers === PARTIE N : ... === → remove
+        - All other [...] tags → KEEP (ElevenLabs v3 Audio Tags, interpreted natively)
+        """
+        # 1. Audio extract markers with quoted content after ':' → keep only the quoted text
+        #    Handles: [EXTRAIT AUDIO — Gilles : "blah blah"] or [ARCHIVE — Nom : « blah »]
+        def replace_audio_extract(m: re.Match) -> str:
+            bracket_content = m.group(1)
+            # Find content after ':'
+            colon_idx = bracket_content.find(":")
+            if colon_idx == -1:
+                return ""
+            after_colon = bracket_content[colon_idx + 1:].strip()
+            # Extract content between quotes (French « » or standard " ")
+            quote_match = re.search(r'[«""](.+?)[»""]', after_colon, re.DOTALL)
+            if quote_match:
+                return quote_match.group(1).strip()
+            # No quotes: return everything after the colon if it looks like real text
+            after_colon_clean = after_colon.strip().strip('""«»')
+            if len(after_colon_clean) > 5:
+                return after_colon_clean
+            return ""
+
+        # Apply to any [bracket content with a colon mentioning AUDIO/EXTRAIT/ARCHIVE]
+        text = re.sub(
+            r"\[((?:EXTRAIT|ARCHIVE)(?:\s+AUDIO)?\s*—[^\]]+)\]",
+            replace_audio_extract,
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        # 2. Remove ambient sound markers {filename.wav}
+        text = re.sub(r"\{[^}]+\}", "", text)
+
+        # 3. Remove part markers === PARTIE N : ... ===
+        text = re.sub(r"===\s*PARTIE\s+\d+\s*:.*?===", "", text, flags=re.IGNORECASE)
+
+        # 4. NOTE: remaining [...] tags are kept — ElevenLabs v3 Audio Tags
+        #    e.g. [pause], [rit], [soupire], [chuchote], [triste], [en colère]…
+        #    are interpreted natively by eleven_v3 and NOT read aloud.
+
+        # 5. Clean up multiple newlines and extra spaces
+        text = re.sub(r"\n{3,}", "\n\n", text)
+        text = re.sub(r" +", " ", text)
+        return text.strip()
+
+    def scenario_to_text_for_elevenlabs(entry: Dict[str, Any]) -> str:
+        """Extract text for ElevenLabs TTS, using taggedOutput if available."""
+        # Check if taggedOutput exists at the entry level (from Agent 3)
+        tagged_output = entry.get("taggedOutput")
+        if isinstance(tagged_output, dict):
+            tagged_text = tagged_output.get("taggedText")
+            if isinstance(tagged_text, str) and tagged_text.strip():
+                # Clean the tagged text: remove {} and [ARCHIVE ...] markers
+                cleaned = clean_elevenlabs_text(tagged_text)
+                if cleaned:
+                    return cleaned
+        
+        # Also check inside scenario payload (in case structure is different)
+        scenario_payload = extract_scenario_payload(entry)
+        if scenario_payload:
+            tagged_output = scenario_payload.get("taggedOutput")
+            if isinstance(tagged_output, dict):
+                tagged_text = tagged_output.get("taggedText")
+                if isinstance(tagged_text, str) and tagged_text.strip():
+                    cleaned = clean_elevenlabs_text(tagged_text)
+                    if cleaned:
+                        return cleaned
+        
+        # Fallback to regular scenario_to_text if no taggedOutput
+        return scenario_to_text(entry)
 
     def compute_scenario_ranking(
         config: Optional[Dict[str, Any]],
@@ -1679,6 +1752,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
     async def health_check() -> dict:
         return {
             "status": "ok",
+            "tts_ready": _tts_model_ready(),
             "steps": len(step_registry.steps),
         }
 
@@ -1776,6 +1850,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "target_duration": target_duration,
             "tts_provider": profile.get("tts_provider", "elevenlabs"),
             "tts_voice_id": profile.get("tts_voice_id"),
+            "include_citations": profile.get("include_citations", True),
+            "source_usage_level": profile.get("source_usage_level", "modere"),
             "preference_options": preference_options,
             "last_scenarios": profile.get("last_scenarios") or [],
             "last_scenarios_generated_at": profile.get("last_scenarios_generated_at"),
@@ -2016,6 +2092,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "audio_transcriptions": audio_transcriptions,
             "model_id": resolved_model,
             "tts_provider": project_profile.get("tts_provider", "elevenlabs"),
+            "include_citations": project_profile.get("include_citations", True),
+            "source_usage_level": project_profile.get("source_usage_level", "modere"),
         }
         if config_overrides:
             params["config_overrides"] = config_overrides
@@ -2287,52 +2365,185 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         scenario = session.get("selected_scenario")
         if not scenario:
             raise HTTPException(status_code=400, detail="Aucun scénario sélectionné")
-        text = (payload.text or scenario_to_text(scenario)).strip()
-        if not text:
-            raise HTTPException(status_code=400, detail="Impossible de générer l'audio : texte vide")
+        
         profile = load_project_profile(session["project_name"])
         provider = (profile.get("tts_provider") or "elevenlabs").lower()
         voice_id = profile.get("tts_voice_id")
-        if provider == "elevenlabs" and not voice_id:
-            raise HTTPException(
-                status_code=400,
-                detail="Sélectionnez une voix ElevenLabs avant de générer l'audio."
+        
+        # Check TTS model readiness only for Qwen (ElevenLabs uses API, no local model needed)
+        if provider != "elevenlabs":
+            tts_ready = _tts_model_ready()
+            logger.info(
+                "[TTS] Model readiness check - provider=%s, ready=%s, ready_file=%s",
+                provider,
+                tts_ready,
+                _TTS_READY_FILE,
             )
-        language = payload.language or "French"
-        job_id = uuid4().hex
-        requested_at = datetime.utcnow().isoformat()
-        metadata = {
-            "status": "pending",
-            "job_id": job_id,
-            "language": language,
-            "text_length": len(text),
-            "requested_at": requested_at,
-            "tts_provider": provider,
-        }
-        session_store.save_scenario_audio(session_id, metadata)
-        queue: asyncio.Queue = getattr(app.state, "tts_queue", None)
-        if queue is None:
-            app.state.tts_queue = asyncio.Queue()
-            queue = app.state.tts_queue
-            if getattr(app.state, "tts_worker", None) is None:
-                app.state.tts_worker = asyncio.create_task(_tts_worker())
-        job: TTSJob = {
-            "job_id": job_id,
-            "session_id": session_id,
-            "project_name": session["project_name"],
-            "text": text,
-            "language": language,
-            "provider": provider,
-            "voice_id": voice_id,
-            "requested_at": requested_at,
-        }
-        await queue.put(job)
+            if not tts_ready:
+                logger.warning(
+                    "[TTS] Model not ready - provider=%s, ready_file missing at %s",
+                    provider,
+                    _TTS_READY_FILE,
+                )
+                raise HTTPException(
+                    status_code=503,
+                    detail="Le modèle TTS est en cours de téléchargement, réessayez dans quelques minutes.",
+                )
+        else:
+            logger.info("[ElevenLabs] Skipping local TTS model check (using API)")
+        
+        logger.info(
+            "[ElevenLabs] Starting audio synthesis - session=%s, provider=%s, voice_id=%s",
+            session_id,
+            provider,
+            voice_id if voice_id else "NOT SET",
+        )
+        
+        # Use tagged text for ElevenLabs, regular text for Qwen
+        if provider == "elevenlabs":
+            logger.info("[ElevenLabs] Extracting tagged text from scenario")
+            text = (payload.text or scenario_to_text_for_elevenlabs(scenario)).strip()
+            logger.info(
+                "[ElevenLabs] Tagged text extracted - length=%d chars, preview=%s",
+                len(text),
+                text[:200] + "..." if len(text) > 200 else text,
+            )
+        else:
+            text = (payload.text or scenario_to_text(scenario)).strip()
+        
+        if not text:
+            logger.error("[ElevenLabs] Empty text extracted - cannot generate audio")
+            raise HTTPException(status_code=400, detail="Impossible de générer l'audio : texte vide")
         log_progress(
-            "SCENARIO_AUDIO_QUEUED",
+            "SCENARIO_AUDIO_START",
             session=session_id,
             project=session["project_name"],
-            job=job_id,
-            provider=provider,
+            language=payload.language or "French",
+        )
+
+        def synthesize_qwen() -> dict:
+            return text_to_speech_with_instructions(
+                text=text,
+                project_name=session["project_name"],
+                language=payload.language or "French",
+            )
+
+        if provider == "elevenlabs":
+            if not voice_id:
+                logger.error("[ElevenLabs] No voice_id configured in project profile")
+                raise HTTPException(
+                    status_code=400,
+                    detail="Sélectionnez une voix ElevenLabs avant de générer l'audio."
+                )
+            logger.info(
+                "[ElevenLabs] Calling eleven_labs_tts - voice_id=%s, text_length=%d chars",
+                voice_id,
+                len(text),
+            )
+            try:
+                result = eleven_labs_tts(
+                    text=text,
+                    voice_id=voice_id,
+                )
+                logger.info(
+                    "[ElevenLabs] Synthesis successful - output_path=%s, status=%s",
+                    result.get("path", "unknown"),
+                    result.get("status", "unknown"),
+                )
+            except Exception as exc:  # pragma: no cover - propagate
+                logger.exception(
+                    "[ElevenLabs] Synthesis failed - session=%s, voice_id=%s, text_length=%d, error=%s",
+                    session_id,
+                    voice_id,
+                    len(text),
+                    str(exc),
+                )
+                raise HTTPException(status_code=500, detail=str(exc)) from exc
+            result.setdefault("language", payload.language or "French")
+            result.setdefault("sample_rate", 44100)
+            try:
+                segment = AudioSegment.from_file(result["path"])
+                result["num_samples"] = int(segment.frame_count())
+            except Exception:
+                result.setdefault("num_samples", 0)
+            result["tts_provider"] = "elevenlabs"
+        else:
+            try:
+                result = synthesize_qwen()
+            except ValueError as exc:
+                message = str(exc)
+                lowered = message.lower()
+                if any(token in lowered for token in ["aucune voix", "no voice", "voice instructions"]):
+                    logger.info("Voice instructions missing for %s – composing default", session["project_name"])
+                    try:
+                        ensure_voice_instructions(session["project_name"], text, payload.language or "French")
+                    except Exception as inner_exc:  # pragma: no cover - fallback message
+                        raise HTTPException(status_code=400, detail=str(inner_exc)) from inner_exc
+                    try:
+                        result = synthesize_qwen()
+                    except Exception as retry_exc:
+                        raise HTTPException(status_code=400, detail=str(retry_exc)) from retry_exc
+                else:
+                    raise HTTPException(status_code=400, detail=message) from exc
+            except Exception as exc:  # pragma: no cover - propagate to client
+                logger.exception("Scenario audio synthesis failed for session %s", session_id)
+                raise HTTPException(status_code=500, detail=str(exc)) from exc
+            result["tts_provider"] = "qwen"
+
+        backgrounds_applied = 0
+        backgrounds_requested = 0
+        dry_voice_path: Optional[Path] = None
+        background_plan: List[Dict[str, Any]] = []
+        try:
+            voice_path = Path(result["path"])
+            (
+                layered_path,
+                backgrounds_applied,
+                dry_voice_path,
+                backgrounds_requested,
+                background_plan,
+            ) = apply_background_selection(voice_path, session["project_name"], text)
+            result["path"] = str(layered_path)
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.exception("Background layering failed for session %s: %s", session_id, exc)
+            backgrounds_applied = 0
+            background_plan = []
+
+        metadata = {
+            **result,
+            "generated_at": datetime.utcnow().isoformat(),
+            "text_length": len(text),
+            "language": payload.language or "French",
+            "backgrounds_applied": backgrounds_applied,
+            "background_tracks_requested": backgrounds_requested,
+        }
+        if background_plan:
+            metadata["background_plan"] = background_plan
+        if dry_voice_path:
+            metadata["voice_only_path"] = str(dry_voice_path)
+        session_store.save_scenario_audio(session_id, metadata)
+
+        if backgrounds_applied:
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_APPLIED",
+                session=session_id,
+                project=session["project_name"],
+                layers=backgrounds_applied,
+            )
+        elif backgrounds_requested:
+            log_progress(
+                "SCENARIO_AUDIO_BACKGROUND_SKIPPED",
+                session=session_id,
+                project=session["project_name"],
+                reason="mix_failed",
+            )
+
+        log_progress(
+            "SCENARIO_AUDIO_DONE",
+            session=session_id,
+            project=session["project_name"],
+            path=metadata.get("path"),
+            duration=metadata.get("num_samples"),
         )
         return metadata
 
@@ -2813,13 +3024,34 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             listing = find_background_sounds(keyword=keyword, limit=limit)
         except FileNotFoundError:
             listing = {"files": [], "status": "ok"}
+
+        # Charger l'index de métadonnées (tags, description, catégorie…)
+        sound_index: Dict[str, Any] = {}
+        index_path = background_root / "index.json"
+        if index_path.exists():
+            try:
+                with open(index_path, encoding="utf-8") as _f:
+                    _idx = json.load(_f)
+                for _entry in _idx.get("sounds", []):
+                    _fname = (_entry.get("filename") or "").strip()
+                    if _fname:
+                        sound_index[_fname] = _entry
+            except Exception as _exc:
+                logger.warning("Impossible de lire l'index des sons : %s", _exc)
+
         files = []
         for rel in listing.get("files", []):
+            fname = Path(rel).name
+            meta = sound_index.get(fname, {})
             files.append(
                 {
                     "path": rel,
-                    "name": Path(rel).name,
+                    "name": fname,
                     "preview": f"/background-sounds/preview?path={quote(rel)}",
+                    "category": meta.get("category") or Path(rel).parent.name,
+                    "tags": meta.get("tags") or [],
+                    "description": (meta.get("metadata") or {}).get("description") or "",
+                    "duration": meta.get("duration"),
                 }
             )
         listing["files"] = files

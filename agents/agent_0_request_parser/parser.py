@@ -447,6 +447,10 @@ class RequestParserAgent:
             "scenario_config", {}
         ).get("voice_instructions", "")
 
+        # Source usage preferences
+        includeCitations = config.get("include_citations", True)
+        sourceUsageLevel = config.get("source_usage_level", "modere")
+
         def _val(key: str) -> Any:
             entry = gp.get(key, {})
             return entry.get("value", "") if isinstance(entry, dict) else entry
@@ -457,10 +461,27 @@ class RequestParserAgent:
         if angleDesc:
             angleLine += f"\n  → {angleDesc}"
 
-        lines: List[str] = [
+        duree = _val("duree") or 120
+        maxMots = int(duree) * 2
+
+        lines: List[str] = []
+
+        # ── Original user prompt FIRST (highest priority) ──
+        if originalPrompt and originalPrompt.strip():
+            lines += [
+                "=== DEMANDE ORIGINALE DE L'UTILISATEUR (PRIORITÉ ABSOLUE) ===",
+                f'"{originalPrompt.strip()}"',
+                "→ L'histoire à raconter est définie par CETTE DEMANDE.",
+                "→ Les transcriptions audio sont du matériau de sourcing, "
+                "PAS le sujet principal du récit.",
+                "",
+            ]
+
+        lines += [
             "=== PARAMÈTRES DE GÉNÉRATION ===",
             f"- Forme narrative : {_val('forme')}",
-            f"- Durée cible : {_val('duree')} secondes",
+            f"- Durée cible : {duree} secondes "
+            f"(≈ {maxMots} mots MAXIMUM à ~2 mots/seconde — 120 mots/min)",
             f"- Ton : {_val('ton')}",
             f"- Axe narratif : {_val('axe_narratif')}",
             f"- Structure narrative : {_val('structure_narrative')}",
@@ -475,6 +496,17 @@ class RequestParserAgent:
             f"- Public cible : {_val('public_cible')}  "
             "(influence le registre de langue et la complexité, "
             "PAS le format narratif — le récit reste une voix off)",
+        ]
+
+        # ── Source usage instructions ──
+        sourceLabel = {
+            "leger": "Léger — les transcriptions servent de contexte factuel uniquement",
+            "modere": "Modéré — sourcing équilibré, quelques citations clés",
+            "central": "Central — les témoignages sont le cœur du récit",
+        }.get(sourceUsageLevel, "Modéré")
+        lines += [
+            f"- Utilisation des sources : {sourceLabel}",
+            f"- Inclure des citations directes : {'Oui' if includeCitations else 'Non'}",
         ]
 
         # Historical context
@@ -512,6 +544,25 @@ class RequestParserAgent:
         # Audio transcriptions
         if audioTranscriptions:
             lines += ["", "=== ARCHIVES AUDIO DISPONIBLES (transcriptions) ==="]
+            if sourceUsageLevel == "leger":
+                lines.append(
+                    "⚠ MODE LÉGER : ces transcriptions servent de contexte "
+                    "factuel UNIQUEMENT. Ne les citez pas directement dans le "
+                    "récit. Utilisez-les pour vérifier les faits et nourrir "
+                    "l'atmosphère."
+                )
+            elif sourceUsageLevel == "central":
+                lines.append(
+                    "★ MODE CENTRAL : les témoignages ci-dessous sont le CŒUR "
+                    "du récit. Citez-les largement et construisez la narration "
+                    "AUTOUR d'eux."
+                )
+            else:  # modere
+                lines.append(
+                    "◆ MODE MODÉRÉ : intégrez naturellement quelques citations "
+                    "clés de ces transcriptions. Elles enrichissent le récit "
+                    "mais ne le dominent pas."
+                )
             for t in audioTranscriptions:
                 name = t.get("file_name", "audio")
                 text = t.get("transcription", "")
@@ -525,15 +576,6 @@ class RequestParserAgent:
                 "",
                 "=== CONSIGNES VOCALES DE L'UTILISATEUR ===",
                 str(voiceInstructions),
-            ]
-
-        # Original user prompt
-        if originalPrompt and originalPrompt.strip():
-            lines += [
-                "",
-                "=== DEMANDE ORIGINALE DE L'UTILISATEUR ===",
-                f'"{originalPrompt.strip()}"',
-                "→ Respectez scrupuleusement les intentions et souhaits ci-dessus.",
             ]
 
         # Locked params
@@ -580,7 +622,10 @@ class RequestParserAgent:
             "=== VOTRE MISSION (Agent 1 — Architecte Narratif) ===\n"
             "1. Concevez la structure narrative en décidant librement du nombre "
             "de sections (1 à 7) selon ce qui est NATUREL pour ce récit.\n"
-            f"2. La somme des durées ≈ {duree}s (± 10 %%).\n"
+            f"2. La somme des durées ≈ {duree}s (± 10 %%). "
+            f"Cela correspond à environ {int(duree) * 2} mots au total "
+            "(débit narratif lent : ~2 mots/seconde). Prévoyez des "
+            "sections courtes et denses.\n"
             "3. Pour chaque section : titre, durée cible, fonction narrative, "
             "position sur l'arc émotionnel, éléments nécessaires, mood.\n"
             f"4. L'angle « {angle} » définit la MANIÈRE de raconter — "
@@ -631,6 +676,39 @@ class RequestParserAgent:
 
         # ---- Prompt Template Agent 2 (Writing) ----
         # <<STRUCTURE_ET_RESUME>> will be replaced at runtime with Agent 1 output
+        includeCitations = config.get("include_citations", True)
+        sourceUsageLevel = config.get("source_usage_level", "modere")
+
+        # Build source-specific instructions
+        if sourceUsageLevel == "leger":
+            sourceInstruction = (
+                "5. UTILISATION DES SOURCES (mode léger) : les transcriptions "
+                "servent de contexte factuel UNIQUEMENT. Ne les citez PAS "
+                "directement. Utilisez-les pour vérifier les faits et nourrir "
+                "l'atmosphère du récit.\n"
+            )
+        elif sourceUsageLevel == "central":
+            sourceInstruction = (
+                "5. UTILISATION DES SOURCES (mode central) : les témoignages "
+                "sont le CŒUR du récit. Citez-les largement avec des balises "
+                "[ARCHIVE : « … »] et construisez la narration AUTOUR d'eux.\n"
+            )
+        else:  # modere
+            sourceInstruction = (
+                "5. UTILISATION DES SOURCES (mode modéré) : intégrez "
+                "naturellement quelques citations clés des transcriptions. "
+                "Elles enrichissent le récit mais ne le dominent pas.\n"
+            )
+
+        if not includeCitations:
+            sourceInstruction += (
+                "   ⚠ CITATIONS DÉSACTIVÉES : ne placez AUCUNE citation "
+                "directe [ARCHIVE : « … »] dans le texte. Reformulez les "
+                "informations des sources dans le récit.\n"
+            )
+
+        maxMots = int(duree) * 2
+
         promptTemplateAgent2 = (
             f"Écrivez le scénario audio historique complet #{scenarioNum}.\n\n"
             f"{paramsBlock}\n\n"
@@ -646,6 +724,14 @@ class RequestParserAgent:
             "« Nous sommes en… », « Fermons les yeux… ».\n"
             "- Le public cible détermine la complexité du vocabulaire et la "
             "longueur des phrases, PAS le style d'adresse.\n\n"
+            "=== INTERDICTION ABSOLUE — PHRASES MÉTA ===\n"
+            "Ne commencez JAMAIS par une phrase qui décrit le récit lui-même. "
+            "Sont STRICTEMENT INTERDITES en début (et partout) :\n"
+            "- « Ce récit s'adresse à… »\n"
+            "- « Le ton sera celui du… »\n"
+            "- « Dans ce programme… », « Bienvenue dans ce documentaire »\n"
+            "- Toute phrase qui parle DE l'histoire plutôt que de LA raconter.\n"
+            "Entrez IMMÉDIATEMENT dans l'histoire dès la première phrase.\n\n"
             "=== VOTRE MISSION (Agent 2 — Scénariste Historique) ===\n"
             "1. Écrivez le texte narratif complet pour TOUTES les parties en "
             "une seule réponse cohérente et FLUIDE.\n"
@@ -656,14 +742,34 @@ class RequestParserAgent:
             "4. Adaptez le registre de langue au public cible (complexité, "
             "longueur des phrases) et à l'époque, sans jamais apostrophe "
             "directe.\n"
-            "5. Si des transcriptions audio sont fournies, UTILISEZ-LES : "
-            "intégrez les mots et témoignages réels.\n"
+            f"{sourceInstruction}"
             "6. Pour chaque partie : 2-3 moments clés + directions de ton.\n"
-            "7. Respectez strictement les durées cibles (~2.5 mots/seconde).\n"
+            f"7. ⚠ CONTRAINTE DE DURÉE STRICTE : visez ~2 mots/seconde "
+            f"(120 mots/min). Pour {duree}s → {maxMots} mots MAXIMUM au "
+            "total. Comptez vos mots. Un récit narratif lu lentement ne "
+            "dépasse JAMAIS 2 mots/seconde. Si votre texte est trop long, "
+            "CONDENSEZ impitoyablement.\n"
             "8. SOURCING OBLIGATOIRE : après avoir rédigé le texte, découpez-le "
             "en phrases et pour chaque phrase listez les lignes de transcription "
             "qui l'ont inspirée (citations exactes ou très proches). "
             "Si aucune transcription n'est pertinente, laissez la liste vide.\n\n"
+            "=== CITATIONS — ATTRIBUTION ET ANTI-PARAPHRASE ===\n"
+            "Chaque citation [ARCHIVE : « … »] DOIT être précédée d'un verbe "
+            "d'attribution narratif ancré dans le récit.\n"
+            "Verbes à utiliser (adaptés au contexte) : raconte, confie, "
+            "se souvient, témoigne, précise, glisse, ajoute, murmure, explique.\n"
+            "Formats attendus :\n"
+            "  • « [Prénom] raconte : [ARCHIVE : « texte »] »\n"
+            "  • « Il se souvient encore : [ARCHIVE : « texte »] »\n"
+            "  • « Elle confie, des années plus tard : [ARCHIVE : « texte »] »\n"
+            "APRÈS la citation : enchaînez immédiatement sur un FAIT NOUVEAU ou "
+            "une IMAGE NARRATIVE — jamais de résumé ni d'écho du contenu cité. "
+            "Le texte avant INTRODUIT, le texte après AVANCE.\n\n"
+            "=== RECENTRAGE NARRATIF ===\n"
+            "L'HISTOIRE à raconter est définie par la DEMANDE UTILISATEUR, "
+            "pas par les transcriptions. Les transcriptions sont du matériau "
+            "d'enrichissement et de sourcing — pas le sujet principal "
+            "(sauf indication contraire dans les paramètres de sources).\n\n"
             "RIGUEUR HISTORIQUE (non négociable) :\n"
             "- EXCLUSIVEMENT basé sur le contexte et transcriptions fournis.\n"
             "- N'INVENTEZ JAMAIS de dates, noms, lieux ou événements absents "

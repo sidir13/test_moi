@@ -1,11 +1,55 @@
+# Git
 .git
-__pycache__
-.env.local
-node_modules
-app/node_modules
-data/audio/*
-!data/audio/background_sounds/**
-data/audio_analysis/*
-logs
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node (frontend deps rebuilt in Docker)
+app/node_modules/
+node_modules/
+
+# OS
 .DS_Store
-notebooks
+Thumbs.db
+
+# Dev files
+dump/
+notebooks/
+audio_romu/
+tests/
+AGENTS.md
+
+# Large data files (mounted as volumes in production)
+data/audio/background_sounds/
+data/sound_library/
+data/sessions/
+data/scenarios/
+data/audio_analysis.duckdb
+data/image/
+slideshow*.mp4
+
+# Models (downloaded at build time)
+models/qwen3-tts/
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.local

@@ -76,13 +76,16 @@ class AutomationRunner:
         voice_instructions = payload.get("voice_instructions")
         tts_provider = payload.get("tts_provider")
         tts_voice_id = payload.get("tts_voice_id")
+        include_citations = payload.get("include_citations")
+        source_usage_level = payload.get("source_usage_level")
         if isinstance(tts_provider, str):
             tts_provider = tts_provider.strip().lower()
         if isinstance(tts_voice_id, str):
             tts_voice_id = tts_voice_id.strip()
         has_updates = any(
             value is not None and (value != "" if isinstance(value, str) else True)
-            for value in (audience, tone, target_duration, voice_instructions, tts_provider, tts_voice_id)
+            for value in (audience, tone, target_duration, voice_instructions, tts_provider, tts_voice_id,
+                          include_citations, source_usage_level)
         )
         if not has_updates:
             return {}
@@ -146,6 +149,17 @@ class AutomationRunner:
         if tts_voice_id and (tts_provider == "elevenlabs" or entry.get("tts_provider") == "elevenlabs"):
             entry["tts_voice_id"] = tts_voice_id
             updated["tts_voice_id"] = tts_voice_id
+            changed = True
+
+        if isinstance(include_citations, bool):
+            entry["include_citations"] = include_citations
+            updated["include_citations"] = include_citations
+            changed = True
+
+        allowed_source_levels = {"leger", "modere", "central"}
+        if isinstance(source_usage_level, str) and source_usage_level in allowed_source_levels:
+            entry["source_usage_level"] = source_usage_level
+            updated["source_usage_level"] = source_usage_level
             changed = True
 
         if changed:
