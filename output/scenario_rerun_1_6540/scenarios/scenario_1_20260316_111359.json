@@ -1,0 +1,230 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Chronique du dessinateur de chantier naval",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "Dans les chantiers navals français, entre la seconde moitié du XIXe siècle et le milieu du XXe, un métier discret mais essentiel donne forme aux navires avant même que le premier rivet ne soit posé : celui de dessinateur. Penché sur ses planches dans la salle à tracer, ce technicien traduit les courbes d'une coque en tracés grandeur nature, à la croisée du savoir-faire artisanal et de la rigueur industrielle. Son travail, invisible une fois le navire à flot, est pourtant le socle de toute la construction. Cette chronique raconte le quotidien de ces hommes de l'ombre, leur place singulière dans la hiérarchie du chantier, et la lente disparition d'un geste que les machines finiront par remplacer.",
+  "duree_estimee": 132.56973461321286,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le geste premier",
+      "duree": 27.818181818181817,
+      "texte_narration": "Un vaste plancher de bois clair, balayé de lignes à la craie. Au loin, le vacarme des riveurs. Mais ici, dans la salle à tracer, le silence. Un homme est penché, une latte souple entre les mains. Il dessine, grandeur nature, les courbes d'une coque qui n'existe pas encore.",
+      "ton": {
+        "global": "contemplatif_et_précis",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'le silence' (1.5s)",
+          "après 'pas encore' (1.5s)"
+        ],
+        "intonation": "posée, descriptive, entrée lente dans l'image"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ambiance salle à tracer : crissement léger de craie, écho métallique lointain",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Contraste sonore : vacarme extérieur filtré / silence intérieur",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:14",
+          "action": "Image du dessinateur penché, geste fondateur",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un vaste plancher de bois clair, balayé de lignes à la craie.",
+          "sources": []
+        },
+        {
+          "sentence": "Au loin, le vacarme des riveurs.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais ici, dans la salle à tracer, le silence.",
+          "sources": []
+        },
+        {
+          "sentence": "Un homme est penché, une latte souple entre les mains.",
+          "sources": []
+        },
+        {
+          "sentence": "Il dessine, grandeur nature, les courbes d'une coque qui n'existe pas encore.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Entre le bureau et la cale",
+      "duree": 38.60869565217391,
+      "texte_narration": "Des chantiers navals français, de la seconde moitié du XIXe siècle jusqu'au milieu du XXe, le dessinateur occupe une place singulière. Ni tout à fait ouvrier, ni ingénieur, il travaille avec des compas de réduction, des pointes, des gabarits qu'il taille lui-même. [ARCHIVE : « Fallait pas se tromper d'un millimètre, parce que tout le reste suivait derrière. »] Charpentiers et traceurs viennent lire sur son plancher la vérité du navire à construire.",
+      "ton": {
+        "global": "narratif_dense_et_vivant",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'lui-même' (1s)",
+          "après la citation archive (1.5s)"
+        ],
+        "intonation": "informative, légèrement admirative, rythme soutenu"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:20",
+          "action": "Contextualisation sociale : place dans la hiérarchie",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:28",
+          "action": "Évocation des outils spécifiques",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:33",
+          "action": "Citation directe — précision du geste",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Des chantiers navals français, de la seconde moitié du XIXe siècle jusqu'au milieu du XXe, le dessinateur occupe une place singulière.",
+          "sources": []
+        },
+        {
+          "sentence": "Ni tout à fait ouvrier, ni ingénieur, il travaille avec des compas de réduction, des pointes, des gabarits qu'il taille lui-même.",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « Fallait pas se tromper d'un millimètre, parce que tout le reste suivait derrière. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Charpentiers et traceurs viennent lire sur son plancher la vérité du navire à construire.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "La courbe et l'acier",
+      "duree": 33.0,
+      "texte_narration": "Quand les coques passent du bois à l'acier, le travail se complexifie. Chaque tôle doit être développée à plat avant d'être cintrée : le dessinateur calcule, anticipe la déformation du métal. [ARCHIVE : « Un trait faux sur le plancher, c'est une tôle perdue sur la cale. »] La responsabilité est immense. Sous ses doigts, le navire prend forme bien avant que le premier marteau ne frappe.",
+      "ton": {
+        "global": "grave_et_admiratif",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après la citation archive (1.5s)",
+          "après 'immense' (1s)"
+        ],
+        "intonation": "plus nerveuse, montée en intensité, gravité contenue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:45",
+          "action": "Transition technique : bois vers acier",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:50",
+          "action": "Explication de la développée de tôle par le contexte",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:57",
+          "action": "Citation directe — poids de la responsabilité",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Quand les coques passent du bois à l'acier, le travail se complexifie.",
+          "sources": []
+        },
+        {
+          "sentence": "Chaque tôle doit être développée à plat avant d'être cintrée : le dessinateur calcule, anticipe la déformation du métal.",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « Un trait faux sur le plancher, c'est une tôle perdue sur la cale. »]",
+          "sources": []
+        },
+        {
+          "sentence": "La responsabilité est immense.",
+          "sources": []
+        },
+        {
+          "sentence": "Sous ses doigts, le navire prend forme bien avant que le premier marteau ne frappe.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le trait s'efface",
+      "duree": 33.142857142857146,
+      "texte_narration": "Puis viennent les machines, puis les écrans. La salle à tracer se vide. Le plancher où naissaient les navires ne porte plus que la poussière. Mais quelque part, dans chaque coque qui fend la mer, il reste la mémoire d'un geste — un homme penché, une latte souple entre les mains, traçant ce qui n'existait pas encore.",
+      "ton": {
+        "global": "nostalgique_et_digne",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'se vide' (1.5s)",
+          "après 'la poussière' (2s)",
+          "après 'pas encore' (2s — fin)"
+        ],
+        "intonation": "ralentie, élégiaque, retour au calme, dernière phrase suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:10",
+          "action": "Évocation de la mécanisation et de la CAO",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:15",
+          "action": "Retour à l'image d'ouverture — salle vide",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:22",
+          "action": "Boucle narrative — reprise exacte de l'image initiale, transformée",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis viennent les machines, puis les écrans.",
+          "sources": []
+        },
+        {
+          "sentence": "La salle à tracer se vide.",
+          "sources": []
+        },
+        {
+          "sentence": "Le plancher où naissaient les navires ne porte plus que la poussière.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais quelque part, dans chaque coque qui fend la mer, il reste la mémoire d'un geste — un homme penché, une latte souple entre les mains, traçant ce qui n'existait pas encore.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 249,
+    "duree_lecture_estimee": 132.56973461321286,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est une voix off omnisciente à la 3e personne, ton neutre-informatif avec une coloration admirative contenue. La structure circulaire impose que la première et la dernière image soient la même salle à tracer — d'abord vivante, puis silencieuse. Ne jamais rompre le flux narratif par des annonces de section. Les transitions sont portées par le texte lui-même (phrases-pivots) et par l'ambiance sonore. | ÉQUILIBRE NARRATION/ARCHIVES (0.6) : Prévoir deux citations directes courtes (une en partie 2, une en partie 3), intégrées naturellement dans le flux narratif, jamais annoncées par 'je cite'. | DENSITÉ SONORE IMMERSIVE : Indiquer des ambiances précises — crissement de la craie ou du crayon sur le plancher, écho métallique du chantier, silence relatif de la salle à tracer contrastant avec le vacarme extérieur. | AUTHENTICITÉ LINGUISTIQUE (0.7) : Utiliser le vocabulaire technique authentique (gabarit, latte, tracé en vraie grandeur, développée de tôle) mais toujours le rendre compréhensible par le contexte immédiat — pas de définitions didactiques. | CONTRAINTE DE DURÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être extrêmement concise. Privilégier les images fortes et les faits précis aux développements longs. | RIGUEUR HISTORIQUE : Ne pas inventer de noms de chantiers, de dessinateurs ou de dates spécifiques non fournis dans le contexte. Rester sur des formulations englobantes (« dans les chantiers navals français », « au tournant du siècle »)."
+}

@@ -1,0 +1,100 @@
+{
+  "scenario_id": 2,
+  "titre_global": "La Grue Titan — Sentinelle jaune de l'Île de Nantes",
+  "resumeHistoire": "Sur l'Île de Nantes, une grue monumentale peinte en jaune domine le paysage depuis les anciens chantiers navals. Témoin silencieux de décennies de construction navale, elle a vu passer les ouvriers, les coques en acier et le fracas des rivets sur les quais de la Prairie-au-Duc. Quand les chantiers ont fermé et que la désindustrialisation a vidé les cales, la grue est restée, immobile et obstinée. Classée Monument Historique, elle est devenue le symbole d'une mémoire ouvrière que Nantes refuse d'oublier — un outil de levage transformé en icône culturelle, visible depuis les quais, veillant sur la ville comme une sentinelle de métal jaune.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Une silhouette sur les quais",
+      "duree_cible": 20.0,
+      "fonction_narrative": "exposition_ancrage",
+      "position_arc_emotionnel": "curiosité_calme",
+      "elements_necessaires": [
+        "Description visuelle de la grue jaune sur la skyline nantaise",
+        "Localisation précise : Île de Nantes, Parc des Chantiers, quai des Antilles",
+        "Première impression sensorielle — sa couleur, sa masse, sa verticalité",
+        "Ton neutre et informatif, registre accessible grand public"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 25.0,
+      "fonction_narrative": "contextualisation_historique",
+      "position_arc_emotionnel": "montée_émotionnelle_progressive",
+      "elements_necessaires": [
+        "Rôle fonctionnel de la grue : levage de pièces et coques dans les chantiers navals",
+        "Évocation des chantiers Dubigeon et de l'activité navale sur l'île",
+        "Portrait indirect via le témoignage de Jean Penaud — charpentier de fer, embauché le 5 février 1957",
+        "Insertion d'archive audio : extrait de Jean Penaud décrivant son arrivée et son travail (goussets, pièces, petit train)",
+        "La grue comme compagne quotidienne des ouvriers"
+      ],
+      "mood": "vivant_industriel"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 20.0,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "tension_mélancolique",
+      "elements_necessaires": [
+        "Fermeture des chantiers navals et désindustrialisation",
+        "Contraste entre l'activité passée et le vide qui suit",
+        "La grue reste, immobile, quand tout le reste disparaît",
+        "Début de la reconversion urbaine de l'Île de Nantes"
+      ],
+      "mood": "grave_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Jaune contre l'oubli",
+      "duree_cible": 25.0,
+      "fonction_narrative": "résolution_crescendo",
+      "position_arc_emotionnel": "élévation_émotionnelle_maximale",
+      "elements_necessaires": [
+        "Classement Monument Historique — acte de préservation",
+        "Transformation symbolique : d'outil industriel à icône culturelle et touristique",
+        "Proximité avec les Machines de l'Île et le Hangar à Bananes — nouveau visage de l'île",
+        "La grue comme gardienne de la mémoire ouvrière et de l'identité collective nantaise",
+        "Image finale : sa silhouette jaune sur le ciel, sentinelle entre passé et avenir"
+      ],
+      "mood": "affirmatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "dynamique — phrases courtes et factuelles en ouverture, élargissement progressif vers l'émotion mémorielle, accélération légère en partie 2 avec l'archive, ralentissement grave en partie 3, puis remontée affirmative en finale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "Du présent visuel (la grue aujourd'hui sur les quais) vers le passé industriel — transition fluide par une phrase du type 'Mais avant d'être un monument, elle était un outil' qui emmène naturellement vers l'époque des chantiers."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce_par_contraste",
+      "duree": 2.0,
+      "description": "Après la vivacité de l'archive ouvrière, un silence bref ou une baisse de ton marque la fin de l'activité. La narration passe du bruit des chantiers au silence de leur fermeture — transition par contraste sonore et narratif."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retournement_positif",
+      "duree": 2.0,
+      "description": "Du constat mélancolique de la désindustrialisation vers la renaissance symbolique — pivot narratif sur l'idée que la grue, au lieu de disparaître, a changé de fonction. Phrase charnière du type 'Pourtant, elle est toujours là'."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est un portrait de la grue jaune raconté comme on raconterait la vie d'une personne — de l'extérieur, avec respect et distance informative. La narratrice (voix femme professionnelle) adopte un ton neutre et informatif tout au long, sans jamais interpeller l'auditeur. Le registre reste accessible grand public : phrases courtes, vocabulaire concret, pas de jargon non expliqué. L'archive de Jean Penaud (partie 2) constitue le seul moment de voix autre — elle doit être intégrée comme une respiration humaine dans le flux narratif, pas comme une rupture. Prévoir un extrait court (10-12 secondes max, ratio archives ~30%) centré sur son embauche et la description des goussets/petit train, pour ancrer la réalité ouvrière. L'ambiance sonore reste minimaliste : pas de musique envahissante, éventuellement un son de vent ou de métal lointain en ouverture, un léger fond industriel en partie 2, puis silence travaillé en partie 3. La partie 4 peut s'ouvrir très légèrement sur le plan sonore pour accompagner l'élévation émotionnelle. Ne jamais commencer par une adresse au public. Première phrase : immersion directe dans le lieu ou l'image de la grue."
+}

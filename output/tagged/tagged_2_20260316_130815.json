@@ -1,0 +1,32 @@
+{
+  "scenario_id": 2,
+  "titre": "Jean Penaud, le trait et la coque",
+  "taggedText": "=== PARTIE 1 : Le silence des cales ===\n\n{vent_loire_beton.wav}\n\n[posé] Aujourd'hui, sur l'île de Nantes, les cales sont vides. [pause] Le vent de Loire glisse sur le béton nu, là où des coques d'acier prenaient forme. [pause] Parmi les hommes qui ont œuvré ici, [atténué] il y avait des dessinateurs.\n\n=== PARTIE 2 : Le bureau des traceurs ===\n\n{bruissement_papier_crayons.wav}\n\nJean Penaud entre aux chantiers Dubigeon comme dessinateur industriel. Chaque matin, il rejoint le bureau d'études — tables inclinées, équerres, tire-lignes. [pause] Il se souvient : [posé] [atténué] « Je faisais des plans de coque, des plans de structure, de charpente. » [pause] Ses tracés guidaient ensuite le geste des ouvriers sur les cales.\n\n=== PARTIE 3 : Du trait à l'acier ===\n\n{activite_metal_marteaux.wav}\n\nDu bureau d'études, les plans descendaient à la salle des traceurs, où chaque courbe était reproduite grandeur nature sur le sol. [précipité] Puis venaient les charpentiers, les soudeurs, les riveurs. [pause] Jean Penaud précise : [posé] [atténué] « Le dessinateur, c'est entre l'ingénieur et l'ouvrier. » [pause] [ralentit] Ligne après ligne, un navire entier naissait de ce trait d'encre.\n\n=== PARTIE 4 : L'encre et la mémoire ===\n\n{echo_cales_vides.wav}\n\n[ralentit] Les chantiers ont fermé. Les tables à dessin ont disparu, les tire-lignes se sont tus. [pause] Mais les navires tracés par Jean Penaud et ses pairs ont sillonné les mers du monde. [pause] [atténué] Sur les cales silencieuses de l'île de Nantes, il reste cela — [étire] l'empreinte invisible d'un trait juste.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le silence des cales",
+      "taggedText": "{vent_loire_beton.wav}\n\n[posé] Aujourd'hui, sur l'île de Nantes, les cales sont vides. [pause] Le vent de Loire glisse sur le béton nu, là où des coques d'acier prenaient forme. [pause] Parmi les hommes qui ont œuvré ici, [atténué] il y avait des dessinateurs."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le bureau des traceurs",
+      "taggedText": "{bruissement_papier_crayons.wav}\n\nJean Penaud entre aux chantiers Dubigeon comme dessinateur industriel. Chaque matin, il rejoint le bureau d'études — tables inclinées, équerres, tire-lignes. [pause] Il se souvient : [posé] [atténué] « Je faisais des plans de coque, des plans de structure, de charpente. » [pause] Ses tracés guidaient ensuite le geste des ouvriers sur les cales."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Du trait à l'acier",
+      "taggedText": "{activite_metal_marteaux.wav}\n\nDu bureau d'études, les plans descendaient à la salle des traceurs, où chaque courbe était reproduite grandeur nature sur le sol. [précipité] Puis venaient les charpentiers, les soudeurs, les riveurs. [pause] Jean Penaud précise : [posé] [atténué] « Le dessinateur, c'est entre l'ingénieur et l'ouvrier. » [pause] [ralentit] Ligne après ligne, un navire entier naissait de ce trait d'encre."
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'encre et la mémoire",
+      "taggedText": "{echo_cales_vides.wav}\n\n[ralentit] Les chantiers ont fermé. Les tables à dessin ont disparu, les tire-lignes se sont tus. [pause] Mais les navires tracés par Jean Penaud et ses pairs ont sillonné les mers du monde. [pause] [atténué] Sur les cales silencieuses de l'île de Nantes, il reste cela — [étire] l'empreinte invisible d'un trait juste."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 19,
+    "soundTags": 4,
+    "originalWordCount": 196
+  }
+}

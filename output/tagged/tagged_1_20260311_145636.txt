@@ -1,0 +1,23 @@
+=== PARTIE 1 : Le temps des chantiers ===
+
+{ambiance_chantier_naval_metal_rivets.wav}
+
+[ton posé] Quai des Antilles, Île de Nantes, bords de Loire. [pause 1s] Dans les années cinquante, une grue jaune monumentale domine les chantiers navals. En contrebas, des centaines d'ouvriers s'affairent. {grincement_grue_mouvement.wav} On trie les goussets — ces pièces de renfort en métal —, on les charge sur un petit train à plateau, on les achemine à bord des navires en construction. [pause 1s] {archive_jean_penaud.wav} [ralentissement] Parmi ces hommes, Jean Penaud, charpentier de fer, embauché le 5 février 1957 au Chantier de la Loire.
+
+=== PARTIE 2 : Le silence des cales ===
+
+{vent_clapotis_loire.wav}
+
+[pause 2s] [ton grave] Puis les chantiers ferment. Dubigeon, le Chantier de la Loire — l'un après l'autre, ils cessent leur activité. [ralentissement] La désindustrialisation vide l'Île de Nantes. Là où résonnait le fracas des tôles, il ne reste que le vent, l'eau contre les cales, et une grue immobile, bras tendu au-dessus du fleuve. [pause 2s] {mouettes_lointaines.wav} Que faire de ce géant muet ?
+
+=== PARTIE 3 : Debout, face au fleuve ===
+
+{rumeur_urbaine_pas_velos.wav}
+
+[pause 1s] Là où d'autres villes ont tout rasé, Nantes fait un choix. La grue jaune est conservée, classée au patrimoine. Autour d'elle, l'Île de Nantes se réinvente : les anciennes friches deviennent des lieux de culture, de promenade, de vie. {motif_musical_discret.wav} La silhouette jaune, visible depuis les deux rives de la Loire, s'impose comme un repère dans le paysage. [ton solennel] Elle n'est plus un outil — [pause 1s] elle est devenue un symbole. Celui d'une ville qui a décidé de ne pas effacer sa mémoire ouvrière, mais de bâtir dessus.
+
+=== PARTIE 4 : Coda — La mémoire debout ===
+
+{eau_vent_loire_nu.wav}
+
+[ralentissement] [ton grave] Sur le quai des Antilles, la grue jaune se dresse face à la Loire. Sentinelle d'acier entre deux époques, elle veille — [pause 1s] [émotion contenue] et elle se souvient. [pause 3s] {silence_loire_seule.wav}

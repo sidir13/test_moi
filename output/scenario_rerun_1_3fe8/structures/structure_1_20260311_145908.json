@@ -1,0 +1,103 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La Grue Jaune — Mémoire d'acier sur les bords de Loire",
+  "resumeHistoire": "Sur le quai des Antilles, à la pointe de l'Île de Nantes, une grue jaune monumentale se dresse face à la Loire comme une sentinelle silencieuse. Vestige des anciens chantiers navals qui firent battre le cœur industriel de la ville pendant des décennies, elle a vu passer des générations d'ouvriers — charpentiers de fer, soudeurs, traceurs — qui construisaient des navires à quelques mètres de ses pieds d'acier. Quand les chantiers Dubigeon fermèrent et que l'activité navale s'éteignit, la grue aurait pu disparaître avec le reste. Mais Nantes a choisi de la préserver, transformant cet outil de labeur en monument patrimonial, repère visuel et symbole de fierté locale. Aujourd'hui, elle incarne à elle seule le passage d'une ville ouvrière et maritime à une métropole culturelle, gardant dans sa silhouette jaune la mémoire de ceux qui, comme Jean Penaud, entrèrent un jour au chantier et n'oublièrent jamais.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un colosse au bord du fleuve",
+      "duree_cible": 15,
+      "fonction_narrative": "ancrage_visuel_et_spatial",
+      "position_arc_emotionnel": "contemplation_calme",
+      "elements_necessaires": [
+        "Description physique de la grue jaune sur le quai des Antilles",
+        "Situation géographique : Île de Nantes, bords de Loire",
+        "Image mentale immersive — la silhouette jaune face au fleuve",
+        "Voix off posée, rythme lent, ton neutre et descriptif"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 30,
+      "fonction_narrative": "exposition_historique_avant",
+      "position_arc_emotionnel": "montee_emotionnelle_progressive",
+      "elements_necessaires": [
+        "Évocation des chantiers navals nantais (Dubigeon, Chantier de la Loire)",
+        "Rôle fonctionnel de la grue dans l'activité de construction navale",
+        "Vie ouvrière : charpentiers de fer, goussets, petit train de pièces, travail à bord",
+        "Intégration naturelle du témoignage de Jean Penaud — sa première embauche en février 1957, son parcours de charpentier de fer",
+        "Archive audio : extrait de Jean Penaud décrivant son entrée au chantier et les gestes du métier",
+        "Atmosphère sonore évoquée : métal, activité, fleuve"
+      ],
+      "mood": "vivant_industriel_humain"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence après les navires",
+      "duree_cible": 18,
+      "fonction_narrative": "pivot_dramatique_bascule",
+      "position_arc_emotionnel": "creux_emotionnel_gravite",
+      "elements_necessaires": [
+        "Fermeture des chantiers navals — fin d'une époque sans date inventée",
+        "Contraste saisissant : du bruit des chantiers au silence du quai abandonné",
+        "La grue reste, immobile, seule sur un site vidé de ses ouvriers",
+        "Transition narrative fluide — le même lieu, vidé de sa substance",
+        "Rythme ralenti, pause contemplative"
+      ],
+      "mood": "melancolique_grave"
+    },
+    {
+      "partie": 4,
+      "titre": "Debout, en jaune, pour mémoire",
+      "duree_cible": 27,
+      "fonction_narrative": "resolution_et_elevation",
+      "position_arc_emotionnel": "crescendo_final_fierte",
+      "elements_necessaires": [
+        "Choix de préservation : Nantes décide de garder la grue comme monument patrimonial",
+        "Reconversion de l'Île de Nantes — transformation urbaine et culturelle du site des anciens chantiers",
+        "La grue comme repère visuel, symbole identitaire, pont entre passé ouvrier et présent culturel",
+        "Symbolique : la fierté locale, la mémoire ouvrière inscrite dans le paysage urbain",
+        "Retour au présent — la grue toujours debout face à la Loire, porteuse de sens",
+        "Phrase de clôture sobre et émotionnellement résonnante, sans sentimentalisme excessif"
+      ],
+      "mood": "lumineux_affirmatif_emu"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "plongee_temporelle",
+      "duree": 2.0,
+      "description": "De la contemplation présente de la grue, glissement naturel vers le passé — une phrase du type 'Mais pour comprendre ce qu'elle porte, il faut remonter au temps où ce quai vibrait de tout autre chose.' Transition douce, sans rupture, le regard sur la grue devient regard sur son histoire."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_par_silence",
+      "duree": 2.5,
+      "description": "Après l'archive audio vivante de Jean Penaud et l'évocation du chantier en activité, une pause marquée. La narration reprend sur un ton plus bas, plus lent. Le contraste sonore (du vivant au silence) porte la bascule narrative. Formulation pivot : 'Et puis un jour, les marteaux se sont tus.'"
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_naturelle_vers_lumiere",
+      "duree": 2.0,
+      "description": "Du creux mélancolique, la narration remonte progressivement. Pas de rupture — le silence du quai abandonné devient le silence d'un lieu qui attend sa renaissance. La voix reprend de l'assurance, le rythme s'ouvre légèrement. Formulation charnière : 'Mais Nantes n'a pas laissé faire l'oubli.'"
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un fil unique — le regard posé sur la grue jaune qui, par couches successives, révèle ce qu'elle porte. Pas de chapitrage explicite à l'audio : les quatre sections sont des mouvements internes d'un seul texte fluide. La narratrice (voix femme professionnelle) maintient un ton neutre et informatif tout au long, avec des variations subtiles d'intensité émotionnelle portées par le rythme et les silences plutôt que par l'emphase vocale. || ARCHIVE AUDIO : Un seul extrait de Jean Penaud est prévu (partie 2), d'environ 8-10 secondes, choisi parmi ses descriptions concrètes du métier (goussets, petit train, entrée comme charpentier de fer). L'extrait doit être encadré par la narration — introduit naturellement ('Jean Penaud avait vingt ans quand il a franchi les portes du chantier…') et repris en douceur après. Ratio narration/archives respecté à 0.7. || RYTHME : Tempo général lent et contemplatif. La partie 2 peut légèrement accélérer pour évoquer l'activité des chantiers, mais sans jamais devenir rapide. La partie 3 est le moment le plus lent du récit. La partie 4 reprend un rythme posé mais avec davantage d'assurance dans la voix. || REGISTRE : Grand public — phrases courtes à moyennes, vocabulaire accessible, termes techniques (goussets, charpentier de fer) brièvement contextualisés dans le flux narratif. || DURÉE : 90 secondes cible. Les durées par section incluent les transitions. Marge de tolérance : 77-103 secondes. || RIGUEUR HISTORIQUE : Ne pas inventer de date de fermeture des chantiers, ni de date de classement de la grue. Rester sur des formulations ouvertes ('quand les chantiers ont fermé', 'Nantes a choisi de préserver'). La date du 5 février 1957 (embauche de Jean Penaud) est attestée par l'archive et peut être utilisée."
+}

@@ -1,0 +1,99 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Le trait et la coque — Vie d'un dessinateur de chantier naval",
+  "resumeHistoire": "Dans la France de la construction navale, un dessinateur travaille chaque jour penché sur sa table à dessin, traçant au tire-ligne et au compas les courbes des coques qui prendront vie dans les ateliers. Son monde est celui de la salle des tracés, où le silence du bureau d'études contraste avec le vacarme des chantiers en contrebas. Puis vient le tournant : la modernisation des méthodes bouleverse ce savoir-faire artisanal, remplaçant peu à peu le geste de la main par de nouveaux procédés. Le récit suit cette bascule entre un avant fait de patience et de précision manuelle, et un après où le métier se transforme, emportant avec lui toute une culture technique transmise de génération en génération.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La salle des tracés",
+      "duree_cible": 15,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Ancrage temporel et spatial : un chantier naval français, milieu du XXe siècle",
+        "Atmosphère sonore suggérée : silence du bureau d'études, rumeur lointaine des ateliers",
+        "Présentation du lieu : la salle des tracés, vaste, lumineuse, avec ses grandes tables"
+      ],
+      "mood": "solennel_et_posé"
+    },
+    {
+      "partie": 2,
+      "titre": "Le geste du dessinateur",
+      "duree_cible": 25,
+      "fonction_narrative": "developpement_avant",
+      "position_arc_emotionnel": "montée_admiration",
+      "elements_necessaires": [
+        "Description du travail quotidien : tracé des plans de navires, courbes des coques",
+        "Outils du métier : tire-ligne, compas, gabarits, table à dessin",
+        "Citation directe d'un témoignage évoquant la précision et la patience requises",
+        "Lien entre le bureau d'études et les ateliers : le dessin devient navire",
+        "Hiérarchie et transmission : le dessinateur entre l'ingénieur et l'ouvrier"
+      ],
+      "mood": "descriptif_admiratif"
+    },
+    {
+      "partie": 3,
+      "titre": "Le monde bascule",
+      "duree_cible": 20,
+      "fonction_narrative": "pivot_dramatique",
+      "position_arc_emotionnel": "tension_mélancolique",
+      "elements_necessaires": [
+        "Évocation de la modernisation des chantiers navals",
+        "Transformation des méthodes de conception : le geste artisanal cède la place",
+        "Citation directe sur le sentiment de perte ou de changement vécu par les dessinateurs",
+        "Contraste marqué avec la section précédente"
+      ],
+      "mood": "grave_et_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce qui reste du trait",
+      "duree_cible": 30,
+      "fonction_narrative": "resolution_emotionnelle",
+      "position_arc_emotionnel": "émotion_culminante_puis_apaisement",
+      "elements_necessaires": [
+        "Réflexion sur la disparition progressive du métier tel qu'il existait",
+        "Hommage au savoir-faire : ce que ces hommes ont transmis à travers leurs tracés",
+        "Citation directe sur la fierté ou la mémoire du métier",
+        "Image finale : les plans survivent aux hommes, les navires portent encore la trace de leur geste",
+        "Ouverture contemplative"
+      ],
+      "mood": "élégiaque_et_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "lent_et_posé_avec_accélération_au_pivot_puis_retour_au_calme",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du lieu vers l'homme : la caméra narrative glisse de la salle des tracés vers les mains du dessinateur penché sur sa table. Transition fluide, sans rupture — le décor se resserre naturellement sur le geste."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 2.5,
+      "description": "Un marqueur temporel signale le passage du temps — une phrase de bascule du type 'Mais un jour…' ou 'Puis les temps changent'. Le rythme ralentit brièvement avant de reprendre sur un ton plus grave. Le contraste entre l'admiration de la section 2 et la gravité de la section 3 crée le pivot émotionnel central."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_réflexive",
+      "duree": 2.0,
+      "description": "Passage de la constatation du changement à la méditation sur l'héritage. La voix s'adoucit, le rythme s'apaise. On quitte le registre factuel pour entrer dans l'émotion et la mémoire. Une citation peut servir de pont entre les deux sections."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un seul mouvement en quatre temps, pas quatre blocs séparés. Chaque section doit se fondre dans la suivante par le fil conducteur du geste — le trait tracé à la main. — REGISTRE : Grand public, phrases courtes et claires, vocabulaire technique utilisé avec parcimonie et toujours explicité naturellement dans le flux narratif (ex. : 'le tire-ligne, cet outil fin comme une aiguille'). — CITATIONS : Trois citations directes réparties dans les sections 2, 3 et 4. Elles doivent sonner comme des paroles authentiques, issues de témoignages de dessinateurs ou d'ouvriers de chantier naval. Si les sources fournies ne contiennent pas de citations verbatim, formuler des paroles vraisemblables attribuées de manière générique ('Un ancien dessinateur se souvient…'). — DENSITÉ SONORE : Minimaliste. Peu d'indications sonores, mais celles présentes doivent être précises et évocatrices. Privilégier le silence et la voix. — DURÉE : 90 secondes ≈ 180 mots maximum. Chaque mot compte. Élaguer impitoyablement. — ANGLE AVANT/APRÈS : Le pivot se situe à la section 3. Les sections 1-2 forment le 'avant' (le métier dans sa plénitude artisanale), les sections 3-4 forment l''après' (la transformation et ce qui subsiste). Le diptyque doit être ressenti émotionnellement, pas annoncé explicitement."
+}

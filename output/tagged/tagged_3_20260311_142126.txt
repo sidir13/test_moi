@@ -1,0 +1,23 @@
+=== PARTIE 1 : Un monde inconnu — L'arrivée sur les quais ===
+
+{vent_loire_rumeur_urbaine.wav}
+
+Ce podcast narratif s'adresse à toutes et tous, dans un ton informatif et accessible. [pause 1s] Bienvenue sur les bords de Loire, à Nantes. Nous sommes sur le Quai des Antilles, Île de Nantes. Le vent glisse sur le fleuve. [pause 1s] Et là, face à vous, une silhouette massive, peinte d'un jaune éclatant, se découpe dans le ciel. Une grue monumentale. Immobile. [pause 1.5s] Mais que fait-elle ici ?
+
+=== PARTIE 2 : Le temps des chantiers — Comprendre d'où elle vient ===
+
+{ambiance_chantier_naval_metal.wav}
+
+Pour comprendre, il faut remonter le temps. Ici même, sur cette île qu'on appelait Prairie-au-Duc, s'étendaient les chantiers navals de Nantes. Des centaines d'hommes y construisaient des navires. Parmi eux, Jean Penaud, charpentier de fer, embauché le 5 février 1957 au Chantier de la Loire, puis muté à Dubigeon. [pause 1s] [ARCHIVE AUDIO — Jean Penaud] « J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret. C'est-à-dire que on triait les goussets. À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les pièces pour amener à bord. » [pause 1s] Les goussets, ce sont de petites pièces métalliques de renfort. Jean les triait, les préparait. Et la grue, elle, soulevait les lourdes sections d'acier pour les assembler sur les coques. [pause 0.5s] « Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans, comme charpentier de fer. Moi j'suis allé à bord directement. »
+
+=== PARTIE 3 : Le silence puis la couleur — Mort et renaissance ===
+
+{silence_industriel_vent.wav}
+
+[ralentissement] Puis, dans les années 1970 et 1980, la désindustrialisation frappe. Les chantiers navals de Nantes ferment, les uns après les autres. Le bruit s'arrête. Les hommes partent. [pause 2s] Sur les quais désertés de l'Île de Nantes, la grue reste. Seule. Elle aurait pu être démantelée. Mais la ville choisit de la conserver, comme témoin de cette mémoire ouvrière. On la repeint en jaune, et cette couleur devient un signal dans le paysage nantais. {pas_promeneurs_vie_urbaine.wav} Autour d'elle, l'île se transforme : là où l'on construisait des navires, naissent Les Machines de l'île, des espaces culturels, une vie nouvelle.
+
+=== PARTIE 4 : Ce que la grue nous apprend ===
+
+{clapotis_loire_apaisee.wav}
+
+Aujourd'hui, quand vous levez les yeux vers cette grue jaune, vous ne voyez plus seulement du métal. [pause 1s] Vous voyez le 5 février 1957, le premier jour de Jean Penaud. Vous voyez les goussets, le petit train, les mains des charpentiers de fer. [pause 1.5s] La grue jaune de Nantes est un trait d'union — entre ceux qui ont bâti [pause 0.5s] et ceux qui se souviennent.

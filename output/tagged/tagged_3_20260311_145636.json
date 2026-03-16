@@ -1,0 +1,32 @@
+{
+  "scenario_id": 3,
+  "titre": "La Grue Jaune — Sentinelle de la Loire",
+  "taggedText": "=== PARTIE 1 : Une silhouette sur le quai ===\n\n{clapotis_loire_discret.wav}\n\n[pause 2s] Au bout du quai des Antilles, à la pointe ouest de l'Île de Nantes, [ralentissement] une silhouette jaune se dresse face à la Loire. Haute, immobile, presque solennelle. [pause 1s] Une grue. Elle ne porte plus rien depuis longtemps. [pause 1s] Mais elle est là. Plantée dans le béton, tournée vers le fleuve, [murmure] comme si elle attendait encore quelque chose.\n\n=== PARTIE 2 : Le temps des chantiers ===\n\n{ambiance_chantier_naval_lointain.wav}\n\nPendant des décennies, ici, on construisait des navires. Les chantiers de la Loire, les chantiers Dubigeon — l'Île de Nantes vivait au rythme du métal et des coques en chantier. [pause 1s] Jean Penaud est entré comme charpentier de fer le 5 février 1957. Il se souvient. [pause 1s] [ARCHIVE — Jean Penaud] [pause 1s] Sous cette grue, des hommes triaient les goussets — ces petites pièces de renfort en acier — les chargeaient sur un petit train à plateau, et les amenaient à bord. La grue soulevait, pivotait, déposait. [pause 1s] Elle faisait partie de l'équipe.\n\n=== PARTIE 3 : Le silence puis la métamorphose ===\n\n{vent_quai_deserte.wav}\n\n[ton grave] Et puis les chantiers ont fermé. La construction navale a quitté Nantes, comme elle a quitté tant de villes portuaires. Les ouvriers sont partis. Les cales se sont tues. [pause 2s] Mais la grue, elle, n'a pas bougé. [pause 1s] L'Île de Nantes s'est lentement transformée. Là où l'on soudait des coques, on a commencé à imaginer autre chose. Et dans ce paysage en mutation, [ralentissement] la grue jaune est restée debout.\n\n=== PARTIE 4 : Debout, face au fleuve ===\n\n{clapotis_loire_discret.wav}\n\n[ton serein] Aujourd'hui, la grue jaune est un repère. On la voit de loin, depuis les ponts, depuis les quais d'en face. Elle est devenue un symbole de Nantes — celui d'une ville qui a choisi de ne pas effacer son passé industriel. [pause 1s] Elle ne soulève plus d'acier. Mais elle porte autre chose, désormais. [émotion contenue] La mémoire de ceux qui ont travaillé sous son ombre. [pause 1s] Et elle veille, toujours, face au fleuve.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Une silhouette sur le quai",
+      "taggedText": "{clapotis_loire_discret.wav}\n\n[pause 2s] Au bout du quai des Antilles, à la pointe ouest de l'Île de Nantes, [ralentissement] une silhouette jaune se dresse face à la Loire. Haute, immobile, presque solennelle. [pause 1s] Une grue. Elle ne porte plus rien depuis longtemps. [pause 1s] Mais elle est là. Plantée dans le béton, tournée vers le fleuve, [murmure] comme si elle attendait encore quelque chose."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des chantiers",
+      "taggedText": "{ambiance_chantier_naval_lointain.wav}\n\nPendant des décennies, ici, on construisait des navires. Les chantiers de la Loire, les chantiers Dubigeon — l'Île de Nantes vivait au rythme du métal et des coques en chantier. [pause 1s] Jean Penaud est entré comme charpentier de fer le 5 février 1957. Il se souvient. [pause 1s] [ARCHIVE — Jean Penaud] [pause 1s] Sous cette grue, des hommes triaient les goussets — ces petites pièces de renfort en acier — les chargeaient sur un petit train à plateau, et les amenaient à bord. La grue soulevait, pivotait, déposait. [pause 1s] Elle faisait partie de l'équipe."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence puis la métamorphose",
+      "taggedText": "{vent_quai_deserte.wav}\n\n[ton grave] Et puis les chantiers ont fermé. La construction navale a quitté Nantes, comme elle a quitté tant de villes portuaires. Les ouvriers sont partis. Les cales se sont tues. [pause 2s] Mais la grue, elle, n'a pas bougé. [pause 1s] L'Île de Nantes s'est lentement transformée. Là où l'on soudait des coques, on a commencé à imaginer autre chose. Et dans ce paysage en mutation, [ralentissement] la grue jaune est restée debout."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Debout, face au fleuve",
+      "taggedText": "{clapotis_loire_discret.wav}\n\n[ton serein] Aujourd'hui, la grue jaune est un repère. On la voit de loin, depuis les ponts, depuis les quais d'en face. Elle est devenue un symbole de Nantes — celui d'une ville qui a choisi de ne pas effacer son passé industriel. [pause 1s] Elle ne soulève plus d'acier. Mais elle porte autre chose, désormais. [émotion contenue] La mémoire de ceux qui ont travaillé sous son ombre. [pause 1s] Et elle veille, toujours, face au fleuve."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 18,
+    "soundTags": 4,
+    "originalWordCount": 286
+  }
+}

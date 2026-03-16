@@ -1,0 +1,155 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le dernier matin sur les quais — Chronique du port qui s'efface",
+  "resumeHistoire": "Au XVIIIe siècle, le port de Nantes est l'un des plus puissants de France, ses quais bruissent du commerce colonial et de la construction navale. Mais la Loire s'ensable, les navires grandissent, et dès le milieu du XIXe siècle, l'activité glisse inexorablement vers l'aval, vers Saint-Nazaire. Le récit suit une journée type sur les chantiers navals nantais — de l'aube où les ouvriers franchissent les grilles, jusqu'au soir où les cales se taisent — en remontant le fil du temps depuis les dernières heures d'activité des années 1980 jusqu'à l'apogée du XVIIIe siècle, pour redescendre vers le silence final. À travers le témoignage de Jean Penaud, charpentier-fer entré aux chantiers en 1957, c'est toute la mémoire ouvrière d'un port qui se raconte, entre fierté du geste et deuil d'un monde englouti.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le silence des cales — Un matin sans sirène",
+      "duree_cible": 45,
+      "fonction_narrative": "ouverture_flashback",
+      "position_arc_emotionnel": "mélancolie_contemplative",
+      "elements_necessaires": [
+        "Ouverture sur une aube contemporaine sur l'Île de Nantes, cales vides, silence industriel",
+        "Évocation sensorielle : brume sur la Loire, béton des anciens chantiers, absence de bruit mécanique",
+        "Amorce du flashback : il fut un temps où, à cette heure-là, des milliers d'hommes franchissaient les grilles",
+        "Mention du public cible grand public et du ton neutre informatif intégrés naturellement dans le registre",
+        "Ambiance sonore suggérée : eau calme, vent, mouettes, silence urbain"
+      ],
+      "mood": "contemplatif_élégiaque"
+    },
+    {
+      "partie": 2,
+      "titre": "L'aube dorée — Nantes au faîte de sa puissance",
+      "duree_cible": 55,
+      "fonction_narrative": "exposition_historique_apogée",
+      "position_arc_emotionnel": "grandeur_vibrante",
+      "elements_necessaires": [
+        "Flashback au XVIIIe siècle : Nantes premier port colonial français",
+        "Journée type sur le Quai de la Fosse à l'aube — arrivée des navires, déchargement des marchandises",
+        "Île Feydeau : les hôtels particuliers des armateurs, le commerce triangulaire et la traite négrière mentionnés avec rigueur historique",
+        "Chantiers navals de Chantenay et de la Prairie-au-Duc : construction de navires à voile",
+        "Trentemoult : village de pêcheurs et de marins en activité",
+        "Ambiance sonore suggérée : cris de marins, grincements de bois, voiles claquant, activité portuaire dense"
+      ],
+      "mood": "épique_documentaire"
+    },
+    {
+      "partie": 3,
+      "titre": "La matinée s'assombrit — L'ensablement et le glissement vers l'aval",
+      "duree_cible": 60,
+      "fonction_narrative": "nœud_dramatique_déclin",
+      "position_arc_emotionnel": "tension_croissante",
+      "elements_necessaires": [
+        "XIXe siècle : la Loire s'ensable, les navires à vapeur ont des tirants d'eau plus importants",
+        "Les grands voiliers ne remontent plus jusqu'à Nantes — contraintes géographiques de l'estuaire",
+        "Ouverture du bassin de Saint-Nazaire (1856) puis développement du port de Saint-Nazaire comme avant-port",
+        "Canal maritime de la Basse-Loire : tentatives d'aménagement pour maintenir la navigabilité",
+        "Journée type : un matin où un navire trop grand reste bloqué en aval, symbolisant le transfert progressif",
+        "Ambiance sonore suggérée : machines à vapeur lointaines, courant de la Loire, tension sourde"
+      ],
+      "mood": "documentaire_grave"
+    },
+    {
+      "partie": 4,
+      "titre": "L'après-midi aux chantiers — Les mains dans le fer",
+      "duree_cible": 65,
+      "fonction_narrative": "témoignage_et_vie_ouvrière",
+      "position_arc_emotionnel": "intimité_chaleureuse",
+      "elements_necessaires": [
+        "XXe siècle : les chantiers navals nantais persistent — Chantiers de la Loire, Dubigeon",
+        "Citation directe de Jean Penaud : son embauche le 5 février 1957, ses huit jours au balai, le parc à fer",
+        "Citation directe : le petit train avec un plateau qui venait chercher les goussets pour emmener à bord",
+        "Journée type d'un charpentier-fer : gestes concrets, rythme de travail, camaraderie",
+        "Mention du parcours de Penaud : La Loire, Dubigeon, Cherbourg (sous-marins, sous-marin atomique), retour en juillet 1969",
+        "Transition voile-vapeur-acier : évolution de la construction navale et des tonnages",
+        "Ambiance sonore suggérée : marteaux sur métal, soudure, cris d'atelier, sirène de mi-journée"
+      ],
+      "mood": "humain_concret_nostalgique"
+    },
+    {
+      "partie": 5,
+      "titre": "Le soir tombe — Fermetures et dernier quart",
+      "duree_cible": 50,
+      "fonction_narrative": "climax_émotionnel_fermeture",
+      "position_arc_emotionnel": "deuil_résigné",
+      "elements_necessaires": [
+        "Années 1960-1980 : fermeture progressive des chantiers navals nantais",
+        "Fermeture des Chantiers Dubigeon (1987) — dernier grand chantier naval nantais",
+        "Impact social : ouvriers, familles, quartiers entiers perdent leur raison d'être",
+        "Journée type : le dernier soir, la dernière sirène, les ouvriers qui franchissent les grilles une dernière fois",
+        "Saint-Nazaire récupère l'essentiel de l'activité navale et portuaire",
+        "Ambiance sonore suggérée : sirène qui s'éteint, pas sur le pavé, grilles qui se ferment, silence progressif"
+      ],
+      "mood": "élégiaque_poignant"
+    },
+    {
+      "partie": 6,
+      "titre": "Après la nuit — La mémoire des quais",
+      "duree_cible": 25,
+      "fonction_narrative": "épilogue_résonance",
+      "position_arc_emotionnel": "apaisement_méditatif",
+      "elements_necessaires": [
+        "Retour au présent : l'Île de Nantes transformée, reconversion urbaine et culturelle",
+        "Les traces qui subsistent : cales, grues, noms de rues",
+        "Écho à l'ouverture : le silence du matin n'est pas un vide mais une mémoire",
+        "Importance de la collecte de témoignages comme celui de Jean Penaud — archive humaine",
+        "Ambiance sonore suggérée : retour au calme de l'ouverture, eau, vent, résonance lointaine d'un marteau"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "boucle_mélancolique — du silence présent à la grandeur passée, traversée par la vie ouvrière, jusqu'au silence final qui devient mémoire",
+  "rythme_general": "lent_contemplatif avec accélérations ponctuelles dans les sections 3 et 4, retour au calme en 5 et 6",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "flashback_sensoriel",
+      "duree": 3.0,
+      "description": "Du silence contemporain, un son imaginé — le claquement d'une voile, un cri de marin — fait basculer dans le XVIIIe siècle. La brume se lève et révèle un port en pleine effervescence."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "glissement_temporel_naturel",
+      "duree": 2.5,
+      "description": "Le narrateur note que les quais commencent à se vider de leurs plus grands navires. L'eau de la Loire elle-même semble changer — elle charrie du sable. Passage fluide du XVIIIe au XIXe siècle par l'image de l'ensablement."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "coupe_temporelle_douce",
+      "duree": 2.0,
+      "description": "Malgré le déclin portuaire, les chantiers navals tiennent. Un siècle plus tard, un jeune homme de vingt ans franchit les grilles un matin de février 1957. Transition par le geste concret — la main qui pousse la grille."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "assombrissement_progressif",
+      "duree": 2.5,
+      "description": "La lumière de l'après-midi décline. Les commandes se raréfient, les cales se vident une à une. Le rythme narratif ralentit comme un cœur qui faiblit. La journée type bascule vers le soir."
+    },
+    {
+      "entre_parties": [
+        5,
+        6
+      ],
+      "type": "retour_au_présent",
+      "duree": 2.0,
+      "description": "Le son de la dernière sirène s'estompe et se fond avec le bruit de l'eau contemporaine. Retour à l'Île de Nantes d'aujourd'hui, boucle narrative avec l'ouverture."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est structuré comme une journée type (aube → matin → après-midi → soir → nuit) qui se superpose à la chronologie historique (XVIIIe → XIXe → XXe → fermeture → présent). Cette double temporalité est le cœur du dispositif narratif — ne jamais rompre l'une au profit de l'autre. || FLASHBACK : L'ouverture pose le cadre contemporain (silence), puis le récit plonge dans le passé et y reste jusqu'à la partie 5, avant de boucler en 6. Le flashback n'est pas signalé lourdement — il se fait par glissement sensoriel. || CITATIONS : Les paroles de Jean Penaud (partie 4) doivent être intégrées avec naturel, comme si sa voix émergeait du récit. Conserver le registre oral authentique ('j'suis entré à la Loire', 'huit jours au balai', 'le parc à fer'). || RYTHME : Débit narratif cible ~120 mots/minute (2 mots/seconde). Les parties 1 et 6 sont les plus lentes. La partie 4 peut légèrement accélérer pour épouser le rythme du travail ouvrier. || DENSITÉ SONORE : Riche — chaque section comporte des indications d'ambiance. Les sons suggérés ne sont pas des didascalies techniques mais des guides pour le rédacteur et le sound designer. || REGISTRE : Grand public, phrases claires, vocabulaire précis mais accessible. Les termes techniques navals (goussets, tirant d'eau, cales) sont brièvement contextualisés. || RIGUEUR : Toutes les dates mentionnées (1856 pour Saint-Nazaire, 1957 pour l'embauche de Penaud, 1969 pour son retour, 1987 pour la fermeture de Dubigeon) sont issues du contexte fourni ou des archives. Ne rien inventer au-delà. || ÉQUILIBRE narration/archives : 60/40 — la voix off domine mais les citations de Penaud constituent un moment central et prolongé en partie 4."
+}

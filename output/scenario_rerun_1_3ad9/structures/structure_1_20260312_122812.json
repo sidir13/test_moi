@@ -1,0 +1,133 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Jean Penaud, dernier témoin des cales perdues",
+  "resumeHistoire": "Sur les quais de Nantes, un fleuve s'envase lentement et emporte avec lui des siècles d'activité maritime. À travers le parcours de Jean Penaud, charpentier-fer entré aux Chantiers de la Loire le 5 février 1957, c'est toute l'agonie du port nantais qui se dessine — des quais de la Fosse autrefois grouillants de navires négriers aux cales de Dubigeon où l'on assemblait encore des coques d'acier. De mutation en mutation, de Nantes à Cherbourg pour les sous-marins atomiques puis retour en juillet 1969, Jean traverse sans le savoir les dernières décennies d'une histoire portuaire millénaire qui se déplace inexorablement vers l'estuaire et Saint-Nazaire. Quand les chantiers ferment définitivement, c'est un monde entier — celui des goussets, des parcs à fer et des petits trains à plateau — qui sombre dans le silence de la Prairie-au-Duc.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port au sommet du monde",
+      "duree_cible": 55.0,
+      "fonction_narrative": "exposition_historique",
+      "position_arc_emotionnel": "sérénité_teintée_de_gravité",
+      "elements_necessaires": [
+        "Évocation de Nantes au XVIIIe siècle comme grand port atlantique",
+        "Les quais de la Fosse, l'île Feydeau, l'île Gloriette — géographie fluviale vivante",
+        "Mention du commerce triangulaire et de la traite négrière comme contexte de l'apogée",
+        "Les bras de la Loire (bras de la Bourse, bras de l'Hôpital) comme artères vitales",
+        "Amorce du déclin : le fleuve commence à poser problème"
+      ],
+      "mood": "majestueux_puis_assombrissant"
+    },
+    {
+      "partie": 2,
+      "titre": "Le fleuve qui se refuse",
+      "duree_cible": 50.0,
+      "fonction_narrative": "montée_de_la_tension",
+      "position_arc_emotionnel": "inquiétude_croissante",
+      "elements_necessaires": [
+        "Envasement progressif de la Loire et contraintes de navigation",
+        "Augmentation du tonnage et du tirant d'eau des navires — inadéquation croissante",
+        "Le Canal de la Martinière comme tentative désespérée de sauvetage du port",
+        "Transfert progressif du trafic maritime vers Saint-Nazaire et son port d'estuaire",
+        "Nantes perd peu à peu sa raison d'être portuaire maritime"
+      ],
+      "mood": "documentaire_grave"
+    },
+    {
+      "partie": 3,
+      "titre": "Le 5 février 1957",
+      "duree_cible": 65.0,
+      "fonction_narrative": "ancrage_humain_et_pivot",
+      "position_arc_emotionnel": "émotion_intime_montante",
+      "elements_necessaires": [
+        "Entrée de Jean Penaud aux Chantiers de la Loire, le 5 février 1957",
+        "Portrait extérieur : un jeune homme qui franchit les grilles d'un monde industriel",
+        "Huit jours au balai puis affectation au parc à fer — les goussets, les pièces de renfort",
+        "Le petit train à plateau qui emmenait les pièces à bord",
+        "Ambiance sonore des chantiers : métal, rivets, cales en activité",
+        "La Prairie-au-Duc et l'île de Nantes comme décor industriel vivant",
+        "Intégration de l'archive audio de Jean Penaud (témoignage sur son embauche, ses postes)"
+      ],
+      "mood": "immersif_industriel_nostalgique"
+    },
+    {
+      "partie": 4,
+      "titre": "Les mutations d'un homme, les mutations d'un port",
+      "duree_cible": 55.0,
+      "fonction_narrative": "accélération_narrative",
+      "position_arc_emotionnel": "tension_dramatique",
+      "elements_necessaires": [
+        "Mutation de Jean Penaud de la Loire à Dubigeon",
+        "Départ pour Cherbourg — sept ans et demi sur les sous-marins puis le sous-marin atomique",
+        "Parallèle entre ses déplacements personnels et le déplacement des activités navales",
+        "Saint-Nazaire absorbe ce que Nantes ne peut plus accueillir — bassin de Penhoët",
+        "Indret et les constructions navales militaires comme dernier bastion",
+        "Retour de Jean à Nantes en juillet 1969 — un port déjà diminué",
+        "Intégration archive audio (Cherbourg, sous-marin atomique, retour)"
+      ],
+      "mood": "rythmé_mélancolique"
+    },
+    {
+      "partie": 5,
+      "titre": "Les cales se taisent",
+      "duree_cible": 75.0,
+      "fonction_narrative": "climax_émotionnel_et_résolution",
+      "position_arc_emotionnel": "sommet_émotionnel_puis_apaisement",
+      "elements_necessaires": [
+        "Comblements des bras de la Loire — transformation irréversible du paysage urbain",
+        "Fermeture progressive des chantiers navals nantais — Dubigeon en dernier",
+        "Impact social sur les travailleurs portuaires et ouvriers navals",
+        "Jean Penaud, 83 ans, qui se souvient de chaque date avec une précision intacte",
+        "La Prairie-au-Duc devenue île de Nantes — reconversion post-industrielle",
+        "L'héritage : ce qui reste quand les grues ne tournent plus",
+        "Ouverture sur la mémoire — l'archive humaine comme dernier navire à quai",
+        "Dernière intégration archive audio possible (précision des souvenirs de Jean)"
+      ],
+      "mood": "élégiaque_puis_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "Progression lente et majestueuse en ouverture, accélération au cœur du récit avec l'entrée du portrait humain, puis ralentissement solennel vers la fin. Le rythme épouse les mutations du port : ample quand Nantes domine, haché et nerveux pendant les transferts, suspendu dans le silence final des cales.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_thématique",
+      "duree": 3.0,
+      "description": "De la grandeur passée à la menace silencieuse — la dernière phrase évoque les navires qui peinent à remonter le fleuve, ouvrant naturellement sur l'envasement. Transition par le son de l'eau, d'un courant vif à une eau stagnante."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 3.0,
+      "description": "Saut du XIXe siècle au 5 février 1957. La narration passe du général au particulier : 'Mais sur ces quais qui se vident, des hommes continuent d'entrer par les grilles chaque matin.' Apparition progressive de l'ambiance sonore industrielle sous la voix off."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "L'évocation du quotidien de Jean aux chantiers glisse vers ses mutations successives. Le parallèle entre son parcours personnel et celui du port se tisse sans rupture — sa mobilité géographique reflète celle des activités navales."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "ralentissement_solennel",
+      "duree": 3.0,
+      "description": "Le retour de Jean en 1969 ouvre sur un Nantes en transformation. Le rythme se pose, la narration prend du recul. Transition par un silence marqué ou un son d'ambiance portuaire qui s'éteint progressivement, laissant place au bruit de la ville moderne."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme un entonnoir — du panorama historique large vers l'intime d'un seul homme. Jean Penaud n'est pas un prétexte illustratif : il EST le fil conducteur à partir de la partie 3, et son parcours structure la seconde moitié du documentaire. Les parties 1-2 préparent son entrée en scène en posant le monde dans lequel il va évoluer. || FLUIDITÉ : Éviter absolument les formules de transition scolaires ('Passons maintenant à…'). Chaque section doit se terminer sur une image ou une phrase qui appelle naturellement la suivante. || ARCHIVES AUDIO : L'archive de Jean Penaud doit être intégrée de manière organique — la voix off pose le contexte, puis la voix de Jean prend le relais sur des passages précis (sa date d'embauche, le parc à fer, Cherbourg, le retour en 69). Le ratio narration/archives (0.6) implique environ 120 secondes d'archives sur 300 — soit 3 à 4 insertions substantielles de 25-35 secondes chacune. || TON : Neutre et informatif mais jamais froid. L'émotion naît des faits, pas du commentaire. Registre accessible au grand public, phrases claires, pas de jargon naval non expliqué (les goussets sont explicités dans l'archive elle-même). || AUTHENTICITÉ LINGUISTIQUE : Respecter le parler de Jean tel qu'il est — ne pas lisser ses formulations dans les citations. La voix off, elle, reste dans un français soutenu mais limpide. || RIGUEUR : Ne pas inventer de dates de fermeture précises des chantiers si elles ne figurent pas dans le contexte fourni — rester sur des formulations comme 'progressivement', 'au fil des décennies suivantes'. Les dates attestées (5 février 1957, juillet 1969, 7 ans et demi à Cherbourg) doivent être reprises avec exactitude. || AMBIANCE SONORE : Immersive — prévoir des nappes d'ambiance portuaire (eau, métal, machines) qui évoluent avec le récit et s'éteignent symboliquement dans la dernière partie."
+}

@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Gilles Hamon, traceur de coques",
+  "taggedText": "=== PARTIE 1 : Un apprenti sur le parquet ===\n\n{echo_hangar_metallique_lointain.wav}\n\n[ton posé] Septembre 1958. Aux chantiers de la Bretagne, à Nantes, un garçon de quatorze ans franchit pour la première fois la porte de la salle à tracer. [pause 1s] Il s'appelle Gilles Hamon. Devant lui, un vaste parquet de bois clair, strié de lignes fines — c'est ici, à même le sol, à l'échelle un, que naissent les formes des navires. Il entre comme apprenti. [ralentissement] Il ne sait pas encore qu'il passera près de trente ans à genoux sur ce plancher, un décamètre à la main.\n\n=== PARTIE 2 : Le geste et la mesure ===\n\n{craquement_bois_pas_lointains_salle.wav}\n\nLe métier de traceur commence par des chiffres. Les bureaux d'études transmettent des coordonnées — des points dans l'espace, définis en largeur, en longueur, en profondeur. Le traceur les reporte un à un sur le parquet, au décamètre, en grandeur réelle. [pause 1s] Puis vient le geste décisif : il courbe une longue latte flexible entre les points, et vérifie que la ligne épouse une courbe continue — la future coque du navire.\n\n[ARCHIVE — Gilles Hamon] « Il fallait étudier, faire les formes des bateaux. Suivant des données que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous une forme de dessin. Alors c'est à l'échelle 1, donc c'était sur un parquet. Donc on travaillait à quatre pattes par terre. Il fallait avec un décamètre reporter des points… [pause 1s] et puis passer une latte… et puis voir les points s'ils se suivaient. »\n\n=== PARTIE 3 : D'un chantier à l'autre ===\n\n{bourdonnement_industriel_lointain.wav}\n\nGilles Hamon ne reste pas apprenti longtemps. Il passe son CAP, suit des cours du soir, apprend le dessin — et finit par intégrer le bureau de dessin.\n\n[ARCHIVE — Gilles Hamon] « En tant qu'ouvrier-traceur, on était déjà très bien placés dans les groupes. J'avais suivi des cours de dessin, puis j'suis passé au bureau d'dessin. Et puis je grimpais en grade… comme j'étais bien vu, j'ai souvent eu des galons. »\n\n[ton grave] Autour de lui, les chantiers nantais se transforment. Les fusions se succèdent — la Bretagne, puis les Chantiers de Nantes, puis Dubigeon. [pause 1s] Jusqu'à la fermeture, vers 1987. Gilles Hamon part alors pour Saint-Nazaire, où il termine sa carrière.\n\n=== PARTIE 4 : L'empreinte du traceur ===\n\n{silence_echo_hangar_residuel.wav}\n\n[ralentissement] Sur le parquet de la salle à tracer, les courbes dessinées par Gilles Hamon ont depuis longtemps été effacées. [pause 2s] Mais chaque coque mise à l'eau portait en elle ce geste patient — un homme à quatre pattes, une latte entre les doigts, cherchant la ligne juste.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un apprenti sur le parquet",
+      "taggedText": "{echo_hangar_metallique_lointain.wav}\n\n[ton posé] Septembre 1958. Aux chantiers de la Bretagne, à Nantes, un garçon de quatorze ans franchit pour la première fois la porte de la salle à tracer. [pause 1s] Il s'appelle Gilles Hamon. Devant lui, un vaste parquet de bois clair, strié de lignes fines — c'est ici, à même le sol, à l'échelle un, que naissent les formes des navires. Il entre comme apprenti. [ralentissement] Il ne sait pas encore qu'il passera près de trente ans à genoux sur ce plancher, un décamètre à la main."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le geste et la mesure",
+      "taggedText": "{craquement_bois_pas_lointains_salle.wav}\n\nLe métier de traceur commence par des chiffres. Les bureaux d'études transmettent des coordonnées — des points dans l'espace, définis en largeur, en longueur, en profondeur. Le traceur les reporte un à un sur le parquet, au décamètre, en grandeur réelle. [pause 1s] Puis vient le geste décisif : il courbe une longue latte flexible entre les points, et vérifie que la ligne épouse une courbe continue — la future coque du navire.\n\n[ARCHIVE — Gilles Hamon] « Il fallait étudier, faire les formes des bateaux. Suivant des données que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous une forme de dessin. Alors c'est à l'échelle 1, donc c'était sur un parquet. Donc on travaillait à quatre pattes par terre. Il fallait avec un décamètre reporter des points… [pause 1s] et puis passer une latte… et puis voir les points s'ils se suivaient. »"
+    },
+    {
+      "partie_id": 3,
+      "titre": "D'un chantier à l'autre",
+      "taggedText": "{bourdonnement_industriel_lointain.wav}\n\nGilles Hamon ne reste pas apprenti longtemps. Il passe son CAP, suit des cours du soir, apprend le dessin — et finit par intégrer le bureau de dessin.\n\n[ARCHIVE — Gilles Hamon] « En tant qu'ouvrier-traceur, on était déjà très bien placés dans les groupes. J'avais suivi des cours de dessin, puis j'suis passé au bureau d'dessin. Et puis je grimpais en grade… comme j'étais bien vu, j'ai souvent eu des galons. »\n\n[ton grave] Autour de lui, les chantiers nantais se transforment. Les fusions se succèdent — la Bretagne, puis les Chantiers de Nantes, puis Dubigeon. [pause 1s] Jusqu'à la fermeture, vers 1987. Gilles Hamon part alors pour Saint-Nazaire, où il termine sa carrière."
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'empreinte du traceur",
+      "taggedText": "{silence_echo_hangar_residuel.wav}\n\n[ralentissement] Sur le parquet de la salle à tracer, les courbes dessinées par Gilles Hamon ont depuis longtemps été effacées. [pause 2s] Mais chaque coque mise à l'eau portait en elle ce geste patient — un homme à quatre pattes, une latte entre les doigts, cherchant la ligne juste."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 11,
+    "soundTags": 4,
+    "originalWordCount": 406
+  }
+}

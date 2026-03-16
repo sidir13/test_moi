@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Une journée de dessinateur aux chantiers navals de Nantes",
+  "taggedText": "=== PARTIE 1 : L'aube sur les cales — Arrivée au bureau d'études ===\n\n{sirene_chantier_naval_aube.wav}\n\nSix heures du matin, île de Nantes. [pause] La sirène des chantiers déchire la brume au-dessus de la Loire. {brume_loire_clapotis.wav} Jean Penaud franchit les grilles des Ateliers et Chantiers de Nantes, longe les cales où dorment les coques inachevées, [pause] et pousse la porte du bureau d'études. {porte_lourde_ouverture.wav}\n\n=== PARTIE 2 : Le trait sur le papier — Le geste du dessinateur ===\n\n{crayon_sur_calque.wav}\n\nPenché sur sa table à dessin, il trace au crayon les lignes d'une coque, [posé] courbe après courbe. Chaque trait doit être exact : une erreur d'un millimètre, et c'est l'acier qui ne s'ajuste plus. [pause] Jean Penaud confie : [posé] [atténué] « On faisait les dessins pour les chantiers, les plans de formes, les développements de tôles… tout partait de notre bureau. » [pause] {regles_metalliques_calque.wav} En face, les règles métalliques claquent doucement sur le calque. Autour de lui, une dizaine de dessinateurs travaillent en silence [atténué] pour les milliers d'ouvriers qui attendent les plans en bas, sur les cales.\n\n=== PARTIE 3 : Le plan descend aux cales — Du papier à l'acier ===\n\n{transition_bureau_vers_chantier.wav}\n\nEn début d'après-midi, les plans quittent le bureau. Les traceurs les reportent en taille réelle sur le sol de la salle des gabarits, [précipité] puis les charpentiers découpent, les soudeurs assemblent. {marteaux_soudure_rivets.wav} [pause] Penaud se souvient : [posé] [triste] « Quand on voyait le bateau prendre forme sur la cale, c'était quelque chose… [pause] on se disait : ça, c'est parti de mon trait. » [pause] Le fracas des marteaux résonne jusqu'à la Loire.\n\n=== PARTIE 4 : Le soir tombe sur les chantiers — Mémoire d'un monde disparu ===\n\n{ambiance_soir_chantier_calme.wav}\n\nLe soir, Penaud range ses équerres et ses compas. [pause] La sirène sonne une dernière fois. {sirene_fin_journee_lointaine.wav} [ralentit] Un jour, elle ne sonnera plus. [pause] Les chantiers fermeront, les cales se videront, [triste] le métier disparaîtra. [pause] {silence_progressif.wav} Mais dans les archives de Nantes, [posé] ses plans jaunis gardent la trace exacte de navires qui ont pris la mer [pause] [atténué] — nés d'un simple trait de crayon.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube sur les cales — Arrivée au bureau d'études",
+      "taggedText": "{sirene_chantier_naval_aube.wav}\n\nSix heures du matin, île de Nantes. [pause] La sirène des chantiers déchire la brume au-dessus de la Loire. {brume_loire_clapotis.wav} Jean Penaud franchit les grilles des Ateliers et Chantiers de Nantes, longe les cales où dorment les coques inachevées, [pause] et pousse la porte du bureau d'études. {porte_lourde_ouverture.wav}"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le trait sur le papier — Le geste du dessinateur",
+      "taggedText": "{crayon_sur_calque.wav}\n\nPenché sur sa table à dessin, il trace au crayon les lignes d'une coque, [posé] courbe après courbe. Chaque trait doit être exact : une erreur d'un millimètre, et c'est l'acier qui ne s'ajuste plus. [pause] Jean Penaud confie : [posé] [atténué] « On faisait les dessins pour les chantiers, les plans de formes, les développements de tôles… tout partait de notre bureau. » [pause] {regles_metalliques_calque.wav} En face, les règles métalliques claquent doucement sur le calque. Autour de lui, une dizaine de dessinateurs travaillent en silence [atténué] pour les milliers d'ouvriers qui attendent les plans en bas, sur les cales."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le plan descend aux cales — Du papier à l'acier",
+      "taggedText": "{transition_bureau_vers_chantier.wav}\n\nEn début d'après-midi, les plans quittent le bureau. Les traceurs les reportent en taille réelle sur le sol de la salle des gabarits, [précipité] puis les charpentiers découpent, les soudeurs assemblent. {marteaux_soudure_rivets.wav} [pause] Penaud se souvient : [posé] [triste] « Quand on voyait le bateau prendre forme sur la cale, c'était quelque chose… [pause] on se disait : ça, c'est parti de mon trait. » [pause] Le fracas des marteaux résonne jusqu'à la Loire."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le soir tombe sur les chantiers — Mémoire d'un monde disparu",
+      "taggedText": "{ambiance_soir_chantier_calme.wav}\n\nLe soir, Penaud range ses équerres et ses compas. [pause] La sirène sonne une dernière fois. {sirene_fin_journee_lointaine.wav} [ralentit] Un jour, elle ne sonnera plus. [pause] Les chantiers fermeront, les cales se videront, [triste] le métier disparaîtra. [pause] {silence_progressif.wav} Mais dans les archives de Nantes, [posé] ses plans jaunis gardent la trace exacte de navires qui ont pris la mer [pause] [atténué] — nés d'un simple trait de crayon."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 22,
+    "soundTags": 10,
+    "originalWordCount": 269
+  }
+}

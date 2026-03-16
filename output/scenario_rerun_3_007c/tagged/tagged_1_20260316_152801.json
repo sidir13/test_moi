@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "taggedText": "=== PARTIE 1 : Le bureau d'études, cœur silencieux du chantier ===\n\n{lumiere_verriere_atelier.wav}\n\n[posé] Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin. [pause] Règles, calques, crayons. [atténué] Ici, dans le silence du bureau d'études, commence chaque navire. Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque. [pause]\n\n=== PARTIE 2 : Jean Penaud, l'homme au trait précis ===\n\n{fond_industriel_lointain_metal.wav}\n\nJean Penaud est dessinateur. Chaque matin, il rejoint sa planche. Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps. [pause] Jean Penaud raconte : [posé] [atténué] « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. » [pause] Du bureau aux riveurs, [accentué] une même chaîne, un même souffle.\n\n=== PARTIE 3 : Le dernier trait — quand les chantiers se taisent ===\n\n{vent_loire_silence.wav}\n\n[ralentit] Puis les commandes se raréfient. [pause] Les grues s'immobilisent. Les chantiers navals de Nantes ferment, l'un après l'autre. [atténué] Les bureaux d'études se vident. Les planches à dessin restent nues. [pause] [triste] Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface. [pause]\n\n=== PARTIE 4 : Coda — Le trait demeure ===\n\n{silence_archive.wav}\n\n[chuchote] Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur. [pause] [posé] Le navire a pris la mer depuis longtemps. [ralentit] [atténué] Mais le trait, lui, [accentué] demeure.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bureau d'études, cœur silencieux du chantier",
+      "taggedText": "{lumiere_verriere_atelier.wav}\n\n[posé] Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin. [pause] Règles, calques, crayons. [atténué] Ici, dans le silence du bureau d'études, commence chaque navire. Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque. [pause]"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Jean Penaud, l'homme au trait précis",
+      "taggedText": "{fond_industriel_lointain_metal.wav}\n\nJean Penaud est dessinateur. Chaque matin, il rejoint sa planche. Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps. [pause] Jean Penaud raconte : [posé] [atténué] « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. » [pause] Du bureau aux riveurs, [accentué] une même chaîne, un même souffle."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le dernier trait — quand les chantiers se taisent",
+      "taggedText": "{vent_loire_silence.wav}\n\n[ralentit] Puis les commandes se raréfient. [pause] Les grues s'immobilisent. Les chantiers navals de Nantes ferment, l'un après l'autre. [atténué] Les bureaux d'études se vident. Les planches à dessin restent nues. [pause] [triste] Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface. [pause]"
+    },
+    {
+      "partie_id": 4,
+      "titre": "Coda — Le trait demeure",
+      "taggedText": "{silence_archive.wav}\n\n[chuchote] Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur. [pause] [posé] Le navire a pris la mer depuis longtemps. [ralentit] [atténué] Mais le trait, lui, [accentué] demeure."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 21,
+    "soundTags": 4,
+    "originalWordCount": 199
+  }
+}

@@ -1,0 +1,27 @@
+=== PARTIE 1 : L'aube — Le quai s'éveille ===
+
+{clapotis_loire_brume.wav}
+
+[pause 2s] Ce récit s'adresse à tous. Il raconte, simplement, l'histoire d'un lieu. [pause 1s] Au petit matin, une brume légère monte de la Loire. [ralentissement] Sur l'Île de Nantes, là où s'étendaient autrefois les chantiers navals de la Prairie-au-Duc, une silhouette jaune se dessine dans le ciel pâle. [pause 1s] Une grue. [pause 2s] Immense, immobile. [pause 1s] Elle est là depuis des décennies.
+
+=== PARTIE 2 : Le matin — Les gestes du fer ===
+
+{metal_lointain_discret.wav}
+
+Il fut un temps où, dès l'aube, des hommes montaient à bord. Jean Penaud était l'un d'eux. [pause 1s] Charpentier de fer, embauché au Chantier de la Loire le 5 février 1957. Il se souvient :
+
+{archive_jean_penaud.wav}
+
+« On triait les goussets — des pièces de renfort en métal — et il y avait un genre de petit train avec un plateau, qui venait chercher les pièces pour amener à bord. » [pause 1s] Il a appris le métier auprès d'un ancien, qui avait soixante-trois ans. Il est allé à bord directement. [ralentissement] Au-dessus d'eux, la grue soulevait, pivotait, déposait. Compagne muette de chaque journée.
+
+=== PARTIE 3 : L'après-midi — Le silence tombe ===
+
+{silence_habite.wav}
+
+[pause 2s] Puis les années ont passé. [ralentissement] Dans les décennies soixante-dix et quatre-vingt, les chantiers navals nantais ont fermé, les uns après les autres. Les coques ont cessé de descendre vers le fleuve. Les quais se sont vidés. [pause 1s] Le petit train ne circulait plus. [pause 2s] [émotion contenue] Et la grue est restée. Seule, sans charge, bras tendu vers un ciel que plus personne ne regardait. [pause 3s]
+
+=== PARTIE 4 : Le soir — La grue dorée ===
+
+{vent_loire_rumeur_urbaine.wav}
+
+Mais Nantes a choisi de ne pas oublier. L'Île a été repensée, le patrimoine industriel préservé. La grue jaune est devenue monument. [pause 1s] Autour d'elle, le Quai des Antilles s'anime, les Machines de l'île ont pris racine là où l'on construisait des navires. [ralentissement] Et le soir, quand la lumière rasante de la Loire vient frapper le métal, la grue prend une teinte dorée. [pause 1s] Elle veille. [pause 1s] Sentinelle d'une mémoire ouvrière que la ville porte encore, du matin jusqu'au soir, dans le jaune vif de sa silhouette. [pause 3s]

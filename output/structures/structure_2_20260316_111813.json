@@ -1,0 +1,102 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Le trait et la coque — Journée d'un dessinateur de chantier naval",
+  "resumeHistoire": "Au petit matin, un dessinateur franchit les grilles d'un chantier naval français pour rejoindre le bureau d'études, où l'attendent ses tire-lignes, ses compas et l'immense table à dessin. Sa journée se déroule entre le tracé minutieux des plans de coques, les allers-retours vers la salle des tracés où les formes sont reproduites en grandeur réelle, et les échanges avec les ouvriers des ateliers qui transformeront ses lignes en tôles et en membrures. À travers ses gestes précis et répétés, c'est tout le savoir-faire technique d'une époque de la construction navale française qui se révèle — un métier situé à la charnière exacte entre le calcul de l'ingénieur et l'habileté de l'artisan. Le soir venu, le dessinateur range ses instruments, mais le navire qu'il a contribué à faire naître sur le papier poursuivra son chemin vers la cale de lancement.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'arrivée au bureau d'études",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "éveil_calme",
+      "elements_necessaires": [
+        "Ancrage temporel : matin tôt, époque de la construction navale française (période 1850-1970)",
+        "Description sensorielle du chantier naval au petit matin — bruit des grilles, atmosphère industrielle",
+        "Présentation du dessinateur comme figure centrale, sa place dans la hiérarchie du chantier",
+        "Découverte du bureau d'études : table à dessin, instruments alignés (tire-ligne, compas, gabarits)",
+        "Ton grand public, registre accessible mais précis"
+      ],
+      "mood": "descriptif_posé_matinal"
+    },
+    {
+      "partie": 2,
+      "titre": "Le tracé des plans",
+      "duree_cible": 25,
+      "fonction_narrative": "développement_technique",
+      "position_arc_emotionnel": "concentration_montante",
+      "elements_necessaires": [
+        "Gestes concrets du dessinateur : manipulation du tire-ligne, usage du compas, tracé des courbes de coque",
+        "Citation directe issue des sources (témoignage d'un dessinateur ou travailleur évoquant la précision du geste ou la nature du travail)",
+        "Explication accessible de ce que le dessinateur produit : plans de formes, coupes, détails de structure",
+        "Mention de la salle des tracés / salle à tracer où les plans sont reproduits en grandeur réelle",
+        "Rythme modéré, phrases courtes décrivant la minutie"
+      ],
+      "mood": "appliqué_minutieux"
+    },
+    {
+      "partie": 3,
+      "titre": "Le lien avec les ateliers",
+      "duree_cible": 23,
+      "fonction_narrative": "pivot_relationnel",
+      "position_arc_emotionnel": "ouverture_dynamique",
+      "elements_necessaires": [
+        "Passage du bureau d'études vers les ateliers — le dessinateur descend vérifier, échanger avec les ouvriers",
+        "Contraste entre le silence du bureau et le vacarme de la construction",
+        "Rôle de transmission : le plan devient tôle, membrure, coque — lien entre conception et fabrication",
+        "Citation directe possible sur le rapport entre dessinateurs et ouvriers, ou sur la fierté du métier",
+        "Dimension humaine : le dessinateur comme maillon essentiel mais souvent méconnu"
+      ],
+      "mood": "vivant_concret"
+    },
+    {
+      "partie": 4,
+      "titre": "Le soir, ranger les instruments",
+      "duree_cible": 20,
+      "fonction_narrative": "résolution_contemplative",
+      "position_arc_emotionnel": "apaisement_réflexif",
+      "elements_necessaires": [
+        "Fin de journée : le dessinateur nettoie ses tire-lignes, range compas et gabarits",
+        "Ouverture sur la portée du travail : le navire qui naîtra de ces traits",
+        "Évocation de la transmission des savoirs techniques entre générations de dessinateurs",
+        "Note sur la disparition progressive du métier avec l'arrivée de nouveaux outils",
+        "Clôture émotionnelle douce — dignité du geste artisanal et technique"
+      ],
+      "mood": "contemplatif_digne"
+    }
+  ],
+  "arc_emotionnel_global": "éveil_progressif_vers_contemplation",
+  "rythme_general": "modéré — ancré dans la chronologie d'une journée, avec une montée d'intensité au cœur du travail puis un apaisement final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du décor matinal vers le geste : le dessinateur s'assied, prend son tire-ligne — la journée de travail commence véritablement. Transition fluide par le mouvement du personnage."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_sensoriel",
+      "duree": 2.0,
+      "description": "Du silence concentré du bureau d'études vers le bruit des ateliers. Le dessinateur quitte sa table, roule un plan sous le bras et descend vers la cale. Rupture sonore suggérée mais continuité narrative par le déplacement physique."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_temporel",
+      "duree": 2.0,
+      "description": "Retour au bureau en fin de journée. La lumière décline, le rythme ralentit. Transition par une ellipse douce : « Le jour avance… » ou « Les heures passent… » pour glisser vers le soir."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un fil unique — la journée d'un dessinateur — sans jamais rompre la ligne temporelle. Chaque section est un moment de cette journée, pas un chapitre séparé. Les transitions doivent être imperceptibles à l'écoute : on passe du matin au soir comme on tourne les pages d'un carnet de croquis. VOIX OFF : Ton posé, rythme de lecture lent (~120 mots/min), pauses naturelles aux changements de lieu. CITATIONS : Intégrer 1 à 2 citations directes de témoignages (issues des sources fournies) en les fondant dans le récit — la voix off les introduit naturellement sans effet de rupture. AMBIANCE SONORE SUGGÉRÉE : bruits de chantier en arrière-plan discret (marteaux, rivets) pour les sections 1 et 3 ; silence ou sons feutrés (crayon sur papier, instruments métalliques) pour les sections 2 et 4. REGISTRE : Grand public — phrases claires, vocabulaire technique toujours expliqué ou contextualisé par le geste. DURÉE TOTALE VISÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être dense et concise. Éviter toute digression encyclopédique."
+}

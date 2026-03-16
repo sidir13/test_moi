@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Lettre à la grue jaune — Mémoire vive des bords de Loire",
+  "taggedText": "=== PARTIE 1 : Ouverture — « Je t'écris depuis le quai » ===\n\n{ambiance_loire_vent_mouettes.wav}\n\nCe récit s'adresse à tous, sur un ton simplement informatif — comme une lettre qu'on lirait à voix haute, au bord de l'eau.\n\n[murmure] Je t'écris depuis le Quai des Antilles, sur l'Île de Nantes.\nTu es là, devant moi — ta silhouette jaune découpée contre le ciel, au-dessus de la Loire.\n[pause 1.5s]\nJe ne sais pas si on écrit aux grues. [ton intime] Mais toi, tu mérites qu'on te parle.\n\n=== PARTIE 2 : Le temps des cales — Mémoire des chantiers ===\n\n{resonances_metalliques_lointaines.wav}\n\nSi je ferme les yeux, je peux remonter le temps. [ralentissement] Ici même, sur cette île qu'on appelait la Prairie-au-Duc, il y avait des hommes qui construisaient des navires.\nLe Chantier de la Loire. Dubigeon. Des noms que cette terre porte encore.\n\n[pause 1s]\n\nL'un de ces hommes s'appelait Jean Penaud.\n\n[ARCHIVE — voix de Jean Penaud, brute, authentique]\n« Première embauche : le 5 février 1957. »\n« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets. »\n« Et après... moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Comme charpentier de fer. Moi j'suis allé à bord directement. »\n\n[ton doux] Les goussets, le fer à boudin, le petit train qui amenait les pièces à bord… Toi, tu voyais tout ça d'en haut. Tu étais leur outil. [émotion contenue] Pas encore leur symbole.\n\n=== PARTIE 3 : Le silence des cales — Fermeture et absence ===\n\n{vent_fleuve_silence.wav}\n\n[pause 1.5s]\n\n[ton grave] Et puis un jour, les chantiers se sont tus.\nLes cales se sont vidées. Les hommes sont partis. [ralentissement] Sur l'île, il n'est resté que des friches, du béton, du silence.\n[pause 1s]\n[murmure] Et toi.\nToi, tu es restée debout — seule sur le quai, face au fleuve, quand tout autour avait disparu.\n\n=== PARTIE 4 : Retour au quai — « Tu es toujours là » ===\n\n{rumeur_urbaine_promeneurs_mouettes.wav}\n\nAujourd'hui, l'île a changé. On a choisi de ne pas tout raser — de garder les traces plutôt que de les enfouir. On a fait de la mémoire un projet.\nEt toi, on t'a gardée.\n[pause 1s]\nTu es devenue ce que personne n'avait prévu : un repère. [ton posé] Un symbole. Quand on dit Nantes, souvent, c'est ta silhouette jaune qui apparaît.\n\n[pause 1.5s]\n\nJe suis toujours là, sur le Quai des Antilles. La Loire coule. Le vent n'a pas changé.\n[émotion contenue] Mais moi, depuis que je t'ai écrit cette lettre, je ne te regarde plus de la même façon.\n\n{ambiance_loire_vent_mouettes_fondu_final.wav}",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Ouverture — « Je t'écris depuis le quai »",
+      "taggedText": "{ambiance_loire_vent_mouettes.wav}\n\nCe récit s'adresse à tous, sur un ton simplement informatif — comme une lettre qu'on lirait à voix haute, au bord de l'eau.\n\n[murmure] Je t'écris depuis le Quai des Antilles, sur l'Île de Nantes.\nTu es là, devant moi — ta silhouette jaune découpée contre le ciel, au-dessus de la Loire.\n[pause 1.5s]\nJe ne sais pas si on écrit aux grues. [ton intime] Mais toi, tu mérites qu'on te parle."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des cales — Mémoire des chantiers",
+      "taggedText": "{resonances_metalliques_lointaines.wav}\n\nSi je ferme les yeux, je peux remonter le temps. [ralentissement] Ici même, sur cette île qu'on appelait la Prairie-au-Duc, il y avait des hommes qui construisaient des navires.\nLe Chantier de la Loire. Dubigeon. Des noms que cette terre porte encore.\n\n[pause 1s]\n\nL'un de ces hommes s'appelait Jean Penaud.\n\n[ARCHIVE — voix de Jean Penaud, brute, authentique]\n« Première embauche : le 5 février 1957. »\n« J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets. »\n« Et après... moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Comme charpentier de fer. Moi j'suis allé à bord directement. »\n\n[ton doux] Les goussets, le fer à boudin, le petit train qui amenait les pièces à bord… Toi, tu voyais tout ça d'en haut. Tu étais leur outil. [émotion contenue] Pas encore leur symbole."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales — Fermeture et absence",
+      "taggedText": "{vent_fleuve_silence.wav}\n\n[pause 1.5s]\n\n[ton grave] Et puis un jour, les chantiers se sont tus.\nLes cales se sont vidées. Les hommes sont partis. [ralentissement] Sur l'île, il n'est resté que des friches, du béton, du silence.\n[pause 1s]\n[murmure] Et toi.\nToi, tu es restée debout — seule sur le quai, face au fleuve, quand tout autour avait disparu."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Retour au quai — « Tu es toujours là »",
+      "taggedText": "{rumeur_urbaine_promeneurs_mouettes.wav}\n\nAujourd'hui, l'île a changé. On a choisi de ne pas tout raser — de garder les traces plutôt que de les enfouir. On a fait de la mémoire un projet.\nEt toi, on t'a gardée.\n[pause 1s]\nTu es devenue ce que personne n'avait prévu : un repère. [ton posé] Un symbole. Quand on dit Nantes, souvent, c'est ta silhouette jaune qui apparaît.\n\n[pause 1.5s]\n\nJe suis toujours là, sur le Quai des Antilles. La Loire coule. Le vent n'a pas changé.\n[émotion contenue] Mais moi, depuis que je t'ai écrit cette lettre, je ne te regarde plus de la même façon.\n\n{ambiance_loire_vent_mouettes_fondu_final.wav}"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 17,
+    "soundTags": 5,
+    "originalWordCount": 492
+  }
+}

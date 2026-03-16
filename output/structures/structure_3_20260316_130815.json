@@ -1,0 +1,121 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Les mains qui dessinent les navires",
+  "resumeHistoire": "Sur les bords de Loire, dans les chantiers navals de Nantes, des hommes traduisaient l'acier en lignes de crayon bien avant que le premier rivet ne soit posé. Parmi eux, Jean Penaud, dessinateur industriel, incarnait ce maillon méconnu de la chaîne de construction navale : celui qui, depuis le bureau d'études, donnait forme aux coques et aux structures sur le papier. Cette chronique retrace le quotidien de ces dessinateurs, leur place dans la hiérarchie du chantier — entre l'ingénieur et l'ouvrier de cale —, et la lente disparition de leur savoir-faire avec la fermeture des chantiers nantais. Le récit s'ouvre et se referme sur la même image : une table à dessin vide, témoin silencieux d'un monde industriel englouti.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La table à dessin",
+      "duree_cible": 15.0,
+      "fonction_narrative": "ouverture_circulaire",
+      "position_arc_emotionnel": "contemplation_initiale",
+      "elements_necessaires": [
+        "Image d'ouverture : une table à dessin inclinée, silencieuse, dans un bureau vide des anciens chantiers",
+        "Ancrage géographique : Île de Nantes, bords de Loire",
+        "Évocation sensorielle minimaliste : lumière, silence, outils abandonnés",
+        "Introduction du métier de dessinateur comme fil conducteur"
+      ],
+      "mood": "mélancolique_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le bureau d'études prend vie",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_sociale",
+      "position_arc_emotionnel": "montée_en_présence",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud, dessinateur aux chantiers navals de Nantes",
+        "Description du quotidien au bureau d'études : tracés de coques, dessins de structures, plans techniques",
+        "Citation directe de témoignage sur le travail concret du dessinateur",
+        "Place du dessinateur dans la hiérarchie : entre ingénieur et ouvrier de cale",
+        "Lien entre le plan sur papier et la réalisation sur la cale de lancement"
+      ],
+      "mood": "documentaire_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "Du trait de crayon à la coque d'acier",
+      "duree_cible": 22.0,
+      "fonction_narrative": "approfondissement_technique_et_humain",
+      "position_arc_emotionnel": "intensité_narrative",
+      "elements_necessaires": [
+        "Le savoir-faire spécifique : précision du tracé, lecture des formes de carène, travail à l'échelle",
+        "Citation directe sur la fierté ou la rigueur du métier",
+        "Organisation collective : collaboration entre traceurs, dessinateurs, chefs d'atelier",
+        "Atmosphère des Ateliers et Chantiers de Nantes ou des Chantiers Dubigeon"
+      ],
+      "mood": "dense_respectueux"
+    },
+    {
+      "partie": 4,
+      "titre": "Les tables se vident",
+      "duree_cible": 15.0,
+      "fonction_narrative": "bascule_élégiaque",
+      "position_arc_emotionnel": "descente_émotionnelle",
+      "elements_necessaires": [
+        "Évocation du déclin et de la fermeture des chantiers navals nantais",
+        "Disparition progressive du métier de dessinateur naval",
+        "Citation ou témoignage sur la fin, la perte, la mémoire",
+        "Transmission fragilisée du savoir-faire"
+      ],
+      "mood": "grave_sobre"
+    },
+    {
+      "partie": 5,
+      "titre": "Retour à la table vide",
+      "duree_cible": 13.0,
+      "fonction_narrative": "fermeture_circulaire",
+      "position_arc_emotionnel": "contemplation_finale",
+      "elements_necessaires": [
+        "Retour à l'image d'ouverture : la table à dessin, le silence",
+        "Résonance entre passé industriel et présent patrimonial",
+        "Phrase de clôture évoquant la trace invisible laissée par ces hommes dans chaque navire sorti de Nantes"
+      ],
+      "mood": "mélancolique_apaisé"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_élégiaque — de la contemplation silencieuse à la vie du métier, puis retour au silence, enrichi par la mémoire",
+  "rythme_general": "lent_contemplatif avec un léger sursaut de vitalité dans les parties centrales",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "Du silence présent vers le passé vivant : la table vide se repeuple mentalement, on remonte le temps sans rupture, par une phrase du type 'Il fut un temps où cette table vibrait sous le crayon de…'"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Du portrait individuel de Jean Penaud vers le geste technique collectif : on élargit du dessinateur au métier, du bureau à l'atelier, par continuité thématique."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_tonale",
+      "duree": 2.0,
+      "description": "Rupture douce : le bruit évoqué des chantiers s'éteint progressivement. Une phrase pivot marque le passage du temps — l'activité cède la place au silence du déclin."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "retour_circulaire",
+      "duree": 1.5,
+      "description": "Retour à l'image inaugurale. La transition est un écho explicite : on retrouve la table, le même lieu, mais désormais chargé de tout ce qui a été raconté."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est un flux unique, sans titres lus ni annonces de sections. Les cinq parties sont des repères de construction, pas des chapitres audibles. — REGISTRE : Grand public, phrases claires et relativement courtes, vocabulaire technique introduit naturellement (tracé, carène, cale de lancement) et immédiatement contextualisé. — VOIX OFF : Ton omniscient, posé, à la troisième personne. Aucune adresse directe au public. Invitations immersives bienvenues ('Nous sommes sur l'Île de Nantes…'). — CITATIONS : Intégrer 2 à 3 citations directes issues des témoignages, enchâssées dans le flux narratif (introduites par 'il racontait…', 'selon ses mots…' ou en incise). Elles constituent le cœur émotionnel du récit. — DENSITÉ SONORE MINIMALISTE : Prévoir des silences courts (1-2s) aux transitions clés, notamment entre parties 3-4 et 4-5, pour laisser résonner le propos. — STRUCTURE CIRCULAIRE : L'image de la table à dessin vide ouvre et ferme le récit. La dernière phrase doit faire écho à la première, avec un enrichissement de sens. — DÉBIT : ~2 mots/seconde, soit environ 180 mots maximum pour 90 secondes. Chaque mot compte. Privilégier la suggestion à l'exhaustivité. — RIGUEUR : Ne mentionner que les faits, noms, lieux et dates présents dans le contexte fourni. En l'absence de date précise pour certains événements de la vie de Jean Penaud, rester dans l'évocation sans inventer."
+}

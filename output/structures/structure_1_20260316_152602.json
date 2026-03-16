@@ -1,0 +1,98 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Jean Penaud, le trait des navires nantais",
+  "resumeHistoire": "Sur les bords de Loire, les chantiers navals de Nantes ont fait vivre pendant des décennies des milliers d'ouvriers et de techniciens spécialisés. Parmi eux, les dessinateurs — figures méconnues de la construction navale — traduisaient en plans précis les formes complexes des coques et des structures. Jean Penaud fut l'un de ces hommes du bureau d'études, dont le travail minutieux sur la planche à dessin précédait chaque rivet posé sur les cales. Son parcours éclaire un métier de l'ombre, à mi-chemin entre l'art et l'ingénierie, qui s'est éteint avec le déclin des chantiers nantais. À travers son portrait, c'est toute une mémoire technique et ouvrière qui resurgit.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le décor des cales",
+      "duree_cible": 20,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_atmosphérique",
+      "elements_necessaires": [
+        "Évocation sensorielle des chantiers navals nantais en activité — bruit, échelle, Loire",
+        "Situer géographiquement : Île de Nantes, Prairie-au-Duc, chantiers Dubigeon",
+        "Introduire l'existence d'un monde technique en amont des cales : le bureau d'études",
+        "Phrase d'accroche immersive de type 'Nous sommes sur les bords de Loire…'"
+      ],
+      "mood": "évocateur, industriel, ample"
+    },
+    {
+      "partie": 2,
+      "titre": "L'homme à la planche",
+      "duree_cible": 25,
+      "fonction_narrative": "portrait_central",
+      "position_arc_emotionnel": "focalisation_intime",
+      "elements_necessaires": [
+        "Présenter Jean Penaud — dessinateur sur les chantiers navals nantais",
+        "Décrire son rôle concret : tracer les plans des navires, dessiner les formes de coque, les structures",
+        "Intégrer une citation directe de Penaud ou d'un témoin si disponible dans les sources",
+        "Montrer le quotidien du dessinateur : la planche à dessin, les outils, la précision requise"
+      ],
+      "mood": "précis, humain, respectueux"
+    },
+    {
+      "partie": 3,
+      "titre": "Le geste et le savoir",
+      "duree_cible": 25,
+      "fonction_narrative": "approfondissement_thématique",
+      "position_arc_emotionnel": "élévation_admirative",
+      "elements_necessaires": [
+        "Élargir au métier de dessinateur naval en général — savoir-faire technique, formation",
+        "Montrer la place du dessinateur dans la chaîne de construction : entre l'ingénieur et l'ouvrier",
+        "Intégrer une seconde citation directe éclairant le métier ou l'ambiance du bureau d'études",
+        "Souligner la dimension artisanale et intellectuelle de ce travail"
+      ],
+      "mood": "didactique, valorisant, rythme modéré"
+    },
+    {
+      "partie": 4,
+      "titre": "Le silence des cales",
+      "duree_cible": 20,
+      "fonction_narrative": "résolution_élégiaque",
+      "position_arc_emotionnel": "descente_mélancolique_puis_ouverture",
+      "elements_necessaires": [
+        "Évoquer le déclin et la fermeture des chantiers navals nantais",
+        "Relier la fin des chantiers à la disparition du métier de dessinateur naval",
+        "Revenir sur Jean Penaud comme figure de cette mémoire ouvrière et technique",
+        "Conclure sur la trace laissée — plans, mémoire, patrimoine industriel"
+      ],
+      "mood": "mélancolique, digne, ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "ancrage_focalisation_élévation_élégie",
+  "rythme_general": "modéré avec légère accélération en partie 3 puis ralentissement conclusif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du panorama sonore des chantiers, on glisse naturellement vers un lieu plus calme — le bureau d'études — et vers un homme en particulier. La transition se fait par contraste sonore : du vacarme des cales au silence concentré de la planche à dessin."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_thématique",
+      "duree": 2.0,
+      "description": "Depuis le portrait individuel de Jean Penaud, on ouvre le cadre pour embrasser le métier de dessinateur dans son ensemble. La transition s'appuie sur une phrase pivot du type 'Comme lui, des dizaines de dessinateurs…' — fluide, sans rupture."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_temporelle",
+      "duree": 2.0,
+      "description": "Le récit glisse du temps de l'activité vers celui de la fin. Un marqueur temporel discret ('Puis un jour, les commandes se sont taries…') opère la transition vers le registre élégiaque sans brutalité."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit doit former un flux continu, comme un travelling cinématographique partant du large (les chantiers) pour se resserrer sur un homme (Penaud), s'élargir à un métier, puis s'ouvrir sur le temps qui passe. Éviter toute rupture sèche entre sections — chaque fin de partie doit contenir l'amorce de la suivante. CITATIONS : Deux citations directes minimum, intégrées naturellement dans le fil narratif (introduites par le contexte, jamais plaquées). Si les sources fournissent des mots de Jean Penaud lui-même, les privilégier ; sinon, utiliser des témoignages de collègues ou contemporains. REGISTRE : Langage accessible grand public, phrases courtes à moyennes, vocabulaire technique utilisé avec parcimonie et toujours explicité par le contexte. AMBIANCE SONORE (indications pour le mixage) : partie 1 — sons industriels lointains, Loire ; partie 2 — ambiance intérieure calme, crayon sur papier ; partie 3 — légère montée musicale ; partie 4 — silence progressif, musique discrète. DÉBIT : Viser ~2 mots/seconde soit environ 180 mots maximum pour l'ensemble du texte narré. Chaque section doit rester dense et concise — pas de remplissage. AUTHENTICITÉ LINGUISTIQUE : Utiliser le vocabulaire d'époque quand il est attesté dans les sources (cales, gabarits, tracés, bureau d'études) pour ancrer le récit dans son temps."
+}

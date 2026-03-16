@@ -1,0 +1,102 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le dernier matin sur les quais — Nantes, port en déclin",
+  "resumeHistoire": "Dès l'aube, les quais de la Fosse bruissaient jadis d'une activité maritime intense, faisant de Nantes l'un des grands ports de commerce français depuis le XVIIe siècle. Mais l'ensablement progressif de la Loire et l'impossibilité d'accueillir des navires de plus en plus grands ont poussé les activités portuaires à se déplacer vers Paimbœuf, puis vers Saint-Nazaire à partir de 1856. Sur l'île de Nantes, les chantiers navals — dont Dubigeon et les Chantiers de la Loire — ont résisté plus longtemps, construisant encore des navires au XXe siècle, avant de fermer définitivement en 1987. À travers une journée type sur ces chantiers, du pointage matinal au silence du soir, c'est toute l'histoire d'un déclin irréversible qui se dessine, portée par la voix de ceux qui, comme Jean Penaud, ont vécu les dernières heures de cette épopée industrielle.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube — Quand Nantes était port de mer",
+      "duree_cible": 30.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "nostalgie_lumineuse",
+      "elements_necessaires": [
+        "Évocation sensorielle d'un matin sur les quais de la Fosse, ambiance portuaire d'antan",
+        "Rappel du statut de Nantes comme grand port maritime dès le XVIIe siècle (1646, premiers chantiers navals)",
+        "Mention du commerce maritime florissant, incluant le commerce triangulaire",
+        "Registre accessible, phrases courtes, ton contemplatif",
+        "Indication du public cible et du ton dès les premières lignes narratives (intégré naturellement dans le registre)"
+      ],
+      "mood": "contemplatif_évocateur"
+    },
+    {
+      "partie": 2,
+      "titre": "La matinée — Le fleuve qui se dérobe",
+      "duree_cible": 25.0,
+      "fonction_narrative": "complication_progressive",
+      "position_arc_emotionnel": "tension_sourde",
+      "elements_necessaires": [
+        "Ensablement progressif de la Loire, contraintes de navigation croissantes",
+        "Déplacement des activités vers Paimbœuf comme étape intermédiaire",
+        "Ouverture du bassin à flot de Saint-Nazaire (1856) et transfert progressif du trafic",
+        "Canal maritime de la Basse-Loire comme tentative de réponse",
+        "Métaphore de la marée qui descend — le matin avance, l'activité reflue"
+      ],
+      "mood": "factuel_mélancolique"
+    },
+    {
+      "partie": 3,
+      "titre": "L'après-midi — Les derniers marteaux de l'île de Nantes",
+      "duree_cible": 35.0,
+      "fonction_narrative": "climax_émotionnel",
+      "position_arc_emotionnel": "intensité_nostalgique",
+      "elements_necessaires": [
+        "Focus sur les chantiers navals de la Prairie-au-Duc : Dubigeon, Chantiers de la Loire",
+        "Citation de Jean Penaud : embauche le 5 février 1957, parcours entre Chantiers de la Loire, Dubigeon, Cherbourg (sous-marins), retour en juillet 1969",
+        "Évocation concrète des gestes : le parc à fer, les goussets, le petit train à plateau",
+        "Mention des mutations successives et de la résistance des chantiers au XXe siècle",
+        "Densité sonore immersive : métal, outils, ambiance industrielle"
+      ],
+      "mood": "immersif_charnel"
+    },
+    {
+      "partie": 4,
+      "titre": "Le soir tombe — Fermeture et silence",
+      "duree_cible": 30.0,
+      "fonction_narrative": "resolution_élégiaque",
+      "position_arc_emotionnel": "apaisement_grave",
+      "elements_necessaires": [
+        "Fermeture des chantiers Dubigeon en 1987 — dernier acte",
+        "Impact des guerres mondiales et de la désindustrialisation évoqué brièvement",
+        "Le silence qui remplace le bruit des chantiers",
+        "Ouverture vers la reconversion de l'île de Nantes comme héritage post-industriel",
+        "Clôture sur l'image du soir qui tombe sur des quais déserts"
+      ],
+      "mood": "élégiaque_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "decrescendo_nostalgique — de la lumière matinale d'un port vivant au crépuscule silencieux d'une ère révolue",
+  "rythme_general": "lent_contemplatif — phrases posées, silences signifiants, progression inexorable comme une marée descendante",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "Du tableau vivant du port ancien, glissement vers le constat géomorphologique — la phrase finale de la partie 1 évoque les grands navires, la première de la partie 2 constate qu'ils ne passent plus. Pas de rupture, mais un changement de focale du sensible vers le factuel."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "recentrage_humain",
+      "duree": 2.0,
+      "description": "Du mouvement des ports vers l'aval, on resserre sur ceux qui restent : les ouvriers des chantiers navals. Transition par le son — du fleuve silencieux au fracas du métal. On passe de l'échelle géographique à l'échelle du geste."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "extinction_progressive",
+      "duree": 2.0,
+      "description": "Les marteaux se taisent un à un. La citation vivante de Jean Penaud laisse place à la voix off qui constate la fin. Le rythme ralentit encore, les phrases s'allongent, le silence s'installe comme personnage."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est celui d'une journée type — l'aube, la matinée, l'après-midi, le soir — qui métaphorise les siècles de déclin portuaire nantais. Chaque moment de la journée correspond à une époque et à un état émotionnel. Ne jamais rompre cette métaphore temporelle. — FLUIDITÉ : Les transitions doivent être cousues dans le texte, jamais annoncées. Pas de 'Passons maintenant à…'. Privilégier les images sensorielles comme ponts (lumière, son, mouvement de l'eau). — CITATIONS : Intégrer la voix de Jean Penaud (partie 3) comme un moment de vérité incarnée au milieu du documentaire. Sa citation sur le parc à fer et les goussets doit surgir naturellement dans l'évocation des gestes quotidiens. — REGISTRE : Grand public, phrases claires, pas de jargon maritime non expliqué. Le mot 'gousset' doit être contextualisé. — DURÉE : 240 mots maximum. Chaque section doit être dense mais jamais précipitée. Le rythme lent impose des phrases courtes et des respirations. — AUTHENTICITÉ LINGUISTIQUE : Utiliser un vocabulaire qui évoque l'époque sans être archaïque. Les termes techniques des chantiers (goussets, parc à fer) apportent la couleur authentique. — AMBIANCE SONORE SUGGÉRÉE : Indications pour le mixage — eau, mouettes et cordages (partie 1), silence fluvial (partie 2), métal et marteaux (partie 3), vent et vide (partie 4)."
+}

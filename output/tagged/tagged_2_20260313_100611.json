@@ -1,0 +1,32 @@
+{
+  "scenario_id": 2,
+  "titre": "Quand la Loire a cessé de porter les navires",
+  "taggedText": "=== PARTIE 1 : Un port au sommet de sa puissance ===\n\n{ambiance_quais_activite_portuaire.wav}\n[posé] Nous sommes au dix-septième siècle, sur les quais de la Fosse à Nantes. [pause] Des centaines de navires se pressent le long du fleuve. L'île Feydeau, l'île Gloriette bruissent du va-et-vient des armateurs et des dockers. [accentué] Nantes est alors l'un des plus grands ports maritimes de France.\n\n=== PARTIE 2 : Le fleuve qui se dérobe ===\n\n[pause] Mais la Loire s'ensable. [posé] Lentement, inexorablement. Dès le dix-huitième siècle, les gros navires ne remontent plus jusqu'à Nantes. Ils s'arrêtent à Paimbœuf, en aval, où l'on transborde les marchandises. [pause] Puis en mil huit cent cinquante-six, Saint-Nazaire ouvre son bassin à flot. [accentué] Le grand commerce maritime bascule vers l'estuaire.\n\n=== PARTIE 3 : Les hommes des chantiers ===\n\n{ambiance_chantier_naval_marteaux.wav}\n[ralentit] Pourtant, sur la Prairie-au-Duc, on continue de construire des navires. Les chantiers de la Loire, puis Dubigeon, font vivre des centaines de familles ouvrières. [pause] Jean Penaud, charpentier-fer, est de ceux-là. Il se souvient : [ARCHIVE : « Première embauche le cinq février mil neuf cent cinquante-sept. »] Au parc à fer, il trie les goussets — ces pièces de renfort que l'on achemine vers les coques en construction. [posé] Plus tard, il part sept ans à Cherbourg travailler sur les sous-marins, avant de revenir à Nantes [ARCHIVE : « au mois de juillet soixante-neuf. »]\n\n=== PARTIE 4 : Le dernier rivet ===\n\n{silence_progressif_vent_estuaire.wav}\n[ralentit] Mais le déclin, cette fois, rattrape les chantiers eux-mêmes. La concurrence internationale, la crise de la construction navale frappent durement. [pause] En mil neuf cent quatre-vingt-sept, les chantiers Dubigeon ferment définitivement leurs portes. Sur la Prairie-au-Duc, les cales se taisent. [pause] [triste] Pour des hommes comme Jean Penaud, c'est un monde entier qui disparaît — celui des coques, du fer, des gestes transmis. [pause] [posé] Puis, lentement, l'île de Nantes entame sa mue. [étire] Là où résonnait le fracas des rivets, une autre ville commence à naître.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un port au sommet de sa puissance",
+      "taggedText": "{ambiance_quais_activite_portuaire.wav}\n[posé] Nous sommes au dix-septième siècle, sur les quais de la Fosse à Nantes. [pause] Des centaines de navires se pressent le long du fleuve. L'île Feydeau, l'île Gloriette bruissent du va-et-vient des armateurs et des dockers. [accentué] Nantes est alors l'un des plus grands ports maritimes de France."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le fleuve qui se dérobe",
+      "taggedText": "[pause] Mais la Loire s'ensable. [posé] Lentement, inexorablement. Dès le dix-huitième siècle, les gros navires ne remontent plus jusqu'à Nantes. Ils s'arrêtent à Paimbœuf, en aval, où l'on transborde les marchandises. [pause] Puis en mil huit cent cinquante-six, Saint-Nazaire ouvre son bassin à flot. [accentué] Le grand commerce maritime bascule vers l'estuaire."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les hommes des chantiers",
+      "taggedText": "{ambiance_chantier_naval_marteaux.wav}\n[ralentit] Pourtant, sur la Prairie-au-Duc, on continue de construire des navires. Les chantiers de la Loire, puis Dubigeon, font vivre des centaines de familles ouvrières. [pause] Jean Penaud, charpentier-fer, est de ceux-là. Il se souvient : [ARCHIVE : « Première embauche le cinq février mil neuf cent cinquante-sept. »] Au parc à fer, il trie les goussets — ces pièces de renfort que l'on achemine vers les coques en construction. [posé] Plus tard, il part sept ans à Cherbourg travailler sur les sous-marins, avant de revenir à Nantes [ARCHIVE : « au mois de juillet soixante-neuf. »]"
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le dernier rivet",
+      "taggedText": "{silence_progressif_vent_estuaire.wav}\n[ralentit] Mais le déclin, cette fois, rattrape les chantiers eux-mêmes. La concurrence internationale, la crise de la construction navale frappent durement. [pause] En mil neuf cent quatre-vingt-sept, les chantiers Dubigeon ferment définitivement leurs portes. Sur la Prairie-au-Duc, les cales se taisent. [pause] [triste] Pour des hommes comme Jean Penaud, c'est un monde entier qui disparaît — celui des coques, du fer, des gestes transmis. [pause] [posé] Puis, lentement, l'île de Nantes entame sa mue. [étire] Là où résonnait le fracas des rivets, une autre ville commence à naître."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 19,
+    "soundTags": 3,
+    "originalWordCount": 289
+  }
+}

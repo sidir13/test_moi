@@ -1,0 +1,23 @@
+=== PARTIE 1 : Le trait sur le papier ===
+
+{crayon_sur_calque.wav}
+
+[posé] Un crayon glisse sur le calque. [pause] Autour, le froissement des règles, le souffle concentré des hommes penchés sur leurs planches. {fond_industriel_lointain_marteaux_loire.wav} [atténué] Nous sommes aux chantiers navals de Nantes, dans le bureau d'études.
+
+=== PARTIE 2 : Le monde d'avant — dessiner les navires ===
+
+{chantier_naval_activite.wav}
+
+[accentué] Ici, chaque navire commence par un trait. Le dessinateur traduit les calculs de l'ingénieur en plans de formes, dessine la coque, les membrures, [précipité] chaque détail qui prendra vie sur la cale. [pause] Jean Penaud confie : [posé] [atténué] « On faisait les dessins d'ensemble et les dessins de détail pour les ouvriers, pour qu'ils puissent fabriquer les pièces. » [pause] En contrebas, les soudeurs et les charpentiers attendent ces plans comme une partition.
+
+=== PARTIE 3 : Le silence des cales ===
+
+{disparition_progressive_bruits_industriels.wav}
+
+[ralentit] Puis les commandes se raréfient. [pause] Les grues s'immobilisent. Les chantiers navals nantais ferment, l'un après l'autre. [atténué] La Prairie-au-Duc se vide. [pause] Jean Penaud se souvient : [posé] [triste] « Quand on a fermé, ça a été un coup dur. On savait que c'était fini. » [pause] {vent_cale_vide_echo.wav} [ralentit] Les planches à dessin sont rangées. [pause] Le silence remplace le fracas.
+
+=== PARTIE 4 : Ce que la main savait ===
+
+{ambiance_urbaine_contemporaine_discrete.wav}
+
+[posé] Aujourd'hui, l'Île de Nantes ne construit plus de navires. [pause] Mais dans les archives, les plans subsistent — tracés nets, cotes précises, mémoire d'un geste sûr. {crayon_sur_calque_echo.wav} [ralentit] [atténué] Ce que la main de Jean Penaud savait, le papier le garde encore. [pause]

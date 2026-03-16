@@ -1,0 +1,172 @@
+{
+  "scenario_id": 1,
+  "titre": "Nantes, le fleuve et les hommes : chronique d'un port qui a fait la ville",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "Bien avant d'être la métropole que l'on connaît, Nantes n'était qu'un modeste port fluvial celte niché au bord de la Loire, où quelques habitants vivaient du commerce et du minerai. Avec la conquête romaine, ce petit comptoir se transforme en véritable chef-lieu, et la vie de ses quais commence à battre au rythme des échanges grandissants. Au fil des siècles, le port façonne la ville et la vie de ceux qui y travaillent — marins, artisans, commerçants — tournant progressivement Nantes vers l'Atlantique et le grand large. Mais cette prospérité porte aussi des ombres, notamment celle du commerce triangulaire et de la traite négrière, qui marquent durablement la mémoire de la cité. Aujourd'hui, les anciens quais et chantiers navals se sont réinventés, mais le fleuve reste le fil conducteur de l'identité nantaise — et le récit revient là où tout a commencé, au bord de l'eau.",
+  "duree_estimee": 183.3388209121246,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Au bord de l'eau, aujourd'hui",
+      "duree": 15.600000000000001,
+      "texte_narration": "Nantes, aujourd'hui. On marche le long des quais, la Loire coule, tranquille. Mais sous nos pieds, sous ces pavés, il y a vingt-cinq siècles d'histoire. Alors, qui étaient les tout premiers à vivre de ce fleuve ?",
+      "ton": {
+        "global": "contemplatif_invitant",
+        "tempo_lecture": 150,
+        "pauses": [
+          "après 'tranquille' (1.5s)",
+          "après 'histoire' (1s)"
+        ],
+        "intonation": "Voix posée, presque murmurée au départ, qui s'ouvre progressivement sur la question finale avec une légère montée interrogative."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Clapotis discret de la Loire en fond — ambiance quais contemporains. La voix entre calmement.",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Légère suspension avant la question d'amorce, le clapotis reste seul un instant.",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": []
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le petit port des Namnètes",
+      "duree": 42.800000000000004,
+      "texte_narration": "Il faut remonter loin. Entre neuf cents et cinq cents avant notre ère, ici, il y a un modeste port fluvial. On l'appelle Corbilo. Ceux qui y vivent, ce sont les Namnètes — un peuple celte, celui-là même qui a donné son nom à Nantes. Ce ne sont pas de grands seigneurs. Ce sont des artisans, des fondeurs, des commerçants de rivière. On a retrouvé leurs traces : des haches de cuivre, des pointes de lance, des épées de bronze, enfouies à la Prairie-au-Mauve, à Chantenay, au Jardin des Plantes. Une petite communauté, au bord de l'eau, qui vit du fleuve et du minerai.",
+      "ton": {
+        "global": "narratif_posé_evocateur",
+        "tempo_lecture": 150,
+        "pauses": [
+          "après 'Corbilo' (1s)",
+          "après 'à Nantes' (0.8s)",
+          "après 'Jardin des Plantes' (1s)"
+        ],
+        "intonation": "Ton de guide passionné qui partage une découverte. Chaleureux, accessible. Légère emphase sur 'Corbilo' et 'Namnètes' pour ancrer ces noms nouveaux."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:12",
+          "action": "[ARCHIVE — NantesHistoires.mp3 ~01:00] Insérer l'extrait : « Les auteurs grecs et romains attestent de la présence de peuples celtes réunis autour d'un petit port fluvial du nom de Corbilo, là où se trouve actuellement Nantes, entre -900 et -500. » — Durée ~8s. La voix du narrateur reprend ensuite.",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:24",
+          "action": "Évocation des objets retrouvés — on peut entendre un très léger son métallique (frappe sur bronze), ponctuel et discret.",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": []
+    },
+    {
+      "partie_id": 3,
+      "titre": "Rome arrive, le port grandit",
+      "duree": 48.387096774193544,
+      "texte_narration": "Et puis Rome arrive. Après la conquête de la Gaule par César, tout change. Le petit port celte se transforme. Corbilo devient Condevicnum — c'est son nouveau nom romain. La ville se dote d'un tribunal, d'un temple dédié à Mars Mullo, de thermes, d'égouts. Le confort de l'époque. Le port, lui, est désormais connu sous le nom de Portus Namnetum — le port des Namnètes, gravé dans les inscriptions. Il rivalise même avec Ratiatum, l'actuel Rezé, juste en face. Et les habitants ? Ils doivent fournir des soldats à la légion. Le premier Nantais dont l'histoire a retenu le nom, c'est justement l'un d'eux : Argiotalus, un cavalier namnète, mort aux frontières de l'Empire, loin de sa Loire.",
+      "ton": {
+        "global": "dynamique_pedagogique",
+        "tempo_lecture": 155,
+        "pauses": [
+          "après 'tout change' (0.8s)",
+          "après 'dans les inscriptions' (0.8s)",
+          "après 'de sa Loire' (1.5s)"
+        ],
+        "intonation": "Le rythme s'accélère légèrement pour traduire l'essor. Ton enthousiaste mais maîtrisé. Sur 'Argiotalus', ralentir et poser le nom avec gravité respectueuse."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:32",
+          "action": "[ARCHIVE — NantesHistoires.mp3 ~02:00-02:08] Insérer l'extrait : « Elle change de nom et devient Condevicnum. Elle se dote d'un tribunal, d'un temple dédié à Mars Mullo, voue un culte à Cérès, construit des mausolées, des thermes, des égouts et tout le confort moderne de l'époque. » — Durée ~10s. Le narrateur enchaîne.",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "0:48",
+          "action": "Mention d'Argiotalus — moment d'incarnation humaine. Légère pause, le ton se fait plus intime.",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": []
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le port tourné vers l'Atlantique — grandeur et ombres",
+      "duree": 52.137931034482754,
+      "texte_narration": "Au fil des siècles, Nantes grandit et se tourne vers le large. Le port n'est plus seulement fluvial — il devient un carrefour commercial ouvert sur l'Atlantique. Sur le quai de la Fosse, sur l'île Feydeau, les richesses affluent. Des générations de marins, de charpentiers de marine, de dockers font vivre ces quais. Sur l'île de Nantes, les chantiers navals battent le fer et lancent des coques à l'eau. Mais cette prospérité a une face sombre qu'il faut nommer. Nantes a été l'un des principaux ports du commerce triangulaire et de la traite négrière. Des hommes, des femmes, des enfants, réduits en marchandises. C'est aussi l'histoire de ce port. Et elle appartient à la mémoire de la ville.",
+      "ton": {
+        "global": "grave_mais_accessible",
+        "tempo_lecture": 145,
+        "pauses": [
+          "après 'ces quais' (1s)",
+          "après 'il faut nommer' (1.5s)",
+          "après 'en marchandises' (2s)"
+        ],
+        "intonation": "Le ton commence avec l'élan de la prospérité, puis ralentit nettement à partir de 'face sombre'. La voix se fait plus basse, plus lente, sans pathos excessif. Sobre et respectueux. La dernière phrase est posée avec conviction calme."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:52",
+          "action": "Évocation des travailleurs portuaires — on peut entendre un ou deux coups de marteau sur métal, très ponctuels, évoquant les chantiers navals.",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:02",
+          "action": "Pivot grave : mention de la traite négrière. Le clapotis reste seul en fond, tout autre son disparaît. Silence respectueux.",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:10",
+          "action": "Phrase de clôture de la partie — voix posée, affirmative, sans emphase dramatique.",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": []
+    },
+    {
+      "partie_id": 5,
+      "titre": "Retour au bord de l'eau",
+      "duree": 24.413793103448274,
+      "texte_narration": "Aujourd'hui, les chantiers navals se sont tus. Les quais ont été réinventés. Mais la Loire est toujours là. Elle coule comme elle coulait du temps des Namnètes, du temps d'Argiotalus, du temps des marins et des dockers. Le port a disparu, mais le fleuve, lui, continue de raconter Nantes — à qui prend le temps de l'écouter.",
+      "ton": {
+        "global": "contemplatif_conclusif",
+        "tempo_lecture": 145,
+        "pauses": [
+          "après 'se sont tus' (1s)",
+          "après 'toujours là' (1.5s)",
+          "après 'des dockers' (1s)",
+          "après 'de l'écouter' (3s — silence final)"
+        ],
+        "intonation": "Retour au calme de l'ouverture. Voix douce, posée. L'énumération 'du temps des Namnètes, du temps d'Argiotalus, du temps des marins et des dockers' se fait comme un fil qu'on déroule, avec une légère montée à chaque reprise. La phrase finale descend doucement, comme le fleuve vers l'estuaire."
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:14",
+          "action": "Retour à l'ambiance d'ouverture — même clapotis, même calme. Effet miroir avec la partie 1.",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:24",
+          "action": "Dernière phrase. La voix se pose. Le clapotis reste seul encore 3 secondes après le dernier mot, puis fondu au silence.",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": []
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 456,
+    "duree_lecture_estimee": 183.3388209121246,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est une seule coulée portée par le fleuve comme métaphore structurante — la Loire ouvre, traverse et ferme le reportage. La voix masculine posée doit maintenir un débit régulier (environ 150 mots/min pour le grand public), avec de légères accélérations en partie 3 et un ralentissement marqué en partie 4 lors de l'évocation de la traite. STRUCTURE CIRCULAIRE : La première et la dernière image sont identiques — les quais de Nantes au bord de l'eau — mais le regard du spectateur a changé entre-temps. AMBIANCE SONORE MINIMALISTE : Privilégier un fond d'eau (clapotis de Loire) discret et continu, avec de très ponctuelles ponctuations (cloche de navire, bruit de marteau sur métal pour les chantiers). Pas de musique envahissante. ARCHIVES : Le ratio 0.7 narration / 0.3 archives signifie qu'environ 25-27 secondes peuvent être occupées par des extraits audio. Intégrer si possible un extrait de la source NantesHistoires.mp3 autour de [01:00]-[01:30] (évocation de Corbilo et des Namnètes) et [02:00]-[02:08] (transformation romaine). ANGLE CHRONIQUE SOCIALE : Chaque époque doit être incarnée par les gens qui vivaient du port — fondeurs celtes, légionnaires namnètes, marins et dockers — pas par les grands personnages. Le port est raconté par ceux qui y travaillaient. TON PÉDAGOGIQUE ACCESSIBLE : Expliquer les termes (Namnètes = peuple celte, Condevicnum = nouveau nom romain) sans condescendance, comme un guide passionné qui partage. RIGUEUR : Ne pas inventer de dates ou faits au-delà de ce que le contexte fournit. Pour les périodes non documentées dans les sources (Moyen Âge, époque moderne), rester dans des formulations générales appuyées sur les thèmes secondaires validés (commerce atlantique, traite, chantiers navals, reconversion)."
+}

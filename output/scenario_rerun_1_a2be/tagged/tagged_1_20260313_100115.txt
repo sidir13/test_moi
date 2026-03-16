@@ -1,0 +1,25 @@
+=== PARTIE 1 : L'estuaire endormi ===
+
+{brume_estuaire_eau_lente.wav}
+
+Ce récit s'adresse à tous, sur un ton neutre et informatif, à la manière d'un documentaire contemplatif.
+
+[posé] Brume sur la Loire. [pause] L'eau glisse, lente, entre les rives de l'estuaire. Au début des années deux mille dix, le port de Nantes semble figé dans le souvenir de ses heures glorieuses. [pause] Les quais sont silencieux. Les grues, immobiles. [atténué] On dirait qu'ici, le fleuve a cessé de raconter.
+
+=== PARTIE 2 : Le chantier s'éveille ===
+
+{transition_vent_vers_chantier_naval.wav}
+
+Mais en aval, à Saint-Nazaire, quelque chose remue. [accentué] Aux Chantiers de l'Atlantique, une commande hors norme vient de tomber : un paquebot de croisière d'une taille jamais tentée. {soudure_metal_chantier.wav} Des milliers d'ouvriers convergent — soudeurs, tuyauteurs, ingénieurs. Le métal gronde, les arcs électriques crépitent. On dit alors que [pause] « c'est tout un bassin qui se remet debout ». [accentué] Le chantier ne construit pas seulement un navire. Il réveille un territoire.
+
+=== PARTIE 3 : Un géant prend forme ===
+
+{coque_glissement_eau.wav}
+
+Le navire grandit, bloc après bloc. [ralentit] Plus de trois cents mètres de long. Des milliers de cabines. Une ville flottante assemblée à mains d'hommes. [pause] Et puis vient le jour où la coque glisse enfin vers l'estuaire. {foule_berges_murmures.wav} Sur les berges, des familles entières regardent passer ce géant qui dépasse les toits, les grues, l'horizon. Certains parlent d'un [pause] « moment qu'on n'oublie pas ». [atténué] L'émotion est là, silencieuse, immense — comme le navire lui-même.
+
+=== PARTIE 4 : Le fleuve se souvient ===
+
+{sillage_eau_calme_estuaire.wav}
+
+[posé] Puis le géant s'éloigne. Le sillage s'efface. Et l'estuaire retrouve son calme. [pause] Mais quelque chose a changé. À Nantes, à Saint-Nazaire, le long des quais et des bassins, on ne regarde plus le fleuve de la même façon. La mémoire industrielle s'est réveillée. [accentué] Le patrimoine maritime n'est plus un souvenir — c'est un élan. [pause] [posé] La Loire coule toujours, lente, entre ses rives de brume. [pause] Elle n'était pas endormie. [étire] Elle attendait.

@@ -1,0 +1,21 @@
+=== PARTIE 1 : Le décor des cales ===
+
+{ambiance_chantier_naval_lointain.wav}
+
+Sur les bords de Loire, à la Prairie-au-Duc, les chantiers Dubigeon résonnent du fracas des tôles et des rivets. [pause] Des coques immenses se dressent sur les cales. Mais avant qu'un seul rivet ne soit posé, tout commence ailleurs — [ralentit] dans le silence d'un bureau d'études.
+
+=== PARTIE 2 : L'homme à la planche ===
+
+{ambiance_bureau_calme_crayon.wav}
+
+Jean Penaud est dessinateur. Chaque matin, penché sur sa planche, il trace au crayon les formes des coques, les membrures, les lignes d'eau. [pause] Un travail de patience absolue. Il confie : [posé] [atténué] « On dessinait tout, chaque pièce, chaque détail, avant que ça descende à l'atelier. » [pause] Les plans quittaient ensuite le bureau pour rejoindre les mains des chaudronniers.
+
+=== PARTIE 3 : Le geste et le savoir ===
+
+Le dessinateur naval occupe une place singulière : entre l'ingénieur qui calcule et l'ouvrier qui façonne, il est celui qui donne forme. Il faut maîtriser la géométrie descriptive, lire les gabarits, anticiper la matière. [pause] Un ancien collègue se souvient : [posé] [joyeusement] « Le dessinateur, c'était l'homme qui voyait le bateau avant tout le monde. » [pause] Ce savoir-faire tenait autant de l'artisanat que de l'ingénierie.
+
+=== PARTIE 4 : Le silence des cales ===
+
+{silence_progressif_musique_discrete.wav}
+
+Dans les années quatre-vingt, les chantiers nantais ferment un à un. [pause] Les planches à dessin se vident. [triste] Le métier de Jean Penaud disparaît avec les cales. Mais dans les archives, ses plans demeurent — tracés nets, précis, silencieux. [ralentit] La mémoire d'un geste que la Loire n'a pas emporté.

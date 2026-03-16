@@ -1,0 +1,32 @@
+{
+  "scenario_id": 3,
+  "titre": "La grue jaune — Sentinelle ouvrière sur la Loire",
+  "taggedText": "=== PARTIE 1 : Un colosse au bord du fleuve ===\n\n{clapotis_loire_vent_leger.wav}\n\nSur l'Île de Nantes, à l'extrémité du quai des Antilles, une silhouette jaune se dresse face à la Loire. [pause 1s] Massive, immobile, visible depuis les deux rives. C'est une grue. Une grue de chantier naval, plantée là où s'étendait autrefois la Prairie-au-Duc, [pause 0.5s] au cœur de ce qu'on appelait les chantiers.\n\n=== PARTIE 2 : Le temps des chantiers ===\n\n{ambiance_chantier_naval_metal.wav}\n\nPendant des décennies, cette grue a soulevé des tonnes d'acier au-dessus des coques en construction. Aux chantiers Dubigeon, aux Chantiers de la Loire, des centaines d'ouvriers travaillaient à son ombre. [pause 0.5s] Parmi eux, les charpentiers de fer. Jean Penaud était l'un d'entre eux. Embauché le 5 février 1957, il se souvient.\n\n[ARCHIVE — Jean Penaud]\n« Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans, comme charpentier de fer. Moi j'suis allé à bord directement. »\n\nÀ bord, on triait les goussets — ces petites pièces de renfort en métal — on les chargeait sur un petit train à plateau qui les amenait jusqu'aux navires. [ton légèrement appuyé] Le travail était physique, collectif, rythmé par le bruit du fer.\n\n=== PARTIE 3 : Le silence des cales ===\n\n{vent_quai_deserte.wav}\n\n[ralentissement] Puis les chantiers ont fermé. La désindustrialisation a vidé les cales, dispersé les équipes, éteint les bruits de métal. [pause 1.5s] Les navires ont cessé de naître ici. Mais la grue, elle, n'a pas bougé. [ton solennel] Elle est restée là, seule sur le quai désert, tournée vers un fleuve qui continuait de couler sans elle.\n\n=== PARTIE 4 : D'outil à icône ===\n\n{ambiance_promeneurs_ville_contemporaine.wav}\n\nAujourd'hui, l'Île de Nantes a changé de visage. Autour de la grue, le Parc des Chantiers accueille les promeneurs. Les Machines de l'Île et le Hangar à Bananes ont investi les anciens bâtiments industriels. [pause 1s] Et la grue jaune, classée Monument Historique, veille toujours. Elle n'est plus un outil. [ton affirmatif] Elle est devenue le symbole d'une mémoire ouvrière que Nantes a choisi de ne pas effacer.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un colosse au bord du fleuve",
+      "taggedText": "{clapotis_loire_vent_leger.wav}\n\nSur l'Île de Nantes, à l'extrémité du quai des Antilles, une silhouette jaune se dresse face à la Loire. [pause 1s] Massive, immobile, visible depuis les deux rives. C'est une grue. Une grue de chantier naval, plantée là où s'étendait autrefois la Prairie-au-Duc, [pause 0.5s] au cœur de ce qu'on appelait les chantiers."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des chantiers",
+      "taggedText": "{ambiance_chantier_naval_metal.wav}\n\nPendant des décennies, cette grue a soulevé des tonnes d'acier au-dessus des coques en construction. Aux chantiers Dubigeon, aux Chantiers de la Loire, des centaines d'ouvriers travaillaient à son ombre. [pause 0.5s] Parmi eux, les charpentiers de fer. Jean Penaud était l'un d'entre eux. Embauché le 5 février 1957, il se souvient.\n\n[ARCHIVE — Jean Penaud]\n« Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans, comme charpentier de fer. Moi j'suis allé à bord directement. »\n\nÀ bord, on triait les goussets — ces petites pièces de renfort en métal — on les chargeait sur un petit train à plateau qui les amenait jusqu'aux navires. [ton légèrement appuyé] Le travail était physique, collectif, rythmé par le bruit du fer."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "taggedText": "{vent_quai_deserte.wav}\n\n[ralentissement] Puis les chantiers ont fermé. La désindustrialisation a vidé les cales, dispersé les équipes, éteint les bruits de métal. [pause 1.5s] Les navires ont cessé de naître ici. Mais la grue, elle, n'a pas bougé. [ton solennel] Elle est restée là, seule sur le quai désert, tournée vers un fleuve qui continuait de couler sans elle."
+    },
+    {
+      "partie_id": 4,
+      "titre": "D'outil à icône",
+      "taggedText": "{ambiance_promeneurs_ville_contemporaine.wav}\n\nAujourd'hui, l'Île de Nantes a changé de visage. Autour de la grue, le Parc des Chantiers accueille les promeneurs. Les Machines de l'Île et le Hangar à Bananes ont investi les anciens bâtiments industriels. [pause 1s] Et la grue jaune, classée Monument Historique, veille toujours. Elle n'est plus un outil. [ton affirmatif] Elle est devenue le symbole d'une mémoire ouvrière que Nantes a choisi de ne pas effacer."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 10,
+    "soundTags": 4,
+    "originalWordCount": 300
+  }
+}

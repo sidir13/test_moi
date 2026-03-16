@@ -1,0 +1,23 @@
+=== PARTIE 1 : L'aube — Les quais s'éveillent ===
+
+{clapotis_loire_brume_aube.wav}
+
+[murmure] Il est tôt. La brume traîne encore sur la Loire, ce matin, comme tous les matins. [pause 1s] Je descends vers les quais, {pas_lents_paves_mouilles.wav} les pavés sont mouillés sous mes pieds, et l'odeur du fleuve me prend à la gorge — cette odeur de vase, de sel lointain, d'eau qui a voyagé. [pause 1s] On dit que bien avant nous, bien avant tout ça, il y avait ici un petit port. Les Namnètes, un peuple celte, l'appelaient Corbilo. [ton doux] C'était pas grand-chose, paraît-il. Juste un lieu au bord de l'eau, ouvert sur le commerce grâce à la Loire.
+
+=== PARTIE 2 : Le plein jour — Le port bat son plein ===
+
+{activite_portuaire_cordages_cris.wav}
+
+[ton vivant] À la mi-journée, le quai de la Fosse, c'est un autre monde. Ça crie, ça charge, ça décharge. [acceleration] Les cordages claquent, le bois grince sous les ballots. Faut savoir que ces quais, ils ont changé de visage plus d'une fois. Quand les Romains sont arrivés, Corbilo est devenue Condevicnum — un vrai chef-lieu, avec ses thermes, ses temples, son tribunal. Et puis Nantes s'est tournée vers l'Atlantique. Le commerce a grandi. [ralentissement] [ton grave] Là-bas, l'île Feydeau, entre les bras de la Loire... elle porte aussi une mémoire plus lourde. [pause 1s] Celle de la traite, du commerce triangulaire. [émotion contenue] Ça, on ne l'oublie pas.
+
+=== PARTIE 3 : Le crépuscule — La Loire se souvient ===
+
+{vent_doux_estuaire_crepuscule.wav}
+
+[ralentissement] Le soir tombe. Je m'arrête un instant, là, face à l'estuaire. [pause 1s] La lumière descend sur l'eau, et le port se tait doucement. [ton doux] C'est drôle... les bras de la Madeleine, qui passaient ici autrefois, on les a comblés. Recouverts. On a construit des rues par-dessus. Et les grands chantiers navals, sur l'île de Nantes, ils ont fermé, eux aussi. On a reconverti, transformé. La ville a changé. [pause 1s] Mais la Loire, elle, n'a pas bougé. Elle coule toujours au même endroit, elle relie toujours Nantes à l'Atlantique. Et nous, on est toujours là, sur ses quais, à la regarder passer.
+
+=== PARTIE 4 : Coda — Le fleuve coule encore ===
+
+{clapotis_loire_nuit_calme.wav}
+
+[murmure] La nuit est là. Nantes s'endort sur ses quais. [pause 1s] Et moi, je rentre. [ton doux] Demain, je reviendrai. Comme les Namnètes revenaient à Corbilo. Comme d'autres sont venus après eux, et après eux encore. [pause 1s] [chuchotement] Le fleuve coule. C'est tout ce qu'il faut savoir. [pause 3s] {clapotis_loire_seul_final.wav}

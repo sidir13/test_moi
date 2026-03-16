@@ -1,0 +1,308 @@
+{
+  "scenario_id": 1,
+  "titre": "Jean Penaud, dernier témoin d'un port qui s'efface",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Jean Penaud entre comme charpentier-fer au Chantier de la Loire le 5 février 1957, à une époque où le port de Nantes lutte déjà contre l'ensablement de la Loire qui pousse les grandes activités maritimes vers Saint-Nazaire. À travers son parcours — de Nantes à Dubigeon, de Cherbourg aux sous-marins atomiques, puis son retour en juillet 1969 — se dessine le lent déclin d'une ville qui fut l'un des grands ports de commerce français. Des comblements des bras de Loire au XIXe siècle jusqu'à la fermeture des chantiers Dubigeon en 1987, c'est toute une mémoire ouvrière et maritime qui s'éteint avec les derniers coups de marteau sur l'Île de Nantes.",
+  "duree_estimee": 183.72332015810278,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un port au sommet de sa puissance",
+      "duree": 33.391304347826086,
+      "texte_narration": "Ce récit s'adresse à tous ceux qui ignorent ce que Nantes fut autrefois. Au dix-huitième siècle, le port de Nantes compte parmi les plus puissants de France. Autour de l'île Feydeau, les navires de commerce chargent sucre, épices et toiles. Les armateurs bâtissent des hôtels particuliers face aux quais. La ville vit au rythme de la Loire et de la mer.",
+      "ton": {
+        "global": "évocateur, majestueux, posé",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'de France' (1.5s)",
+          "après 'et de la mer' (2s)"
+        ],
+        "intonation": "ample et descriptive, voix posée"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture — ton documentaire neutre, registre grand public posé d'emblée",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Évocation visuelle du port au XVIIIe siècle, Île Feydeau",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Ce récit s'adresse à tous ceux qui ignorent ce que Nantes fut autrefois.",
+          "sources": []
+        },
+        {
+          "sentence": "Au dix-huitième siècle, le port de Nantes compte parmi les plus puissants de France.",
+          "sources": []
+        },
+        {
+          "sentence": "Autour de l'île Feydeau, les navires de commerce chargent sucre, épices et toiles.",
+          "sources": []
+        },
+        {
+          "sentence": "Les armateurs bâtissent des hôtels particuliers face aux quais.",
+          "sources": []
+        },
+        {
+          "sentence": "La ville vit au rythme de la Loire et de la mer.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La Loire se dérobe",
+      "duree": 36.0,
+      "texte_narration": "Mais dès le dix-neuvième siècle, la Loire s'ensable. L'estuaire se comble, les grands navires peinent à remonter jusqu'à Nantes. En 1903, le canal de la Martinière tente de maintenir un chenal praticable — en vain. Les bras de la Bourse et de l'Hôpital sont progressivement comblés, transformant la géographie même de la ville. Les armateurs se tournent vers Saint-Nazaire, plus proche de l'océan.",
+      "ton": {
+        "global": "factuel, légèrement inquiet, rythme modéré",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 's'ensable' (1.5s)",
+          "après 'en vain' (2s)",
+          "après 'de l'océan' (2s)"
+        ],
+        "intonation": "sobre, constat progressif, gravité croissante"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Rupture de ton — passage de la grandeur au déclin",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:35",
+          "action": "Mention du canal de la Martinière, tentative échouée",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:42",
+          "action": "Transfert vers Saint-Nazaire",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mais dès le dix-neuvième siècle, la Loire s'ensable.",
+          "sources": []
+        },
+        {
+          "sentence": "L'estuaire se comble, les grands navires peinent à remonter jusqu'à Nantes.",
+          "sources": []
+        },
+        {
+          "sentence": "En 1903, le canal de la Martinière tente de maintenir un chenal praticable — en vain.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bras de la Bourse et de l'Hôpital sont progressivement comblés, transformant la géographie même de la ville.",
+          "sources": []
+        },
+        {
+          "sentence": "Les armateurs se tournent vers Saint-Nazaire, plus proche de l'océan.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Jean Penaud entre en scène",
+      "duree": 52.69565217391305,
+      "texte_narration": "C'est dans ce port diminué qu'un jeune homme de Nantes commence sa vie d'ouvrier. Jean Penaud, charpentier-fer, se souvient avec une précision intacte : [ARCHIVE : « Première embauche le 5 février 1957. »] Il a alors vingt ans. Les cales de l'île de Nantes résonnent encore du fracas des marteaux. Penaud connaîtra tous les visages du métier : [ARCHIVE : « J'suis entré à la Loire… après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg. »] Sept ans et demi passés à travailler sur des sous-marins, avant de revenir à Nantes en juillet 1969.",
+      "ton": {
+        "global": "intime, concret, ancré dans le vécu",
+        "tempo_lecture": 115,
+        "pauses": [
+          "avant la première citation (1.5s)",
+          "après '1957' (2s)",
+          "avant la seconde citation (1.5s)",
+          "après 'Cherbourg' (1.5s)",
+          "après 'juillet 1969' (2s)"
+        ],
+        "intonation": "plus chaleureuse, proximité avec le personnage, respect"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:50",
+          "action": "Introduction de Jean Penaud — pivot vers le portrait",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:56",
+          "action": "Première citation directe — date d'embauche",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:05",
+          "action": "Seconde citation — parcours professionnel",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "C'est dans ce port diminué qu'un jeune homme de Nantes commence sa vie d'ouvrier.",
+          "sources": []
+        },
+        {
+          "sentence": "Jean Penaud, charpentier-fer, se souvient avec une précision intacte :",
+          "sources": [
+            "[02:02] Oui, ben, Teneau Jean.",
+            "[02:08] Euh 83 ans."
+          ]
+        },
+        {
+          "sentence": "Première embauche le 5 février 1957.",
+          "sources": [
+            "[02:42] Première embauche le 5 février 1957."
+          ]
+        },
+        {
+          "sentence": "Il a alors vingt ans.",
+          "sources": [
+            "[02:08] Euh 83 ans.",
+            "[02:42] Première embauche le 5 février 1957."
+          ]
+        },
+        {
+          "sentence": "Les cales de l'île de Nantes résonnent encore du fracas des marteaux.",
+          "sources": []
+        },
+        {
+          "sentence": "Penaud connaîtra tous les visages du métier :",
+          "sources": []
+        },
+        {
+          "sentence": "J'suis entré à la Loire… après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg.",
+          "sources": [
+            "[02:19] J'suis entré à la Loire... après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg."
+          ]
+        },
+        {
+          "sentence": "Sept ans et demi passés à travailler sur des sous-marins, avant de revenir à Nantes en juillet 1969.",
+          "sources": [
+            "[02:24] J'ai travaillé pendant sept ans et demi à Cherbourg, sur l'sous-marin atomique.",
+            "[02:29] Oui, j'suis revenu le... au mois de juillet 69."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Les derniers coups de marteau",
+      "duree": 37.09090909090909,
+      "texte_narration": "Mais le port que Penaud retrouve n'est plus celui qu'il a quitté. Tout au long des années soixante-dix, les commandes se raréfient. Les cales se vident une à une. En 1987, les chantiers Dubigeon ferment définitivement leurs portes sur la Prairie-au-Duc. Le dernier navire quitte l'île de Nantes. Des centaines d'ouvriers comme Jean Penaud déposent leurs outils pour la dernière fois.",
+      "ton": {
+        "global": "élégiaque, sobre, ralenti",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'qu'il a quitté' (1.5s)",
+          "après 'une à une' (2s)",
+          "après 'Prairie-au-Duc' (2s)",
+          "après 'dernière fois' (2.5s)"
+        ],
+        "intonation": "descendante, gravité douce, pas de pathos excessif"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:20",
+          "action": "Constat du déclin des années 70",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:30",
+          "action": "Fermeture de Dubigeon en 1987 — point culminant émotionnel",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mais le port que Penaud retrouve n'est plus celui qu'il a quitté.",
+          "sources": []
+        },
+        {
+          "sentence": "Tout au long des années soixante-dix, les commandes se raréfient.",
+          "sources": []
+        },
+        {
+          "sentence": "Les cales se vident une à une.",
+          "sources": []
+        },
+        {
+          "sentence": "En 1987, les chantiers Dubigeon ferment définitivement leurs portes sur la Prairie-au-Duc.",
+          "sources": []
+        },
+        {
+          "sentence": "Le dernier navire quitte l'île de Nantes.",
+          "sources": []
+        },
+        {
+          "sentence": "Des centaines d'ouvriers comme Jean Penaud déposent leurs outils pour la dernière fois.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 5,
+      "titre": "Ce qui reste sur les quais",
+      "duree": 24.545454545454547,
+      "texte_narration": "Aujourd'hui, l'île de Nantes se réinvente. Là où l'on courbait l'acier, on trace des esplanades. Mais dans la voix de Jean Penaud, quatre-vingt-trois ans, le port vit encore — intact, précis, comme une date que l'on n'oublie pas.",
+      "ton": {
+        "global": "contemplatif, lumineux, ouvert",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'se réinvente' (1.5s)",
+          "après 'des esplanades' (1.5s)",
+          "après 'n'oublie pas' (3s — silence final)"
+        ],
+        "intonation": "légèrement ascendante puis suspendue, ouverture"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:45",
+          "action": "Transition vers le présent — reconversion de l'île",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:53",
+          "action": "Fermeture sur la mémoire vivante de Jean Penaud",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, l'île de Nantes se réinvente.",
+          "sources": []
+        },
+        {
+          "sentence": "Là où l'on courbait l'acier, on trace des esplanades.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais dans la voix de Jean Penaud, quatre-vingt-trois ans, le port vit encore — intact, précis, comme une date que l'on n'oublie pas.",
+          "sources": [
+            "[02:08] Euh 83 ans.",
+            "[02:42] Première embauche le 5 février 1957."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 347,
+    "duree_lecture_estimee": 183.72332015810278,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit suit un mouvement de rétrécissement progressif — d'un grand port maritime à un seul homme, puis d'un homme à un silence. La voix off reste omnisciente et extérieure tout au long, ne s'adressant jamais à l'auditeur. Jean Penaud n'est jamais en première personne dans la narration, mais ses citations directes (extraites de l'archive audio) sont intégrées comme des îlots de parole vivante dans le flux narratif. Prévoir deux citations clés : son embauche ('Première embauche le 5 février 1957') et son parcours ('J'suis entré à la Loire... après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg'). Le ton reste informatif et accessible (grand public), jamais didactique. La densité sonore riche implique des indications d'ambiance à chaque section (eau, métal, silence) mais celles-ci ne doivent pas couvrir la voix. Le débit cible est d'environ 2 mots/seconde, soit ~240 mots maximum pour 120 secondes. Chaque section doit être dense et concise. Les dates mentionnées doivent être strictement issues du contexte fourni ou de faits historiques vérifiables sur le port de Nantes. ATTENTION : la première phrase du récit doit poser le ton neutre-informatif et le registre grand public sans jamais interpeller directement l'auditeur."
+}

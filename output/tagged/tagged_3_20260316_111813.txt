@@ -1,0 +1,15 @@
+=== PARTIE 1 : La salle des tracés ===
+
+[posé] France, milieu du vingtième siècle. [pause] Dans un chantier naval, à l'étage au-dessus du vacarme des ateliers, une vaste salle baignée de lumière. [pause] Des tables immenses, blanches, [atténué] silencieuses.
+
+=== PARTIE 2 : Le geste du dessinateur ===
+
+{crayon_sur_papier_lent.wav} C'est là que des hommes penchés sur leurs planches tracent les courbes des coques futures. Le tire-ligne, fin comme une aiguille, glisse le long des gabarits. Le compas mord le papier. [accentué] Chaque trait doit être exact, car en bas, dans les ateliers, ce dessin deviendra navire. [pause] [posé] « On n'avait pas le droit à l'erreur. [accentué] Un millimètre sur le plan, c'était des centimètres sur la coque. »
+
+=== PARTIE 3 : Le monde bascule ===
+
+[pause] Puis les chantiers se modernisent. Les calculatrices, les machines, les premiers écrans remplacent peu à peu la main et l'œil. [pause] [triste] « Un matin, on nous a dit que les tables allaient partir. [atténué] On a compris que c'était nous aussi. » [pause] Le silence de la salle des tracés prend un autre sens.
+
+=== PARTIE 4 : Ce qui reste du trait ===
+
+{silence_salle_vide.wav} Ces dessinateurs n'ont jamais pris la mer. [pause] Pourtant, chaque navire sorti de cale portait leur geste, leur patience, des nuits entières passées à chercher la courbe juste. [pause] [timidement] « Quand je voyais un bateau partir, je me disais : [accentué] celui-là, je connais chaque ligne de sa coque. [atténué] C'est un peu de moi qui s'en va sur l'eau. » [pause] Les plans jaunis dorment aujourd'hui dans les archives. [posé] Mais sur les océans, leurs tracés naviguent encore.

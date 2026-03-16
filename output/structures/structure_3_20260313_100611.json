@@ -1,0 +1,102 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Jean Penaud, dernier témoin des cales perdues",
+  "resumeHistoire": "Jean Penaud entre comme charpentier-fer au Chantier de la Loire le 5 février 1957, à une époque où Nantes lutte déjà contre l'ensablement de son fleuve et le déplacement inexorable de ses activités navales vers l'aval. À travers son parcours — de la Loire à Dubigeon, de Nantes à Cherbourg et retour en juillet 1969 — se dessine le portrait d'un ouvrier dont la vie épouse les soubresauts d'une industrie en déclin. Son témoignage devient le fil conducteur d'une histoire plus vaste : celle d'un port qui, du XVIIe siècle à la fermeture des chantiers Dubigeon en 1987, voit ses quais se vider et ses navires partir toujours plus loin vers la mer. Le récit suit la chronologie du déclin nantais en l'ancrant dans le quotidien d'un homme qui a connu les derniers rivets et les dernières coques.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un homme entre aux chantiers",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "ancrage_intime",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud, 83 ans, charpentier-fer",
+        "Date d'embauche précise : 5 février 1957 au Chantier de la Loire",
+        "Citation directe de Jean Penaud sur son entrée aux chantiers",
+        "Évocation sensorielle de la Prairie-au-Duc à la fin des années 1950",
+        "Registre accessible grand public, ton neutre informatif"
+      ],
+      "mood": "sobre_et_concret"
+    },
+    {
+      "partie": 2,
+      "titre": "Un fleuve qui se dérobe",
+      "duree_cible": 30.0,
+      "fonction_narrative": "contextualisation_historique",
+      "position_arc_emotionnel": "montée_dramatique",
+      "elements_necessaires": [
+        "Ensablement progressif de la Loire dès le XVIIe siècle",
+        "Rôle intermédiaire du port de Paimbœuf",
+        "Ouverture du bassin à flot de Saint-Nazaire et transfert progressif des activités vers l'aval",
+        "Canal maritime de la Basse-Loire comme tentative de maintien",
+        "Lien entre ces contraintes géomorphologiques et le quotidien des ouvriers comme Jean Penaud"
+      ],
+      "mood": "documentaire_grave"
+    },
+    {
+      "partie": 3,
+      "titre": "De cale en cale, de port en port",
+      "duree_cible": 30.0,
+      "fonction_narrative": "développement_portrait",
+      "position_arc_emotionnel": "tension_narrative",
+      "elements_necessaires": [
+        "Parcours de Jean Penaud : mutation de la Loire à Dubigeon",
+        "Départ pour Cherbourg, travail sur les sous-marins puis le sous-marin atomique pendant sept ans et demi",
+        "Citation directe sur le retour en juillet 1969",
+        "Parallèle entre ses déplacements personnels et le déplacement des activités navales",
+        "Évocation du déclin déjà perceptible à son retour"
+      ],
+      "mood": "narratif_tendu"
+    },
+    {
+      "partie": 4,
+      "titre": "Les dernières coques",
+      "duree_cible": 35.0,
+      "fonction_narrative": "resolution_et_cloture",
+      "position_arc_emotionnel": "decrescendo_mélancolique",
+      "elements_necessaires": [
+        "Fermeture des chantiers Dubigeon en 1987 comme point final",
+        "Silence des cales de la Prairie-au-Duc",
+        "Retour sur Jean Penaud — ce que représente la perte de ce monde",
+        "Ouverture sobre sur l'héritage post-industriel de l'île de Nantes",
+        "Dernière phrase suspendue, sans sentimentalisme excessif"
+      ],
+      "mood": "élégiaque_retenu"
+    }
+  ],
+  "arc_emotionnel_global": "decrescendo_mélancolique — de l'ancrage concret d'un homme au travail vers l'effacement progressif d'un monde industriel",
+  "rythme_general": "Ouverture posée et intime, accélération lors du contexte historique, ralentissement progressif jusqu'au silence final. Le rythme épouse le mouvement même du déclin : d'abord dense et actif, puis de plus en plus espacé.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "élargissement_contextuel",
+      "duree": 2.0,
+      "description": "Du geste individuel de Jean Penaud triant les goussets au parc à fer, la narration s'élargit naturellement vers le fleuve qui conditionne tout — la Loire et son ensablement. Transition fluide par le lien entre le travail quotidien et les contraintes du port."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "recentrage_sur_le_portrait",
+      "duree": 2.0,
+      "description": "Retour du contexte géographique vers le parcours personnel de Jean Penaud. Le déplacement des activités navales vers l'aval trouve son écho dans les mutations professionnelles de l'homme lui-même — de Nantes à Cherbourg."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "glissement_vers_la_fin",
+      "duree": 2.5,
+      "description": "Le retour de Jean Penaud en 1969 ouvre sur les deux dernières décennies des chantiers. La narration passe du mouvement (aller-retour, mutations) à l'immobilité progressive (fermetures, silence). Transition par ralentissement du débit et assombrissement du ton."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est Jean Penaud — chaque section historique doit revenir à lui ou à son expérience concrète. Ne jamais perdre le portrait de vue au profit du seul contexte. Les citations directes (au moins deux : embauche et retour de Cherbourg) doivent s'insérer comme des moments de respiration authentique dans le flux narratif, pas comme des ruptures. FLUIDITÉ : Éviter toute formule de transition mécanique ('Mais revenons à...', 'Parallèlement...'). Préférer des enchaînements par images ou par écho thématique. TONALITÉ : Neutre et informatif mais pas froid — la gravité vient des faits eux-mêmes, pas d'effets rhétoriques. Le minimalisme sonore (peu d'ambiances, pas de musique envahissante) renforce la sobriété du propos. DURÉE : Viser 240 mots maximum pour l'ensemble du texte narré. Chaque section doit être dense et concise — pas de redondance. Les 6,5 secondes de transitions sont incluses dans la durée totale. REGISTRE : Grand public — phrases courtes à moyennes, vocabulaire précis mais accessible, pas de jargon naval non expliqué (expliquer 'goussets' si utilisé). OUVERTURE DU RÉCIT : Commencer par une phrase qui présente implicitement le ton documentaire et le public large, sans adresse directe ('Un homme de 83 ans se souvient...' plutôt que 'Chers auditeurs...')."
+}

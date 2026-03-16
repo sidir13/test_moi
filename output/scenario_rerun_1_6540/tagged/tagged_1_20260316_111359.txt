@@ -1,0 +1,21 @@
+=== PARTIE 1 : Le geste premier ===
+
+{crissement_craie_plancher.wav}
+
+[posé] Un vaste plancher de bois clair, balayé de lignes à la craie. {vacarme_riveurs_lointain.wav} Au loin, le vacarme des riveurs. [pause] Mais ici, dans la salle à tracer, le silence. Un homme est penché, une latte souple entre les mains. [ralentit] Il dessine, grandeur nature, les courbes d'une coque qui n'existe pas encore.
+
+=== PARTIE 2 : Entre le bureau et la cale ===
+
+Des chantiers navals français, de la seconde moitié du XIXe siècle jusqu'au milieu du XXe, le dessinateur occupe une place [accentué] singulière. Ni tout à fait ouvrier, ni ingénieur, il travaille avec des compas de réduction, des pointes, des gabarits qu'il taille lui-même. [pause] « Fallait pas se tromper d'un millimètre, parce que [accentué] tout le reste suivait derrière. » {outils_metal_compas.wav} Charpentiers et traceurs viennent lire sur son plancher la vérité du navire à construire.
+
+=== PARTIE 3 : La courbe et l'acier ===
+
+{martelage_tole_chantier.wav}
+
+Quand les coques passent du bois à l'acier, le travail se complexifie. Chaque tôle doit être développée à plat avant d'être cintrée : le dessinateur calcule, [posé] anticipe la déformation du métal. [pause] « Un trait faux sur le plancher, c'est une tôle perdue sur la cale. » La responsabilité est [accentué] immense. Sous ses doigts, le navire prend forme bien avant que le premier marteau ne frappe.
+
+=== PARTIE 4 : Le trait s'efface ===
+
+{silence_salle_vide_echo.wav}
+
+[ralentit] Puis viennent les machines, puis les écrans. La salle à tracer se vide. [pause] Le plancher où naissaient les navires ne porte plus que la poussière. [triste] Mais quelque part, dans chaque coque qui fend la mer, il reste la mémoire d'un geste — [ralentit] un homme penché, une latte souple entre les mains, traçant ce qui n'existait pas encore.

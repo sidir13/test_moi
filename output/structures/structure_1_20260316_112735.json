@@ -1,0 +1,39 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Scénario historique",
+  "resumeHistoire": "Un récit explorant un épisode historique du territoire.",
+  "axe_narratif": "mixte",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Section 1",
+      "duree_cible": 48.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme",
+      "elements_necessaires": [
+        "contexte",
+        "action",
+        "transition"
+      ],
+      "mood": "calme"
+    },
+    {
+      "partie": 2,
+      "titre": "Section 2",
+      "duree_cible": 72.0,
+      "fonction_narrative": "développement",
+      "position_arc_emotionnel": "intense",
+      "elements_necessaires": [
+        "contexte",
+        "action",
+        "transition"
+      ],
+      "mood": "intense"
+    }
+  ],
+  "arc_emotionnel_global": "progression_crescendo",
+  "rythme_general": "modere",
+  "transitions_cles": [],
+  "notes_production": "Structure générée automatiquement — fluidité narrative"
+}

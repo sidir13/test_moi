@@ -1,0 +1,102 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Une journée de dessinateur aux chantiers navals de Nantes",
+  "resumeHistoire": "Chaque matin, le dessinateur Jean Penaud franchit les grilles des chantiers navals de Nantes et rejoint le bureau d'études où naissent, sur le papier, les navires qui prendront forme sur les cales de l'île de Nantes. Du premier trait de crayon à l'aube jusqu'aux dernières vérifications du soir, son travail minutieux de tracé des coques et des structures traduit en plans précis le savoir-faire technique qui fait vivre des milliers d'ouvriers. À travers sa journée type, c'est tout un monde — celui des Ateliers et Chantiers de Nantes et des Chantiers Dubigeon — qui se révèle, où le dessinateur est le maillon silencieux entre l'idée et l'acier. Un métier de patience et de rigueur, aujourd'hui disparu avec la fermeture des chantiers, mais dont la mémoire persiste dans les gestes transmis et les plans jaunis.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube sur les cales — Arrivée au bureau d'études",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_ancré",
+      "elements_necessaires": [
+        "Ambiance sonore matinale : bruits de Loire, sirène des chantiers, pas sur les pavés",
+        "Présentation du cadre : île de Nantes, chantiers navals, époque",
+        "Introduction de Jean Penaud rejoignant le bureau d'études",
+        "Registre accessible grand public, ton neutre informatif",
+        "Mention du public cible et du ton en ouverture narrative intégrée"
+      ],
+      "mood": "atmosphérique_documentaire_matinal"
+    },
+    {
+      "partie": 2,
+      "titre": "Le trait sur le papier — Le geste du dessinateur",
+      "duree_cible": 28,
+      "fonction_narrative": "developpement_central",
+      "position_arc_emotionnel": "montée_en_précision",
+      "elements_necessaires": [
+        "Description concrète du travail : tracé des coques, dessins de structures, plans techniques",
+        "Citation directe de Jean Penaud ou d'un dessinateur sur le métier",
+        "Rôle du dessinateur dans la chaîne de production : du plan à la réalisation en acier",
+        "Ambiance sonore : crayons sur calque, règles métalliques, murmures du bureau",
+        "Lien entre le bureau d'études et les ouvriers sur les cales"
+      ],
+      "mood": "précis_concentré_valorisant"
+    },
+    {
+      "partie": 3,
+      "titre": "Le plan descend aux cales — Du papier à l'acier",
+      "duree_cible": 22,
+      "fonction_narrative": "pivot_émotionnel_et_élargissement",
+      "position_arc_emotionnel": "crescendo_fierté",
+      "elements_necessaires": [
+        "Le moment où le plan quitte le bureau et arrive aux traceurs, puis aux ouvriers",
+        "Ambiance sonore : transition vers bruits de chantier, marteaux, rivets, soudure",
+        "Citation directe sur la fierté ou l'émotion de voir le navire prendre forme",
+        "Hiérarchie des métiers évoquée naturellement",
+        "Élargissement : ce n'est pas qu'un homme, c'est un monde"
+      ],
+      "mood": "puissant_concret_émouvant"
+    },
+    {
+      "partie": 4,
+      "titre": "Le soir tombe sur les chantiers — Mémoire d'un monde disparu",
+      "duree_cible": 18,
+      "fonction_narrative": "resolution_elegique",
+      "position_arc_emotionnel": "sommet_émotionnel_puis_apaisement",
+      "elements_necessaires": [
+        "Fin de journée : Penaud range ses instruments, le chantier se vide",
+        "Basculement temporel vers la fermeture des chantiers et la disparition du métier",
+        "Évocation de la mémoire ouvrière et de la transmission des savoir-faire",
+        "Dernière image forte : les plans jaunis comme trace d'un patrimoine",
+        "Ambiance sonore : silence progressif, peut-être un dernier bruit de sirène lointain"
+      ],
+      "mood": "mélancolique_digne_mémoriel"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_vers_elegie",
+  "rythme_general": "modere_avec_acceleration_centrale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle_temporelle",
+      "duree": 2.0,
+      "description": "Du seuil franchi au geste commencé — la porte du bureau d'études se referme, le silence s'installe, le crayon touche le papier. Transition fluide par le son : les bruits extérieurs s'atténuent, remplacés par l'ambiance feutrée du bureau."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_spatial",
+      "duree": 2.5,
+      "description": "Du plan achevé au chantier en action — le dessin quitte la table et descend vers les cales. Transition par contraste sonore : du calme du bureau au vacarme du métal. Le regard narratif suit le plan comme un fil conducteur physique."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_temporelle_douce",
+      "duree": 2.0,
+      "description": "Du bruit des marteaux au silence de la fin de journée, puis glissement vers le silence définitif de la fermeture des chantiers. La journée type devient métaphore de l'arc historique entier : un matin, un midi, un soir — puis la nuit."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit une journée type de Jean Penaud comme fil conducteur unique — du matin au soir — sans rupture thématique artificielle. Chaque section est un moment de la journée, pas un chapitre séparé. Les transitions sont sonores et spatiales, jamais annoncées verbalement. || FLUIDITÉ : Éviter toute formule de type 'Dans cette partie...' ou 'Passons maintenant à...'. Le récit coule comme une voix off documentaire continue. || CITATIONS : Intégrer 2 citations directes minimum, enchâssées naturellement dans la narration (ex: 'Comme le disait Penaud : ...'). Les citations doivent provenir strictement des sources fournies à l'agent rédacteur. || AMBIANCE SONORE : Prévoir une richesse de nappes et ponctuations sonores (sirène, Loire, crayons, métal, silence) qui accompagnent le crescendo émotionnel sans jamais couvrir la voix. || REGISTRE : Grand public, phrases courtes à moyennes, vocabulaire technique toujours explicité en contexte. || DURÉE : 180 mots maximum au total. Chaque section doit être dense et concise. Viser ~44 mots pour les sections de 22s, ~56 mots pour la section de 28s, ~36 mots pour la section de 18s. || OUVERTURE : La première phrase doit poser immédiatement le décor sensoriel et temporel sans adresse au public. || ANGLE JOURNÉE TYPE : La structure matin/travail/chantier/soir n'est pas arbitraire — elle épouse le rythme réel du métier et permet au crescendo émotionnel de culminer naturellement quand la journée (et l'ère des chantiers) touche à sa fin."
+}

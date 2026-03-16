@@ -1,0 +1,102 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Chronique du dessinateur de chantier naval",
+  "resumeHistoire": "Dans les chantiers navals français, entre la seconde moitié du XIXe siècle et le milieu du XXe, un métier discret mais essentiel donne forme aux navires avant même que le premier rivet ne soit posé : celui de dessinateur. Penché sur ses planches dans la salle à tracer, ce technicien traduit les courbes d'une coque en tracés grandeur nature, à la croisée du savoir-faire artisanal et de la rigueur industrielle. Son travail, invisible une fois le navire à flot, est pourtant le socle de toute la construction. Cette chronique raconte le quotidien de ces hommes de l'ombre, leur place singulière dans la hiérarchie du chantier, et la lente disparition d'un geste que les machines finiront par remplacer.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le geste premier",
+      "duree_cible": 20.0,
+      "fonction_narrative": "ouverture_circulaire_et_exposition",
+      "position_arc_emotionnel": "immersion_sensorielle",
+      "elements_necessaires": [
+        "Ambiance sonore immersive : salle à tracer, bruit lointain du chantier",
+        "Image d'un dessinateur penché sur un plancher de traçage grandeur nature",
+        "Ancrage temporel volontairement large (seconde moitié du XIXe au milieu du XXe siècle)",
+        "Présentation du geste fondateur : tracer les lignes d'une coque à l'échelle 1",
+        "Registre accessible, phrases courtes et visuelles"
+      ],
+      "mood": "contemplatif_et_précis"
+    },
+    {
+      "partie": 2,
+      "titre": "Entre le bureau et la cale",
+      "duree_cible": 25.0,
+      "fonction_narrative": "developpement_social",
+      "position_arc_emotionnel": "montee_en_densite",
+      "elements_necessaires": [
+        "Place du dessinateur dans la hiérarchie du chantier naval : ni ouvrier de cale, ni ingénieur de bureau",
+        "Description de la salle à tracer comme lieu à part — vaste plancher, outils spécifiques (lattes souples, pointes, compas de réduction)",
+        "Rapport aux autres corps de métier : charpentiers, riveurs, traceurs",
+        "Citation directe possible évoquant la précision exigée ou la fierté du métier",
+        "Dimension chronique sociale : quotidien, contraintes, savoir-faire transmis"
+      ],
+      "mood": "narratif_dense_et_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "La courbe et l'acier",
+      "duree_cible": 25.0,
+      "fonction_narrative": "climax_thematique",
+      "position_arc_emotionnel": "intensite_maximale",
+      "elements_necessaires": [
+        "Le moment où le tracé devient navire — passage du plan au métal",
+        "Évocation de l'évolution technique : des coques en bois aux coques en acier, complexification du travail du dessinateur",
+        "Tension entre artisanat et industrialisation croissante",
+        "Citation directe sur la responsabilité du trait (une erreur de tracé = une erreur de construction)",
+        "Rythme plus soutenu, phrases plus nerveuses"
+      ],
+      "mood": "grave_et_admiratif"
+    },
+    {
+      "partie": 4,
+      "titre": "Le trait s'efface",
+      "duree_cible": 20.0,
+      "fonction_narrative": "fermeture_circulaire_et_elegie",
+      "position_arc_emotionnel": "retour_au_calme_teinte_de_melancolie",
+      "elements_necessaires": [
+        "Retour à l'image d'ouverture : la salle à tracer, mais cette fois vidée ou transformée",
+        "Évocation de la mécanisation puis de la conception assistée par ordinateur qui rend le geste obsolète",
+        "Hommage sobre au savoir-faire disparu",
+        "Boucle narrative : le trait qui ouvrait le récit se referme sur son effacement",
+        "Dernière phrase à forte résonance, ton posé"
+      ],
+      "mood": "nostalgique_et_digne"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_elegiaque — du geste vivant à son effacement, avec retour à l'image initiale transformée par le temps",
+  "rythme_general": "dynamique avec respiration : attaque immersive, densification progressive, climax technique, décélération finale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "elargissement_contextuel",
+      "duree": 2.0,
+      "description": "Du geste individuel vers le monde social du chantier — transition par le son (le bruit du chantier qui s'amplifie) et une phrase pivot situant le dessinateur dans la communauté ouvrière."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du quotidien vers l'enjeu technique — transition par une phrase reliant le tracé sur le plancher à la tôle découpée en cale, accélération du rythme narratif."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 2.0,
+      "description": "Saut temporel vers la fin de l'ère du traçage manuel — le son du chantier s'atténue, la voix ralentit, retour à l'atmosphère de la salle à tracer de l'ouverture mais en mode élégiaque."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est une voix off omnisciente à la 3e personne, ton neutre-informatif avec une coloration admirative contenue. La structure circulaire impose que la première et la dernière image soient la même salle à tracer — d'abord vivante, puis silencieuse. Ne jamais rompre le flux narratif par des annonces de section. Les transitions sont portées par le texte lui-même (phrases-pivots) et par l'ambiance sonore. | ÉQUILIBRE NARRATION/ARCHIVES (0.6) : Prévoir deux citations directes courtes (une en partie 2, une en partie 3), intégrées naturellement dans le flux narratif, jamais annoncées par 'je cite'. | DENSITÉ SONORE IMMERSIVE : Indiquer des ambiances précises — crissement de la craie ou du crayon sur le plancher, écho métallique du chantier, silence relatif de la salle à tracer contrastant avec le vacarme extérieur. | AUTHENTICITÉ LINGUISTIQUE (0.7) : Utiliser le vocabulaire technique authentique (gabarit, latte, tracé en vraie grandeur, développée de tôle) mais toujours le rendre compréhensible par le contexte immédiat — pas de définitions didactiques. | CONTRAINTE DE DURÉE : 90 secondes ≈ 180 mots maximum. Chaque section doit être extrêmement concise. Privilégier les images fortes et les faits précis aux développements longs. | RIGUEUR HISTORIQUE : Ne pas inventer de noms de chantiers, de dessinateurs ou de dates spécifiques non fournis dans le contexte. Rester sur des formulations englobantes (« dans les chantiers navals français », « au tournant du siècle »)."
+}

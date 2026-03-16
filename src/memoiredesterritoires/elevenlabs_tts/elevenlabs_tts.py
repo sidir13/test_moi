@@ -67,11 +67,10 @@ def eleven_labs_tts(
     output_path: Optional[str] = None,
     model_id: str = DEFAULT_MODEL,
 ) -> dict:
-    """Generate speech through the ElevenLabs API and store it locally.
+    """Generate speech through the ElevenLabs API and store it locally as MP3.
 
-    If the text exceeds the 5000-character limit for ElevenLabs v3, it is
-    automatically split into chunks which are concatenated into a single
-    audio file.
+    If the text exceeds the 5 000-character limit for ElevenLabs v3, it is
+    automatically split into chunks which are concatenated into a single file.
     """
     if not text or not text.strip():
         raise ValueError("text must be provided")

@@ -1,0 +1,25 @@
+=== PARTIE 1 : Au bord de l'eau, aujourd'hui ===
+
+{clapotis_loire_quais_contemporains.wav}
+
+[murmure] Nantes, aujourd'hui. [pause 2s] On marche le long des quais, la Loire coule, tranquille. Mais sous nos pieds, sous ces pavés, il y a vingt-cinq siècles d'histoire. [pause 1s] Alors, qui étaient les tout premiers à vivre de ce fleuve ? [pause 3s]
+
+=== PARTIE 2 : Le petit port des Namnètes ===
+
+{ARCHIVE_NantesHistoires_01m00.mp3}
+
+[ton chaleureux] Il faut remonter loin. Entre neuf cents et cinq cents avant notre ère, ici, il y a un modeste port fluvial. On l'appelle Corbilo. Ceux qui y vivent, ce sont les Namnètes — un peuple celte, celui-là même qui a donné son nom à Nantes. [pause 1s] Ce ne sont pas de grands seigneurs. Ce sont des artisans, des fondeurs, des commerçants de rivière. {frappe_bronze_ponctuelle.wav} On a retrouvé leurs traces : des haches de cuivre, des pointes de lance, des épées de bronze, enfouies à la Prairie-au-Mauve, à Chantenay, au Jardin des Plantes. [ton posé] Une petite communauté, au bord de l'eau, qui vit du fleuve et du minerai.
+
+=== PARTIE 3 : Rome arrive, le port grandit ===
+
+[acceleration] Et puis Rome arrive. Après la conquête de la Gaule par César, tout change. Le petit port celte se transforme. Corbilo devient Condevicnum — c'est son nouveau nom romain. {ARCHIVE_NantesHistoires_02m00.mp3} La ville se dote d'un tribunal, d'un temple dédié à Mars Mullo, de thermes, d'égouts. Le confort de l'époque. Le port, lui, est désormais connu sous le nom de Portus Namnetum — le port des Namnètes, gravé dans les inscriptions. Il rivalise même avec Ratiatum, l'actuel Rezé, juste en face. [pause 1s] [ralentissement] Et les habitants ? Ils doivent fournir des soldats à la légion. Le premier Nantais dont l'histoire a retenu le nom, c'est justement l'un d'eux : [ton grave] Argiotalus, un cavalier namnète, mort aux frontières de l'Empire, loin de sa Loire.
+
+=== PARTIE 4 : Le port tourné vers l'Atlantique — grandeur et ombres ===
+
+Au fil des siècles, Nantes grandit et se tourne vers le large. Le port n'est plus seulement fluvial — il devient un carrefour commercial ouvert sur l'Atlantique. Sur le quai de la Fosse, sur l'île Feydeau, les richesses affluent. Des générations de marins, de charpentiers de marine, de dockers font vivre ces quais. {marteau_metal_chantier_naval.wav} Sur l'île de Nantes, les chantiers navals battent le fer et lancent des coques à l'eau. [pause 2s] [ralentissement] [ton grave] Mais cette prospérité a une face sombre qu'il faut nommer. {clapotis_loire_seul.wav} Nantes a été l'un des principaux ports du commerce triangulaire et de la traite négrière. Des hommes, des femmes, des enfants, réduits en marchandises. [émotion contenue] C'est aussi l'histoire de ce port. [pause 1s] [ton posé] Et elle appartient à la mémoire de la ville.
+
+=== PARTIE 5 : Retour au bord de l'eau ===
+
+{clapotis_loire_quais_contemporains.wav}
+
+[ton doux] Aujourd'hui, les chantiers navals se sont tus. Les quais ont été réinventés. Mais la Loire est toujours là. [ralentissement] Elle coule comme elle coulait du temps des Namnètes, du temps d'Argiotalus, du temps des marins et des dockers. Le port a disparu, mais le fleuve, lui, continue de raconter Nantes [pause 1s] — à qui prend le temps de l'écouter. [pause 3s]

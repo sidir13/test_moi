@@ -53,6 +53,116 @@ from project_store import (
 )
 from pydub import AudioSegment
 
+# ---------------------------------------------------------------------------
+# Monkey-patch pydub to use the imageio-ffmpeg bundled binary instead of
+# requiring system-level ffmpeg / ffprobe (which may not be on PATH on Windows).
+# Must run AFTER pydub is imported so that pydub.audio_segment has already
+# created its local reference to mediainfo_json.
+# ---------------------------------------------------------------------------
+def _setup_pydub_ffmpeg() -> None:
+    """Redirect pydub's ffmpeg/ffprobe calls to the imageio-ffmpeg binary."""
+    import subprocess
+    import pydub.utils
+    import pydub.audio_segment as _pydub_as
+
+    try:
+        import imageio_ffmpeg  # type: ignore
+        _ffmpeg_bin = imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        return  # imageio-ffmpeg not available — leave pydub as-is
+
+    # 1. Patch pydub.utils.which so ffmpeg/ffprobe both resolve to our binary
+    _orig_which = pydub.utils.which
+
+    def _patched_which(name: str):
+        if name in ("ffmpeg", "avconv", "ffprobe", "avprobe"):
+            return _ffmpeg_bin
+        return _orig_which(name)
+
+    pydub.utils.which = _patched_which
+
+    # 2. Set the converter attribute used when spawning the decoder process
+    _pydub_as.AudioSegment.converter = _ffmpeg_bin
+
+    # 3. Replace mediainfo_json with a version that uses "ffmpeg -i" stderr
+    #    (imageio-ffmpeg ships only ffmpeg.exe, not ffprobe.exe)
+    def _mediainfo_json(filepath, read_ahead_limit=-1):  # noqa: ARG001
+        import os, re
+        try:
+            proc = subprocess.run(
+                [_ffmpeg_bin, "-v", "quiet", "-i", str(filepath)],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            stderr = proc.stderr.decode("utf-8", errors="replace")
+        except Exception:
+            stderr = ""
+
+        # Duration: "Duration: HH:MM:SS.ss"
+        duration_s = 0.0
+        m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)", stderr)
+        if m:
+            duration_s = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
+
+        # Audio stream: "Audio: codec, RATE Hz, stereo|mono|N channels"
+        sample_rate = 44100
+        channels = 1
+        codec_name = "mp3"
+        m = re.search(
+            r"Audio:\s*(\S+?)(?:,\s*|\s+)(\d+)\s*[Hh]z[^,]*,\s*(?:(stereo|mono)|(\d+)\s*channels?)",
+            stderr,
+        )
+        if m:
+            codec_name = m.group(1).rstrip(",")
+            sample_rate = int(m.group(2))
+            if m.group(3) == "stereo":
+                channels = 2
+            elif m.group(3) == "mono":
+                channels = 1
+            elif m.group(4):
+                channels = int(m.group(4))
+
+        # Bitrate
+        bit_rate = 0
+        m = re.search(r"bitrate:\s*(\d+)\s*kb/s", stderr)
+        if m:
+            bit_rate = int(m.group(1)) * 1000
+
+        file_size = 0
+        try:
+            file_size = os.path.getsize(str(filepath))
+        except Exception:
+            pass
+
+        return {
+            "format": {
+                "filename": str(filepath),
+                "duration": str(duration_s),
+                "size": str(file_size),
+                "format_name": codec_name,
+                "format_long_name": codec_name,
+                "bit_rate": str(bit_rate),
+                "probe_score": 51,
+            },
+            "streams": [
+                {
+                    "codec_type": "audio",
+                    "codec_name": codec_name,
+                    "sample_rate": str(sample_rate),
+                    "channels": int(channels),
+                    "bits_per_sample": 16,  # pydub builds "pcm_s{bits_per_sample}le" → must be 16
+                    "sample_fmt": "s16",
+                }
+            ],
+        }
+
+    pydub.utils.mediainfo_json = _mediainfo_json
+    _pydub_as.mediainfo_json = _mediainfo_json  # local ref inside audio_segment module
+
+
+_setup_pydub_ffmpeg()
+# ---------------------------------------------------------------------------
+
 from .config import AppSettings, get_settings
 from .session_store import SessionStore
 from .step_config import StepConfigRegistry
@@ -612,6 +722,9 @@ def apply_background_selection(
 ) -> tuple[Path, int, Optional[Path], int, List[Dict[str, Any]]]:
     """
     Mix the user-selected background sounds under the generated narration.
+    Si auto_backgrounds=True et aucun son manuellement sélectionné, déclenche
+    la sélection intelligente à ce moment, en utilisant scenario_text pour le
+    scoring narratif.
 
     Returns:
         (final_voice_path, layers_applied, dry_voice_path, requested_layers, plan_metadata)
@@ -623,9 +736,29 @@ def apply_background_selection(
         selection = {}
 
     background_selection = selection.get("backgrounds") or {}
+    auto_bg = bool(selection.get("auto_backgrounds"))
+
     ambient_raw = background_selection.get("ambient") if isinstance(background_selection, dict) else None
     punctual_raws = background_selection.get("punctual") if isinstance(background_selection, dict) else background_selection
     punctual_raws = punctual_raws or []
+
+    # Sélection automatique différée : s'exécute ici avec le texte du scénario
+    if auto_bg and not ambient_raw and not punctual_raws:
+        logger.info(
+            "Auto-background selection triggered at generation time for project '%s' "
+            "(scenario_text available: %s)",
+            project_name,
+            bool(scenario_text),
+        )
+        try:
+            ambient_raw, punctual_raws = smart_select_backgrounds(
+                project_name=project_name,
+                scenario_text=scenario_text,
+            )
+        except Exception as exc:
+            logger.warning("smart_select_backgrounds failed: %s", exc)
+            ambient_raw = None
+            punctual_raws = []
 
     def _resolve_background(raw_value: str) -> Optional[Path]:
         candidate = Path(raw_value)
@@ -874,6 +1007,254 @@ class ScenarioAudioRequest(BaseModel):
 
 class ImageOrderPayload(BaseModel):
     order: List[str]
+
+
+# ---------------------------------------------------------------------------
+# Smart background selection — module-level (utilisé au moment de la génération)
+# ---------------------------------------------------------------------------
+
+_STOPWORDS_FR: set = {
+    "de", "du", "des", "le", "la", "les", "un", "une", "et", "en",
+    "au", "aux", "il", "elle", "ils", "elles", "je", "tu", "nous",
+    "vous", "ce", "qui", "que", "quoi", "dont", "par", "pour", "sur",
+    "sous", "avec", "sans", "dans", "est", "sont", "être", "avoir",
+    "se", "si", "ne", "pas", "plus", "ou", "on", "leur", "leurs",
+    "mon", "ton", "son", "ma", "ta", "sa", "mes", "tes", "ses",
+    "nos", "vos", "ces", "cet", "cette", "tout", "tous", "toute",
+    "toutes", "autre", "autres", "bien", "entre", "après", "avant",
+    "alors", "car", "mais", "donc", "lors", "pendant", "selon",
+    "vers", "depuis", "quand", "même", "très", "aussi", "comme",
+    "the", "and", "of", "in", "a", "this", "that", "is", "are",
+}
+
+
+def _tokenize_text(text: str) -> set:
+    """Tokenise un texte : minuscules, split sur non-alpha, filtre stopwords."""
+    tokens = re.split(r"[^a-z\u00e0-\u00ff0-9]+", text.lower())
+    return {t for t in tokens if len(t) >= 3 and t not in _STOPWORDS_FR}
+
+
+def _extract_strings_recursive(obj: Any) -> str:
+    """Extrait récursivement les chaînes d'un dict/list imbriqué."""
+    if isinstance(obj, str):
+        return obj if len(obj) >= 15 else ""
+    if isinstance(obj, dict):
+        return " ".join(_extract_strings_recursive(v) for v in obj.values())
+    if isinstance(obj, list):
+        return " ".join(_extract_strings_recursive(item) for item in obj)
+    return ""
+
+
+def _build_narrative_keywords(project_name: str, scenario_text: Optional[str] = None) -> set:
+    """
+    Extrait les mots-clés du contexte narratif du projet.
+    Si scenario_text est fourni (au moment de la génération), il est prioritaire.
+    Sinon, utilise final_scenario / last_scenarios / project_notes du profil.
+    """
+    raw_texts: List[str] = []
+
+    # Texte du scénario courant (disponible au moment de la génération)
+    if scenario_text and scenario_text.strip():
+        raw_texts.append(scenario_text)
+
+    try:
+        projects_dir = os.environ.get("PROJECTS_DIR")
+        profile: Dict[str, Any] = load_project_config(
+            project_name,
+            projects_dir=projects_dir if projects_dir else None,
+        )
+    except Exception:
+        profile = {}
+
+    notes = profile.get("project_notes") or ""
+    if notes.strip():
+        raw_texts.append(notes)
+
+    for scenario in (profile.get("last_scenarios") or []):
+        raw_texts.append(_extract_strings_recursive(scenario))
+
+    final = profile.get("final_scenario")
+    if final:
+        raw_texts.append(_extract_strings_recursive(final))
+
+    if not raw_texts:
+        return set()
+
+    keywords = _tokenize_text(" ".join(raw_texts))
+    logger.debug(
+        "Narrative keywords for '%s' (%d tokens, scenario_text=%s): %s",
+        project_name,
+        len(keywords),
+        bool(scenario_text),
+        list(keywords)[:20],
+    )
+    return keywords
+
+
+def _load_background_index(background_root: Optional[Path] = None) -> Dict[str, Any]:
+    """Charge index.json et retourne un dict {filename -> entry}."""
+    if background_root is None:
+        background_root = (Path.cwd() / "data" / "audio" / "background_sounds").resolve()
+    index_path = background_root / "index.json"
+    if not index_path.exists():
+        return {}
+    try:
+        with open(index_path, encoding="utf-8") as _f:
+            _idx = json.load(_f)
+        return {
+            (e.get("filename") or "").strip(): e
+            for e in _idx.get("sounds", [])
+            if (e.get("filename") or "").strip()
+        }
+    except Exception as exc:
+        logger.warning("Impossible de lire l'index des sons : %s", exc)
+        return {}
+
+
+def _narrative_relevance_score(entry: Dict[str, Any], keywords: set) -> float:
+    """Score de pertinence narrative (0.0–1.0)."""
+    if not keywords:
+        return 0.5
+    sound_tags: set = set()
+    for tag in (entry.get("tags") or []):
+        sound_tags |= _tokenize_text(tag)
+    tags_matched = len(keywords & sound_tags)
+    tags_score = tags_matched / max(len(sound_tags), 1)
+    desc = (entry.get("metadata") or {}).get("description") or ""
+    desc_words = _tokenize_text(desc)
+    desc_matched = len(keywords & desc_words)
+    desc_score = min(desc_matched / 5, 1.0)
+    return tags_score * 0.70 + desc_score * 0.30
+
+
+def _score_ambient_sound(entry: Dict[str, Any], narrative_keywords: set) -> float:
+    """Score d'aptitude comme fond continu (0.0–1.0)."""
+    tech = 0.0
+    if entry.get("loop_friendly"):
+        tech += 0.40
+    intensity = (entry.get("metadata") or {}).get("intensity", "")
+    if intensity == "low":
+        tech += 0.30
+    elif intensity == "medium":
+        tech += 0.15
+    duration = entry.get("duration") or 0.0
+    if duration >= 120:
+        tech += 0.30
+    elif duration >= 60:
+        tech += 0.20
+    elif duration >= 30:
+        tech += 0.08
+    narr = _narrative_relevance_score(entry, narrative_keywords)
+    return tech * 0.75 + narr * 0.25
+
+
+def _score_punctual_sound(
+    entry: Dict[str, Any],
+    ambient_entry: Optional[Dict[str, Any]],
+    narrative_keywords: set,
+) -> float:
+    """Score d'aptitude comme son ponctuel (0.0–1.0)."""
+    tech = 0.0
+    intensity = (entry.get("metadata") or {}).get("intensity", "")
+    if intensity == "high":
+        tech += 0.40
+    elif intensity == "medium":
+        tech += 0.25
+    if ambient_entry:
+        if entry.get("category") != ambient_entry.get("category"):
+            tech += 0.30
+        amb_act = (ambient_entry.get("metadata") or {}).get("activity", "")
+        ent_act = (entry.get("metadata") or {}).get("activity", "")
+        if amb_act and ent_act and ent_act != amb_act:
+            tech += 0.30
+    narr = _narrative_relevance_score(entry, narrative_keywords)
+    return tech * 0.70 + narr * 0.30
+
+
+def smart_select_backgrounds(
+    project_name: str,
+    scenario_text: Optional[str] = None,
+    background_root: Optional[Path] = None,
+) -> tuple[Optional[str], List[str]]:
+    """
+    Sélection intelligente des sons d'ambiance au moment de la génération audio.
+    Scoring = métadonnées techniques + pertinence narrative (texte du scénario).
+
+    Returns: (ambient_path, [punctual_path_1, punctual_path_2])
+    """
+    try:
+        listing = find_background_sounds(limit=50)
+    except Exception as exc:
+        logger.warning("Smart background lookup failed: %s", exc)
+        return None, []
+
+    raw_files = listing.get("files") or []
+    sound_index = _load_background_index(background_root)
+    narrative_keywords = _build_narrative_keywords(project_name, scenario_text)
+
+    logger.info(
+        "Auto-select backgrounds for project '%s': %d sounds, %d narrative keywords, scenario_text=%s",
+        project_name,
+        len(raw_files),
+        len(narrative_keywords),
+        bool(scenario_text),
+    )
+
+    candidates: List[tuple[str, Dict[str, Any]]] = []
+    for candidate in raw_files:
+        path_str = candidate if isinstance(candidate, str) else (candidate.get("path") or "")
+        if not path_str:
+            continue
+        fname = Path(path_str).name
+        entry = sound_index.get(fname, {})
+        candidates.append((path_str, entry))
+
+    if not candidates:
+        return None, []
+
+    # Fond continu : meilleur score ambient
+    scored_ambient = sorted(
+        candidates,
+        key=lambda x: _score_ambient_sound(x[1], narrative_keywords),
+        reverse=True,
+    )
+    ambient_path, ambient_entry = scored_ambient[0]
+
+    # Sons ponctuels parmi les restants
+    remaining = [(p, e) for p, e in candidates if p != ambient_path]
+    scored_punctual = sorted(
+        remaining,
+        key=lambda x: _score_punctual_sound(x[1], ambient_entry, narrative_keywords),
+        reverse=True,
+    )
+
+    punctual: List[str] = []
+    chosen_categories: set = set()
+    for p_path, p_entry in scored_punctual:
+        cat = p_entry.get("category", "")
+        if cat and cat in chosen_categories:
+            continue
+        punctual.append(p_path)
+        chosen_categories.add(cat)
+        if len(punctual) >= 2:
+            break
+
+    if len(punctual) < 2:
+        for p_path, _ in scored_punctual:
+            if p_path not in punctual:
+                punctual.append(p_path)
+            if len(punctual) >= 2:
+                break
+
+    logger.info(
+        "Smart background selection result: ambient=%s punctual=%s",
+        ambient_path,
+        punctual,
+    )
+    return ambient_path, punctual
+
+
+# ---------------------------------------------------------------------------
 
 
 def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
@@ -2935,27 +3316,12 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             if len(punctual_choices) >= 2:
                 break
 
-        def _auto_select_backgrounds() -> tuple[Optional[str], List[str]]:
-            try:
-                listing = find_background_sounds(limit=20)
-            except Exception as exc:
-                logger.warning("Auto background lookup failed: %s", exc)
-                return ambient_choice, punctual_choices
-            files = listing.get("files") or []
-            sanitized_candidates: List[str] = []
-            for candidate in files:
-                path_value = _sanitize_background(candidate)
-                if path_value and path_value not in sanitized_candidates:
-                    sanitized_candidates.append(path_value)
-            if not sanitized_candidates:
-                return ambient_choice, punctual_choices
-            new_ambient = sanitized_candidates[0]
-            remaining = [item for item in sanitized_candidates if item != new_ambient]
-            new_punctual = remaining[:2]
-            return new_ambient, new_punctual
-
+        # Si auto_backgrounds, on ne pré-sélectionne rien : la sélection se fera
+        # au moment de la génération audio (apply_background_selection), avec le
+        # texte du scénario disponible pour le scoring narratif.
         if payload.auto_backgrounds:
-            ambient_choice, punctual_choices = _auto_select_backgrounds()
+            ambient_choice = None
+            punctual_choices = []
 
         selection_payload: Dict[str, Any] = {
             "voices": voices,

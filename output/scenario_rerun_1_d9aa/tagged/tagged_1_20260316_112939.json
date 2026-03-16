@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "taggedText": "=== PARTIE 1 : Le geste premier ===\n\n{crayon_sur_calque.wav}\n\n[posé] Un trait de crayon glisse sur le calque. [pause] Dans la lumière blanche d'un bureau d'études, au bord de la Loire, un homme penché sur sa planche donne forme à une coque qui n'existe pas encore.\n\n{grondement_chantier_lointain.wav}\n\n=== PARTIE 2 : Un métier dans l'ombre des coques ===\n\n{ambiance_bureau_etudes.wav}\n\nAux Chantiers de la Loire, à la Prairie-au-Duc, comme chez Dubigeon, les dessinateurs industriels occupaient une place singulière. Ni ingénieurs, ni ouvriers des cales, ils traduisaient les calculs en plans lisibles par tous — coupes, échelles, tracés de coque. [pause] [ARCHIVE : [posé] « On faisait le dessin de toutes les pièces du navire, pour que les ouvriers puissent les fabriquer. »] [pause] Chaque trait engageait des mois de travail en atelier.\n\n=== PARTIE 3 : Le quotidien de Jean Penaud ===\n\n{silence_concentre_bureau.wav}\n\n[ralentit] Jean Penaud fut l'un d'entre eux. Pendant des décennies, sur les chantiers nantais, il a posé ses tire-lignes et ses gabarits sur la planche chaque matin. [pause] [ARCHIVE : [accentué] « Il fallait une précision absolue. [pause] Une erreur sur le plan, c'était une erreur sur le bateau. »] Autour de lui, d'autres dessinateurs partageaient cette même rigueur silencieuse — un collectif discret, dont la fierté tenait tout entière dans l'exactitude du geste.\n\n=== PARTIE 4 : Le trait qui demeure ===\n\n{sons_industriels_decroissants.wav}\n\n[ralentit] Puis les cales se sont tues. Les chantiers navals de Nantes ont fermé, l'un après l'autre, emportant avec eux un monde entier. [pause] Les bureaux d'études se sont vidés. [triste] Mais dans les archives, les plans sont restés — des milliers de feuilles de calque où court encore le trait précis d'hommes comme Jean Penaud. [pause] {crayon_sur_calque.wav} [posé] Un trait de crayon, sur du papier, au bord de la Loire.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le geste premier",
+      "taggedText": "{crayon_sur_calque.wav}\n\n[posé] Un trait de crayon glisse sur le calque. [pause] Dans la lumière blanche d'un bureau d'études, au bord de la Loire, un homme penché sur sa planche donne forme à une coque qui n'existe pas encore.\n\n{grondement_chantier_lointain.wav}"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Un métier dans l'ombre des coques",
+      "taggedText": "{ambiance_bureau_etudes.wav}\n\nAux Chantiers de la Loire, à la Prairie-au-Duc, comme chez Dubigeon, les dessinateurs industriels occupaient une place singulière. Ni ingénieurs, ni ouvriers des cales, ils traduisaient les calculs en plans lisibles par tous — coupes, échelles, tracés de coque. [pause] [ARCHIVE : [posé] « On faisait le dessin de toutes les pièces du navire, pour que les ouvriers puissent les fabriquer. »] [pause] Chaque trait engageait des mois de travail en atelier."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le quotidien de Jean Penaud",
+      "taggedText": "{silence_concentre_bureau.wav}\n\n[ralentit] Jean Penaud fut l'un d'entre eux. Pendant des décennies, sur les chantiers nantais, il a posé ses tire-lignes et ses gabarits sur la planche chaque matin. [pause] [ARCHIVE : [accentué] « Il fallait une précision absolue. [pause] Une erreur sur le plan, c'était une erreur sur le bateau. »] Autour de lui, d'autres dessinateurs partageaient cette même rigueur silencieuse — un collectif discret, dont la fierté tenait tout entière dans l'exactitude du geste."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le trait qui demeure",
+      "taggedText": "{sons_industriels_decroissants.wav}\n\n[ralentit] Puis les cales se sont tues. Les chantiers navals de Nantes ont fermé, l'un après l'autre, emportant avec eux un monde entier. [pause] Les bureaux d'études se sont vidés. [triste] Mais dans les archives, les plans sont restés — des milliers de feuilles de calque où court encore le trait précis d'hommes comme Jean Penaud. [pause] {crayon_sur_calque.wav} [posé] Un trait de crayon, sur du papier, au bord de la Loire."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 14,
+    "soundTags": 6,
+    "originalWordCount": 245
+  }
+}

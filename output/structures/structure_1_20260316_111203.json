@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le trait et la coque — Journée d'un dessinateur au chantier naval",
+  "resumeHistoire": "Au petit matin, un dessinateur naval pousse la porte du bureau d'études d'un chantier naval et s'installe devant sa planche à dessin. Sa journée commence par l'étude des lignes d'eau d'un navire en construction, un travail de précision millimétrique où chaque trait sur le calque déterminera la forme réelle de la coque assemblée en cale. Entre le bureau de dessin et la salle à tracer, entre le crayon et le gabarit grandeur nature, il fait le lien silencieux entre l'idée du navire et sa réalité d'acier. Le soir venu, quand il quitte le chantier, les formes qu'il a tracées le matin sont déjà en train de prendre corps sous les mains des charpentiers et des soudeurs.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube au bureau de dessin",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_concentré",
+      "elements_necessaires": [
+        "Ancrage temporel : le matin, arrivée au chantier",
+        "Présentation du lieu : bureau d'études, planche à dessin, instruments (règles, compas, tire-lignes)",
+        "Présentation implicite du personnage-type : le dessinateur naval",
+        "Ambiance sonore suggérée : silence du bureau, bruit lointain du chantier"
+      ],
+      "mood": "descriptif_posé_minutieux"
+    },
+    {
+      "partie": 2,
+      "titre": "Du trait au tracé grandeur nature",
+      "duree_cible": 28,
+      "fonction_narrative": "développement_thématique_cœur_de_métier",
+      "position_arc_emotionnel": "montée_en_intensité",
+      "elements_necessaires": [
+        "Explication concrète du geste : tracer les lignes d'eau, les coupes, les développés de tôle",
+        "Passage du bureau de dessin à la salle à tracer — le plan devient gabarit grandeur nature au sol",
+        "Citation directe issue des sources si disponible, sinon formulation évocatrice au style indirect",
+        "Hiérarchie évoquée légèrement : ingénieur, dessinateur, traceur",
+        "Lien entre précision du dessin et réalité de la construction"
+      ],
+      "mood": "technique_accessible_admiratif"
+    },
+    {
+      "partie": 3,
+      "titre": "Le dessin prend corps en cale",
+      "duree_cible": 25,
+      "fonction_narrative": "pivot_concret_vers_la_réalisation",
+      "position_arc_emotionnel": "intensité_maximale",
+      "elements_necessaires": [
+        "Le dessinateur descend en cale ou en atelier — confrontation du plan au réel",
+        "Dialogue silencieux entre le papier et l'acier, entre le trait et la tôle",
+        "Évocation sensorielle : bruit des rivets ou de la soudure, odeur de métal",
+        "Transmission du savoir : le dessin comme langage commun entre bureau et atelier"
+      ],
+      "mood": "immersif_sensoriel_dense"
+    },
+    {
+      "partie": 4,
+      "titre": "Le soir, la coque garde la trace",
+      "duree_cible": 15,
+      "fonction_narrative": "résolution_et_élévation",
+      "position_arc_emotionnel": "apaisement_réflexif",
+      "elements_necessaires": [
+        "Fin de journée, le dessinateur quitte le chantier",
+        "Image de la coque en construction qui porte en elle les lignes tracées le matin",
+        "Ouverture sobre : ce geste répété jour après jour donne naissance à un navire",
+        "Tonalité de respect pour le savoir-faire discret"
+      ],
+      "mood": "contemplatif_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "ascension_puis_apaisement — du calme matinal du bureau à l'intensité sensorielle de la cale, retour au calme avec la satisfaction discrète du travail accompli",
+  "rythme_general": "modéré et régulier, phrases courtes et concrètes, tempo ancré dans les gestes et les lieux — pas de précipitation",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle_gestuelle",
+      "duree": 2.0,
+      "description": "Du décor du bureau on glisse vers le geste précis de la main sur le papier, puis vers la salle à tracer — transition par le mouvement du crayon qui ne s'arrête pas."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "changement_de_lieu_fluide",
+      "duree": 2.0,
+      "description": "Le plan quitte la table à dessin. On suit le gabarit ou le calque qui descend vers la cale — transition spatiale du bureau vers l'atelier, portée par le contraste sonore suggéré (silence → bruit)."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ralentissement_contemplatif",
+      "duree": 2.0,
+      "description": "Le bruit du chantier s'estompe, la lumière décline — on passe de l'intensité du travail collectif au regard solitaire du dessinateur qui s'éloigne. Transition par le silence retrouvé."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un fil chronologique strict (matin → soir) mais aussi un fil spatial (bureau → salle à tracer → cale → sortie du chantier). Ces deux fils doivent rester entrelacés pour éviter toute impression de catalogue de lieux. Le dessinateur n'est jamais nommé — c'est un personnage-type, un « il » ou « le dessinateur », ce qui permet l'universalité. || REGISTRE : Grand public, phrases courtes (max 20 mots), vocabulaire technique limité à 4-5 termes toujours explicités en contexte (lignes d'eau, développé de tôle, gabarit, salle à tracer). || CITATIONS : Intégrer 1 à 2 citations directes courtes si le matériau source en fournit — sinon, utiliser le style indirect libre pour donner une voix intérieure sobre au dessinateur. || DENSITÉ SONORE : Minimaliste — les indications d'ambiance sont suggérées dans le texte narratif, pas surajoutées. Le silence du bureau de dessin est un élément narratif à part entière. || DURÉE : 180 mots maximum. Chaque section doit être dense mais jamais précipitée. Privilégier une image forte par section plutôt que l'accumulation. || PREMIÈRE PHRASE : Doit poser immédiatement le décor et le ton sans adresse au public — entrer dans la scène directement."
+}

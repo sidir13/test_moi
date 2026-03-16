@@ -1,0 +1,850 @@
+{
+  "created_at": "2026-03-13T08:54:43.690632",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 2,
+  "project_notes": "Parles moi de ce navire de croisières gigantesque qui à réveiller le port de Nantes de son sommeil historique dans les années 2010",
+  "scenario_config": {
+    "generation_parameters": {
+      "duree": {
+        "value": 120,
+        "user_specified": true
+      }
+    }
+  },
+  "target_duration": 120,
+  "include_citations": true,
+  "source_usage_level": "modere",
+  "tts_voice_id": "jK7dAsiVAhbApIS8KkWB",
+  "last_scenarios": [
+    {
+      "structure": {
+        "scenario_id": 2,
+        "titre_global": "Le géant qui réveilla la Loire",
+        "resumeHistoire": "Au début des années 2010, le port de Nantes et l'estuaire de la Loire semblent assoupis, vestiges d'une grandeur maritime passée. Mais à quelques dizaines de kilomètres en aval, les Chantiers de l'Atlantique à Saint-Nazaire donnent naissance à des paquebots de croisière parmi les plus grands du monde, réveillant tout un territoire. Ce récit suit le destin de ce bassin industriel à travers le portrait du chantier lui-même — un lieu devenu personnage — dont le savoir-faire français ressuscite l'identité maritime de Nantes-Saint-Nazaire. De la découpe des premières tôles à la sortie en mer de colosses flottants, c'est l'histoire d'une renaissance industrielle qui redonne un pouls au fleuve et à ses rives.",
+        "axe_narratif": "objet_lieu",
+        "angle_scenarisation": "portrait_individuel",
+        "duree_totale": 120,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Un fleuve endormi",
+            "duree_cible": 25.0,
+            "fonction_narrative": "exposition_atmospherique",
+            "position_arc_emotionnel": "mélancolie_calme",
+            "elements_necessaires": [
+              "Évocation du port de Nantes au tournant des années 2010, assoupi",
+              "Ambiance sonore : eau calme de la Loire, cris de mouettes lointaines, silence industriel",
+              "Rappel discret de l'héritage maritime et de la construction navale passée",
+              "Registre accessible, phrases courtes, ton posé"
+            ],
+            "mood": "contemplatif_nostalgique"
+          },
+          {
+            "partie": 2,
+            "titre": "Le chantier, cœur battant",
+            "duree_cible": 30.0,
+            "fonction_narrative": "presentation_portrait",
+            "position_arc_emotionnel": "montée_en_puissance",
+            "elements_necessaires": [
+              "Portrait des Chantiers de l'Atlantique à Saint-Nazaire comme personnage central",
+              "Évocation du savoir-faire français en ingénierie navale",
+              "Ambiance sonore : métal, soudures, grues, activité industrielle intense",
+              "Citation directe possible d'un acteur du chantier ou formulation attribuée au milieu industriel",
+              "Transition depuis le silence du port vers le bruit du chantier"
+            ],
+            "mood": "energique_industriel"
+          },
+          {
+            "partie": 3,
+            "titre": "Un colosse prend forme",
+            "duree_cible": 30.0,
+            "fonction_narrative": "climax_narratif",
+            "position_arc_emotionnel": "émerveillement_culminant",
+            "elements_necessaires": [
+              "Description de la construction d'un paquebot géant — dimensions, prouesse technique",
+              "Mosaïque de détails sensoriels : tôles assemblées, sections gigantesques, bassin de Saint-Nazaire",
+              "Évocation de l'impact sur l'industrie de la croisière mondiale",
+              "Ambiance sonore : montée orchestrale, sons mécaniques rythmés",
+              "Citation ou référence directe soulignant l'ampleur du projet"
+            ],
+            "mood": "epique_impressionnant"
+          },
+          {
+            "partie": 4,
+            "titre": "Le réveil des rives",
+            "duree_cible": 35.0,
+            "fonction_narrative": "resolution_ouverture",
+            "position_arc_emotionnel": "fierté_apaisée",
+            "elements_necessaires": [
+              "Impact économique et social sur le territoire Nantes-Saint-Nazaire",
+              "Renaissance de l'identité maritime nantaise",
+              "Sortie du navire vers l'estuaire puis la mer — image de clôture",
+              "Ambiance sonore : corne de brume, foule sur les quais, eau de l'estuaire",
+              "Ouverture vers l'avenir du bassin et de la construction navale",
+              "Ton conclusif mais non fermé"
+            ],
+            "mood": "solennel_lumineux"
+          }
+        ],
+        "arc_emotionnel_global": "du_silence_à_la_renaissance",
+        "rythme_general": "progressif_avec_acceleration_centrale",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "contraste_sonore",
+            "duree": 2.5,
+            "description": "Du silence quasi-total du port endormi, un premier coup de métal résonne au loin — le son grandit et nous transporte dans le ventre du chantier. La transition est sensorielle, pas explicative."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "progression_naturelle",
+            "duree": 2.0,
+            "description": "Le rythme du chantier s'accélère naturellement : des ouvriers aux plans, des plans à la coque qui s'élève. Le récit glisse du portrait du lieu vers l'objet qu'il engendre, sans rupture."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "ouverture_spatiale",
+            "duree": 2.5,
+            "description": "Le regard narratif recule — du gros plan sur le navire en construction, on passe à un plan large sur l'estuaire. Le son industriel cède la place à l'eau et au vent. Le colosse quitte le bassin, et le récit s'ouvre sur le territoire transformé."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un mouvement unique — du sommeil au réveil — incarné par un lieu-personnage (les Chantiers de l'Atlantique). La voix off omnisciente ne s'adresse jamais directement à l'auditeur. Le portrait est celui du chantier vu de l'extérieur : son activité, son rayonnement, son impact. Les citations directes (1 à 2 maximum) doivent être courtes et percutantes, idéalement issues du milieu industriel ou institutionnel local. La mosaïque se traduit par des fragments sensoriels juxtaposés (son, image mentale, fait) plutôt que par une chronologie linéaire stricte. Le débit cible est d'environ 2 mots par seconde (≈240 mots max). Chaque section doit être dense mais aérée par des pauses sonores. La densité sonore riche implique des ambiances travaillées à chaque section : eau, métal, foule, corne de brume. Le niveau académique se traduit par la précision des faits mentionnés, jamais par un jargon inaccessible. NE JAMAIS INVENTER de noms de navires, de dates précises ou de chiffres non fournis dans le contexte — préférer des formulations évocatrices mais vagues si le sourcing manque."
+      },
+      "scenario": {
+        "scenario_id": 2,
+        "titre": "Le géant qui réveilla la Loire",
+        "axe_narratif": "objet_lieu",
+        "angle_scenarisation": "portrait_individuel",
+        "resumeHistoire": "Au début des années 2010, le port de Nantes et l'estuaire de la Loire semblent assoupis, vestiges d'une grandeur maritime passée. Mais à quelques dizaines de kilomètres en aval, les Chantiers de l'Atlantique à Saint-Nazaire donnent naissance à des paquebots de croisière parmi les plus grands du monde, réveillant tout un territoire. Ce récit suit le destin de ce bassin industriel à travers le portrait du chantier lui-même — un lieu devenu personnage — dont le savoir-faire français ressuscite l'identité maritime de Nantes-Saint-Nazaire. De la découpe des premières tôles à la sortie en mer de colosses flottants, c'est l'histoire d'une renaissance industrielle qui redonne un pouls au fleuve et à ses rives.",
+        "duree_estimee": 148.9505928853755,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Un fleuve endormi",
+            "duree": 34.36363636363637,
+            "texte_narration": "Ce récit s'adresse à tous, sur un ton neutre et informatif.\n\nNantes, au tournant des années deux mille dix. Les quais sont silencieux. La Loire coule, indifférente, entre des rives où plus aucune coque d'acier ne prend forme. Le port qui jadis armait des navires pour le monde entier semble s'être assoupi, bercé par le souvenir de sa grandeur maritime.",
+            "ton": {
+              "global": "contemplatif_nostalgique",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'silencieux' (1.5s)",
+                "après 'assoupi' (1s)"
+              ],
+              "intonation": "voix posée, basse, légèrement mélancolique"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture sur le silence du port — ambiance eau calme",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:10",
+                "action": "Évocation de l'absence industrielle sur les rives",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:18",
+                "action": "Rappel discret du passé maritime nantais",
+                "duree": 2.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Ce récit s'adresse à tous, sur un ton neutre et informatif.",
+                "sources": []
+              },
+              {
+                "sentence": "Nantes, au tournant des années deux mille dix.",
+                "sources": []
+              },
+              {
+                "sentence": "Les quais sont silencieux.",
+                "sources": []
+              },
+              {
+                "sentence": "La Loire coule, indifférente, entre des rives où plus aucune coque d'acier ne prend forme.",
+                "sources": []
+              },
+              {
+                "sentence": "Le port qui jadis armait des navires pour le monde entier semble s'être assoupi, bercé par le souvenir de sa grandeur maritime.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le chantier, cœur battant",
+            "duree": 32.0,
+            "texte_narration": "Mais à soixante kilomètres en aval, un autre rythme bat. Les Chantiers de l'Atlantique, à Saint-Nazaire, n'ont jamais cessé de vivre. Derrière leurs grues monumentales, des milliers de soudeurs, ingénieurs et ajusteurs façonnent l'acier. Un savoir-faire français transmis de génération en génération. Comme le résument ceux qui y travaillent : [ARCHIVE : « Ici, on construit les plus grands navires du monde. »]",
+            "ton": {
+              "global": "energique_industriel",
+              "tempo_lecture": 120,
+              "pauses": [
+                "après 'vivre' (1s)",
+                "après 'l'acier' (1s)",
+                "avant la citation (1.5s)"
+              ],
+              "intonation": "voix qui s'affirme progressivement, énergie croissante"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:25",
+                "action": "Transition sonore brutale — du silence au bruit industriel",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:32",
+                "action": "Portrait des Chantiers comme personnage vivant",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:48",
+                "action": "Citation directe — fierté industrielle",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Mais à soixante kilomètres en aval, un autre rythme bat.",
+                "sources": []
+              },
+              {
+                "sentence": "Les Chantiers de l'Atlantique, à Saint-Nazaire, n'ont jamais cessé de vivre.",
+                "sources": []
+              },
+              {
+                "sentence": "Derrière leurs grues monumentales, des milliers de soudeurs, ingénieurs et ajusteurs façonnent l'acier.",
+                "sources": []
+              },
+              {
+                "sentence": "Un savoir-faire français transmis de génération en génération.",
+                "sources": []
+              },
+              {
+                "sentence": "Comme le résument ceux qui y travaillent : « Ici, on construit les plus grands navires du monde. »",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Un colosse prend forme",
+            "duree": 32.5,
+            "texte_narration": "Dans le bassin de Saint-Nazaire, un colosse prend forme. Bloc après bloc, des sections d'acier de plusieurs centaines de tonnes sont assemblées, hissées, soudées. Le paquebot qui émerge dépasse l'imagination : une ville flottante, capable d'accueillir des milliers de passagers. [ARCHIVE : « C'est un défi technique permanent, chaque navire repousse les limites du précédent. »] L'industrie mondiale de la croisière observe, fascinée.",
+            "ton": {
+              "global": "epique_impressionnant",
+              "tempo_lecture": 120,
+              "pauses": [
+                "après 'soudées' (1.5s)",
+                "après la citation (1.5s)"
+              ],
+              "intonation": "voix montante, souffle épique contenu, gravité admirative"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:55",
+                "action": "Description visuelle de l'assemblage — montée en puissance",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:05",
+                "action": "Évocation des dimensions extraordinaires du navire",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "1:15",
+                "action": "Citation sur le défi technique — climax",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Dans le bassin de Saint-Nazaire, un colosse prend forme.",
+                "sources": []
+              },
+              {
+                "sentence": "Bloc après bloc, des sections d'acier de plusieurs centaines de tonnes sont assemblées, hissées, soudées.",
+                "sources": []
+              },
+              {
+                "sentence": "Le paquebot qui émerge dépasse l'imagination : une ville flottante, capable d'accueillir des milliers de passagers.",
+                "sources": []
+              },
+              {
+                "sentence": "« C'est un défi technique permanent, chaque navire repousse les limites du précédent. »",
+                "sources": []
+              },
+              {
+                "sentence": "L'industrie mondiale de la croisière observe, fascinée.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le réveil des rives",
+            "duree": 50.086956521739125,
+            "texte_narration": "Et puis vient le jour. Le géant quitte son berceau d'acier, glisse lentement dans l'estuaire de la Loire. Sur les rives, des milliers de regards le suivent. Une corne de brume déchire l'air. Ce n'est pas seulement un navire qui prend la mer. C'est tout un territoire qui se redresse. Les Chantiers de l'Atlantique ont ramené l'emploi, la fierté, l'identité maritime sur ce bassin que l'on croyait endormi. Le fleuve, désormais, a retrouvé son pouls. Et dans les cales de Saint-Nazaire, déjà, un autre géant attend.",
+            "ton": {
+              "global": "solennel_lumineux",
+              "tempo_lecture": 115,
+              "pauses": [
+                "après 'le suivent' (2s)",
+                "après 'l'air' (1.5s)",
+                "après 'endormi' (1.5s)",
+                "après 'son pouls' (2s)"
+              ],
+              "intonation": "voix solennelle puis lumineuse, émotion contenue, ouverture finale"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:25",
+                "action": "Sortie du navire — image majestueuse sur l'estuaire",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:35",
+                "action": "Foule sur les quais — corne de brume",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "1:45",
+                "action": "Impact économique et identitaire sur le territoire",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "1:55",
+                "action": "Ouverture finale — un autre géant attend",
+                "duree": 2.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Et puis vient le jour.",
+                "sources": []
+              },
+              {
+                "sentence": "Le géant quitte son berceau d'acier, glisse lentement dans l'estuaire de la Loire.",
+                "sources": []
+              },
+              {
+                "sentence": "Sur les rives, des milliers de regards le suivent.",
+                "sources": []
+              },
+              {
+                "sentence": "Une corne de brume déchire l'air.",
+                "sources": []
+              },
+              {
+                "sentence": "Ce n'est pas seulement un navire qui prend la mer.",
+                "sources": []
+              },
+              {
+                "sentence": "C'est tout un territoire qui se redresse.",
+                "sources": []
+              },
+              {
+                "sentence": "Les Chantiers de l'Atlantique ont ramené l'emploi, la fierté, l'identité maritime sur ce bassin que l'on croyait endormi.",
+                "sources": []
+              },
+              {
+                "sentence": "Le fleuve, désormais, a retrouvé son pouls.",
+                "sources": []
+              },
+              {
+                "sentence": "Et dans les cales de Saint-Nazaire, déjà, un autre géant attend.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 288,
+          "duree_lecture_estimee": 148.9505928853755,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit suit un mouvement unique — du sommeil au réveil — incarné par un lieu-personnage (les Chantiers de l'Atlantique). La voix off omnisciente ne s'adresse jamais directement à l'auditeur. Le portrait est celui du chantier vu de l'extérieur : son activité, son rayonnement, son impact. Les citations directes (1 à 2 maximum) doivent être courtes et percutantes, idéalement issues du milieu industriel ou institutionnel local. La mosaïque se traduit par des fragments sensoriels juxtaposés (son, image mentale, fait) plutôt que par une chronologie linéaire stricte. Le débit cible est d'environ 2 mots par seconde (≈240 mots max). Chaque section doit être dense mais aérée par des pauses sonores. La densité sonore riche implique des ambiances travaillées à chaque section : eau, métal, foule, corne de brume. Le niveau académique se traduit par la précision des faits mentionnés, jamais par un jargon inaccessible. NE JAMAIS INVENTER de noms de navires, de dates précises ou de chiffres non fournis dans le contexte — préférer des formulations évocatrices mais vagues si le sourcing manque.",
+        "quality_rank": 1
+      },
+      "taggedOutput": {
+        "scenario_id": 2,
+        "titre": "Le géant qui réveilla la Loire",
+        "taggedText": "=== PARTIE 1 : Un fleuve endormi ===\n\n{clapotis_eau_calme_loire.wav}\n\nCe récit s'adresse à tous, sur un ton neutre et informatif.\n\n[posé] Nantes, au tournant des années deux mille dix. [pause] Les quais sont silencieux. La Loire coule, indifférente, entre des rives où plus aucune coque d'acier ne prend forme. [pause] Le port qui jadis armait des navires pour le monde entier semble s'être assoupi, [atténué] bercé par le souvenir de sa grandeur maritime.\n\n=== PARTIE 2 : Le chantier, cœur battant ===\n\n{ambiance_chantier_industriel.wav}\n\nMais à soixante kilomètres en aval, un autre rythme bat. Les Chantiers de l'Atlantique, à Saint-Nazaire, n'ont jamais cessé de vivre. [accentué] Derrière leurs grues monumentales, des milliers de soudeurs, ingénieurs et ajusteurs façonnent l'acier. Un savoir-faire français transmis de génération en génération. Comme le résument ceux qui y travaillent : [pause] [ARCHIVE : « Ici, on construit les plus grands navires du monde. »]\n\n=== PARTIE 3 : Un colosse prend forme ===\n\n{soudure_metal_lourd.wav}\n\nDans le bassin de Saint-Nazaire, un colosse prend forme. [ralentit] Bloc après bloc, des sections d'acier de plusieurs centaines de tonnes sont assemblées, hissées, soudées. Le paquebot qui émerge dépasse l'imagination : [accentué] une ville flottante, capable d'accueillir des milliers de passagers. [pause] [ARCHIVE : « C'est un défi technique permanent, chaque navire repousse les limites du précédent. »] L'industrie mondiale de la croisière observe, fascinée.\n\n=== PARTIE 4 : Le réveil des rives ===\n\n{foule_quais_estuaire.wav}\n\nEt puis vient le jour. [ralentit] Le géant quitte son berceau d'acier, glisse lentement dans l'estuaire de la Loire. Sur les rives, des milliers de regards le suivent. [pause] {corne_de_brume.wav} Une corne de brume déchire l'air. [accentué] Ce n'est pas seulement un navire qui prend la mer. C'est tout un territoire qui se redresse. Les Chantiers de l'Atlantique ont ramené l'emploi, la fierté, l'identité maritime sur ce bassin que l'on croyait endormi. [pause] [posé] Le fleuve, désormais, a retrouvé son pouls. [atténué] Et dans les cales de Saint-Nazaire, déjà, un autre géant attend.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Un fleuve endormi",
+            "taggedText": "{clapotis_eau_calme_loire.wav}\n\nCe récit s'adresse à tous, sur un ton neutre et informatif.\n\n[posé] Nantes, au tournant des années deux mille dix. [pause] Les quais sont silencieux. La Loire coule, indifférente, entre des rives où plus aucune coque d'acier ne prend forme. [pause] Le port qui jadis armait des navires pour le monde entier semble s'être assoupi, [atténué] bercé par le souvenir de sa grandeur maritime."
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le chantier, cœur battant",
+            "taggedText": "{ambiance_chantier_industriel.wav}\n\nMais à soixante kilomètres en aval, un autre rythme bat. Les Chantiers de l'Atlantique, à Saint-Nazaire, n'ont jamais cessé de vivre. [accentué] Derrière leurs grues monumentales, des milliers de soudeurs, ingénieurs et ajusteurs façonnent l'acier. Un savoir-faire français transmis de génération en génération. Comme le résument ceux qui y travaillent : [pause] [ARCHIVE : « Ici, on construit les plus grands navires du monde. »]"
+          },
+          {
+            "partie_id": 3,
+            "titre": "Un colosse prend forme",
+            "taggedText": "{soudure_metal_lourd.wav}\n\nDans le bassin de Saint-Nazaire, un colosse prend forme. [ralentit] Bloc après bloc, des sections d'acier de plusieurs centaines de tonnes sont assemblées, hissées, soudées. Le paquebot qui émerge dépasse l'imagination : [accentué] une ville flottante, capable d'accueillir des milliers de passagers. [pause] [ARCHIVE : « C'est un défi technique permanent, chaque navire repousse les limites du précédent. »] L'industrie mondiale de la croisière observe, fascinée."
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le réveil des rives",
+            "taggedText": "{foule_quais_estuaire.wav}\n\nEt puis vient le jour. [ralentit] Le géant quitte son berceau d'acier, glisse lentement dans l'estuaire de la Loire. Sur les rives, des milliers de regards le suivent. [pause] {corne_de_brume.wav} Une corne de brume déchire l'air. [accentué] Ce n'est pas seulement un navire qui prend la mer. C'est tout un territoire qui se redresse. Les Chantiers de l'Atlantique ont ramené l'emploi, la fierté, l'identité maritime sur ce bassin que l'on croyait endormi. [pause] [posé] Le fleuve, désormais, a retrouvé son pouls. [atténué] Et dans les cales de Saint-Nazaire, déjà, un autre géant attend."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 17,
+          "soundTags": 5,
+          "originalWordCount": 288
+        }
+      },
+      "scenario_index": 2,
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      },
+      "quality_rank": 1
+    },
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Le géant qui réveilla la Loire",
+        "resumeHistoire": "Au début des années 2010, le port de Nantes et les chantiers de Saint-Nazaire semblaient assoupis, vestiges d'une grandeur maritime passée. Puis, dans les bassins de l'estuaire de la Loire, des paquebots géants ont commencé à prendre forme, redonnant vie à tout un territoire. Ouvriers, ingénieurs et riverains ont vu leur quotidien transformé par cette renaissance industrielle inattendue. Les Chantiers de l'Atlantique, forts d'un savoir-faire séculaire, ont propulsé la région au rang de pôle mondial de la construction navale de croisière, réveillant avec eux la fierté et l'identité maritime de toute une population.",
+        "axe_narratif": "objet_lieu",
+        "angle_scenarisation": "chronique_sociale",
+        "duree_totale": 120,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Un port endormi",
+            "duree_cible": 30.0,
+            "fonction_narrative": "exposition",
+            "position_arc_emotionnel": "mélancolie_calme",
+            "elements_necessaires": [
+              "Évocation du port de Nantes et de l'estuaire de la Loire dans leur torpeur du début des années 2010",
+              "Héritage maritime ancien — mémoire d'un passé glorieux qui semble révolu",
+              "Atmosphère contemplative : quais silencieux, grues immobiles, bassin de Saint-Nazaire en attente",
+              "Registre accessible, phrases courtes, rythme lent"
+            ],
+            "mood": "nostalgique_contemplatif"
+          },
+          {
+            "partie": 2,
+            "titre": "Le chantier reprend souffle",
+            "duree_cible": 35.0,
+            "fonction_narrative": "développement_montée",
+            "position_arc_emotionnel": "éveil_progressif",
+            "elements_necessaires": [
+              "Annonce de la construction de paquebots géants aux Chantiers de l'Atlantique à Saint-Nazaire",
+              "Citation directe possible d'un acteur ou observateur du renouveau (formulée de manière vraisemblable à partir du contexte)",
+              "Description concrète du chantier : échelle colossale des navires, fourmillement d'ouvriers et d'ingénieurs",
+              "Lien entre savoir-faire français historique et prouesse technique contemporaine",
+              "Transition du silence vers le bruit, du vide vers l'activité"
+            ],
+            "mood": "dynamique_ascendant"
+          },
+          {
+            "partie": 3,
+            "titre": "Un territoire transformé",
+            "duree_cible": 30.0,
+            "fonction_narrative": "pivot_social",
+            "position_arc_emotionnel": "fierté_collective",
+            "elements_necessaires": [
+              "Impact économique et social sur le territoire Nantes/Saint-Nazaire",
+              "Chronique du quotidien transformé : emplois, commerces, vie locale redynamisée",
+              "Dimension chronique sociale — le groupe humain (ouvriers, familles, riverains) au cœur du récit",
+              "Citation directe illustrant la fierté ou le changement vécu par la population"
+            ],
+            "mood": "chaleureux_ancré"
+          },
+          {
+            "partie": 4,
+            "titre": "Le géant prend la mer",
+            "duree_cible": 25.0,
+            "fonction_narrative": "résolution_ouverture",
+            "position_arc_emotionnel": "élévation_contemplative",
+            "elements_necessaires": [
+              "Image finale du paquebot géant quittant l'estuaire de la Loire",
+              "Résonance entre passé maritime et renaissance contemporaine",
+              "Ouverture sur l'identité retrouvée de Nantes/Saint-Nazaire comme pôle de construction navale mondiale",
+              "Retour au calme contemplatif — boucle avec l'ouverture, mais le silence est désormais habité de fierté"
+            ],
+            "mood": "solennel_apaisé"
+          }
+        ],
+        "arc_emotionnel_global": "du_sommeil_à_l_éveil — arc en crescendo mélancolique vers la fierté collective, avec retour contemplatif",
+        "rythme_general": "lent_contemplatif avec accélération progressive en partie 2, stabilisation chaleureuse en partie 3, retour au calme en partie 4",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "contraste_sonore_et_narratif",
+            "duree": 2.5,
+            "description": "Du silence des quais endormis, un premier bruit métallique émerge — une soudure, un marteau — la phrase narrative glisse sans rupture du passé vers le présent du chantier qui reprend vie."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "élargissement_focal",
+            "duree": 2.0,
+            "description": "Le regard narratif quitte l'intérieur du chantier pour embrasser la ville et ses habitants. Transition fluide : de la coque du navire en construction, on passe aux rues alentour, aux visages des gens dont la vie change."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "ouverture_vers_le_large",
+            "duree": 2.0,
+            "description": "Le récit social se fond dans une image plus vaste : le navire achevé glisse vers l'océan. La voix ralentit, le ton s'élève légèrement — passage du concret quotidien vers le symbolique."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un mouvement unique et organique — du sommeil au réveil. Éviter toute annonce de section ou rupture audible entre les parties. Les transitions sont des glissements naturels de focale (du lieu vers l'humain, du détail vers le panoramique). DENSITÉ SONORE MINIMALISTE : ambiances suggérées plutôt qu'illustrées — un son d'eau, un écho métallique lointain, pas de musique envahissante. REGISTRE : phrases courtes à moyennes, vocabulaire courant, pas de jargon technique non expliqué. Le ton reste factuel et sobre, mais laisse place à l'émotion par les images évoquées. CITATIONS : intégrer 1 à 2 citations directes courtes, attribuées de manière crédible (ouvrier, responsable, observateur local), sans inventer de noms propres non fournis par le contexte — utiliser des formulations comme « un ouvrier des chantiers confie » ou « on entend dire sur les quais ». DURÉE TOTALE VISÉE : 120 secondes (~240 mots maximum). Chaque section doit être dense et concise. Privilégier une phrase forte par idée plutôt que des développements longs."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Le géant qui réveilla la Loire",
+        "axe_narratif": "objet_lieu",
+        "angle_scenarisation": "chronique_sociale",
+        "resumeHistoire": "Au début des années 2010, le port de Nantes et les chantiers de Saint-Nazaire semblaient assoupis, vestiges d'une grandeur maritime passée. Puis, dans les bassins de l'estuaire de la Loire, des paquebots géants ont commencé à prendre forme, redonnant vie à tout un territoire. Ouvriers, ingénieurs et riverains ont vu leur quotidien transformé par cette renaissance industrielle inattendue. Les Chantiers de l'Atlantique, forts d'un savoir-faire séculaire, ont propulsé la région au rang de pôle mondial de la construction navale de croisière, réveillant avec eux la fierté et l'identité maritime de toute une population.",
+        "duree_estimee": 152.9611801242236,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Un port endormi",
+            "duree": 43.42857142857143,
+            "texte_narration": "Ce récit s'adresse à tous, dans un ton neutre et informatif, à la manière d'un documentaire contemplatif.\n\nAu début des années deux mille dix, le port de Nantes sommeille. Le long de l'estuaire de la Loire, les quais sont silencieux. Les grues, immobiles, contemplent un bassin vide. Saint-Nazaire porte encore la mémoire des grands paquebots d'autrefois. Mais cette mémoire semble figée, comme un rêve ancien que personne n'ose plus réveiller.",
+            "ton": {
+              "global": "nostalgique_contemplatif",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 'sommeille' (1.5s)",
+                "après 'silencieux' (1s)",
+                "après 'bassin vide' (1.5s)",
+                "après 'réveiller' (2s)"
+              ],
+              "intonation": "voix basse, posée, légèrement mélancolique — chaque phrase déposée comme une image fixe"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture — annonce discrète du registre et du ton",
+                "duree": 4.0
+              },
+              {
+                "timestamp": "0:05",
+                "action": "Image du port de Nantes endormi",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "0:18",
+                "action": "Mémoire maritime figée de Saint-Nazaire",
+                "duree": 10.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Ce récit s'adresse à tous, dans un ton neutre et informatif, à la manière d'un documentaire contemplatif.",
+                "sources": []
+              },
+              {
+                "sentence": "Au début des années deux mille dix, le port de Nantes sommeille.",
+                "sources": []
+              },
+              {
+                "sentence": "Le long de l'estuaire de la Loire, les quais sont silencieux.",
+                "sources": []
+              },
+              {
+                "sentence": "Les grues, immobiles, contemplent un bassin vide.",
+                "sources": []
+              },
+              {
+                "sentence": "Saint-Nazaire porte encore la mémoire des grands paquebots d'autrefois.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais cette mémoire semble figée, comme un rêve ancien que personne n'ose plus réveiller.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le chantier reprend souffle",
+            "duree": 42.78260869565217,
+            "texte_narration": "Puis, quelque chose change. Les Chantiers de l'Atlantique décrochent des commandes colossales. Dans les bassins de Saint-Nazaire, des coques immenses commencent à s'élever. Des dizaines de mètres de haut. Des centaines de mètres de long. Des milliers d'ouvriers et d'ingénieurs convergent vers l'estuaire. On entend dire sur les quais : « On n'avait pas vu ça depuis des décennies. Le chantier revit. » Le savoir-faire français, transmis de génération en génération, retrouve une scène à sa mesure.",
+            "ton": {
+              "global": "dynamique_ascendant",
+              "tempo_lecture": 115,
+              "pauses": [
+                "après 'change' (1.5s)",
+                "après 'colossales' (1s)",
+                "après 's'élever' (1s)",
+                "après 'Le chantier revit.' (2s)"
+              ],
+              "intonation": "montée progressive en énergie — le rythme s'accélère légèrement, la voix gagne en assurance sans perdre sa sobriété"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:30",
+                "action": "Bascule narrative — annonce du renouveau industriel",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:38",
+                "action": "Description de l'échelle colossale des navires en construction",
+                "duree": 10.0
+              },
+              {
+                "timestamp": "0:50",
+                "action": "Citation d'un observateur local — fierté du renouveau",
+                "duree": 8.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Puis, quelque chose change.",
+                "sources": []
+              },
+              {
+                "sentence": "Les Chantiers de l'Atlantique décrochent des commandes colossales.",
+                "sources": []
+              },
+              {
+                "sentence": "Dans les bassins de Saint-Nazaire, des coques immenses commencent à s'élever.",
+                "sources": []
+              },
+              {
+                "sentence": "Des dizaines de mètres de haut.",
+                "sources": []
+              },
+              {
+                "sentence": "Des centaines de mètres de long.",
+                "sources": []
+              },
+              {
+                "sentence": "Des milliers d'ouvriers et d'ingénieurs convergent vers l'estuaire.",
+                "sources": []
+              },
+              {
+                "sentence": "On entend dire sur les quais : « On n'avait pas vu ça depuis des décennies. Le chantier revit. »",
+                "sources": []
+              },
+              {
+                "sentence": "Le savoir-faire français, transmis de génération en génération, retrouve une scène à sa mesure.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Un territoire transformé",
+            "duree": 35.89285714285714,
+            "texte_narration": "Autour des chantiers, c'est tout un territoire qui se transforme. Des emplois par milliers. Des commerces qui rouvrent. Des familles qui s'installent. Nantes et Saint-Nazaire retrouvent une vitalité oubliée. Un ouvrier des chantiers confie : « Ici, on construit les plus grands navires du monde. Ça, ça rend fier. » Cette fierté dépasse les murs des ateliers. Elle irrigue les rues, les écoles, les conversations du soir.",
+            "ton": {
+              "global": "chaleureux_ancré",
+              "tempo_lecture": 112,
+              "pauses": [
+                "après 'par milliers' (0.5s)",
+                "après 'qui rouvrent' (0.5s)",
+                "après 'qui s'installent' (1s)",
+                "après 'rend fier.' (2s)"
+              ],
+              "intonation": "voix chaleureuse et posée — proximité humaine, ancrage dans le concret du quotidien"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:05",
+                "action": "Impact économique et social — énumération sobre",
+                "duree": 10.0
+              },
+              {
+                "timestamp": "1:15",
+                "action": "Citation d'un ouvrier — fierté collective",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "1:25",
+                "action": "La fierté irradie au-delà du chantier",
+                "duree": 7.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Autour des chantiers, c'est tout un territoire qui se transforme.",
+                "sources": []
+              },
+              {
+                "sentence": "Des emplois par milliers.",
+                "sources": []
+              },
+              {
+                "sentence": "Des commerces qui rouvrent.",
+                "sources": []
+              },
+              {
+                "sentence": "Des familles qui s'installent.",
+                "sources": []
+              },
+              {
+                "sentence": "Nantes et Saint-Nazaire retrouvent une vitalité oubliée.",
+                "sources": []
+              },
+              {
+                "sentence": "Un ouvrier des chantiers confie : « Ici, on construit les plus grands navires du monde. Ça, ça rend fier. »",
+                "sources": []
+              },
+              {
+                "sentence": "Cette fierté dépasse les murs des ateliers.",
+                "sources": []
+              },
+              {
+                "sentence": "Elle irrigue les rues, les écoles, les conversations du soir.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le géant prend la mer",
+            "duree": 30.857142857142854,
+            "texte_narration": "Et puis vient le jour du départ. Le géant glisse lentement sur la Loire, vers l'océan. Sur les berges, on regarde en silence. Le port de Nantes n'est plus endormi. Son sommeil est terminé. Dans le sillage du paquebot, c'est toute l'identité maritime d'un territoire qui reprend le large.",
+            "ton": {
+              "global": "solennel_apaisé",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 'du départ' (1.5s)",
+                "après 'vers l'océan' (2s)",
+                "après 'en silence' (1.5s)",
+                "après 'est terminé' (1.5s)",
+                "après 'le large' (3s)"
+              ],
+              "intonation": "voix douce et solennelle — ralentissement final, chaque mot posé avec gravité sereine, fin suspendue"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:35",
+                "action": "Image du paquebot quittant l'estuaire",
+                "duree": 10.0
+              },
+              {
+                "timestamp": "1:45",
+                "action": "Boucle narrative — le silence est désormais habité",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "1:53",
+                "action": "Ouverture finale — identité maritime retrouvée",
+                "duree": 7.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Et puis vient le jour du départ.",
+                "sources": []
+              },
+              {
+                "sentence": "Le géant glisse lentement sur la Loire, vers l'océan.",
+                "sources": []
+              },
+              {
+                "sentence": "Sur les berges, on regarde en silence.",
+                "sources": []
+              },
+              {
+                "sentence": "Le port de Nantes n'est plus endormi.",
+                "sources": []
+              },
+              {
+                "sentence": "Son sommeil est terminé.",
+                "sources": []
+              },
+              {
+                "sentence": "Dans le sillage du paquebot, c'est toute l'identité maritime d'un territoire qui reprend le large.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 279,
+          "duree_lecture_estimee": 152.9611801242236,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme un mouvement unique et organique — du sommeil au réveil. Éviter toute annonce de section ou rupture audible entre les parties. Les transitions sont des glissements naturels de focale (du lieu vers l'humain, du détail vers le panoramique). DENSITÉ SONORE MINIMALISTE : ambiances suggérées plutôt qu'illustrées — un son d'eau, un écho métallique lointain, pas de musique envahissante. REGISTRE : phrases courtes à moyennes, vocabulaire courant, pas de jargon technique non expliqué. Le ton reste factuel et sobre, mais laisse place à l'émotion par les images évoquées. CITATIONS : intégrer 1 à 2 citations directes courtes, attribuées de manière crédible (ouvrier, responsable, observateur local), sans inventer de noms propres non fournis par le contexte — utiliser des formulations comme « un ouvrier des chantiers confie » ou « on entend dire sur les quais ». DURÉE TOTALE VISÉE : 120 secondes (~240 mots maximum). Chaque section doit être dense et concise. Privilégier une phrase forte par idée plutôt que des développements longs.",
+        "quality_rank": 2
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Le géant qui réveilla la Loire",
+        "taggedText": "=== PARTIE 1 : Un port endormi ===\n\nCe récit s'adresse à tous, dans un ton neutre et informatif, à la manière d'un documentaire contemplatif.\n\n{clapotis_estuaire_calme.wav}\n\n[posé] Au début des années deux mille dix, le port de Nantes sommeille. Le long de l'estuaire de la Loire, les quais sont silencieux. [pause] Les grues, immobiles, contemplent un bassin vide. [atténué] Saint-Nazaire porte encore la mémoire des grands paquebots d'autrefois. Mais cette mémoire semble figée, comme un rêve ancien que personne n'ose plus réveiller. [pause]\n\n=== PARTIE 2 : Le chantier reprend souffle ===\n\nPuis, quelque chose change. [accentué] Les Chantiers de l'Atlantique décrochent des commandes colossales. {metal_chantier_lointain.wav} Dans les bassins de Saint-Nazaire, des coques immenses commencent à s'élever. Des dizaines de mètres de haut. Des centaines de mètres de long. [précipité] Des milliers d'ouvriers et d'ingénieurs convergent vers l'estuaire. On entend dire sur les quais : [pause] « On n'avait pas vu ça depuis des décennies. Le chantier revit. » [posé] Le savoir-faire français, transmis de génération en génération, retrouve une scène à sa mesure.\n\n=== PARTIE 3 : Un territoire transformé ===\n\n{rumeur_ville_douce.wav}\n\nAutour des chantiers, c'est tout un territoire qui se transforme. Des emplois par milliers. Des commerces qui rouvrent. Des familles qui s'installent. [joyeusement] Nantes et Saint-Nazaire retrouvent une vitalité oubliée. [pause] Un ouvrier des chantiers confie : [accentué] « Ici, on construit les plus grands navires du monde. Ça, ça rend fier. » [posé] Cette fierté dépasse les murs des ateliers. [atténué] Elle irrigue les rues, les écoles, les conversations du soir.\n\n=== PARTIE 4 : Le géant prend la mer ===\n\n{corne_brume_lointaine.wav}\n\n[ralentit] Et puis vient le jour du départ. Le géant glisse lentement sur la Loire, vers l'océan. [pause] Sur les berges, on regarde en silence. [accentué] Le port de Nantes n'est plus endormi. Son sommeil est terminé. [pause] [atténué] Dans le sillage du paquebot, c'est toute l'identité maritime d'un territoire qui reprend le large.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Un port endormi",
+            "taggedText": "Ce récit s'adresse à tous, dans un ton neutre et informatif, à la manière d'un documentaire contemplatif.\n\n{clapotis_estuaire_calme.wav}\n\n[posé] Au début des années deux mille dix, le port de Nantes sommeille. Le long de l'estuaire de la Loire, les quais sont silencieux. [pause] Les grues, immobiles, contemplent un bassin vide. [atténué] Saint-Nazaire porte encore la mémoire des grands paquebots d'autrefois. Mais cette mémoire semble figée, comme un rêve ancien que personne n'ose plus réveiller. [pause]"
+          },
+          {
+            "partie_id": 2,
+            "titre": "Le chantier reprend souffle",
+            "taggedText": "Puis, quelque chose change. [accentué] Les Chantiers de l'Atlantique décrochent des commandes colossales. {metal_chantier_lointain.wav} Dans les bassins de Saint-Nazaire, des coques immenses commencent à s'élever. Des dizaines de mètres de haut. Des centaines de mètres de long. [précipité] Des milliers d'ouvriers et d'ingénieurs convergent vers l'estuaire. On entend dire sur les quais : [pause] « On n'avait pas vu ça depuis des décennies. Le chantier revit. » [posé] Le savoir-faire français, transmis de génération en génération, retrouve une scène à sa mesure."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Un territoire transformé",
+            "taggedText": "{rumeur_ville_douce.wav}\n\nAutour des chantiers, c'est tout un territoire qui se transforme. Des emplois par milliers. Des commerces qui rouvrent. Des familles qui s'installent. [joyeusement] Nantes et Saint-Nazaire retrouvent une vitalité oubliée. [pause] Un ouvrier des chantiers confie : [accentué] « Ici, on construit les plus grands navires du monde. Ça, ça rend fier. » [posé] Cette fierté dépasse les murs des ateliers. [atténué] Elle irrigue les rues, les écoles, les conversations du soir."
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le géant prend la mer",
+            "taggedText": "{corne_brume_lointaine.wav}\n\n[ralentit] Et puis vient le jour du départ. Le géant glisse lentement sur la Loire, vers l'océan. [pause] Sur les berges, on regarde en silence. [accentué] Le port de Nantes n'est plus endormi. Son sommeil est terminé. [pause] [atténué] Dans le sillage du paquebot, c'est toute l'identité maritime d'un territoire qui reprend le large."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 18,
+          "soundTags": 4,
+          "originalWordCount": 279
+        }
+      },
+      "scenario_index": 1,
+      "compliance_report": {
+        "is_compliant": false,
+        "issues": [
+          "Durée 152s hors tolérance autour de 120s."
+        ]
+      },
+      "quality_rank": 2
+    }
+  ],
+  "last_scenarios_generated_at": "2026-03-13T09:01:18.976097"
+}

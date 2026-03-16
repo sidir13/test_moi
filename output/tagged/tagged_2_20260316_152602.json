@@ -1,0 +1,32 @@
+{
+  "scenario_id": 2,
+  "titre": "Les mains qui dessinent les navires",
+  "taggedText": "=== PARTIE 1 : Le bureau d'études au-dessus de la Loire ===\n\n{martelements_tole_lointains.wav}\n\nSur l'île de Nantes, au-dessus des cales où l'on martèle la tôle, [pause] un étage plus haut, [atténué] le silence. [pause] Des hommes penchés sur de grandes tables dessinent, règle et compas en main, [posé] les formes exactes des navires à naître.\n\n=== PARTIE 2 : Jean Penaud, le trait et la coque ===\n\nJean Penaud est de ceux-là. [pause] Dessinateur aux chantiers navals nantais, il trace au crayon dur chaque membrure, chaque bordé. Il précise : [posé] [atténué] « On dessinait les pièces grandeur nature, sur des feuilles immenses. Chaque ligne, c'était une tôle qu'on allait découper. » [pause] Le moindre trait engageait des tonnes d'acier sur la cale.\n\n=== PARTIE 3 : Un métier dans la communauté du chantier ===\n\n{sirene_chantier_lointaine.wav}\n\nAu bureau d'études, on portait la blouse, pas le bleu de chauffe. Mais le dessinateur vivait au rythme du chantier — mêmes sirènes, mêmes urgences quand un lancement approchait. [pause] Jean Penaud se souvient : [posé] [atténué] « On descendait voir le bateau prendre forme. [pause] C'était notre dessin qui tenait debout. » [pause] Traceurs, chaudronniers, soudeurs : [accentué] un même navire les liait.\n\n=== PARTIE 4 : L'effacement d'un savoir-faire ===\n\n{sons_chantier_extinction_progressive.wav}\n\n[ralentit] Puis les commandes se sont taries. Les chantiers Dubigeon ont fermé, [pause] les cales se sont tues. [pause] Les grandes tables à dessin ont été remisées. {vent_leger_loire.wav} Sur l'île de Nantes, l'herbe a recouvert les rails de lancement. [pause] [atténué] Mais dans quelques cartons oubliés dorment encore des plans tracés à la main — [posé] dernière empreinte d'un geste que personne ne répétera plus. [pause]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bureau d'études au-dessus de la Loire",
+      "taggedText": "{martelements_tole_lointains.wav}\n\nSur l'île de Nantes, au-dessus des cales où l'on martèle la tôle, [pause] un étage plus haut, [atténué] le silence. [pause] Des hommes penchés sur de grandes tables dessinent, règle et compas en main, [posé] les formes exactes des navires à naître."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Jean Penaud, le trait et la coque",
+      "taggedText": "Jean Penaud est de ceux-là. [pause] Dessinateur aux chantiers navals nantais, il trace au crayon dur chaque membrure, chaque bordé. Il précise : [posé] [atténué] « On dessinait les pièces grandeur nature, sur des feuilles immenses. Chaque ligne, c'était une tôle qu'on allait découper. » [pause] Le moindre trait engageait des tonnes d'acier sur la cale."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Un métier dans la communauté du chantier",
+      "taggedText": "{sirene_chantier_lointaine.wav}\n\nAu bureau d'études, on portait la blouse, pas le bleu de chauffe. Mais le dessinateur vivait au rythme du chantier — mêmes sirènes, mêmes urgences quand un lancement approchait. [pause] Jean Penaud se souvient : [posé] [atténué] « On descendait voir le bateau prendre forme. [pause] C'était notre dessin qui tenait debout. » [pause] Traceurs, chaudronniers, soudeurs : [accentué] un même navire les liait."
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'effacement d'un savoir-faire",
+      "taggedText": "{sons_chantier_extinction_progressive.wav}\n\n[ralentit] Puis les commandes se sont taries. Les chantiers Dubigeon ont fermé, [pause] les cales se sont tues. [pause] Les grandes tables à dessin ont été remisées. {vent_leger_loire.wav} Sur l'île de Nantes, l'herbe a recouvert les rails de lancement. [pause] [atténué] Mais dans quelques cartons oubliés dorment encore des plans tracés à la main — [posé] dernière empreinte d'un geste que personne ne répétera plus. [pause]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 21,
+    "soundTags": 4,
+    "originalWordCount": 211
+  }
+}

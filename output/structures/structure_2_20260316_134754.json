@@ -1,0 +1,99 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Jean Penaud, le trait et la coque — Être dessinateur aux chantiers navals de Nantes",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals nantais, des hommes comme Jean Penaud traduisaient en lignes précises les coques et les structures des navires à venir. Ce récit retrace le quotidien d'un dessinateur naval — de la table à dessin aux salles de traçage grandeur nature — et éclaire un maillon essentiel mais méconnu de la construction navale. À travers le portrait de Jean Penaud et la description de son métier, c'est toute une chaîne de savoir-faire qui se révèle, du trait de crayon sur calque jusqu'à la tôle découpée sur la cale. Le récit s'achève sur la disparition progressive de ces chantiers et de ces gestes, devenus patrimoine et mémoire industrielle de Nantes.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et les cales",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Évocation sensorielle des chantiers navals nantais en bord de Loire",
+        "Situer l'époque et le lieu : Nantes, chantiers Dubigeon, Prairie-au-Duc",
+        "Introduire l'existence d'un métier en retrait des cales : le dessinateur"
+      ],
+      "mood": "contemplatif_industriel"
+    },
+    {
+      "partie": 2,
+      "titre": "Jean Penaud, dessinateur",
+      "duree_cible": 22,
+      "fonction_narrative": "portrait_central",
+      "position_arc_emotionnel": "interet_croissant",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud : dessinateur sur les chantiers navals nantais",
+        "Son rôle dans la chaîne de construction : traduire les formes du navire en plans techniques",
+        "Citation directe de Penaud ou d'un témoignage sur le métier si disponible dans les sources",
+        "Rester factuel — ne pas inventer de dates ou de détails biographiques non sourcés"
+      ],
+      "mood": "precis_humain"
+    },
+    {
+      "partie": 3,
+      "titre": "Le geste et l'outil",
+      "duree_cible": 25,
+      "fonction_narrative": "description_thematique_metier",
+      "position_arc_emotionnel": "pic_engagement",
+      "elements_necessaires": [
+        "Description concrète du travail de dessinateur : tables à dessin, calques, tire-lignes, encre",
+        "Les salles de traçage : reproduction des plans à l'échelle 1 sur le sol",
+        "Lien entre le bureau d'études et la cale — le plan devient tôle, membrure, coque",
+        "Citation directe sur le geste ou l'outil si disponible",
+        "Hiérarchie : du chef de bureau au traceur, en passant par le dessinateur"
+      ],
+      "mood": "technique_admiratif"
+    },
+    {
+      "partie": 4,
+      "titre": "Le silence des cales",
+      "duree_cible": 25,
+      "fonction_narrative": "resolution_elegique",
+      "position_arc_emotionnel": "decrescendo_emotionnel",
+      "elements_necessaires": [
+        "Évocation du déclin et de la fermeture des chantiers navals nantais",
+        "Disparition du métier de dessinateur naval avec la fin de la construction navale à Nantes",
+        "Ce que ces hommes laissent : un patrimoine de savoir-faire, une mémoire industrielle",
+        "Retour à l'image de la Loire et des cales — écho à l'ouverture",
+        "Phrase de clôture évocatrice : le trait survit au navire"
+      ],
+      "mood": "nostalgique_digne"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_portrait_elegie",
+  "rythme_general": "ouverture lente et immersive — accélération sur le portrait et le geste technique — ralentissement final élégiaque",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du panorama des chantiers, on glisse vers un bureau d'études précis, vers un homme penché sur sa table. Transition par le regard : on quitte le bruit des cales pour le silence concentré du dessinateur."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "prolongement_naturel",
+      "duree": 1.5,
+      "description": "De l'homme à son geste. On passe du portrait de Penaud à la description précise de ce que font ses mains — le crayon, le calque, la courbe. Pas de rupture : le personnage reste présent à travers son métier."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_temporelle_douce",
+      "duree": 2.5,
+      "description": "Du geste vivant au geste disparu. Une phrase-pivot marque le passage du temps — les tables à dessin se vident, les salles de traçage ferment. Le ton se fait plus grave, le rythme ralentit."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est un mouvement continu du large au précis, puis du précis au mémoriel. Éviter toute annonce de plan ou rupture didactique entre sections — chaque transition doit être une phrase narrative qui porte le récit en avant. REGISTRE : Langage accessible mais soigné, vocabulaire technique introduit naturellement et brièvement explicité (ex. « les salles de traçage, où les plans étaient reproduits à l'échelle réelle sur le sol »). CITATIONS : Intégrer les citations directes comme parole vivante au sein du flux narratif, jamais comme blocs isolés — les amener par le contexte et les prolonger par le commentaire. RYTHME AUDIO : Les parties 1 et 4 appellent un débit plus lent, des silences courts, un ton posé. Les parties 2 et 3 peuvent être légèrement plus vives, portées par la précision du détail. PRUDENCE FACTUELLE : Jean Penaud est le personnage central mais les sources disponibles sont limitées — privilégier les formulations ouvertes (« des hommes comme Jean Penaud ») plutôt que d'inventer une biographie. Ne jamais fabriquer de dates, de navires ou d'événements non attestés par les sources. BUDGET MOTS : Environ 180 mots maximum pour 90 secondes. Chaque section doit être dense et concise — partie 1 ≈ 36 mots, partie 2 ≈ 44 mots, partie 3 ≈ 50 mots, partie 4 ≈ 50 mots. Les transitions sont incluses dans le décompte de la section qui suit."
+}

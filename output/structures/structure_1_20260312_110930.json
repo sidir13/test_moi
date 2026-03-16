@@ -1,0 +1,78 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains sur le parquet — Vie d'un dessinateur de navires",
+  "resumeHistoire": "En septembre 1958, Gilles Hamon entre comme apprenti aux chantiers navals de la Bretagne, à Nantes. Il a quatorze ans. Son métier : tracer à même le sol, à quatre pattes sur un immense parquet, les formes des navires à construire — reporter des points dans l'espace, courber des lattes, donner corps aux coques futures. Au fil des fusions de chantiers et des années de formation, il gravit les échelons, passe du tracé au bureau de dessin, traverse les mutations d'une industrie en pleine transformation. Quand les chantiers nantais ferment en 1987, c'est un monde entier qui bascule — mais le geste du traceur, lui, reste inscrit dans la mémoire du fleuve.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 120,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le parquet des formes",
+      "duree_cible": 45,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Situer l'époque : fin des années 1950, chantiers navals nantais",
+        "Présenter Gilles Hamon, apprenti de quatorze ans entrant aux chantiers de la Bretagne en septembre 1958",
+        "Décrire le geste fondateur : travailler à quatre pattes sur un parquet à l'échelle 1, reporter des points donnés par les bureaux d'études — largeur, longueur, profondeur",
+        "Évoquer les outils : décamètre, lattes, le tracé des courbes de coque",
+        "Insérer un extrait audio de Gilles Hamon décrivant le travail au sol"
+      ],
+      "mood": "descriptif_contemplatif_précis"
+    },
+    {
+      "partie": 2,
+      "titre": "Monter en grade",
+      "duree_cible": 35,
+      "fonction_narrative": "progression_ascendante",
+      "position_arc_emotionnel": "montee_fierté",
+      "elements_necessaires": [
+        "Transition du traceur-ouvrier vers le bureau de dessin : formation parallèle, cours à l'IVET, passage du CAP puis du brevet",
+        "Évolution à travers les fusions successives des chantiers nantais jusqu'aux Chantiers Dubigeon",
+        "Reconnaissance professionnelle : galons obtenus au fil des années",
+        "Insérer un extrait audio sur la progression de carrière et les fusions",
+        "Rendre sensible la fierté du parcours et du savoir-faire acquis"
+      ],
+      "mood": "narratif_dynamique_sobre"
+    },
+    {
+      "partie": 3,
+      "titre": "La fermeture",
+      "duree_cible": 40,
+      "fonction_narrative": "bascule_et_resolution",
+      "position_arc_emotionnel": "sommet_emotionnel_puis_apaisement",
+      "elements_necessaires": [
+        "La fermeture des chantiers nantais vers 1987 — un monde qui disparaît",
+        "Le départ vers Saint-Nazaire pour finir sa carrière",
+        "Contraste entre le parquet des débuts et la fin d'une époque industrielle",
+        "Insérer un extrait audio sur la fermeture et le transfert à Saint-Nazaire",
+        "Clore sur la persistance du geste et du savoir-faire — ce que le traceur a inscrit dans l'histoire de la construction navale"
+      ],
+      "mood": "grave_puis_apaise_elegiaque"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "modere_avec_acceleration_progressive",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 3.0,
+      "description": "Du geste physique au sol vers l'élévation professionnelle : la narration quitte le parquet pour accompagner Gilles Hamon qui se relève — littéralement et socialement. La transition s'appuie sur l'idée que le même regard qui suivait les courbes au sol apprend désormais à les dessiner sur papier, au bureau."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce",
+      "duree": 3.0,
+      "description": "Après l'élan de la progression, un silence ou un ralentissement marque la bascule. La voix off glisse du récit d'ascension vers l'annonce de la fermeture. Le diptyque avant/après se cristallise ici : tout ce qui a été construit — compétences, fierté, communauté — se heurte à la fin des chantiers nantais."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est le geste du traceur — des mains sur le parquet au trait sur le papier, puis à l'absence du chantier. Ce motif relie les trois parties sans rupture artificielle. — VOIX OFF : Ton neutre et informatif, registre accessible grand public, phrases claires et moyennement longues. Pas d'adresse directe au public. Invitations immersives encouragées (ex. « Nous sommes en septembre 1958… »). — ARCHIVES : Ratio 60 % narration / 40 % archives. Trois insertions d'extraits de Gilles Hamon, une par section, choisies pour leur force évocatrice. Les extraits doivent être introduits et prolongés par la narration, jamais plaqués. — DENSITÉ SONORE : Minimaliste. Peu ou pas de musique ; laisser respirer la voix et les silences. Si ambiance sonore, elle doit rester très discrète (souffle de chantier, bruit lointain de métal). — ÉPOQUE LINGUISTIQUE : Conserver le vocabulaire authentique du métier (traceur, parquet, latte, décamètre, bureau d'études) et le laisser résonner naturellement dans la narration. — DURÉE : Viser 120 secondes au total. Chaque section inclut sa part d'archives. Tolérance ±15 %."
+}

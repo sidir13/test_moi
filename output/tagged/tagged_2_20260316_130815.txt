@@ -1,0 +1,23 @@
+=== PARTIE 1 : Le silence des cales ===
+
+{vent_loire_beton.wav}
+
+[posé] Aujourd'hui, sur l'île de Nantes, les cales sont vides. [pause] Le vent de Loire glisse sur le béton nu, là où des coques d'acier prenaient forme. [pause] Parmi les hommes qui ont œuvré ici, [atténué] il y avait des dessinateurs.
+
+=== PARTIE 2 : Le bureau des traceurs ===
+
+{bruissement_papier_crayons.wav}
+
+Jean Penaud entre aux chantiers Dubigeon comme dessinateur industriel. Chaque matin, il rejoint le bureau d'études — tables inclinées, équerres, tire-lignes. [pause] Il se souvient : [posé] [atténué] « Je faisais des plans de coque, des plans de structure, de charpente. » [pause] Ses tracés guidaient ensuite le geste des ouvriers sur les cales.
+
+=== PARTIE 3 : Du trait à l'acier ===
+
+{activite_metal_marteaux.wav}
+
+Du bureau d'études, les plans descendaient à la salle des traceurs, où chaque courbe était reproduite grandeur nature sur le sol. [précipité] Puis venaient les charpentiers, les soudeurs, les riveurs. [pause] Jean Penaud précise : [posé] [atténué] « Le dessinateur, c'est entre l'ingénieur et l'ouvrier. » [pause] [ralentit] Ligne après ligne, un navire entier naissait de ce trait d'encre.
+
+=== PARTIE 4 : L'encre et la mémoire ===
+
+{echo_cales_vides.wav}
+
+[ralentit] Les chantiers ont fermé. Les tables à dessin ont disparu, les tire-lignes se sont tus. [pause] Mais les navires tracés par Jean Penaud et ses pairs ont sillonné les mers du monde. [pause] [atténué] Sur les cales silencieuses de l'île de Nantes, il reste cela — [étire] l'empreinte invisible d'un trait juste.

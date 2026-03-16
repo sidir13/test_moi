@@ -1,0 +1,21 @@
+=== PARTIE 1 : Le temps des chantiers ===
+
+{nappe_eau_loire_lointaine.wav}
+
+[ton posé] Sur l'Île de Nantes, le long de la Loire, un quai résonne encore du souvenir des chantiers navals. Nous sommes au cœur du vingtième siècle. Ici, aux chantiers Dubigeon et au Chantier de la Loire, des grues monumentales soulèvent des tonnes d'acier au-dessus des coques en construction. {metal_lointain_chantier.wav} Le métal grince, les rivets claquent, et la grue — celle qui deviendra un jour le symbole de toute une ville — n'est encore qu'un outil de travail parmi d'autres. [pause 3s]
+
+=== PARTIE 2 : Les hommes du fer ===
+
+Parmi ces hommes, Jean Penaud. [pause 1s] Charpentier de fer. Il est embauché le cinq février 1957 au Chantier de la Loire. Il a à peine vingt ans. [pause 1s] [ARCHIVE — Jean Penaud] « J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret. C'est-à-dire qu'on triait les goussets. À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les pièces pour amener à bord. » [FIN ARCHIVE] [pause 1s] Les goussets, ce sont ces petites pièces de renfort en métal, essentielles à la solidité d'une coque. Jean apprend le métier directement à bord des navires, guidé par un ancien de soixante-trois ans. [pause 3s]
+
+=== PARTIE 3 : Le silence des cales ===
+
+{silence_vent_tenu.wav}
+
+[ralentissement] Puis, au fil des décennies suivantes, la désindustrialisation frappe Nantes de plein fouet. [ton grave] Les chantiers navals ferment, les uns après les autres. Les hommes quittent les quais. [pause 1s] Les outils se taisent. Sur les cales où l'on assemblait des navires, il ne reste plus que le vent et le bruit sourd de la Loire. {eau_loire_nue.wav} La grue, elle, ne bouge plus. Immobile sur son rail, elle se dresse face au fleuve, [pause 2s] seule. [pause 3s]
+
+=== PARTIE 4 : Le symbole debout ===
+
+{nappe_lumineuse_discrète.wav}
+
+Mais la grue est restée. Et avec le temps, elle est devenue autre chose. Sur le quai des Antilles, là où s'étendait autrefois la prairie au Duc, l'Île de Nantes s'est transformée. Les anciennes friches industrielles ont laissé place à des espaces de vie, de culture, de promenade. Et au milieu de ce paysage réinventé, [pause 1s] la grue jaune. Classée monument historique, elle ne soulève plus d'acier. [ton solennel] Elle porte désormais la mémoire de ceux qui, comme Jean Penaud, ont façonné des navires à mains nues sur ces bords de Loire. Sa silhouette jaune, visible de loin, rappelle que l'identité d'une ville ne s'efface pas. [pause 1s] Elle se transmet. [pause 4s]

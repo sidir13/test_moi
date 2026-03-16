@@ -1,0 +1,225 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers nantais",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals nantais, des dessinateurs comme Jean Penaud traduisaient en plans précis les navires qui prendraient forme sur les cales. Avant le déclin de la construction navale, ce métier exigeant mêlait rigueur technique et savoir-faire artisanal, au cœur d'une industrie qui faisait battre Nantes. Le récit suit le quotidien de ces hommes penchés sur leurs planches à dessin, puis évoque la transformation irréversible lorsque les chantiers ferment et que ce savoir-faire s'efface du paysage nantais. De l'effervescence des ateliers à la Prairie-au-Duc silencieuse, c'est l'histoire d'un geste technique devenu patrimoine.",
+  "duree_estimee": 107.24819624819625,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le trait sur le papier",
+      "duree": 17.454545454545453,
+      "texte_narration": "Un crayon glisse sur le calque. Autour, le froissement des règles, le souffle concentré des hommes penchés sur leurs planches. Nous sommes aux chantiers navals de Nantes, dans le bureau d'études.",
+      "ton": {
+        "global": "contemplatif, précis, immersif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'calque' (1.5s)",
+          "après 'planches' (1s)",
+          "après 'études' (2s)"
+        ],
+        "intonation": "posée, lente, descriptive — chaque mot fait image"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Son de crayon sur calque, ambiance feutrée de bureau d'études",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:06",
+          "action": "Léger fond sonore industriel lointain — marteaux, Loire",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un crayon glisse sur le calque.",
+          "sources": []
+        },
+        {
+          "sentence": "Autour, le froissement des règles, le souffle concentré des hommes penchés sur leurs planches.",
+          "sources": []
+        },
+        {
+          "sentence": "Nous sommes aux chantiers navals de Nantes, dans le bureau d'études.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le monde d'avant — dessiner les navires",
+      "duree": 35.0,
+      "texte_narration": "Ici, chaque navire commence par un trait. Le dessinateur traduit les calculs de l'ingénieur en plans de formes, dessine la coque, les membrures, chaque détail qui prendra vie sur la cale. Jean Penaud confie : [ARCHIVE : « On faisait les dessins d'ensemble et les dessins de détail pour les ouvriers, pour qu'ils puissent fabriquer les pièces. »] En contrebas, les soudeurs et les charpentiers attendent ces plans comme une partition.",
+      "ton": {
+        "global": "documentaire vivant, rythme légèrement accéléré, énergie du chantier",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'trait' (1s)",
+          "après la citation ARCHIVE (1.5s)",
+          "après 'partition' (2s)"
+        ],
+        "intonation": "affirmée, fluide, montée progressive d'intensité"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:15",
+          "action": "Transition sonore — le fond industriel monte légèrement",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:25",
+          "action": "Voix d'archive de Jean Penaud — citation directe",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "0:40",
+          "action": "Retour voix off, sons de chantier en activité",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Ici, chaque navire commence par un trait.",
+          "sources": []
+        },
+        {
+          "sentence": "Le dessinateur traduit les calculs de l'ingénieur en plans de formes, dessine la coque, les membrures, chaque détail qui prendra vie sur la cale.",
+          "sources": []
+        },
+        {
+          "sentence": "Jean Penaud confie : [ARCHIVE : « On faisait les dessins d'ensemble et les dessins de détail pour les ouvriers, pour qu'ils puissent fabriquer les pièces. »]",
+          "sources": []
+        },
+        {
+          "sentence": "En contrebas, les soudeurs et les charpentiers attendent ces plans comme une partition.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "duree": 32.57142857142857,
+      "texte_narration": "Puis les commandes se raréfient. Les grues s'immobilisent. Les chantiers navals nantais ferment, l'un après l'autre. La Prairie-au-Duc se vide. Jean Penaud se souvient : [ARCHIVE : « Quand on a fermé, ça a été un coup dur. On savait que c'était fini. »] Les planches à dessin sont rangées. Le silence remplace le fracas.",
+      "ton": {
+        "global": "mélancolique, sobre, contraste marqué avec la partie précédente",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 's'immobilisent' (1.5s)",
+          "après 'se vide' (1.5s)",
+          "après la citation ARCHIVE (2s)",
+          "après 'fracas' (2s)"
+        ],
+        "intonation": "descendante, retenue, phrases courtes et espacées"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:45",
+          "action": "Raréfaction sonore brutale — disparition progressive des bruits industriels",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:52",
+          "action": "Voix d'archive de Jean Penaud — ton grave, émotion contenue",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:02",
+          "action": "Silence quasi total, léger vent, écho",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis les commandes se raréfient.",
+          "sources": []
+        },
+        {
+          "sentence": "Les grues s'immobilisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers navals nantais ferment, l'un après l'autre.",
+          "sources": []
+        },
+        {
+          "sentence": "La Prairie-au-Duc se vide.",
+          "sources": []
+        },
+        {
+          "sentence": "Jean Penaud se souvient : [ARCHIVE : « Quand on a fermé, ça a été un coup dur. On savait que c'était fini. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Les planches à dessin sont rangées.",
+          "sources": []
+        },
+        {
+          "sentence": "Le silence remplace le fracas.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Ce que la main savait",
+      "duree": 22.22222222222222,
+      "texte_narration": "Aujourd'hui, l'Île de Nantes ne construit plus de navires. Mais dans les archives, les plans subsistent — tracés nets, cotes précises, mémoire d'un geste sûr. Ce que la main de Jean Penaud savait, le papier le garde encore.",
+      "ton": {
+        "global": "recueilli, digne, ouverture sans nostalgie excessive",
+        "tempo_lecture": 108,
+        "pauses": [
+          "après 'navires' (1.5s)",
+          "après 'sûr' (1.5s)",
+          "après 'encore' (3s — fin)"
+        ],
+        "intonation": "apaisée, sobre, dernière phrase suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:10",
+          "action": "Ambiance urbaine contemporaine très discrète — rappel du présent",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:22",
+          "action": "Dernière phrase — léger retour du son de crayon sur calque, écho de l'ouverture",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:28",
+          "action": "Silence final, fondu",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, l'Île de Nantes ne construit plus de navires.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais dans les archives, les plans subsistent — tracés nets, cotes précises, mémoire d'un geste sûr.",
+          "sources": []
+        },
+        {
+          "sentence": "Ce que la main de Jean Penaud savait, le papier le garde encore.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 199,
+    "duree_lecture_estimee": 107.24819624819625,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme un seul mouvement en quatre temps, pas quatre blocs séparés. Chaque section doit se fondre dans la suivante par le fil conducteur du geste du dessinateur — le trait tiré sur le papier. — PARTIE 1 : Attaque in medias res sensorielle. On entend avant de comprendre. Pas d'introduction méta. Ambiance sonore riche dès la première seconde (crayon sur calque, respiration, fond industriel lointain). — PARTIE 2 : Cœur documentaire. Les citations directes de témoignages doivent s'intégrer dans le flux narratif, introduites par la voix off puis restituées comme parole vivante. Jean Penaud est nommé ici. Le débit peut légèrement s'accélérer pour transmettre l'énergie du chantier en activité. — PARTIE 3 : Contraste maximal. Le design sonore est aussi important que le texte : raréfaction des sons, écho, vent. Les phrases se raccourcissent. La citation directe ici doit porter l'émotion du vécu. — PARTIE 4 : Conclusion ouverte, ni nostalgique ni triomphale. Dignité du souvenir. Dernière phrase courte et évocatrice. — ÉQUILIBRE NARRATION/ARCHIVES (0.6) : Environ 40 % du temps total devrait être occupé par ou construit autour de citations et témoignages directs, le reste par la voix off narrative. — DÉBIT : ~2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque mot compte. Privilégier la concision et la force des images. — AUTHENTICITÉ LINGUISTIQUE : Vocabulaire technique naval utilisé avec naturel (cale, coque, bureau d'études, plan de formes) mais toujours compréhensible en contexte."
+}

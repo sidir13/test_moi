@@ -1,0 +1,122 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Le trait et la coque — Une journée de dessinateur aux chantiers navals de Nantes",
+  "resumeHistoire": "Chaque matin, Jean Penaud franchissait les grilles des chantiers navals nantais pour rejoindre la salle à tracer, là où les navires prenaient forme avant même de toucher l'acier. Ce récit retrace une journée type d'un dessinateur naval à Nantes, depuis l'aube sur les bords de Loire jusqu'au soir, quand les plans rejoignaient les ateliers de construction. À travers les gestes précis de Penaud — le tracé des courbes de coque, la collaboration avec ingénieurs et traceurs —, c'est tout un savoir-faire industriel nantais qui se révèle. Mais ce documentaire est aussi un regard en arrière, un flashback depuis le silence des chantiers fermés vers l'époque où le crayon d'un dessinateur donnait vie à des géants d'acier sur la Prairie-au-Duc.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le silence d'aujourd'hui",
+      "duree_cible": 12,
+      "fonction_narrative": "prologue_flashback",
+      "position_arc_emotionnel": "mélancolie_contemplative",
+      "elements_necessaires": [
+        "Évocation de l'Île de Nantes aujourd'hui, les chantiers disparus",
+        "Amorce du flashback — retour vers l'époque active des chantiers",
+        "Ambiance sonore suggérée : silence urbain, vent sur la Loire"
+      ],
+      "mood": "nostalgique_sobre"
+    },
+    {
+      "partie": 2,
+      "titre": "L'aube aux grilles des chantiers",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "éveil_progressif",
+      "elements_necessaires": [
+        "Le matin — arrivée de Jean Penaud aux chantiers navals de Nantes",
+        "Description sensorielle : bruits de la Loire, sirène des chantiers, pas sur les pavés",
+        "Situer le dessinateur dans la hiérarchie des métiers (entre ingénieur et traceur)",
+        "Citation directe si disponible dans les sources sur le rituel du matin ou l'arrivée"
+      ],
+      "mood": "descriptif_concret"
+    },
+    {
+      "partie": 3,
+      "titre": "La salle à tracer",
+      "duree_cible": 25,
+      "fonction_narrative": "cœur_narratif",
+      "position_arc_emotionnel": "intensité_maîtrisée",
+      "elements_necessaires": [
+        "Description du travail de dessinateur : tracé des plans de coque, courbes, échelles",
+        "Gestes précis — le crayon, la règle, le papier calque, les instruments de dessin",
+        "Collaboration avec les ingénieurs et les traceurs de la salle",
+        "Citation directe de Jean Penaud ou d'un témoignage sur le métier de dessinateur",
+        "Ambiance sonore suggérée : crayons sur papier, murmures, règles métalliques"
+      ],
+      "mood": "appliqué_technique_vivant"
+    },
+    {
+      "partie": 4,
+      "titre": "Du trait au navire",
+      "duree_cible": 20,
+      "fonction_narrative": "élargissement_perspective",
+      "position_arc_emotionnel": "fierté_collective",
+      "elements_necessaires": [
+        "Le moment où le plan quitte la salle à tracer pour rejoindre les ateliers de construction",
+        "Lien entre le dessin sur papier et la réalité physique du navire sur la cale",
+        "Évocation de la Prairie-au-Duc, des coques en construction sur les bords de Loire",
+        "Citation directe sur la fierté de voir un navire prendre forme à partir de ses plans",
+        "Ambiance sonore suggérée : martèlement, rivets, clameur des ateliers"
+      ],
+      "mood": "épique_mesuré"
+    },
+    {
+      "partie": 5,
+      "titre": "Le soir tombe sur la Loire",
+      "duree_cible": 15,
+      "fonction_narrative": "épilogue_retour_au_présent",
+      "position_arc_emotionnel": "mélancolie_apaisée",
+      "elements_necessaires": [
+        "Fin de journée — Penaud quitte les chantiers, retour vers la ville",
+        "Retour au présent : les chantiers ont fermé, mais le savoir-faire demeure dans la mémoire",
+        "Fermeture du flashback — écho au silence de la partie 1",
+        "Ambiance sonore suggérée : sirène de fin de poste, puis silence progressif"
+      ],
+      "mood": "élégiaque_digne"
+    }
+  ],
+  "arc_emotionnel_global": "boucle_mélancolique_avec_cœur_lumineux",
+  "rythme_general": "modere — ouverture lente, accélération progressive au cœur du récit, ralentissement final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "flashback_sonore",
+      "duree": 2.0,
+      "description": "Du silence contemporain de l'Île de Nantes, une sirène de chantier lointaine ramène dans le passé. La narration glisse sans rupture vers le matin d'une journée de travail."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Penaud franchit la porte de la salle à tracer — transition fluide du dehors (bruits du chantier) vers le dedans (concentration, calme relatif)."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "élargissement_spatial",
+      "duree": 2.0,
+      "description": "Le plan achevé quitte la table du dessinateur. Le regard narratif suit le dessin hors de la salle, vers les cales de construction. Montée sonore progressive."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "retour_au_présent",
+      "duree": 2.0,
+      "description": "La clameur des ateliers s'estompe. La sirène de fin de poste résonne, puis le silence revient — celui du présent, celui de la partie 1. La boucle se referme."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme un flashback encadré — le présent silencieux ouvre et ferme le documentaire, le passé vivant constitue le cœur. La journée type structure les parties 2 à 4 (matin → journée → soir), mais elle est enchâssée dans cette boucle temporelle. FLUIDITÉ : Éviter toute rupture sèche entre sections. Chaque transition repose sur un élément sensoriel (son, geste, lieu) qui assure le lien. Les ambiances sonores suggérées sont essentielles au rythme — elles portent les transitions autant que le texte. CITATIONS : Intégrer les paroles de Jean Penaud ou de témoins des chantiers navals de manière naturelle, comme des souvenirs qui affleurent dans le récit, jamais comme des blocs rapportés. REGISTRE : Grand public — phrases claires, vocabulaire technique introduit avec naturel (salle à tracer, plans de coque, traceur). Le ton neutre informatif n'exclut pas l'émotion contenue. DURÉE : 180 mots maximum au total. Chaque section doit être dense et économe. Privilégier les images fortes et les détails concrets plutôt que les généralités. RIGUEUR HISTORIQUE : Ne pas inventer de détails biographiques sur Jean Penaud au-delà de ce que les sources fournissent. Si les informations manquent, rester sur le métier de dessinateur naval en général, en le rattachant aux chantiers nantais (Ateliers et Chantiers de Nantes, Dubigeon, Prairie-au-Duc)."
+}

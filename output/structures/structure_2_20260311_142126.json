@@ -1,0 +1,103 @@
+{
+  "scenario_id": 2,
+  "titre_global": "La grue jaune — Une journée au bord de la Loire",
+  "resumeHistoire": "Au petit matin, sur l'Île de Nantes, une grue jaune monumentale se dresse dans la brume de Loire, vestige silencieux des anciens chantiers navals où des hommes comme Jean Penaud, charpentier de fer, façonnaient les navires dès l'aube. Le récit traverse une journée type — du réveil industriel au crépuscule contemplatif — pour raconter comment cet engin de levage, témoin de décennies de labeur ouvrier sur les quais de la Prairie-au-Duc, a survécu à la désindustrialisation des années 1970-1980 et à la fermeture des chantiers. Devenue symbole de la mémoire ouvrière nantaise, la grue jaune veille désormais sur un paysage transformé, entre les Machines de l'île et le Quai des Antilles, où sa couleur éclate comme un signal de ce que Nantes refuse d'oublier. Du geste ouvrier du matin à la silhouette dorée du soir, elle incarne le passage d'une ville industrielle à une cité de culture et de mémoire.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube — Le quai s'éveille",
+      "duree_cible": 22.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Localisation précise : Île de Nantes, bords de Loire, anciens chantiers Dubigeon / Prairie-au-Duc",
+        "Évocation sensorielle du matin brumeux sur la Loire",
+        "Présentation de la grue jaune comme silhouette dans le paysage",
+        "Adresse au grand public : poser le décor avec simplicité",
+        "Ton neutre-informatif, voix off omnisciente féminine"
+      ],
+      "mood": "brume_matinale_minimaliste"
+    },
+    {
+      "partie": 2,
+      "titre": "Le matin — Les gestes du fer",
+      "duree_cible": 25.0,
+      "fonction_narrative": "ancrage_historique_et_humain",
+      "position_arc_emotionnel": "montee_emotionnelle_douce",
+      "elements_necessaires": [
+        "Rôle de la grue : levage des pièces, goussets, éléments de coque sur les chantiers navals",
+        "Intégration archive Jean Penaud : son entrée au chantier (5 février 1957), le parc à ferret, le petit train, les goussets",
+        "Évocation du métier de charpentier de fer — apprentissage auprès d'un ancien de 63 ans",
+        "Vocabulaire technique rendu accessible (goussets = pièces de renfort)",
+        "La grue comme compagne quotidienne des ouvriers"
+      ],
+      "mood": "labeur_concret_respectueux"
+    },
+    {
+      "partie": 3,
+      "titre": "L'après-midi — Le silence tombe",
+      "duree_cible": 20.0,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "creux_melancolique",
+      "elements_necessaires": [
+        "Désindustrialisation des années 1970-1980 : fermeture progressive des chantiers navals nantais",
+        "Le quai se vide, la grue reste — immobile, sans charge",
+        "Métaphore de la journée : l'après-midi comme déclin de l'activité industrielle",
+        "Mémoire ouvrière menacée d'effacement",
+        "Transition lente, contemplative"
+      ],
+      "mood": "silence_industriel_melancolie"
+    },
+    {
+      "partie": 4,
+      "titre": "Le soir — La grue dorée",
+      "duree_cible": 23.0,
+      "fonction_narrative": "resolution_symbolique",
+      "position_arc_emotionnel": "apaisement_lumineux",
+      "elements_necessaires": [
+        "Reconversion de l'Île de Nantes : politique de préservation du patrimoine industriel",
+        "La grue jaune conservée comme monument-symbole",
+        "Symbolique de la couleur jaune dans le paysage nantais",
+        "Nouveau contexte : Quai des Antilles, Machines de l'île, renouveau culturel",
+        "Crépuscule sur la Loire : la grue comme sentinelle de mémoire",
+        "Retour au calme contemplatif — boucle avec l'aube"
+      ],
+      "mood": "crepuscule_dore_serein"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_circulaire_aube_a_crepuscule",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel_naturel",
+      "duree": 2.5,
+      "description": "De la brume matinale, la voix glisse vers le bruit des premiers ouvriers — un souffle de Loire cède la place à l'évocation du métal. Pas de rupture : le matin avance simplement."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "erosion_progressive",
+      "duree": 2.0,
+      "description": "Les gestes décrits ralentissent, les sons s'espacent. La phrase finale de la section 2 laisse planer un dernier écho de chantier avant que le silence de la section 3 s'installe — comme une journée de travail qui ne reprendra plus."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "renaissance_douce",
+      "duree": 2.5,
+      "description": "Du silence mélancolique, une lumière revient — celle du soir. La voix reprend souffle, le ton passe de la perte à la persistance. La grue, immobile dans le vide, redevient visible dans un nouveau paysage."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est une seule journée métaphorique — l'aube correspond à la découverte du lieu, le matin à l'âge industriel actif, l'après-midi à la désindustrialisation, le soir à la renaissance culturelle. Cette métaphore temporelle ne doit JAMAIS être explicitement nommée ; elle doit être ressentie par le rythme et les images. — VOIX : Narratrice femme professionnelle, ton neutre-informatif constant. Débit lent, pauses assumées entre les sections. Aucune dramatisation excessive : laisser les faits et les silences porter l'émotion. — ARCHIVES : L'extrait de Jean Penaud (charpentier de fer, entré au Chantier de la Loire le 5 février 1957, passé par le parc à ferret, devenu charpentier de fer auprès d'un ancien) doit être intégré en section 2, idéalement en voix directe sur 10-12 secondes (ratio archives ~40%). Privilégier les passages sur les goussets et le petit train pour leur pouvoir évocateur concret. — AMBIANCE SONORE : Minimaliste. Section 1 : eau, brume. Section 2 : métal lointain, discret. Section 3 : silence habité. Section 4 : vent de Loire, rumeur urbaine douce. Aucune musique appuyée — le vide sonore est un choix narratif. — RIGUEUR : Ne pas inventer de date de construction ou de modèle pour la grue. Ne pas attribuer de citations non présentes dans les archives. Les faits vérifiables se limitent au contexte fourni. — OUVERTURE : La première phrase doit poser clairement le cadre accessible grand public et le ton informatif, conformément aux contraintes verrouillées par l'utilisateur."
+}

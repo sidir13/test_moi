@@ -1,0 +1,98 @@
+{
+  "scenario_id": 3,
+  "titre_global": "La Grue Jaune — Sentinelle de la Loire",
+  "resumeHistoire": "Sur le quai des Antilles, à la pointe ouest de l'Île de Nantes, une grue monumentale de couleur jaune se dresse face à la Loire. Vestige des anciens chantiers navals qui ont façonné l'identité ouvrière de la ville, elle a traversé les décennies de désindustrialisation et de reconversion urbaine sans jamais quitter son poste. À travers le portrait intime de cet objet devenu symbole, le récit retrace son parcours : d'outil de travail au service des charpentiers de fer et des ouvriers du port, à monument patrimonial ancré dans la mémoire collective nantaise. La grue jaune incarne aujourd'hui la tension féconde entre un passé industriel révolu et une ville qui a choisi de ne pas oublier.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Une silhouette sur le quai",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "contemplation_calme",
+      "elements_necessaires": [
+        "Description visuelle de la grue jaune sur le quai des Antilles",
+        "Localisation précise : pointe ouest de l'Île de Nantes, bords de Loire",
+        "Entrée par les sens : couleur, verticalité, silence du lieu aujourd'hui",
+        "Amorce du portrait — la grue comme personnage à part entière"
+      ],
+      "mood": "contemplatif_minimaliste"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 25.0,
+      "fonction_narrative": "ancrage_historique_et_humain",
+      "position_arc_emotionnel": "montee_emotionnelle_douce",
+      "elements_necessaires": [
+        "Évocation des chantiers navals de l'Île de Nantes (Dubigeon et chantiers de la Loire)",
+        "Intégration de l'archive Jean Penaud : son entrée comme charpentier de fer, le quotidien ouvrier (goussets, petit train, travail à bord)",
+        "Lien entre la grue et les hommes qui travaillaient sous elle — l'objet prend vie par la mémoire ouvrière",
+        "Ton informatif mais chaleureux, registre accessible"
+      ],
+      "mood": "evocateur_memoriel"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence puis la métamorphose",
+      "duree_cible": 20.0,
+      "fonction_narrative": "pivot_narratif",
+      "position_arc_emotionnel": "tension_melancolique",
+      "elements_necessaires": [
+        "Fermeture des chantiers navals et désindustrialisation",
+        "L'Île de Nantes se vide de ses ouvriers — la grue reste, seule",
+        "Début de la reconversion urbaine de l'Île de Nantes",
+        "Transition d'outil industriel à vestige patrimonial"
+      ],
+      "mood": "melancolique_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Debout, face au fleuve",
+      "duree_cible": 20.0,
+      "fonction_narrative": "resolution_symbolique",
+      "position_arc_emotionnel": "apaisement_et_elevation",
+      "elements_necessaires": [
+        "La grue jaune aujourd'hui : monument classé, repère identitaire de Nantes",
+        "Symbolique urbaine — ce que la ville a choisi de garder et pourquoi",
+        "Retour au présent contemplatif : la grue face à la Loire, trait d'union entre mémoire ouvrière et ville contemporaine",
+        "Fermeture ouverte — l'objet continue de veiller"
+      ],
+      "mood": "serein_symbolique"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_ascendante — du silence présent vers la mémoire vivante, puis retour au présent enrichi de sens",
+  "rythme_general": "lent_contemplatif — phrases posées, respirations entre les idées, silences assumés pour laisser résonner le propos",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "De la contemplation présente de la grue, la narration glisse naturellement vers le passé par une phrase pivot du type 'Il fut un temps où, sous cette flèche d'acier…' — le paysage sonore minimaliste peut accueillir un léger son d'ambiance industrielle lointaine."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce",
+      "duree": 1.5,
+      "description": "Après l'évocation du quotidien ouvrier et de l'archive Penaud, une phrase marque la fin d'une époque — 'Puis un jour, les marteaux se sont tus.' — courte pause, le mood bascule vers la mélancolie sans brutalité."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_lumineuse",
+      "duree": 2.0,
+      "description": "De la mélancolie de la désindustrialisation, la narration remonte vers le présent par un retour au visuel — 'Aujourd'hui, elle est toujours là.' — la voix se pose, le rythme ralentit encore pour la résolution."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme le portrait d'un personnage non-humain — la grue jaune — raconté avec la même intimité qu'un portrait individuel. La narratrice (voix femme professionnelle) adopte un débit posé, presque méditatif, cohérent avec le rythme lent contemplatif. Les quatre sections doivent couler comme un seul mouvement narratif sans annonce de chapitres. L'archive de Jean Penaud (charpentier de fer, embauché le 5 février 1957, passé par le parc à ferraille puis à bord comme charpentier de fer) s'intègre en partie 2 comme témoignage vivant — un court extrait audio suffit pour ancrer l'humain dans le récit de l'objet. DENSITÉ SONORE MINIMALISTE : privilégier le silence, un fond de vent ou d'eau très discret, pas de musique envahissante. Le ton reste neutre et informatif tout au long — l'émotion naît de la sobriété, jamais de l'emphase. REGISTRE GRAND PUBLIC : phrases courtes à moyennes, vocabulaire courant, les termes techniques (goussets, charpentier de fer) sont brièvement explicités dans le flux narratif. RIGUEUR : ne pas inventer de date de construction ou de classement de la grue si non fournie dans le contexte — rester dans le suggestif ('depuis des décennies', 'au fil du temps')."
+}

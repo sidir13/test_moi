@@ -1,0 +1,35 @@
+=== PARTIE 1 : Un port au cœur de la ville ===
+
+{clapotis_eau_loire.wav}
+
+[posé] Nous sommes à Nantes, au dix-huitième siècle. Imaginez une ville entièrement tournée vers son fleuve. La Loire, large et puissante, se divise en plusieurs bras qui enlacent des îles au cœur même de la cité. L'île Feydeau, l'île Gloriette — des terres cernées d'eau où les hôtels particuliers des armateurs s'élèvent, façades sculptées, balcons de fer forgé, signes d'une richesse considérable. {activite_portuaire_lointaine.wav} Sur les quais du centre-ville, l'activité ne cesse jamais. On décharge le sucre des Antilles, le café, les épices. Les cordages grincent, les voiles claquent, les cales s'ouvrent sur des cargaisons venues de l'autre côté du monde. Nantes est alors l'un des plus grands ports de commerce de France. [pause] Mais cette prospérité a une part sombre, [accentué] qu'il faut nommer. Une part considérable de cette richesse repose sur la traite négrière, le commerce triangulaire, des vies humaines réduites à des marchandises. [atténué] Le port brille, mais son éclat porte une ombre profonde.
+
+=== PARTIE 2 : Le fleuve se dérobe ===
+
+{courant_loire_calme.wav}
+
+[posé] Et puis, lentement, quelque chose change. Ce n'est pas un événement brutal. C'est un processus silencieux, presque imperceptible d'une année sur l'autre. [ralentit] La Loire s'envase. Le sable s'accumule dans le lit du fleuve, siècle après siècle. Les bras de la Loire se rétrécissent. Le Bras de la Bourse, qui longeait le cœur de la ville, devient de moins en moins navigable. Et dans le même temps, les navires grandissent. Leur tirant d'eau augmente — ils s'enfoncent plus profondément sous la surface, exigent des chenaux que la Loire ne peut plus offrir. Les grands voiliers, puis les premiers navires à vapeur, peinent à remonter jusqu'à Nantes. [pause] Le fleuve, qui avait fait la fortune de la ville, commence à la trahir. [ralentit] Quelque chose se referme, doucement, comme une porte que l'on pousse sans bruit.
+
+=== PARTIE 3 : La descente vers l'aval ===
+
+{marteaux_metal_chantier.wav}
+
+Alors le port se déplace. Pas d'un coup, mais par étapes, comme s'il descendait la Loire marche après marche. D'abord, les activités glissent depuis le centre-ville vers Chantenay, vers la Prairie-au-Duc, un peu plus en aval. Les chantiers navals s'y installent, s'y agrandissent. [accentué] Le Chantier de la Loire, les chantiers Dubigeon — des noms qui vont marquer des générations d'ouvriers. On y construit des navires, on y forge, on y rive, on y soude. Plus loin encore, à Indret, dans l'estuaire, d'autres ateliers travaillent. Mais cela ne suffit pas. Les navires continuent de grandir, et le fleuve, lui, ne grandit pas. Alors le mouvement se poursuit. Le Pellerin, Paimboeuf, accueillent une partie du trafic. Et puis, inexorablement, c'est Saint-Nazaire qui s'impose. [accentué] Saint-Nazaire, à l'embouchure de l'estuaire, là où la Loire rencontre l'océan. Le port de commerce s'y installe, les grands chantiers de l'Atlantique s'y développent. [pause] Chaque étape est un recul pour Nantes. [ralentit] Chaque kilomètre gagné vers l'aval est un kilomètre perdu pour la ville.
+
+=== PARTIE 4 : Les hommes des chantiers ===
+
+{ambiance_chantier_naval_proche.wav}
+
+Mais derrière ces déplacements, ces transferts, il y a des hommes. Des ouvriers qui, chaque matin, franchissaient les portes des chantiers. Jean Penaud est l'un d'entre eux. Charpentier-fer, quatre-vingt-trois ans aujourd'hui, [posé] il se souvient de tout. [ARCHIVE : « J'suis entré à la Loire... après j'ai été muté à Dubigeon et j'suis revenu ici en revenant de Cherbourg. J'ai travaillé pendant sept ans et demi à Cherbourg, sur l'sous-marin atomique. »] Sa première embauche, il en donne la date exacte, sans hésiter. [ARCHIVE : « Première embauche le 5 février 1957. »] [pause] Le 5 février 1957. Il a d'abord passé huit jours au balai — comme tout le monde. Et puis il est allé au parc à fer. [ARCHIVE : « On triait les goussets et les... à l'époque il y avait un genre de petit train avec un plateau, il venait chercher les pièces quoi, les goussets... pour emmener à bord. »] Les goussets, le petit train à plateau, les pièces qu'on achemine vers les navires en construction. [ralentit] Un monde entier, fait de gestes précis et de savoir-faire transmis.
+
+=== PARTIE 5 : Les derniers coups de marteau ===
+
+{marteaux_ralentissent.wav}
+
+Mais ce monde-là est en sursis. Les guerres mondiales ont ravagé les infrastructures portuaires de Nantes. On reconstruit, on s'adapte, on résiste. [accentué] Pourtant, le mouvement de fond est irréversible. Les bras de la Loire sont comblés, un à un. Là où passaient les navires, on coule du remblai. L'île Feydeau n'est plus une île. L'île Gloriette n'est plus une île. Le paysage de Nantes se transforme radicalement. [pause] Et les chantiers navals, eux aussi, finissent par céder. [accentué] Dubigeon, le dernier grand chantier nantais, ferme ses portes en 1987. {dernier_coup_marteau_silence.wav} Les marteaux se taisent. Les cales se vident. [chuchote] Le silence s'installe là où, pendant des décennies, le métal chantait. {vent_seul_estuaire.wav}
+
+=== PARTIE 6 : Un fleuve réinventé ===
+
+{ambiance_urbaine_contemporaine.wav}
+
+Aujourd'hui, sur l'ancien site des chantiers Dubigeon, d'immenses créatures mécaniques se dressent face au ciel. Les Machines de l'Île occupent le terrain où l'on construisait des navires. L'île de Nantes s'est réinventée. [pause] Et dans les témoignages des anciens, comme celui de Jean Penaud, quelque chose persiste — la mémoire d'un savoir-faire, la fierté d'un métier. {clapotis_loire_seule.wav} [ralentit] La Loire coule toujours. Nantes n'est plus un port. [posé] Mais elle reste, pour toujours, une ville de fleuve.

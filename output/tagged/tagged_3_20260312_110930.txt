@@ -1,0 +1,37 @@
+=== PARTIE 1 : Un gamin de quatorze ans entre au chantier ===
+
+{ambiance_chantier_naval_toles_marteaux.wav}
+
+[ton grave] Septembre 1958. [pause 1s] Sur les bords de la Loire, les chantiers de la Bretagne résonnent du fracas des tôles et du martèlement des rivets. C'est là, à Nantes, qu'un gamin de quatorze ans franchit pour la première fois la grille d'un chantier naval. [pause 1s] Il s'appelle Gilles Hamon. [pause 1s] Comme tant d'autres avant lui, il entre apprenti — un parmi des dizaines de gosses que l'industrie navale absorbe chaque rentrée, pour en faire des ouvriers.
+
+=== PARTIE 2 : Le parquet, l'échelle 1 — le geste du traceur ===
+
+{ambiance_salle_traçage_calme_interieur.wav}
+
+Son premier métier, c'est traceur. Un mot qui ne dit rien à ceux du dehors, mais qui, dans les chantiers, désigne un savoir-faire respecté. [ralentissement] Les ouvriers-traceurs sont bien placés dans la hiérarchie ouvrière. Leur atelier, c'est un immense parquet de bois, posé à même le sol. Leur outil, un décamètre. [pause 1s] Leur tâche : donner forme aux coques des navires — à l'échelle un.
+
+[pause 2s]
+
+[ARCHIVE AUDIO — Gilles Hamon]
+« Il fallait étudier, faire les formes des bateaux. Suivant des données que l'on avait des bureaux d'études, des points dans l'espace, hein, soit en largeur, en longueur, en profondeur, et puis par terre représenter ça sous une forme de dessin. Alors c'est à l'échelle 1, donc c'était sur un parquet. Donc on travaillait à quatre pattes par terre. Il fallait avec un décamètre reporter des points, et puis passer une latte, et puis voir les points s'ils se suivaient. »
+
+[pause 2s]
+
+=== PARTIE 3 : Du sol au bureau de dessin — monter en grade ===
+
+{ambiance_chantier_naval_lointain.wav}
+
+Les années passant, Gilles Hamon ne reste pas à genoux sur le parquet. Il passe son CAP, suit des cours du soir à l'IVET — des cours de dessin, cette fois, pas de traçage. [acceleration] Et un jour, il quitte le sol pour le bureau de dessin. Autour de lui, les chantiers nantais fusionnent les uns après les autres. Mais à chaque restructuration, il gagne un galon.
+
+[pause 1s]
+
+[ARCHIVE AUDIO — Gilles Hamon]
+« J'avais suivi des cours de dessin, puis j'suis passé au bureau d'dessin. Et puis je grimpais en grade. Comme j'étais bien vu, j'ai souvent eu des galons. »
+
+=== PARTIE 4 : Fermetures, fusions — et le cap vers Saint-Nazaire ===
+
+{ambiance_chantier_extinction_progressive.wav}
+
+[ton grave] Puis vient la fin. Les trois chantiers nantais n'en forment plus qu'un — les Chantiers Dubigeon, comme on les appelle alors. [ralentissement] Mais en 1987, les portes se ferment pour de bon. [pause 1s] Gilles Hamon prend la route de Saint-Nazaire, où il achève sa carrière. [émotion contenue] Derrière lui, un parquet silencieux, des lattes rangées, des points dans l'espace que plus personne ne reporte. Le savoir-faire de générations entières de traceurs et de dessinateurs, inscrit dans la mémoire de ceux qui, à quatre pattes, ont donné leurs formes aux navires.
+
+{silence_final_4s.wav}

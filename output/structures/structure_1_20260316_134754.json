@@ -1,0 +1,100 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui dessinent les navires — Jean Penaud et les dessinateurs des chantiers nantais",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des hommes penchés sur leurs tables à dessin donnaient forme aux navires avant même que le premier rivet ne soit posé. Parmi eux, Jean Penaud, dessinateur industriel, incarnait ce métier méconnu situé entre l'ingénieur et l'ouvrier de cale — un maillon essentiel de la construction navale. Du tracé minutieux sur calque aux plans grandeur nature dans les salles de traçage, ces dessinateurs traduisaient en lignes précises le rêve d'acier et de mer. Leur savoir-faire, transmis de génération en génération, s'est éteint avec la fermeture progressive des chantiers, emportant avec lui tout un pan de la mémoire industrielle nantaise.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bruissement du calque",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_sensoriel",
+      "elements_necessaires": [
+        "Ambiance sonore : bureaux d'études des chantiers navals nantais",
+        "Évocation sensorielle du quotidien du dessinateur — tables à dessin, calques, outils de traçage",
+        "Situer le lieu : chantiers navals de Nantes, bords de Loire",
+        "Introduire la figure collective des dessinateurs comme groupe social méconnu"
+      ],
+      "mood": "contemplatif_précis — on entre dans un monde de silence studieux contrastant avec le vacarme des cales"
+    },
+    {
+      "partie": 2,
+      "titre": "Jean Penaud, trait après trait",
+      "duree_cible": 25,
+      "fonction_narrative": "portrait_individuel_ancré_dans_le_collectif",
+      "position_arc_emotionnel": "montée_émotionnelle — admiration pour le geste et le savoir-faire",
+      "elements_necessaires": [
+        "Présentation de Jean Penaud comme dessinateur sur les chantiers navals nantais",
+        "Description de son travail concret : du plan au navire, la traduction technique",
+        "Citation directe si disponible, ou évocation de la parole ouvrière sur ce métier",
+        "Positionnement dans la hiérarchie des chantiers : entre bureau d'études et cale de construction",
+        "Salles de traçage : tracés grandeur nature, précision millimétrique"
+      ],
+      "mood": "narratif_dense — rythme soutenu, valorisation du geste professionnel"
+    },
+    {
+      "partie": 3,
+      "titre": "Du plan à la coque — la chaîne invisible",
+      "duree_cible": 22,
+      "fonction_narrative": "élargissement_social — du portrait au groupe, du geste à l'organisation",
+      "position_arc_emotionnel": "plateau_haut — fierté collective, sens du travail",
+      "elements_necessaires": [
+        "Organisation du travail : comment le dessin devenait navire",
+        "Lien entre dessinateurs et autres corps de métier sur les chantiers Dubigeon ou Chantiers de l'Atlantique",
+        "Chronique sociale : vie quotidienne, solidarité, culture ouvrière des chantiers",
+        "Rythme des commandes, des lancements — le temps du chantier"
+      ],
+      "mood": "épique_contenu — amplification sans emphase, la grandeur est dans le collectif"
+    },
+    {
+      "partie": 4,
+      "titre": "Le dernier trait",
+      "duree_cible": 21,
+      "fonction_narrative": "résolution_élégiaque",
+      "position_arc_emotionnel": "sommet_émotionnel — perte et mémoire",
+      "elements_necessaires": [
+        "Déclin et fermeture des chantiers navals nantais",
+        "Disparition du métier de dessinateur naval avec la fin de l'activité",
+        "Mémoire et patrimoine industriel : ce qui reste de ce savoir-faire",
+        "Ouverture sur la trace laissée — plans conservés, mémoire ouvrière, Île de Nantes transformée",
+        "Dernière image forte : le silence des salles de traçage vides"
+      ],
+      "mood": "élégiaque_digne — émotion retenue, pas de pathos, respect du travail disparu"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel — de l'observation silencieuse du geste à l'émotion de la disparition, en passant par la fierté du savoir-faire collectif",
+  "rythme_general": "dynamique — phrases courtes et précises dans l'exposition, élargissement progressif du souffle narratif, ralentissement final pour laisser résonner l'émotion",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_narratif",
+      "duree": 2.0,
+      "description": "Du collectif anonyme des dessinateurs, la narration resserre sur Jean Penaud — transition par le geste : une main parmi d'autres qui se distingue, un nom qui émerge du silence du bureau d'études."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_organique",
+      "duree": 2.0,
+      "description": "Du plan que trace Penaud, on suit le dessin jusqu'à la cale — le trait de crayon devient tôle, rivet, coque. Transition par le mouvement du papier vers le métal, du bureau vers le fleuve."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 2.5,
+      "description": "Contraste entre le vacarme vivant des chantiers en activité et le silence qui a suivi leur fermeture. Un changement d'ambiance sonore marque le passage du temps — le bruit s'éteint progressivement."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est conçu comme un flux continu — les quatre sections ne doivent jamais sonner comme des chapitres séparés mais comme les mouvements d'un même souffle. La voix off omnisciente adopte un registre accessible (grand public) mais précis, sans simplification condescendante. Le ton neutre informatif se charge progressivement d'émotion contenue, jamais de sentimentalisme. AMBIANCES SONORES : Prévoir une couche sonore riche — bruissement de papier calque, crayons sur table à dessin, rumeur lointaine de marteaux et rivets, sirènes de chantier, clapotis de Loire. Ces sons accompagnent et ne couvrent jamais la voix. CITATIONS : Intégrer au moins une citation directe issue des témoignages disponibles (partie 2 ou 3), traitée comme archive sonore ou lue avec un léger changement de ton/texture. REGISTRE LINGUISTIQUE AUTHENTIQUE : Utiliser le vocabulaire technique réel du métier (traçage, gabarit, épure, calque) en le rendant compréhensible par le contexte, sans définitions didactiques. DURÉE : 90 secondes strictes — environ 180 mots maximum. Chaque mot compte. Privilégier la densité évocatrice à l'exhaustivité. Le ratio narration/archives visé (0.6) implique que 40% du temps peut être occupé par des ambiances sonores enrichies, des silences habités ou des citations."
+}

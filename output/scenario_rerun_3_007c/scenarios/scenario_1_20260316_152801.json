@@ -1,0 +1,226 @@
+{
+  "scenario_id": 1,
+  "titre": "Le trait et la coque — Jean Penaud, dessinateur des chantiers navals nantais",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "Sur les bords de Loire, dans les bureaux d'études des chantiers navals de Nantes, des dessinateurs comme Jean Penaud donnaient forme aux navires bien avant que le premier rivet ne soit posé. Penchés sur leurs planches à dessin, ils traduisaient en lignes précises les courbes des coques, les membrures, les systèmes complexes qui feraient vivre chaque bâtiment. Leur travail, discret mais essentiel, était le premier maillon d'une chaîne de production qui faisait la fierté industrielle de la ville. Puis vint le déclin : les chantiers fermèrent un à un, et avec eux disparut tout un monde de savoir-faire. Reste la mémoire de ces hommes dont le trait de crayon portait en lui la promesse d'un navire.",
+  "duree_estimee": 110.11338226990401,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bureau d'études, cœur silencieux du chantier",
+      "duree": 25.636363636363633,
+      "texte_narration": "Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin. Règles, calques, crayons. Ici, dans le silence du bureau d'études, commence chaque navire. Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque.",
+      "ton": {
+        "global": "contemplatif, posé, immersif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'crayons' (1.5s)",
+          "après 'chaque navire' (1.5s)"
+        ],
+        "intonation": "douce, descriptive, lente"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur l'image des verrières et de la lumière",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Énumération sensorielle : règles, calques, crayons",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:15",
+          "action": "Lien entre le geste du dessinateur et la naissance du navire",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Sous les verrières des chantiers navals de Nantes, la lumière tombe sur les planches à dessin.",
+          "sources": []
+        },
+        {
+          "sentence": "Règles, calques, crayons.",
+          "sources": []
+        },
+        {
+          "sentence": "Ici, dans le silence du bureau d'études, commence chaque navire.",
+          "sources": []
+        },
+        {
+          "sentence": "Bien avant le fracas des ateliers, un trait de crayon trace la première courbe d'une coque.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Jean Penaud, l'homme au trait précis",
+      "duree": 33.391304347826086,
+      "texte_narration": "Jean Penaud est dessinateur. Chaque matin, il rejoint sa planche. Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps. Jean Penaud raconte : [ARCHIVE : « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. »] Du bureau aux riveurs, une même chaîne, un même souffle.",
+      "ton": {
+        "global": "humain, engagé, montée en intensité",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'sa planche' (1s)",
+          "après la citation ARCHIVE (1.5s)"
+        ],
+        "intonation": "narrative, chaleureuse, crescendo léger"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Portrait de Penaud à sa planche",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:32",
+          "action": "Description de la chaîne de production du dessin au navire",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:40",
+          "action": "Citation directe de Jean Penaud sur le processus",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Jean Penaud est dessinateur.",
+          "sources": []
+        },
+        {
+          "sentence": "Chaque matin, il rejoint sa planche.",
+          "sources": []
+        },
+        {
+          "sentence": "Ses plans descendent ensuite vers la salle des traceurs, puis vers les ateliers, jusqu'à la cale où le navire prend corps.",
+          "sources": []
+        },
+        {
+          "sentence": "Jean Penaud raconte : [ARCHIVE : « On faisait les dessins, les traceurs les agrandissaient en vraie grandeur, et après ça partait à l'atelier. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Du bureau aux riveurs, une même chaîne, un même souffle.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le dernier trait — quand les chantiers se taisent",
+      "duree": 34.285714285714285,
+      "texte_narration": "Puis les commandes se raréfient. Les grues s'immobilisent. Les chantiers navals de Nantes ferment, l'un après l'autre. Les bureaux d'études se vident. Les planches à dessin restent nues. Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface.",
+      "ton": {
+        "global": "élégiaque, grave, dépouillé",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 's'immobilisent' (1.5s)",
+          "après 'restent nues' (2s)",
+          "après 's'efface' (2s)"
+        ],
+        "intonation": "descendante, solennelle, ralentie"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:50",
+          "action": "Bascule narrative : le déclin commence",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:57",
+          "action": "Images du vide : grues immobiles, bureaux déserts",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:05",
+          "action": "Contraste sonore : du fracas au silence",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis les commandes se raréfient.",
+          "sources": []
+        },
+        {
+          "sentence": "Les grues s'immobilisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Les chantiers navals de Nantes ferment, l'un après l'autre.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bureaux d'études se vident.",
+          "sources": []
+        },
+        {
+          "sentence": "Les planches à dessin restent nues.",
+          "sources": []
+        },
+        {
+          "sentence": "Là où résonnait le marteau sur la tôle, il n'y a plus que le vent de Loire et le silence d'un savoir-faire qui s'efface.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Coda — Le trait demeure",
+      "duree": 16.8,
+      "texte_narration": "Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur. Le navire a pris la mer depuis longtemps. Mais le trait, lui, demeure.",
+      "ton": {
+        "global": "suspendu, mémoriel, apaisé",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'dessinateur' (2s)",
+          "après 'depuis longtemps' (1.5s)",
+          "après 'demeure' (3s — silence final)"
+        ],
+        "intonation": "murmurée, contemplative, finale"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:15",
+          "action": "Image du plan jauni, signature",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:22",
+          "action": "Phrase de clôture suspendue",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Quelque part, dans une archive, un plan jauni porte encore la signature d'un dessinateur.",
+          "sources": []
+        },
+        {
+          "sentence": "Le navire a pris la mer depuis longtemps.",
+          "sources": []
+        },
+        {
+          "sentence": "Mais le trait, lui, demeure.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 199,
+    "duree_lecture_estimee": 110.11338226990401,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit doit être perçu comme un seul mouvement continu, pas quatre blocs séparés. Les sections sont des repères de montage, pas des chapitres annoncés. La voix off ne nomme jamais les parties. — DÉBIT : Environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit être très concise (parties 1-3 : ~50 mots chacune ; partie 4 : ~30 mots). — CITATIONS : Intégrer 1 à 2 citations directes de témoignages, fondues dans le récit (introduites par une formule simple : « Il disait… », « Comme le racontait Jean Penaud… »). Ne jamais inventer de citation : utiliser uniquement le matériau source disponible. Si aucune citation exacte n'est disponible, reformuler en discours indirect avec prudence. — AMBIANCE SONORE (indications pour le mixage) : Minimaliste. Partie 1-2 : léger fond industriel lointain (métal, Loire). Partie 3 : silence progressif. Partie 4 : silence quasi total, respiration de la voix seule. — REGISTRE : Grand public, phrases courtes et claires, vocabulaire technique dosé (expliquer ou contextualiser tout terme spécialisé : membrure, tracé, cale). — ANGLE AVANT/APRÈS : La partie 2 est le cœur du « avant » (le travail vivant), la partie 3 est le « après » (la fermeture). La partie 1 plante le décor, la partie 4 offre la résonance mémorielle. Le pivot doit être ressenti, pas explicité lourdement. — RIGUEUR : Ne pas inventer de dates de fermeture précises, de noms de navires ou d'événements non présents dans les sources. Préférer les formulations ouvertes (« au fil des décennies », « quand les chantiers fermèrent ») si le contexte manque de précision."
+}

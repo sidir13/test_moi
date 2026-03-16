@@ -1,0 +1,106 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Argiotalus, fils de la Loire",
+  "resumeHistoire": "Sur les quais de Nantes, un vieux docker contemple le fleuve et se souvient. Mais le récit remonte bien plus loin : jusqu'à Argiotalus, cavalier namnète, premier Nantais connu de l'histoire, parti mourir aux frontières de l'Empire romain loin de son port natal. À travers ce portrait intime d'un homme arraché à sa Loire, c'est toute l'histoire du port de Nantes qui se dessine — depuis le petit port fluvial celte de Corbilo jusqu'à la cité romaine de Condevicnum, carrefour commercial tourné vers l'Atlantique. Le conte révèle comment le travail des hommes du fleuve, fondeurs, bateliers et soldats, a façonné une ville dont le destin s'est toujours écrit sur l'eau.",
+  "axe_narratif": "travailleur",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Les quais silencieux",
+      "duree_cible": 15,
+      "fonction_narrative": "ancrage_present_et_amorce_flashback",
+      "position_arc_emotionnel": "contemplation_douce",
+      "elements_necessaires": [
+        "Ambiance sonore minimaliste : clapotis de la Loire, vent léger",
+        "Voix off omnisciente posée, ton chaleureux et pédagogique",
+        "Évocation des quais historiques de Nantes aujourd'hui",
+        "Question narrative ouverte : qui fut le premier travailleur de ce port ?",
+        "Présentation implicite du public : récit accessible, invitation à écouter un conte"
+      ],
+      "mood": "intime_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Corbilo, le port des origines",
+      "duree_cible": 25,
+      "fonction_narrative": "flashback_profond_exposition_historique",
+      "position_arc_emotionnel": "eveil_curiosite",
+      "elements_necessaires": [
+        "Plongée dans le passé celte : le petit port fluvial de Corbilo, entre -900 et -500",
+        "La Loire comme axe de commerce et de vie",
+        "Les Namnètes, peuple celte dont Corbilo est la capitale",
+        "Les fondeurs et leurs dépôts découverts à la Prairie-au-Mauve, Chantenay, Jardin des Plantes",
+        "Portrait collectif des travailleurs anonymes : fondeurs de bronze, bateliers",
+        "Ton pédagogique léger : expliquer sans jargon, rendre vivant le quotidien antique"
+      ],
+      "mood": "narratif_evocateur"
+    },
+    {
+      "partie": 3,
+      "titre": "Le cavalier de Nantes",
+      "duree_cible": 35,
+      "fonction_narrative": "climax_portrait_individuel",
+      "position_arc_emotionnel": "intensite_emotionnelle_maximale",
+      "elements_necessaires": [
+        "Transformation de Corbilo en Condevicnum sous la romanisation",
+        "Essor fulgurant : tribunal, temple de Mars Mullo, thermes, égouts",
+        "Le port rebaptisé Portus Namnetum, en concurrence avec Ratiatum (Rezé)",
+        "Contrepartie de la relative indépendance : fournir des hommes pour la légion",
+        "Portrait intime d'Argiotalus — cavalier namnète, premier Nantais reconnu de l'histoire",
+        "Son départ du port, sa mort à la frontière germanique (découverte à Worms)",
+        "Émotion contenue : un homme du fleuve mort loin de sa Loire",
+        "Rythme plus lent, phrases plus courtes, silences expressifs"
+      ],
+      "mood": "solennel_emouvant"
+    },
+    {
+      "partie": 4,
+      "titre": "Le fleuve se souvient",
+      "duree_cible": 15,
+      "fonction_narrative": "retour_au_present_et_resolution",
+      "position_arc_emotionnel": "apaisement_resonance",
+      "elements_necessaires": [
+        "Retour au présent sur les quais de Nantes",
+        "Lien entre Argiotalus et tous les travailleurs du port à travers les âges",
+        "La Loire comme fil conducteur mémoriel",
+        "Ouverture poétique : le fleuve porte encore les histoires de ceux qui ont travaillé sur ses rives",
+        "Phrase de clôture de conte, simple et marquante"
+      ],
+      "mood": "poetique_apaisant"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_curiosite_emotion_apaisement",
+  "rythme_general": "varie — ouverture lente et intime, accélération narrative au cœur du flashback historique, ralentissement solennel sur le portrait d'Argiotalus, retour au calme final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel_flashback",
+      "duree": 2.0,
+      "description": "La question posée sur les quais actuels entraîne un fondu sonore vers le passé. Le clapotis moderne se mue en ambiance antique. La voix baisse légèrement de ton, comme pour confier un secret ancien. Transition fluide par une phrase-pont du type : 'Il faut remonter bien avant, jusqu'à un petit port que les Celtes appelaient Corbilo…'"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_narrative_naturelle",
+      "duree": 2.0,
+      "description": "Du portrait collectif des travailleurs celtes, la narration s'élargit à la transformation romaine puis se resserre sur un seul homme. Transition par contraste : l'essor de la ville s'accompagne d'un prix à payer. La phrase-pont introduit Argiotalus comme l'incarnation de ce sacrifice."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_au_present_par_echo",
+      "duree": 2.0,
+      "description": "Depuis la tombe d'Argiotalus à Worms, la voix ramène l'auditeur sur les quais de Nantes par un écho poétique — le fleuve qui coule toujours. Léger silence avant la reprise. Le ton redevient doux et contemplatif, bouclant la boucle du flashback."
+    }
+  ],
+  "notes_production": "CONTINUITÉ ET FLUIDITÉ : Le récit est un conte unique, pas quatre segments juxtaposés. La voix masculine posée doit donner l'impression de raconter au coin du feu — un seul souffle narratif avec des variations d'intensité. || FLASHBACK : La structure en flashback n'est pas signalée lourdement. On glisse dans le passé par le ton et l'ambiance, pas par un effet sonore artificiel. Le retour au présent se fait de même, naturellement. || PORTRAIT INDIVIDUEL : Argiotalus est le cœur émotionnel. Même si on ne le rencontre qu'en partie 3, tout le récit converge vers lui. Les fondeurs celtes de la partie 2 sont ses ancêtres narratifs. Il incarne l'axe 'travailleur' : un homme ordinaire pris dans l'Histoire. || AMBIANCE SONORE MINIMALISTE : Clapotis d'eau discret en fil rouge (présent du début à la fin, variant subtilement). Pas de musique envahissante. Éventuellement un souffle de vent ou un craquement de bois pour la partie antique. Silences assumés, notamment avant et après le nom d'Argiotalus. || TON PÉDAGOGIQUE ACCESSIBLE : Les informations historiques (dates, noms latins) sont toujours accompagnées d'une reformulation simple. Exemple : 'Condevicnum — c'est le nouveau nom que les Romains donnent à la ville'. Ne jamais laisser l'auditeur décrocher. || ÉQUILIBRE ARCHIVES/NARRATION (0.7) : Le récit est principalement narré. Si un extrait audio est intégré, il doit être bref et contextualisé par la voix off avant et après. || DURÉE : 90 secondes au total. Les durées par section incluent les transitions. Veiller à ne pas dépasser — le format conte court exige concision."
+}

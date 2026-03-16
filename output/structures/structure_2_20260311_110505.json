@@ -1,0 +1,104 @@
+{
+  "scenario_id": 2,
+  "titre_global": "L'aube sur les quais — Une journée au port de Nantes",
+  "resumeHistoire": "À la première personne, un travailleur du port de Nantes raconte une journée type sur les quais, depuis l'aube brumeuse sur la Loire jusqu'au crépuscule. À travers ses gestes quotidiens — l'arrivée au petit matin sur les quais de la Fosse, le tumulte du commerce maritime à la mi-journée, le calme du soir sur l'île Feydeau — se dessine l'histoire millénaire d'une ville née d'un petit port fluvial celte nommé Corbilo, devenue carrefour commercial tourné vers l'Atlantique. Le récit tisse le concret d'une journée de labeur avec la mémoire longue des lieux : les mêmes eaux de la Loire qui portaient les embarcations des Namnètes portent désormais les navires du commerce atlantique, et les quais résonnent encore des siècles d'activité qui ont façonné Nantes.",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube — Les quais s'éveillent",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "eveil_calme",
+      "elements_necessaires": [
+        "Narrateur à la première personne, travailleur du port, voix posée",
+        "Arrivée au petit matin sur les quais historiques de Nantes",
+        "Description sensorielle : brume sur la Loire, odeur du fleuve, pavés humides",
+        "Évocation de Corbilo, petit port fluvial celte, capitale des Namnètes",
+        "La Loire comme axe fondateur de la ville, ouverture sur le commerce",
+        "Ton pédagogique et accessible, adresse directe au grand public"
+      ],
+      "mood": "contemplatif_brumeux_origines"
+    },
+    {
+      "partie": 2,
+      "titre": "Le plein jour — Le port bat son plein",
+      "duree_cible": 25.0,
+      "fonction_narrative": "developpement_thematique",
+      "position_arc_emotionnel": "montee_en_intensite",
+      "elements_necessaires": [
+        "Mi-journée, activité à son apogée sur le quai de la Fosse",
+        "Gestes concrets du travail portuaire : chargement, déchargement, cris des marins",
+        "Évocation de la transformation romaine : de Corbilo à Condevicnum, essor de la ville",
+        "Le port comme carrefour commercial tourné vers l'Atlantique",
+        "Mention de l'île Feydeau et des bras de la Loire",
+        "Référence sobre à la mémoire du commerce triangulaire et de la traite atlantique"
+      ],
+      "mood": "vivant_labeur_memoire"
+    },
+    {
+      "partie": 3,
+      "titre": "Le crépuscule — La Loire se souvient",
+      "duree_cible": 25.0,
+      "fonction_narrative": "elevation_contemplative",
+      "position_arc_emotionnel": "apaisement_reflexif",
+      "elements_necessaires": [
+        "Fin de journée, le narrateur s'arrête sur les quais au coucher du soleil",
+        "Regard vers l'estuaire de la Loire, horizon atlantique",
+        "Évocation des transformations urbaines : comblements des bras de la Madeleine, reconversion des chantiers navals sur l'île de Nantes",
+        "Réflexion sur la relation ville-fleuve à travers les époques",
+        "Ouverture sur le patrimoine et la mémoire portuaire contemporaine",
+        "Clôture émotionnelle : les mêmes eaux, les mêmes quais, une histoire qui continue"
+      ],
+      "mood": "contemplatif_melancolique_ouvert"
+    },
+    {
+      "partie": 4,
+      "titre": "Coda — Le fleuve coule encore",
+      "duree_cible": 15.0,
+      "fonction_narrative": "conclusion_resonance",
+      "position_arc_emotionnel": "resolution_sereine",
+      "elements_necessaires": [
+        "Phrase de clôture du narrateur, ton intime et universel",
+        "Image finale : la Loire dans la nuit, Nantes endormie sur ses quais",
+        "Écho aux origines celtes — le fleuve comme fil conducteur intemporel",
+        "Silence narratif laissant place à l'ambiance sonore"
+      ],
+      "mood": "intime_suspendu"
+    }
+  ],
+  "arc_emotionnel_global": "eveil_crescendo_apaisement",
+  "rythme_general": "lent_contemplatif_avec_pic_central",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle_temporelle",
+      "duree": 2.0,
+      "description": "Le brouillard matinal se dissipe, les sons du port montent progressivement — le narrateur passe de la contemplation solitaire à l'immersion dans l'activité. Transition portée par l'accélération du rythme vocal et l'intensification de l'ambiance sonore portuaire."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_naturel",
+      "duree": 2.5,
+      "description": "L'agitation du port retombe avec la lumière du jour. Le narrateur ralentit son débit, sa voix se fait plus grave et réflexive. Les sons d'activité s'estompent au profit du clapotis de la Loire et du vent. Passage du concret du labeur à la méditation historique."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "glissement_vers_silence",
+      "duree": 2.0,
+      "description": "La réflexion historique se resserre en une image intime et personnelle. Le narrateur baisse la voix comme s'il confiait un secret. L'ambiance sonore se réduit au fleuve seul, créant un espace de résonance avant le silence final."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit une journée complète (aube → nuit) vécue à la première personne par un travailleur du port. Cette structure temporelle concrète est le fil conducteur — ne jamais rompre l'illusion de la journée vécue. Les éléments historiques (Corbilo, Condevicnum, commerce atlantique, comblements) doivent émerger NATURELLEMENT des observations du narrateur, comme des pensées qui viennent en travaillant, jamais comme des apartés didactiques plaqués. || VOIX : Homme, posée, rythme lent. Le débit s'accélère légèrement en partie 2 puis redescend. Registre linguistique authentique mais accessible — le narrateur est un homme simple qui connaît l'histoire de ses quais par transmission orale, pas par les livres. || TON : Pédagogique et accessible tout au long, avec une légèreté qui vient de l'attachement sincère du narrateur à son lieu de travail. Pas de solennité excessive. || AMBIANCE SONORE ÉQUILIBRÉE : Ratio narration/ambiance 70/30. Sons de Loire (clapotis, vent), sons portuaires (cordages, bois, voix lointaines), cloches urbaines pour marquer le temps. Pas de musique — laisser le fleuve être la bande-son. || MÉMOIRE SENSIBLE : La mention du commerce triangulaire (partie 2) doit être sobre, respectueuse et factuelle — le narrateur reconnaît cette mémoire sans détourner le regard, mais sans pathos appuyé. || DURÉE : 90 secondes strictes. Les 4 parties s'enchaînent sans silence mort entre elles — les transitions sont des fondus narratifs, pas des coupes."
+}

@@ -1,0 +1,21 @@
+=== PARTIE 1 : Les quais silencieux ===
+
+{clapotis_loire_discret.wav}
+
+[ton intime] Sur les quais de Nantes, ce soir, la Loire murmure. [pause 1s] Elle glisse, patiente, comme elle l'a toujours fait. Et si on lui demandait… [pause 1s] elle pourrait nous raconter une histoire. Celle du tout premier travailleur de ce port. [pause 1s] [murmure] Écoutez. [pause 2s]
+
+=== PARTIE 2 : Corbilo, le port des origines ===
+
+Il y a près de trois mille ans, bien avant que la ville ne porte le nom de Nantes, il existait ici un petit port fluvial. Les Grecs et les Romains l'appelaient [ralentissement] Corbilo. [pause 1s] C'était la capitale d'un peuple celte — les Namnètes. Et sur les rives de la Loire, ces gens-là travaillaient. Des fondeurs coulaient le bronze — on a retrouvé leurs ateliers à la Prairie-au-Mauve, à Chantenay, jusqu'au Jardin des Plantes. [acceleration] Des haches de cuivre, des pointes de lance, des épées. Des bateliers chargeaient, déchargeaient, faisaient vivre le commerce sur le fleuve. [ralentissement] [émotion contenue] Des hommes et des femmes ordinaires, dont on ne connaît pas les noms. [pause 2s] [ton grave] Sauf un.
+
+=== PARTIE 3 : Le cavalier de Nantes ===
+
+{souffle_vent_leger.wav}
+
+Quand les Romains arrivent, tout change. Le petit port de Corbilo devient une vraie ville — Condevicnum, c'est le nouveau nom que Rome lui donne. [acceleration] Un tribunal. Un temple dédié au dieu Mars. Des thermes, des égouts. Le port, lui, prend un nom officiel : Portus Namnetum. Il rivalise même avec celui de Rezé, juste en face. [ralentissement] Mais cette prospérité a un prix. En échange d'une certaine liberté, les Namnètes doivent envoyer leurs fils dans les légions romaines. [pause 1s] [ton grave] Et c'est là qu'apparaît Argiotalus. [pause 2s] [ton solennel] Argiotalus. [pause 1s] Un cavalier namnète. Le tout premier Nantais dont l'histoire a retenu le nom. [émotion contenue] On l'imagine sur ces quais, un matin, quittant la Loire pour rejoindre les frontières de l'Empire. [pause 1s] Il ne reviendra pas. [pause 2s] Son nom, on l'a retrouvé gravé à Worms, en Germanie. [murmure] Un homme du fleuve, mort loin de son eau. Un travailleur du port, devenu soldat, tombé au bout du monde connu.
+
+=== PARTIE 4 : Le fleuve se souvient ===
+
+{clapotis_loire_discret.wav}
+
+[pause 2s] [ton intime] Ce soir, sur les quais de Nantes, la Loire coule toujours. [émotion contenue] Elle a porté les fondeurs de bronze, les bateliers celtes, les cavaliers de Rome, et tant d'autres après eux. Trois mille ans de travailleurs du port, dont le fleuve garde la mémoire. [pause 1s] [ton solennel] Argiotalus fut le premier. [pause 1s] Il ne fut pas le dernier. [pause 3s]

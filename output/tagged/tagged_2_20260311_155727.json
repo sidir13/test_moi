@@ -1,0 +1,32 @@
+{
+  "scenario_id": 2,
+  "titre": "La Grue Titan — Sentinelle jaune de l'Île de Nantes",
+  "taggedText": "=== PARTIE 1 : Une silhouette sur les quais ===\n\n{vent_metal_lointain.wav}\n\nSur l'Île de Nantes, au bout du quai des Antilles, une masse de métal jaune se dresse face au ciel. [pause 1s] Haute, verticale, immobile. C'est la grue Titan. [pause 2s] Elle domine le Parc des Chantiers de toute sa flèche, visible de loin sur la skyline nantaise — comme un repère planté dans le paysage.\n\n=== PARTIE 2 : Le temps des chantiers ===\n\n{fond_industriel_lointain.wav}\n\nPendant des décennies, cette grue a soulevé des tonnes d'acier au-dessus des cales des chantiers navals Dubigeon. Des coques, des pièces, des structures entières passaient dans ses câbles. [ton vivant] En bas, sur les quais de la Prairie-au-Duc, des centaines d'ouvriers s'activaient chaque jour. Parmi eux, [pause 1s] Jean Penaud. Charpentier de fer, embauché le 5 février 1957.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« On triait les goussets et les… À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les pièces, quoi, les goussets… Pour amener à bord. »\n\nDes goussets — ces petites pièces de renfort en métal — acheminées par un petit train jusqu'aux navires en construction. La grue, au-dessus, ne s'arrêtait jamais.\n\n=== PARTIE 3 : Le silence des cales ===\n\n{silence_travaille.wav}\n\n[ton grave] Puis les chantiers ont fermé. La désindustrialisation a vidé les cales, dispersé les équipes, éteint les bruits. Les grues voisines ont été démontées. [ralentissement] Les quais se sont tus. [pause 2s] Mais elle, la Titan jaune, est restée. Seule, immobile, au milieu d'un terrain que la ville ne savait pas encore comment regarder.\n\n=== PARTIE 4 : Jaune contre l'oubli ===\n\n{vent_bord_de_loire.wav}\n\nNantes a choisi de ne pas oublier. La grue Titan a été classée Monument Historique — un acte de préservation rare pour un outil industriel. Autour d'elle, l'Île de Nantes s'est réinventée. Les Machines de l'Île, le Hangar à Bananes ont pris place à quelques pas. Mais c'est toujours elle qu'on voit en premier. [pause 1s] Jaune vif contre le ciel gris de l'estuaire, la grue Titan veille. [pause 2s] [émotion contenue] Elle porte la mémoire des charpentiers de fer, des goussets, du petit train sur les quais. [ralentissement] Sentinelle de métal, entre le passé ouvrier et l'avenir d'une ville qui a fait de son histoire industrielle [pause 1s] une fierté. [pause 3s]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Une silhouette sur les quais",
+      "taggedText": "{vent_metal_lointain.wav}\n\nSur l'Île de Nantes, au bout du quai des Antilles, une masse de métal jaune se dresse face au ciel. [pause 1s] Haute, verticale, immobile. C'est la grue Titan. [pause 2s] Elle domine le Parc des Chantiers de toute sa flèche, visible de loin sur la skyline nantaise — comme un repère planté dans le paysage."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des chantiers",
+      "taggedText": "{fond_industriel_lointain.wav}\n\nPendant des décennies, cette grue a soulevé des tonnes d'acier au-dessus des cales des chantiers navals Dubigeon. Des coques, des pièces, des structures entières passaient dans ses câbles. [ton vivant] En bas, sur les quais de la Prairie-au-Duc, des centaines d'ouvriers s'activaient chaque jour. Parmi eux, [pause 1s] Jean Penaud. Charpentier de fer, embauché le 5 février 1957.\n\n[ARCHIVE AUDIO — Jean Penaud]\n« On triait les goussets et les… À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les pièces, quoi, les goussets… Pour amener à bord. »\n\nDes goussets — ces petites pièces de renfort en métal — acheminées par un petit train jusqu'aux navires en construction. La grue, au-dessus, ne s'arrêtait jamais."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence des cales",
+      "taggedText": "{silence_travaille.wav}\n\n[ton grave] Puis les chantiers ont fermé. La désindustrialisation a vidé les cales, dispersé les équipes, éteint les bruits. Les grues voisines ont été démontées. [ralentissement] Les quais se sont tus. [pause 2s] Mais elle, la Titan jaune, est restée. Seule, immobile, au milieu d'un terrain que la ville ne savait pas encore comment regarder."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Jaune contre l'oubli",
+      "taggedText": "{vent_bord_de_loire.wav}\n\nNantes a choisi de ne pas oublier. La grue Titan a été classée Monument Historique — un acte de préservation rare pour un outil industriel. Autour d'elle, l'Île de Nantes s'est réinventée. Les Machines de l'Île, le Hangar à Bananes ont pris place à quelques pas. Mais c'est toujours elle qu'on voit en premier. [pause 1s] Jaune vif contre le ciel gris de l'estuaire, la grue Titan veille. [pause 2s] [émotion contenue] Elle porte la mémoire des charpentiers de fer, des goussets, du petit train sur les quais. [ralentissement] Sentinelle de métal, entre le passé ouvrier et l'avenir d'une ville qui a fait de son histoire industrielle [pause 1s] une fierté. [pause 3s]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 14,
+    "soundTags": 4,
+    "originalWordCount": 338
+  }
+}

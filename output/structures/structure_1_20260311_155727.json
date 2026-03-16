@@ -1,0 +1,100 @@
+{
+  "scenario_id": 1,
+  "titre_global": "La Grue Jaune — D'outil des chantiers à icône de Nantes",
+  "resumeHistoire": "Sur l'Île de Nantes, une grue monumentale jaune se dresse face à la Loire, vestige silencieux des chantiers navals qui firent battre le cœur industriel de la ville pendant des décennies. Dès les années 1950, elle soulevait des tonnes d'acier sur les cales de construction où des hommes comme Jean Penaud, charpentier de fer entré au Chantier de la Loire en février 1957, assemblaient coques et membrures dans le fracas des rivets. Puis vint la désindustrialisation : les chantiers fermèrent, les ouvriers partirent, et la grue resta seule, immobile au bord du quai. Mais plutôt que de disparaître, elle fut classée Monument Historique et devint le symbole d'une métamorphose urbaine, celle de l'Île de Nantes reconvertie en quartier culturel, à deux pas des Machines de l'Île et du Hangar à Bananes. Aujourd'hui, sa silhouette jaune sur la skyline nantaise incarne à la fois la mémoire ouvrière et la promesse d'un territoire réinventé.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un géant d'acier au bord de la Loire",
+      "duree_cible": 18,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "ancrage_visuel_calme",
+      "elements_necessaires": [
+        "Description de la grue jaune telle qu'on la voit aujourd'hui sur le Quai des Antilles / Parc des Chantiers",
+        "Localisation précise : Île de Nantes, ancienne Prairie-au-Duc",
+        "Évocation sensorielle du paysage — Loire, skyline, couleur jaune",
+        "Amorce de la question : comment cet objet industriel est-il arrivé là ?"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 28,
+      "fonction_narrative": "contexte_historique_avant",
+      "position_arc_emotionnel": "montée_en_intensité",
+      "elements_necessaires": [
+        "Époque des chantiers navals actifs sur l'Île de Nantes — Chantiers Dubigeon / Chantier de la Loire",
+        "Rôle fonctionnel de la grue : levage de pièces lourdes, construction navale",
+        "Intégration du témoignage de Jean Penaud — charpentier de fer, entré le 5 février 1957 au Chantier de la Loire, parcours vers Dubigeon, vocabulaire ouvrier (goussets, parc à ferret, petit train)",
+        "Ambiance sonore industrielle : métal, rivets, activité portuaire",
+        "Densité humaine et ouvrière autour de la grue"
+      ],
+      "mood": "vivant_industriel_immersif"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 16,
+      "fonction_narrative": "pivot_dramatique_bascule",
+      "position_arc_emotionnel": "creux_émotionnel_gravité",
+      "elements_necessaires": [
+        "Désindustrialisation et fermeture progressive des chantiers navals nantais",
+        "Silence qui remplace le bruit — la grue immobile, les cales vides",
+        "Incertitude sur le sort du site et de la grue",
+        "Transition émotionnelle : de la vie ouvrière à l'abandon"
+      ],
+      "mood": "mélancolique_suspendu"
+    },
+    {
+      "partie": 4,
+      "titre": "D'outil oublié à monument vivant",
+      "duree_cible": 28,
+      "fonction_narrative": "résolution_transformation_après",
+      "position_arc_emotionnel": "remontée_vers_ouverture",
+      "elements_necessaires": [
+        "Classement Monument Historique — politique de préservation patrimoniale",
+        "Reconversion urbaine de l'Île de Nantes : Parc des Chantiers, proximité des Machines de l'Île, Hangar à Bananes",
+        "La grue comme icône culturelle et touristique — sa silhouette jaune dans la skyline",
+        "Symbolique identitaire et mémorielle : mémoire ouvrière transmise à travers l'objet",
+        "Ouverture : un outil devenu symbole d'une ville qui se réinvente sans oublier"
+      ],
+      "mood": "lumineux_porteur_de_sens"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation → immersion vivante → gravité silencieuse → élévation mémorielle",
+  "rythme_general": "Ouverture lente et visuelle, accélération pendant l'évocation des chantiers actifs avec archive sonore, ralentissement net au moment de la fermeture, puis reprise progressive vers une conclusion ouverte et lumineuse.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "plongée_temporelle",
+      "duree": 2.5,
+      "description": "De l'image actuelle de la grue, on glisse vers le passé par une phrase-pivot du type « Mais il fut un temps où ce géant jaune ne se reposait jamais ». Le paysage sonore bascule du calme fluvial vers l'ambiance industrielle."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "extinction_progressive",
+      "duree": 2.0,
+      "description": "Le bruit des chantiers s'éteint progressivement. La narration marque une respiration. Le silence devient narratif — il raconte la fin d'une époque. Pas de rupture brutale mais un fondu sonore et verbal."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "renaissance_douce",
+      "duree": 2.0,
+      "description": "Du silence naît une nouvelle énergie. La narratrice passe du constat de perte à la dynamique de transformation avec une phrase-charnière liant l'immobilité de la grue à sa nouvelle fonction symbolique. Le mood sonore s'ouvre et s'éclaire."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un seul mouvement fluide en diptyque (avant/après la fermeture des chantiers), la grue jaune étant le fil conducteur permanent — elle est présente dans chaque section, tantôt active, tantôt silencieuse, tantôt symbolique. — VOIX : Narratrice femme professionnelle, ton neutre-informatif constant, sans adresse directe au public. Le registre reste accessible grand public (phrases courtes à moyennes, vocabulaire courant, termes techniques toujours explicités). — ARCHIVE AUDIO : L'extrait de Jean Penaud (charpentier de fer, embauché le 5 février 1957) s'intègre dans la partie 2. Privilégier les passages sur son entrée au chantier et le vocabulaire des goussets/parc à ferret pour leur force d'évocation concrète. L'archive ne doit pas excéder ~8-10 secondes pour respecter le ratio narration/archives de 0.7. — AMBIANCE SONORE : Partie 1 = eau, vent, sons urbains lointains. Partie 2 = métal, activité portuaire, voix ouvrières. Partie 3 = silence, vent seul, craquement de métal. Partie 4 = sons urbains contemporains, rumeur de promeneurs, légère musique d'ouverture. — IMPORTANT : Ne jamais inventer de dates de fermeture précises des chantiers ni de date de classement MH si elles ne figurent pas dans le contexte fourni. Rester sur des formulations temporelles souples (« au fil des décennies suivantes », « un jour les chantiers se sont tus »)."
+}

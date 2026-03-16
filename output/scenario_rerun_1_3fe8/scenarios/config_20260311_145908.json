@@ -1,0 +1,463 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "duration_seconds": 90,
+        "voice_instructions": "Narateur femme profesionnelle"
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "scenario_target_override": 1,
+      "analysis_confidence": 0.92,
+      "user_specified_count": 6,
+      "default_used_count": 8,
+      "adjusted_for_coherence_count": 5,
+      "notes": [
+        "6 paramètres explicitement spécifiés par l'utilisateur : durée, ton, public_cible, nombre_scenarios, voix, consignes_ouverture",
+        "5 paramètres ajustés pour cohérence : axe_narratif, perspective_narrative, epoque_linguistique, structure_narrative, authenticite_vs_accessibilite",
+        "La grue jaune de Nantes (grue Titan n°3) est un sujet patrimonial bien documenté",
+        "La contrainte de présenter le public cible et le ton en ouverture est intégrée comme consigne spécifique"
+      ]
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : grand_public (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : neutre_informatif (ne change jamais de ton).\n- Durée cible : ~90 s (1 min 30). Tolérance maximale ±15 %.\n- Voix attendue : Narateur femme profesionnelle (intègre cette intention dans la mise en scène).\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nRacontes moi l'histoire de la grue jaune de Nantes\nSa localisation, son rôle et sa symbolique"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": false,
+        "reasoning": "Non spécifié par l'utilisateur, valeur par défaut conservée. Le format documentaire est cohérent avec le ton neutre_informatif et la demande factuelle (localisation, rôle, symbolique)."
+      },
+      "duree": {
+        "value": 90,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "contraintes_non_negociables",
+        "tolerance": {
+          "min": 77,
+          "max": 104
+        },
+        "reasoning": "Explicitement demandé : ~90 s (1 min 30) avec tolérance maximale ±15%."
+      },
+      "ton": {
+        "value": "neutre_informatif",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.7,
+        "source": "contraintes_non_negociables",
+        "reasoning": "Explicitement imposé comme contrainte non négociable : 'neutre_informatif (ne change jamais de ton)'."
+      },
+      "axe_narratif": {
+        "value": "objet_lieu",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": false,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social"
+        },
+        "reasoning": "Non spécifié explicitement mais fortement impliqué par la demande centrée sur un objet/lieu précis (la grue jaune). L'utilisateur demande sa localisation, son rôle et sa symbolique, ce qui correspond à l'axe objet_lieu. Ajusté depuis 'mixte' par défaut pour cohérence."
+      },
+      "rythme": {
+        "value": "modere",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 120,
+          "pauses": "naturelles",
+          "variation": "progressive"
+        },
+        "reasoning": "Non spécifié, valeur par défaut conservée. Cohérent avec 90 secondes et ton neutre_informatif."
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "source": "project_slider",
+        "reasoning": "Défini dans la configuration projet à 1 scénario."
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "contraintes_non_negociables",
+        "reasoning": "Explicitement imposé : 'Public cible : grand_public (adapte le vocabulaire et rappelle-le dès l'ouverture)'."
+      },
+      "niveau_detail_historique": {
+        "value": "moyen",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "reasoning": "Non spécifié. Cohérent avec grand_public et durée de 90 secondes. Un niveau approfondi serait incompatible avec la contrainte de durée."
+      },
+      "perspective_narrative": {
+        "value": "voix_off_omnisciente",
+        "options": [
+          "premiere_personne",
+          "troisieme_personne",
+          "voix_off_omnisciente",
+          "chorale_multiple_voix"
+        ],
+        "default": "troisieme_personne",
+        "user_specified": false,
+        "reasoning": "Non spécifié explicitement mais ajusté depuis 'troisieme_personne' pour cohérence avec la demande d'une narratrice femme professionnelle et le format documentaire sur un objet/lieu."
+      },
+      "epoque_linguistique": {
+        "value": "modernise_accessible",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "reasoning": "Non spécifié mais ajusté depuis 'authentique' pour cohérence avec le public grand_public et l'exigence d'adapter le vocabulaire."
+      },
+      "densite_sonore": {
+        "value": "equilibree",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": false,
+        "details": {
+          "ambiances_simultanees_max": 3,
+          "frequence_effets_sonores": "modere",
+          "silence_narratif": true
+        },
+        "reasoning": "Non spécifié, valeur par défaut conservée."
+      },
+      "structure_narrative": {
+        "value": "thematique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": false,
+        "reasoning": "Non spécifié explicitement mais ajusté depuis 'chronologique' pour cohérence avec la demande structurée en trois axes distincts : localisation, rôle, symbolique."
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "temoignage_croise",
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "reasoning": "Règle critique : JAMAIS true sur angle_scenarisation. Valeur par défaut conservée, le système déterminera l'angle optimal."
+      },
+      "equilibre_narration_archives": {
+        "value": 0.7,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "reasoning": "Non spécifié. Légèrement ajusté depuis 0.6 vers plus de narration (0.7) car la demande porte sur un sujet contemporain/patrimonial avec peu d'archives sonores historiques disponibles."
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.5,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "reasoning": "Non spécifié. Ajusté depuis 0.7 vers plus d'accessibilité (0.5) pour cohérence avec le public grand_public et l'exigence d'adapter le vocabulaire."
+      },
+      "voix": {
+        "genre": "femme",
+        "style": "professionnelle",
+        "user_specified": true,
+        "source": "contraintes_non_negociables",
+        "reasoning": "Explicitement demandé : 'Narateur femme profesionnelle'."
+      },
+      "consignes_ouverture": {
+        "presenter_public_cible": true,
+        "presenter_ton": true,
+        "user_specified": true,
+        "source": "contraintes_non_negociables",
+        "reasoning": "Explicitement demandé : 'Commence la narration en présentant explicitement le public cible et le ton demandé'."
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "Jean.Penaud.Charpentier-Fer.WAV",
+            "transcription": "[00:30] ...ou des... des personnes lambda de maintenant, euh... qui peuvent donner leur avis.\n[00:36] Puis c'est pour faire quoi ? Qu'est-ce que tu vas faire avec ?\n[00:42] Alors avec ça, l'idée c'est que... il faut que je monte... l'idée du projet culturel, ce serait de monter quelque chose qui puisse autant mêler du... de... du document d'archive que de l'archive humaine, vraiment avec du témoignage humain et voilà. Ce serait qu'à la fin, soit ce soit retranscrit pour en faire un... genre de collection de témoignages, soit que ce soit réutilisable en audio.\n[00:48] euh pour euh pour euh comme un de mes petits films ou un truc comme ça. Donc...\n[00:58] je sais je vais reprendre le questionner... Je fais un petit questionnaire en fait mais qui va être euh qui sera on verra si c'est utile ou non.\n[01:08] Alors Jean...\n[01:18] Alors, euh, on va faire ça en deux temps parce qu’il y a l’histoire, la fameuse histoire dont tout le monde me parle depuis que je suis arrivé, et euh la question de l’euh de votre emploi avant. Alors, euh, est-ce qu’on peut commencer par euh la question, parce que là, il faut que je fasse un questionnaire avec un genre de référencement. Euh, est-ce que c’est possible d’avoir nom, prénom de…\n[01:48] \"Et âge.\" \"Oui ben... de nos gens.\" \"Ouais.\" \"Âge d'euh 83 ans.\" \"C'est bien compris. Avez-vous travaillé au chantier ?\" \"Oui.\" \"Oui. Si oui, ACL du Bigeon, ACB ?\" \"Oui, chantier réformé. J'suis rentré à la Loire, après j'ai été muté à Dubigeon et j'suis revenu ici en revenant d'Cherbourg. J'ai travaillé pendant 7 ans et demi à Cherbourg sur le sous-marin atomique... enfin sur les sous-marins puis après le sous-marin atomique.\" \"Et après... après être venu... et après vous êtes revenu ici ?\"\n[02:18] - Oui, j'suis revenu le... au mois de juillet 69.\n[02:23] - OK. Donc, mmm... après Cherbourg... Alors, mmm... votre première embauche au Chantier de la Loire ?\n[02:28] - Première embauche : le 5 février 1957.\n[02:33] - Oh, c'est fou qu'vous arriviez à vous en rapp'ler !\n[02:38] - Comme d'ailleurs...\n[02:43] - Ah d'accord ! OK. J'allais d'mander quel était votre... votre poste.\n[02:48] Et ensuite, comment ça a évolué au niveau des autres postes ?\n[02:51] J'ai été huit jours au balais. Et après je suis allé dans le parc à ferret, on appelait ça. C'est-à-dire que on triait les goussets et les... À l'époque, il y avait un genre de petit train avec un plateau et il venait chercher les les pièces, quoi, les goussets, les... Pour amener à bord.\n[02:55] Donc les goussets, c'est des...\n[02:59] Bah, c'est des soit des trucs pour renforcer, vous voyez, tac, tac, comme ça.\n[03:03] Ouais.\n[03:06] Ou des bouts de fer à boudin, des trucs comme ça, toutes les petites pièces en quelque sorte.\n[03:10] D'accord.\n[03:14] Alors j'ai été quinze jours là. Hum, hum. Et après...\n[03:18] Moi je suis rentré, j'ai commencé avec un ancien qui avait 63 ans. Hmm hmm. Comme charpentier de fer.\n[03:22] Moi j'suis allé à bord directement.\n[03:26] Mais euh ça s'est passé comment pour avoir ce...\n[03:30] Cet emploi ?\n[03:35] Ouais cette...enfin je veux dire la mutation d'un..d'un poste à un autre ? Ça s'est passé...\n[03:39] Ben quand je suis rentré moi, chuis revenu de l'armée, j'ai fait trente et un mois, chuis revenu de l'armée, et le jour de Noël chuis débarqué à Marseille. \n[03:43] Et bon ben mes parents n'étaient pas tout jeunes. Parce que mon...\n[03:47] Mon père était de dix-huit cent quatre-vingt-dix, il fallait travailler. Moi j'avais un mois de permission libérable, euh je disais : \"j'en profite un peu\", mais maman m'a tellement rouspété que la dernière semaine de janvier, je suis rentré, il y avait mon comment, le beau-père de mon frère qui travaillait comme un contremaître chef dans à l'époque, ça s'appelait la BVT. C'était l'é- comment district alimentaire pour les pour les bestiaux, là je suis rentré comme docker pendant huit jours. D'accord.\n[04:17] Et j'avais un beau-frère.\n[04:22] Oui.\n[04:26] Un frère d'ailleurs qui travaillait là, j'avais deux frères qui travaillaient là, puis un beau-frère. Et puis il me dit, bah il dit : « Jean, si tu veux venir ils embauchent au chantier, mais enfin je sais pas comment. » Mais bon, moi le vendredi après-midi j'ai pas travaillé là-bas, je suis allé, je suis allé et moi j'ai été embauché quoi.\n[04:30] Mmm, juste en venant comme ça ?\n[04:35] Ah oui oui, avec le beau-frère qui m'a présenté, hein. Ah oui oui.\n[04:39] D'accord, et donc les changements de postes c'était des opportunités comme ça qui se présentaient ?\n[04:43] Oui, c'est... c'est-à-dire.\n[04:47] Alors parce que euh étant donné que moi j'avais fait un peu de soudure avant, mais pas de soudure électrique, euh soudure comment au chalumeau pour les euh je travaillais dans les cycles. Cycles Petit Breton, rue de Bitche avant, fabrication des cadres, donc soudure, différente. Ouais. C'est un peu comme la soudure des tuyaux de cuivre dans le service d'eau. C'est des petits... Ouais, c'est des petits... Ben c'est-à-dire que pour... On faisait surtout les fourches quoi. Euh il y avait un pare-brise, il y avait de la... une table avec de la brique et tout comme ça et on mettait la fourche comme ça et puis on...\n[05:17] Chauffer, y avait une couche de soudure et puis on avait une baguette, un rouleau, et puis pffiou ! On mettait... y avait un produit avant, une espèce de pâte. Hum hum. Puis les câbles pareils, les boîtes, machin... D'accord. Donc je ne savais pas souder le truc, mais je suis rentré, je suis tombé avec un matelot qui avait 63 ans à l'époque. Très bien, qui m'a appris plein de choses et huit jours après, je savais souder. D'accord, donc en huit jours ! Ah oui oui ! Et puis bon ben c'est comme ça et puis... malheureusement lui, ça faisait un an et demi que j'étais avec lui...\n[05:47] Il a fait, euh, comme un... un AVC - on appelait pas ça un AVC à l'époque - il a... il a arrêté de travailler, puis il est décédé après, en 64. D’accord. Et puis bah, j'ai navigué de matelot en matelot, et puis un beau jour, on m'a dit « Bon bah... », on appelait ça donner le coffre, c'est-à-dire que je me démerdais tout seul. Et en 60... soit... 61 oui, il y avait de la débauche, et mon chef qui me dit « Ça t'intéresserait d'aller chez Dubigeon ? ». Oh bah moi « Pourquoi ? ». « Bah parce que t’es... t’es pas sûr de... »\n[06:17] - bah à Nice, mais enfin, ils... et ils... ils ont besoin de vigiles à Dubigeon, ils embauchent. Moi, j’avais mon frangin qu’était délégué là, qui connaissait le délégué de Dubigeon, il l’a appelé, il dit « Oui oui, il peut venir ». Alors je suis été là-bas. J’ai débarqué au mois de décembre là-bas, et au mois de février, je partais à Cherbourg, pour trois mois et demi... et je suis resté sept ans et demi.\n[06:23] - D’accord, donc c’est entre grossièrement 62 et 67. \n[06:29] - Ouais... 62 et 69. \n[06:35] - 69 ! D’accord. \n[06:41] - Là-bas, j’ai travaillé...\n[06:47] Les sous-marins atomiques, donc dans l'amiante, bloc. D'accord. Au préchauffage, c'est-à-dire qu'on chauffait les plaques, les grains... le sous-marin atomique 11 mètres de diamètre. Oui, c'était grand, c'est là où on commençait à faire sur le... On faisait c'était horizontal la construction. Pas que chez Dubigeon il le faisait comme ça, mais là les sous-marins atomiques c'est-à-dire que le ils montaient les tôles tôle par tôle mais nous on fait... les joints chauffaient matelas d'un côté matelas d'un autre dans l'amiante jusqu'au cou pendant 3 ans. C'est p- p- Moi ça me paraît complètement fou enfin...\n[07:17] - Ah chaque fois... Et puis attention hein, on avait fabriqué tout hein ! Parce que c'était le balbutiement du préchauffage. On recevait les les plaques d'amiante.\n[07:20] - Hm hm.\n[07:23] - Qui faisaient à peu près, oui ça faisait... ça devait faire 5 millimètres. Mais on les recevait comme les planches comme les contre-plaqués.\n[07:26] - Comme des planches de bois quoi ?\n[07:29] - De de contre-plaqué, c'était pareil ! Et on les débitait à la scie circulaire.\n[07:32] - Donc vous- vous débitiez l'amiante à la scie circulaire ?\n[07:35] - À la scie circulaire.\n[07:38] - Vous... enfin, y avait- y avait une naze de protection au moins ou pas ?\n[07:41] - Bah rien !\n[07:44] - Y avait rien, ouais je m'en doute.\n[07:47] On avait des gants parce que... parce que c'était chaud autrement. Et les... il y avait des résistances qui faisaient cette grandeur-là, d'autres qui étaient comme ça. C'est... alors on coupait des bandes, comme ça, de la largeur. Quand ils étaient usinés, on perçait trois trous, deux trous pour les petites résistances, trois trous. Alors par paquets, par paquets, et on faisait le montage de ça. Après on montait nos résistances, et puis il y avait deux trous pour les fixer avec des boulons. Il fallait souder une baguette sur la coque, pour serrer.\n[08:17] Et en plus sur chaque résistance un matelas.\n[08:32] Un matelas alors le sous-marin atomique intérieur extérieur 10 mètres de diamètre à la circonférence il y avait et intérieur extérieur montaient ça et en plus des grandes bandes de matelas comme ça recouverte pour arriver à 250 degrés. On chauffait ça alors il y avait le préchauffage et après le postchauffage c'est-à-dire qu'il fallait garder la chaleur un certain temps pour que... D'accord. Là c'était...\n[08:47] Ouais, euh... J'avais un gars que je cherchais avec qui je pêchais, parce que je pêchais la truite et tout ça. Il est passé chef et ben il est mort de l'amiante. Après il est parti là-bas, il y avait l'Arsenal avait un truc à, je m'en rappelle plus où, là-bas en Afrique du Sud, là-bas il y avait une base. Et un jour, un copain me dit... m'envoie une lettre, en me disant de Cherbourg, mais longtemps après, et il me dit \"La femme de Bernard là, elle a des problèmes, parce qu'il était mort de l'amiante et l'Arsenal l'avait... leur avait donné de l'argent\" \"Hm hm\" \"À tous les gars qui étaient morts de...\"\n[09:17] Alors... Ouais. Au bout d'un an, ils ont demandé de le retirer. Alors, ils ont tout s'ils se sont tous groupés, avocats et tout, et moi, j'ai fait une lettre, enfin une lettre, il y avait trois pages pour expliquer comment on travaillait et tout et ben tout le monde a dû faire ça et puis au bout de ce... ils ont retouché quoi. D'accord. Parce que la grande... comment on appelle ça ? La grande dame... Pas la grande dame, on appelle ça comment ? L'armée... enfin, ils portent un nom. Et... ils sont pas bavards hein. Faut pas... faut rien dire. Faut se méfier. Ouais, c'est pas le genre de truc où il faut... C'est pas le genre de domaine, ouais.\n[09:47] Ah oui, ça a été... des anecdotes. Comme on était... on était en prêt là bas, prêtés par Du-Bigeon, bien sûr. Et... au préchauffage, là, y avait des gars qui me parlaient et qui disaient : \"Tiens, ben on va aller à la prise de sang.\" \"Hein ? Prise de sang ? Pourquoi ?\" \"Ben il dit : 'Oui, parce qu'on avait des silos, parce qu'ils prenaient des radios'.\" Nous, quand on était de nuit, y avait l'équipe de radio qui arrivait, nous éjectait. On allait dans une salle plus loin parce qu'on aurait pris... c'était des... des machins comme ça, là, pour prendre les radios avec des cés- cés- césium.\n[10:17] Dat'homme quoi... enfin bon.\n[10:32] Ah oui ! J'ai... vous avez une prise de sang ? Oui. Alors, le... lundi m'a... ça c'était la fin de semaine, ça doit être le jeudi ou le vendredi, mon chef qui vient le-le lundi, je dis : « Bon euh... y a les gars de l'Arsenal là, y passent un... ils ont une prise de sang par rapport à l'amiante et tout ça », le chauffeur il dit : « Oh ! Oh ! Oh ! Attend, tu comprends, si on est f... si on est comme ça ils vont nous renvoyer » et je dis « Non non non pas question ! » Et puis j'me suis braqué avec lui quoi. J'dis... j'dis aux copains : « T'inquiète pas, ça va marcher. » Alors ce que j'ai fait le vendredi...\n[10:47] j'ai laissé ma veste avec mon stylo\n[10:53] Je savais pas qu'il prenait la radio avec mon stylo. j'ai laissé machin.\n[10:59] si bien que quand ils ont récupéré les stylos le lundi, le mardi, y a mon chef qui vient de me trouver, il dit : \"Non, faut que tu ailles trouver le le comment, le cinq galons le... qui s'occupe de ça, quoi.\"\n[11:05] – Hm hm.\n[11:11] – Avec mon chef qui était... ben con ! Le chef supérieur qui était con et qui s'occupait des trucs. Alors j'arrive comme un grand, pis je savais pas pourquoi c'était, hein ! Alors bonjour...\n[11:17] Monsieur Pinon mais vous vous êtes pas fatigué ? Bah non. Vous avez l'air en pleine forme et vous faites du sport, il me dit. Parce qu'il connaissait le, comment, le président du club de gym foresto-sé-un Saint-Gallon de- de Bonlacours, il s'appelait, il le connaissait. Ah ouais. Parce que, il dit, vot' stylo, là-bas, c'est grave, hein ! Ah bon, pourquoi ? Bah, il dit : « Il faut- il va falloir vous poncer ». Ah, je dis : « Oui, une prise de sang ». Alors le chef à côté, il me regardait, l'air de dire, il dit : « Oui, mais mon stylo il était avec moi ».\n[11:47] Bah mais c'est mais pas moi. Pourquoi vous avez fait ça ? Ben j'lui explique.\n[11:55] Alors l'autre le chef là il l'a pas... il l'a mal pris mais il a fermé sa gueule. Et quinze jours après on passait on avait une prise de sang.\n[12:02] C'est complètement fou quoi.\n[12:10] Ah ouais. Ouais ouais. Ça a pas été facile hein ! Mais faut voir à l'arsenal le nombre de gars qui s'en vont de l'amiante Duboison aussi parce que un sur deux de Duboison qu'a travaillé il a l'amiante. Moi j'en ai tout le tour. Bon ça se passe bien mais j'ai un frangin qui est mort en 2012. Un mois. Il l'a pris un mois.\n[12:17] - Ouais. Et puis euh… bah c’était partout.\n[12:21] - C’est fou.\n[12:25] - C’est vrai ?\n[12:29] - Donc ça c’était y a… c’était entre 61 et 69.\n[12:32] - Oui, d'accord.\n[12:36] - Donc euh, vous avez fait différents postes. Euh… quand vous étiez les… les périodes quand vous étiez sur le… sur le chantier ici, donc on va dire… \n[12:40] - Après être revenu de Cherbourg, quoi.\n[12:44] - De… même avant. Entre 57 et 61. Euh, c’est… votre en gros vous avez été charpentier…\n[12:47] Qu'est-ce qu'on y fait euh entre 51 et entre 57 et 61 ? Oui. OK. En quoi ça consistait pour... À l'époque ça consistait que on ne comment on assemblait les blocs, c'est-à-dire qu'à l'époque au tout début les blocs c'était pas des c'était pas des trucs énormes. C'était pas des trucs énormes, on faisait les bordés, c'est-à-dire le bordé qui montait jusqu'au deuxième pont avec les comment les varangues comme ça et on montait ça. Autrement tous les tous ces trucs-là les...\n[13:17] Le fond du bateau était fait sur des bers extérieurs, c’est-à-dire qu’on faisait enfin le montage c’était à l’envers, c’est-à-dire qu’on faisait le bateau au lieu de le faire comme ça, le fond, on montait un ber avec tous les machins à l’envers. Et là on montait, on assemblait.\n[13:27] D’accord.\n[13:37] Et après je suis allé J’étais au levage pendant un temps. C’est-à-dire qu’au levage, c’était lever les blocs. Alors là c’était pas c’est pas tellement marrant, c’est c’est physique d’ailleurs parce que c’est pareil, là on montait les blocs de bordés, alors il fallait on les élinguait avec des des grosses tac. Et quand il y avait du vent, on...\n[13:47] Euh...  les chefs ils étaient pas contents parce qu'à 60 à l'heure normalement on arrêtait. Ouais. Et je me souviens d'un jour... euh on a dit \"non non on fait pas\", \"non non on n'arrête pas\" et puis au total bah le bloc il a... il l'a affalé, le grutier l'a affalé, tout... toutes les membrures qui dépassaient du bloc... parce que vous voyez le bloc il faisait ça... là là la tôle s'arrêtait là... mais le... euh s'arrêtait là pour aller dedans quoi. Hum hum. Alors tout... tout s'est tordu. Alors... Donc il fallait tout recommencer ou... ? Ah bah il fallait le remettre là puis...\n[14:17] - Remettez le truc... pas des conneries, parce que... non... \n[14:25] - Parce que c'était pas respecté, parce qu'ils respectaient pas les... \n[14:32] - Ah ben, la sécurité... j'étais pas à la sécurité parce qu'après j'suis rentré en 71 à la sécurité. Mais à l'époque, euh, moi, je me souviens, pour déferler les... comment... les manis du... pour décrocher le bloc, en quelque sorte... moi, je prenais l'élingue, là, une comme ça... pis j'montais d'dans... même qu'il pleurait, on montait tout en haut. Pour redescendre, j'redescendais dans une benne avec le... avec le Titan. \n[14:40] - D'accord. Euh...\n[14:47] « Alors, donc ça, charpentier fer, ça a duré donc entre 57-61 et quand vous êtes revenus après votre passage à Cherbourg en 69, c'était quoi votre poste ? C'était toujours charpentier fer ? \n[14:52] - Charpentier fer. \n[14:57] - Et jusqu'où ? \n[15:02] - Bah, jusqu'à quand je parte, c'est-à-dire jusqu'au 31 octobre 86. \n[15:07] - D'accord, 1986. D'accord, donc euh où est-ce que c'était localisé votre votre travail sur le chantier ? \n[15:12] - Bah, c'était surtout à bord. J'ai travaillé quand même un peu dans les dans les ateliers métalliques. »\n[15:17] Je travaillais souvent à bord, pour régler les ponts, régler les cloisons, régler les blocs en quelque sorte parce que là les blocs arrivaient complètement montés hein. On montait un bloc de fond avec le tout, les ballasts et tout hein, on montait tout.\n[15:23] - Donc ça c'était, c'était les blocs qu'avaient été montés directement sur...\n[15:29] - Dans les ateliers, oui, des fois ils étaient terminés dehors. Parce qu’ils les sortaient de l'atelier, il y avait le grand bâtiment de la Pétrole, le toit s’ouvrait.\n[15:35] - Oui.\n[15:41] - Puis ils les sortaient.\n[15:47] Donc euh, à cette période-là, donc là il y a plusieurs questions qui posent ça donc vu que c'est un un travail sur l'utilisation et le symbole de la de la grue de cette grue-là dans dans les chantiers, c'est ça c'est c'est des questions qui se posent sur différents niveaux. Donc la question toute bête, est-ce que vous avez vu la grue jaune en action ?\n[15:52] La grue jaune ?\n[15:57] En action. Est-ce que vous l'avez vu marcher, vous avez travaillé avec ?\n[16:02] Bien sûr, bien sûr.\n[16:07] Ok, donc ça c'est...\n[16:12] Je l'ai vue se monter parce qu'elle date de 1958.\n[16:17] Alors ça, ça ce sera à... ça il faudra qu’on, qu'on en discute.\n[16:23] Elle a dû être modifiée, agrandie en 61, je crois...\n[16:29] Ou un peu plus tard... Là de, de ce que je commence à voir, c’est, c’est plus tardif même. Plus tard ? Ouais, quand elle est... quand on l’a fait monter à 80... 80 tonnes. De ce que je, de ce que je vois moi, c’est 77, 77-78. Parce que là j’ai... je suis en contact avec... avec un électricien de chez... de chez Maguin qui a travaillé... Ah oui... vous avez raison, oui parce que moi je...\n[16:35] - Les muscles montaient autrement et… ouais, ouais, ouais. Heu… donc, heu, en quoi vot- est-ce que vot' poste était lié à l'utilisation d'une ou de cette grue ?\n[16:43] - De la grosse ?\n[16:50] - Ouais.\n[16:58] - Bah ça dépendait parce que si quand j'étais au levage, à l'époque au levage, heu, y avait pas- c'était soixante tonnes, mais oui, heu, on l'utilisait quoi. Et… c'était par geste.\n[17:05] En quelque sorte.\n[17:10] C'était quoi ?\n[17:14] Par gestes. On communiquait avec le, avec le grutier. Comme ça.\n[17:18] Donc c'était, c'était bouger la main pour lui indiquer... C'était, c'était tout... est-ce que c'était codifié ou est-ce que c'était une entente avec le grutier ?\n[17:23] Oh c'était codifié sans être codifié.\n[17:27] C'était une habitude.\n[17:31] Ouais. Et j'me souviens d'un gars qui, oh je m'rappelle plus, c'était sur un cargo norvégien. Moi je travaillais toujours avec mon vieux matelot là. On était à arrimer des, des comment, des calingages de treuils sur le pont. Et puis tout d'un coup, bah l'accident.\n[17:35] Et là c'était des échafaudages, ils étaient en train d'défaire des échafaudages. Hmm hmm. Et avec un titan qui était pas du côté de l'échafaudage. Vous voyez, le... le bateau était comme ça, hmm hmm, eux z'autres ils... ils défaisaient l'échafaudage là et le titan était là. Hmm hmm. Et y a eu une mauvaise interprétation des signes. Le gars il a tiré et... fallait pas l'faire, y a un gars pchit, il est tombé d'quinze mètres, c'est tout. D'accord, donc y a un manque de coordination du... c'que j'en discutais avec...\n[18:05] Et j'me disais mais oui mais vu qu'il y a... vu que c'était... vu que maintenant c'est souvent un, une personne qui communique directement avec un talkie-walkie... Ah oui oui oui... Et maintenant le grutier a souvent son inter... son homologue au sol. Heu... Il me disait souvent on tentait d'avoir vraiment une personne où il y avait quelqu'un qui était la voix de... de la personne au sol. Pour qu'il y ait pas ce... Ah oui !... Pour pas qu'il y ait trente-six personnes qui parlent. Heu... Même les signes ! Mais les signes ! Voilà, c'est ça, pour qu'il n'y ait pas... En principe c'est le... en principe c'était le chef. Mais bon, heu... quand on montait des petites pièces parce que ça arrivait comme...\n[18:35] \"C’était des... y avait quand même des trucs qui faisaient deux trois tonnes quoi mais euh... bon... euh... nous on allait chercher, y’avait pas de chef même, hein. On savait ce qu’il fallait monter, on les élinguait, pof ! L’autre au bout, il dépotait à bord, y’avait le copain qui les prenait.\n[18:40] - Mais pour les grosses pièces, euh...\n[18:45] - Il fallait que ce soit supervisé, en tout cas pour pas qu’il y ait de...\n[18:50] - Bien sûr. \n[18:55] - Très bien. Donc euh, par rapport à ça, là j’avais... j’avais fait toute une série de questions pour demander un peu après à tout le monde. Euh... donc euh... vous avez... avez-vous assisté à la construction, mise en place d'une grue ?\"\n[19:00] La première destruction d'une grue puisqu'il y en a eu plusieurs qui ont été montées, démontées. Alors euh moi je me souvien- me souviens d'une grue alors c'est une très vieille grue. Alors euh ça date de 59. Le pouce coupé. J'étais à bord d'un- d'un bateau à flot au quai des Antilles et c'était l'hiver, on était à régler une cheminée. On- la cheminée elle a un peu de morceaux à prendre sur un pont. Alors pour régler cette cheminée, on met des vérins ou des- des ridoirs c'est-à-dire qu'on soudait...\n[19:30] \"Une canape sur le pont.\n[19:36] Ouais.\n[19:42] On en soulevait une autre sur la cheminée. Alors à la ridoire... c'est-à-dire c'est un truc qui... qui se visse... On serre. Et... j'ai eu cet accident-là un peu à cause de mon chef.\n[19:48] Mon chef arrivait... il faisait... c'était un matin, il y avait moins 5, c'était un mois de février, et je... j'entends mon chef il dit : \"Oh, gaffe, fais gaffe, pas que tu mets la main sur la canape, parce qu'avec le froid qui fait, si ça pète, tu vas tout prendre dans la gueule.\" Tel que ça.\n[19:54] Moi qu'est-ce que j'avais ? Des gros gants, j'fais l'malin, on serre.\"\n[20:00] Ça a pété. Mais je sens rien. J'enlève mon gant et il y a mon... mon matelot qui me dit \"bah t'as plus de doigt, le doigt coupé.\"\n[20:05] 40 jours d'arrêt. Pendant que j'étais 40 jours, il y a eu de la débauche. J'en rentre, il y a des copains qui me disent \"bah je sais pas où ils vont te mettre parce que...\" Et bah il dit \"pour l'instant, ils me mettent au balai.\" Ah il dit \"c'est la... c'est la porte ouverte pour la... pour la débauche.\" Hmm. Et puis j'étais 8 jours balai là... Retour au balai que j'avais fait quand j'étais...\n[20:09] Au tout début ?\n[20:13] Ouais.\n[20:18] j'suis appelé à la comment euh l'égrangels machin puis euh voilà y'a pas beaucoup de travail et y dit euh euh y a vous avez vu y a un titan en démolition en dé en destruction et y dit là on peut vous prendre là bon alors euh alors j'suis allé c'était rivé tu vas dérifter toute la structure ? Ouais et rivé alors j'avais cha- chalumeau et machin avec un marteau piqueur un marteau burineur ouais avec un...\n[20:48] Euh là j'y étais quinze jours sur le chantier là. Parce que j'ai j'ai vu à peu près partout, j'ai j'ai regardé un petit peu le les dates de construction de de certaines grues qui dataient des des années 1910, 1920, j'en ai Oh bah oui, il y en a eu plusieurs d'autres oui, bah ça. Il y en avait vraiment qui dataient de toutes les périodes. Celle-là j'sais pas quelle date elle avait mais c'était c'était de la gluta comme ça un peu là. Ouais les les grues en Ouais ouais. En V oui. D'accord donc oui d'accord donc ouais je crois que je vois à peu près où est-ce qu'elle devait se trouver. Ouais ouais. Et là je peux dire je-\n[21:18] j'les ai démontées parce que j'ai travaillé dessus.\n[21:33] Mais c'était, de ce que je vois à peu près, c'est qu'il y avait il y avait des grues qui bougeaient. Enfin il y avait des grues qui étaient montées, démontées, remontées à d'autres endroits. Ah, je n'sais pas vraiment ça. Mais parce que je j'en fait, j'me suis amusé à prendre tous les plans, enfin un petit paquet de plans et j'me suis amusé à regarder quelle grue est à quel endroit. Et j'vois qu'il y a certaines grues qui bougent. Il y a des des numéros de grues qui sont montées sur d'autres rails. Et j'me demandais si elles étaient démontées ou est-ce qu'elles étaient juste transportées. Oh ils devaient être transportés, ils les démontaient pas. Parce que j'me dis enfin...\n[21:48] - bah si c’est démonté de toute super structure je me souviens pas de ça.\n[21:51] - donc ok donc ça voulait dire qu'elles étaient sûrement glissées ou ou montées à un autre endroit parce qu'il y avait il y a en tout cas une ou deux grues que je vois sur un plan à une-\n[21:54] - bah oui mais euh ça se peut hein ! Parce qu’à l’époque il fallait il y avait pas mal de petites grues euh après ils ont mis des les grues ordinaires comme on voit maintenant sur les chantiers la grue Potez tu vois des trucs comme ça là, tout à fait différent comme grue.\n[21:57] - Hmm mm. Hmm les les les les les les les les euh donc ça ça vient...\n[22:00] Alors un peu plus tard donc comme question, c'était à cette période-là, mais on va quand même le faire maintenant, à cette période-là, est-ce que vous étiez euh comment dire... impressionné dans le bon sens du terme euh par les engins et les constructeurs euh par la l'objet mécanique ? Est-ce que c'était... est-ce que c'était un objet qui était pour les ouvriers qui étaient par exemple au sol ou... qui était impressionnant ? Les Titans, ouais vraiment, ou c'était quelque chose qui était ou c'était pour vous comme un... comme un marteau ou une...\n[22:30] Oui parce que une autre anecdote euh quand je quand je travaillais dans les cycles, chez Cycles Petit-Breton en 51, parce que les cycles ça marchait pas comme maintenant, parce que si si à l'époque ça marchait comme maintenant, la France aurait aurait fait fortune avec les vélos. Et il y avait l'été, ça marchait à bloc ! On faisait 48 heures.\n[22:40] - Par... par semaine ?\n[22:50] - Oui ! Et l'hiver, bah ça tombait à 40 hein ! À l'époque, c'était un peu comme maintenant, ça marchait... ça marchait comme ça. Et...\n[23:00] Et bon ben y avait vraiment pas de boulot, on a été trois débauchés.\n[23:15] Moi j'ai cherché partout, j'ai fait, à l'époque c'était la Seincauzo, j'ai fait les Batignolles, j'ai fait toutes les boîtes, rien du tout. J'ai fini par chez Paris, Paris on m'a pris. Comme charpen-, charpentier fer. Alors chez Paris j'ai travaillé, le boulot que j'ai fait, j'ai travaillé sur les premières grosses poutres pour fabriquer pour monter l'Hô-, l'Hôtel-Dieu. Me souvient des des machins des fers I là énormes.\n[23:30] monter sur euh le sol, le le charger de houblon et avec des des vérins pour voir la résistance et tout. Je travaillais là-dessus moi, puis autrement sur euh sur les premiers les premiers grands pylônes euh pour la télévision. Pour l'RTF, les tous les tous les pylônes qu'ont été installés, d'accord. Voilà, j'ai travaillé sur deux ou trois quoi, enfin avec un matos, j'ai pas fait le pylône tout seul parce que... Parce que ça faisait de sacrés gros pylônes. Et à l'époque, au moment des vacances, bon à l'époque y avait pas beaucoup l'argent, on voulait on me faisait partir en en mono...\n[24:00] - Moi je dis : \"Ben j'sais pas moi, j'ai pas l'argent\". J'ai travaillé pendant les vacances chez Paris, et le plus gros pont roulant il y avait, 40 tonnes.\n[24:06] - Hum hum.\n[24:12] - Je l'ai conduit pendant 15 jours. J'avais jamais conduit de pont. Hum, il y avait... on était... il y avait combien ? Une trentaine d'ouvriers, c'est tout, les gars qu'avaient pas leurs vacances. C'est pour ça que ça m'a jamais émotionné, parce que là j'me r'trouvais dans l'sens inverse, j'étais pas avant, j'étais dedans.\n[24:18] - Ouais, dans le d'dans, d'accord.\n[24:24] - C'est une... c'est une question d'habitude, c'est rien du tout quoi.\n[24:30] Ouais, je compare un peu à ça en ce moment, malheureusement, quand on entend, ça fait au moins trois quatre jours qu'ils nous parlent de ça, la SNCF manque de chauffeurs, on va supprimer 200 trains. Je me pose la question, je me dis mais pour conduire un train faut avoir quoi ? Bac +8, 5 Masters ? Qu'est-ce que ça veut dire ça ? Y a quelque chose qui va pas là. Parce que c'est pas... Les tableaux de bord de... je suis jamais monté dedans mais d'un TGV, c'est pas le tableau de bord d'un Boeing. Y a des manettes de sécu et tout, si jamais le chauffeur pof il tombe, ça bloque le train et tout. Ouais. Donc euh...\n[25:00] - Par rapport à un pont comme ça, roulant, moi non, ça m'a pas impressionné.\n[25:06] - Est-ce que vous, vous aviez vu l'intérêt... donc... mais est-ce qu'il y avait des... ce que je... enfin de ce que... ce que je peux voir c'est qu'il y a des personnes qui le... qui trouvaient ça impres... enfin qui... qui mythifiaient ça mais qui étaient... impressionnées par le... le rôle que ça avait dans le chantier.\n[25:12] - Oui, mais enfin moi ça m'a pas...\n[25:18] - Mais c'est tout à fait une question de point de vue, c'est pour ça, pour savoir si... si c'était partagé ou... \n[25:24] - Oui bah c'est... moi j'sais pas...\n[25:30] Moi c'est un peu comme de monter dans quelque chose, euh moi étant gamin j'ai... à l'époque il y avait pas de télévision, on allait dénicher les nids à... à Pâques, monter dans les arbres des fois jusqu'à 30 mètres hein, dans les arbres. On partait en barque jusqu'à... à Ambrault, là, en partant de Saint-Sébastien, en bateau. Avec des bateaux qu'on empruntait aux pêcheurs. Alors monter dans les arbres, l'altitude, non, ça m'a jamais gêné, mais non, j'ai... j'ai jamais été impressionné par ça, je... non.\n[25:45] D'accord. Euh, une question par rapport au rôle...\n[26:00] des grues des grutiers par rapport au chantier, est-ce que les de ce que j'ai pu voir le les équipes de travail étaient je dirais pas communautaires mais elles s'étaient euh il y avait souvent la personne avec son les matelots, les les personnes c'était des groupes de personnes qui travaillaient entre eux et le grutier lui il était souvent dans sa il était en haut dans sa grue et tout à l'heure je me disais mais il devait parfois un peu s'ennuyer quand même parce que il avait pas du taf à longueur de journée parce que des fois bah quand il y avait pas de blog qui sortait bah il moulinet.\n[26:30] Alors il bouquinait. Des fois il s'endormait. Il sifflait. Ah oui s'est vrai. C'était très rare qu'il s'endorme parce que euh surtout sur la fin, la grue marchait pour ainsi dire sans arrêt, il y avait toujours quelque chose à monter. D'accord, et donc euh est-ce que le le grutier était séparé du reste ou il était inclus dans dans la genre de fraternité qu'il y avait entre les différents ouvriers ? Bah c'était pas... Moi j'en connaissais parce que j'étais syndiqué à la CFDT, je colletais les gars. J'en avais, moi je montais dans la grue pour aller le colleter. Je montais de là-haut.\n[27:00] Euh ça me dérangeait pas, non, ben j'y, il y en avait qui était pas aimé parce que des des grutiers, je sais pas pourquoi, bon non mais moi j'ai jamais fait de différence. \n[27:10] - D'accord parce que le le le grutier en lui-même a la a la genre de responsabilité de mener le l'opération et surtout que il est il doit être autant disponible que il doit il doit pouvoir écouter ce qu'on lui dit.\n[27:20] - Ah oui oui bien sûr, bien sûr, il faut qu'il soit à l'écoute et puis qu'il soit sérieux quoi mais bon il y a pas eu moi je me souviens pas avoir eu d'accident.\n[27:30] À cause d'un grutier qui a mal fait une manœuvre. \n[27:34] Donc c'était des personnes qui faisaient atten... enfin, qui étaient attentionnées ?\n[27:38] En principe, oui.\n[27:42] D'accord.\n[27:47] Euh... papapapapa... donc le... le... jusqu'à la fin des chantiers, le... il y avait pas de manière de communiquer avec un grutier directement ou c'était... à la fin ça devait quand même être... \n[27:51] À bah si, à la fin si... On est d'accord ? Et à la fin il y avait quand même... il y avait le téléphone, il y avait tout quoi.\n[27:55] D'accord. Euh...\n[28:00] Ensuite sur les est-ce que vous auriez une idée de la période où la grue a été repeinte en jaune ? Alors quand elle était grise, elle était sûrement encore grise je pense dans les années 60 et je pense qu'elle a sûrement dû être repeinte dans les années 70. Je me rap- alors j'ai un truc, je me souviens pas. Parce que moi c’est juste un truc je juste je me doute que elle devait tellement être vue tous les jours que à la fin on n’y fait même plus attention. Non mais elle était... elle était certainement jaune avant que le chantier ferme. C’est tout, c’est tout ce que je sais.\n[28:30] D'accord... Ben, moi je l'ai pas... Bon, c'est un truc, c'est une anecdote bon, on faisait pas attention à ça. Non mais il y a de fortes chances qu'elle était, elle était en jaune... Je dis fortes chances, c'est pas, c'est pas une certitude. \n[28:40] Hmm... le... est-ce que ce serait possible là pour que ce soit fait, de raconter une dernière fois, comme ça je vous le redemande plus jamais, l'histoire de quand vous étiez accroché à la grue ? \n[28:50] Ah bah oui, la grue ! Voilà, la grande histoire. Comme elle...\n[29:00] \"Bah ouais, je peux le retranscrire ensuite. Alors ça s'est passé, vous m'aviez dit en 50...\n[29:07] - Bah c'est 50... attendez...\n[29:15] - 59 ?\n[29:22] - C'est 59. 59 ou... faut pas que je raconte de conneries, attendez... parce que ma fille était née, c'est 59 ou 60. Alors, attendez que je réfléchisse. Ça doit être début 59, début 59 je crois.\"\n[29:30] Oui, oui, parce que c'était euh... non non... ouais... enfin, c’est pas une euh... une année près, hein... parce que là... non... parce que neuf... et cinq quatorze... je réfléchis... parce que pour ça j'ai eu 5 % de pension... et puis on travaille... et j'ai reçu un chèque à Cherbourg, alors j’sais pas si c’est 63 ou 64 qui me donnait... j'fauchais ça au mois... il m’ont... c'est-à-dire que...\n[30:00] On liquidait ma ma pension. J'avais touché euh, à l'époque, euh... Oh, presque rien, 173 francs, un truc de... Oh bah oui, 5 %, ça donne rien.\n[30:06] - Oui, c'est vraiment pas grand-chose. \n[30:12] - Ça donne rien, quoi.\n[30:18] - Donc cette histoire de...\n[30:24] - Bah oui, cette histoire ! Un vendredi euh, on était à prendre un pot sous la... c'était le vendredi, c'était un peu comme ça, le chef vient et puis il demande un volontaire pour aller... On n'avait rien vu ! Dans l'après-midi, il y avait eu un... une colonne...\n[30:30] collision entre deux titans.\n[30:40] D'accord.\n[30:50] Et c'est c'est le titan jaune, c'est-à-dire la passerelle qui a c'est pour aller graisser les corps et tout ça, qui a fait ouit ou comme ça, je m'en souviens plus trop bien. Et puis c'est ça qu'il fallait réparer. Bon, il y a un gars qui dit « bah oui d'accord » et puis au bout d'un... il tape une partie de... il dit « merde, j'ai quelque chose », enfin bon il rappelle, dit « non non, euh il y a un volontaire là-dedans ? ». Bon, j'sais pas, puis ils disent « ouais Jean, tu viens de te marier, t'as besoin d'argent », « ah » puis j'dis « c'est bon, pour une fois je fais un effort ». 4 heures du matin on était arrivés le le samedi matin.\n[31:00] On monte du matériel et tout, et là j'suis... j'suis arrivé là-haut. Et alors ce truc-là, il était un petit peu... étant donné que y avait... ça tenait presque plus, quoi, au bout. Mais quand j’ai posé les pieds dessus... Ça, ça a lâché. Ça a lâché. Et le truc s’est mis... pas complètement... s'est pas mis comme ça, mais comme ça. Alors moi, le réflexe... J’avais mis des gants... Le... Me suis cramponné, le gars m’a remonté. J’ai eu la trouille de ma vie, hein. C'est normal à 4 heures du mat', en... Ah oui ! Là on voyait toutes les lumières de la ville. Bon, il était peut-être un peu plus. J’embauchais à 4 heures.\n[31:30] Ouais, il y a de la forêt mais puis il faisait noir. Donc c'était c'était le c'était sur le les deux grues s'étaient touchées ? Oui, s'était tamponné. Au niveau des pointes ? Bah, je sais pas comment que ça s'était passé exactement, c'est-à-dire que là là c'est l'avant du Titan hein, la passerelle. La flèche est là et on la voit bien d'ailleurs encore hein. On la remarque bien, il y a les quatre quatre trucs ils sont... Donc c'était ça qui était en train de se démonter. Ouais, les bou- les boulons étaient cassés. C'était de boulons de...\n[32:00] Alors... fallait s'... fallait s'changer... Oui qu'il fallait qu'il fallait que ce soit allait s'accrocher pour remonter les boulons directement sur l'anneau.\n[32:05] Ouais, fallait la retirer et puis la remettre comme il faut et mettre les boulons.\n[32:10] Et donc ça vous l'avez fait à... fallait l'faire à... techniquement...\n[32:15] Bah oui, mais on avait l'système hein ! On soudait un... on avait un p'tit palan soudé comment... un p'tit... un anneau.\n[32:20] Hum hum.\n[32:25] Sur l'truc... l'faire passer et puis remonter... on s'servait du haut... l'faire r'monter... pour la r'monter quoi. C'est un truc tout bête mais...\n[32:30] j'ai failli euh laisser ma vie, je s'rai pas là maintenant.\n[32:36] Ah carrément, ouais.\n[32:42] Euh... donc ce genre de... Est-ce qu'il y a une autre anecdote par rapport à des accidents qu'il y a eu ou des des moments où la grue a a failli euh bouger parce qu'il y a plein de gens qui m'ont raconté que la grue, elle avait tendance, elle pouvait un peu osciller parfois et...\n[32:48] Oui, bah parce que les charges étaient trop lourdes.\n[32:54] Et donc la l'évolution de la de la grue quand ils l'ont...\n[33:00] Quand ils l'ont rallongé, si on peut dire, pour lui permettre... quand ils ont changé son moteur pour qu'elle puisse permettre de soulever plus lourd, c'était donc une période où en fait les bateaux et les blocs qui devaient être levés... Étaient plus lourds. Étaient vraiment de plus en plus lourds, c'était vraiment quelque chose de... Ah oui. Ah oui. Et donc c'était le... c'était la seule grue qui était capable de faire ça sur le chantier. Oui. Autrement, euh, y avait comment... le ponton grue, qui a soulevé 100 tonnes, mais il était sur l'eau, donc c'était différent. Il avait un angle... Oui, et puis c'était beaucoup plus... c'était une... oui, c'était différent. Là...\n[33:30] Alors il montait il montait, je sais pas comment il il devait monter quand même des blocs mais ça devait être le bloc avant ou je ne sais trop quoi, quand le bateau était à flot.\n[33:33] - Hm. Tout le nez du bateau.\n[33:37] - Et il levait littéralement le bloc du...\n[33:41] - Il le montait, il le prenait et puis il le montait et heu avec le avec le gros ce gros ponton.\n[33:45] - Le gros ponton Matheu 100 tonnes là ouais ?\n[33:48] - Ouais.\n[33:52] - D'accord donc lui il servait à mettre la chose qui ne pouvait pas être mise parce que à cause de l'angle de la cale la grue ne pouvait pas poser...\n[33:56] - L'angle l'angle de la cale et puis le truc plus lourd... parce que étant donné que l'autre faisait 80 tonnes.\n[34:00] Oui. Oui. Et qu'apparemment, elles pouvaient aussi se mettre avec une autre grue pour soulever ensemble...\n[34:06] -Ah bah y avait des fois on soulevait avec deux grues, hein, des blocs.\n[34:12] -Ça devait être assez compliqué à mettre...\n[34:18] -Ah bah là c'est- il faut une coordination des- des gestes et tout, hein. Fallait- fallait pas, hein. \n[34:24] -Et pis euh surtout un bon calcul de la répartition parce que si on se rapproche d'un angle euh de- de- du mât d- d'une grue, ça se rapproche- ça se décale sur l'autre. Euh... par rapport au- à la grue en elle-même, juste euh pour finir le-\n[34:30] ... sur sa conservation. On... j'en ai discuté un peu avec d'autres personnes. Le... sa conservation, elle est nécessaire pour vous, pour le... au niveau du chantier ? Est-ce que... est-ce que pour vous elle est nécessaire ou est-ce que c'est un peu un souvenir un peu douloureux de la voir ?\n[34:40] - Ben, c'est-à-dire que c'est... moi pour moi, c'est un symbole de ce qu'a été le... le port de Nantes avec un chantier de construction navale qui a quand même... qui a existé depuis... pour moi, c'est un symbole. C'est un...\n[34:50] Alors euh moi j'trouve tout à fait normal qu'on la conserve. Normal. Si à l'époque, à l'époque du pont transbordeur, on avait eu les mêmes machins de pour garder le pont transbordeur, il s'rait resté hein. Parce que ouais, des ponts transbordeurs, il en reste plus hein. Ah oui, moi j'l'ai vu démonter hein, moi j'étais à bord du Tobago quand ils l'ont démonté. Ah ouais, c'est des trucs, c'est oh c'est il y a des- il y a des choses qui sont beaucoup plus vieilles et peut-être moins importantes au point de vue...\n[35:20] Point de vue euh pour la classe ouvrière qu'on a conservé, elle voit pas pourquoi qu'on aurait pas conservé ce truc là, ça c'est c'est y a pas de doute, hein. \n[35:27] Euh y a y a Jean Rollet et des chercheurs, d'en tout cas c'est la première fois que j'ai entendu c'est Jean Rollet dans une enfin dans un document qui parle des des grues comme des flèches des cathédrales ouvrières.\n[35:35] Peut-être oui.\n[35:42] Qui en fait comparent qu'on- par exemple quand on voit par exemple Nantes, on voit on voit par exemple juste en face on voit Notre-Dame-de-Bon-Port, on voit Saint-Nicolas et on voit la grue jaune qui ressort et euh qui incarne-\n[35:50] En fait, un peu comme un... un point de repère, dire \"à cet endroit-là, il y avait quelque chose.\" \n[35:56] - Oui.\n[36:02] - Ah oui ! \n[36:08] - Et... Est-ce que vous pensez que c'est... c'est vraiment... Il faut qu'elle re- enfin... Je veux dire... Elle a tendance à vouloir être modifiée par d'autres personnes. Il y a la ville de Nantes qui veut faire des chambres d'hôtes...\n[36:14] - Bah c'est-à-dire... Oui ! Euh oui. Là c'est... Pour moi, c'est de la... C'est de la folie douce, c'est de la poudre aux yeux pour... Parce que... Beaucoup de gens qui ont critiqué \"La Navale\", notre musée à nous...\n[36:20] Voudrait s’accaparer ce site pour faire autre chose, parce que ça leur rapporterait de l’argent. Et tout, c’est une question de pognon, hein ! Parce que j’vois pas… j’vois pas faire une chambre là-haut. Qu’on l’fasse dans un… dans un phare, c’est tout à fait différent. Ben oui, y en a, ça existe. C’est tout à fait différent. Étaient des lieux d’habitation aussi pour le… oui, oui… Ça paraît logique. Ça paraît logique, mais là, j’vois pas moi, parce que c’est… la modification va être… ouais.\n[36:50] Je ne serais pas... parce que c'est pas grand, la cabine. Une petite, une petite chambre. J'ai pas monté, non ? De quoi ? J'ai pas monté ? Ah non, je peux, j'ai jamais monté... oh j'aurais bien aimé mais je crois pas... On ne peut plus monter dedans. Mais euh, il y a par exemple des la... dans la ville de Glasgow, il y a une grue Titan, aussi par son modèle, qui a été transformée en point d'observation. Ils en ont fait... ils ont mis un système, un ascenseur et un escalier pour que, s'il y en a un qui marche pas, on puisse utiliser l'autre. Ils ont grillagé le le support supérieur de la grue, ils ont mis des...\n[37:20] Des petites plaquettes, enfin des genres de petits murs en grillage pour permettre en fait aux personnes d'avoir un point de vue sur l'espace portuaire et sur la, là ce serait pour la sur la Loire ouverte. Ouais ouais. C'est des choses qui techniquement choqueraient moins peut-être ? Ah bah oui, ça aurait une autre signification. Ça voudrait dire que de ce point de vue de ce qui reste du chantier et de l'athlète de la classe ouvrière, on aurait une vue sur Nantes, ce qu'est Nantes. Parce que faut pas se tromper, moi j'ai lu un bouquin là, je sais pas si vous l'avez pas lu, mais on me l'a prêté là, il a 102 pages là.\n[37:50] Je vais te filer Le Petit Nantes de la ville de Nantes, qui parle de tout ce qui s'est passé mais c'est... Depuis avant Jésus Christ il parle. Y a... Je regrette que c'est que l'auteur il... Il est rendu admettons en 1870 et il reparle de 1860. C'est... C'est pas...\n[37:56] Il fait des retours en arrière...\n[38:02] C'est pas vraiment un retour en arrière parce que c'est des trucs qui s'est... Qu'il a déjà dit et puis il remet. Autrement il est très bien fait et je peux te dire que la situation de Nantes et puis de la France en ce moment c'est exactement ce qu'il sait dans ce bouquin-là parce qu'il y a eu des trucs formidables.\n[38:08] Les premiers bateaux qu'ont été faits à Nantes. Les bateaux... alors je serais curieux de savoir vraiment parce qu'il l'explique dans le bouquin. Trois bateaux qu'avaient été commandés et il... un navigables, ils s'étaient gourés dans les calculs, il... il avançait pas. Ah oui, y avait tout tas de trucs. Et c’est vrai que... garder ce... ce musée... bon, bah, quand tous les vieux comme moi auront disparu, comment ça se passera ? On sait pas les gens qui prendront ça, qu’est-ce qu’ils... Bah oui, voilà. Euh...\n[38:38] \"Hum par rapport à euh par rapport à euh comment ça s'appelle à la à la grue à son aux personnes qui pourraient témoigner hormis est-ce que il y aurait des noms qui vous viendraient à l'esprit parce que moi j'essaie un peu de de voir mais peut-être que j'oublie des personnes ou des personnes que je ne connais pas.\n[38:42] Je ne sais pas...\n[38:46] Parce que Michel Cheron malheureusement je voudrais lui parler mais en ce moment il n'est pas là.\n[38:50] Non il n'est pas là il a eu des problèmes.\n[38:55] Donc voilà, je est-ce que...\n[38:59] Il est monté dans les grues, puis il est tombé dans les escalateurs à l'autre secteur.\n[39:03] Il a un problème avec les engins de levage peut-être ?\"\n[39:08] - Est-ce que... je sais pas si vous... je sais pas si vous avez déjà rencontré des personnes ?\n[39:18] - Non, parce que des gens qui étaient dans les grues, j'en connais plus beaucoup. J'en connaissais mais ils sont tous morts, malheureusement. Et... oh oui... moi je les connaissais presque tous, hein, mais... bon, voilà.\n[39:28] - Oh... une toute... un truc... juste un petit rappel avec le... chose qu'on a vu juste avant, je me posais une question : quand il y a eu les propositions de la ville de... de faire peut-être des aménagements et que la...\n[39:38] La la l'association s'est opposée. On va dire officiellement, par exemple au projet de mettre des choses dans la grue, de faire une tour végétale à côté où il y a il y a Jean. Est-ce qu'il y a des personnes à l'intérieur des anciens ? Est-ce que ça a été un consensus, est-ce que tout le monde a été d'accord directement ? Est-ce que ça de faire un consensus OK tout on est tous d'accord que on sait il faut pas faire ça ou est-ce qu'il y en a certains qui ont commencé à réfléchir en on devrait peut-être ? Non, je crois pas. Il y a pas du tout ? Pour moi de tout ce que j'ai discuté avec les gars, non. Parce que...\n[40:08] Déjà tout ce qu’ils ont fait dessus parce qu’il faut quand même se dire au départ… au départ là où on est le bâtiment là.\n[40:18] Il devait être rasé...\n[40:28] Rasé on est d’accord. À l’époque ils savaient pas ce qu'ils allaient faire. Ça veut dire que, ils rasaient ça, nous qu'est-ce qu'on devenait, on avait récupéré du matériel déjà pour faire un musée... Qu'est-ce qu'on serait devenus, où ce serait on se serait mis où exactement ? Ça veut dire que ce bâtiment, s'il avait été démoli, il n'y avait plus rien, il n'y avait plus de Corbu et ça serait des immeubles, on aurait fait des des parterres de machins devant comme ils ont fait plus loin.\n[40:38] Bon on l'avait sur les cailloux et tout, euh là c'était fini, il y avait plus rien. Parce que là il reste quand même le, moi j'appelle ça le karma, c'est un peu comme q- quand on voit l'es- où il y avait les hangars, qu'il y a encore les les rails devant là que je sais pas et je comprends pas d'ailleurs il y a toujours, il pleut, je comprends pas qu'ils ont pas évacué mis un truc parce qu'il y a toujours de la flotte qui Dans les dans les rails devant là les les les trucs Euh bah là o- ouais là où il y avait le chantier les rails quoi là, mais de l'autre côté c'est pareil hein. Ah oui derrière vous voulez dire à côté des nefs où il y a ça fait une genre de mare. Derrière.\n[41:08] Ouais, voilà. Et y’a des rails aussi. Donc ces rails là ils ont et y’a des gens qui viennent là, y’en a qui savent à quoi ça servait mais d’autres ils savent pas. Donc c’est quand même bien une incrustation du du souvenir du chantier qu’a existé. Si on fait disparaître tout ça, on sait plus, on n’en parle plus quoi. C’est dans les bouquins, c’est comme ça, c’est tout. Bon, non moi j’ai jamais, ouais j’ai eu les discussions là-dessus énormes, même encore là, y’a pas longtemps, tout de suite avec les gens là. Mais non, là on est en train d’essayer d’nous endormir.\n[41:38] - Euh... ils voulaient faire un arbre à héron à 50 millions. Alors que nous on avait un projet de faire un truc sur la cale, tout un tube et des trucs comme ça, ça coûtait 50 ou 60 000 francs quoi, un truc comme ça, qu'on aurait fait nous-mêmes. Et ben non, ils ne voulaient pas. [rire] Voilà.\n[41:44] - Bon ben OK, ben merci en tout cas. Oui, très très gentil de m'avoir...\n[41:50] - Faut pas que je traîne moi, parce que j'ai un rendez-vous d'ophtalmo à 6 heures à Rezé.\n[41:56] - Eh bien en tout cas, merci Jean ! C'est très très gentil de m'avoir donné un petit peu de temps.\n[42:02] - Bah oui, bah... c'est rien.\n[42:08] Voilà. Très bien, très bien. Tous les bureaux qu'il y a là.",
+            "language": "fr",
+            "notes": null,
+            "source": "data\\projects\\La grue jaune de Nantes\\audio\\Jean.Penaud.Charpentier-Fer.WAV"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": 1954,
+        "end_year": 2025,
+        "user_specified": false,
+        "key_dates": [
+          {
+            "year": 1954,
+            "event": "Construction et mise en service de la grue Titan jaune aux chantiers navals de Nantes"
+          },
+          {
+            "year": 1987,
+            "event": "Fermeture définitive des chantiers navals de Nantes — la grue cesse son activité industrielle"
+          },
+          {
+            "year": 2005,
+            "event": "Classement comme monument historique — reconnaissance patrimoniale officielle"
+          },
+          {
+            "year": 2007,
+            "event": "Intégration dans le parcours artistique de l'Île de Nantes et revalorisation urbaine"
+          }
+        ],
+        "reasoning": "La grue Titan jaune (grue n°3) a été installée en 1954 sur le site des anciens chantiers navals Dubigeon, quai des Antilles, Île de Nantes. Son histoire couvre la période industrielle active jusqu'à la reconversion patrimoniale et culturelle contemporaine."
+      },
+      "location": {
+        "primary": "Nantes, France",
+        "specific_areas": [
+          "Quai des Antilles",
+          "Île de Nantes",
+          "Anciens chantiers navals Dubigeon",
+          "Bords de Loire"
+        ],
+        "user_specified": false,
+        "geographic_context": "Estuaire de la Loire, façade atlantique française",
+        "reasoning": "La grue jaune est située sur le quai des Antilles, pointe ouest de l'Île de Nantes, sur le site des anciens chantiers navals. Sa position en bord de Loire est centrale dans sa symbolique."
+      },
+      "themes": {
+        "primary": [
+          "Patrimoine industriel maritime",
+          "Construction navale nantaise",
+          "Reconversion urbaine et culturelle"
+        ],
+        "secondary": [
+          "Identité et mémoire ouvrière",
+          "Symbolique urbaine et fierté locale",
+          "Transformation de l'Île de Nantes",
+          "Monument historique et préservation",
+          "Paysage urbain et repère visuel"
+        ],
+        "user_specified": false,
+        "requested_axes": [
+          {
+            "axe": "localisation",
+            "description": "Situation géographique précise de la grue sur le quai des Antilles, Île de Nantes, en bord de Loire"
+          },
+          {
+            "axe": "role",
+            "description": "Fonction industrielle originelle dans les chantiers navals — levage de charges lourdes pour la construction de navires"
+          },
+          {
+            "axe": "symbolique",
+            "description": "Emblème du passé industriel nantais, symbole de la reconversion urbaine, repère identitaire pour les habitants, monument historique classé"
+          }
+        ],
+        "reasoning": "L'utilisateur demande explicitement trois axes : localisation, rôle et symbolique. Les thèmes primaires et secondaires couvrent l'ensemble du spectre historique et patrimonial de la grue jaune."
+      },
+      "key_events": [],
+      "key_figures": []
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "coherence_checks": {
+      "duree_vs_detail": {
+        "status": "ajuste",
+        "note": "90 secondes avec niveau de détail moyen : cohérent. Les trois axes demandés (localisation, rôle, symbolique) sont traitables en ~30 secondes chacun."
+      },
+      "ton_vs_public": {
+        "status": "coherent",
+        "note": "Ton neutre_informatif avec public grand_public : parfaitement compatible."
+      },
+      "epoque_linguistique_vs_public": {
+        "status": "ajuste",
+        "note": "Ajusté de 'authentique' à 'modernise_accessible' pour cohérence avec grand_public et l'exigence d'adapter le vocabulaire."
+      },
+      "axe_narratif_vs_demande": {
+        "status": "ajuste",
+        "note": "Ajusté de 'mixte' à 'objet_lieu' car la demande est entièrement centrée sur la grue jaune en tant qu'objet/lieu."
+      },
+      "structure_vs_demande": {
+        "status": "ajuste",
+        "note": "Ajusté de 'chronologique' à 'thematique' pour respecter les trois axes explicitement demandés (localisation, rôle, symbolique)."
+      }
+    }
+  }
+}

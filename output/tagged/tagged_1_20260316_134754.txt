@@ -1,0 +1,23 @@
+=== PARTIE 1 : Le bruissement du calque ===
+
+{bruissement_calque_crayons_table.wav}
+
+[posé] Sur l'île de Nantes, derrière les vitres poussiéreuses des bureaux d'études, des hommes se penchent en silence sur de vastes tables à dessin. [pause] {marteaux_tole_lointain.wav} Dehors, les marteaux frappent la tôle. [atténué] Ici, seul le froissement du calque sous la règle trouble le silence. [pause] Ce sont les dessinateurs des chantiers navals.
+
+=== PARTIE 2 : Jean Penaud, trait après trait ===
+
+[pause]
+
+Parmi eux, [accentué] Jean Penaud. Chaque matin, il rejoint sa planche aux chantiers Dubigeon. Son travail : traduire les calculs des ingénieurs en épures lisibles par les ouvriers de cale. [pause] Dans les salles de traçage, il reproduit les formes de la coque à l'échelle un. Jean Penaud confie : [posé] [atténué] « On dessinait le bateau avant qu'il existe. Chaque courbe, chaque membrure, c'était nous. » [pause] [accentué] Un trait imprécis, et c'est toute une structure qui dévie.
+
+=== PARTIE 3 : Du plan à la coque — la chaîne invisible ===
+
+{ambiance_cale_soudure_voix.wav}
+
+Le dessin quittait le bureau, descendait vers la cale. Les traceurs découpaient les gabarits, les chaudronniers formaient la tôle. [précipité] Du crayon au rivet, une chaîne humaine portait chaque navire. [pause] Aux Chantiers de l'Atlantique comme chez Dubigeon, dessinateurs et soudeurs partageaient la même cantine, [accentué] la même fierté quand la coque glissait enfin vers la Loire. {sirene_lancement_clapotis_loire.wav}
+
+=== PARTIE 4 : Le dernier trait ===
+
+[pause]
+
+[ralentit] Puis les commandes se sont taries. [pause] Les chantiers Dubigeon ferment en 1987. [atténué] Les tables à dessin sont remisées, les salles de traçage vidées. Les plans, eux, dorment dans les archives de la ville. [pause] {silence_habite_vent_loire.wav} [ralentit] Sur la Prairie-au-Duc, là où Jean Penaud traçait ses courbes, [accentué] le silence a remplacé les sirènes.

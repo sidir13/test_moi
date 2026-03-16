@@ -319,46 +319,17 @@ export function AudioSelectionView() {
     });
   };
 
-  const applyAutoBackgroundSelection = (): boolean => {
-    if (!backgroundSounds?.length) {
-      setSelectionError("Aucune ambiance disponible pour la sélection automatique.");
-      return false;
-    }
-    const [ambientCandidate, ...rest] = backgroundSounds;
-    const ambientPath = ambientCandidate?.path ?? null;
-    const punctualPaths = rest.filter((sound) => sound.path !== ambientPath).slice(0, 2).map((sound) => sound.path);
-    setSelectedAmbient(ambientPath);
-    setSelectedPunctual(punctualPaths);
-    setAutoBackgrounds(true);
-    setSelectionError(null);
-    persistSelection(
-      selectedVoices,
-      { ambient: ambientPath, punctual: punctualPaths },
-      selectedVoiceId,
-      true
-    );
-    return true;
-  };
-
-  const handleAutoBackgroundSelection = () => {
-    applyAutoBackgroundSelection();
-  };
-
   const handleAutoToggleChange = (enabled: boolean) => {
+    setSelectionError(null);
+    setAutoBackgrounds(enabled);
     if (enabled) {
-      const success = applyAutoBackgroundSelection();
-      if (!success) {
-        setAutoBackgrounds(false);
-      }
-      return;
+      // Sauvegarder le flag auto=true avec une sélection vide.
+      // La sélection réelle se fera au moment de la génération audio.
+      persistSelection(selectedVoices, { ambient: null, punctual: [] }, selectedVoiceId, true);
+    } else {
+      // Repasser en manuel : conserver la sélection courante (vide ou non)
+      persistSelection(selectedVoices, currentBackgroundSelection(), selectedVoiceId, false);
     }
-    setAutoBackgrounds(false);
-    persistSelection(
-      selectedVoices,
-      currentBackgroundSelection(),
-      selectedVoiceId,
-      false
-    );
   };
 
   return (
@@ -443,62 +414,99 @@ export function AudioSelectionView() {
         <h3>Bibliothèque des sons d'ambiance</h3>
         <p>
           Choisissez un fond continu (0 ou 1) et jusqu'à deux sons ponctuels pour rythmer votre narration.
-          Utilisez la sélection automatique pour laisser l'application proposer un mix de base.
         </p>
         {selectionError && <p className="error">{selectionError}</p>}
         <div className="background-actions-row">
-          <button type="button" onClick={handleAutoBackgroundSelection} disabled={!backgroundSounds?.length}>
-            Sélection automatique des ambiances
-          </button>
           <label className="toggle-field">
             <input
               type="checkbox"
               checked={autoBackgrounds}
               onChange={(e) => handleAutoToggleChange(e.target.checked)}
             />
-            Mode auto (mise à jour continue)
-          </label>
-          {autoBackgrounds && <span className="hint">Sélection automatique active</span>}
-        </div>
-        <div className="ambient-none-option">
-          <label>
-            <input
-              type="radio"
-              name="ambient-choice"
-              checked={!selectedAmbient}
-              onChange={() => handleAmbientSelect(null)}
-            />
-            Aucun fond continu
+            Sélection automatique au moment de la génération
           </label>
         </div>
-        <div className="background-library">
-          {backgroundSounds?.map((sound) => (
-            <div key={sound.path} className="background-item">
-              <div className="background-header">
-                <strong>{sound.name}</strong>
-                <audio controls src={sound.preview} />
-              </div>
-              <div className="background-selectors">
-                <label>
-                  <input
-                    type="radio"
-                    name="ambient-choice"
-                    checked={selectedAmbient === sound.path}
-                    onChange={() => handleAmbientSelect(sound.path)}
-                  />
-                  Fond continu
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedPunctual.includes(sound.path)}
-                    onChange={() => handlePunctualToggle(sound.path)}
-                  />
-                  Son ponctuel
-                </label>
-              </div>
+        {autoBackgrounds ? (
+          <div className="auto-bg-notice">
+            <span className="auto-bg-notice__icon">🤖</span>
+            <div>
+              <strong>Sélection automatique activée</strong>
+              <p>
+                Les sons d'ambiance seront choisis automatiquement lors de la génération audio,
+                en fonction du texte du scénario généré. Vous pouvez parcourir la bibliothèque
+                ci-dessous pour vous faire une idée des sons disponibles.
+              </p>
             </div>
-          ))}
+          </div>
+        ) : (
+          <div className="ambient-none-option">
+            <label>
+              <input
+                type="radio"
+                name="ambient-choice"
+                checked={!selectedAmbient}
+                onChange={() => handleAmbientSelect(null)}
+              />
+              Aucun fond continu
+            </label>
+          </div>
+        )}
+        <div className="background-library">
+          {backgroundSounds?.map((sound) => {
+            const isAmbient = selectedAmbient === sound.path;
+            const isPunctual = selectedPunctual.includes(sound.path);
+            const isSelected = isAmbient || isPunctual;
+            return (
+              <div
+                key={sound.path}
+                className={`background-item${isSelected ? " background-item--selected" : ""}`}
+              >
+                <div className="background-header">
+                  <strong className="background-item__title">{sound.name}</strong>
+                  {sound.category && (
+                    <span className="background-item__category">{sound.category}</span>
+                  )}
+                  {sound.duration != null && (
+                    <span className="background-item__duration">
+                      {formatDuration(sound.duration)}
+                    </span>
+                  )}
+                  <audio controls src={sound.preview} />
+                </div>
+                {sound.description && (
+                  <p className="background-item__description">{sound.description}</p>
+                )}
+                {sound.tags && sound.tags.length > 0 && (
+                  <div className="background-item__tags">
+                    {sound.tags.map((tag) => (
+                      <span key={tag} className="background-tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+                {!autoBackgrounds && (
+                  <div className="background-selectors">
+                    <label>
+                      <input
+                        type="radio"
+                        name="ambient-choice"
+                        checked={isAmbient}
+                        onChange={() => handleAmbientSelect(sound.path)}
+                      />
+                      Fond continu
+                    </label>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={isPunctual}
+                        onChange={() => handlePunctualToggle(sound.path)}
+                      />
+                      Son ponctuel
+                    </label>
+                  </div>
+                )}
+              </div>
+            );
+          })}
           {!backgroundSounds?.length && <p>Aucun son trouvé. Ajoutez-en via l'upload ci-dessus.</p>}
         </div>
       </section>

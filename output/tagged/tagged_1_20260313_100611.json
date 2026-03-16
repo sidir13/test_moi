@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le dernier matin sur les quais — Nantes, port en déclin",
+  "taggedText": "=== PARTIE 1 : L'aube — Quand Nantes était port de mer ===\n\n{clapotis_eau_loire.wav}\n\n[posé] Ce récit s'adresse à tous ceux qui veulent comprendre, simplement, comment un grand port s'efface. Le ton sera celui du documentaire — précis, posé, sans nostalgie excessive.\n\n{eau_coques_mouettes_aube.wav}\n\n[pause] Imaginons l'aube sur les quais de la Fosse. L'eau de la Loire claque contre les coques. Depuis 1646, des chantiers navals bordent le fleuve. [pause] Nantes est un port de mer. Ses navires partent vers les Antilles, l'Afrique. Le commerce triangulaire forge sa prospérité. [accentué] Les mâts se comptent par centaines.\n\n=== PARTIE 2 : La matinée — Le fleuve qui se dérobe ===\n\n{silence_fluvial_ensablement.wav}\n\n[pause] Mais la matinée avance, et la Loire se dérobe. [ralentit] Le fleuve s'ensable. Les navires grandissent, le chenal rétrécit. Les armateurs se tournent d'abord vers Paimbœuf, en aval. Puis en 1856, le bassin à flot de Saint-Nazaire ouvre ses portes. [pause] Le trafic maritime descend l'estuaire. Nantes creuse un canal, tente de résister. En vain. [atténué] La marée se retire.\n\n=== PARTIE 3 : L'après-midi — Les derniers marteaux de l'île de Nantes ===\n\n{marteaux_metal_chantier_naval.wav}\n\nSur l'île de Nantes pourtant, l'après-midi résonne encore. [accentué] Les chantiers de la Prairie-au-Duc tiennent bon. Dubigeon, les Chantiers de la Loire — on y construit des navires, puis des sous-marins. [pause] Jean Penaud y entre le 5 février 1957. Il se souvient : [ARCHIVE : « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. On triait les goussets — des pièces de renfort. [pause] Il y avait un genre de petit train avec un plateau, il venait chercher les pièces pour emmener à bord. »] [posé] De Nantes à Cherbourg, puis retour en juillet 69, sa vie épouse les mutations des chantiers.\n\n=== PARTIE 4 : Le soir tombe — Fermeture et silence ===\n\n{vent_cales_vides.wav}\n\n[pause] Le soir finit par tomber. Deux guerres mondiales ont ravagé les infrastructures. La désindustrialisation fait le reste. [ralentit] En 1987, les chantiers Dubigeon ferment. [accentué] Le dernier. [pause] Les marteaux se taisent sur la Prairie-au-Duc. [atténué] Le vent seul circule entre les cales vides. Là où l'on rivait des coques, le silence s'installe pour longtemps. [pause] [chuchote] Aujourd'hui, l'île de Nantes se réinvente. Mais sous le béton neuf, le sol garde la mémoire du fer.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube — Quand Nantes était port de mer",
+      "taggedText": "{clapotis_eau_loire.wav}\n\n[posé] Ce récit s'adresse à tous ceux qui veulent comprendre, simplement, comment un grand port s'efface. Le ton sera celui du documentaire — précis, posé, sans nostalgie excessive.\n\n{eau_coques_mouettes_aube.wav}\n\n[pause] Imaginons l'aube sur les quais de la Fosse. L'eau de la Loire claque contre les coques. Depuis 1646, des chantiers navals bordent le fleuve. [pause] Nantes est un port de mer. Ses navires partent vers les Antilles, l'Afrique. Le commerce triangulaire forge sa prospérité. [accentué] Les mâts se comptent par centaines."
+    },
+    {
+      "partie_id": 2,
+      "titre": "La matinée — Le fleuve qui se dérobe",
+      "taggedText": "{silence_fluvial_ensablement.wav}\n\n[pause] Mais la matinée avance, et la Loire se dérobe. [ralentit] Le fleuve s'ensable. Les navires grandissent, le chenal rétrécit. Les armateurs se tournent d'abord vers Paimbœuf, en aval. Puis en 1856, le bassin à flot de Saint-Nazaire ouvre ses portes. [pause] Le trafic maritime descend l'estuaire. Nantes creuse un canal, tente de résister. En vain. [atténué] La marée se retire."
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'après-midi — Les derniers marteaux de l'île de Nantes",
+      "taggedText": "{marteaux_metal_chantier_naval.wav}\n\nSur l'île de Nantes pourtant, l'après-midi résonne encore. [accentué] Les chantiers de la Prairie-au-Duc tiennent bon. Dubigeon, les Chantiers de la Loire — on y construit des navires, puis des sous-marins. [pause] Jean Penaud y entre le 5 février 1957. Il se souvient : [ARCHIVE : « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. On triait les goussets — des pièces de renfort. [pause] Il y avait un genre de petit train avec un plateau, il venait chercher les pièces pour emmener à bord. »] [posé] De Nantes à Cherbourg, puis retour en juillet 69, sa vie épouse les mutations des chantiers."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le soir tombe — Fermeture et silence",
+      "taggedText": "{vent_cales_vides.wav}\n\n[pause] Le soir finit par tomber. Deux guerres mondiales ont ravagé les infrastructures. La désindustrialisation fait le reste. [ralentit] En 1987, les chantiers Dubigeon ferment. [accentué] Le dernier. [pause] Les marteaux se taisent sur la Prairie-au-Duc. [atténué] Le vent seul circule entre les cales vides. Là où l'on rivait des coques, le silence s'installe pour longtemps. [pause] [chuchote] Aujourd'hui, l'île de Nantes se réinvente. Mais sous le béton neuf, le sol garde la mémoire du fer."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 19,
+    "soundTags": 5,
+    "originalWordCount": 324
+  }
+}

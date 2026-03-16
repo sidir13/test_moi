@@ -1,0 +1,37 @@
+{
+  "scenario_id": 2,
+  "titre": "Le trait et la coque — Mémoire d'un dessinateur de chantier naval",
+  "taggedText": "=== PARTIE 1 : Le geste suspendu ===\n\n{silence_salle_vaste_vide.wav}\n\n[posé] La salle à tracer est vide. [pause] Sur le plancher, des lignes à la craie dessinent encore la mémoire d'une coque. [ralentit] Il fut un temps où cet espace résonnait de pas lents et de souffles concentrés.\n\n=== PARTIE 2 : L'homme au compas ===\n\n{pas_lents_plancher_bois.wav}\n\n[posé] Chaque matin, le traceur gagnait cette salle immense, ses lattes flexibles sous le bras, compas et équerres en main. À genoux sur le plancher, il reportait à l'échelle un les formes exactes de la coque — couples, varangues, lignes d'eau — d'après les plans du bureau d'études. L'ingénieur concevait, le dessinateur mettait en plan, et lui transposait le tout grandeur nature. [pause] [accentué] « Fallait pas se tromper. Un trait faux, c'est une tôle faussée. » [pause] Chaque courbe engageait la justesse du navire entier.\n\n=== PARTIE 3 : Du trait à la tôle ===\n\n{vacarme_atelier_chantier_naval.wav}\n\n[précipité] De ces tracés naissaient les gabarits de bois, découpés puis portés aux ateliers de coque. Là, le vacarme des marteaux et des rivets prenait le relais du silence. Le traceur descendait parfois en cale vérifier l'ajustement d'une membrure. [pause] [accentué] « Quand la pièce tombait juste, on savait que le plan était bon. » Du bureau à la cale, une chaîne humaine sans faille.\n\n=== PARTIE 4 : Le dernier tracé ===\n\n[posé] Puis les méthodes ont changé. Les tables à dessin ont accueilli de nouveaux instruments, les calculs se sont mécanisés. [ralentit] Le tracé grandeur nature, lentement, a perdu sa raison d'être. [pause] La salle s'est vidée. Les lattes flexibles ont rejoint les remises. [triste] Ce savoir transmis d'ancien à apprenti, de main à main, n'avait plus de plancher où s'inscrire.\n\n=== PARTIE 5 : Lignes de mémoire ===\n\n{vent_leger_salle_deserte.wav}\n\n[ralentit] Pourtant, sous la poussière, les lignes demeurent. [pause] Chaque navire lancé dans le bassin portait en lui la main d'un traceur. [étire] L'eau a emporté les coques. [pause] Le trait, lui, reste.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le geste suspendu",
+      "taggedText": "{silence_salle_vaste_vide.wav}\n\n[posé] La salle à tracer est vide. [pause] Sur le plancher, des lignes à la craie dessinent encore la mémoire d'une coque. [ralentit] Il fut un temps où cet espace résonnait de pas lents et de souffles concentrés."
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'homme au compas",
+      "taggedText": "{pas_lents_plancher_bois.wav}\n\n[posé] Chaque matin, le traceur gagnait cette salle immense, ses lattes flexibles sous le bras, compas et équerres en main. À genoux sur le plancher, il reportait à l'échelle un les formes exactes de la coque — couples, varangues, lignes d'eau — d'après les plans du bureau d'études. L'ingénieur concevait, le dessinateur mettait en plan, et lui transposait le tout grandeur nature. [pause] [accentué] « Fallait pas se tromper. Un trait faux, c'est une tôle faussée. » [pause] Chaque courbe engageait la justesse du navire entier."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Du trait à la tôle",
+      "taggedText": "{vacarme_atelier_chantier_naval.wav}\n\n[précipité] De ces tracés naissaient les gabarits de bois, découpés puis portés aux ateliers de coque. Là, le vacarme des marteaux et des rivets prenait le relais du silence. Le traceur descendait parfois en cale vérifier l'ajustement d'une membrure. [pause] [accentué] « Quand la pièce tombait juste, on savait que le plan était bon. » Du bureau à la cale, une chaîne humaine sans faille."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le dernier tracé",
+      "taggedText": "[posé] Puis les méthodes ont changé. Les tables à dessin ont accueilli de nouveaux instruments, les calculs se sont mécanisés. [ralentit] Le tracé grandeur nature, lentement, a perdu sa raison d'être. [pause] La salle s'est vidée. Les lattes flexibles ont rejoint les remises. [triste] Ce savoir transmis d'ancien à apprenti, de main à main, n'avait plus de plancher où s'inscrire."
+    },
+    {
+      "partie_id": 5,
+      "titre": "Lignes de mémoire",
+      "taggedText": "{vent_leger_salle_deserte.wav}\n\n[ralentit] Pourtant, sous la poussière, les lignes demeurent. [pause] Chaque navire lancé dans le bassin portait en lui la main d'un traceur. [étire] L'eau a emporté les coques. [pause] Le trait, lui, reste."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 18,
+    "soundTags": 4,
+    "originalWordCount": 276
+  }
+}

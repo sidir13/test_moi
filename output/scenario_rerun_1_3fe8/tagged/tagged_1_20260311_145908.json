@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "La Grue Jaune — Mémoire d'acier sur les bords de Loire",
+  "taggedText": "=== PARTIE 1 : Un colosse au bord du fleuve ===\n\n[pause 1s] Sur le quai des Antilles, à la pointe de l'Île de Nantes, [ralentissement] une grue jaune se dresse face à la Loire. [pause 0.5s] Immense, [pause 0.3s] immobile, plantée dans le ciel comme une silhouette que rien n'a pu effacer.\n\n=== PARTIE 2 : Le temps des chantiers ===\n\n{ambiance_chantier_naval_lointain.wav} [pause 1s] Pendant des décennies, ici, on construisait des navires. Les chantiers Dubigeon, le Chantier de la Loire — des noms qui ont fait battre le cœur industriel de Nantes. La grue soulevait les pièces d'acier, les tôles, les structures que des centaines d'ouvriers assemblaient à bord. [ralentissement] Parmi eux, des charpentiers de fer. [pause 0.5s] Jean Penaud était l'un d'entre eux. Le cinq février 1957, à vingt ans à peine, il franchissait les portes du chantier pour la première fois.\n\n=== PARTIE 3 : Le silence après les navires ===\n\n[pause 1.5s] [ton grave] Et puis les chantiers ont fermé. [pause 0.5s] Le bruit des marteaux s'est tu. Les ouvriers sont partis. {vent_fleuve_quai.wav} [ralentissement] Sur le quai, il ne restait plus que le vent, le fleuve, et cette grue. [pause 1s] Toujours là. [pause 0.3s] Seule, dans un silence qu'elle n'avait jamais connu.\n\n=== PARTIE 4 : Debout, en jaune, pour mémoire ===\n\n[pause 1s] Nantes aurait pu la laisser disparaître. Mais la ville a fait un autre choix. La grue a été préservée, protégée, inscrite dans le paysage comme un monument. Autour d'elle, l'Île de Nantes s'est transformée. Là où l'on soudait des coques, on crée aujourd'hui, on expose, on invente. Le site des anciens chantiers est devenu un lieu de culture et de vie. [pause 1s] Et la grue veille. [pause 0.5s] Jaune vif contre le ciel gris de l'estuaire, [émotion contenue] elle porte dans son acier la mémoire de ceux qui ont construit des navires à ses pieds. [ralentissement] Elle est leur trace. [pause 0.5s] Elle est debout. [pause 2s]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un colosse au bord du fleuve",
+      "taggedText": "[pause 1s] Sur le quai des Antilles, à la pointe de l'Île de Nantes, [ralentissement] une grue jaune se dresse face à la Loire. [pause 0.5s] Immense, [pause 0.3s] immobile, plantée dans le ciel comme une silhouette que rien n'a pu effacer."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des chantiers",
+      "taggedText": "{ambiance_chantier_naval_lointain.wav} [pause 1s] Pendant des décennies, ici, on construisait des navires. Les chantiers Dubigeon, le Chantier de la Loire — des noms qui ont fait battre le cœur industriel de Nantes. La grue soulevait les pièces d'acier, les tôles, les structures que des centaines d'ouvriers assemblaient à bord. [ralentissement] Parmi eux, des charpentiers de fer. [pause 0.5s] Jean Penaud était l'un d'entre eux. Le cinq février 1957, à vingt ans à peine, il franchissait les portes du chantier pour la première fois."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le silence après les navires",
+      "taggedText": "[pause 1.5s] [ton grave] Et puis les chantiers ont fermé. [pause 0.5s] Le bruit des marteaux s'est tu. Les ouvriers sont partis. {vent_fleuve_quai.wav} [ralentissement] Sur le quai, il ne restait plus que le vent, le fleuve, et cette grue. [pause 1s] Toujours là. [pause 0.3s] Seule, dans un silence qu'elle n'avait jamais connu."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Debout, en jaune, pour mémoire",
+      "taggedText": "[pause 1s] Nantes aurait pu la laisser disparaître. Mais la ville a fait un autre choix. La grue a été préservée, protégée, inscrite dans le paysage comme un monument. Autour d'elle, l'Île de Nantes s'est transformée. Là où l'on soudait des coques, on crée aujourd'hui, on expose, on invente. Le site des anciens chantiers est devenu un lieu de culture et de vie. [pause 1s] Et la grue veille. [pause 0.5s] Jaune vif contre le ciel gris de l'estuaire, [émotion contenue] elle porte dans son acier la mémoire de ceux qui ont construit des navires à ses pieds. [ralentissement] Elle est leur trace. [pause 0.5s] Elle est debout. [pause 2s]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 20,
+    "soundTags": 2,
+    "originalWordCount": 263
+  }
+}

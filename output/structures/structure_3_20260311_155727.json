@@ -1,0 +1,99 @@
+{
+  "scenario_id": 3,
+  "titre_global": "La grue jaune — Sentinelle ouvrière sur la Loire",
+  "resumeHistoire": "Sur l'Île de Nantes, une grue monumentale peinte en jaune se dresse face à la Loire, dernier témoin des chantiers navals qui firent battre le cœur industriel de la ville pendant des décennies. Des hommes comme Jean Penaud, charpentier de fer embauché en 1957, ont travaillé à l'ombre de ces structures massives, triant les goussets, montant à bord des navires en construction, forgeant une identité ouvrière collective. Quand les chantiers ont fermé et que la désindustrialisation a vidé les cales, la grue est restée — immobile, inutile, et pourtant irremplaçable. Classée Monument Historique, elle est devenue le symbole d'une mémoire ouvrière transformée en icône culturelle, dominant aujourd'hui le Parc des Chantiers, à deux pas des Machines de l'Île et du Hangar à Bananes.",
+  "axe_narratif": "objet_lieu",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un colosse au bord du fleuve",
+      "duree_cible": 20.0,
+      "fonction_narrative": "exposition_situante",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Description physique et localisation de la grue jaune sur l'Île de Nantes",
+        "Situation géographique : Quai des Antilles, ancienne Prairie-au-Duc",
+        "Image visuelle forte : silhouette jaune sur la skyline nantaise, face à la Loire",
+        "Ton neutre informatif, registre accessible grand public"
+      ],
+      "mood": "descriptif_posé"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des chantiers",
+      "duree_cible": 30.0,
+      "fonction_narrative": "developpement_social",
+      "position_arc_emotionnel": "montee_vivante",
+      "elements_necessaires": [
+        "Rôle fonctionnel de la grue : levage et construction navale dans les chantiers Dubigeon / Chantiers de la Loire",
+        "Chronique sociale ouvrière : le quotidien des charpentiers de fer, les goussets, le petit train, la montée à bord",
+        "Intégration du témoignage de Jean Penaud (embauche le 5 février 1957, parcours charpentier de fer)",
+        "Atmosphère sonore des chantiers : métal, activité, collectif ouvrier"
+      ],
+      "mood": "vivant_documentaire"
+    },
+    {
+      "partie": 3,
+      "titre": "Le silence des cales",
+      "duree_cible": 18.0,
+      "fonction_narrative": "bascule_dramatique",
+      "position_arc_emotionnel": "creux_melancolique",
+      "elements_necessaires": [
+        "Fermeture des chantiers navals nantais et désindustrialisation",
+        "Contraste entre l'activité passée et le vide soudain",
+        "La grue reste, seule, quand tout s'arrête — image de l'abandon industriel",
+        "Émotion contenue, ton factuel mais évocateur"
+      ],
+      "mood": "solennel_retenu"
+    },
+    {
+      "partie": 4,
+      "titre": "D'outil à icône",
+      "duree_cible": 22.0,
+      "fonction_narrative": "resolution_ouverture",
+      "position_arc_emotionnel": "remontee_apaisee",
+      "elements_necessaires": [
+        "Reconversion urbaine de l'Île de Nantes : Parc des Chantiers, Machines de l'Île, Hangar à Bananes",
+        "Classement Monument Historique de la grue",
+        "Transformation symbolique : d'outil industriel en marqueur identitaire et culturel",
+        "La grue comme gardienne de la mémoire ouvrière pour les générations actuelles",
+        "Ouverture sur la permanence de cette mémoire"
+      ],
+      "mood": "affirmatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "ancrage_ascension_creux_renaissance",
+  "rythme_general": "modere_avec_variation_centrale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "plongee_temporelle",
+      "duree": 2.5,
+      "description": "De la description présente de la grue, on glisse vers son passé fonctionnel par une phrase-pivot évoquant ce qu'elle soulevait autrefois. Transition fluide du regard contemporain vers la mémoire active des chantiers."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce",
+      "duree": 2.0,
+      "description": "Le bruit et l'activité ouvrière cèdent la place au silence. La narration marque un léger ralentissement de rythme. On passe de l'effervescence des chantiers à leur extinction progressive, sans coupure brutale mais par une phrase de contraste temporel."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du constat de fermeture, la narration pivote vers la renaissance du lieu. La grue, restée debout dans le vide, devient le point d'ancrage d'un nouveau récit urbain. Transition par continuité de l'objet : même grue, nouveau regard."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est la grue elle-même — objet physique permanent autour duquel le temps tourne. La narratrice ne quitte jamais ce point d'ancrage visuel. Chaque section la regarde sous un angle différent (présent descriptif → passé fonctionnel → moment de bascule → présent symbolique) mais c'est toujours la même grue, au même endroit, sur la même île. || VOIX : Narratrice professionnelle, ton neutre informatif constant. Pas de dramatisation excessive, pas d'adresse au public. Le registre reste accessible grand public : phrases courtes à moyennes, vocabulaire clair, termes techniques brièvement explicités. || ARCHIVE AUDIO : L'extrait de Jean Penaud (charpentier de fer, embauché le 5 février 1957) doit s'insérer dans la partie 2 comme témoignage incarné de la vie ouvrière. Privilégier les passages où il décrit son parcours concret (les goussets, le petit train, la montée à bord). L'archive ne doit pas excéder 12-15 secondes pour respecter le ratio narration/archives de 0.7. || AMBIANCE SONORE : Équilibrée. Partie 1 : sons d'eau, vent léger, ambiance urbaine contemporaine. Partie 2 : sons métalliques discrets, activité industrielle en fond. Partie 3 : silence progressif, vent seul. Partie 4 : retour d'une ambiance vivante mais différente (promeneurs, ville contemporaine). || RYTHME : Modéré et régulier dans les parties 1 et 4. Légèrement plus soutenu en partie 2 (énergie ouvrière). Ralenti en partie 3 (poids du silence). || FLUIDITÉ : Aucune annonce de section, aucun titre lu. Les transitions sont portées par la narration elle-même, par des phrases-ponts qui font couler le récit d'une époque à l'autre sans rupture perceptible."
+}

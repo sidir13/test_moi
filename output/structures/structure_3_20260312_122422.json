@@ -1,0 +1,149 @@
+{
+  "scenario_id": 3,
+  "titre_global": "Nantes, le port qui s'éloigne de la mer",
+  "resumeHistoire": "Pendant près de trois siècles, Nantes fut l'un des plus grands ports de commerce de France, ses quais bruissant du va-et-vient des navires chargés de sucre, d'épices et de café. Mais la Loire, capricieuse et ensablée, a progressivement trahi la ville : les navires grandissaient tandis que le fleuve se refermait. Des chantiers navals légendaires — la Loire, Dubigeon — ont tenté de maintenir l'activité, employant des générations d'ouvriers comme Jean Penaud, charpentier-fer embauché en 1957, témoin d'un monde industriel en sursis. Section après section, l'activité portuaire a glissé vers l'aval — Chantenay, Indret, puis Saint-Nazaire — jusqu'à ce que les bras de Loire soient comblés et que les derniers chantiers ferment en 1987, laissant Nantes face au défi de réinventer son rapport au fleuve.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 300,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un port au cœur de la ville",
+      "duree_cible": 65.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "sérénité_puissante",
+      "elements_necessaires": [
+        "Évocation sensorielle du port de Nantes à son apogée (XVIIIe siècle)",
+        "Île Feydeau, Île Gloriette, quais historiques du centre-ville comme décor vivant",
+        "Commerce colonial : sucre, épices, café — et mention de la traite négrière comme part sombre de cette prospérité",
+        "Image sonore : voiles, cordages, activité des quais",
+        "Ton contemplatif, phrases amples — poser le monde d'avant"
+      ],
+      "mood": "majestueux_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Le fleuve se dérobe",
+      "duree_cible": 55.0,
+      "fonction_narrative": "introduction_du_conflit",
+      "position_arc_emotionnel": "inquiétude_sourde",
+      "elements_necessaires": [
+        "Envasement et ensablement progressif de la Loire — phénomène naturel aggravé au fil des siècles",
+        "Évolution du tirant d'eau des navires : les bateaux grandissent, le fleuve rétrécit",
+        "Bras de la Bourse de moins en moins navigable",
+        "Premières difficultés d'accès au port de Nantes pour les grands navires",
+        "Ton factuel mais teinté de fatalité — le déclin s'amorce lentement"
+      ],
+      "mood": "tension_latente"
+    },
+    {
+      "partie": 3,
+      "titre": "La descente vers l'aval",
+      "duree_cible": 60.0,
+      "fonction_narrative": "développement_pivot",
+      "position_arc_emotionnel": "basculement",
+      "elements_necessaires": [
+        "Déplacement progressif des activités : de Nantes centre vers Chantenay, Prairie-au-Duc, Indret",
+        "Rôle des chantiers navals (Dubigeon, chantiers de la Loire) dans le maintien d'une activité en aval",
+        "Transfert vers Paimboeuf, Le Pellerin, puis Saint-Nazaire comme port d'estuaire",
+        "Industrialisation et mécanisation portuaire — adaptation constante mais insuffisante",
+        "Structure en glissement géographique : chaque étape est un recul"
+      ],
+      "mood": "mouvement_inexorable"
+    },
+    {
+      "partie": 4,
+      "titre": "Les hommes des chantiers",
+      "duree_cible": 55.0,
+      "fonction_narrative": "incarnation_humaine",
+      "position_arc_emotionnel": "émotion_intime",
+      "elements_necessaires": [
+        "Intégration du témoignage de Jean Penaud, charpentier-fer, 83 ans",
+        "Embauche au Chantier de la Loire le 5 février 1957 — précision de sa mémoire",
+        "Parcours : Chantier de la Loire, mutation à Dubigeon, départ à Cherbourg pour les sous-marins (dont le sous-marin atomique), retour en juillet 1969",
+        "Détails du métier : huit jours au balai, puis le parc à fer, tri des goussets, le petit train à plateau",
+        "Ce témoignage incarne la mémoire ouvrière — un homme qui se souvient de tout"
+      ],
+      "mood": "chaleureux_nostalgique"
+    },
+    {
+      "partie": 5,
+      "titre": "Les derniers coups de marteau",
+      "duree_cible": 40.0,
+      "fonction_narrative": "climax_émotionnel",
+      "position_arc_emotionnel": "gravité_maximale",
+      "elements_necessaires": [
+        "Impact des guerres mondiales sur les infrastructures portuaires — destructions et reconstructions",
+        "Fermeture progressive des chantiers navals nantais — Dubigeon ferme en 1987",
+        "Comblements des bras de Loire : transformation radicale du paysage urbain",
+        "Le port de commerce définitivement à Saint-Nazaire",
+        "Silence industriel — fin d'une époque"
+      ],
+      "mood": "solennel_grave"
+    },
+    {
+      "partie": 6,
+      "titre": "Un fleuve réinventé",
+      "duree_cible": 25.0,
+      "fonction_narrative": "résolution_ouverture",
+      "position_arc_emotionnel": "apaisement_méditatif",
+      "elements_necessaires": [
+        "Reconversion de l'Île de Nantes — les Machines de l'Île sur l'ancien site des chantiers",
+        "Mémoire ouvrière et patrimoine industriel préservés à travers les témoignages",
+        "Écho entre le passé portuaire et le présent : le fleuve est toujours là",
+        "Ouverture contemplative — Nantes n'est plus un port, mais reste une ville de Loire"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel_avec_resolution",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_tonal",
+      "duree": 3.0,
+      "description": "De la majesté portuaire à l'inquiétude : une phrase-pont évoque les premiers signes d'ensablement, comme une ombre qui se pose sur la prospérité. Le ton passe de l'admiration à la constatation sobre."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_logique",
+      "duree": 2.5,
+      "description": "Le constat du fleuve qui se ferme mène naturellement à la réponse humaine : on déplace le port. Transition causale fluide — le problème appelle la solution, même imparfaite."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "zoom_intime",
+      "duree": 3.0,
+      "description": "Du mouvement géographique macro, on plonge dans l'expérience d'un homme. Transition par une phrase du type : 'Parmi ces ouvriers qui ont vécu ces déplacements, il y a Jean Penaud.' Introduction de l'archive sonore."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "elargissement_tragique",
+      "duree": 2.5,
+      "description": "Du témoignage individuel, retour au destin collectif. La voix de Jean Penaud s'estompe et la narration reprend pour évoquer la fin des chantiers — ce que cet homme et ses collègues ont vu mourir."
+    },
+    {
+      "entre_parties": [
+        5,
+        6
+      ],
+      "type": "respiration_contemplative",
+      "duree": 3.0,
+      "description": "Après la gravité de la fermeture, un silence narratif. Puis la voix reprend, plus douce, pour évoquer ce qui est né sur les cendres des chantiers. Passage du deuil à la mémoire vivante."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit suit un fil géographique et temporel unique — le port qui descend la Loire comme un navire qui s'éloigne de la ville. Éviter toute rupture didactique entre sections ; chaque partie doit couler dans la suivante comme le fleuve lui-même. VOIX OFF : Ton omniscient, calme, jamais professoral. Les phrases sont amples dans les parties 1-3, plus courtes et plus chargées émotionnellement en partie 5. ARCHIVE JEAN PENAUD : Utiliser des extraits ciblés — sa date d'embauche (5 février 1957), son parcours Loire/Dubigeon/Cherbourg/retour juillet 69, le détail du parc à fer et des goussets. Ces extraits doivent être intégrés dans le flux narratif, introduits et prolongés par la voix off, jamais posés de manière isolée. AMBIANCES SONORES : Partie 1 — eau, cordages, activité portuaire lointaine. Partie 2 — courant de Loire, silence croissant. Partie 3 — machines, métal, sirènes de chantier. Partie 4 — l'archive brute de Jean Penaud avec son grain authentique. Partie 5 — marteaux qui cessent, vent. Partie 6 — ambiance urbaine contemporaine mêlée au son de l'eau. RYTHME GLOBAL : Lent et contemplatif, le crescendo émotionnel se construit par accumulation plutôt que par accélération. Le point culminant (partie 5) est intense par sa gravité, non par sa vitesse. DIPTYQUE AVANT/APRÈS : L'événement-pivot n'est pas un instant unique mais un processus — le basculement se situe entre les parties 3 et 5, avec la partie 4 (témoignage) comme cœur humain du récit. L'avant (parties 1-3) montre un monde qui lutte ; l'après (parties 5-6) montre un monde transformé. RIGUEUR HISTORIQUE : Ne pas inventer de dates au-delà de celles fournies. Les dates attestées : 1532 (début de période), 1957 (embauche Penaud), 1969 (retour de Cherbourg), 1987 (fermeture Dubigeon/fin de période). Pour les événements intermédiaires (comblements, transferts), utiliser des formulations temporelles souples si les dates exactes ne sont pas dans le contexte."
+}
