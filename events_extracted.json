@@ -1,0 +1,189 @@
+{
+  "events": [
+    {
+      "title": "Embauche et apprentissage de Gilles Hammon",
+      "description": "Gilles Hammon commence sa carrière à l'âge de 14 ans comme apprenti aux chantiers 'La Bretagne' à Nantes.",
+      "approximate_time": "Septembre 1958",
+      "actors": [
+        "Gilles Hammon"
+      ],
+      "places": [
+        "Nantes",
+        "Chantier de la Bretagne"
+      ],
+      "keywords": [
+        "embauche",
+        "apprentissage",
+        "construction navale"
+      ]
+    },
+    {
+      "title": "Installation et renforcement de la Grue Jaune",
+      "description": "Montage de la grue jaune sur le site. Vers 1974, des travaux de renforcement sont effectués sur son assise avec du béton pour augmenter sa capacité de charge.",
+      "approximate_time": "1958 - 1974",
+      "actors": [
+        "Jean Penot",
+        "Entreprise Montalev"
+      ],
+      "places": [
+        "Nantes",
+        "Chantier de la Loire",
+        "Avenue Antonin-la-Bretagne"
+      ],
+      "keywords": [
+        "grue jaune",
+        "engin de levage",
+        "renforcement",
+        "béton"
+      ]
+    },
+    {
+      "title": "Système de travail au temps et marchandage",
+      "description": "Organisation du travail basée sur le chronométrage des tâches, avec un système de primes (gallons) ou de malus financiers.",
+      "approximate_time": "Années 1950 - 1970",
+      "actors": [
+        "Traceurs",
+        "Chefs de chantier",
+        "Syndicats"
+      ],
+      "places": [
+        "Chantiers navals",
+        "Bureaux des pleurs"
+      ],
+      "keywords": [
+        "chronométrage",
+        "marchandage",
+        "syndicalisme",
+        "productivité"
+      ]
+    },
+    {
+      "title": "Formation et évolution professionnelle vers le bureau d'études",
+      "description": "Promotion de Gilles Hammon qui devient dessinateur après une formation à l'IVET. Cette période marque aussi l'évolution technique du traçage (passage de l'échelle 1 au sol vers le traçage de précision au dixième sur table).",
+      "approximate_time": "Années 1960",
+      "actors": [
+        "Gilles Hammon"
+      ],
+      "places": [
+        "Nantes",
+        "IVET",
+        "Bureaux d'études"
+      ],
+      "keywords": [
+        "formation",
+        "promotion",
+        "dessin technique",
+        "traçage",
+        "précision"
+      ]
+    },
+    {
+      "title": "Fusion des chantiers nantais",
+      "description": "Regroupement des chantiers de la Bretagne et de la Loire pour former les Chantiers Dubigeon-Normandie.",
+      "approximate_time": "Années 1960 - 1970",
+      "actors": [
+        "Chantiers Dubigeon"
+      ],
+      "places": [
+        "Nantes",
+        "Chantenay"
+      ],
+      "keywords": [
+        "fusion",
+        "Dubigeon",
+        "industrie navale"
+      ]
+    },
+    {
+      "title": "Accidents et incidents liés au levage",
+      "description": "Série d'incidents techniques : une chute de tôle évitée de peu, le soulèvement inquiétant du pied d'une grue noire, et un accident grave lors du retournement d'un bloc de navire dû à une soudure défaillante provoquant une surtension sur une grue.",
+      "approximate_time": "Années 1960 - 1970",
+      "actors": [
+        "Gilles Hammon",
+        "Grutiers",
+        "Élingueurs"
+      ],
+      "places": [
+        "Atelier de traçage",
+        "Quais",
+        "Chantier naval"
+      ],
+      "keywords": [
+        "accident",
+        "sécurité",
+        "levage",
+        "grue",
+        "rupture de charge"
+      ]
+    },
+    {
+      "title": "Modernisation des communications et méthodes de calcul",
+      "description": "Transition des téléphones à manivelle vers la radio, et remplacement des méthodes empiriques des chefs de chantier par des calculs scientifiques de centre de gravité imposés par les assurances.",
+      "approximate_time": "Avant 1970 - Milieu des années 1970",
+      "actors": [
+        "Chefs de chantier",
+        "Bureaux d'études",
+        "Pontonniers"
+      ],
+      "places": [
+        "Pied de grue",
+        "Bureaux de calcul"
+      ],
+      "keywords": [
+        "communication",
+        "modernisation",
+        "sécurité",
+        "ingénierie"
+      ]
+    },
+    {
+      "title": "Échanges technologiques avec Sud-Aviation",
+      "description": "Déplacement technique sur le site du Concorde pour étudier les méthodes de dessin de précision sur panneaux utilisées dans l'aéronautique.",
+      "approximate_time": "Années 1960 (Développement du Concorde)",
+      "actors": [
+        "Gilles Hammon"
+      ],
+      "places": [
+        "Sud-Aviation"
+      ],
+      "keywords": [
+        "Concorde",
+        "transfert de technologie",
+        "aéronautique"
+      ]
+    },
+    {
+      "title": "Fermeture des chantiers de Nantes et transfert à Saint-Nazaire",
+      "description": "Fin de l'activité navale à Nantes entraînant la mutation de Gilles Hammon vers les bureaux d'études de Saint-Nazaire.",
+      "approximate_time": "Vers 1978",
+      "actors": [
+        "Gilles Hammon"
+      ],
+      "places": [
+        "Nantes",
+        "Saint-Nazaire"
+      ],
+      "keywords": [
+        "fermeture",
+        "mutation",
+        "aménagement"
+      ]
+    },
+    {
+      "title": "Informatisation du bureau d'études",
+      "description": "Transition finale de la carrière vers la conception assistée par ordinateur (CAO) pour le développement des tôles.",
+      "approximate_time": "Fin de carrière (Années 1980-1990)",
+      "actors": [
+        "Gilles Hammon"
+      ],
+      "places": [
+        "Saint-Nazaire"
+      ],
+      "keywords": [
+        "informatique",
+        "CAO",
+        "traceur"
+      ]
+    }
+  ]
+}

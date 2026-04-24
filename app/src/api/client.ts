@@ -225,6 +225,25 @@ export async function saveAudioSelection(sessionId: string, payload: AudioSelect
   return data as AudioSelection;
 }
 
+export type KnowledgeGraphEvent = {
+  title: string;
+  description?: string;
+  approximate_time?: string;
+  actors?: string[];
+  places?: string[];
+  keywords?: string[];
+};
+
+export type KnowledgeGraph = {
+  nodes: { id: string; name: string; type: string; description?: string; time?: string }[];
+  edges: { id: string; source: string; target: string; type: string }[];
+};
+
+export async function fetchProjectKnowledgeGraph(projectName: string) {
+  const { data } = await api.get(`/projects/${encodeURIComponent(projectName)}/knowledge-graph`);
+  return data as { events: KnowledgeGraphEvent[]; graph: KnowledgeGraph };
+}
+
 export async function fetchProjectTranscriptions(projectName: string) {
   const { data } = await api.get(`/projects/${encodeURIComponent(projectName)}/transcriptions`);
   return (data.transcriptions ?? []) as ProjectTranscription[];

@@ -206,12 +206,69 @@ class AutomationRunner:
             logger.warning("ScenarioConfigBuilderSkill failed: %s", exc)
             return {"status": "skipped", "reason": str(exc)}
 
+    def _handle_transcription_pipeline(self, project_name: str, payload: dict) -> Dict[str, object]:
+        import json
+        from memoiredesterritoires.analysis_storage.analysis_storage import fetch_analysis_results
+        from memoiredesterritoires.transcription.transcription_event_extraction import extract_events_robust
+
+        data = fetch_analysis_results(
+            analysis_type="transcription",
+            source_path_contains=project_name,
+            limit=50,
+        )
+        texts = [
+            e["result"]["transcription"]
+            for e in data.get("entries", [])
+            if isinstance(e.get("result"), dict) and e["result"].get("transcription")
+        ]
+        combined = "\n\n".join(texts)
+        if not combined.strip():
+            return {"status": "skipped", "reason": "no transcriptions available"}
+
+        try:
+            events_data = extract_events_robust(combined)
+        except Exception as exc:
+            logger.warning("Event extraction failed for %s: %s", project_name, exc)
+            return {"status": "skipped", "reason": str(exc)}
+
+        nodes: Dict[str, object] = {}
+        edges: list = []
+        for i, event in enumerate(events_data.get("events", [])):
+            eid = f"event_{i}"
+            nodes[eid] = {
+                "id": eid,
+                "name": event.get("title", eid),
+                "type": "Event",
+                "description": event.get("description", ""),
+                "time": event.get("approximate_time", ""),
+            }
+            for actor in event.get("actors", []):
+                if actor not in nodes:
+                    nodes[actor] = {"id": actor, "name": actor, "type": "Person"}
+                edges.append({"id": f"actor_{i}_{actor}", "source": actor, "target": eid, "type": "PARTICIPATED_IN"})
+            for place in event.get("places", []):
+                if place not in nodes:
+                    nodes[place] = {"id": place, "name": place, "type": "Place"}
+                edges.append({"id": f"place_{i}_{place}", "source": eid, "target": place, "type": "HAPPENED_IN"})
+            for kw in event.get("keywords", []):
+                if kw not in nodes:
+                    nodes[kw] = {"id": kw, "name": kw, "type": "Keyword"}
+                edges.append({"id": f"kw_{i}_{kw}", "source": eid, "target": kw, "type": "HAS_TOPIC"})
+
+        graph_data = {"nodes": list(nodes.values()), "edges": edges}
+        project_path = self.settings.projects_dir / project_name
+        (project_path / "events.json").write_text(json.dumps(events_data, ensure_ascii=False, indent=2))
+        (project_path / "graph.json").write_text(json.dumps(graph_data, ensure_ascii=False, indent=2))
+
+        logger.info("Knowledge graph saved | project=%s events=%d nodes=%d",
+                    project_name, len(events_data.get("events", [])), len(nodes))
+        return {"status": "ok", "event_count": len(events_data.get("events", []))}
+
     def _handle_placeholder(self, project_name: str, payload: dict) -> Dict[str, object]:
         return {"status": "ok", "message": "placeholder automation"}
 
     # Map remaining automation names to placeholder handler to keep JSON simple
     _alias_actions = [
-        "transcription_pipeline",
         "analysis_storage",
         "analysis_storage_background",
         "analysis_storage_query",

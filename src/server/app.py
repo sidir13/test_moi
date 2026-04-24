@@ -2299,6 +2299,27 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         response.headers["Content-Disposition"] = f'attachment; filename="{file_name}.txt"'
         return response
 
+    @app.get("/projects/{project_name}/knowledge-graph", tags=["projects"])
+    async def get_project_knowledge_graph(project_name: str) -> dict:
+        project_path = settings.projects_dir / project_name
+        events_file = project_path / "events.json"
+        graph_file = project_path / "graph.json"
+        events = json.loads(events_file.read_text(encoding="utf-8")) if events_file.exists() else {"events": []}
+        graph = json.loads(graph_file.read_text(encoding="utf-8")) if graph_file.exists() else {"nodes": [], "edges": []}
+        return {"project": project_name, "events": events.get("events", []), "graph": graph}
+
+    @app.get("/projects/{project_name}/knowledge-graph-view", tags=["projects"])
+    async def get_project_knowledge_graph_view(project_name: str):
+        from fastapi.responses import HTMLResponse
+        graph_file = settings.projects_dir / project_name / "graph.json"
+        graph_data = json.loads(graph_file.read_text(encoding="utf-8")) if graph_file.exists() else {"nodes": [], "edges": []}
+        graph_html_path = Path("graph.html")
+        if not graph_html_path.exists():
+            raise HTTPException(status_code=500, detail="graph.html template introuvable")
+        template = graph_html_path.read_text(encoding="utf-8")
+        html = template.replace("__GRAPH_DATA__", json.dumps(graph_data))
+        return HTMLResponse(html)
+
     @app.post("/sessions", tags=["sessions"])
     async def create_session(payload: SessionCreateRequest) -> dict:
         automation_runner.ensure_project_exists(payload.project_name)

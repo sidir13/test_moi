@@ -1,0 +1,104 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Prairie au Duc — Les hommes des cales",
+  "resumeHistoire": "Sur les bords de Loire, les chantiers navals de la Prairie au Duc ont rythmé la vie de centaines d'ouvriers : soudeurs, charpentiers de fer, traceurs et dessinateurs. Parmi eux, Jean Peneau, entré aux Chantiers de la Loire le 5 février 1957, a consacré sa carrière à tracer des coques et des sous-marins, de Nantes à Cherbourg. Cette chronique sociale raconte le quotidien de ces hommes guidés par la sirène du chantier, entre le silence des bureaux de traçage et le vacarme des cales. Puis un jour, les cales se sont tues pour de bon — mais la mémoire ouvrière, elle, continue de construire.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 80,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La sirène et les cales silencieuses",
+      "duree_cible": 18,
+      "fonction_narrative": "ouverture_in_medias_res_flashback",
+      "position_arc_emotionnel": "nostalgie_contemplative",
+      "elements_necessaires": [
+        "Amorce par la fin : les cales se sont tues, la Prairie au Duc est silencieuse",
+        "Contraste immédiat avec le souvenir sonore de la sirène",
+        "Ton journalistique factuel, registre accessible grand public",
+        "Époque linguistique authentique : vocabulaire des chantiers",
+        "Ambiance sonore suggérée : silence puis écho lointain de sirène"
+      ],
+      "mood": "mélancolique_sobre"
+    },
+    {
+      "partie": 2,
+      "titre": "Le ballet du matin",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition_sociale_retour_dans_le_passé",
+      "position_arc_emotionnel": "montée_immersive",
+      "elements_necessaires": [
+        "Flashback complet : un matin brumeux sur la Prairie au Duc",
+        "Chronique du groupe social : soudeurs, charpentiers de fer, traceurs convergent vers les cales",
+        "Focus sur le dessinateur dans la salle de traçage : tables inclinées, règles, compas",
+        "Geste technique : traduire les courbes d'une coque en plans cotés",
+        "Citation directe de Jean Peneau sur ses débuts (huit jours au balai, le parc à fers, les goussets, le petit train à plateau)",
+        "Densité sonore immersive : brume, pas sur le pavé, métal"
+      ],
+      "mood": "documentaire_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "Du bureau à la cale",
+      "duree_cible": 20,
+      "fonction_narrative": "développement_parcours_individuel_et_collectif",
+      "position_arc_emotionnel": "intensité_maximale",
+      "elements_necessaires": [
+        "L'après-midi du dessinateur : descente sur la cale, vérification que le métal épouse le plan",
+        "Contraste bureau silencieux / vacarme des rivés",
+        "Parcours de Jean Peneau : entré le 5 février 1957 aux Chantiers de la Loire, muté à Dubigeon",
+        "Citation directe : sept ans et demi à Cherbourg, sous-marins puis sous-marin atomique",
+        "Retour en juillet 69 sur les bords de Loire",
+        "Dimension collective : ces hommes partagent le même rythme, la même sirène"
+      ],
+      "mood": "intense_factuel"
+    },
+    {
+      "partie": 4,
+      "titre": "La dernière sirène",
+      "duree_cible": 20,
+      "fonction_narrative": "resolution_et_coda_mémorielle",
+      "position_arc_emotionnel": "descente_émotionnelle_apaisée",
+      "elements_necessaires": [
+        "Retour au présent du flashback initial : la sirène sonne la débauche une dernière fois",
+        "Les plans sont roulés, les compas reposés",
+        "Fermeture des cales — fin d'un monde ouvrier",
+        "Phrase de clôture mémorielle : dans la mémoire de ceux qui ont tracé ces navires, la Prairie au Duc n'a jamais cessé de construire",
+        "Boucle narrative avec l'ouverture : le silence des cales prend un nouveau sens"
+      ],
+      "mood": "élégiaque_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "boucle_nostalgique — du silence présent au souvenir vivant, puis retour au silence chargé de mémoire",
+  "rythme_general": "modéré avec accélération centrale lors de l'évocation du travail quotidien, puis ralentissement final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "flashback_sensoriel",
+      "duree": 2.0,
+      "description": "Du silence présent des cales, la narration glisse vers le souvenir par un déclencheur sonore : la sirène du chantier qui revient en mémoire. Transition fluide, pas de rupture — une phrase-pont du type 'Mais il fut un temps où, à l'aube, la sirène déchirait l'air humide de la Loire'."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle_temporelle",
+      "duree": 1.5,
+      "description": "Du matin à l'après-midi, du bureau de traçage à la cale. La transition suit le rythme de la journée ouvrière et élargit vers le parcours de vie de Jean Peneau. Enchaînement fluide sans marqueur artificiel."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ellipse_temporelle_douce",
+      "duree": 2.0,
+      "description": "Du retour de Jean Peneau en juillet 69 à la fermeture définitive des chantiers. L'ellipse est portée par le ralentissement du rythme narratif et le retour du motif de la sirène — cette fois pour la dernière débauche. Boucle avec l'ouverture."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme une boucle — il s'ouvre et se ferme sur le silence des cales, mais ce silence change de nature (vide au début, chargé de mémoire à la fin). La structure en flashback doit être imperceptible : pas d'annonce 'retour en arrière', mais un glissement sensoriel naturel. REGISTRE : Grand public, phrases courtes et claires, vocabulaire technique des chantiers toujours explicité en contexte (goussets, cale, débauche au sens ouvrier). TON : Journalistique factuel constant — pas de lyrisme excessif, l'émotion naît des faits et des mots des témoins. CITATIONS : Intégrer naturellement les paroles de Jean Peneau, en les amenant par le récit plutôt que par des formules mécaniques. DURÉE : ~160 mots maximum pour 80 secondes. Chaque section doit être dense et concise — compter environ 36-44 mots par section. Les transitions sont intégrées dans le flux narratif, pas des silences séparés. ÉQUILIBRE narration/archives 60/40 : la voix off porte le récit, les citations de Jean Peneau viennent l'ancrer dans le vécu."
+}

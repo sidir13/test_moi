@@ -1,0 +1,101 @@
+{
+  "scenario_id": 2,
+  "titre_global": "Jean Peneau, traceur de coques sur la Prairie au Duc",
+  "resumeHistoire": "Sur les bords de Loire, les chantiers navals de la Prairie au Duc ont façonné des générations d'ouvriers spécialisés. Parmi eux, Jean Peneau, entré comme simple manœuvre au balai avant de devenir dessinateur-traceur, a consacré sa vie à traduire les courbes des coques en plans précis. De ses débuts en février 1957 aux Chantiers de la Loire jusqu'à son passage par Cherbourg sur les sous-marins, puis son retour en juillet 1969 à Dubigeon, son parcours épouse l'histoire industrielle de Nantes. Quand les cales se sont tues pour de bon, c'est toute une mémoire ouvrière qui a risqué de disparaître avec elles.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 80,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Un matin sur la Prairie au Duc",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "éveil_sensoriel",
+      "elements_necessaires": [
+        "Atmosphère matinale brumeuse sur la Loire",
+        "Sirène du chantier, convergence des ouvriers vers les cales",
+        "Présentation du lieu : la Prairie au Duc, ses chantiers navals",
+        "Introduction de Jean Peneau dans le flux des travailleurs",
+        "Ton journalistique factuel, registre accessible grand public"
+      ],
+      "mood": "documentaire_atmosphérique"
+    },
+    {
+      "partie": 2,
+      "titre": "Du balai à la table de traçage",
+      "duree_cible": 22,
+      "fonction_narrative": "développement_portrait",
+      "position_arc_emotionnel": "montée_narrative",
+      "elements_necessaires": [
+        "Citation directe de Jean Peneau sur ses débuts au balai et au parc à fers",
+        "Progression professionnelle : manœuvre puis dessinateur-traceur",
+        "Geste du métier : traduire les courbes d'une coque en plans cotés",
+        "Descente sur la cale pour vérifier l'ajustement du métal au plan",
+        "Contraste entre le silence du bureau et le vacarme des rivets"
+      ],
+      "mood": "factuel_incarné"
+    },
+    {
+      "partie": 3,
+      "titre": "De Nantes à Cherbourg, une vie de chantier",
+      "duree_cible": 18,
+      "fonction_narrative": "pivot_biographique",
+      "position_arc_emotionnel": "tension_douce",
+      "elements_necessaires": [
+        "Entrée aux Chantiers de la Loire le 5 février 1957",
+        "Mutation à Dubigeon",
+        "Citation directe sur les sept ans et demi à Cherbourg, sous-marins et sous-marin atomique",
+        "Retour sur les bords de Loire en juillet 1969"
+      ],
+      "mood": "journalistique_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Les cales silencieuses",
+      "duree_cible": 18,
+      "fonction_narrative": "résolution_mémorielle",
+      "position_arc_emotionnel": "émotion_contenue",
+      "elements_necessaires": [
+        "Fermeture des chantiers : les cales se sont tues",
+        "Image des plans roulés et des compas reposés",
+        "Mémoire vivante portée par les anciens ouvriers comme Jean Peneau",
+        "Ouverture : la Prairie au Duc n'a jamais cessé de construire dans les souvenirs",
+        "Clôture sobre sans sentimentalisme excessif"
+      ],
+      "mood": "élégiaque_retenu"
+    }
+  ],
+  "arc_emotionnel_global": "éveil_ascension_nostalgie",
+  "rythme_general": "modéré — phrases courtes et factuelles, respirations entre les blocs, tempo régulier sans accélération brutale",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "zoom_progressif",
+      "duree": 2.0,
+      "description": "Du panorama collectif des ouvriers convergeant vers les cales, la narration resserre naturellement sur Jean Peneau et sa propre voix qui prend le relais pour raconter ses débuts."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "ellipse_temporelle_fluide",
+      "duree": 2.0,
+      "description": "Le vacarme des rivets sur la cale sert de pont sonore vers l'évocation chronologique du parcours de Peneau — la date du 5 février 1957 ancre le saut temporel sans rupture."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "contraste_sonore",
+      "duree": 2.5,
+      "description": "Le retour de Peneau en juillet 1969 et la sirène de débauche amorcent le glissement vers le silence définitif des chantiers — transition du bruit au calme, du présent vécu au souvenir."
+    }
+  ],
+  "notes_production": "FLUIDITÉ NARRATIVE : Le récit forme un mouvement continu — d'un matin de travail à une vie entière, puis au silence. Ne jamais marquer de coupure franche entre sections ; chaque fin de partie contient l'amorce de la suivante. CITATIONS : Intégrer les paroles de Jean Peneau de façon naturelle dans le flux narratif, en les introduisant brièvement (« il raconte », « il se souvient ») sans formalisme. REGISTRE : Vocabulaire courant, phrases courtes à moyennes, termes techniques du chantier (goussets, cale, traçage) expliqués par le contexte immédiat. TON : Journalistique factuel tout du long — pas de lyrisme appuyé, l'émotion naît des faits et des détails concrets. DURÉE : Viser 155-165 mots maximum pour 80 secondes au débit de ~2 mots/seconde. AMBIANCE SONORE SUGGÉRÉE : sirène industrielle, bruits métalliques de chantier, ambiance de Loire, puis silence progressif pour la clôture. ÉQUILIBRE NARRATION/ARCHIVES : environ 60 % voix off narrative, 40 % citations ou paraphrases issues du témoignage de Jean Peneau."
+}

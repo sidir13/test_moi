@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>D3 Knowledge Graph</title>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+}
+
+#controls{
+padding:10px;
+background:#f5f5f5;
+}
+
+.node{
+cursor:pointer;
+stroke:white;
+stroke-width:1.5px;
+}
+
+.link{
+stroke:#999;
+stroke-opacity:0.6;
+}
+
+.tooltip{
+position:absolute;
+background:white;
+border:1px solid #ccc;
+padding:6px;
+font-size:12px;
+pointer-events:none;
+}
+
+.popup{
+  position:absolute;
+  top:80px;
+  right:40px;
+  width:300px;
+  background:#ffffff;
+  border:1px solid #ccc;
+  border-radius:12px;
+  padding:15px 20px 15px 20px;
+  box-shadow:0px 8px 20px rgba(0,0,0,0.15);
+  display:none;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.popup h3{
+  margin-top:0;
+  margin-bottom:10px;
+  font-size:16px;
+  color:#333;
+}
+
+.popup p{
+  margin:5px 0;
+  color:#555;
+}
+
+.popup .close-btn{
+  position:absolute;
+  top:8px;
+  right:12px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
+  color:#888;
+  transition: color 0.2s;
+}
+
+.popup .close-btn:hover{
+  color:#333;
+}
+
+.minimap{
+position:absolute;
+right:20px;
+bottom:20px;
+border:1px solid #aaa;
+background:white;
+}
+
+/* Glow effect */
+.glow{
+stroke:#ffd700;
+stroke-width:6px;
+filter: drop-shadow(0 0 6px #ffd700);
+}
+
+/* Node labels */
+.label{
+font-size:11px;
+pointer-events:none;
+fill:#111;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="controls">
+
+<b>Node visibility</b><br>
+
+<label><input type="checkbox" checked value="Person" class="filter"> Person</label>
+<label><input type="checkbox" checked value="Event" class="filter"> Event</label>
+<label><input type="checkbox" checked value="Place" class="filter"> Place</label>
+<label><input type="checkbox" checked value="Keyword" class="filter"> Keyword</label>
+
+<br><br>
+
+<b>Show labels</b><br>
+
+<label><input type="checkbox" value="Person" class="labelFilter"> Person</label>
+<label><input type="checkbox" value="Event" class="labelFilter"> Event</label>
+<label><input type="checkbox" value="Place" class="labelFilter"> Place</label>
+<label><input type="checkbox" value="Keyword" class="labelFilter"> Keyword</label>
+
+<br><br>
+
+<b>Search node:</b>
+<input type="text" id="searchBar" placeholder="Search node...">
+
+</div>
+
+<div id="graph-container"></div>
+
+<div id="tooltip" class="tooltip" style="opacity:0"></div>
+<div id="popup" class="popup"></div>
+
+<script>
+
+const graphData = __GRAPH_DATA__;
+
+const width = 1400;
+const height = 900;
+
+const svg = d3.select("#graph-container")
+.append("svg")
+.attr("width",width)
+.attr("height",height);
+
+const container = svg.append("g");
+
+
+// ZOOM
+const zoom = d3.zoom()
+.scaleExtent([0.3,4])
+.on("zoom",(event)=>{
+container.attr("transform",event.transform);
+});
+
+svg.call(zoom);
+
+
+// TOOLTIP
+const tooltip = d3.select("#tooltip");
+const popup = d3.select("#popup");
+
+
+// LINKS
+const links = graphData.edges.map(edge => ({
+source: graphData.nodes.find(n=>n.id===edge.source),
+target: graphData.nodes.find(n=>n.id===edge.target)
+}));
+
+const link = container.selectAll(".link")
+.data(links)
+.enter()
+.append("line")
+.attr("class","link");
+
+
+// NODES
+const node = container.selectAll(".node")
+.data(graphData.nodes)
+.enter()
+.append("circle")
+.attr("class","node")
+.attr("r",10)
+
+.attr("fill",d=>{
+if(d.type==="Person") return "#1f77b4";
+if(d.type==="Event") return "#d62728";
+if(d.type==="Place") return "#2ca02c";
+if(d.type==="Keyword") return "#ff7f0e";
+return "gray";
+})
+
+.on("mouseover",(event,d)=>{
+tooltip
+.style("opacity",1)
+.html("<b>"+d.name+"</b><br>"+(d.type||""));
+})
+
+.on("mousemove",(event)=>{
+tooltip
+.style("left",(event.pageX+10)+"px")
+.style("top",(event.pageY+10)+"px");
+})
+
+.on("mouseout",()=>{
+tooltip.style("opacity",0);
+})
+
+.on("click",(event,d)=>{
+
+popup.style("display","block");
+
+  // Only declare 'content' once
+  let content = `<span class="close-btn">&times;</span>`;
+  content += "<h3>"+d.name+"</h3>";
+  if(d.time) content += "<p><b>Time:</b> "+d.time+"</p>";
+  if(d.description) content += "<p><b>Description:</b> "+d.description+"</p>";
+  content += "<p><b>Type:</b> "+d.type+"</p>";
+
+  popup.html(content);
+
+  // Add close button functionality
+  popup.select(".close-btn").on("click", () => {
+      popup.style("display","none");
+  });
+
+})
+
+.call(d3.drag()
+.on("start",dragstarted)
+.on("drag",dragged)
+.on("end",dragended));
+
+
+// LABELS
+const labels = container.selectAll(".label")
+.data(graphData.nodes)
+.enter()
+.append("text")
+.attr("class","label")
+.attr("text-anchor","middle")
+.text(d=>d.name)
+.style("display","none");
+
+
+// FORCE SIMULATION
+const simulation = d3.forceSimulation(graphData.nodes)
+.force("link",d3.forceLink(links).distance(120))
+.force("charge",d3.forceManyBody().strength(-300))
+.force("center",d3.forceCenter(width/2,height/2));
+
+simulation.on("tick",()=>{
+
+link
+.attr("x1",d=>d.source.x)
+.attr("y1",d=>d.source.y)
+.attr("x2",d=>d.target.x)
+.attr("y2",d=>d.target.y);
+
+node
+.attr("cx",d=>d.x)
+.attr("cy",d=>d.y);
+
+labels
+.attr("x",d=>d.x)
+.attr("y",d=>d.y-15);
+
+updateMini();
+
+});
+
+
+// DRAG
+function dragstarted(event,d){
+if(!event.active) simulation.alphaTarget(0.3).restart();
+d.fx=d.x;
+d.fy=d.y;
+}
+
+function dragged(event,d){
+d.fx=event.x;
+d.fy=event.y;
+}
+
+function dragended(event,d){
+if(!event.active) simulation.alphaTarget(0);
+d.fx=null;
+d.fy=null;
+}
+
+
+// NODE TYPE FILTER
+d3.selectAll(".filter").on("change", () => {
+
+const activeTypes = [];
+
+d3.selectAll(".filter:checked")
+.each(function(){
+activeTypes.push(this.value);
+});
+
+node.style("display", d =>
+activeTypes.includes(d.type) ? "block" : "none"
+);
+
+link.style("display", d => {
+if(activeTypes.includes(d.source.type) && activeTypes.includes(d.target.type)){
+return "block";
+}
+return "none";
+});
+
+});
+
+
+// LABEL FILTER
+d3.selectAll(".labelFilter").on("change", () => {
+
+const active = [];
+
+d3.selectAll(".labelFilter:checked")
+.each(function(){
+active.push(this.value);
+});
+
+labels.style("display", d => {
+if(active.includes(d.type)) return "block";
+return "none";
+});
+
+});
+
+
+// SEARCH WITH GLOW
+d3.select("#searchBar").on("keyup", function(){
+
+const value = this.value.toLowerCase();
+
+node.classed("glow", d =>
+value !== "" && d.name.toLowerCase().includes(value)
+);
+
+});
+
+
+// MINIMAP
+const miniWidth = 220;
+const miniHeight = 150;
+
+const mini = d3.select("body")
+.append("svg")
+.attr("class","minimap")
+.attr("width",miniWidth)
+.attr("height",miniHeight);
+
+const miniNodes = mini.selectAll("circle")
+.data(graphData.nodes)
+.enter()
+.append("circle")
+.attr("r",2)
+.attr("fill","#555");
+
+const miniLinks = mini.selectAll("line")
+.data(links)
+.enter()
+.append("line")
+.attr("stroke","#aaa");
+
+function updateMini(){
+
+miniLinks
+.attr("x1",d=>d.source.x/5)
+.attr("y1",d=>d.source.y/5)
+.attr("x2",d=>d.target.x/5)
+.attr("y2",d=>d.target.y/5);
+
+miniNodes
+.attr("cx",d=>d.x/5)
+.attr("cy",d=>d.y/5);
+
+}
+
+</script>
+
+</body>
+</html>

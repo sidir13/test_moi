@@ -1,0 +1,21 @@
+=== PARTIE 1 : Un matin sur la Prairie au Duc ===
+
+{sirene_industrielle_lointaine.wav}
+
+[posé] Un matin brumeux, la sirène du chantier déchire l'air humide de la Loire. [pause] {ambiance_brume_loire.wav} Sur la Prairie au Duc, à Nantes, des centaines d'hommes convergent vers les cales — soudeurs, charpentiers de fer, traceurs. [pause] Parmi eux, Jean Peneau, dessinateur, rejoint le bureau qui surplombe les coques en construction.
+
+=== PARTIE 2 : Du balai à la table de traçage ===
+
+{metal_rivetage_lointain.wav}
+
+Mais Jean Peneau n'a pas toujours tenu le compas. [pause] Il raconte : [posé] [atténué] « J'ai été huit jours au balai, et après, je suis allé dans le parc à fers. C'est-à-dire qu'on triait les goussets. » [pause] Devenu traceur, il traduit désormais les courbes d'une coque en plans cotés, puis descend sur la cale vérifier que le métal épouse bien le dessin.
+
+=== PARTIE 3 : De Nantes à Cherbourg, une vie de chantier ===
+
+[posé] Le 5 février 1957, il entre aux Chantiers de la Loire, puis rejoint Dubigeon. [pause] Il se souvient : [posé] [atténué] « J'ai travaillé pendant sept ans et demi à Cherbourg, sur les sous-marins et puis après le sous-marin atomique. » [pause] En juillet 69, Jean Peneau retrouve enfin les bords de Loire.
+
+=== PARTIE 4 : Les cales silencieuses ===
+
+{sirene_derniere_decroissante.wav}
+
+[ralentit] Un jour, la sirène a sonné pour la dernière fois. [pause] Les plans ont été roulés, les compas reposés. {silence_industriel.wav} [posé] Les cales se sont tues pour de bon. [pause] [atténué] Mais dans la mémoire de ceux qui, comme Jean Peneau, ont tracé ces navires trait après trait, la Prairie au Duc n'a jamais cessé de construire.

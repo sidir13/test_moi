@@ -5,9 +5,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   advanceStep,
   fetchProjectTranscriptions,
+  fetchProjectKnowledgeGraph,
   updateProjectTranscription,
   ProjectTranscription
 } from "../api/client";
+import { API_BASE_URL } from "../api/client";
 import { useSessionStore } from "../hooks/useSessionStore";
 
 type SavePayload = {
@@ -26,6 +28,12 @@ export function TranscriptionReviewView() {
   const transcriptionsQuery = useQuery({
     queryKey: ["project-transcriptions", projectName],
     queryFn: () => fetchProjectTranscriptions(projectName!),
+    enabled: Boolean(projectName)
+  });
+
+  const graphQuery = useQuery({
+    queryKey: ["project-knowledge-graph", projectName],
+    queryFn: () => fetchProjectKnowledgeGraph(projectName!),
     enabled: Boolean(projectName)
   });
 
@@ -197,6 +205,45 @@ export function TranscriptionReviewView() {
           </section>
         );
       })}
+
+      {graphQuery.data && graphQuery.data.events.length > 0 && (
+        <section className="card" style={{ marginBottom: "1rem" }}>
+          <h3>Événements identifiés</h3>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
+            <thead>
+              <tr>
+                {["Période", "Événement", "Acteurs", "Lieux"].map((h) => (
+                  <th key={h} style={{ textAlign: "left", padding: "0.4rem 0.6rem", borderBottom: "1px solid #ccc" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {graphQuery.data.events.map((ev, idx) => (
+                <tr key={idx} style={{ borderBottom: "1px solid #eee" }}>
+                  <td style={{ padding: "0.4rem 0.6rem", whiteSpace: "nowrap" }}>{ev.approximate_time ?? "—"}</td>
+                  <td style={{ padding: "0.4rem 0.6rem" }}>
+                    <strong>{ev.title}</strong>
+                    {ev.description && <><br /><small style={{ color: "#666" }}>{ev.description}</small></>}
+                  </td>
+                  <td style={{ padding: "0.4rem 0.6rem" }}>{ev.actors?.join(", ") ?? "—"}</td>
+                  <td style={{ padding: "0.4rem 0.6rem" }}>{ev.places?.join(", ") ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      )}
+
+      {graphQuery.data && graphQuery.data.graph.nodes.length > 0 && (
+        <section className="card" style={{ marginBottom: "1rem" }}>
+          <h3>Graphe de connaissances</h3>
+          <iframe
+            src={`${API_BASE_URL}/projects/${encodeURIComponent(projectName!)}/knowledge-graph-view`}
+            style={{ width: "100%", height: "600px", border: "none", borderRadius: "4px" }}
+            title="Graphe de connaissances"
+          />
+        </section>
+      )}
 
       <form onSubmit={handleContinue} className="card">
         <button type="submit" disabled={transcriptions.length === 0 || saveMutation.isPending}>

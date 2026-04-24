@@ -1,0 +1,15 @@
+=== PARTIE 1 : Le vacarme des cales ===
+
+[posé] Aujourd'hui, les cales de la Prairie au Duc se taisent. [pause] Le béton a recouvert le métal. [ralentit] Mais il fut un temps où ce silence n'existait pas.
+
+=== PARTIE 2 : Avant — Un matin brumeux sur la Loire ===
+
+{sirene_chantier_lointaine.wav} Un matin brumeux, la sirène du chantier déchire l'air humide de la Loire. Des centaines d'hommes convergent vers les cales — soudeurs, charpentiers de fer, traceurs. Dans la salle de traçage, tables inclinées, règles et compas, un dessinateur traduit les courbes d'une coque en plans cotés. [pause] Jean Peneau raconte : [posé] [atténué] « J'ai été huit jours au balai, et après, je suis allé dans le parc à fers, on appelait ça. C'est-à-dire qu'on triait les goussets. » [pause] Un petit train à plateau emporte ensuite les pièces vers les cales.
+
+=== PARTIE 3 : Avant — Du métal aux sous-marins ===
+
+Le 5 février 1957, Jean Peneau entre aux Chantiers de la Loire, puis rejoint Dubigeon. [pause] Il se souvient : [posé] [atténué] « J'ai travaillé pendant sept ans et demi à Cherbourg, sur les sous-marins et puis après le sous-marin atomique. » [pause] En juillet 69, il retrouve enfin les bords de Loire. {echo_metallique_cale.wav} Le vacarme des rivets remplace à nouveau le silence du bureau.
+
+=== PARTIE 4 : Après — Les cales se taisent ===
+
+[ralentit] La sirène sonne la débauche une dernière fois. L'étrave tourne le dos à l'embouchure. [pause] Les plans sont roulés, les compas reposés. Un jour, les cales se sont tues pour de bon. [pause] [accentué] Mais dans la mémoire de ceux qui, comme Jean Peneau, ont tracé ces navires trait après trait, la Prairie au Duc n'a jamais cessé de construire.

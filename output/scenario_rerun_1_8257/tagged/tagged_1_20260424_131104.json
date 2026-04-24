@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Prairie au Duc — Les hommes des cales",
+  "taggedText": "=== PARTIE 1 : La sirène et les cales silencieuses ===\n\n{vent_loire_cales_vides.wav}\n\n[posé] Aujourd'hui, les cales de la Prairie au Duc se taisent. [pause] Plus un rivet, plus un chalumeau. Seul le vent de Loire glisse entre les fantômes de coques. [pause] Mais il fut un temps où, chaque matin, une sirène déchirait l'air humide.\n\n=== PARTIE 2 : Le ballet du matin ===\n\n{sirene_chantier_naval_matin.wav}\n\nDes centaines d'hommes convergent vers les cales — soudeurs, charpentiers de fer, traceurs. Un dessinateur rejoint la salle de traçage, ses tables inclinées, ses règles et ses compas. [pause] Jean Peneau raconte : [posé] [atténué] « J'ai été huit jours au balai, et après, je suis allé dans le parc à fers. C'est-à-dire qu'on triait les goussets. Un petit train à plateau venait chercher ces pièces pour les acheminer vers les cales. » [pause]\n\n=== PARTIE 3 : Du bureau à la cale ===\n\n{ambiance_atelier_metal.wav}\n\nLe 5 février 1957, [accentué] Jean Peneau entre aux Chantiers de la Loire, puis rejoint Dubigeon. On le mute à Cherbourg. [pause] Il se souvient : [posé] [atténué] « J'ai travaillé pendant sept ans et demi à Cherbourg, sur les sous-marins et puis après le sous-marin atomique. » [pause] En juillet 69, il retrouve enfin les bords de Loire.\n\n=== PARTIE 4 : La dernière sirène ===\n\n{sirene_fin_journee_lointaine.wav}\n\n[ralentit] La sirène sonne la débauche — la fin de journée. Les plans sont roulés, les compas reposés. [pause] Un jour, les cales se sont tues pour de bon. [pause] Mais dans la mémoire de ceux qui, comme Jean Peneau, ont tracé ces navires trait après trait, [accentué] la Prairie au Duc n'a jamais cessé de construire.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La sirène et les cales silencieuses",
+      "taggedText": "{vent_loire_cales_vides.wav}\n\n[posé] Aujourd'hui, les cales de la Prairie au Duc se taisent. [pause] Plus un rivet, plus un chalumeau. Seul le vent de Loire glisse entre les fantômes de coques. [pause] Mais il fut un temps où, chaque matin, une sirène déchirait l'air humide."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le ballet du matin",
+      "taggedText": "{sirene_chantier_naval_matin.wav}\n\nDes centaines d'hommes convergent vers les cales — soudeurs, charpentiers de fer, traceurs. Un dessinateur rejoint la salle de traçage, ses tables inclinées, ses règles et ses compas. [pause] Jean Peneau raconte : [posé] [atténué] « J'ai été huit jours au balai, et après, je suis allé dans le parc à fers. C'est-à-dire qu'on triait les goussets. Un petit train à plateau venait chercher ces pièces pour les acheminer vers les cales. » [pause]"
+    },
+    {
+      "partie_id": 3,
+      "titre": "Du bureau à la cale",
+      "taggedText": "{ambiance_atelier_metal.wav}\n\nLe 5 février 1957, [accentué] Jean Peneau entre aux Chantiers de la Loire, puis rejoint Dubigeon. On le mute à Cherbourg. [pause] Il se souvient : [posé] [atténué] « J'ai travaillé pendant sept ans et demi à Cherbourg, sur les sous-marins et puis après le sous-marin atomique. » [pause] En juillet 69, il retrouve enfin les bords de Loire."
+    },
+    {
+      "partie_id": 4,
+      "titre": "La dernière sirène",
+      "taggedText": "{sirene_fin_journee_lointaine.wav}\n\n[ralentit] La sirène sonne la débauche — la fin de journée. Les plans sont roulés, les compas reposés. [pause] Un jour, les cales se sont tues pour de bon. [pause] Mais dans la mémoire de ceux qui, comme Jean Peneau, ont tracé ces navires trait après trait, [accentué] la Prairie au Duc n'a jamais cessé de construire."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 16,
+    "soundTags": 4,
+    "originalWordCount": 223
+  }
+}

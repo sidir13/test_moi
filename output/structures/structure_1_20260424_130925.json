@@ -1,0 +1,100 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Prairie au Duc — Les cales silencieuses",
+  "resumeHistoire": "Sur les bords de Loire, les chantiers navals de la Prairie au Duc rythmaient la vie de centaines d'ouvriers, soudeurs, charpentiers de fer et dessinateurs, au son des sirènes et des rivets. Jean Peneau, entré comme apprenti un matin de février 1957, a gravi les échelons de ce monde de métal et de plans cotés, des Chantiers de la Loire jusqu'aux sous-marins de Cherbourg, avant de retrouver Nantes en juillet 1969. Puis un jour, les cales se sont tues pour de bon, les sirènes ont cessé de déchirer l'air humide. Mais dans la mémoire de ceux qui ont tracé ces navires trait après trait, la Prairie au Duc n'a jamais cessé de construire. Ce récit en diptyque oppose le tumulte vivant des chantiers au silence qui leur a succédé, à travers le regard d'un homme qui a connu les deux.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 80,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le vacarme des cales",
+      "duree_cible": 10,
+      "fonction_narrative": "ouverture_circulaire",
+      "position_arc_emotionnel": "contemplation_initiale",
+      "elements_necessaires": [
+        "Image sonore du silence actuel des cales",
+        "Évocation brève de la Prairie au Duc aujourd'hui, vide et muette",
+        "Amorce du retour en arrière — ton journalistique factuel, registre accessible"
+      ],
+      "mood": "mélancolique_retenu"
+    },
+    {
+      "partie": 2,
+      "titre": "Avant — Un matin brumeux sur la Loire",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition_monde_avant",
+      "position_arc_emotionnel": "montée_immersive",
+      "elements_necessaires": [
+        "Atmosphère du matin brumeux, sirène du chantier, air humide de la Loire",
+        "Convergence des ouvriers : soudeurs, charpentiers de fer, traceurs",
+        "Le bureau de traçage : tables inclinées, règles, compas, courbes traduites en plans cotés",
+        "Citation directe de Jean Peneau sur ses débuts (huit jours au balai, parc à fers, goussets, petit train à plateau)",
+        "Rythme lent, phrases courtes et concrètes"
+      ],
+      "mood": "vivant_documentaire"
+    },
+    {
+      "partie": 3,
+      "titre": "Avant — Du métal aux sous-marins",
+      "duree_cible": 20,
+      "fonction_narrative": "développement_parcours",
+      "position_arc_emotionnel": "sommet_narratif",
+      "elements_necessaires": [
+        "Entrée de Jean Peneau aux Chantiers de la Loire le 5 février 1957",
+        "Mutation à Dubigeon, puis sept ans et demi à Cherbourg sur les sous-marins puis le sous-marin atomique — citation directe",
+        "Retour aux bords de Loire en juillet 1969",
+        "Le va-et-vient entre bureau et cale, le vacarme des rivets remplaçant le silence du bureau"
+      ],
+      "mood": "factuel_dense"
+    },
+    {
+      "partie": 4,
+      "titre": "Après — Les cales se taisent",
+      "duree_cible": 25,
+      "fonction_narrative": "bascule_et_retour_circulaire",
+      "position_arc_emotionnel": "descente_contemplative_vers_boucle",
+      "elements_necessaires": [
+        "La sirène sonne la débauche une dernière fois",
+        "L'étrave tourne le dos à l'embouchure, plans roulés, compas reposés",
+        "Les cales se sont tues pour de bon — constat factuel de la fermeture",
+        "Retour à l'image d'ouverture : le silence actuel",
+        "Phrase de clôture circulaire : dans la mémoire de ceux qui ont tracé ces navires, la Prairie au Duc n'a jamais cessé de construire",
+        "Registre grand public, émotion contenue sans pathos"
+      ],
+      "mood": "mélancolique_résolu"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_contemplatif — du silence présent au tumulte passé, puis retour au silence habité par la mémoire",
+  "rythme_general": "lent_contemplatif — débit posé à environ 2 mots/seconde, pauses marquées aux transitions, phrases courtes et factuelles",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "retour_en_arriere_fluide",
+      "duree": 2.0,
+      "description": "Du silence actuel des cales, la narration glisse vers un matin brumeux d'autrefois. Pas de rupture marquée : une phrase-pont fait basculer du présent vide au passé vivant, par exemple en évoquant un son qui revient en mémoire."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Continuité directe : du décor collectif des chantiers, on resserre sur le parcours individuel de Jean Peneau. La citation de la partie 2 amorce naturellement l'évocation de sa carrière. Pas de pause longue, enchaînement fluide."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "bascule_temporelle",
+      "duree": 2.5,
+      "description": "Transition pivot du diptyque avant/après. Le retour de Jean Peneau en juillet 1969 est le dernier moment vivant. Une pause plus longue, puis le ton change : la sirène sonne une dernière fois, le silence s'installe. Le rythme ralentit encore pour marquer la rupture entre le monde actif et le monde disparu."
+    }
+  ],
+  "notes_production": "CONTINUITÉ ET FLUIDITÉ : Le récit forme une boucle — il s'ouvre et se ferme sur le même silence des cales, mais ce silence change de sens (vide initial → habité par la mémoire en clôture). Les quatre sections doivent être lues comme un seul mouvement continu, sans annonce de parties. Les transitions sont des inflexions de ton et de tempo, pas des coupures. REGISTRE : Grand public, vocabulaire concret, phrases courtes. Les termes techniques (goussets, cale, étrave, débauche) sont soit explicités par le contexte immédiat, soit compréhensibles intuitivement. CITATIONS : Deux citations directes de Jean Peneau sont intégrées naturellement dans le flux narratif (parties 2 et 3), introduites par des formules simples (« il raconte », « il se souvient »). ÉQUILIBRE NARRATION/ARCHIVES : 60 % narration voix off / 40 % matière issue des transcriptions. Les citations sont des moments de respiration dans le récit, pas des blocs séparés. DENSITÉ SONORE MINIMALISTE : Prévoir peu d'ambiances — un son de sirène lointaine, un écho métallique discret, puis le silence. Pas de musique envahissante. TON : Journalistique factuel du début à la fin. L'émotion naît des faits et du contraste avant/après, jamais de commentaires sentimentaux. DURÉE : Viser 155-165 mots au total pour respecter les 80 secondes à débit lent. Chaque section est courte et dense — aucune ne dépasse 50 mots environ sauf les parties 2 et 4."
+}
