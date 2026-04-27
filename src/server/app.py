@@ -2067,9 +2067,9 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                     logger.warning("Voice preview warmup failed for %s: %s", voice_id, exc)
         asyncio.create_task(_run())
 
-    app.add_event_handler("startup", _start_tts_worker)
-    app.add_event_handler("startup", _prefetch_voice_previews_task)
-    app.add_event_handler("shutdown", _stop_tts_worker)
+    app.router.on_startup.append(_start_tts_worker)
+    app.router.on_startup.append(_prefetch_voice_previews_task)
+    app.router.on_shutdown.append(_stop_tts_worker)
 
     def project_outputs_directory(project_name: str, ensure: bool = False) -> Path:
         path = settings.projects_dir / project_name / "outputs"
