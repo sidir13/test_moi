@@ -1,16 +1,27 @@
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { FolderOpen, Plus, Volume2, Pause, Video, Download, Loader2 } from "lucide-react";
 
 import {
   createProject,
   createSession,
   fetchProjects,
-  ProjectSummary,
+  type ProjectSummary,
   getProjectFinalAudioUrl,
   getProjectFinalVideoUrl
-} from "../api/client";
-import { useSessionStore } from "../hooks/useSessionStore";
+} from "@/api/client";
+import { useSessionStore } from "@/hooks/useSessionStore";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 
 type SessionBootstrap = {
   steps?: Record<string, unknown>;
@@ -19,30 +30,27 @@ type SessionBootstrap = {
   scenario_audio?: { path?: string | null } | null;
 };
 
-const deriveProgressFromSession = (
-  session: SessionBootstrap | null,
-  requireFreshEdit: boolean
-) => {
+const deriveProgressFromSession = (session: SessionBootstrap | null, requireFreshEdit: boolean) => {
   const steps = (session?.steps ?? {}) as Record<string, unknown>;
-  const storedScenarios = Array.isArray(session?.scenarios) ? (session?.scenarios as unknown[]) : [];
+  const storedScenarios = Array.isArray(session?.scenarios) ? session.scenarios : [];
   const selectedScenario = session?.selected_scenario;
   const audioMeta = session?.scenario_audio;
-  const audioSources = steps && typeof steps === "object" ? (steps as any).audio_sources : undefined;
-  const transcriptionStepDone = Boolean(steps && (steps as any).transcription_review);
+  const audioSources = (steps as Record<string, unknown>).audio_sources;
+  const transcriptionStepDone = Boolean((steps as Record<string, unknown>).transcription_review);
   const progressedBeyondTranscription =
     Boolean(
-      (steps as any)?.scenario_review ||
-        (steps as any)?.scenario_edit ||
-        (steps as any)?.final_validation
+      (steps as Record<string, unknown>).scenario_review ||
+        (steps as Record<string, unknown>).scenario_edit ||
+        (steps as Record<string, unknown>).final_validation
     ) ||
     Boolean(selectedScenario) ||
-    Boolean(audioMeta?.path);
+    Boolean((audioMeta as { path?: string } | null)?.path);
   return {
-    audioReady: Boolean(audioSources || audioMeta?.path),
+    audioReady: Boolean(audioSources || (audioMeta as { path?: string } | null)?.path),
     transcriptionsReviewed: transcriptionStepDone || progressedBeyondTranscription,
     scenariosReady: Boolean(storedScenarios.length > 0 || selectedScenario),
     scenarioChosen: Boolean(selectedScenario),
-    scenarioEdited: requireFreshEdit ? false : Boolean(audioMeta?.path)
+    scenarioEdited: requireFreshEdit ? false : Boolean((audioMeta as { path?: string } | null)?.path)
   };
 };
 
@@ -52,39 +60,6 @@ const formatDate = (value?: string) => {
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
 };
-
-const SpeakerIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      fill="currentColor"
-      d="M5 9v6h4l5 5V4l-5 5H5zm11.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"
-    />
-  </svg>
-);
-
-const PauseIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z" />
-  </svg>
-);
-
-const VideoIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      fill="currentColor"
-      d="M17 10.5V6c0-1.1-.9-2-2-2H5C3.9 4 3 4.9 3 6v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-4.5l4 4v-11l-4 4z"
-    />
-  </svg>
-);
-
-const DownloadIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      fill="currentColor"
-      d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"
-    />
-  </svg>
-);
 
 export function ProjectSelectionView() {
   const { data, refetch, isLoading } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
@@ -99,6 +74,7 @@ export function ProjectSelectionView() {
     setProgress
   } = useSessionStore();
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [scenarioTargetDraft, setScenarioTargetDraft] = useState(3);
@@ -107,8 +83,6 @@ export function ProjectSelectionView() {
   const [previewKey, setPreviewKey] = useState(0);
   const [videoProject, setVideoProject] = useState<string | null>(null);
 
-  const resetPreview = () => setPreviewProject(null);
-  const closeVideo = () => setVideoProject(null);
   const togglePreview = (projectName: string) => {
     setPreviewProject((prev) => (prev === projectName ? null : projectName));
     setPreviewKey((k) => k + 1);
@@ -128,34 +102,32 @@ export function ProjectSelectionView() {
       resetProgress();
       setName("");
       setDescription("");
-      resetPreview();
-      closeVideo();
+      setPreviewProject(null);
+      setVideoProject(null);
       refetch();
       navigate("/step/project_details");
-    }
+    },
+    onError: (err) => setError((err as Error).message)
   });
 
   const handleCreate = (evt: FormEvent) => {
     evt.preventDefault();
     setError(null);
-    createMutation.mutate(undefined, {
-      onError: (err) => setError((err as Error).message)
-    });
+    createMutation.mutate();
   };
 
   const handleSelect = async (project: ProjectSummary) => {
     try {
       resetProgress();
       const session = await createSession(project.name, "project_selection", project.scenario_target);
-      const derivedProgress = deriveProgressFromSession(session, Boolean(project.finalized_at));
-      setProgress(derivedProgress);
+      setProgress(deriveProgressFromSession(session, Boolean(project.finalized_at)));
       setProjectName(project.name);
       setLastProjectName(project.name);
       setSessionId(session.session_id);
       setCurrentStep("project_details");
       setScenarioTarget(project.scenario_target);
-      resetPreview();
-      closeVideo();
+      setPreviewProject(null);
+      setVideoProject(null);
       navigate("/step/project_details");
     } catch (err) {
       setError((err as Error).message);
@@ -163,157 +135,221 @@ export function ProjectSelectionView() {
   };
 
   return (
-    <div className="step-view">
-      <h2>Créer ou sélectionner un projet</h2>
-      <p>Chaque projet conserve ses audios finaux, scénarios et transcriptions.</p>
-      {error && <p className="error">{error}</p>}
+    <div className="flex flex-col gap-6 max-w-3xl">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight">Projets</h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          Créez un nouveau projet ou reprenez là où vous vous étiez arrêté.
+        </p>
+      </div>
 
-      <section className="card emphasis">
-        <h3>Projets existants</h3>
-        <p>Revenez sur un projet pour reprendre là où vous l’avez laissé. Les audios finalisés sont directement écoutables.</p>
-        {isLoading ? (
-          <p>Chargement...</p>
-        ) : data && data.length > 0 ? (
-          <ul className="project-list stacked">
-            {data.map((project) => {
-              const hasAudio = Boolean(project.final_audio?.path);
-              const hasVideo = Boolean(project.final_slideshow?.path);
-              const finalizedLabel = project.finalized_at ? formatDate(project.finalized_at) : null;
-              const isLastActive = project.name === lastProjectName;
-              return (
-                <li key={project.name}>
-                  <div
-                    className={`project-entry${isLastActive ? " last-active" : ""}`}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => handleSelect(project)}
-                    onKeyDown={(evt) => {
-                      if (evt.key === "Enter" || evt.key === " ") handleSelect(project);
-                    }}
-                  >
-                    <div className="project-label">
-                      <strong>{project.name}</strong>{" "}
-                      <small>({project.scenario_target} scénarios)</small>
-                      <div className="project-label-badges">
-                        {finalizedLabel && <span className="badge">Finalisé le {finalizedLabel}</span>}
-                        {isLastActive && <span className="badge accent">Dernier projet actif</span>}
-                      </div>
-                    </div>
-                    <div className="project-actions" style={{ display: "flex", gap: "0.25rem" }}>
-                      {hasAudio && (
-                        <button
-                          type="button"
-                          className="play-btn"
-                          aria-label={
-                            previewProject === project.name
-                              ? "Mettre en pause l'audio final"
-                              : "Écouter l'audio final"
-                          }
-                          onClick={(evt) => {
-                            evt.stopPropagation();
-                            togglePreview(project.name);
-                          }}
-                          data-playing={previewProject === project.name}
-                        >
-                          {previewProject === project.name ? <PauseIcon /> : <SpeakerIcon />}
-                        </button>
-                      )}
-                      {hasAudio && (
-                        <a
-                          href={getProjectFinalAudioUrl(project.name)}
-                          download
-                          className="play-btn"
-                          aria-label="Télécharger l'audio final"
-                          onClick={(evt) => evt.stopPropagation()}
-                        >
-                          <DownloadIcon />
-                        </a>
-                      )}
-                      {hasVideo && (
-                        <button
-                          type="button"
-                          className="play-btn"
-                          aria-label="Lire le diaporama vidéo"
-                          onClick={(evt) => {
-                            evt.stopPropagation();
-                            setVideoProject(project.name);
-                          }}
-                        >
-                          <VideoIcon />
-                        </button>
-                      )}
-                      {hasVideo && (
-                        <a
-                          href={getProjectFinalVideoUrl(project.name)}
-                          download
-                          className="play-btn"
-                          aria-label="Télécharger la vidéo finale"
-                          onClick={(evt) => evt.stopPropagation()}
-                        >
-                          <DownloadIcon />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  {hasAudio && previewProject === project.name && (
-                    <audio
-                      key={`${project.name}-${previewKey}`}
-                      controls
-                      className="project-audio-preview"
-                      src={getProjectFinalAudioUrl(project.name)}
-                      onClick={(evt) => evt.stopPropagation()}
-                    />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p>Aucun projet enregistré pour le moment.</p>
-        )}
-      </section>
-      {videoProject && (
-        <div className="modal-backdrop" onClick={closeVideo}>
-          <div className="modal" onClick={(evt) => evt.stopPropagation()}>
-            <h3>Diaporama — {videoProject}</h3>
-            <video
-              key={videoProject}
-              controls
-              style={{ width: "100%", maxHeight: "70vh" }}
-              src={getProjectFinalVideoUrl(videoProject)}
-            />
-            <button type="button" className="link" onClick={closeVideo}>
-              Fermer
-            </button>
-          </div>
-        </div>
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
-      <section className="card muted">
-        <h3>Nouveau projet</h3>
-        <form onSubmit={handleCreate} className="form-grid">
-          <label>
-            Nom
-            <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Ex: port_nantes" />
-          </label>
-          <label>
-            Description
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={3} />
-          </label>
-          <label>
-            Nombre de scénarios à générer (1 à 5)
-            <input
-              type="range"
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FolderOpen className="h-4 w-4" />
+            Projets existants
+          </CardTitle>
+          <CardDescription>
+            Reprenez un projet pour continuer depuis là où vous l'avez laissé.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center gap-2 py-4 text-sm text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Chargement…
+            </div>
+          ) : data && data.length > 0 ? (
+            <ul className="flex flex-col gap-2">
+              {data.map((project) => {
+                const hasAudio = Boolean(project.final_audio?.path);
+                const hasVideo = Boolean(project.final_slideshow?.path);
+                const finalizedLabel = project.finalized_at ? formatDate(project.finalized_at) : null;
+                const isLastActive = project.name === lastProjectName;
+                return (
+                  <li key={project.name}>
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => handleSelect(project)}
+                      onKeyDown={(evt) => {
+                        if (evt.key === "Enter" || evt.key === " ") handleSelect(project);
+                      }}
+                      className={cn(
+                        "flex items-center justify-between rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                        "hover:border-primary hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        isLastActive && "border-orange-400 bg-orange-50/50"
+                      )}
+                    >
+                      <div className="flex flex-col gap-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-medium text-sm">{project.name}</span>
+                          <span className="text-xs text-muted-foreground">
+                            ({project.scenario_target} scénarios)
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {finalizedLabel && (
+                            <Badge variant="success">Finalisé le {finalizedLabel}</Badge>
+                          )}
+                          {isLastActive && (
+                            <Badge variant="warning">Dernier projet actif</Badge>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 ml-3 shrink-0">
+                        {hasAudio && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="icon"
+                            aria-label={previewProject === project.name ? "Pause" : "Écouter l'audio final"}
+                            onClick={(e) => { e.stopPropagation(); togglePreview(project.name); }}
+                            className="h-8 w-8"
+                          >
+                            {previewProject === project.name ? (
+                              <Pause className="h-4 w-4" />
+                            ) : (
+                              <Volume2 className="h-4 w-4" />
+                            )}
+                          </Button>
+                        )}
+                        {hasAudio && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="h-8 w-8"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <a
+                              href={getProjectFinalAudioUrl(project.name)}
+                              download
+                              aria-label="Télécharger l'audio final"
+                            >
+                              <Download className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        )}
+                        {hasVideo && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="icon"
+                            aria-label="Voir le diaporama"
+                            onClick={(e) => { e.stopPropagation(); setVideoProject(project.name); }}
+                            className="h-8 w-8"
+                          >
+                            <Video className="h-4 w-4" />
+                          </Button>
+                        )}
+                        {hasVideo && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="h-8 w-8"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <a
+                              href={getProjectFinalVideoUrl(project.name)}
+                              download
+                              aria-label="Télécharger la vidéo"
+                            >
+                              <Download className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+
+                    {hasAudio && previewProject === project.name && (
+                      <audio
+                        key={`${project.name}-${previewKey}`}
+                        controls
+                        autoPlay
+                        className="w-full mt-2 rounded-lg"
+                        src={getProjectFinalAudioUrl(project.name)}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground py-4">Aucun projet enregistré pour le moment.</p>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Plus className="h-4 w-4" />
+            Nouveau projet
+          </CardTitle>
+          <CardDescription>Définissez un nom et le nombre de scénarios à générer.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleCreate} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="project-name">Nom du projet</Label>
+              <Input
+                id="project-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ex: port_nantes_1905"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="project-desc">Description (optionnel)</Label>
+              <Textarea
+                id="project-desc"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={3}
+                placeholder="Quelques mots sur ce projet…"
+              />
+            </div>
+            <Slider
+              label="Nombre de scénarios à générer"
+              valueLabel={`${scenarioTargetDraft} scénario${scenarioTargetDraft > 1 ? "s" : ""}`}
               min={1}
               max={5}
               value={scenarioTargetDraft}
               onChange={(e) => setScenarioTargetDraft(Number(e.target.value))}
             />
-            <span>{scenarioTargetDraft} scénario(s)</span>
-          </label>
-        <button type="submit" disabled={createMutation.isPending}>Créer</button>
-        </form>
-      </section>
+            <Button type="submit" disabled={createMutation.isPending} className="w-fit">
+              {createMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Créer le projet
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+
+      <Dialog open={Boolean(videoProject)} onOpenChange={(open) => !open && setVideoProject(null)}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>Diaporama — {videoProject}</DialogTitle>
+          </DialogHeader>
+          {videoProject && (
+            <video
+              key={videoProject}
+              controls
+              className="w-full max-h-[70vh] rounded-lg"
+              src={getProjectFinalVideoUrl(videoProject)}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

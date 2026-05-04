@@ -1,20 +1,21 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSessionStore } from "../hooks/useSessionStore";
+import { Check, Circle, Lock } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useSessionStore } from "@/hooks/useSessionStore";
 
 export function StepNavigator() {
   const { steps, currentStep, setCurrentStep, language, progress } = useSessionStore();
   const navigate = useNavigate();
 
-  const ordered = useMemo(() => steps.slice().sort((a, b) => {
-    const ao = (a as any).order ?? 0;
-    const bo = (b as any).order ?? 0;
-    return ao - bo;
-  }), [steps]);
+  const ordered = useMemo(
+    () => steps.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+    [steps]
+  );
 
   const currentIndex = ordered.findIndex((s) => s.id === currentStep);
 
-  const isEnabled = (stepId: string) => {
+  const isEnabled = (stepId: string): boolean => {
     switch (stepId) {
       case "project_selection":
       case "project_details":
@@ -34,27 +35,58 @@ export function StepNavigator() {
   };
 
   return (
-    <nav className="step-navigator">
+    <nav className="flex flex-col gap-1">
+      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground px-2 mb-2">
+        Étapes
+      </p>
       {ordered.map((step, index) => {
-        let status = "pending";
-        if (step.id === currentStep) status = "current";
-        if (index > -1 && currentIndex > -1 && index < currentIndex) {
-          status = "done";
-        }
+        const isCurrent = step.id === currentStep;
+        const isDone = currentIndex > -1 && index < currentIndex;
         const enabled = isEnabled(step.id);
+
         return (
           <button
             key={step.id}
-            className={`step ${status}`}
             disabled={!enabled}
             onClick={() => {
               if (!enabled) return;
               setCurrentStep(step.id);
               navigate(step.id === ordered[0]?.id ? "/" : `/step/${step.id}`);
             }}
+            className={cn(
+              "group flex items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-all",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              isCurrent && "bg-primary/10 text-primary",
+              isDone && !isCurrent && "text-green-700 hover:bg-green-50",
+              !isCurrent && !isDone && enabled && "text-foreground hover:bg-accent",
+              !enabled && "opacity-40 cursor-not-allowed"
+            )}
           >
-            <span className="step-label">{step.name?.[language] ?? step.id}</span>
-            <small>{step.description?.[language]}</small>
+            <span
+              className={cn(
+                "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors",
+                isCurrent && "border-primary bg-primary text-primary-foreground",
+                isDone && !isCurrent && "border-green-600 bg-green-600 text-white",
+                !isCurrent && !isDone && "border-border bg-background text-muted-foreground"
+              )}
+            >
+              {isDone ? (
+                <Check className="h-3 w-3" />
+              ) : !enabled ? (
+                <Lock className="h-2.5 w-2.5" />
+              ) : (
+                <Circle className="h-2 w-2 fill-current" />
+              )}
+            </span>
+
+            <span className="flex flex-col gap-0.5 min-w-0">
+              <span className="text-sm font-medium leading-tight truncate">
+                {step.name?.[language] ?? step.id}
+              </span>
+              <span className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                {step.description?.[language]}
+              </span>
+            </span>
           </button>
         );
       })}
