@@ -9,8 +9,11 @@ import {
   Download,
   Loader2,
   MoreVertical,
+  Trash2,
   Search,
-  ListFilter
+  ListFilter,
+  Upload,
+  ChevronRight
 } from "lucide-react";
 
 import {
@@ -23,10 +26,10 @@ import {
   getProjectFinalVideoUrl
 } from "@/api/client";
 import loadingIconUrl from "@/assets/svg/laoding.svg?url";
+import loadingBlueIconUrl from "@/assets/svg/loading-blue.svg?url";
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
@@ -127,10 +130,7 @@ function isRecentNotFinalized(project: ProjectSummary): boolean {
 /** Statut affiché sur la carte (récent + non finalisé → En cours, jaune) */
 function getCardWorkflowStatus(project: ProjectSummary): ProjectWorkflowStatus {
   if (project.finalized_at) return "termine";
-  const wf = (project.workflow_status ?? "brouillon") as ProjectWorkflowStatus;
-  if (wf === "en_cours") return "en_cours";
-  if (isRecentNotFinalized(project)) return "en_cours";
-  return "brouillon";
+  return "en_cours";
 }
 
 export function ProjectSelectionView() {
@@ -156,7 +156,10 @@ export function ProjectSelectionView() {
   const [videoProject, setVideoProject] = useState<string | null>(null);
   const [menuProject, setMenuProject] = useState<string | null>(null);
   const projectMenuRef = useRef<HTMLDivElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [archiveSearch, setArchiveSearch] = useState("");
+  const [createArchiveOpen, setCreateArchiveOpen] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const projects = data ?? [];
   const filteredProjects = useMemo(() => {
@@ -199,9 +202,10 @@ export function ProjectSelectionView() {
       setScenarioTarget(scenarioTargetDraft);
       resetProgress();
       setName("");
-      setDescription("");
       setPreviewProject(null);
       setVideoProject(null);
+      setCreateArchiveOpen(false);
+      setSelectedFiles([]);
       refetch();
       navigate("/step/project_details");
     },
@@ -212,6 +216,15 @@ export function ProjectSelectionView() {
     evt.preventDefault();
     setError(null);
     createMutation.mutate();
+  };
+
+  const handleAddArchiveClick = () => setCreateArchiveOpen(true);
+
+  const pickFiles = () => fileInputRef.current?.click();
+
+  const onFilesSelected = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const list = Array.from(evt.target.files ?? []);
+    setSelectedFiles(list);
   };
 
   const bootstrapProjectSession = async (project: ProjectSummary) => {
@@ -253,30 +266,41 @@ export function ProjectSelectionView() {
 
   return (
     <div className="-m-6 min-h-full bg-[#F4F4F4] px-6 py-6">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-          <div className="relative min-w-0 flex-1">
-            <Input
-              type="search"
-              value={archiveSearch}
-              onChange={(e) => setArchiveSearch(e.target.value)}
-              placeholder="Rechercher une archive…"
-              aria-label="Rechercher une archive"
-              className="h-10 rounded-full border-border bg-background pr-10 pl-4 text-sm shadow-sm"
-            />
-            <Search
-              className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-              aria-hidden
-            />
+      <div className="flex w-full max-w-none flex-col gap-6">
+        <div className="-mx-6 flex flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:px-5">
+          <div className="flex min-w-0 flex-1 flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 sm:pl-4 sm:pr-6">
+            <div className="relative min-w-0 flex-1 sm:max-w-[360px]">
+              <Input
+                type="search"
+                value={archiveSearch}
+                onChange={(e) => setArchiveSearch(e.target.value)}
+                placeholder="Rechercher une archive…"
+                aria-label="Rechercher une archive"
+                className="h-10 rounded-full border-border bg-background pr-10 pl-4 text-sm shadow-sm"
+              />
+              <Search
+                className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden
+              />
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              className="h-10 shrink-0 gap-2 rounded-full border-border bg-background px-4 font-medium shadow-sm sm:self-stretch"
+              aria-label="Filtrer les archives"
+            >
+              Filtrer
+              <ListFilter className="size-4 shrink-0" aria-hidden />
+            </Button>
           </div>
           <Button
             type="button"
-            variant="outline"
-            className="h-10 shrink-0 gap-2 rounded-full border-border bg-background px-4 font-medium shadow-sm sm:self-stretch"
-            aria-label="Filtrer les archives"
+            onClick={handleAddArchiveClick}
+            className="h-[38px] w-fit shrink-0 gap-2 rounded-[12px] bg-primary px-4 text-primary-foreground hover:bg-primary/90"
+            aria-label="Ajouter une archive"
           >
-            Filtrer
-            <ListFilter className="size-4 shrink-0" aria-hidden />
+            <Plus className="size-4 shrink-0" />
+            Ajouter une archive
           </Button>
         </div>
 
@@ -293,11 +317,15 @@ export function ProjectSelectionView() {
           </div>
         ) : projects.length > 0 ? (
           filteredProjects.length > 0 ? (
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ul className="mt-20 grid grid-cols-1 gap-y-5 sm:grid-cols-[repeat(2,minmax(0,560px))] sm:justify-center sm:gap-x-5">
               {filteredProjects.map((project) => {
                 const hasAudio = Boolean(project.final_audio?.path);
                 const hasVideo = Boolean(project.final_slideshow?.path);
-                const isLastActive = project.name === lastProjectName;
+                const archiveDownloadUrl = hasAudio
+                  ? getProjectFinalAudioUrl(project.name)
+                  : hasVideo
+                    ? getProjectFinalVideoUrl(project.name)
+                    : undefined;
                 const mockArtifacts = mockArtifactCount(project.name);
                 const tags = project.tags ?? [];
                 const displayWf = getCardWorkflowStatus(project);
@@ -310,11 +338,10 @@ export function ProjectSelectionView() {
                 const menuOpen = menuProject === project.name;
 
                 return (
-                  <li key={project.name} className="flex min-w-0 flex-col gap-2">
+                  <li key={project.name} className="flex w-full min-w-0 flex-col gap-1 sm:w-[560px]">
                     <Card
                       className={cn(
-                        "overflow-hidden p-0 transition-shadow hover:shadow-md cursor-pointer",
-                        isLastActive && "border-warning ring-1 ring-warning/30"
+                        "overflow-hidden p-0 transition-shadow hover:shadow-md cursor-pointer min-h-[330px]"
                       )}
                       role="button"
                       tabIndex={0}
@@ -327,32 +354,27 @@ export function ProjectSelectionView() {
                       }}
                     >
                       <div
-                        className="h-1 w-full shrink-0"
+                        className="h-1.5 w-full shrink-0"
                         style={{ backgroundColor: cardTopAccentHex(project.name) }}
                         aria-hidden
                       />
-                      <CardContent className="flex flex-col gap-3 p-4">
+                      <CardContent className="flex h-full flex-col gap-3 p-4">
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex flex-wrap items-center gap-2 min-w-0">
                             <Badge
                               variant="outline"
-                              className="gap-1 border-primary bg-background font-medium text-primary"
+                              className="h-[33.6px] gap-1 rounded-[12px] border border-primary bg-[#F4F4F4] px-3 py-[5px] font-medium text-primary"
                             >
-                              <img src={loadingIconUrl} alt="" className="size-3.5 shrink-0" aria-hidden />
+                              <img src={loadingBlueIconUrl} alt="" className="size-3.5 shrink-0" aria-hidden />
                               {mockArtifacts} artefact{mockArtifacts > 1 ? "s" : ""}
                             </Badge>
                             <Badge
                               variant="outline"
-                              className="gap-1 bg-background font-medium text-muted-foreground"
+                              className="h-[33.6px] gap-1 rounded-[12px] border border-[#C3C3C3] bg-[#F4F4F4] px-3 py-[5px] font-medium text-muted-foreground"
                             >
                               <img src={loadingIconUrl} alt="" className="size-3.5 shrink-0" aria-hidden />
                               K-graph
                             </Badge>
-                            {isLastActive ? (
-                              <Badge variant="warning" className="font-medium">
-                                Récent
-                              </Badge>
-                            ) : null}
                           </div>
                           <div
                             className="relative shrink-0"
@@ -362,8 +384,7 @@ export function ProjectSelectionView() {
                             <Button
                               type="button"
                               variant="ghost"
-                              size="icon"
-                              className="size-9 text-foreground"
+                              className="size-[33.6px] rounded-[10px] border border-[#C3C3C3] bg-background text-foreground hover:bg-muted/70"
                               aria-expanded={menuOpen}
                               aria-haspopup="true"
                               aria-label="Plus d'actions"
@@ -373,68 +394,43 @@ export function ProjectSelectionView() {
                             </Button>
                             {menuOpen ? (
                               <div
-                                className="absolute right-0 top-full z-20 mt-1 w-56 rounded-lg border border-border bg-popover py-1 text-sm shadow-md"
+                                className="absolute right-0 top-full z-20 mt-2 w-[240px] overflow-hidden rounded-[8px] border border-[#E2E8F0] bg-background text-sm shadow-[0_2px_10px_rgba(0,0,0,0.10)]"
                                 role="menu"
                               >
-                                {hasAudio ? (
-                                  <button
-                                    type="button"
-                                    role="menuitem"
-                                    className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-muted"
-                                    onClick={() => {
-                                      togglePreview(project.name);
-                                      setMenuProject(null);
-                                    }}
-                                  >
-                                    {previewProject === project.name ? (
-                                      <Pause className="size-4 shrink-0" />
-                                    ) : (
-                                      <Volume2 className="size-4 shrink-0" />
-                                    )}
-                                    {previewProject === project.name ? "Pause audio" : "Écouter l'audio final"}
-                                  </button>
-                                ) : null}
-                                {hasAudio ? (
+                                {archiveDownloadUrl ? (
                                   <a
                                     role="menuitem"
-                                    href={getProjectFinalAudioUrl(project.name)}
+                                    href={archiveDownloadUrl}
                                     download
-                                    className="flex w-full items-center gap-2 px-3 py-2 hover:bg-muted"
+                                    className="flex h-[57px] w-full items-center gap-2 px-3 py-2 text-base font-normal text-foreground hover:bg-muted"
                                     onClick={() => setMenuProject(null)}
                                   >
                                     <Download className="size-4 shrink-0" />
-                                    Télécharger l'audio
+                                    Télécharger l'archive
                                   </a>
-                                ) : null}
-                                {hasVideo ? (
+                                ) : (
                                   <button
                                     type="button"
                                     role="menuitem"
-                                    className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-muted"
-                                    onClick={() => {
-                                      setVideoProject(project.name);
-                                      setMenuProject(null);
-                                    }}
-                                  >
-                                    <Video className="size-4 shrink-0" />
-                                    Voir le diaporama
-                                  </button>
-                                ) : null}
-                                {hasVideo ? (
-                                  <a
-                                    role="menuitem"
-                                    href={getProjectFinalVideoUrl(project.name)}
-                                    download
-                                    className="flex w-full items-center gap-2 px-3 py-2 hover:bg-muted"
-                                    onClick={() => setMenuProject(null)}
+                                    className="flex h-[57px] w-full items-center gap-2 px-3 py-2 text-left text-foreground/50"
+                                    disabled
                                   >
                                     <Download className="size-4 shrink-0" />
-                                    Télécharger la vidéo
-                                  </a>
-                                ) : null}
-                                {!hasAudio && !hasVideo ? (
-                                  <div className="px-3 py-2 text-muted-foreground">Aucun export final</div>
-                                ) : null}
+                                    Télécharger l'archive
+                                  </button>
+                                )}
+                                <button
+                                  type="button"
+                                  role="menuitem"
+                                  className="flex h-[57px] w-full items-center gap-2 border-t border-[#E2E8F0] px-3 py-2 text-left text-[#FF1700] hover:bg-muted"
+                                  onClick={() => {
+                                    setMenuProject(null);
+                                    setError("La suppression d'archive n'est pas encore branchée côté API.");
+                                  }}
+                                >
+                                  <Trash2 className="size-4 shrink-0" />
+                                  Supprimer
+                                </button>
                               </div>
                             ) : null}
                           </div>
@@ -479,7 +475,7 @@ export function ProjectSelectionView() {
                         </div>
 
                         <div
-                          className="-mx-4 -mb-4 mt-1 flex gap-2 rounded-b-xl border-t border-border bg-[#F4F4F4] px-4 pb-4 pt-3"
+                          className="-mx-4 -mb-4 mt-auto flex gap-2 rounded-b-xl border-t border-border bg-[#F4F4F4] px-4 pb-4 pt-3"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <Button
@@ -490,14 +486,16 @@ export function ProjectSelectionView() {
                           >
                             Consulter l'archive
                           </Button>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            className="h-11 flex-1 rounded-lg border-primary font-medium text-primary hover:bg-secondary"
-                            onClick={() => void handleViewArtifact(project)}
-                          >
-                            Voir artefact
-                          </Button>
+                          {displayWf !== "en_cours" ? (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className="h-11 flex-1 rounded-lg border-primary font-medium text-primary hover:bg-secondary"
+                              onClick={() => void handleViewArtifact(project)}
+                            >
+                              Voir artefact
+                            </Button>
+                          ) : null}
                         </div>
                       </CardContent>
                     </Card>
@@ -523,50 +521,7 @@ export function ProjectSelectionView() {
           <p className="text-sm text-muted-foreground py-2">Aucun projet enregistré pour le moment.</p>
         )}
 
-        <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Plus className="h-4 w-4" />
-            Nouveau projet
-          </CardTitle>
-          <CardDescription>Définissez un nom et le nombre de scénarios à générer.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleCreate} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1.5">
-              <Label htmlFor="project-name">Nom du projet</Label>
-              <Input
-                id="project-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Ex: port_nantes_1905"
-              />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <Label htmlFor="project-desc">Description (optionnel)</Label>
-              <Textarea
-                id="project-desc"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                rows={3}
-                placeholder="Quelques mots sur ce projet…"
-              />
-            </div>
-            <Slider
-              label="Nombre de scénarios à générer"
-              valueLabel={`${scenarioTargetDraft} scénario${scenarioTargetDraft > 1 ? "s" : ""}`}
-              min={1}
-              max={5}
-              value={scenarioTargetDraft}
-              onChange={(e) => setScenarioTargetDraft(Number(e.target.value))}
-            />
-            <Button type="submit" disabled={createMutation.isPending} className="w-fit">
-              {createMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Créer le projet
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+        {/* <Card>Nouveau projet</Card> replaced by modal flow */}
 
         <Dialog open={Boolean(videoProject)} onOpenChange={(open) => !open && setVideoProject(null)}>
           <DialogContent className="max-w-3xl">
@@ -581,6 +536,69 @@ export function ProjectSelectionView() {
                 src={getProjectFinalVideoUrl(videoProject)}
               />
             )}
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={createArchiveOpen} onOpenChange={setCreateArchiveOpen}>
+          <DialogContent className="w-[622px] max-w-[95vw] min-h-[490px] gap-[10px] rounded-[18px] border border-[#E2E8F0] bg-background p-6 shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+            <DialogHeader className="space-y-2">
+              <DialogTitle className="h-[29px] w-[197px] text-[24px] font-semibold leading-[100%] text-foreground">
+                Nouvelle Archive
+              </DialogTitle>
+            </DialogHeader>
+
+            <form onSubmit={handleCreate} className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="project-name-modal" className="text-[14px] font-semibold text-foreground">
+                  Nom de l’archive
+                </Label>
+                <Input
+                  id="project-name-modal"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ex: Collection Seconde Guerre Mondiale"
+                  className="h-11 rounded-[10px] border border-border bg-[#F4F4F4] text-sm text-foreground"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label className="text-[14px] font-semibold text-foreground">Fichiers audio principaux</Label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".mp3,.wav,.m4a,audio/*"
+                  multiple
+                  className="hidden"
+                  onChange={onFilesSelected}
+                />
+                <button
+                  type="button"
+                  onClick={pickFiles}
+                  className="flex min-h-[230px] w-full flex-col items-center justify-center gap-3 rounded-[14px] border border-dashed border-primary/40 bg-background px-6 py-8 text-center hover:bg-muted/30"
+                >
+                  <Upload className="size-10 text-muted-foreground" />
+                  <div className="space-y-1">
+                    <p className="text-base font-medium text-[#45556C]">Cliquez pour télécharger</p>
+                    <p className="text-sm text-muted-foreground">MP3, WAV, M4A jusqu’à 100MB</p>
+                  </div>
+                  {selectedFiles.length > 0 ? (
+                    <p className="text-xs text-muted-foreground">{selectedFiles.length} fichier(s) sélectionné(s)</p>
+                  ) : null}
+                </button>
+              </div>
+
+              <div className="flex justify-end">
+                <Button
+                  type="submit"
+                  disabled={createMutation.isPending || !name.trim()}
+                  className="h-[46px] rounded-[14px] bg-primary px-6 text-base font-medium text-primary-foreground hover:bg-primary/90"
+                >
+                  {createMutation.isPending ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+                  Suivant
+                  <ChevronRight className="ml-1 size-4" />
+                </Button>
+              </div>
+            </form>
           </DialogContent>
         </Dialog>
       </div>

@@ -1,6 +1,6 @@
 import { Component, useEffect, type ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, Outlet, Route, Routes, useParams } from "react-router-dom";
+import { Link, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
 
 import { fetchSteps, fetchStepConfig } from "./api/client";
 import logoUrl from "@/assets/svg/LOGO.svg?url";
@@ -64,6 +64,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
 
 function Layout() {
   const { setSteps, currentStep } = useSessionStore();
+  const location = useLocation();
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
 
   useEffect(() => {
@@ -72,14 +73,20 @@ function Layout() {
     }
   }, [stepsResponse, setSteps]);
 
+  const isProjectSelectionPage =
+    location.pathname === "/" || location.pathname === "/step/project_selection";
+
   const showChat =
     currentStep &&
+    !isProjectSelectionPage &&
     currentStep !== "project_selection" &&
     currentStep !== "final_validation";
 
+  const showStepNavigator = !isProjectSelectionPage;
+
   return (
     <div className="flex flex-col min-h-screen bg-muted">
-      <header className="flex items-center justify-between px-6 py-3 bg-background border-b border-border shadow-sm shrink-0">
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 bg-background border-b border-border shadow-sm shrink-0">
         <div className="flex min-w-0 items-center gap-3">
           <Link
             to="/"
@@ -113,9 +120,12 @@ function Layout() {
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-64 shrink-0 border-r border-border bg-background overflow-y-auto p-4">
-          <StepNavigator />
-        </aside>
+        {/* <StepNavigator /> hidden on project selection landing */} 
+        {showStepNavigator ? (
+          <aside className="w-64 shrink-0 border-r border-border bg-background overflow-y-auto p-4">
+            <StepNavigator />
+          </aside>
+        ) : null}
 
         <main className="flex-1 overflow-y-auto p-6">
           <ErrorBoundary>
