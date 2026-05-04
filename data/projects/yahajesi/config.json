@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-05-04T08:59:43.470775",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "zrglhqmgouhgmdwhg",
+  "voice_instructions_source": "manual",
+  "tts_provider": "elevenlabs",
+  "project_notes": "awediiiiiiiiiiiiiiiiiii",
+  "scenario_target": 1,
+  "scenario_config": {
+    "generation_parameters": {
+      "public_cible": {
+        "value": "scolaire_primaire",
+        "user_specified": true
+      },
+      "ton": {
+        "value": "dramatique_immersif",
+        "user_specified": true
+      },
+      "duree": {
+        "value": 120,
+        "user_specified": true
+      }
+    }
+  },
+  "audience": "scolaire_primaire",
+  "tone": "dramatique_immersif",
+  "target_duration": 120,
+  "include_citations": true,
+  "source_usage_level": "modere",
+  "tts_voice_id": "flHkNRp1BlvT73UL6gyz"
+}
