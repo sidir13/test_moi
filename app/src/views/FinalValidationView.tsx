@@ -53,26 +53,26 @@ export function FinalValidationView() {
   return (
     <div className="flex flex-col gap-6 max-w-xl">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Validation finale</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Validation finale</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Archivez le projet et verrouillez le scénario final.
         </p>
       </div>
 
-      <Card className="border-green-200 bg-green-50/50">
+      <Card className="border-success/30 bg-success-muted/80">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-green-800">
+          <CardTitle className="flex items-center gap-2 text-success">
             <CheckCircle2 className="h-5 w-5" />
             Projet prêt à être finalisé
           </CardTitle>
-          <CardDescription className="text-green-700">
+          <CardDescription className="text-foreground">
             Projet : <strong>{projectName ?? "—"}</strong>
           </CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-green-700 space-y-2">
+        <CardContent className="text-sm text-foreground space-y-2">
           <p>
             En confirmant, vous archivez l'audio et les métadonnées dans{" "}
-            <code className="rounded bg-green-100 px-1.5 py-0.5 font-mono text-xs">
+            <code className="rounded bg-background/80 border border-border px-1.5 py-0.5 font-mono text-xs">
               {projectName ? `data/projects/${projectName}/config.json` : "la configuration du projet"}
             </code>
             .

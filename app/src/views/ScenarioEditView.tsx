@@ -309,7 +309,7 @@ export function ScenarioEditView() {
     <div className="flex flex-col gap-6 max-w-3xl">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">{heading}</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{heading}</h2>
           <p className="text-sm text-muted-foreground mt-1">Affinez le texte, réécoutez et validez votre scénario.</p>
         </div>
       </div>
@@ -439,7 +439,7 @@ export function ScenarioEditView() {
                 <audio controls src={audioSrc} preload="auto" className="w-full rounded-lg" />
                 {audioQuery.data?.generated_at && (
                   <p className="text-xs text-muted-foreground flex items-center gap-1">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-green-600" />
+                    <CheckCircle2 className="h-3.5 w-3.5 text-success" />
                     Généré le {new Date(audioQuery.data.generated_at).toLocaleString()}
                   </p>
                 )}

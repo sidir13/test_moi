@@ -130,7 +130,7 @@ export function TranscriptionReviewView() {
     <div className="flex flex-col gap-6 max-w-3xl">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Révision des transcriptions</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Révision des transcriptions</h2>
           <p className="text-sm text-muted-foreground mt-1">
             Vérifiez et corrigez les transcriptions automatiques avant la génération des scénarios.
           </p>
@@ -253,7 +253,7 @@ export function TranscriptionReviewView() {
                   Exporter (.txt)
                 </Button>
                 {feedback && (
-                  <span className={cn("text-xs", feedback.includes("Enregistré") ? "text-green-600" : "text-destructive")}>
+                  <span className={cn("text-xs", feedback.includes("Enregistré") ? "text-success" : "text-destructive")}>
                     {feedback}
                   </span>
                 )}

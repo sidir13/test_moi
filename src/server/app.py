@@ -1254,6 +1254,63 @@ def smart_select_backgrounds(
     return ambient_path, punctual
 
 
+def _truncate_preview_text(value: Optional[Any], max_chars: int = 400) -> Optional[str]:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    if len(text) <= max_chars:
+        return text
+    return f"{text[: max_chars - 1].rstrip()}…"
+
+
+def _count_project_output_files(project_dir: Path) -> int:
+    outputs_dir = project_dir / "outputs"
+    if not outputs_dir.is_dir():
+        return 0
+    return sum(1 for p in outputs_dir.iterdir() if p.is_file() and not p.name.startswith("."))
+
+
+def _tags_from_scenario_profile(profile: Dict[str, Any]) -> List[str]:
+    tags: List[str] = []
+    scenario_config = profile.get("scenario_config") or {}
+    hist = scenario_config.get("historical_context") or {}
+    themes = hist.get("themes") or {}
+    for bucket in ("primary", "secondary"):
+        raw = themes.get(bucket)
+        if isinstance(raw, list):
+            for item in raw:
+                if isinstance(item, str):
+                    t = item.strip()
+                    if t and t not in tags:
+                        tags.append(t)
+        elif isinstance(raw, str):
+            t = raw.strip()
+            if t and t not in tags:
+                tags.append(t)
+    return tags[:8]
+
+
+def _location_from_scenario_profile(profile: Dict[str, Any]) -> Optional[str]:
+    scenario_config = profile.get("scenario_config") or {}
+    hist = scenario_config.get("historical_context") or {}
+    loc = hist.get("location") or {}
+    primary = loc.get("primary")
+    if isinstance(primary, str) and primary.strip():
+        return primary.strip()
+    return None
+
+
+def _workflow_status_for_card(profile: Dict[str, Any]) -> str:
+    if profile.get("finalized_at"):
+        return "termine"
+    last = profile.get("last_scenarios")
+    if profile.get("final_scenario") or (isinstance(last, list) and len(last) > 0):
+        return "en_cours"
+    return "brouillon"
+
+
 # ---------------------------------------------------------------------------
 
 
@@ -2194,6 +2251,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                         "final_audio": profile.get("final_audio"),
                         "finalized_at": profile.get("finalized_at"),
                         "final_slideshow": profile.get("final_slideshow"),
+                        "description_preview": _truncate_preview_text(profile.get("project_notes")),
+                        "created_at": profile.get("created_at"),
+                        "artifact_count": _count_project_output_files(child),
+                        "tags": _tags_from_scenario_profile(profile),
+                        "location": _location_from_scenario_profile(profile),
+                        "workflow_status": _workflow_status_for_card(profile),
+                        "has_k_graph": bool(profile.get("has_k_graph") or profile.get("k_graph_enabled")),
                     })
         return {"projects": projects}
 

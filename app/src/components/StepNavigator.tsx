@@ -57,7 +57,7 @@ export function StepNavigator() {
               "group flex items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-all",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               isCurrent && "bg-primary/10 text-primary",
-              isDone && !isCurrent && "text-green-700 hover:bg-green-50",
+              isDone && !isCurrent && "text-success hover:bg-success-muted/70",
               !isCurrent && !isDone && enabled && "text-foreground hover:bg-accent",
               !enabled && "opacity-40 cursor-not-allowed"
             )}
@@ -66,7 +66,7 @@ export function StepNavigator() {
               className={cn(
                 "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors",
                 isCurrent && "border-primary bg-primary text-primary-foreground",
-                isDone && !isCurrent && "border-green-600 bg-green-600 text-white",
+                isDone && !isCurrent && "border-success bg-success text-success-foreground",
                 !isCurrent && !isDone && "border-border bg-background text-muted-foreground"
               )}
             >

@@ -21,7 +21,7 @@ export function FlagToggle() {
           className={cn(
             "rounded-full px-3 py-1 text-sm font-medium transition-all",
             language === lang
-              ? "bg-white text-foreground shadow-sm"
+              ? "bg-background text-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
           )}
         >

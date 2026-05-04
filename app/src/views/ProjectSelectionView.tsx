@@ -1,13 +1,24 @@
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { FolderOpen, Plus, Volume2, Pause, Video, Download, Loader2 } from "lucide-react";
+import {
+  FolderOpen,
+  Plus,
+  Volume2,
+  Pause,
+  Video,
+  Download,
+  Loader2,
+  MoreVertical,
+  Sparkles
+} from "lucide-react";
 
 import {
   createProject,
   createSession,
   fetchProjects,
   type ProjectSummary,
+  type ProjectWorkflowStatus,
   getProjectFinalAudioUrl,
   getProjectFinalVideoUrl
 } from "@/api/client";
@@ -61,6 +72,25 @@ const formatDate = (value?: string) => {
   return date.toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
 };
 
+const formatAddedLong = (value?: string) => {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+};
+
+const WORKFLOW_LABELS: Record<ProjectWorkflowStatus, string> = {
+  termine: "Terminé",
+  en_cours: "En cours",
+  brouillon: "Brouillon"
+};
+
+function workflowBadgeVariant(status: ProjectWorkflowStatus | undefined): "success" | "warning" | "muted" {
+  if (status === "termine") return "success";
+  if (status === "en_cours") return "warning";
+  return "muted";
+}
+
 export function ProjectSelectionView() {
   const { data, refetch, isLoading } = useQuery({ queryKey: ["projects"], queryFn: fetchProjects });
   const {
@@ -82,6 +112,18 @@ export function ProjectSelectionView() {
   const [previewProject, setPreviewProject] = useState<string | null>(null);
   const [previewKey, setPreviewKey] = useState(0);
   const [videoProject, setVideoProject] = useState<string | null>(null);
+  const [menuProject, setMenuProject] = useState<string | null>(null);
+  const projectMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!menuProject) return;
+    const onPointerDown = (e: MouseEvent) => {
+      const el = projectMenuRef.current;
+      if (el && !el.contains(e.target as Node)) setMenuProject(null);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, [menuProject]);
 
   const togglePreview = (projectName: string) => {
     setPreviewProject((prev) => (prev === projectName ? null : projectName));
@@ -116,19 +158,38 @@ export function ProjectSelectionView() {
     createMutation.mutate();
   };
 
+  const bootstrapProjectSession = async (project: ProjectSummary) => {
+    resetProgress();
+    const session = await createSession(project.name, "project_selection", project.scenario_target);
+    setProgress(deriveProgressFromSession(session, Boolean(project.finalized_at)));
+    setProjectName(project.name);
+    setLastProjectName(project.name);
+    setSessionId(session.session_id);
+    setCurrentStep("project_details");
+    setScenarioTarget(project.scenario_target);
+    setPreviewProject(null);
+    setVideoProject(null);
+    setMenuProject(null);
+  };
+
   const handleSelect = async (project: ProjectSummary) => {
     try {
-      resetProgress();
-      const session = await createSession(project.name, "project_selection", project.scenario_target);
-      setProgress(deriveProgressFromSession(session, Boolean(project.finalized_at)));
-      setProjectName(project.name);
-      setLastProjectName(project.name);
-      setSessionId(session.session_id);
-      setCurrentStep("project_details");
-      setScenarioTarget(project.scenario_target);
-      setPreviewProject(null);
-      setVideoProject(null);
+      setError(null);
+      await bootstrapProjectSession(project);
       navigate("/step/project_details");
+    } catch (err) {
+      setError((err as Error).message);
+    }
+  };
+
+  const handleViewArtifact = async (project: ProjectSummary) => {
+    try {
+      setError(null);
+      await bootstrapProjectSession(project);
+      const ws = project.workflow_status ?? "brouillon";
+      if (ws === "termine") navigate("/step/final_validation");
+      else if (ws === "en_cours") navigate("/step/scenario_review");
+      else navigate("/step/project_details");
     } catch (err) {
       setError((err as Error).message);
     }
@@ -137,7 +198,7 @@ export function ProjectSelectionView() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Projets</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Projets</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Créez un nouveau projet ou reprenez là où vous vous étiez arrêté.
         </p>
@@ -166,120 +227,212 @@ export function ProjectSelectionView() {
               Chargement…
             </div>
           ) : data && data.length > 0 ? (
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-4">
               {data.map((project) => {
                 const hasAudio = Boolean(project.final_audio?.path);
                 const hasVideo = Boolean(project.final_slideshow?.path);
                 const finalizedLabel = project.finalized_at ? formatDate(project.finalized_at) : null;
                 const isLastActive = project.name === lastProjectName;
+                const nArtifacts = project.artifact_count ?? 0;
+                const tags = project.tags ?? [];
+                const wf = (project.workflow_status ?? "brouillon") as ProjectWorkflowStatus;
+                const added = formatAddedLong(project.created_at);
+                const loc = project.location?.trim();
+                const metaLine = [loc, added ? `Ajouté le ${added}` : null].filter(Boolean).join(" • ");
+                const desc =
+                  project.description_preview?.trim() ||
+                  "Aucune description pour l'instant — renseignez le contexte narratif dans Détails du projet.";
+                const menuOpen = menuProject === project.name;
+
                 return (
-                  <li key={project.name}>
-                    <div
+                  <li key={project.name} className="flex flex-col gap-2">
+                    <Card
+                      className={cn(
+                        "overflow-hidden transition-shadow hover:shadow-md cursor-pointer",
+                        isLastActive && "border-warning ring-1 ring-warning/30"
+                      )}
                       role="button"
                       tabIndex={0}
-                      onClick={() => handleSelect(project)}
+                      onClick={() => void handleSelect(project)}
                       onKeyDown={(evt) => {
-                        if (evt.key === "Enter" || evt.key === " ") handleSelect(project);
+                        if (evt.key === "Enter" || evt.key === " ") {
+                          evt.preventDefault();
+                          void handleSelect(project);
+                        }
                       }}
-                      className={cn(
-                        "flex items-center justify-between rounded-lg border px-4 py-3 cursor-pointer transition-all",
-                        "hover:border-primary hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                        isLastActive && "border-orange-400 bg-orange-50/50"
-                      )}
                     >
-                      <div className="flex flex-col gap-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-medium text-sm">{project.name}</span>
-                          <span className="text-xs text-muted-foreground">
-                            ({project.scenario_target} scénarios)
-                          </span>
+                      <CardContent className="p-4 flex flex-col gap-3">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex flex-wrap items-center gap-2 min-w-0">
+                            {nArtifacts > 0 ? (
+                              <Badge
+                                variant="outline"
+                                className="gap-1 border-primary text-primary font-medium bg-background"
+                              >
+                                <Sparkles className="size-3.5 shrink-0" aria-hidden />
+                                {nArtifacts} artefact{nArtifacts > 1 ? "s" : ""}
+                              </Badge>
+                            ) : null}
+                            {project.has_k_graph ? (
+                              <Badge
+                                variant="outline"
+                                className="gap-1 font-medium text-muted-foreground bg-background"
+                              >
+                                <Sparkles className="size-3.5 shrink-0" aria-hidden />
+                                K-graph
+                              </Badge>
+                            ) : null}
+                            {isLastActive ? (
+                              <Badge variant="warning" className="font-medium">
+                                Récent
+                              </Badge>
+                            ) : null}
+                          </div>
+                          <div
+                            className="relative shrink-0"
+                            ref={menuOpen ? projectMenuRef : null}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              className="size-9 text-foreground"
+                              aria-expanded={menuOpen}
+                              aria-haspopup="true"
+                              aria-label="Plus d'actions"
+                              onClick={() => setMenuProject((prev) => (prev === project.name ? null : project.name))}
+                            >
+                              <MoreVertical className="size-4" />
+                            </Button>
+                            {menuOpen ? (
+                              <div
+                                className="absolute right-0 top-full z-20 mt-1 w-56 rounded-lg border border-border bg-popover py-1 text-sm shadow-md"
+                                role="menu"
+                              >
+                                {hasAudio ? (
+                                  <button
+                                    type="button"
+                                    role="menuitem"
+                                    className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-muted"
+                                    onClick={() => {
+                                      togglePreview(project.name);
+                                      setMenuProject(null);
+                                    }}
+                                  >
+                                    {previewProject === project.name ? (
+                                      <Pause className="size-4 shrink-0" />
+                                    ) : (
+                                      <Volume2 className="size-4 shrink-0" />
+                                    )}
+                                    {previewProject === project.name ? "Pause audio" : "Écouter l'audio final"}
+                                  </button>
+                                ) : null}
+                                {hasAudio ? (
+                                  <a
+                                    role="menuitem"
+                                    href={getProjectFinalAudioUrl(project.name)}
+                                    download
+                                    className="flex w-full items-center gap-2 px-3 py-2 hover:bg-muted"
+                                    onClick={() => setMenuProject(null)}
+                                  >
+                                    <Download className="size-4 shrink-0" />
+                                    Télécharger l'audio
+                                  </a>
+                                ) : null}
+                                {hasVideo ? (
+                                  <button
+                                    type="button"
+                                    role="menuitem"
+                                    className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-muted"
+                                    onClick={() => {
+                                      setVideoProject(project.name);
+                                      setMenuProject(null);
+                                    }}
+                                  >
+                                    <Video className="size-4 shrink-0" />
+                                    Voir le diaporama
+                                  </button>
+                                ) : null}
+                                {hasVideo ? (
+                                  <a
+                                    role="menuitem"
+                                    href={getProjectFinalVideoUrl(project.name)}
+                                    download
+                                    className="flex w-full items-center gap-2 px-3 py-2 hover:bg-muted"
+                                    onClick={() => setMenuProject(null)}
+                                  >
+                                    <Download className="size-4 shrink-0" />
+                                    Télécharger la vidéo
+                                  </a>
+                                ) : null}
+                                {!hasAudio && !hasVideo ? (
+                                  <div className="px-3 py-2 text-muted-foreground">Aucun export final</div>
+                                ) : null}
+                              </div>
+                            ) : null}
+                          </div>
                         </div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {finalizedLabel && (
-                            <Badge variant="success">Finalisé le {finalizedLabel}</Badge>
-                          )}
-                          {isLastActive && (
-                            <Badge variant="warning">Dernier projet actif</Badge>
-                          )}
-                        </div>
-                      </div>
 
-                      <div className="flex items-center gap-1 ml-3 shrink-0">
-                        {hasAudio && (
+                        <div className="min-w-0 space-y-1">
+                          <h3 className="text-xl font-semibold text-foreground leading-tight">{project.name}</h3>
+                          <p className="text-xs text-muted-foreground">
+                            {project.scenario_target} scénario{project.scenario_target > 1 ? "s" : ""} prévu
+                            {project.scenario_target > 1 ? "s" : ""}
+                          </p>
+                        </div>
+
+                        <p className="text-sm text-muted-foreground leading-[23px] line-clamp-4">{desc}</p>
+
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge variant={workflowBadgeVariant(wf)} className="font-medium">
+                            {WORKFLOW_LABELS[wf]}
+                          </Badge>
+                          {finalizedLabel ? (
+                            <span className="text-xs text-muted-foreground">Finalisé le {finalizedLabel}</span>
+                          ) : null}
+                          {tags.map((tag) => (
+                            <Badge key={tag} variant="muted" className="font-normal">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        {metaLine ? (
+                          <p className="text-xs text-muted-foreground">{metaLine}</p>
+                        ) : null}
+
+                        <div className="flex gap-2 border-t border-border pt-3" onClick={(e) => e.stopPropagation()}>
                           <Button
                             type="button"
                             variant="outline"
-                            size="icon"
-                            aria-label={previewProject === project.name ? "Pause" : "Écouter l'audio final"}
-                            onClick={(e) => { e.stopPropagation(); togglePreview(project.name); }}
-                            className="h-8 w-8"
+                            className="flex-1 font-medium"
+                            onClick={() => void handleSelect(project)}
                           >
-                            {previewProject === project.name ? (
-                              <Pause className="h-4 w-4" />
-                            ) : (
-                              <Volume2 className="h-4 w-4" />
-                            )}
+                            Consulter l'archive
                           </Button>
-                        )}
-                        {hasAudio && (
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            asChild
-                            className="h-8 w-8"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <a
-                              href={getProjectFinalAudioUrl(project.name)}
-                              download
-                              aria-label="Télécharger l'audio final"
-                            >
-                              <Download className="h-4 w-4" />
-                            </a>
-                          </Button>
-                        )}
-                        {hasVideo && (
                           <Button
                             type="button"
                             variant="outline"
-                            size="icon"
-                            aria-label="Voir le diaporama"
-                            onClick={(e) => { e.stopPropagation(); setVideoProject(project.name); }}
-                            className="h-8 w-8"
+                            className="flex-1 border-primary font-medium text-primary hover:bg-secondary"
+                            onClick={() => void handleViewArtifact(project)}
                           >
-                            <Video className="h-4 w-4" />
+                            Voir artefact
                           </Button>
-                        )}
-                        {hasVideo && (
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            asChild
-                            className="h-8 w-8"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <a
-                              href={getProjectFinalVideoUrl(project.name)}
-                              download
-                              aria-label="Télécharger la vidéo"
-                            >
-                              <Download className="h-4 w-4" />
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
+                        </div>
+                      </CardContent>
+                    </Card>
 
-                    {hasAudio && previewProject === project.name && (
+                    {hasAudio && previewProject === project.name ? (
                       <audio
                         key={`${project.name}-${previewKey}`}
                         controls
                         autoPlay
-                        className="w-full mt-2 rounded-lg"
+                        className="w-full rounded-lg border border-border bg-background px-2 py-1"
                         src={getProjectFinalAudioUrl(project.name)}
                         onClick={(e) => e.stopPropagation()}
                       />
-                    )}
+                    ) : null}
                   </li>
                 );
               })}

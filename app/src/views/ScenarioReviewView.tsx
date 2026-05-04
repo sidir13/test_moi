@@ -201,7 +201,7 @@ export function ScenarioReviewView() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Scénarios générés</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Scénarios générés</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Consultez, comparez et sélectionnez le scénario qui vous convient.
         </p>
@@ -323,13 +323,13 @@ export function ScenarioReviewView() {
                   className={cn(
                     "flex items-start gap-3 rounded-lg border px-3 py-2.5 text-sm",
                     step.status === "running" && "border-primary bg-primary/5",
-                    step.status === "done" && "border-green-300 bg-green-50",
+                    step.status === "done" && "border-success/40 bg-success-muted",
                     step.status === "error" && "border-destructive bg-destructive/5",
                     step.status === "pending" && "border-border bg-muted/30 opacity-60"
                   )}
                 >
                   <span className="mt-0.5 shrink-0">
-                    {step.status === "done" && <CheckCircle2 className="h-4 w-4 text-green-600" />}
+                    {step.status === "done" && <CheckCircle2 className="h-4 w-4 text-success" />}
                     {step.status === "running" && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
                     {step.status === "error" && <AlertCircle className="h-4 w-4 text-destructive" />}
                     {step.status === "pending" && <div className="h-4 w-4 rounded-full border-2 border-muted-foreground/30" />}
@@ -357,7 +357,7 @@ export function ScenarioReviewView() {
               {progressSteps.map((step, i) => (
                 <li key={i} className={cn(
                   "flex items-center gap-2 text-sm",
-                  step.status === "done" && "text-green-700",
+                  step.status === "done" && "text-success",
                   step.status === "error" && "text-destructive"
                 )}>
                   {step.status === "done" && <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />}
@@ -477,7 +477,7 @@ function ScenarioCard({
 
         {/* Sourcing panel */}
         {hasSourcing && showSourcing && (
-          <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-3 text-sm">
+          <div className="rounded-lg border border-primary/20 bg-info-muted/80 p-3 text-sm">
             {sourcingByPart.map((part, i) => (
               <div key={i} className="mb-3 last:mb-0">
                 <p className="font-semibold mb-1.5">{part.title}</p>
@@ -488,7 +488,7 @@ function ScenarioCard({
                       {item.sources.length > 0 ? (
                         <div className="flex flex-wrap gap-1 mt-0.5">
                           {item.sources.map((src, k) => (
-                            <span key={k} className="text-xs bg-blue-100 text-blue-700 rounded-full px-2 py-0.5">{src}</span>
+                            <span key={k} className="text-xs bg-secondary text-info-foreground rounded-full px-2 py-0.5">{src}</span>
                           ))}
                         </div>
                       ) : (

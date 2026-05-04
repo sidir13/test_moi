@@ -258,7 +258,7 @@ export function AudioSelectionView() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Sources audio</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Sources audio</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Importez vos pistes vocales et configurez les ambiances sonores.
         </p>
@@ -425,9 +425,9 @@ export function AudioSelectionView() {
           </div>
 
           {autoBackgrounds && (
-            <div className="flex items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3">
-              <Bot className="h-4 w-4 text-blue-600 mt-0.5 shrink-0" />
-              <div className="text-sm text-blue-700">
+            <div className="flex items-start gap-3 rounded-lg border border-primary/20 bg-info-muted px-4 py-3">
+              <Bot className="h-4 w-4 text-info-foreground mt-0.5 shrink-0" />
+              <div className="text-sm text-foreground">
                 <p className="font-semibold">Sélection automatique activée</p>
                 <p className="text-xs mt-0.5">Les ambiances seront choisies automatiquement lors de la génération audio, en fonction du texte du scénario.</p>
               </div>

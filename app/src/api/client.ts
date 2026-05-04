@@ -17,6 +17,8 @@ export async function fetchStepConfig(stepId: string) {
   return data;
 }
 
+export type ProjectWorkflowStatus = "termine" | "en_cours" | "brouillon";
+
 export type ProjectSummary = {
   name: string;
   scenario_target: number;
@@ -30,6 +32,19 @@ export type ProjectSummary = {
     path: string;
     created_at?: string;
   } | null;
+  /** Notes projet (aperçu), aligné page Détails du projet */
+  description_preview?: string | null;
+  /** ISO — présent quand le projet a été créé via l’API / config */
+  created_at?: string;
+  /** Fichiers dans `outputs/` du projet */
+  artifact_count?: number;
+  /** Thèmes issus de `scenario_config.historical_context.themes` si Agent 0 a tourné */
+  tags?: string[];
+  /** Lieu principal du contexte historique si présent dans la config */
+  location?: string | null;
+  workflow_status?: ProjectWorkflowStatus;
+  /** Réservé — activer côté config quand le backend exposera le K-graph */
+  has_k_graph?: boolean;
 };
 
 export type PreferenceOptions = {
