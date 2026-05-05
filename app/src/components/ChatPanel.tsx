@@ -1,11 +1,10 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Send, Bot, User, Wrench, CheckCircle2, AlertCircle } from "lucide-react";
+import { ChevronRight, ArrowUp, Wrench, CheckCircle2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { getWsBaseUrl } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
+import aiLogoUrl from "@/assets/svg/ai-logo.svg?url";
 
 type MessageRole = "user" | "assistant" | "system";
 
@@ -15,6 +14,10 @@ type ChatMessage = {
   subtype?: "tool_call" | "tool_result" | "error";
 };
 
+const MOCK_CHIPS = ["Scénario", "Contexte", "Scénario"];
+const MOCK_SUGGESTION =
+  "Je peux vous aider à rédiger le contexte de votre scénario. Dites moi quelle histoire vous souhaitez raconter\u00a0?";
+
 export function ChatPanel() {
   const { t } = useTranslation();
   const { chatPlaceholder, steps, currentStep, sessionId } = useSessionStore();
@@ -22,6 +25,7 @@ export function ChatPanel() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<string | null>(null);
+  const [collapsed, setCollapsed] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const chatEnabled = Boolean(sessionId) && currentStep !== "project_selection";
@@ -55,12 +59,12 @@ export function ChatPanel() {
         } else if (payload.type === "tool_call") {
           setMessages((prev) => [
             ...prev,
-            { role: "system", content: payload.tool ?? "", subtype: "tool_call" }
+            { role: "system", content: payload.tool ?? "", subtype: "tool_call" },
           ]);
         } else if (payload.type === "tool_result") {
           setMessages((prev) => [
             ...prev,
-            { role: "system", content: payload.tool ?? "", subtype: "tool_result" }
+            { role: "system", content: payload.tool ?? "", subtype: "tool_result" },
           ]);
           if (payload.tool === "auto_select_audio" || payload.tool === "select_audio_manually") {
             window.dispatchEvent(new Event("audio-selection-updated"));
@@ -68,7 +72,7 @@ export function ChatPanel() {
         } else if (payload.type === "error") {
           setMessages((prev) => [
             ...prev,
-            { role: "system", content: payload.message ?? "Erreur inconnue", subtype: "error" }
+            { role: "system", content: payload.message ?? "Erreur inconnue", subtype: "error" },
           ]);
         }
       } catch (err) {
@@ -96,58 +100,125 @@ export function ChatPanel() {
     setInput("");
   };
 
+  const isEmpty = messages.length === 0;
+
   return (
-    <div className={cn("flex flex-col h-full", !chatEnabled && "opacity-50 pointer-events-none")}>
+    <div className="relative flex flex-col h-full bg-white">
+      {/* Gradient right border */}
+      <div
+        className="absolute right-0 top-0 bottom-0 w-[2px] pointer-events-none z-10"
+        style={{
+          background: "linear-gradient(to bottom, #7B2FF7, #2563EB)",
+        }}
+      />
+
+      {/* Collapse button */}
+      <div className="absolute top-5 left-4 z-20">
+        <button
+          type="button"
+          onClick={() => setCollapsed((v) => !v)}
+          className="flex items-center justify-center w-7 h-7 rounded-md border border-border bg-white shadow-sm hover:bg-muted transition-colors"
+          aria-label="Réduire le panneau"
+        >
+          <ChevronRight
+            className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform", collapsed && "rotate-180")}
+          />
+        </button>
+      </div>
+
+      {/* Header: logo + title + subtitle (always visible) */}
+      <div className="mx-auto flex w-full flex-col items-center justify-center pt-14 pb-4 gap-1.5 shrink-0 text-center">
+        <img src={aiLogoUrl} alt="Agent AI" width={52} height={52} className="rounded-full" />
+        <p className="mt-1 text-[20px] font-semibold leading-tight text-foreground [font-family:Inter]">Agent AI</p>
+        <p className="text-[12px] leading-normal text-muted-foreground [font-family:Inter]">You can ask anything</p>
+      </div>
+
+      {/* Skills chips (when available) */}
       {availableSkills.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 p-3 border-b border-border">
+        <div className="flex flex-wrap gap-1.5 px-3 pb-2 shrink-0">
           {availableSkills.map((skill) => (
-            <Badge key={skill} variant="secondary" className="text-xs">
+            <span
+              key={skill}
+              className="rounded-full border border-border px-2.5 py-0.5 text-[10px] text-muted-foreground"
+            >
               {skill}
-            </Badge>
+            </span>
           ))}
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto p-3 space-y-3">
-        {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full gap-2 text-center p-4">
-            <Bot className="h-8 w-8 text-muted-foreground/50" />
-            <p className="text-sm text-muted-foreground">{chatPlaceholder ?? "Posez votre question"}</p>
-          </div>
+      {/* Messages area */}
+      <div
+        className={cn(
+          "flex-1 overflow-y-auto px-3 space-y-2.5",
+          !chatEnabled && "opacity-50 pointer-events-none"
         )}
-        {messages.map((msg, idx) => (
-          <MessageBubble key={idx} message={msg} />
-        ))}
-        <div ref={messagesEndRef} />
+      >
+        {isEmpty ? (
+          /* Empty state: push suggestion card toward bottom */
+          <div className="flex flex-col justify-end h-full pb-3">
+            <div className="rounded-2xl border border-border bg-white shadow-sm p-3 space-y-2">
+              <div className="flex flex-wrap gap-1.5">
+                {MOCK_CHIPS.map((chip, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full border border-border px-3 py-0.5 text-[11px] text-foreground cursor-pointer hover:bg-muted transition-colors"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+              <p className="text-[11px] leading-relaxed text-blue-500 italic">
+                {chatPlaceholder ?? MOCK_SUGGESTION}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
+            {messages.map((msg, idx) => (
+              <MessageBubble key={idx} message={msg} />
+            ))}
+            <div ref={messagesEndRef} />
+          </>
+        )}
       </div>
 
-      <div className="border-t border-border p-3">
+      {/* Input area */}
+      <div
+        className={cn(
+          "shrink-0 px-3 py-3",
+          !chatEnabled && "opacity-50 pointer-events-none"
+        )}
+      >
         {status && (
-          <p className="text-xs text-destructive mb-2 flex items-center gap-1">
+          <p className="text-[10px] text-destructive mb-1.5 flex items-center gap-1">
             <AlertCircle className="h-3 w-3" />
             {status}
           </p>
         )}
-        <form onSubmit={send} className="flex gap-2">
+        <form
+          onSubmit={send}
+          className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2"
+        >
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={
               chatEnabled
-                ? t("chat.placeholder", { defaultValue: "Posez votre question…" })
-                : "Disponible après sélection du projet"
+                ? t("chat.placeholder", { defaultValue: "Message" })
+                : "Message"
             }
             disabled={!chatEnabled}
-            className="flex-1 rounded-full border border-input bg-background px-3 py-1.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-muted-foreground/60 outline-none disabled:cursor-not-allowed"
           />
-          <Button
+          <button
             type="submit"
-            size="icon"
             disabled={!chatEnabled || !input.trim()}
-            className="shrink-0 rounded-full"
+            className="flex items-center justify-center w-6 h-6 rounded-full bg-[#2D3748] hover:bg-[#1a202c] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
+            aria-label="Envoyer"
           >
-            <Send className="h-4 w-4" />
-          </Button>
+            <ArrowUp className="h-3 w-3 text-white" />
+          </button>
         </form>
       </div>
     </div>
@@ -163,18 +234,18 @@ function MessageBubble({ message }: { message: ChatMessage }) {
     return (
       <div
         className={cn(
-          "flex items-center gap-2 rounded-lg px-3 py-2 text-xs",
-          isError && "bg-destructive-muted text-destructive",
-          isToolCall && "bg-info-muted text-info-foreground",
-          isToolResult && "bg-success-muted text-success",
+          "flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px]",
+          isError && "bg-red-50 text-red-600",
+          isToolCall && "bg-blue-50 text-blue-700",
+          isToolResult && "bg-green-50 text-green-700",
           !isError && !isToolCall && !isToolResult && "bg-muted text-muted-foreground"
         )}
       >
-        {isToolCall && <Wrench className="h-3 w-3 shrink-0" />}
-        {isToolResult && <CheckCircle2 className="h-3 w-3 shrink-0" />}
-        {isError && <AlertCircle className="h-3 w-3 shrink-0" />}
+        {isToolCall && <Wrench className="h-2.5 w-2.5 shrink-0" />}
+        {isToolResult && <CheckCircle2 className="h-2.5 w-2.5 shrink-0" />}
+        {isError && <AlertCircle className="h-2.5 w-2.5 shrink-0" />}
         <span>
-          {isToolCall && `Outil utilisé : ${message.content}`}
+          {isToolCall && `Outil\u00a0: ${message.content}`}
           {isToolResult && `${message.content} terminé`}
           {isError && message.content}
           {!isToolCall && !isToolResult && !isError && message.content}
@@ -186,20 +257,17 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   if (message.role === "user") {
     return (
       <div className="flex justify-end">
-        <div className="flex items-start gap-2 max-w-[85%]">
-          <div className="rounded-2xl rounded-tr-sm bg-primary px-3 py-2 text-sm text-primary-foreground">
-            {message.content}
-          </div>
-          <User className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
+        <div className="rounded-2xl rounded-tr-sm bg-[#2563EB] px-3 py-1.5 text-[11px] text-white max-w-[85%]">
+          {message.content}
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex items-start gap-2 max-w-[90%]">
-      <Bot className="mt-1 h-4 w-4 shrink-0 text-primary" />
-      <div className="rounded-2xl rounded-tl-sm bg-muted px-3 py-2 text-sm">
+    <div className="flex items-start gap-1.5 max-w-[90%]">
+      <img src={aiLogoUrl} alt="" width={18} height={18} className="rounded-full shrink-0 mt-0.5" />
+      <div className="rounded-2xl rounded-tl-sm bg-muted px-3 py-1.5 text-[11px]">
         <MarkdownDisplay text={message.content} />
       </div>
     </div>
@@ -209,14 +277,14 @@ function MessageBubble({ message }: { message: ChatMessage }) {
 function MarkdownDisplay({ text }: { text: string }) {
   const lines = text.split("\n");
   return (
-    <div className="space-y-1 leading-relaxed">
+    <div className="space-y-0.5 leading-relaxed">
       {lines.map((line, idx) => {
-        if (line.startsWith("### ")) return <h4 key={idx} className="font-semibold text-sm">{renderInline(line.slice(4))}</h4>;
-        if (line.startsWith("## ")) return <h3 key={idx} className="font-semibold">{renderInline(line.slice(3))}</h3>;
-        if (line.startsWith("# ")) return <h2 key={idx} className="font-bold">{renderInline(line.slice(2))}</h2>;
-        if (line.startsWith("- ")) return <p key={idx} className="pl-3">• {renderInline(line.slice(2))}</p>;
+        if (line.startsWith("### ")) return <p key={idx} className="font-semibold text-[11px]">{renderInline(line.slice(4))}</p>;
+        if (line.startsWith("## ")) return <p key={idx} className="font-semibold text-[11px]">{renderInline(line.slice(3))}</p>;
+        if (line.startsWith("# ")) return <p key={idx} className="font-bold text-[11px]">{renderInline(line.slice(2))}</p>;
+        if (line.startsWith("- ")) return <p key={idx} className="pl-2 text-[11px]">• {renderInline(line.slice(2))}</p>;
         if (!line.trim()) return <br key={idx} />;
-        return <p key={idx}>{renderInline(line)}</p>;
+        return <p key={idx} className="text-[11px]">{renderInline(line)}</p>;
       })}
     </div>
   );
@@ -230,7 +298,7 @@ function renderInline(content: string) {
     if (part.startsWith("*") && part.endsWith("*"))
       return <em key={idx}>{part.slice(1, -1)}</em>;
     if (part.startsWith("`") && part.endsWith("`"))
-      return <code key={idx} className="rounded bg-background px-1 font-mono text-xs">{part.slice(1, -1)}</code>;
+      return <code key={idx} className="rounded bg-background px-1 font-mono text-[10px]">{part.slice(1, -1)}</code>;
     return <span key={idx}>{part}</span>;
   });
 }
