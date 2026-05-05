@@ -108,11 +108,6 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
   if (collapsed) {
     return (
       <div className="relative flex h-full flex-col bg-white">
-        <div
-          className="absolute right-0 top-0 bottom-0 w-[2px] pointer-events-none z-10"
-          style={{ background: "linear-gradient(to bottom, #7B2FF7, #2563EB)" }}
-        />
-
         <div className="px-3 pt-5">
           <button
             type="button"
@@ -135,14 +130,6 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
 
   return (
     <div className="relative flex flex-col h-full bg-white">
-      {/* Gradient right border */}
-      <div
-        className="absolute right-0 top-0 bottom-0 w-[2px] pointer-events-none z-10"
-        style={{
-          background: "linear-gradient(to bottom, #7B2FF7, #2563EB)",
-        }}
-      />
-
       {/* Collapse button */}
       <div className="absolute top-5 left-4 z-20">
         <button
@@ -169,7 +156,7 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
       </div>
 
       {/* Messages area */}
-      <div className={cn("px-3 pb-3 shrink-0", !chatEnabled && "opacity-50 pointer-events-none")}>
+      <div className="px-3 pb-3 shrink-0">
         {isEmpty ? (
           <div className="rounded-2xl border border-border bg-white shadow-sm p-3 space-y-2">
             <div className="flex flex-wrap gap-1.5">
@@ -195,12 +182,7 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
       </div>
 
       {/* Input area */}
-      <div
-        className={cn(
-          "shrink-0 px-3 py-3",
-          !chatEnabled && "opacity-50 pointer-events-none"
-        )}
-      >
+      <div className="shrink-0 px-3 py-3">
         {status && (
           <p className="text-[10px] text-destructive mb-1.5 flex items-center gap-1">
             <AlertCircle className="h-3 w-3" />

@@ -1,0 +1,242 @@
+import { useState } from "react";
+import {
+  Sparkles,
+  Settings,
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  Trash2,
+  CircleAlert,
+  AudioLines,
+  RotateCcw,
+  Check,
+} from "lucide-react";
+
+export function ConfigurationScenarioView() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showAiDropdown, setShowAiDropdown] = useState(false);
+  const [aiProvider, setAiProvider] = useState<"eleven_labs" | "qwen_local">("eleven_labs");
+  const [prompt, setPrompt] = useState("");
+  const [targetAudience] = useState("Sélectionnez");
+  const [narrativeTone] = useState("Sélectionnez");
+  const [sourceMatch, setSourceMatch] = useState(70);
+  const [durationSeconds, setDurationSeconds] = useState(275);
+  const maxChars = 3000;
+  const aiOptions = [
+    {
+      id: "eleven_labs" as const,
+      label: "Eleven Labs",
+      description: "Voix expressives, qualité élevée. Échantillon généré après le choix.",
+    },
+    {
+      id: "qwen_local" as const,
+      label: "Qwen local",
+      description: "Plus de personnalisation, échantillon généré en fin d'artefact.",
+    },
+  ];
+  const selectedAi = aiOptions.find((o) => o.id === aiProvider) ?? aiOptions[0];
+
+  return (
+    <div className="w-full max-w-[870px] min-h-[806px] overflow-y-auto p-6">
+      <section className="w-full overflow-hidden rounded-[14px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+        <div className="flex items-center gap-6 border-b border-[#F4F4F4] bg-[#F8FAFC] px-5 py-4">
+          <div className="flex min-w-0 flex-col gap-1">
+            <div className="inline-flex items-center gap-2">
+              <Settings className="h-5 w-5 text-[#0F172B]" />
+              <h2 className="text-[20px] font-semibold leading-none text-[#0F172B]">Configuration des scénarios</h2>
+            </div>
+            <p className="text-[14px] font-medium leading-5 text-[#45556C]">
+              Sélectionner plusieurs paramètres de générations pour vos scénarios.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-6 border-b border-[#F8FAFC] bg-white px-5 py-4">
+          <div className="flex h-[38px] w-full items-center justify-end">
+            <button
+              type="button"
+              className="inline-flex h-[38px] items-center gap-1 rounded-xl bg-[#007AFF] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#006ae0]"
+            >
+              <Sparkles className="h-4 w-4" />
+              <span>Générer</span>
+            </button>
+          </div>
+
+          <article className="flex flex-col gap-6 rounded-[18px] border border-[#8EA4BD] bg-white p-[25px] shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-[16px] font-medium leading-none text-[#0F172B]">Scénario 1</h3>
+              <div className="inline-flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsOpen((v) => !v)}
+                  className="inline-flex h-[38px] items-center gap-2 rounded-xl border border-[#E2E8F0] bg-transparent px-3 text-sm font-medium text-[#45556C] transition-colors hover:bg-[#F8FAFC]"
+                >
+                  <span>{isOpen ? "Voir moins" : "Voir plus"}</span>
+                  {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </button>
+                <button
+                  type="button"
+                  className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-xl border border-[#E2E8F0] bg-white text-[#FF3B30] transition-colors hover:bg-[#fff1f0]"
+                  aria-label="Supprimer scénario"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="inline-flex items-center gap-1 text-[14px] font-medium leading-5 text-[#0F172B]">
+                Prompt
+                <CircleAlert className="h-4 w-4" />
+              </label>
+              <div className="flex h-[92px] flex-col justify-between rounded-lg border border-[#E2E8F0] px-3 py-2">
+                <textarea
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value.slice(0, maxChars))}
+                  placeholder="Ex. : Présente son histoire, son apprentissage dans une première partie, l'évolution de son métier à travers le temps dans une seconde..."
+                  className="w-full resize-none bg-transparent text-[14px] font-normal leading-none text-[#45556C] outline-none placeholder:text-[#45556C]"
+                  rows={2}
+                />
+                <p className="text-right text-[14px] font-normal leading-none text-[#45556C]">
+                  {prompt.length}/{maxChars} caractères
+                </p>
+              </div>
+            </div>
+
+            {isOpen && (
+              <>
+                <div className="relative ml-auto inline-flex items-start">
+                  <button
+                    type="button"
+                    onClick={() => setShowAiDropdown((v) => !v)}
+                    className="inline-flex h-[38px] items-center gap-2 rounded-xl border border-[#007AFF] bg-[#EFF6FF] px-3 text-sm font-medium text-[#007AFF] transition-colors hover:bg-[#e6f2ff]"
+                  >
+                    <Sparkles className="h-4 w-4 text-[#007AFF]" />
+                    <span>{selectedAi.label}</span>
+                    <ChevronDown className="h-4 w-4 text-[#007AFF]" />
+                  </button>
+
+                  {showAiDropdown && (
+                    <div className="absolute left-0 top-[46px] z-30 w-[340px] overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+                      {aiOptions.map((option, idx) => (
+                        <button
+                          key={option.id}
+                          type="button"
+                          onClick={() => {
+                            setAiProvider(option.id);
+                            setShowAiDropdown(false);
+                          }}
+                          className={`flex w-full items-start justify-between gap-[14px] px-5 py-5 text-left transition-colors hover:bg-[#F8FAFC] ${
+                            idx < aiOptions.length - 1 ? "border-b border-[#E2E8F0]" : ""
+                          }`}
+                        >
+                          <div className="flex flex-col gap-2">
+                            <span className="text-[16px] font-semibold leading-none text-[#0F172B]">{option.label}</span>
+                            <span className="text-[14px] font-normal leading-none text-[#45556C]">{option.description}</span>
+                          </div>
+                          {aiProvider === option.id ? <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#007AFF]" /> : null}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Cible public</label>
+                    <button
+                      type="button"
+                      className="inline-flex h-9 w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] px-3 text-[14px] font-normal text-[#45556C]"
+                    >
+                      <span>{targetAudience}</span>
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Ton narratif</label>
+                    <button
+                      type="button"
+                      className="inline-flex h-9 w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] px-3 text-[14px] font-normal text-[#45556C]"
+                    >
+                      <span>{narrativeTone}</span>
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Choisir une voix</label>
+                  <button
+                    type="button"
+                    className="inline-flex min-h-[66px] w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] p-3"
+                  >
+                    <span className="inline-flex items-center gap-2 text-[14px] font-medium text-[#0F172B]">
+                      <AudioLines className="h-4 w-4" />
+                      Ben – Calm, Older, Masculine
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-[#45556C]" />
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between text-[14px] font-medium leading-5 text-[#0F172B]">
+                    <span>Correspondance à la source audio</span>
+                    <button type="button" className="inline-flex items-center gap-1 text-[#45556C] hover:text-[#0F172B]">
+                      <RotateCcw className="h-3.5 w-3.5" />
+                      <span>Réinitialiser</span>
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[14px] font-normal text-[#45556C]">Identique</span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      value={sourceMatch}
+                      onChange={(e) => setSourceMatch(Number(e.target.value))}
+                      className="h-2 w-full accent-[#007AFF]"
+                    />
+                  </div>
+                  <p className="text-[14px] font-normal leading-none text-[#45556C]">
+                    Détermine l&apos;importance de la transcription dans le récit.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between text-[14px] font-medium leading-5 text-[#0F172B]">
+                    <span>Durée audio (minutes)</span>
+                    <span>{Math.floor(durationSeconds / 60)} minutes {durationSeconds % 60} s</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={600}
+                    value={durationSeconds}
+                    onChange={(e) => setDurationSeconds(Number(e.target.value))}
+                    className="h-2 w-full accent-[#007AFF]"
+                  />
+                  <span className="text-[14px] font-normal leading-none text-[#45556C]">0:00</span>
+                </div>
+              </>
+            )}
+          </article>
+
+          <button
+            type="button"
+            className="flex h-[218px] w-full flex-col items-center justify-center gap-6 rounded-[18px] border border-dashed border-[#EFF6FF] bg-white p-[25px] transition-colors hover:bg-[#fafdff]"
+          >
+            <span className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-[12px] bg-[#007AFF] text-white">
+              <Plus className="h-7 w-7" />
+            </span>
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-center text-[16px] font-semibold leading-none text-[#45556C]">Ajouter un scénario</p>
+              <p className="text-center text-[12px] font-normal leading-none text-[#8EA4BD]">
+                Vous pouvez générer jusqu&apos;à 3 scénarios.
+              </p>
+            </div>
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}

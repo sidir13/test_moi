@@ -1,9 +1,9 @@
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2, Save, ChevronRight } from "lucide-react";
+import { Loader2, Save, ChevronRight, FileText, Plus, Download, X, ChevronDown, Pause, Volume2, Network, Eye, Sparkles } from "lucide-react";
 
-import { advanceStep, fetchProjectProfile } from "@/api/client";
+import { advanceStep, fetchProjectAudio, fetchProjectProfile, fetchProjectTranscriptions } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -47,6 +47,7 @@ export function ProjectDetailsView() {
   const [sourceUsageLevel, setSourceUsageLevel] = useState<"leger" | "modere" | "central">("modere");
   const [status, setStatus] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [showTranscriptionBlock, setShowTranscriptionBlock] = useState(true);
 
   const notesPrefilledFor = useRef<string | null>(null);
   const progressPrefilledFor = useRef<string | null>(null);
@@ -57,6 +58,48 @@ export function ProjectDetailsView() {
     queryFn: () => fetchProjectProfile(projectName!),
     enabled: Boolean(projectName)
   });
+  const projectAudioQuery = useQuery({
+    queryKey: ["project-audio-files", projectName],
+    queryFn: () => fetchProjectAudio(projectName!),
+    enabled: Boolean(projectName),
+  });
+  const transcriptionsQuery = useQuery({
+    queryKey: ["project-transcriptions", projectName],
+    queryFn: () => fetchProjectTranscriptions(projectName!),
+    enabled: Boolean(projectName),
+  });
+  const mockTranscriptionsQuery = useQuery({
+    queryKey: ["mock-transcriptions"],
+    queryFn: async () => {
+      const response = await fetch("/mocks/transcriptions.json");
+      if (!response.ok) throw new Error("Impossible de charger le mock transcriptions");
+      return response.json() as Promise<{
+        transcriptions: Array<{
+          file_name: string;
+          transcription: string;
+          summary?: { global_summary?: string; topics?: Array<{ title: string }> };
+        }>;
+      }>;
+    },
+  });
+  const mockDetailsQuery = useQuery({
+    queryKey: ["project-details-mock"],
+    queryFn: async () => {
+      const response = await fetch("/mocks/project-details.json");
+      if (!response.ok) throw new Error("Impossible de charger le mock project-details");
+      return response.json() as Promise<{
+        transcriptionBlock?: {
+          subtitle?: string;
+          fallbackFileName?: string;
+          fallbackTopics?: string[];
+          fallbackTitle?: string;
+          fallbackText?: string;
+        };
+        knowledgeGraph?: { title?: string; subtitle?: string; keywordsCount?: number };
+        artifacts?: { title?: string; subtitle?: string; emptyState?: boolean };
+      }>;
+    },
+  });
 
   useEffect(() => {
     if (!projectName) {
@@ -64,6 +107,10 @@ export function ProjectDetailsView() {
       progressPrefilledFor.current = null;
       preferencesPrefilledFor.current = null;
     }
+  }, [projectName]);
+
+  useEffect(() => {
+    setShowTranscriptionBlock(true);
   }, [projectName]);
 
   useEffect(() => {
@@ -133,6 +180,34 @@ export function ProjectDetailsView() {
     const fmt = (v: number) => (v % 60 === 0 ? `${v / 60} min` : `${v}s`);
     return `${fmt(durationSettings.min)} – ${fmt(durationSettings.max)}`;
   }, [durationSettings]);
+  const audioFiles = projectAudioQuery.data ?? mockTranscriptionsQuery.data?.transcriptions.map((t) => t.file_name) ?? [];
+  const firstAudioFile = audioFiles[0];
+  const transcriptionEntries = transcriptionsQuery.data?.length
+    ? transcriptionsQuery.data
+    : (mockTranscriptionsQuery.data?.transcriptions ?? []);
+  const firstTranscription =
+    transcriptionEntries.find((entry) => entry.file_name === firstAudioFile) ?? transcriptionEntries[0];
+  const transcriptionTopics =
+    firstTranscription?.summary?.topics?.slice(0, 4).map((topic) => topic.title).filter(Boolean) ?? [];
+  const fallbackTopics =
+    mockDetailsQuery.data?.transcriptionBlock?.fallbackTopics ??
+    ["Vie quotidienne", "Mémoire ouvrière", "Chantiers navals", "Patrimoine local"];
+  const displayedTags = transcriptionTopics.length > 0 ? transcriptionTopics : fallbackTopics;
+  const transcriptionText =
+    firstTranscription?.transcription?.trim() ||
+    mockDetailsQuery.data?.transcriptionBlock?.fallbackText ||
+    "La transcription apparaîtra ici après l’upload et le traitement automatique du fichier audio.";
+  const transcriptionTitle = mockDetailsQuery.data?.transcriptionBlock?.fallbackTitle ?? "Souvenir des chantiers de Nantes";
+  const transcriptionSubtitle =
+    mockDetailsQuery.data?.transcriptionBlock?.subtitle ?? "Lire et modifier la transcription des fichiers audio.";
+  const fallbackFileName = mockDetailsQuery.data?.transcriptionBlock?.fallbackFileName ?? "interview_001.mp3";
+  const knowledgeGraphTitle = mockDetailsQuery.data?.knowledgeGraph?.title ?? "Knowledge Graph";
+  const knowledgeGraphSubtitle =
+    mockDetailsQuery.data?.knowledgeGraph?.subtitle ?? "Lire et modifier les transcriptions des fichiers audio.";
+  const keywordsCount = mockDetailsQuery.data?.knowledgeGraph?.keywordsCount ?? 39;
+  const artifactsTitle = mockDetailsQuery.data?.artifacts?.title ?? "Mes Artefacts";
+  const artifactsSubtitle =
+    mockDetailsQuery.data?.artifacts?.subtitle ?? "Lire et modifier les transcriptions des fichiers audio.";
 
   if (!sessionId) {
     return <p className="text-sm text-muted-foreground">Créez ou sélectionnez un projet pour continuer.</p>;
@@ -164,6 +239,200 @@ export function ProjectDetailsView() {
 
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
+      {showTranscriptionBlock && (
+      <section className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white">
+        <div className="flex items-center justify-between gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
+          <div className="flex min-w-0 flex-col gap-1">
+            <div className="inline-flex items-center gap-2">
+              <FileText className="h-5 w-5 text-[#0F172B]" />
+              <h3 className="text-[20px] font-semibold leading-none text-[#0F172B]">Transcription</h3>
+            </div>
+            <p className="text-[14px] font-normal leading-none text-[#45556C]">
+              {transcriptionSubtitle}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="inline-flex h-[38px] shrink-0 items-center gap-1 rounded-xl bg-[#007AFF] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#006ae0]"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Créer un artefact</span>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-6 bg-white px-5 py-4">
+          <div className="rounded-2xl border border-[#E2E8F0] bg-white p-4">
+            <div className="mb-[18px] flex items-center justify-between gap-3">
+              <p className="text-[16px] font-semibold leading-none text-[#0F172B]">
+                Fichier 1: {firstAudioFile ?? fallbackFileName}
+              </p>
+              <div className="inline-flex items-center gap-2">
+                <button
+                  type="button"
+                  className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-[10px] border border-[#E2E8F0] bg-white text-[#45556C] transition-colors hover:bg-[#F8FAFC]"
+                  aria-label="Télécharger"
+                >
+                  <Download className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowTranscriptionBlock(false)}
+                  className="inline-flex h-[38px] items-center gap-1 rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-3 text-sm font-semibold text-[#45556C] transition-colors hover:bg-[#eef2f7] hover:text-[#0F172B]"
+                >
+                  <X className="h-4 w-4" />
+                  <span>Supprimer</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] text-[#0F172B]"
+                aria-label="Pause"
+              >
+                <Pause className="h-4 w-4" />
+              </button>
+              <div className="flex-1">
+                <div className="h-2 w-full rounded-full bg-[#E2E8F0]">
+                  <div className="h-2 w-[78%] rounded-full bg-[#0F172B]" />
+                </div>
+                <div className="mt-1 flex items-center justify-between text-sm font-normal leading-none text-[#45556C]">
+                  <span>0:00</span>
+                  <span>4:05</span>
+                </div>
+              </div>
+              <Volume2 className="h-5 w-5 shrink-0 text-[#0F172B]" />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {displayedTags.map((tag, index) => (
+              <button
+                key={index}
+                type="button"
+                className="inline-flex h-8 w-[157px] items-center justify-between rounded-full border border-[#E2E8F0] bg-white px-4 py-[6px] text-[14px] font-semibold leading-none text-[#45556C]"
+              >
+                <span>{tag}</span>
+                <ChevronDown className="h-3.5 w-3.5" />
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-[18px]">
+            <h4 className="text-[16px] font-semibold leading-none text-[#0F172B]">{transcriptionTitle}</h4>
+            <p
+              className="text-[14px] font-normal leading-none"
+              style={{
+                background: "linear-gradient(180deg, #45556C 0%, #F3F4F8 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              {transcriptionText}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-end gap-[14px]">
+            <button
+              type="button"
+              onClick={() => setShowTranscriptionBlock(false)}
+              className="inline-flex h-[37.6px] items-center gap-3 rounded-full border border-[#E2E8F0] bg-transparent px-3 text-sm font-medium text-[#45556C] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172B]"
+            >
+              <X className="h-4 w-4" />
+              <span>Fermer</span>
+            </button>
+            <button
+              type="button"
+              className="inline-flex h-[38px] items-center gap-1 rounded-xl border border-[#E2E8F0] bg-white px-3 text-sm font-semibold text-[#45556C] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172B]"
+            >
+              <Download className="h-4 w-4" />
+              <span>Exporter la transcription</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      )}
+
+      <section className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        <article className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+          <div className="flex items-center gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
+            <div className="flex min-w-0 flex-col gap-1">
+              <div className="inline-flex items-center gap-1">
+                <Network className="h-5 w-5 text-[#0F172B]" />
+                <h3 className="text-[20px] font-semibold leading-none text-[#0F172B]">{knowledgeGraphTitle}</h3>
+              </div>
+              <p className="text-[14px] font-normal leading-none text-[#45556C]">
+                {knowledgeGraphSubtitle}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-[14px] bg-white px-5 py-4">
+            <div className="relative h-[321px] overflow-hidden rounded-xl border border-[#E2E8F0] bg-white p-2">
+              <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-2 rounded-full bg-[#F8FAFC] px-3 py-2 text-[28px] text-[#007AFF]">
+                <Sparkles className="h-4 w-4" />
+                <span className="text-[14px] font-semibold leading-none text-[#007AFF]">
+                  {keywordsCount} Mots-clés identifiés
+                </span>
+              </div>
+              <button
+                type="button"
+                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] text-[#45556C] transition-colors hover:bg-white"
+              >
+                <Eye className="h-4 w-4" />
+              </button>
+
+              <div className="relative h-full w-full rounded-[10px] bg-[#F8FAFC]">
+                {[
+                  "left-[15%] top-[65%]", "left-[32%] top-[56%]", "left-[48%] top-[45%]", "left-[58%] top-[30%]",
+                  "left-[68%] top-[58%]", "left-[75%] top-[38%]", "left-[21%] top-[42%]", "left-[41%] top-[24%]",
+                  "left-[55%] top-[70%]", "left-[80%] top-[64%]", "left-[27%] top-[70%]", "left-[63%] top-[48%]",
+                ].map((pos, idx) => (
+                  <span
+                    key={idx}
+                    className={`absolute ${pos} h-2 w-2 rounded-full ${
+                      idx % 4 === 0
+                        ? "bg-[#007AFF]"
+                        : idx % 3 === 0
+                          ? "bg-[#22C55E]"
+                          : idx % 2 === 0
+                            ? "bg-[#EF4444]"
+                            : "bg-[#F97316]"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+          <div className="flex items-center gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
+            <div className="flex min-w-0 flex-col gap-1">
+              <div className="inline-flex items-center gap-1">
+                <Sparkles className="h-5 w-5 text-[#0F172B]" />
+                <h3 className="text-[20px] font-semibold leading-none text-[#0F172B]">{artifactsTitle}</h3>
+              </div>
+              <p className="text-[14px] font-normal leading-none text-[#45556C]">
+                {artifactsSubtitle}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex h-[405.8px] items-end justify-center bg-white px-5 py-4">
+            <button
+              type="button"
+              className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-[12px] bg-[#007AFF] text-white shadow-sm transition-colors hover:bg-[#006ae0]"
+              aria-label="Créer un artefact"
+            >
+              <Plus className="h-7 w-7" />
+            </button>
+          </div>
+        </article>
+      </section>
+
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Détails du projet</h2>

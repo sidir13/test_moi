@@ -18,6 +18,7 @@ import { TranscriptionReviewView } from "./views/TranscriptionReviewView";
 import { ScenarioReviewView } from "./views/ScenarioReviewView";
 import { ScenarioEditView } from "./views/ScenarioEditView";
 import { FinalValidationView } from "./views/FinalValidationView";
+import { ConfigurationScenarioView } from "./views/ConfigurationScenarioView";
 
 type StepId =
   | "project_selection"
@@ -26,7 +27,8 @@ type StepId =
   | "transcription_review"
   | "scenario_review"
   | "scenario_edit"
-  | "final_validation";
+  | "final_validation"
+  | "configuration_scenario";
 
 const STEP_COMPONENTS: Record<StepId, React.ComponentType> = {
   project_selection: ProjectSelectionView,
@@ -35,7 +37,8 @@ const STEP_COMPONENTS: Record<StepId, React.ComponentType> = {
   transcription_review: TranscriptionReviewView,
   scenario_review: ScenarioReviewView,
   scenario_edit: ScenarioEditView,
-  final_validation: FinalValidationView
+  final_validation: FinalValidationView,
+  configuration_scenario: ConfigurationScenarioView
 };
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
@@ -66,6 +69,8 @@ function Layout() {
   const { setSteps, currentStep, projectName } = useSessionStore();
   const location = useLocation();
   const isProjectDetailsPage = location.pathname === "/step/project_details";
+  const isConfigurationScenarioPage = location.pathname === "/step/configuration_scenario";
+  const showTopProjectBanner = isProjectDetailsPage || isConfigurationScenarioPage;
   const [showProjectDetailsBanner, setShowProjectDetailsBanner] = useState(true);
   const [isChatCollapsed, setIsChatCollapsed] = useState(false);
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
@@ -77,25 +82,26 @@ function Layout() {
   }, [stepsResponse, setSteps]);
 
   useEffect(() => {
-    if (isProjectDetailsPage) {
+    if (showTopProjectBanner) {
       setShowProjectDetailsBanner(true);
     }
-  }, [isProjectDetailsPage]);
+  }, [showTopProjectBanner]);
 
   const isProjectSelectionPage =
     location.pathname === "/" || location.pathname === "/step/project_selection";
 
   const showChat =
-    currentStep &&
-    !isProjectSelectionPage &&
-    currentStep !== "project_selection" &&
-    currentStep !== "final_validation";
+    isConfigurationScenarioPage ||
+    (Boolean(currentStep) &&
+      !isProjectSelectionPage &&
+      currentStep !== "project_selection" &&
+      currentStep !== "final_validation");
 
   const showStepNavigator = !isProjectSelectionPage;
-  const chatTopOffsetClass = isProjectDetailsPage && showProjectDetailsBanner
+  const chatTopOffsetClass = showTopProjectBanner && showProjectDetailsBanner
     ? "top-[113px] h-[calc(100vh-113px)]"
     : "top-[64px] h-[calc(100vh-64px)]";
-  const contentTopPaddingClass = isProjectDetailsPage && showProjectDetailsBanner ? "pt-[49px]" : "";
+  const contentTopPaddingClass = showTopProjectBanner && showProjectDetailsBanner ? "pt-[49px]" : "";
   const contentRightPaddingClass = showChat ? (isChatCollapsed ? "pr-[68px]" : "pr-[258px]") : "";
 
   return (
@@ -134,7 +140,7 @@ function Layout() {
           </div>
         </header>
 
-        {isProjectDetailsPage && showProjectDetailsBanner && (
+        {showTopProjectBanner && showProjectDetailsBanner && (
           <div className="absolute left-0 right-0 top-full z-40 flex items-center justify-between gap-3 border-b border-border bg-background px-6 py-2.5">
             <div className="flex h-[29px] w-[288px] items-center gap-3 min-w-0">
               <h2 className="truncate text-[24px] font-semibold leading-[29px] text-foreground">

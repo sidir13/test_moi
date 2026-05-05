@@ -1,0 +1,24 @@
+{
+  "transcriptionBlock": {
+    "subtitle": "Lire et modifier la transcription des fichiers audio.",
+    "fallbackFileName": "interview_001.mp3",
+    "fallbackTopics": [
+      "Vie quotidienne",
+      "Mémoire ouvrière",
+      "Chantiers navals",
+      "Patrimoine local"
+    ],
+    "fallbackTitle": "Souvenir des chantiers de Nantes",
+    "fallbackText": "Au début des années 1940, notre village a connu des transformations profondes. Les rues qui étaient autrefois animées par le commerce local sont devenues silencieuses. Les familles se rassemblaient le soir pour écouter les nouvelles à la radio."
+  },
+  "knowledgeGraph": {
+    "title": "Knowledge Graph",
+    "subtitle": "Lire et modifier les transcriptions des fichiers audio.",
+    "keywordsCount": 39
+  },
+  "artifacts": {
+    "title": "Mes Artefacts",
+    "subtitle": "Lire et modifier les transcriptions des fichiers audio.",
+    "emptyState": true
+  }
+}

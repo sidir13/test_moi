@@ -18,6 +18,7 @@ import {
 
 import {
   createProject,
+  uploadAudio,
   createSession,
   fetchProjects,
   type ProjectSummary,
@@ -194,6 +195,9 @@ export function ProjectSelectionView() {
       if (!name.trim()) throw new Error("Nom requis");
       const trimmed = name.trim();
       await createProject({ name: trimmed, description, scenario_target: scenarioTargetDraft });
+      if (selectedFiles.length > 0) {
+        await Promise.all(selectedFiles.map((file) => uploadAudio(trimmed, file)));
+      }
       const session = await createSession(trimmed, "project_selection", scenarioTargetDraft);
       setProjectName(trimmed);
       setLastProjectName(trimmed);
