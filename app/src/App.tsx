@@ -96,6 +96,7 @@ function Layout() {
     ? "top-[113px] h-[calc(100vh-113px)]"
     : "top-[64px] h-[calc(100vh-64px)]";
   const contentTopPaddingClass = isProjectDetailsPage && showProjectDetailsBanner ? "pt-[49px]" : "";
+  const contentRightPaddingClass = showChat ? (isChatCollapsed ? "pr-[68px]" : "pr-[258px]") : "";
 
   return (
     <div className="flex min-h-screen flex-col bg-muted">
@@ -149,17 +150,27 @@ function Layout() {
               <button
                 type="button"
                 onClick={() => setShowProjectDetailsBanner(false)}
-                className="inline-flex h-[37.6px] w-[92px] items-center justify-center gap-3 rounded-full border border-[#D0D5DD] bg-[#E2E8F0] px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-[#d6dee9]"
+                className="inline-flex h-[33.6px] min-w-[80px] items-center justify-center gap-1 rounded-full border border-[#D0D5DD] bg-[#E2E8F0] px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-[#d6dee9]"
               >
-              <X className="h-6 w-6" />
+                <X className="h-5 w-5 shrink-0  text-foreground" />
                 <span>Fermer</span>
               </button>
             </div>
           </div>
         )}
+
+        {showChat && (
+          <aside
+            className={`absolute right-0 ${chatTopOffsetClass} ${
+              isChatCollapsed ? "w-[68px]" : "w-[258px]"
+            } z-30 bg-white overflow-hidden flex flex-col transition-[width,top,height] duration-200 ease-out`}
+          >
+            <ChatPanel collapsed={isChatCollapsed} onToggleCollapsed={() => setIsChatCollapsed((v) => !v)} />
+          </aside>
+        )}
       </div>
 
-      <div className={`flex flex-1 ${contentTopPaddingClass}`}>
+      <div className={`flex flex-1 ${contentTopPaddingClass} ${contentRightPaddingClass}`}>
         {/* <StepNavigator /> hidden on project selection landing */} 
         {showStepNavigator ? (
           <aside className="w-64 shrink-0 border-r border-border bg-background overflow-y-auto p-4">
@@ -173,15 +184,6 @@ function Layout() {
           </ErrorBoundary>
         </main>
 
-        {showChat && (
-          <aside
-            className={`sticky ${chatTopOffsetClass} ${
-              isChatCollapsed ? "w-[68px]" : "w-[258px]"
-            } shrink-0 self-start bg-white overflow-hidden flex flex-col transition-[width] duration-200 ease-out`}
-          >
-            <ChatPanel collapsed={isChatCollapsed} onToggleCollapsed={() => setIsChatCollapsed((v) => !v)} />
-          </aside>
-        )}
       </div>
 
     </div>
