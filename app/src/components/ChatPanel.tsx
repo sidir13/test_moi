@@ -1,6 +1,6 @@
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, ArrowUp, Wrench, CheckCircle2, AlertCircle } from "lucide-react";
+import { ChevronRight, ChevronLeft, ArrowUp, Wrench, CheckCircle2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getWsBaseUrl } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
@@ -18,13 +18,17 @@ const MOCK_CHIPS = ["Scénario", "Contexte", "Scénario"];
 const MOCK_SUGGESTION =
   "Je peux vous aider à rédiger le contexte de votre scénario. Dites moi quelle histoire vous souhaitez raconter\u00a0?";
 
-export function ChatPanel() {
+type ChatPanelProps = {
+  collapsed?: boolean;
+  onToggleCollapsed?: () => void;
+};
+
+export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelProps) => {
   const { t } = useTranslation();
   const { chatPlaceholder, currentStep, sessionId } = useSessionStore();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<string | null>(null);
-  const [collapsed, setCollapsed] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const chatEnabled = Boolean(sessionId) && currentStep !== "project_selection";
@@ -101,6 +105,34 @@ export function ChatPanel() {
 
   const isEmpty = messages.length === 0;
 
+  if (collapsed) {
+    return (
+      <div className="relative flex h-full flex-col bg-white">
+        <div
+          className="absolute right-0 top-0 bottom-0 w-[2px] pointer-events-none z-10"
+          style={{ background: "linear-gradient(to bottom, #7B2FF7, #2563EB)" }}
+        />
+
+        <div className="px-3 pt-5">
+          <button
+            type="button"
+            onClick={onToggleCollapsed}
+            className="mx-auto flex h-8 w-8 items-center justify-center rounded-xl border border-[#D0D5DD] bg-[#F8FAFC] transition-colors hover:bg-[#eef2f7]"
+            aria-label="Ouvrir le panneau"
+          >
+            <ChevronLeft className="h-4.5 w-4.5 text-muted-foreground" />
+          </button>
+        </div>
+
+        <div className="flex-1" />
+
+        <div className="pb-5">
+          <img src={aiLogoUrl} alt="Agent AI" width={34} height={34} className="mx-auto rounded-full" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative flex flex-col h-full bg-white">
       {/* Gradient right border */}
@@ -115,13 +147,11 @@ export function ChatPanel() {
       <div className="absolute top-5 left-4 z-20">
         <button
           type="button"
-          onClick={() => setCollapsed((v) => !v)}
+          onClick={onToggleCollapsed}
           className="flex items-center justify-center w-7 h-7 rounded-md border border-border bg-white shadow-sm hover:bg-muted transition-colors"
           aria-label="Réduire le panneau"
         >
-          <ChevronRight
-            className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform", collapsed && "rotate-180")}
-          />
+          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
 
@@ -204,7 +234,7 @@ export function ChatPanel() {
       </div>
     </div>
   );
-}
+};
 
 function MessageBubble({ message }: { message: ChatMessage }) {
   if (message.role === "system") {

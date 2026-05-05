@@ -1,6 +1,6 @@
-import { Component, useEffect, type ReactNode } from "react";
+import { Component, useEffect, useState, type ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, Outlet, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { Check, PencilLine, X } from "lucide-react";
 
 import { fetchSteps, fetchStepConfig } from "./api/client";
@@ -63,10 +63,11 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
 }
 
 function Layout() {
-  const { setSteps, currentStep, projectName, setCurrentStep } = useSessionStore();
+  const { setSteps, currentStep, projectName } = useSessionStore();
   const location = useLocation();
-  const navigate = useNavigate();
   const isProjectDetailsPage = location.pathname === "/step/project_details";
+  const [showProjectDetailsBanner, setShowProjectDetailsBanner] = useState(true);
+  const [isChatCollapsed, setIsChatCollapsed] = useState(false);
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
 
   useEffect(() => {
@@ -74,6 +75,12 @@ function Layout() {
       setSteps(stepsResponse.steps);
     }
   }, [stepsResponse, setSteps]);
+
+  useEffect(() => {
+    if (isProjectDetailsPage) {
+      setShowProjectDetailsBanner(true);
+    }
+  }, [isProjectDetailsPage]);
 
   const isProjectSelectionPage =
     location.pathname === "/" || location.pathname === "/step/project_selection";
@@ -85,74 +92,74 @@ function Layout() {
     currentStep !== "final_validation";
 
   const showStepNavigator = !isProjectSelectionPage;
-  const chatTopOffsetClass = isProjectDetailsPage
+  const chatTopOffsetClass = isProjectDetailsPage && showProjectDetailsBanner
     ? "top-[113px] h-[calc(100vh-113px)]"
     : "top-[64px] h-[calc(100vh-64px)]";
+  const contentTopPaddingClass = isProjectDetailsPage && showProjectDetailsBanner ? "pt-[49px]" : "";
 
   return (
     <div className="flex min-h-screen flex-col bg-muted">
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 bg-background border-b border-border shadow-sm shrink-0">
-        <div className="flex min-w-0 items-center gap-3">
-          <Link
-            to="/"
-            className="shrink-0 rounded-md outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label="Accueil — Mémoire des Territoires"
-          >
-            <img src={logoUrl} alt="" width={40} height={40} className="size-10 rounded-md" />
-          </Link>
-          <div className="min-w-0">
-            <h1 className="text-2xl font-semibold text-foreground leading-tight">Mémoire des Territoires</h1>
-            <p className="text-xs font-normal text-muted-foreground leading-normal">Archivage et Artifacts</p>
-          </div>
-        </div>
-        <div className="flex shrink-0 items-center gap-0.5">
-          {/* <FlagToggle /> */}
-          <button
-            type="button"
-            className="inline-flex size-10 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background"
-            aria-label="Déconnexion"
-          >
-            <img src={logoutIconUrl} alt="" width={20} height={20} className="size-5" />
-          </button>
-          <button
-            type="button"
-            className="inline-flex size-10 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background"
-            aria-label="Profil"
-          >
-            <img src={profileIconUrl} alt="" width={22} height={22} className="size-[22px]" />
-          </button>
-        </div>
-      </header>
-
-      {isProjectDetailsPage && (
-        <div className="flex items-center justify-between gap-3 px-6 py-2.5 bg-background border-b border-border shrink-0">
-          <div className="flex h-[29px] w-[288px] items-center gap-3 min-w-0">
-            <h2 className="truncate text-[24px] font-semibold leading-[29px] text-foreground">
-              {projectName ?? "Nouveau projet"}
-            </h2>
-            <PencilLine className="h-4 w-4 text-muted-foreground shrink-0" />
-          </div>
-          <div className="flex items-center gap-4 shrink-0">
-            <div className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-              <Check className="h-3.5 w-3.5 text-blue-500" />
-              <span>Votre archive est enregistrée</span>
+      <div className="sticky top-0 z-50">
+        <header className="flex items-center justify-between border-b border-border bg-background px-6 py-3 shadow-sm">
+          <div className="flex min-w-0 items-center gap-3">
+            <Link
+              to="/"
+              className="shrink-0 rounded-md outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label="Accueil — Mémoire des Territoires"
+            >
+              <img src={logoUrl} alt="" width={40} height={40} className="size-10 rounded-md" />
+            </Link>
+            <div className="min-w-0">
+              <h1 className="text-2xl font-semibold text-foreground leading-tight">Mémoire des Territoires</h1>
+              <p className="text-xs font-normal text-muted-foreground leading-normal">Archivage et Artifacts</p>
             </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-0.5">
+            {/* <FlagToggle /> */}
             <button
               type="button"
-              onClick={() => {
-                setCurrentStep("project_selection");
-                navigate("/step/project_selection");
-              }}
-              className="inline-flex h-[37.6px] w-[92px] items-center justify-center gap-3 rounded-full border border-[#D0D5DD] bg-[#E2E8F0] px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-[#d6dee9]"
+              className="inline-flex size-10 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background"
+              aria-label="Déconnexion"
             >
-              <X className="h-4.5 w-4.5" />
-              <span>Fermer</span>
+              <img src={logoutIconUrl} alt="" width={20} height={20} className="size-5" />
+            </button>
+            <button
+              type="button"
+              className="inline-flex size-10 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background"
+              aria-label="Profil"
+            >
+              <img src={profileIconUrl} alt="" width={22} height={22} className="size-[22px]" />
             </button>
           </div>
-        </div>
-      )}
+        </header>
 
-      <div className="flex flex-1">
+        {isProjectDetailsPage && showProjectDetailsBanner && (
+          <div className="absolute left-0 right-0 top-full z-40 flex items-center justify-between gap-3 border-b border-border bg-background px-6 py-2.5">
+            <div className="flex h-[29px] w-[288px] items-center gap-3 min-w-0">
+              <h2 className="truncate text-[24px] font-semibold leading-[29px] text-foreground">
+                {projectName ?? "Nouveau projet"}
+              </h2>
+              <PencilLine className="h-4 w-4 text-muted-foreground shrink-0" />
+            </div>
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                <Check className="h-3.5 w-3.5 text-blue-500" />
+                <span>Votre archive est enregistrée</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowProjectDetailsBanner(false)}
+                className="inline-flex h-[37.6px] w-[92px] items-center justify-center gap-3 rounded-full border border-[#D0D5DD] bg-[#E2E8F0] px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-[#d6dee9]"
+              >
+              <X className="h-6 w-6" />
+                <span>Fermer</span>
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className={`flex flex-1 ${contentTopPaddingClass}`}>
         {/* <StepNavigator /> hidden on project selection landing */} 
         {showStepNavigator ? (
           <aside className="w-64 shrink-0 border-r border-border bg-background overflow-y-auto p-4">
@@ -167,8 +174,12 @@ function Layout() {
         </main>
 
         {showChat && (
-          <aside className={`sticky ${chatTopOffsetClass} w-[258px] shrink-0 self-start bg-white overflow-hidden flex flex-col`}>
-            <ChatPanel />
+          <aside
+            className={`sticky ${chatTopOffsetClass} ${
+              isChatCollapsed ? "w-[68px]" : "w-[258px]"
+            } shrink-0 self-start bg-white overflow-hidden flex flex-col transition-[width] duration-200 ease-out`}
+          >
+            <ChatPanel collapsed={isChatCollapsed} onToggleCollapsed={() => setIsChatCollapsed((v) => !v)} />
           </aside>
         )}
       </div>
