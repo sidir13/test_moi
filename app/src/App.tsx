@@ -85,9 +85,12 @@ function Layout() {
     currentStep !== "final_validation";
 
   const showStepNavigator = !isProjectSelectionPage;
+  const chatTopOffsetClass = isProjectDetailsPage
+    ? "top-[113px] h-[calc(100vh-113px)]"
+    : "top-[64px] h-[calc(100vh-64px)]";
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-muted">
+    <div className="flex min-h-screen flex-col bg-muted">
       <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-3 bg-background border-b border-border shadow-sm shrink-0">
         <div className="flex min-w-0 items-center gap-3">
           <Link
@@ -149,7 +152,7 @@ function Layout() {
         </div>
       )}
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1">
         {/* <StepNavigator /> hidden on project selection landing */} 
         {showStepNavigator ? (
           <aside className="w-64 shrink-0 border-r border-border bg-background overflow-y-auto p-4">
@@ -157,14 +160,14 @@ function Layout() {
           </aside>
         ) : null}
 
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 p-6">
           <ErrorBoundary>
             <Outlet />
           </ErrorBoundary>
         </main>
 
         {showChat && (
-          <aside className="w-[258px] shrink-0 bg-white overflow-hidden flex flex-col">
+          <aside className={`sticky ${chatTopOffsetClass} w-[258px] shrink-0 self-start bg-white overflow-hidden flex flex-col`}>
             <ChatPanel />
           </aside>
         )}

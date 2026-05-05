@@ -20,8 +20,7 @@ const MOCK_SUGGESTION =
 
 export function ChatPanel() {
   const { t } = useTranslation();
-  const { chatPlaceholder, steps, currentStep, sessionId } = useSessionStore();
-  const availableSkills = steps.find((s) => s.id === currentStep)?.skills ?? [];
+  const { chatPlaceholder, currentStep, sessionId } = useSessionStore();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<string | null>(null);
@@ -126,60 +125,42 @@ export function ChatPanel() {
         </button>
       </div>
 
-      {/* Header: logo + title + subtitle (always visible) */}
-      <div className="mx-auto flex w-full flex-col items-center justify-center pt-14 pb-4 gap-1.5 shrink-0 text-center">
-        <img src={aiLogoUrl} alt="Agent AI" width={52} height={52} className="rounded-full" />
-        <p className="mt-1 text-[20px] font-semibold leading-tight text-foreground [font-family:Inter]">Agent AI</p>
-        <p className="text-[12px] leading-normal text-muted-foreground [font-family:Inter]">You can ask anything</p>
+      {/* Centered hero content */}
+      <div className="flex-1 min-h-0 overflow-hidden">
+        <div className="mx-auto flex h-full w-full flex-col items-center justify-center px-3 text-center">
+          <img src={aiLogoUrl} alt="Agent AI" width={52} height={52} className="rounded-full" />
+          <p className="mt-2 text-[20px] font-semibold leading-tight text-foreground [font-family:Inter]">
+            Agent AI
+          </p>
+          <p className="text-[12px] leading-normal text-muted-foreground [font-family:Inter]">
+            You can ask anything
+          </p>
+        </div>
       </div>
 
-      {/* Skills chips (when available) */}
-      {availableSkills.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 px-3 pb-2 shrink-0">
-          {availableSkills.map((skill) => (
-            <span
-              key={skill}
-              className="rounded-full border border-border px-2.5 py-0.5 text-[10px] text-muted-foreground"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      )}
-
       {/* Messages area */}
-      <div
-        className={cn(
-          "flex-1 overflow-y-auto px-3 space-y-2.5",
-          !chatEnabled && "opacity-50 pointer-events-none"
-        )}
-      >
+      <div className={cn("px-3 pb-3 shrink-0", !chatEnabled && "opacity-50 pointer-events-none")}>
         {isEmpty ? (
-          /* Empty state: push suggestion card toward bottom */
-          <div className="flex flex-col justify-end h-full pb-3">
-            <div className="rounded-2xl border border-border bg-white shadow-sm p-3 space-y-2">
-              <div className="flex flex-wrap gap-1.5">
-                {MOCK_CHIPS.map((chip, i) => (
-                  <span
-                    key={i}
-                    className="rounded-full border border-border px-3 py-0.5 text-[11px] text-foreground cursor-pointer hover:bg-muted transition-colors"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-              <p className="text-[11px] leading-relaxed text-blue-500 italic">
-                {chatPlaceholder ?? MOCK_SUGGESTION}
-              </p>
+          <div className="rounded-2xl border border-border bg-white shadow-sm p-3 space-y-2">
+            <div className="flex flex-wrap gap-1.5">
+              {MOCK_CHIPS.map((chip, i) => (
+                <span
+                  key={i}
+                  className="rounded-full border border-border px-3 py-0.5 text-[11px] text-foreground cursor-pointer hover:bg-muted transition-colors"
+                >
+                  {chip}
+                </span>
+              ))}
             </div>
+            <p className="text-[11px] leading-relaxed text-blue-500 italic">{chatPlaceholder ?? MOCK_SUGGESTION}</p>
           </div>
         ) : (
-          <>
+          <div className="max-h-[180px] overflow-y-auto space-y-2.5">
             {messages.map((msg, idx) => (
               <MessageBubble key={idx} message={msg} />
             ))}
             <div ref={messagesEndRef} />
-          </>
+          </div>
         )}
       </div>
 
