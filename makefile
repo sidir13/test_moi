@@ -12,7 +12,7 @@ QWEN_MODEL_ID ?= Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
 GITPAT ?= YourGITPAT
 
 PYTHON ?= python3
-UV ?= $(PYTHON) -m uv
+UV ?= uv
 NPM ?= npm
 
 ifeq ($(PLATFORM),mac)
@@ -88,9 +88,10 @@ run-app: ensure-env ensure-app
 	$(UV) sync
 	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
 	cd $(APP_DIR) && $(NPM) run build
-	$(PYTHON) -m uv run uvicorn server.app:create_app --factory --host 0.0.0.0 --port 8000 --reload
+	$(UV) run uvicorn server.app:create_app --factory --host 0.0.0.0 --port 8000 --reload
 
 dev: ensure-env ensure-app
 	$(UV) sync
 	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
-	$(PYTHON) -m uv run uvicorn server.app:create_app --factory --host 0.0.0.0 --port 8000 --reload & cd $(APP_DIR) && $(NPM) run dev
+	$(UV) run uvicorn server.app:create_app --factory --host 0.0.0.0 --port 8000 --reload & \
+	cd $(APP_DIR) && $(NPM) run dev
