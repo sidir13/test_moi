@@ -20,6 +20,7 @@ import { ScenarioEditView } from "./views/ScenarioEditView";
 import { FinalValidationView } from "./views/FinalValidationView";
 import { ConfigurationScenarioView } from "./views/ConfigurationScenarioView";
 import { ChoixScenarioView } from "./views/ChoixScenarioView";
+import { EditionTextView } from "./views/EditionTextView";
 
 type StepId =
   | "project_selection"
@@ -30,7 +31,8 @@ type StepId =
   | "scenario_edit"
   | "final_validation"
   | "configuration_scenario"
-  | "choix_scenario";
+  | "choix_scenario"
+  | "edition_text";
 
 const STEP_COMPONENTS: Record<StepId, React.ComponentType> = {
   project_selection: ProjectSelectionView,
@@ -41,7 +43,8 @@ const STEP_COMPONENTS: Record<StepId, React.ComponentType> = {
   scenario_edit: ScenarioEditView,
   final_validation: FinalValidationView,
   configuration_scenario: ConfigurationScenarioView,
-  choix_scenario: ChoixScenarioView
+  choix_scenario: ChoixScenarioView,
+  edition_text: EditionTextView
 };
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
@@ -74,7 +77,9 @@ function Layout() {
   const isProjectDetailsPage = location.pathname === "/step/project_details";
   const isConfigurationScenarioPage = location.pathname === "/step/configuration_scenario";
   const isChoixScenarioPage = location.pathname === "/step/choix_scenario";
-  const showTopProjectBanner = isProjectDetailsPage || isConfigurationScenarioPage || isChoixScenarioPage;
+  const isEditionTextPage = location.pathname === "/step/edition_text";
+  const showTopProjectBanner =
+    isProjectDetailsPage || isConfigurationScenarioPage || isChoixScenarioPage || isEditionTextPage;
   const [showProjectDetailsBanner, setShowProjectDetailsBanner] = useState(true);
   const [isChatCollapsed, setIsChatCollapsed] = useState(false);
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
@@ -97,6 +102,7 @@ function Layout() {
   const showChat =
     isConfigurationScenarioPage ||
     isChoixScenarioPage ||
+    isEditionTextPage ||
     (Boolean(currentStep) &&
       !isProjectSelectionPage &&
       currentStep !== "project_selection" &&

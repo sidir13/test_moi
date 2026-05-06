@@ -306,7 +306,7 @@ export function ScenarioEditView() {
   const heading = scenarioTitle ? `Modifier le scénario — ${scenarioTitle}` : "Modifier le scénario";
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
+    <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-6">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">{heading}</h2>

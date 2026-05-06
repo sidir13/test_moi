@@ -88,4 +88,4 @@ run-app: ensure-env ensure-app
 	$(UV) sync
 	cd $(APP_DIR) && $(NPM) install --legacy-peer-deps
 	cd $(APP_DIR) && $(NPM) run build
-	$(UV) run uvicorn server.app:create_app --factory --reload
+	$(PYTHON) -m uv run uvicorn server.app:create_app --factory --host 0.0.0.0 --port 8000 --reload

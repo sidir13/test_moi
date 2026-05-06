@@ -238,7 +238,7 @@ export function ProjectDetailsView() {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
+    <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-6">
       {showTranscriptionBlock && (
       <section className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white">
         <div className="flex items-center justify-between gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
@@ -253,6 +253,10 @@ export function ProjectDetailsView() {
           </div>
           <button
             type="button"
+            onClick={() => {
+              setCurrentStep("configuration_scenario");
+              navigate("/step/configuration_scenario");
+            }}
             className="inline-flex h-[38px] shrink-0 items-center gap-1 rounded-xl bg-[#007AFF] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#006ae0]"
           >
             <Plus className="h-4 w-4" />
