@@ -4,25 +4,28 @@ import os
 from pathlib import Path
 from typing import List
 
-from PIL import Image
 
-try:  # MoviePy 2.x public API
-    from moviepy import AudioFileClip, ImageClip, concatenate_videoclips  # type: ignore
-    import moviepy.video.fx as vfx  # type: ignore
+def _import_moviepy():
+    """Lazy import of moviepy to avoid slow startup."""
+    global AudioFileClip, ImageClip, concatenate_videoclips, vfx, _HAS_NEW_API, _resize_fx
+    try:  # MoviePy 2.x public API
+        from moviepy import AudioFileClip, ImageClip, concatenate_videoclips  # type: ignore
+        import moviepy.video.fx as vfx  # type: ignore
+        _HAS_NEW_API = hasattr(ImageClip, "with_duration")
+        _resize_fx = None
+    except Exception:  # pragma: no cover - fallback for dev builds
+        from moviepy.audio.io.AudioFileClip import AudioFileClip  # type: ignore
+        from moviepy.video.VideoClip import ImageClip  # type: ignore
+        from moviepy.video.compositing.concatenate import concatenate_videoclips  # type: ignore
+        from moviepy.video.fx.resize import resize as _resize_fx  # type: ignore
+        vfx = None  # type: ignore
+        _HAS_NEW_API = False
 
-    _HAS_NEW_API = hasattr(ImageClip, "with_duration")
-    _resize_fx = None
-except Exception:  # pragma: no cover - fallback for dev builds
-    from moviepy.audio.io.AudioFileClip import AudioFileClip  # type: ignore
-    from moviepy.video.VideoClip import ImageClip  # type: ignore
-    from moviepy.video.compositing.concatenate import concatenate_videoclips  # type: ignore
-    from moviepy.video.fx.resize import resize as _resize_fx  # type: ignore
-
-    vfx = None  # type: ignore
-    _HAS_NEW_API = False
+AudioFileClip = ImageClip = concatenate_videoclips = vfx = _resize_fx = None  # type: ignore
+_HAS_NEW_API = False
 
 
-def _set_duration(clip: ImageClip, seconds: float) -> ImageClip:
+def _set_duration(clip, seconds: float):
     return clip.with_duration(seconds) if _HAS_NEW_API else clip.set_duration(seconds)
 
 
@@ -30,7 +33,7 @@ def _set_audio(video_clip, audio_clip):
     return video_clip.with_audio(audio_clip) if hasattr(video_clip, "with_audio") else video_clip.set_audio(audio_clip)
 
 
-def _resize_to_1080p(clip: ImageClip) -> ImageClip:
+def _resize_to_1080p(clip):
     if _HAS_NEW_API and vfx:
         return clip.with_effects([vfx.Resize((1920, 1080))])
     if _resize_fx is None:
@@ -40,6 +43,7 @@ def _resize_to_1080p(clip: ImageClip) -> ImageClip:
 
 def clean_images(directory: Path) -> List[Path]:
     """Convert WEBP images to JPG so MoviePy can ingest the folder safely."""
+    from PIL import Image
     sanitized: List[Path] = []
     for filename in sorted(os.listdir(directory)):
         source = directory / filename
@@ -60,6 +64,7 @@ def clean_images(directory: Path) -> List[Path]:
 
 def slideshow(image_dir: str, audio_file: str, output_path: str) -> str:
     """Create a slideshow video matching 100% of the audio duration."""
+    _import_moviepy()
     directory = Path(image_dir)
     if not directory.exists():
         raise FileNotFoundError(f"Dossier d'images introuvable: {directory}")

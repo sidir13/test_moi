@@ -8,12 +8,10 @@ import re
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 import logging
 
 import soundfile as sf
-import torch
-from qwen_tts import Qwen3TTSModel
 
 from memoiredesterritoires.project_config import (
     DEFAULT_PROJECT_NAME,
@@ -25,10 +23,10 @@ logger = logging.getLogger(__name__)
 DEFAULT_PROJECT = DEFAULT_PROJECT_NAME
 LOCAL_MODEL_DIR = Path(os.getenv("QWEN_TTS_LOCAL_DIR", "models/qwen3-tts")).expanduser()
 DEFAULT_MODEL = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
-_MODEL_CACHE: Dict[str, Qwen3TTSModel] = {}
+_MODEL_CACHE: Dict[str, Any] = {}
 
 
-def _detect_device() -> tuple[str, torch.dtype]:
+def _detect_device() -> tuple[str, Any]:
     """
     Pick the most capable device available along with a numerically stable dtype.
 
@@ -36,6 +34,7 @@ def _detect_device() -> tuple[str, torch.dtype]:
         Qwen TTS occasionally produces NaNs on MPS when using float16, so we keep
         float32 there even if it is slower to avoid RuntimeError during sampling.
     """
+    import torch
     if torch.cuda.is_available():
         return "cuda", torch.float16
     if torch.backends.mps.is_available():
@@ -72,7 +71,9 @@ def _resolve_model_source(model_name: str) -> tuple[str, dict]:
     return model_name, {"cache_dir": str(LOCAL_MODEL_DIR)}
 
 
-def _load_model(model_source: str, device: str, dtype: torch.dtype, source_kwargs: dict) -> Qwen3TTSModel:
+def _load_model(model_source: str, device: str, dtype: Any, source_kwargs: dict) -> Any:
+    import torch  # noqa: F401 – needed for dtype resolution
+    from qwen_tts import Qwen3TTSModel
     cache_key = f"{model_source}:{device}:{dtype}"
     model = _MODEL_CACHE.get(cache_key)
     if model is None:

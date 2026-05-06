@@ -1,7 +1,4 @@
 from pathlib import Path
-import librosa
-import soundfile as sf
-import numpy as np
 
 """
 ═══════════════════════════════════════════════════════════════
@@ -49,7 +46,10 @@ def mix_voice_with_noise(
         ...     noise_start_offset=3.0
         ... )
     """
-    
+    import librosa
+    import soundfile as sf
+    import numpy as np
+
     print("="*60)
     print("🎙️ MIXAGE VOIX + BRUIT DE FOND")
     print("="*60)
@@ -189,4 +189,4 @@ def mix_voice_with_noise(
         "actual_snr": round(actual_snr, 2),
     }
 
-print("✓ Fonction de mixage chargée")
+
