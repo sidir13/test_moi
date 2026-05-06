@@ -104,6 +104,7 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
   };
 
   const isEmpty = messages.length === 0;
+  const displaySuggestion = chatPlaceholder?.trim() ? chatPlaceholder : MOCK_SUGGESTION;
 
   if (collapsed) {
     return (
@@ -158,18 +159,25 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
       {/* Messages area */}
       <div className="px-3 pb-3 shrink-0">
         {isEmpty ? (
-          <div className="rounded-2xl border border-border bg-white shadow-sm p-3 space-y-2">
-            <div className="flex flex-wrap gap-1.5">
-              {MOCK_CHIPS.map((chip, i) => (
-                <span
-                  key={i}
-                  className="rounded-full border border-border px-3 py-0.5 text-[11px] text-foreground cursor-pointer hover:bg-muted transition-colors"
-                >
-                  {chip}
+          <div className="mx-auto flex w-[234px] flex-col gap-[14px] rounded-[14px] border border-[#007AFF] bg-white p-3">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-1">
+                {MOCK_CHIPS.slice(0, 2).map((chip, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[40px] border border-[#E2E8F0] bg-white px-4 py-1.5 text-[14px] font-normal leading-[14px] text-[#45556C]"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+              <div>
+                <span className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-[40px] border border-[#E2E8F0] bg-white px-4 py-1.5 text-[14px] font-normal leading-[14px] text-[#45556C]">
+                  {MOCK_CHIPS[2]}
                 </span>
-              ))}
+              </div>
             </div>
-            <p className="text-[11px] leading-relaxed text-blue-500 italic">{chatPlaceholder ?? MOCK_SUGGESTION}</p>
+            <p className="w-full text-[14px] font-normal leading-[14px] text-[#007AFF]">{displaySuggestion}</p>
           </div>
         ) : (
           <div className="max-h-[180px] overflow-y-auto space-y-2.5">
@@ -182,7 +190,7 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
       </div>
 
       {/* Input area */}
-      <div className="shrink-0 px-3 py-3">
+      <div className="shrink-0 bg-[#F8FAFC] px-3 py-4 rounded-b-[14px] border-x-[0.8px] border-b-[0.8px] border-[#E2E8F0]">
         {status && (
           <p className="text-[10px] text-destructive mb-1.5 flex items-center gap-1">
             <AlertCircle className="h-3 w-3" />
@@ -191,7 +199,7 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
         )}
         <form
           onSubmit={send}
-          className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2"
+          className="flex h-[37.6px] items-center justify-between gap-2 rounded-[32px] border-[0.8px] border-[#007AFF] bg-white px-3 py-2"
         >
           <input
             value={input}
@@ -202,15 +210,15 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
                 : "Message"
             }
             disabled={!chatEnabled}
-            className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-muted-foreground/60 outline-none disabled:cursor-not-allowed"
+            className="flex-1 bg-transparent text-[14px] font-normal text-[#45556C] placeholder:text-[#45556C] outline-none disabled:cursor-not-allowed"
           />
           <button
             type="submit"
             disabled={!chatEnabled || !input.trim()}
-            className="flex items-center justify-center w-6 h-6 rounded-full bg-[#2D3748] hover:bg-[#1a202c] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
             aria-label="Envoyer"
           >
-            <ArrowUp className="h-3 w-3 text-white" />
+            <ArrowUp className="h-4 w-4 text-[#007AFF]" />
           </button>
         </form>
       </div>

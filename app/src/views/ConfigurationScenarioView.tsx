@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   Sparkles,
   Settings,
@@ -11,14 +12,20 @@ import {
   RotateCcw,
   Check,
 } from "lucide-react";
+import { fetchProjectProfile } from "@/api/client";
+import { useSessionStore } from "@/hooks/useSessionStore";
 
 export function ConfigurationScenarioView() {
+  const { projectName, lastProjectName, setProjectName } = useSessionStore();
+  const resolvedProjectName = projectName ?? lastProjectName;
   const [isOpen, setIsOpen] = useState(false);
   const [showAiDropdown, setShowAiDropdown] = useState(false);
+  const [showAudienceDropdown, setShowAudienceDropdown] = useState(false);
+  const [showToneDropdown, setShowToneDropdown] = useState(false);
   const [aiProvider, setAiProvider] = useState<"eleven_labs" | "qwen_local">("eleven_labs");
   const [prompt, setPrompt] = useState("");
-  const [targetAudience] = useState("Sélectionnez");
-  const [narrativeTone] = useState("Sélectionnez");
+  const [targetAudience, setTargetAudience] = useState("Sélectionnez");
+  const [narrativeTone, setNarrativeTone] = useState("Sélectionnez");
   const [sourceMatch, setSourceMatch] = useState(70);
   const [durationSeconds, setDurationSeconds] = useState(275);
   const maxChars = 3000;
@@ -35,6 +42,32 @@ export function ConfigurationScenarioView() {
     },
   ];
   const selectedAi = aiOptions.find((o) => o.id === aiProvider) ?? aiOptions[0];
+  const projectProfileQuery = useQuery({
+    queryKey: ["configuration-project-profile", resolvedProjectName],
+    queryFn: () => fetchProjectProfile(resolvedProjectName!),
+    enabled: Boolean(resolvedProjectName),
+  });
+  const audienceOptions = projectProfileQuery.data?.preference_options?.audience_options ?? [];
+  const toneOptions = projectProfileQuery.data?.preference_options?.tone_options ?? [];
+
+  useEffect(() => {
+    if (!projectName && lastProjectName) {
+      setProjectName(lastProjectName);
+    }
+  }, [projectName, lastProjectName, setProjectName]);
+
+  useEffect(() => {
+    if (!projectProfileQuery.data) return;
+    const selectedAudience = projectProfileQuery.data.audience ?? audienceOptions[0] ?? "Sélectionnez";
+    const selectedTone = projectProfileQuery.data.tone ?? toneOptions[0] ?? "Sélectionnez";
+    setTargetAudience(formatOptionLabel(selectedAudience));
+    setNarrativeTone(formatOptionLabel(selectedTone));
+  }, [projectProfileQuery.data, audienceOptions, toneOptions]);
+
+  const displayAudienceOptions =
+    audienceOptions.length > 0 ? audienceOptions.map(formatOptionLabel) : ["Sélectionnez"];
+  const displayToneOptions =
+    toneOptions.length > 0 ? toneOptions.map(formatOptionLabel) : ["Sélectionnez"];
 
   return (
     <div className="w-full max-w-[870px] min-h-[806px] overflow-y-auto p-6">
@@ -117,7 +150,7 @@ export function ConfigurationScenarioView() {
                   </button>
 
                   {showAiDropdown && (
-                    <div className="absolute left-0 top-[46px] z-30 w-[340px] overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+                    <div className="absolute right-0 top-[46px] z-30 w-[340px] -translate-x-4 overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
                       {aiOptions.map((option, idx) => (
                         <button
                           key={option.id}
@@ -142,41 +175,89 @@ export function ConfigurationScenarioView() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
+                  <div className="relative flex flex-col gap-2">
                     <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Cible public</label>
                     <button
                       type="button"
+                      onClick={() => {
+                        setShowAudienceDropdown((v) => !v);
+                        setShowToneDropdown(false);
+                      }}
                       className="inline-flex h-9 w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] px-3 text-[14px] font-normal text-[#45556C]"
                     >
                       <span>{targetAudience}</span>
                       <ChevronDown className="h-4 w-4" />
                     </button>
+                    {showAudienceDropdown && (
+                      <div className="absolute left-0 top-[68px] z-20 w-full overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+                        {displayAudienceOptions.map((option, index) => (
+                          <button
+                            key={`${option}-${index}`}
+                            type="button"
+                            onClick={() => {
+                              setTargetAudience(option);
+                              setShowAudienceDropdown(false);
+                            }}
+                            className={`w-full px-3 py-2 text-left text-[14px] text-[#45556C] transition-colors hover:bg-[#F8FAFC] ${
+                              index < displayAudienceOptions.length - 1 ? "border-b border-[#E2E8F0]" : ""
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="relative flex flex-col gap-2">
                     <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Ton narratif</label>
                     <button
                       type="button"
+                      onClick={() => {
+                        setShowToneDropdown((v) => !v);
+                        setShowAudienceDropdown(false);
+                      }}
                       className="inline-flex h-9 w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] px-3 text-[14px] font-normal text-[#45556C]"
                     >
                       <span>{narrativeTone}</span>
                       <ChevronDown className="h-4 w-4" />
                     </button>
+                    {showToneDropdown && (
+                      <div className="absolute left-0 top-[68px] z-20 w-full overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+                        {displayToneOptions.map((option, index) => (
+                          <button
+                            key={`${option}-${index}`}
+                            type="button"
+                            onClick={() => {
+                              setNarrativeTone(option);
+                              setShowToneDropdown(false);
+                            }}
+                            className={`w-full px-3 py-2 text-left text-[14px] text-[#45556C] transition-colors hover:bg-[#F8FAFC] ${
+                              index < displayToneOptions.length - 1 ? "border-b border-[#E2E8F0]" : ""
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Choisir une voix</label>
-                  <button
-                    type="button"
-                    className="inline-flex min-h-[66px] w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] p-3"
-                  >
-                    <span className="inline-flex items-center gap-2 text-[14px] font-medium text-[#0F172B]">
-                      <AudioLines className="h-4 w-4" />
-                      Ben – Calm, Older, Masculine
-                    </span>
-                    <ChevronDown className="h-4 w-4 text-[#45556C]" />
-                  </button>
-                </div>
+                {aiProvider !== "qwen_local" && (
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Choisir une voix</label>
+                    <button
+                      type="button"
+                      className="inline-flex min-h-[66px] w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] p-3"
+                    >
+                      <span className="inline-flex items-center gap-2 text-[14px] font-medium text-[#0F172B]">
+                        <AudioLines className="h-4 w-4" />
+                        Ben – Calm, Older, Masculine
+                      </span>
+                      <ChevronDown className="h-4 w-4 text-[#45556C]" />
+                    </button>
+                  </div>
+                )}
 
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between text-[14px] font-medium leading-5 text-[#0F172B]">
@@ -239,4 +320,12 @@ export function ConfigurationScenarioView() {
       </section>
     </div>
   );
+}
+
+function formatOptionLabel(value: string) {
+  if (!value || value === "Sélectionnez") return value || "Sélectionnez";
+  return value
+    .split("_")
+    .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(" ");
 }

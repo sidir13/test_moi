@@ -1,4 +1,30 @@
 {
+  "meta": {
+    "version": "1.0",
+    "purpose": "Mock contract for project details widgets aligned with current backend endpoints"
+  },
+  "backend_contract": {
+    "project_profile_endpoint": {
+      "method": "GET",
+      "path": "/projects/{project_name}"
+    },
+    "project_audio_endpoint": {
+      "method": "GET",
+      "path": "/projects/{project_name}/audio"
+    },
+    "project_transcriptions_endpoint": {
+      "method": "GET",
+      "path": "/projects/{project_name}/transcriptions"
+    },
+    "transcription_update_endpoint": {
+      "method": "POST",
+      "path": "/projects/{project_name}/transcriptions",
+      "payload": {
+        "file_name": "string",
+        "transcription": "string"
+      }
+    }
+  },
   "transcriptionBlock": {
     "subtitle": "Lire et modifier la transcription des fichiers audio.",
     "fallbackFileName": "interview_001.mp3",

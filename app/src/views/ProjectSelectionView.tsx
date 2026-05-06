@@ -18,6 +18,7 @@ import {
 
 import {
   createProject,
+  deleteProject,
   uploadAudio,
   createSession,
   fetchProjects,
@@ -427,9 +428,18 @@ export function ProjectSelectionView() {
                                   type="button"
                                   role="menuitem"
                                   className="flex h-[57px] w-full items-center gap-2 border-t border-[#E2E8F0] px-3 py-2 text-left text-[#FF1700] hover:bg-muted"
-                                  onClick={() => {
+                                  onClick={async () => {
                                     setMenuProject(null);
-                                    setError("La suppression d'archive n'est pas encore branchée côté API.");
+                                    try {
+                                      setError(null);
+                                      await deleteProject(project.name);
+                                      if (lastProjectName === project.name) {
+                                        setLastProjectName(undefined);
+                                      }
+                                      await refetch();
+                                    } catch (err) {
+                                      setError((err as Error).message);
+                                    }
                                   }}
                                 >
                                   <Trash2 className="size-4 shrink-0" />

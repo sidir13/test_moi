@@ -2308,6 +2308,40 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             "audio_selection": audio_selection,
         }
 
+    @app.delete("/projects/{project_name}", tags=["projects"])
+    async def delete_project(project_name: str) -> dict:
+        project_dir = settings.projects_dir / project_name
+        if not project_dir.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+
+        try:
+            shutil.rmtree(project_dir)
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Impossible de supprimer le projet: {exc}") from exc
+
+        # Nettoyage des métadonnées de fichiers projet côté session store (best effort).
+        try:
+            project_meta_path = settings.session_store / f"{project_name}_files.json"
+            if project_meta_path.exists():
+                project_meta_path.unlink()
+        except Exception as exc:
+            logger.warning("Could not delete project files metadata for %s: %s", project_name, exc)
+
+        # Nettoyage des sessions liées au projet supprimé (best effort).
+        try:
+            for session_file in settings.session_store.glob("*.json"):
+                try:
+                    payload = json.loads(session_file.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if payload.get("project_name") == project_name:
+                    session_file.unlink(missing_ok=True)
+        except Exception as exc:
+            logger.warning("Could not cleanup sessions for %s: %s", project_name, exc)
+
+        log_progress("PROJECT_DELETED", project=project_name)
+        return {"status": "deleted", "project": project_name}
+
     @app.get("/projects/{project_name}/transcriptions", tags=["projects"])
     async def get_project_transcriptions(project_name: str) -> dict:
         project_dir = settings.projects_dir / project_name

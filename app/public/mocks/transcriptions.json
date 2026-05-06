@@ -1,4 +1,30 @@
 {
+  "meta": {
+    "version": "1.0",
+    "purpose": "Mock transcription payload aligned with backend transcription endpoints"
+  },
+  "backend_contract": {
+    "list_transcriptions_endpoint": {
+      "method": "GET",
+      "path": "/projects/{project_name}/transcriptions",
+      "response_shape": {
+        "project": "string",
+        "transcriptions": "ProjectTranscription[]"
+      }
+    },
+    "update_transcription_endpoint": {
+      "method": "POST",
+      "path": "/projects/{project_name}/transcriptions",
+      "payload": {
+        "file_name": "string",
+        "transcription": "string"
+      }
+    },
+    "download_transcription_endpoint": {
+      "method": "GET",
+      "path": "/projects/{project_name}/transcriptions/{file_name}/download"
+    }
+  },
   "transcriptions": [
     {
       "file_name": "interview_001.mp3",

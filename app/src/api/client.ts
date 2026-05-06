@@ -134,6 +134,11 @@ export async function createProject(payload: { name: string; description?: strin
   return data;
 }
 
+export async function deleteProject(projectName: string) {
+  const { data } = await api.delete(`/projects/${encodeURIComponent(projectName)}`);
+  return data as { status: string; project: string };
+}
+
 export async function createSession(projectName: string, initialStep = "project_selection", scenarioTarget?: number) {
   const { data } = await api.post("/sessions", {
     project_name: projectName,
