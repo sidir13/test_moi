@@ -11,9 +11,9 @@ QWEN_MODEL_ID ?= Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
 
 GITPAT ?= YourGITPAT
 
-UV ?= uv
-NPM ?= npm
 PYTHON ?= python3
+UV ?= $(PYTHON) -m uv
+NPM ?= npm
 
 ifeq ($(PLATFORM),mac)
 	DOCKER_PLATFORM := linux/arm64
