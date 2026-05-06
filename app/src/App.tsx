@@ -19,6 +19,7 @@ import { ScenarioReviewView } from "./views/ScenarioReviewView";
 import { ScenarioEditView } from "./views/ScenarioEditView";
 import { FinalValidationView } from "./views/FinalValidationView";
 import { ConfigurationScenarioView } from "./views/ConfigurationScenarioView";
+import { ChoixScenarioView } from "./views/ChoixScenarioView";
 
 type StepId =
   | "project_selection"
@@ -28,7 +29,8 @@ type StepId =
   | "scenario_review"
   | "scenario_edit"
   | "final_validation"
-  | "configuration_scenario";
+  | "configuration_scenario"
+  | "choix_scenario";
 
 const STEP_COMPONENTS: Record<StepId, React.ComponentType> = {
   project_selection: ProjectSelectionView,
@@ -38,7 +40,8 @@ const STEP_COMPONENTS: Record<StepId, React.ComponentType> = {
   scenario_review: ScenarioReviewView,
   scenario_edit: ScenarioEditView,
   final_validation: FinalValidationView,
-  configuration_scenario: ConfigurationScenarioView
+  configuration_scenario: ConfigurationScenarioView,
+  choix_scenario: ChoixScenarioView
 };
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
@@ -70,7 +73,8 @@ function Layout() {
   const location = useLocation();
   const isProjectDetailsPage = location.pathname === "/step/project_details";
   const isConfigurationScenarioPage = location.pathname === "/step/configuration_scenario";
-  const showTopProjectBanner = isProjectDetailsPage || isConfigurationScenarioPage;
+  const isChoixScenarioPage = location.pathname === "/step/choix_scenario";
+  const showTopProjectBanner = isProjectDetailsPage || isConfigurationScenarioPage || isChoixScenarioPage;
   const [showProjectDetailsBanner, setShowProjectDetailsBanner] = useState(true);
   const [isChatCollapsed, setIsChatCollapsed] = useState(false);
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
@@ -92,6 +96,7 @@ function Layout() {
 
   const showChat =
     isConfigurationScenarioPage ||
+    isChoixScenarioPage ||
     (Boolean(currentStep) &&
       !isProjectSelectionPage &&
       currentStep !== "project_selection" &&
