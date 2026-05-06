@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "version": "1.0",
+    "purpose": "Mock contract for Configuration Scenario page aligned with current backend payloads"
+  },
+  "backend_contract": {
+    "scenario_generation_request": {
+      "session_id": "SESSION_ID_REQUIRED",
+      "prompt": "Présente son histoire, son apprentissage dans une première partie...",
+      "mode": "simple",
+      "output_dir": "./output",
+      "scenario_target": 3,
+      "model_id": null
+    },
+    "project_profile_payload_hint": {
+      "audience": "scolaire_secondaire",
+      "tone": "journalistique_factuel",
+      "target_duration": 275,
+      "voice_instructions": "Use a calm, older, masculine narrator.",
+      "tts_provider": "elevenlabs",
+      "include_citations": true,
+      "source_usage_level": "modere"
+    },
+    "available_modes": ["simple", "expert"],
+    "available_tts_providers": ["elevenlabs", "qwen"],
+    "available_source_usage_levels": ["leger", "modere", "central"]
+  },
+  "ui_state": {
+    "scenario_target_limit": {
+      "min": 1,
+      "max": 5
+    },
+    "models": [
+      {
+        "id": "opus",
+        "label": "Claude Opus",
+        "provider": "Anthropic"
+      },
+      {
+        "id": "sonnet",
+        "label": "Claude Sonnet",
+        "provider": "Anthropic"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "title": "Scénario 1",
+        "is_open": true,
+        "prompt": "Ex. : Présente son histoire, son apprentissage dans une première partie...",
+        "prompt_max_chars": 3000,
+        "prompt_char_count": 78,
+        "ai_provider": "elevenlabs",
+        "target_audience": "scolaire_secondaire",
+        "narrative_tone": "journalistique_factuel",
+        "voice": {
+          "id": "ben_calm_older_masculine",
+          "label": "Ben – Calm, Older, Masculine"
+        },
+        "source_match": 70,
+        "duration_seconds": 275
+      }
+    ],
+    "add_scenario": {
+      "enabled": true,
+      "hint": "Vous pouvez générer jusqu'à 3 scénarios."
+    }
+  }
+}

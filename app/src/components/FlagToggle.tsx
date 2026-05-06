@@ -1,31 +1,31 @@
+import { useSessionStore } from "@/hooks/useSessionStore";
 import { useTranslation } from "react-i18next";
-
-import { useSessionStore } from "../hooks/useSessionStore";
-
-const flags: Record<string, string> = {
-  fr: "🇫🇷",
-  en: "🇬🇧"
-};
+import { cn } from "@/lib/utils";
 
 export function FlagToggle() {
+  const { language, setLanguage } = useSessionStore();
   const { i18n } = useTranslation();
-  const { setLanguage } = useSessionStore();
 
-  const switchLanguage = (lang: "fr" | "en") => {
+  const toggle = (lang: "fr" | "en") => {
     setLanguage(lang);
     i18n.changeLanguage(lang);
   };
 
   return (
-    <div className="flag-toggle">
-      {Object.entries(flags).map(([lang, emoji]) => (
+    <div className="flex items-center gap-1 rounded-full border border-border bg-muted p-0.5">
+      {(["fr", "en"] as const).map((lang) => (
         <button
           key={lang}
-          onClick={() => switchLanguage(lang as "fr" | "en")}
-          className={i18n.language === lang ? "active" : ""}
-          aria-label={`Switch to ${lang}`}
+          type="button"
+          onClick={() => toggle(lang)}
+          className={cn(
+            "rounded-full px-3 py-1 text-sm font-medium transition-all",
+            language === lang
+              ? "bg-background text-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          )}
         >
-          {emoji}
+          {lang === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
         </button>
       ))}
     </div>

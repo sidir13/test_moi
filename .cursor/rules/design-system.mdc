@@ -1,0 +1,16 @@
+---
+description: Mémoire des Territoires — couleurs et typo Figma uniquement (frontend)
+globs: app/**/*
+alwaysApply: false
+---
+
+# Design system — obligation
+
+Pour tout fichier sous `app/` (React, styles, assets UI) :
+
+1. **Couleurs** : utiliser **uniquement** la palette documentée dans `docs/DESIGN_SYSTEM.md` (racine du dépôt). Ne pas introduire d’autres hex / hsl pour l’UI (sauf transparence déjà définie : overlay 30 %, stroke 10 %).
+2. **Typographie** : **Inter** uniquement, avec les combinaisons taille / graisse / line-height du cheat sheet (H1–H3, sous-titres, corps, bouton, pastille).
+3. **Composants** : s’aligner sur les patterns Figma listés (Primary Button, Input, Checkbox, Navigation, Modal, Cards, Badge, Form) ; les états (hover, disabled, error) doivent rester cohérents avec les couleurs SYSTEM et BRAND.
+4. Avant d’ajouter une couleur ou une taille de police : vérifier si elle existe déjà dans le design system ; sinon **étendre d’abord** `docs/DESIGN_SYSTEM.md` (avec validation produit) plutôt que d’improviser dans le code.
+
+Référence unique : `docs/DESIGN_SYSTEM.md`.

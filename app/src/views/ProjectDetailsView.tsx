@@ -1,15 +1,42 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { Loader2, Save, ChevronRight, FileText, Plus, Download, X, ChevronDown, Pause, Volume2, Network, Eye, Sparkles } from "lucide-react";
 
-import { advanceStep, fetchProjectProfile } from "../api/client";
-import { useSessionStore } from "../hooks/useSessionStore";
+import { advanceStep, fetchProjectAudio, fetchProjectProfile, fetchProjectTranscriptions } from "@/api/client";
+import { useSessionStore } from "@/hooks/useSessionStore";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
+import { Separator } from "@/components/ui/separator";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+
+const DEFAULT_DURATION_SECONDS = 120;
+const MIN_DURATION_SECONDS = 30;
+
+const formatOptionLabel = (value: string) =>
+  value
+    .split("_")
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join(" ");
+
+const formatDuration = (seconds: number) => {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return [mins > 0 ? `${mins} min` : "", `${secs.toString().padStart(2, "0")} s`]
+    .filter(Boolean)
+    .join(" ");
+};
 
 export function ProjectDetailsView() {
-  const { sessionId, projectName, currentStep, setCurrentStep, setProgress } = useSessionStore();
+  const { sessionId, projectName, setCurrentStep, setProgress } = useSessionStore();
   const navigate = useNavigate();
-  const DEFAULT_DURATION_SECONDS = 120;
-  const MIN_DURATION_SECONDS = 30;
+
   const [notes, setNotes] = useState("");
   const [audience, setAudience] = useState("");
   const [tone, setTone] = useState("");
@@ -19,6 +46,9 @@ export function ProjectDetailsView() {
   const [includeCitations, setIncludeCitations] = useState(true);
   const [sourceUsageLevel, setSourceUsageLevel] = useState<"leger" | "modere" | "central">("modere");
   const [status, setStatus] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [showTranscriptionBlock, setShowTranscriptionBlock] = useState(true);
+
   const notesPrefilledFor = useRef<string | null>(null);
   const progressPrefilledFor = useRef<string | null>(null);
   const preferencesPrefilledFor = useRef<string | null>(null);
@@ -28,10 +58,48 @@ export function ProjectDetailsView() {
     queryFn: () => fetchProjectProfile(projectName!),
     enabled: Boolean(projectName)
   });
-
-  if (!sessionId) {
-    return <p>Créez ou sélectionnez un projet pour continuer.</p>;
-  }
+  const projectAudioQuery = useQuery({
+    queryKey: ["project-audio-files", projectName],
+    queryFn: () => fetchProjectAudio(projectName!),
+    enabled: Boolean(projectName),
+  });
+  const transcriptionsQuery = useQuery({
+    queryKey: ["project-transcriptions", projectName],
+    queryFn: () => fetchProjectTranscriptions(projectName!),
+    enabled: Boolean(projectName),
+  });
+  const mockTranscriptionsQuery = useQuery({
+    queryKey: ["mock-transcriptions"],
+    queryFn: async () => {
+      const response = await fetch("/mocks/transcriptions.json");
+      if (!response.ok) throw new Error("Impossible de charger le mock transcriptions");
+      return response.json() as Promise<{
+        transcriptions: Array<{
+          file_name: string;
+          transcription: string;
+          summary?: { global_summary?: string; topics?: Array<{ title: string }> };
+        }>;
+      }>;
+    },
+  });
+  const mockDetailsQuery = useQuery({
+    queryKey: ["project-details-mock"],
+    queryFn: async () => {
+      const response = await fetch("/mocks/project-details.json");
+      if (!response.ok) throw new Error("Impossible de charger le mock project-details");
+      return response.json() as Promise<{
+        transcriptionBlock?: {
+          subtitle?: string;
+          fallbackFileName?: string;
+          fallbackTopics?: string[];
+          fallbackTitle?: string;
+          fallbackText?: string;
+        };
+        knowledgeGraph?: { title?: string; subtitle?: string; keywordsCount?: number };
+        artifacts?: { title?: string; subtitle?: string; emptyState?: boolean };
+      }>;
+    },
+  });
 
   useEffect(() => {
     if (!projectName) {
@@ -39,6 +107,10 @@ export function ProjectDetailsView() {
       progressPrefilledFor.current = null;
       preferencesPrefilledFor.current = null;
     }
+  }, [projectName]);
+
+  useEffect(() => {
+    setShowTranscriptionBlock(true);
   }, [projectName]);
 
   useEffect(() => {
@@ -52,48 +124,36 @@ export function ProjectDetailsView() {
     if (!projectName || !profileQuery.data) return;
     if (preferencesPrefilledFor.current === projectName) return;
     const pref = profileQuery.data.preference_options;
-    const durationSettings = pref?.duration;
-    const clampDuration = (value: number): number => {
-      if (!durationSettings) return value;
-      const min = durationSettings.min;
-      const max = durationSettings.max;
-      return Math.min(max, Math.max(min, value));
-    };
+    const ds = pref?.duration;
+    const clamp = (v: number) => (ds ? Math.min(ds.max, Math.max(ds.min, v)) : v);
     setAudience(profileQuery.data.audience ?? "");
     setTone(profileQuery.data.tone ?? "");
     setVoiceInstructions(profileQuery.data.voice_instructions ?? "");
-    const providerValue = profileQuery.data.tts_provider === "qwen" ? "qwen" : "elevenlabs";
-    setTtsProvider(providerValue);
+    setTtsProvider(profileQuery.data.tts_provider === "qwen" ? "qwen" : "elevenlabs");
     setIncludeCitations(profileQuery.data.include_citations !== false);
-    const savedSourceLevel = profileQuery.data.source_usage_level;
-    if (savedSourceLevel === "leger" || savedSourceLevel === "modere" || savedSourceLevel === "central") {
-      setSourceUsageLevel(savedSourceLevel);
+    const savedLevel = profileQuery.data.source_usage_level;
+    if (savedLevel === "leger" || savedLevel === "modere" || savedLevel === "central") {
+      setSourceUsageLevel(savedLevel);
     }
-    const fallbackDuration =
-      profileQuery.data.target_duration ??
-      durationSettings?.default ??
-      DEFAULT_DURATION_SECONDS;
-    const normalizedDuration =
-      typeof fallbackDuration === "number" ? fallbackDuration : DEFAULT_DURATION_SECONDS;
-    setTargetDuration(clampDuration(normalizedDuration || DEFAULT_DURATION_SECONDS));
+    const raw =
+      profileQuery.data.target_duration ?? ds?.default ?? DEFAULT_DURATION_SECONDS;
+    setTargetDuration(clamp(typeof raw === "number" ? raw : DEFAULT_DURATION_SECONDS));
     preferencesPrefilledFor.current = projectName;
   }, [profileQuery.data, projectName]);
 
   useEffect(() => {
     if (!projectName || !profileQuery.data) return;
     if (progressPrefilledFor.current === projectName) return;
-    const hasStoredScenarios = Boolean(profileQuery.data.last_scenarios?.length);
-    const hasFinalScenario = Boolean(profileQuery.data.final_scenario);
-    const scenariosReady = hasStoredScenarios || hasFinalScenario;
-    const scenarioChosen = hasFinalScenario;
-    const audioReady = Boolean(profileQuery.data.final_audio?.path || profileQuery.data.audio_selection?.voices?.length);
-    const legacyTranscriptionsReviewed =
-      Boolean(profileQuery.data.final_audio?.path) || hasStoredScenarios || hasFinalScenario;
+    const hasStored = Boolean(profileQuery.data.last_scenarios?.length);
+    const hasFinal = Boolean(profileQuery.data.final_scenario);
     setProgress({
-      audioReady,
-      transcriptionsReviewed: legacyTranscriptionsReviewed,
-      scenariosReady,
-      scenarioChosen,
+      audioReady: Boolean(
+        profileQuery.data.final_audio?.path || profileQuery.data.audio_selection?.voices?.length
+      ),
+      transcriptionsReviewed:
+        Boolean(profileQuery.data.final_audio?.path) || hasStored || hasFinal,
+      scenariosReady: hasStored || hasFinal,
+      scenarioChosen: hasFinal,
       scenarioEdited: false
     });
     progressPrefilledFor.current = projectName;
@@ -102,6 +162,7 @@ export function ProjectDetailsView() {
   const preferenceOptions = profileQuery.data?.preference_options;
   const toneOptions = preferenceOptions?.tone_options ?? [];
   const audienceOptions = preferenceOptions?.audience_options ?? [];
+
   const durationSettings = useMemo(() => {
     const configuredMin = preferenceOptions?.duration?.min;
     const enforcedMin = Math.min(
@@ -114,163 +175,458 @@ export function ProjectDetailsView() {
       step: preferenceOptions?.duration?.step ?? 10
     };
   }, [preferenceOptions]);
-  const formattedDuration = useMemo(() => {
-    const mins = Math.floor(targetDuration / 60);
-    const secs = targetDuration % 60;
-    const minutesLabel = mins > 0 ? `${mins} min` : "";
-    const secondsLabel = `${secs.toString().padStart(2, "0")} s`;
-    return [minutesLabel, secondsLabel].filter(Boolean).join(" ");
-  }, [targetDuration]);
+
   const sliderRangeLabel = useMemo(() => {
-    const formatBound = (value: number) => {
-      if (value % 60 === 0) {
-        return `${value / 60} min`;
-      }
-      return `${value}s`;
-    };
-    return `${formatBound(durationSettings.min)} et ${formatBound(durationSettings.max)}`;
+    const fmt = (v: number) => (v % 60 === 0 ? `${v / 60} min` : `${v}s`);
+    return `${fmt(durationSettings.min)} – ${fmt(durationSettings.max)}`;
   }, [durationSettings]);
+  const audioFiles = projectAudioQuery.data ?? mockTranscriptionsQuery.data?.transcriptions.map((t) => t.file_name) ?? [];
+  const firstAudioFile = audioFiles[0];
+  const transcriptionEntries = transcriptionsQuery.data?.length
+    ? transcriptionsQuery.data
+    : (mockTranscriptionsQuery.data?.transcriptions ?? []);
+  const firstTranscription =
+    transcriptionEntries.find((entry) => entry.file_name === firstAudioFile) ?? transcriptionEntries[0];
+  const transcriptionTopics =
+    firstTranscription?.summary?.topics?.slice(0, 4).map((topic) => topic.title).filter(Boolean) ?? [];
+  const fallbackTopics =
+    mockDetailsQuery.data?.transcriptionBlock?.fallbackTopics ??
+    ["Vie quotidienne", "Mémoire ouvrière", "Chantiers navals", "Patrimoine local"];
+  const displayedTags = transcriptionTopics.length > 0 ? transcriptionTopics : fallbackTopics;
+  const transcriptionText =
+    firstTranscription?.transcription?.trim() ||
+    mockDetailsQuery.data?.transcriptionBlock?.fallbackText ||
+    "La transcription apparaîtra ici après l’upload et le traitement automatique du fichier audio.";
+  const transcriptionTitle = mockDetailsQuery.data?.transcriptionBlock?.fallbackTitle ?? "Souvenir des chantiers de Nantes";
+  const transcriptionSubtitle =
+    mockDetailsQuery.data?.transcriptionBlock?.subtitle ?? "Lire et modifier la transcription des fichiers audio.";
+  const fallbackFileName = mockDetailsQuery.data?.transcriptionBlock?.fallbackFileName ?? "interview_001.mp3";
+  const knowledgeGraphTitle = mockDetailsQuery.data?.knowledgeGraph?.title ?? "Knowledge Graph";
+  const knowledgeGraphSubtitle =
+    mockDetailsQuery.data?.knowledgeGraph?.subtitle ?? "Lire et modifier les transcriptions des fichiers audio.";
+  const keywordsCount = mockDetailsQuery.data?.knowledgeGraph?.keywordsCount ?? 39;
+  const artifactsTitle = mockDetailsQuery.data?.artifacts?.title ?? "Mes Artefacts";
+  const artifactsSubtitle =
+    mockDetailsQuery.data?.artifacts?.subtitle ?? "Lire et modifier les transcriptions des fichiers audio.";
 
-  const formatOptionLabel = (value: string) =>
-    value
-      .split("_")
-      .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-      .join(" ");
+  if (!sessionId) {
+    return <p className="text-sm text-muted-foreground">Créez ou sélectionnez un projet pour continuer.</p>;
+  }
 
-  const isElevenLabsProvider = ttsProvider === "elevenlabs";
-  const toggleProvider = () => {
-    setTtsProvider((prev) => (prev === "elevenlabs" ? "qwen" : "elevenlabs"));
-  };
   const handleSubmit = async (evt: FormEvent) => {
     evt.preventDefault();
-    setStatus("Envoi en cours...");
-    await advanceStep(sessionId, "project_details", {
-      notes,
-      audience: audience || undefined,
-      tone: tone || undefined,
-      target_duration: targetDuration,
-      voice_instructions: voiceInstructions?.trim() || undefined,
-      tts_provider: ttsProvider,
-      include_citations: includeCitations,
-      source_usage_level: sourceUsageLevel
-    });
-    setStatus("Notes enregistrées");
-    setTimeout(() => setStatus(null), 2000);
-    setCurrentStep("audio_sources");
-    navigate("/step/audio_sources");
+    setIsSaving(true);
+    setStatus(null);
+    try {
+      await advanceStep(sessionId, "project_details", {
+        notes,
+        audience: audience || undefined,
+        tone: tone || undefined,
+        target_duration: targetDuration,
+        voice_instructions: voiceInstructions?.trim() || undefined,
+        tts_provider: ttsProvider,
+        include_citations: includeCitations,
+        source_usage_level: sourceUsageLevel
+      });
+      setCurrentStep("audio_sources");
+      navigate("/step/audio_sources");
+    } catch (err) {
+      setStatus((err as Error).message);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
-    <div className="step-view">
-      <h2>Détails du projet</h2>
-      <p>Précisez le contexte, le public, le ton et les consignes vocales pour guider les scénarios. Étape actuelle: {currentStep}</p>
-      {profileQuery.isFetching && <p>Chargement des notes enregistrées…</p>}
-      <form onSubmit={handleSubmit} className="form-grid">
-        <label className="field-block">
-          <span>Contexte du scénario</span>
-          <textarea
-            rows={6}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="Quelle histoire souhaitez-vous raconter ?"
-          />
-        </label>
-
-        <div className="preference-grid">
-          <label className="field-block">
-            <span>Public cible (optionnel)</span>
-            <select value={audience} onChange={(e) => setAudience(e.target.value)}>
-              <option value="">Sélectionner</option>
-              {audienceOptions.map((option) => (
-                <option key={option} value={option}>
-                  {formatOptionLabel(option)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="field-block">
-            <span>Ton narratif (optionnel)</span>
-            <select value={tone} onChange={(e) => setTone(e.target.value)}>
-              <option value="">Sélectionner</option>
-              {toneOptions.map((option) => (
-                <option key={option} value={option}>
-                  {formatOptionLabel(option)}
-                </option>
-              ))}
-            </select>
-          </label>
+    <div className="flex flex-col gap-6 max-w-3xl">
+      {showTranscriptionBlock && (
+      <section className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white">
+        <div className="flex items-center justify-between gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
+          <div className="flex min-w-0 flex-col gap-1">
+            <div className="inline-flex items-center gap-2">
+              <FileText className="h-5 w-5 text-[#0F172B]" />
+              <h3 className="text-[20px] font-semibold leading-none text-[#0F172B]">Transcription</h3>
+            </div>
+            <p className="text-[14px] font-normal leading-none text-[#45556C]">
+              {transcriptionSubtitle}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="inline-flex h-[38px] shrink-0 items-center gap-1 rounded-xl bg-[#007AFF] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#006ae0]"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Créer un artefact</span>
+          </button>
         </div>
 
-        <label className="field-block">
-          <span>Consignes vocales (optionnel)</span>
-          <textarea
-            rows={4}
-            value={voiceInstructions}
-            onChange={(e) => setVoiceInstructions(e.target.value)}
-            placeholder="Ex: Use a female narrator, warm and composed..."
-          />
-        </label>
-        <label className="field-block">
-          <span>Moteur de synthèse vocale</span>
-          <div className="provider-switch">
-            <span className={`provider-label ${!isElevenLabsProvider ? "active" : ""}`}>Qwen local</span>
+        <div className="flex flex-col gap-6 bg-white px-5 py-4">
+          <div className="rounded-2xl border border-[#E2E8F0] bg-white p-4">
+            <div className="mb-[18px] flex items-center justify-between gap-3">
+              <p className="text-[16px] font-semibold leading-none text-[#0F172B]">
+                Fichier 1: {firstAudioFile ?? fallbackFileName}
+              </p>
+              <div className="inline-flex items-center gap-2">
+                <button
+                  type="button"
+                  className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-[10px] border border-[#E2E8F0] bg-white text-[#45556C] transition-colors hover:bg-[#F8FAFC]"
+                  aria-label="Télécharger"
+                >
+                  <Download className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowTranscriptionBlock(false)}
+                  className="inline-flex h-[38px] items-center gap-1 rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-3 text-sm font-semibold text-[#45556C] transition-colors hover:bg-[#eef2f7] hover:text-[#0F172B]"
+                >
+                  <X className="h-4 w-4" />
+                  <span>Supprimer</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] text-[#0F172B]"
+                aria-label="Pause"
+              >
+                <Pause className="h-4 w-4" />
+              </button>
+              <div className="flex-1">
+                <div className="h-2 w-full rounded-full bg-[#E2E8F0]">
+                  <div className="h-2 w-[78%] rounded-full bg-[#0F172B]" />
+                </div>
+                <div className="mt-1 flex items-center justify-between text-sm font-normal leading-none text-[#45556C]">
+                  <span>0:00</span>
+                  <span>4:05</span>
+                </div>
+              </div>
+              <Volume2 className="h-5 w-5 shrink-0 text-[#0F172B]" />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {displayedTags.map((tag, index) => (
+              <button
+                key={index}
+                type="button"
+                className="inline-flex h-8 w-[157px] items-center justify-between rounded-full border border-[#E2E8F0] bg-white px-4 py-[6px] text-[14px] font-semibold leading-none text-[#45556C]"
+              >
+                <span>{tag}</span>
+                <ChevronDown className="h-3.5 w-3.5" />
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-[18px]">
+            <h4 className="text-[16px] font-semibold leading-none text-[#0F172B]">{transcriptionTitle}</h4>
+            <p
+              className="text-[14px] font-normal leading-none"
+              style={{
+                background: "linear-gradient(180deg, #45556C 0%, #F3F4F8 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              {transcriptionText}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-end gap-[14px]">
             <button
               type="button"
-              className={`switch-toggle ${isElevenLabsProvider ? "on" : ""}`}
-              onClick={toggleProvider}
-              aria-pressed={isElevenLabsProvider}
-              aria-label="Basculer entre Qwen local et ElevenLabs"
+              onClick={() => setShowTranscriptionBlock(false)}
+              className="inline-flex h-[37.6px] items-center gap-3 rounded-full border border-[#E2E8F0] bg-transparent px-3 text-sm font-medium text-[#45556C] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172B]"
             >
-              <span className="thumb" />
+              <X className="h-4 w-4" />
+              <span>Fermer</span>
             </button>
-            <span className={`provider-label ${isElevenLabsProvider ? "active" : ""}`}>ElevenLabs</span>
+            <button
+              type="button"
+              className="inline-flex h-[38px] items-center gap-1 rounded-xl border border-[#E2E8F0] bg-white px-3 text-sm font-semibold text-[#45556C] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172B]"
+            >
+              <Download className="h-4 w-4" />
+              <span>Exporter la transcription</span>
+            </button>
           </div>
-          <p className="field-hint">
-            {isElevenLabsProvider
-              ? "Voix ElevenLabs hébergées (qualité et expressivité maximales)."
-              : "Synthèse locale Qwen : aucune dépendance cloud, voix générée d'après vos consignes."}
-          </p>
-        </label>
-
-        <div className="preference-grid">
-          <label className="field-block">
-            <span>Utilisation des sources audio</span>
-            <select value={sourceUsageLevel} onChange={(e) => setSourceUsageLevel(e.target.value as "leger" | "modere" | "central")}>
-              <option value="leger">Léger — contexte uniquement</option>
-              <option value="modere">Modéré — sourcing équilibré</option>
-              <option value="central">Central — élément narratif majeur</option>
-            </select>
-            <small>Détermine l'importance des transcriptions dans le récit.</small>
-          </label>
-          <label className="field-block" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.5rem" }}>
-            <input
-              type="checkbox"
-              checked={includeCitations}
-              onChange={(e) => setIncludeCitations(e.target.checked)}
-            />
-            <span>Inclure les citations directes des sources</span>
-          </label>
         </div>
+      </section>
+      )}
 
-        <label className="field-block slider-field">
-          <div className="slider-header">
-            <span>Durée audio ciblée</span>
-            <strong>{formattedDuration}</strong>
+      <section className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        <article className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+          <div className="flex items-center gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
+            <div className="flex min-w-0 flex-col gap-1">
+              <div className="inline-flex items-center gap-1">
+                <Network className="h-5 w-5 text-[#0F172B]" />
+                <h3 className="text-[20px] font-semibold leading-none text-[#0F172B]">{knowledgeGraphTitle}</h3>
+              </div>
+              <p className="text-[14px] font-normal leading-none text-[#45556C]">
+                {knowledgeGraphSubtitle}
+              </p>
+            </div>
           </div>
-          <input
-            type="range"
-            min={durationSettings.min}
-            max={durationSettings.max}
-            step={durationSettings.step}
-            value={targetDuration}
-            onChange={(e) => setTargetDuration(Number(e.target.value))}
-          />
-          <small>Entre {sliderRangeLabel}</small>
-        </label>
 
-        <button type="submit">Sauvegarder & continuer</button>
+          <div className="flex flex-col gap-[14px] bg-white px-5 py-4">
+            <div className="relative h-[321px] overflow-hidden rounded-xl border border-[#E2E8F0] bg-white p-2">
+              <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-2 rounded-full bg-[#F8FAFC] px-3 py-2 text-[28px] text-[#007AFF]">
+                <Sparkles className="h-4 w-4" />
+                <span className="text-[14px] font-semibold leading-none text-[#007AFF]">
+                  {keywordsCount} Mots-clés identifiés
+                </span>
+              </div>
+              <button
+                type="button"
+                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] text-[#45556C] transition-colors hover:bg-white"
+              >
+                <Eye className="h-4 w-4" />
+              </button>
+
+              <div className="relative h-full w-full rounded-[10px] bg-[#F8FAFC]">
+                {[
+                  "left-[15%] top-[65%]", "left-[32%] top-[56%]", "left-[48%] top-[45%]", "left-[58%] top-[30%]",
+                  "left-[68%] top-[58%]", "left-[75%] top-[38%]", "left-[21%] top-[42%]", "left-[41%] top-[24%]",
+                  "left-[55%] top-[70%]", "left-[80%] top-[64%]", "left-[27%] top-[70%]", "left-[63%] top-[48%]",
+                ].map((pos, idx) => (
+                  <span
+                    key={idx}
+                    className={`absolute ${pos} h-2 w-2 rounded-full ${
+                      idx % 4 === 0
+                        ? "bg-[#007AFF]"
+                        : idx % 3 === 0
+                          ? "bg-[#22C55E]"
+                          : idx % 2 === 0
+                            ? "bg-[#EF4444]"
+                            : "bg-[#F97316]"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article className="overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+          <div className="flex items-center gap-6 border-b-[0.8px] border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4">
+            <div className="flex min-w-0 flex-col gap-1">
+              <div className="inline-flex items-center gap-1">
+                <Sparkles className="h-5 w-5 text-[#0F172B]" />
+                <h3 className="text-[20px] font-semibold leading-none text-[#0F172B]">{artifactsTitle}</h3>
+              </div>
+              <p className="text-[14px] font-normal leading-none text-[#45556C]">
+                {artifactsSubtitle}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex h-[405.8px] items-end justify-center bg-white px-5 py-4">
+            <button
+              type="button"
+              className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-[12px] bg-[#007AFF] text-white shadow-sm transition-colors hover:bg-[#006ae0]"
+              aria-label="Créer un artefact"
+            >
+              <Plus className="h-7 w-7" />
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Détails du projet</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Contexte, public cible, ton et paramètres vocaux.
+          </p>
+        </div>
+        {profileQuery.isFetching && (
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <Loader2 className="h-3 w-3 animate-spin" />
+            Chargement…
+          </div>
+        )}
+      </div>
+
+      {status && (
+        <Alert variant="destructive">
+          <AlertDescription>{status}</AlertDescription>
+        </Alert>
+      )}
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <Card>
+          <CardHeader>
+            <CardTitle>Contexte narratif</CardTitle>
+            <CardDescription>Décrivez l'histoire à raconter. Les agents IA s'appuieront sur ce texte.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Textarea
+              rows={6}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="Quelle histoire souhaitez-vous raconter ? Quelle période, quel territoire, quels événements ?"
+            />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Public & ton narratif</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <Label>Public cible</Label>
+              <Select value={audience} onValueChange={setAudience}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Sélectionner…" />
+                </SelectTrigger>
+                <SelectContent>
+                  {audienceOptions.map((opt) => (
+                    <SelectItem key={opt} value={opt}>
+                      {formatOptionLabel(opt)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <Label>Ton narratif</Label>
+              <Select value={tone} onValueChange={setTone}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Sélectionner…" />
+                </SelectTrigger>
+                <SelectContent>
+                  {toneOptions.map((opt) => (
+                    <SelectItem key={opt} value={opt}>
+                      {formatOptionLabel(opt)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Durée audio ciblée</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Slider
+              label="Durée"
+              valueLabel={formatDuration(targetDuration)}
+              hint={`Entre ${sliderRangeLabel}`}
+              min={durationSettings.min}
+              max={durationSettings.max}
+              step={durationSettings.step}
+              value={targetDuration}
+              onChange={(e) => setTargetDuration(Number(e.target.value))}
+            />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Moteur de synthèse vocale</CardTitle>
+            <CardDescription>Choisissez la technologie TTS utilisée pour la narration finale.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <span className={ttsProvider !== "elevenlabs" ? "font-semibold text-sm" : "text-sm text-muted-foreground"}>
+                Qwen local
+              </span>
+              <Switch
+                checked={ttsProvider === "elevenlabs"}
+                onCheckedChange={(checked) => setTtsProvider(checked ? "elevenlabs" : "qwen")}
+                aria-label="Basculer entre Qwen local et ElevenLabs"
+              />
+              <span className={ttsProvider === "elevenlabs" ? "font-semibold text-sm" : "text-sm text-muted-foreground"}>
+                ElevenLabs
+              </span>
+              <Badge variant={ttsProvider === "elevenlabs" ? "default" : "secondary"}>
+                {ttsProvider === "elevenlabs" ? "Cloud" : "Local"}
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {ttsProvider === "elevenlabs"
+                ? "Voix ElevenLabs hébergées — qualité et expressivité maximales."
+                : "Synthèse locale Qwen — aucune dépendance cloud, voix générée d'après vos consignes."}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Consignes vocales</CardTitle>
+            <CardDescription>Instructions transmises au moteur TTS pour guider le style de narration.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Textarea
+              rows={4}
+              value={voiceInstructions}
+              onChange={(e) => setVoiceInstructions(e.target.value)}
+              placeholder="Ex: Use a female narrator, warm and composed, with slight regional accent…"
+            />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Sources & citations</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <Label>Utilisation des sources audio</Label>
+                <Select
+                  value={sourceUsageLevel}
+                  onValueChange={(v) => setSourceUsageLevel(v as "leger" | "modere" | "central")}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="leger">Léger — contexte uniquement</SelectItem>
+                    <SelectItem value="modere">Modéré — sourcing équilibré</SelectItem>
+                    <SelectItem value="central">Central — élément narratif majeur</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-muted-foreground">
+                  Détermine l'importance des transcriptions dans le récit.
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 justify-center">
+                <Label className="flex items-center gap-2 cursor-pointer">
+                  <Switch
+                    checked={includeCitations}
+                    onCheckedChange={setIncludeCitations}
+                    id="citations-toggle"
+                  />
+                  <span>Inclure les citations directes</span>
+                </Label>
+                <p className="text-xs text-muted-foreground">
+                  Autorise le scénariste à citer des extraits des sources.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Separator />
+
+        <div className="flex items-center gap-3">
+          <Button type="submit" disabled={isSaving}>
+            {isSaving ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Save className="mr-2 h-4 w-4" />
+            )}
+            Sauvegarder & continuer
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </Button>
+        </div>
       </form>
-      {status && <p>{status}</p>}
     </div>
   );
 }

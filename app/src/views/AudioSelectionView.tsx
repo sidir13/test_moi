@@ -1,48 +1,62 @@
-import { DragEvent, FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { type DragEvent, type FormEvent, type KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  Upload, Music, Bot, Play, Loader2, ChevronRight,
+  CheckCircle2, Circle, Tag
+} from "lucide-react";
 
 import {
   advanceStep,
   uploadAudio,
   fetchBackgroundSounds,
-  BackgroundSound,
+  type BackgroundSound,
   uploadBackgroundSound,
   fetchProjectAudio,
   fetchAudioSelection,
   saveAudioSelection,
   fetchProjectProfile,
-  BackgroundSelection,
+  type BackgroundSelection,
   fetchVoicePreview
-} from "../api/client";
-import { useSessionStore } from "../hooks/useSessionStore";
+} from "@/api/client";
+import { useSessionStore } from "@/hooks/useSessionStore";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+
+const ELEVEN_LABS_VOICE_OPTIONS = [
+  { id: "5l4ttmr4SKNgi0HnOelT", label: "Voix 1" },
+  { id: "flHkNRp1BlvT73UL6gyz", label: "Voix 2" },
+  { id: "jK7dAsiVAhbApIS8KkWB", label: "Voix 3" },
+  { id: "NOpBlnGInO9m6vDvFkFC", label: "Voix 4" },
+  { id: "jUHQdLfy668sllNiNTSW", label: "Voix 5" },
+  { id: "tKaoyJLW05zqV0tIH9FD", label: "Voix 6" },
+  { id: "T4BwQ2ZwlS2BbHIfci4H", label: "Voix 7" },
+  { id: "GYzIdoKkRyANjBvkKYfO", label: "Voix 8" },
+  { id: "TojRWZatQyy9dujEdiQ1", label: "Voix 9" }
+];
 
 const formatDuration = (seconds?: number) => {
-  if (seconds == null) return "instantané";
+  if (seconds == null) return null;
   if (seconds < 1) return `${Math.round(seconds * 1000)} ms`;
   const mins = Math.floor(seconds / 60);
   const secs = Math.round(seconds % 60);
-  return mins > 0 ? `${mins} min ${secs.toString().padStart(2, "0")} s` : `${secs} s`;
+  return mins > 0 ? `${mins}:${secs.toString().padStart(2, "0")}` : `${secs}s`;
 };
-
-const ELEVEN_LABS_VOICE_OPTIONS = [
-  { id: "5l4ttmr4SKNgi0HnOelT", label: "Voix 1 — 5l4ttmr4..." },
-  { id: "flHkNRp1BlvT73UL6gyz", label: "Voix 2 — flHkNRp1..." },
-  { id: "jK7dAsiVAhbApIS8KkWB", label: "Voix 3 — jK7dAsi..." },
-  { id: "NOpBlnGInO9m6vDvFkFC", label: "Voix 4 — NOpBlnGI..." },
-  { id: "jUHQdLfy668sllNiNTSW", label: "Voix 5 — jUHQdLf..." },
-  { id: "tKaoyJLW05zqV0tIH9FD", label: "Voix 6 — tKaoyJL..." },
-  { id: "T4BwQ2ZwlS2BbHIfci4H", label: "Voix 7 — T4BwQ2Z..." },
-  { id: "GYzIdoKkRyANjBvkKYfO", label: "Voix 8 — GYzIdoK..." },
-  { id: "TojRWZatQyy9dujEdiQ1", label: "Voix 9 — TojRWZa..." }
-];
 
 export function AudioSelectionView() {
   const { sessionId, projectName, setCurrentStep, updateProgress } = useSessionStore();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
   const [file, setFile] = useState<File | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+  const [uploadMessage, setUploadMessage] = useState<string | null>(null);
   const [selectionError, setSelectionError] = useState<string | null>(null);
   const [selectedAmbient, setSelectedAmbient] = useState<string | null>(null);
   const [selectedPunctual, setSelectedPunctual] = useState<string[]>([]);
@@ -56,13 +70,13 @@ export function AudioSelectionView() {
   const [backgroundFile, setBackgroundFile] = useState<File | null>(null);
   const [backgroundStatus, setBackgroundStatus] = useState<string | null>(null);
   const [nextStatus, setNextStatus] = useState<string | null>(null);
-  const hiddenBackgroundInput = useRef<HTMLInputElement | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const hiddenBgInput = useRef<HTMLInputElement | null>(null);
   const voicesRef = useRef<string[]>([]);
   const voicePreviewUrlsRef = useRef<Record<string, string>>({});
-  const { data: backgroundSounds } = useQuery({
-    queryKey: ["background-sounds"],
-    queryFn: () => fetchBackgroundSounds()
-  });
+
+  const { data: backgroundSounds } = useQuery<BackgroundSound[]>({ queryKey: ["background-sounds"], queryFn: () => fetchBackgroundSounds() });
   const { data: projectAudio } = useQuery({
     queryKey: ["project-audio", projectName],
     queryFn: () => fetchProjectAudio(projectName!),
@@ -78,50 +92,36 @@ export function AudioSelectionView() {
     queryFn: () => fetchAudioSelection(sessionId!),
     enabled: Boolean(sessionId)
   });
+
   const ttsProvider = profileQuery.data?.tts_provider === "qwen" ? "qwen" : "elevenlabs";
+
   const saveSelection = useMutation({
     mutationFn: (payload: { voices: string[]; backgrounds: BackgroundSelection; auto_backgrounds?: boolean; tts_voice_id?: string | null }) =>
       saveAudioSelection(sessionId!, { project_name: projectName!, ...payload }),
     onSuccess: (data) => {
       selectionQuery.refetch();
-      if (data.voices.length > 0) {
-        updateProgress({ audioReady: true });
-      }
+      if (data.voices.length > 0) updateProgress({ audioReady: true });
     }
   });
-  const persistSelection = (
-    voices: string[],
-    backgrounds: BackgroundSelection,
-    voiceId?: string | null,
-    autoFlag = autoBackgrounds
-  ) => {
-    const payload: { voices: string[]; backgrounds: BackgroundSelection; auto_backgrounds?: boolean; tts_voice_id?: string | null } = {
-      voices,
-      backgrounds,
-      auto_backgrounds: autoFlag
-    };
-    if (voiceId) {
-      payload.tts_voice_id = voiceId;
-    }
-    saveSelection.mutate(payload);
+
+  const persist = (voices: string[], backgrounds: BackgroundSelection, voiceId?: string | null, autoFlag = autoBackgrounds) => {
+    saveSelection.mutate({ voices, backgrounds, auto_backgrounds: autoFlag, ...(voiceId ? { tts_voice_id: voiceId } : {}) });
   };
 
   useEffect(() => {
-    if (selectionQuery.data) {
-      const backgrounds = selectionQuery.data.backgrounds || { ambient: null, punctual: [] };
-      setSelectedAmbient(backgrounds.ambient ?? null);
-      setSelectedPunctual(backgrounds.punctual ?? []);
-      setAutoBackgrounds(Boolean(selectionQuery.data.auto_backgrounds));
-      const voices = selectionQuery.data.voices || [];
-      setSelectedVoices(voices);
-      voicesRef.current = voices;
-      setSelectedVoiceId(selectionQuery.data.tts_voice_id ?? null);
-    }
+    if (!selectionQuery.data) return;
+    const bg = selectionQuery.data.backgrounds || { ambient: null, punctual: [] };
+    setSelectedAmbient(bg.ambient ?? null);
+    setSelectedPunctual(bg.punctual ?? []);
+    setAutoBackgrounds(Boolean(selectionQuery.data.auto_backgrounds));
+    const voices = selectionQuery.data.voices || [];
+    setSelectedVoices(voices);
+    voicesRef.current = voices;
+    setSelectedVoiceId(selectionQuery.data.tts_voice_id ?? null);
   }, [selectionQuery.data]);
+
   useEffect(() => {
-    if (ttsProvider !== "elevenlabs") {
-      setSelectedVoiceId(null);
-    }
+    if (ttsProvider !== "elevenlabs") setSelectedVoiceId(null);
   }, [ttsProvider]);
 
   useEffect(() => {
@@ -129,161 +129,70 @@ export function AudioSelectionView() {
     window.addEventListener("audio-selection-updated", handler);
     return () => window.removeEventListener("audio-selection-updated", handler);
   }, [selectionQuery]);
-  useEffect(() => {
-    voicePreviewUrlsRef.current = voicePreviewUrls;
-  }, [voicePreviewUrls]);
-  useEffect(() => {
-    return () => {
-      Object.values(voicePreviewUrlsRef.current).forEach((url) => URL.revokeObjectURL(url));
-    };
-  }, []);
+
+  useEffect(() => { voicePreviewUrlsRef.current = voicePreviewUrls; }, [voicePreviewUrls]);
+  useEffect(() => () => { Object.values(voicePreviewUrlsRef.current).forEach(URL.revokeObjectURL); }, []);
 
   if (!sessionId || !projectName) {
-    return <p>Sélectionnez d'abord un projet.</p>;
+    return <p className="text-sm text-muted-foreground">Sélectionnez d'abord un projet.</p>;
   }
 
   const handleUpload = async (evt: FormEvent) => {
     evt.preventDefault();
-    if (!file) {
-      setMessage("Choisissez un fichier audio");
-      return;
-    }
-    setMessage("Analyse en cours...");
+    if (!file) { setUploadMessage("Choisissez un fichier audio"); return; }
+    setUploadMessage("Analyse en cours…");
     const data = await uploadAudio(projectName, file);
-    setMessage(`Fichier importé (${formatDuration(data.metadata?.duration)})`);
+    const dur = formatDuration((data.metadata as { duration?: number } | undefined)?.duration);
+    setUploadMessage(`Importé${dur ? ` (${dur})` : ""}`);
+    setFile(null);
     queryClient.invalidateQueries({ queryKey: ["project-audio", projectName] });
     queryClient.invalidateQueries({ queryKey: ["audio-selection", sessionId] });
   };
 
   const handleBackgroundUpload = async (evt: FormEvent) => {
     evt.preventDefault();
-    if (!backgroundTitle.trim() || !backgroundFile) {
-      setBackgroundStatus("Ajoutez un titre et un fichier.");
-      return;
-    }
-    setBackgroundStatus("Ajout en cours...");
+    if (!backgroundTitle.trim() || !backgroundFile) { setBackgroundStatus("Titre et fichier requis."); return; }
+    setBackgroundStatus("Ajout en cours…");
     await uploadBackgroundSound(backgroundTitle.trim(), backgroundFile);
-    setBackgroundStatus("Ajouté à la bibliothèque");
+    setBackgroundStatus("Ajouté !");
     setBackgroundTitle("");
     setBackgroundFile(null);
     queryClient.invalidateQueries({ queryKey: ["background-sounds"] });
   };
 
-  const handleDrop = (evt: DragEvent<HTMLDivElement>) => {
-    evt.preventDefault();
-    const dropped = evt.dataTransfer.files?.[0];
-    if (dropped) {
-      setBackgroundFile(dropped);
-      setBackgroundStatus(`Fichier sélectionné : ${dropped.name}`);
-    }
-  };
-
-  const handleDragOver = (evt: DragEvent<HTMLDivElement>) => {
-    evt.preventDefault();
-  };
-
-  const handleVoiceIdChange = (value: string) => {
-    setSelectionError(null);
-    const normalized = value || null;
-    setSelectedVoiceId(normalized);
-    persistSelection(
-      selectedVoices,
-      { ambient: selectedAmbient, punctual: selectedPunctual },
-      normalized
-    );
-  };
-
   const handlePreviewVoice = async (voiceId: string) => {
-    setVoicePreviewErrors((prev) => ({ ...prev, [voiceId]: null }));
-    setVoicePreviewLoading((prev) => ({ ...prev, [voiceId]: true }));
+    setVoicePreviewErrors((p) => ({ ...p, [voiceId]: null }));
+    setVoicePreviewLoading((p) => ({ ...p, [voiceId]: true }));
     try {
       const blob = await fetchVoicePreview(voiceId);
       const url = URL.createObjectURL(blob);
-      setVoicePreviewUrls((prev) => {
-        const next = { ...prev };
-        if (prev[voiceId]) {
-          URL.revokeObjectURL(prev[voiceId]);
-        }
-        next[voiceId] = url;
-        return next;
+      setVoicePreviewUrls((p) => {
+        if (p[voiceId]) URL.revokeObjectURL(p[voiceId]);
+        return { ...p, [voiceId]: url };
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Impossible de charger l'aperçu.";
-      setVoicePreviewErrors((prev) => ({ ...prev, [voiceId]: message }));
+      setVoicePreviewErrors((p) => ({ ...p, [voiceId]: (err as Error).message }));
     } finally {
-      setVoicePreviewLoading((prev) => ({ ...prev, [voiceId]: false }));
+      setVoicePreviewLoading((p) => ({ ...p, [voiceId]: false }));
     }
   };
-
-  const handleVoiceCardSelect = (voiceId: string) => {
-    handleVoiceIdChange(voiceId);
-  };
-
-  const handleVoiceCardKeyDown = (voiceId: string, event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleVoiceCardSelect(voiceId);
-    }
-  };
-
-  const goNext = async () => {
-    const voices = voicesRef.current;
-    if (voices.length === 0) {
-      setSelectionError("Sélectionnez au moins une piste vocale avant de continuer.");
-      return;
-    }
-    if (ttsProvider === "elevenlabs" && !selectedVoiceId) {
-      setSelectionError("Sélectionnez une voix ElevenLabs avant de continuer.");
-      return;
-    }
-    try {
-      setNextStatus("Validation des sources...");
-      await advanceStep(sessionId, "audio_sources", {
-        files: voices,
-        backgrounds: {
-          ambient: selectedAmbient,
-          punctual: selectedPunctual
-        },
-        auto_backgrounds: autoBackgrounds,
-        tts_voice_id: selectedVoiceId ?? undefined
-      });
-      updateProgress({ audioReady: true, transcriptionsReviewed: false });
-      setCurrentStep("transcription_review");
-      navigate("/step/transcription_review");
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Impossible de passer à l'étape suivante.";
-      setSelectionError(message);
-    } finally {
-      setNextStatus(null);
-    }
-  };
-
-  const currentBackgroundSelection = (): BackgroundSelection => ({
-    ambient: selectedAmbient,
-    punctual: selectedPunctual
-  });
 
   const toggleVoice = (track: string) => {
     setSelectedVoices((prev) => {
-      let next = prev;
-      let changed = false;
       if (prev.includes(track)) {
-        next = prev.filter((p) => p !== track);
-        changed = next !== prev;
-      } else if (prev.length >= 3) {
-        setSelectionError("Sélectionnez 3 pistes maximum.");
-        changed = false;
-      } else {
-        next = [...prev, track];
-        changed = true;
+        const next = prev.filter((p) => p !== track);
+        voicesRef.current = next;
+        persist(next, { ambient: selectedAmbient, punctual: selectedPunctual }, selectedVoiceId);
+        updateProgress({ transcriptionsReviewed: false });
+        setSelectionError(null);
+        return next;
       }
-      if (!changed) {
-        return prev;
-      }
-      setSelectionError(null);
+      if (prev.length >= 3) { setSelectionError("Maximum 3 pistes."); return prev; }
+      const next = [...prev, track];
       voicesRef.current = next;
-      persistSelection(next, currentBackgroundSelection(), selectedVoiceId);
+      persist(next, { ambient: selectedAmbient, punctual: selectedPunctual }, selectedVoiceId);
       updateProgress({ transcriptionsReviewed: false });
+      setSelectionError(null);
       return next;
     });
   };
@@ -294,7 +203,7 @@ export function AudioSelectionView() {
     const updatedPunctual = path ? selectedPunctual.filter((p) => p !== path) : selectedPunctual;
     setSelectedPunctual(updatedPunctual);
     setSelectedAmbient(path);
-    persistSelection(selectedVoices, { ambient: path, punctual: updatedPunctual }, selectedVoiceId, false);
+    persist(selectedVoices, { ambient: path, punctual: updatedPunctual }, selectedVoiceId, false);
   };
 
   const handlePunctualToggle = (path: string) => {
@@ -303,282 +212,362 @@ export function AudioSelectionView() {
     setSelectedPunctual((prev) => {
       if (prev.includes(path)) {
         const next = prev.filter((p) => p !== path);
-        persistSelection(selectedVoices, { ambient: selectedAmbient, punctual: next }, selectedVoiceId, false);
+        persist(selectedVoices, { ambient: selectedAmbient, punctual: next }, selectedVoiceId, false);
         return next;
       }
-      if (prev.length >= 2) {
-        setSelectionError("Vous pouvez ajouter au maximum deux sons ponctuels.");
-        return prev;
-      }
+      if (prev.length >= 2) { setSelectionError("Maximum 2 sons ponctuels."); return prev; }
       const next = [...prev, path];
-      if (selectedAmbient === path) {
-        setSelectedAmbient(null);
-      }
-      persistSelection(selectedVoices, { ambient: selectedAmbient === path ? null : selectedAmbient, punctual: next }, selectedVoiceId, false);
+      persist(selectedVoices, { ambient: selectedAmbient === path ? null : selectedAmbient, punctual: next }, selectedVoiceId, false);
+      if (selectedAmbient === path) setSelectedAmbient(null);
       return next;
     });
   };
 
-  const handleAutoToggleChange = (enabled: boolean) => {
+  const handleAutoToggle = (enabled: boolean) => {
     setSelectionError(null);
     setAutoBackgrounds(enabled);
     if (enabled) {
-      // Sauvegarder le flag auto=true avec une sélection vide.
-      // La sélection réelle se fera au moment de la génération audio.
-      persistSelection(selectedVoices, { ambient: null, punctual: [] }, selectedVoiceId, true);
+      persist(selectedVoices, { ambient: null, punctual: [] }, selectedVoiceId, true);
     } else {
-      // Repasser en manuel : conserver la sélection courante (vide ou non)
-      persistSelection(selectedVoices, currentBackgroundSelection(), selectedVoiceId, false);
+      persist(selectedVoices, { ambient: selectedAmbient, punctual: selectedPunctual }, selectedVoiceId, false);
+    }
+  };
+
+  const goNext = async () => {
+    const voices = voicesRef.current;
+    if (voices.length === 0) { setSelectionError("Sélectionnez au moins une piste vocale."); return; }
+    if (ttsProvider === "elevenlabs" && !selectedVoiceId) { setSelectionError("Sélectionnez une voix ElevenLabs."); return; }
+    try {
+      setNextStatus("Validation des sources…");
+      await advanceStep(sessionId, "audio_sources", {
+        files: voices,
+        backgrounds: { ambient: selectedAmbient, punctual: selectedPunctual },
+        auto_backgrounds: autoBackgrounds,
+        tts_voice_id: selectedVoiceId ?? undefined
+      });
+      updateProgress({ audioReady: true, transcriptionsReviewed: false });
+      setCurrentStep("transcription_review");
+      navigate("/step/transcription_review");
+    } catch (err) {
+      setSelectionError((err as Error).message);
+    } finally {
+      setNextStatus(null);
     }
   };
 
   return (
-    <div className="step-view">
-      <h2>Sélection des sources audios</h2>
-      <section className="card">
-        <h3>Importer de nouvelles sources</h3>
-        <p>
-          Glissez-déposez vos interviews (ou ambiances inédites) : elles seront copiées dans l'application et pourront
-          être analysées immédiatement.
+    <div className="flex flex-col gap-6 max-w-3xl">
+      <div>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Sources audio</h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          Importez vos pistes vocales et configurez les ambiances sonores.
         </p>
-        <form onSubmit={handleUpload} className="form-grid">
-          <input
-            type="file"
-            accept="audio/*"
-            onChange={(e) => {
-              setFile(e.target.files?.[0] ?? null);
-              setMessage(null);
-            }}
-          />
-          <button type="submit">Téléverser le fichier</button>
-        </form>
-        {message && <p>{message}</p>}
-      </section>
+      </div>
 
-      <section className="card">
-        <h3>Pistes vocales disponibles</h3>
-        {projectAudio && projectAudio.length > 0 ? (
-          <ul className="project-list">
-            {projectAudio.map((track) => (
-              <li key={track}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedVoices.includes(track)}
-                    onChange={() => toggleVoice(track)}
-                  />
-                  {track}
-                </label>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Aucun fichier importé pour le moment.</p>
-        )}
-      </section>
+      {selectionError && (
+        <Alert variant="destructive">
+          <AlertDescription>{selectionError}</AlertDescription>
+        </Alert>
+      )}
 
-      <section className="card">
-        <h3>Ajouter une ambiance à la bibliothèque</h3>
-        <form onSubmit={handleBackgroundUpload} className="form-grid">
-          <label>
-            Titre
-            <input value={backgroundTitle} onChange={(e) => setBackgroundTitle(e.target.value)} placeholder="Ex: Quai humide" />
-          </label>
-          <div
-            className="drop-zone"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            onClick={() => hiddenBackgroundInput.current?.click()}
-          >
-            {backgroundFile ? (
-              <span>{backgroundFile.name}</span>
-            ) : (
-              <span>Glissez-déposez ou cliquez pour sélectionner un son d'ambiance</span>
-            )}
-            <input
-              ref={hiddenBackgroundInput}
+      {/* Upload voice */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2"><Upload className="h-4 w-4" />Importer une source vocale</CardTitle>
+          <CardDescription>Fichiers audio (interviews, témoignages, ambiances inédites).</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleUpload} className="flex flex-col gap-3">
+            <Input
               type="file"
               accept="audio/*"
-              hidden
-              onChange={(e) => {
-                setBackgroundFile(e.target.files?.[0] ?? null);
-              }}
+              className="cursor-pointer"
+              onChange={(e) => { setFile(e.target.files?.[0] ?? null); setUploadMessage(null); }}
             />
-          </div>
-          <button type="submit">Ajouter à la bibliothèque</button>
-        </form>
-        {backgroundStatus && <p>{backgroundStatus}</p>}
-      </section>
-
-      <section className="card">
-        <h3>Bibliothèque des sons d'ambiance</h3>
-        <p>
-          Choisissez un fond continu (0 ou 1) et jusqu'à deux sons ponctuels pour rythmer votre narration.
-        </p>
-        {selectionError && <p className="error">{selectionError}</p>}
-        <div className="background-actions-row">
-          <label className="toggle-field">
-            <input
-              type="checkbox"
-              checked={autoBackgrounds}
-              onChange={(e) => handleAutoToggleChange(e.target.checked)}
-            />
-            Sélection automatique au moment de la génération
-          </label>
-        </div>
-        {autoBackgrounds ? (
-          <div className="auto-bg-notice">
-            <span className="auto-bg-notice__icon">🤖</span>
-            <div>
-              <strong>Sélection automatique activée</strong>
-              <p>
-                Les sons d'ambiance seront choisis automatiquement lors de la génération audio,
-                en fonction du texte du scénario généré. Vous pouvez parcourir la bibliothèque
-                ci-dessous pour vous faire une idée des sons disponibles.
-              </p>
+            <div className="flex items-center gap-3">
+              <Button type="submit" size="sm" disabled={!file}>
+                <Upload className="mr-2 h-3.5 w-3.5" />
+                Téléverser
+              </Button>
+              {uploadMessage && <span className="text-sm text-muted-foreground">{uploadMessage}</span>}
             </div>
+          </form>
+        </CardContent>
+      </Card>
+
+      {/* Voice track selection */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Music className="h-4 w-4" />
+            Pistes vocales
+            {selectedVoices.length > 0 && (
+              <Badge variant="secondary">{selectedVoices.length} / 3 sélectionnée{selectedVoices.length > 1 ? "s" : ""}</Badge>
+            )}
+          </CardTitle>
+          <CardDescription>Sélectionnez jusqu'à 3 pistes utilisées pour la narration.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {projectAudio && projectAudio.length > 0 ? (
+            <ul className="flex flex-col gap-1.5">
+              {projectAudio.map((track) => {
+                const isSelected = selectedVoices.includes(track);
+                return (
+                  <li key={track}>
+                    <label
+                      className={cn(
+                        "flex items-center gap-3 rounded-lg border px-3 py-2.5 cursor-pointer transition-all text-sm",
+                        isSelected ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                      )}
+                    >
+                      <input
+                        type="checkbox"
+                        className="sr-only"
+                        checked={isSelected}
+                        onChange={() => toggleVoice(track)}
+                      />
+                      <span className={cn("flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors",
+                        isSelected ? "border-primary bg-primary text-primary-foreground" : "border-border"
+                      )}>
+                        {isSelected && <CheckCircle2 className="h-3 w-3" />}
+                      </span>
+                      <span className="truncate font-medium">{track}</span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground">Aucun fichier importé pour le moment.</p>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* ElevenLabs voice picker */}
+      {ttsProvider === "elevenlabs" && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Voix ElevenLabs</CardTitle>
+            <CardDescription>Écoutez un extrait et sélectionnez la voix narratrice.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {ELEVEN_LABS_VOICE_OPTIONS.map((voice, index) => {
+                const isSelected = selectedVoiceId === voice.id;
+                return (
+                  <div
+                    key={voice.id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => { setSelectionError(null); setSelectedVoiceId(voice.id); persist(selectedVoices, { ambient: selectedAmbient, punctual: selectedPunctual }, voice.id); }}
+                    onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedVoiceId(voice.id); } }}
+                    className={cn(
+                      "flex flex-col gap-2 rounded-xl border p-3 cursor-pointer transition-all",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      isSelected ? "border-primary bg-primary/5 shadow-sm" : "border-border hover:border-primary/40"
+                    )}
+                  >
+                    <input type="radio" name="voice-choice" checked={isSelected} readOnly className="sr-only" />
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold bg-primary/10 text-primary rounded-full px-2 py-0.5">
+                        Voix {index + 1}
+                      </span>
+                      <span className={cn(
+                        "h-3 w-3 rounded-full border-2 transition-colors",
+                        isSelected ? "border-primary bg-primary" : "border-muted-foreground/30"
+                      )} />
+                    </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-xs"
+                      disabled={Boolean(voicePreviewLoading[voice.id])}
+                      onClick={(e) => { e.stopPropagation(); handlePreviewVoice(voice.id); }}
+                    >
+                      {voicePreviewLoading[voice.id] ? (
+                        <Loader2 className="h-3 w-3 animate-spin" />
+                      ) : (
+                        <Play className="h-3 w-3 mr-1" />
+                      )}
+                      Écouter
+                    </Button>
+                    {voicePreviewErrors[voice.id] && (
+                      <p className="text-xs text-destructive">{voicePreviewErrors[voice.id]}</p>
+                    )}
+                    {voicePreviewUrls[voice.id] && (
+                      <audio controls src={voicePreviewUrls[voice.id]} preload="none" className="w-full" onClick={(e) => e.stopPropagation()} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Background ambiance library */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Music className="h-4 w-4" />
+            Bibliothèque d'ambiances
+          </CardTitle>
+          <CardDescription>1 fond continu (optionnel) + jusqu'à 2 sons ponctuels.</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="auto-bg" className="flex items-center gap-2">
+              <Bot className="h-4 w-4 text-primary" />
+              Sélection automatique par l'IA
+            </Label>
+            <Switch id="auto-bg" checked={autoBackgrounds} onCheckedChange={handleAutoToggle} />
           </div>
-        ) : (
-          <div className="ambient-none-option">
-            <label>
+
+          {autoBackgrounds && (
+            <div className="flex items-start gap-3 rounded-lg border border-primary/20 bg-info-muted px-4 py-3">
+              <Bot className="h-4 w-4 text-info-foreground mt-0.5 shrink-0" />
+              <div className="text-sm text-foreground">
+                <p className="font-semibold">Sélection automatique activée</p>
+                <p className="text-xs mt-0.5">Les ambiances seront choisies automatiquement lors de la génération audio, en fonction du texte du scénario.</p>
+              </div>
+            </div>
+          )}
+
+          {!autoBackgrounds && (
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
               <input
                 type="radio"
                 name="ambient-choice"
                 checked={!selectedAmbient}
                 onChange={() => handleAmbientSelect(null)}
+                className="accent-primary"
               />
               Aucun fond continu
             </label>
-          </div>
-        )}
-        <div className="background-library">
-          {backgroundSounds?.map((sound) => {
-            const isAmbient = selectedAmbient === sound.path;
-            const isPunctual = selectedPunctual.includes(sound.path);
-            const isSelected = isAmbient || isPunctual;
-            return (
-              <div
-                key={sound.path}
-                className={`background-item${isSelected ? " background-item--selected" : ""}`}
-              >
-                <div className="background-header">
-                  <strong className="background-item__title">{sound.name}</strong>
-                  {sound.category && (
-                    <span className="background-item__category">{sound.category}</span>
-                  )}
-                  {sound.duration != null && (
-                    <span className="background-item__duration">
-                      {formatDuration(sound.duration)}
-                    </span>
-                  )}
-                  <audio controls src={sound.preview} />
-                </div>
-                {sound.description && (
-                  <p className="background-item__description">{sound.description}</p>
-                )}
-                {sound.tags && sound.tags.length > 0 && (
-                  <div className="background-item__tags">
-                    {sound.tags.map((tag) => (
-                      <span key={tag} className="background-tag">{tag}</span>
-                    ))}
-                  </div>
-                )}
-                {!autoBackgrounds && (
-                  <div className="background-selectors">
-                    <label>
-                      <input
-                        type="radio"
-                        name="ambient-choice"
-                        checked={isAmbient}
-                        onChange={() => handleAmbientSelect(sound.path)}
-                      />
-                      Fond continu
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={isPunctual}
-                        onChange={() => handlePunctualToggle(sound.path)}
-                      />
-                      Son ponctuel
-                    </label>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-          {!backgroundSounds?.length && <p>Aucun son trouvé. Ajoutez-en via l'upload ci-dessus.</p>}
-        </div>
-      </section>
+          )}
 
-      {ttsProvider === "elevenlabs" && (
-        <section className="card voice-selection-card">
-          <div className="voice-selection-header">
-            <div>
-              <h3>Choisir une voix ElevenLabs</h3>
-              <p>Écoutez un extrait de chaque voix et touchez la carte pour la sélectionner.</p>
-            </div>
-          </div>
-          <div className="voice-grid">
-            {ELEVEN_LABS_VOICE_OPTIONS.map((voice, index) => {
-              const isSelected = selectedVoiceId === voice.id;
+          <div className="flex flex-col gap-2 max-h-80 overflow-y-auto pr-1">
+            {backgroundSounds?.map((sound: BackgroundSound) => {
+              const isAmbient = selectedAmbient === sound.path;
+              const isPunctual = selectedPunctual.includes(sound.path);
+              const isSelected = isAmbient || isPunctual;
               return (
                 <div
-                  key={voice.id}
-                  className={`voice-card${isSelected ? " selected" : ""}`}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => handleVoiceCardSelect(voice.id)}
-                  onKeyDown={(event) => handleVoiceCardKeyDown(voice.id, event)}
+                  key={sound.path}
+                  className={cn(
+                    "rounded-lg border p-3 flex flex-col gap-2 transition-all",
+                    isSelected ? "border-primary bg-primary/5" : "border-border"
+                  )}
                 >
-                  <input
-                    type="radio"
-                    name="voice-choice"
-                    checked={isSelected}
-                    readOnly
-                    className="sr-only"
-                  />
-                  <div className="voice-card-header">
-                    <span className="voice-pill">Voix {index + 1}</span>
-                    <span
-                      className={`voice-select-indicator${isSelected ? " active" : ""}`}
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div className="voice-card-actions">
-                    <button
-                      type="button"
-                      className="voice-preview-button"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handlePreviewVoice(voice.id);
-                      }}
-                      disabled={Boolean(voicePreviewLoading[voice.id])}
-                      aria-label={`Écouter la voix ${index + 1}`}
-                    >
-                      {voicePreviewLoading[voice.id] ? "…" : "▶"}
-                    </button>
-                    {voicePreviewErrors[voice.id] && <p className="error tiny">{voicePreviewErrors[voice.id]}</p>}
-                    {voicePreviewUrls[voice.id] && (
-                      <audio
-                        controls
-                        src={voicePreviewUrls[voice.id]}
-                        preload="none"
-                        onClick={(event) => event.stopPropagation()}
-                      />
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-medium text-sm flex-1">{sound.name}</span>
+                    {sound.category && (
+                      <Badge variant="secondary" className="text-xs">{sound.category}</Badge>
                     )}
+                    {sound.duration != null && (
+                      <span className="text-xs text-muted-foreground">{formatDuration(sound.duration)}</span>
+                    )}
+                    <audio controls src={sound.preview} className="h-7" />
                   </div>
+                  {sound.description && (
+                    <p className="text-xs text-muted-foreground">{sound.description}</p>
+                  )}
+                  {sound.tags && sound.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {sound.tags.map((tag) => (
+                        <span key={tag} className="flex items-center gap-0.5 text-xs bg-secondary rounded-full px-2 py-0.5 text-muted-foreground">
+                          <Tag className="h-2.5 w-2.5" />{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {!autoBackgrounds && (
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-1.5 text-xs cursor-pointer">
+                        <input type="radio" name="ambient-choice" checked={isAmbient} onChange={() => handleAmbientSelect(sound.path)} className="accent-primary" />
+                        Fond continu
+                      </label>
+                      <label className="flex items-center gap-1.5 text-xs cursor-pointer">
+                        <input type="checkbox" checked={isPunctual} onChange={() => handlePunctualToggle(sound.path)} className="accent-primary" />
+                        Son ponctuel
+                      </label>
+                    </div>
+                  )}
                 </div>
               );
             })}
+            {!backgroundSounds?.length && (
+              <p className="text-sm text-muted-foreground">Aucun son dans la bibliothèque. Ajoutez-en ci-dessous.</p>
+            )}
           </div>
-        </section>
-      )}
+        </CardContent>
+      </Card>
 
-      {nextStatus && <p>{nextStatus}</p>}
-      <button className="link" onClick={goNext} disabled={!sessionId}>
-        Étape suivante
-      </button>
+      {/* Upload background */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2"><Upload className="h-4 w-4" />Ajouter une ambiance</CardTitle>
+          <CardDescription>Contribuez à la bibliothèque partagée.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleBackgroundUpload} className="flex flex-col gap-3">
+            <Input
+              value={backgroundTitle}
+              onChange={(e) => setBackgroundTitle(e.target.value)}
+              placeholder="Titre (ex: Quai humide, matin de novembre)"
+            />
+            <div
+              className={cn(
+                "flex items-center justify-center rounded-lg border-2 border-dashed px-4 py-6 cursor-pointer transition-colors",
+                isDragging ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+              )}
+              onDrop={(e: DragEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                setIsDragging(false);
+                const f = e.dataTransfer.files?.[0];
+                if (f) { setBackgroundFile(f); setBackgroundStatus(`${f.name}`); }
+              }}
+              onDragOver={(e: DragEvent<HTMLDivElement>) => { e.preventDefault(); setIsDragging(true); }}
+              onDragLeave={() => setIsDragging(false)}
+              onClick={() => hiddenBgInput.current?.click()}
+            >
+              <div className="text-center">
+                <Upload className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">
+                  {backgroundFile ? backgroundFile.name : "Glissez ou cliquez pour sélectionner"}
+                </p>
+              </div>
+              <input
+                ref={hiddenBgInput}
+                type="file"
+                accept="audio/*"
+                hidden
+                onChange={(e) => setBackgroundFile(e.target.files?.[0] ?? null)}
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <Button type="submit" size="sm">Ajouter à la bibliothèque</Button>
+              {backgroundStatus && <span className="text-sm text-muted-foreground">{backgroundStatus}</span>}
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+
+      <Separator />
+
+      <div className="flex items-center gap-3">
+        {nextStatus && (
+          <span className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            {nextStatus}
+          </span>
+        )}
+        <Button onClick={goNext} disabled={!sessionId || Boolean(nextStatus)}>
+          Étape suivante
+          <ChevronRight className="ml-1 h-4 w-4" />
+        </Button>
+      </div>
     </div>
   );
 }
