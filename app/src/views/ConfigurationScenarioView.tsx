@@ -123,7 +123,7 @@ export function ConfigurationScenarioView() {
   };
 
   return (
-    <div className="w-full max-w-[870px] min-h-[806px] overflow-y-auto p-6">
+    <div className="mx-auto w-full max-w-[1100px] min-h-[806px] overflow-y-auto p-6">
       <section className="w-full overflow-hidden rounded-[14px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
         <div className="flex items-center gap-6 border-b border-[#F4F4F4] bg-[#F8FAFC] px-5 py-4">
           <div className="flex min-w-0 flex-col gap-1">
