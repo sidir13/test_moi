@@ -1,9 +1,18 @@
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2, Save, ChevronRight, FileText, Plus, Download, X, ChevronDown, Pause, Volume2, Network, Eye, Sparkles } from "lucide-react";
+import { Loader2, Save, ChevronRight, FileText, Plus, Download, X, ChevronDown, Play, Pause, Volume2, VolumeX, Network, Eye, Sparkles } from "lucide-react";
 
-import { advanceStep, fetchProjectAudio, fetchProjectProfile, fetchProjectTranscriptions } from "@/api/client";
+import {
+  advanceStep,
+  fetchProjectAudio,
+  fetchProjectProfile,
+  fetchProjectTranscriptions,
+  fetchProjectKnowledgeGraph,
+  getProjectAudioFileUrl,
+  getProjectTranscriptionBundleUrl,
+  getProjectKnowledgeGraphViewUrl
+} from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -49,6 +58,12 @@ export function ProjectDetailsView() {
   const [isSaving, setIsSaving] = useState(false);
   const [showTranscriptionBlock, setShowTranscriptionBlock] = useState(true);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const [audioMuted, setAudioMuted] = useState(false);
+  const [audioCurrent, setAudioCurrent] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(0);
+
   const notesPrefilledFor = useRef<string | null>(null);
   const progressPrefilledFor = useRef<string | null>(null);
   const preferencesPrefilledFor = useRef<string | null>(null);
@@ -66,6 +81,11 @@ export function ProjectDetailsView() {
   const transcriptionsQuery = useQuery({
     queryKey: ["project-transcriptions", projectName],
     queryFn: () => fetchProjectTranscriptions(projectName!),
+    enabled: Boolean(projectName),
+  });
+  const knowledgeGraphQuery = useQuery({
+    queryKey: ["project-knowledge-graph", projectName],
+    queryFn: () => fetchProjectKnowledgeGraph(projectName!),
     enabled: Boolean(projectName),
   });
   const mockTranscriptionsQuery = useQuery({
@@ -209,6 +229,54 @@ export function ProjectDetailsView() {
   const artifactsSubtitle =
     mockDetailsQuery.data?.artifacts?.subtitle ?? "Lire et modifier les transcriptions des fichiers audio.";
 
+  const audioSrc = projectName && firstAudioFile ? getProjectAudioFileUrl(projectName, firstAudioFile) : null;
+
+  useEffect(() => {
+    setAudioPlaying(false);
+    setAudioCurrent(0);
+    setAudioDuration(0);
+  }, [audioSrc]);
+
+  const togglePlay = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (el.paused) {
+      void el.play();
+    } else {
+      el.pause();
+    }
+  };
+
+  const toggleMute = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    el.muted = !el.muted;
+    setAudioMuted(el.muted);
+  };
+
+  const seekTo = (evt: React.MouseEvent<HTMLDivElement>) => {
+    const el = audioRef.current;
+    if (!el || !audioDuration) return;
+    const rect = evt.currentTarget.getBoundingClientRect();
+    const ratio = Math.min(Math.max((evt.clientX - rect.left) / rect.width, 0), 1);
+    el.currentTime = ratio * audioDuration;
+    setAudioCurrent(el.currentTime);
+  };
+
+  const formatClock = (seconds: number) => {
+    if (!Number.isFinite(seconds)) return "0:00";
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, "0")}`;
+  };
+
+  const audioProgressPct = audioDuration > 0 ? (audioCurrent / audioDuration) * 100 : 0;
+
+  const knowledgeGraphNodeCount = knowledgeGraphQuery.data?.graph?.nodes?.length ?? 0;
+  const knowledgeGraphKeywordCount =
+    knowledgeGraphQuery.data?.graph?.nodes?.filter((n) => n.type === "Keyword").length ?? 0;
+  const knowledgeGraphViewUrl = projectName ? getProjectKnowledgeGraphViewUrl(projectName) : null;
+
   if (!sessionId) {
     return <p className="text-sm text-muted-foreground">Créez ou sélectionnez un projet pour continuer.</p>;
   }
@@ -271,13 +339,15 @@ export function ProjectDetailsView() {
                 Fichier 1: {firstAudioFile ?? fallbackFileName}
               </p>
               <div className="inline-flex items-center gap-2">
-                <button
-                  type="button"
+                <a
+                  href={projectName ? getProjectTranscriptionBundleUrl(projectName) : "#"}
+                  download
+                  aria-disabled={!projectName}
                   className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-[10px] border border-[#E2E8F0] bg-white text-[#45556C] transition-colors hover:bg-[#F8FAFC]"
-                  aria-label="Télécharger"
+                  aria-label="Télécharger transcription, événements et graphe"
                 >
                   <Download className="h-4 w-4" />
-                </button>
+                </a>
                 <button
                   type="button"
                   onClick={() => setShowTranscriptionBlock(false)}
@@ -292,21 +362,56 @@ export function ProjectDetailsView() {
             <div className="flex items-center gap-4">
               <button
                 type="button"
-                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] text-[#0F172B]"
-                aria-label="Pause"
+                onClick={togglePlay}
+                disabled={!audioSrc}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] text-[#0F172B] disabled:opacity-50"
+                aria-label={audioPlaying ? "Pause" : "Lecture"}
               >
-                <Pause className="h-4 w-4" />
+                {audioPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
               </button>
               <div className="flex-1">
-                <div className="h-2 w-full rounded-full bg-[#E2E8F0]">
-                  <div className="h-2 w-[78%] rounded-full bg-[#0F172B]" />
+                <div
+                  role="slider"
+                  aria-label="Progression audio"
+                  aria-valuemin={0}
+                  aria-valuemax={Math.round(audioDuration)}
+                  aria-valuenow={Math.round(audioCurrent)}
+                  onClick={seekTo}
+                  className="h-2 w-full cursor-pointer rounded-full bg-[#E2E8F0]"
+                >
+                  <div
+                    className="h-2 rounded-full bg-[#0F172B]"
+                    style={{ width: `${audioProgressPct}%` }}
+                  />
                 </div>
                 <div className="mt-1 flex items-center justify-between text-sm font-normal leading-none text-[#45556C]">
-                  <span>0:00</span>
-                  <span>4:05</span>
+                  <span>{formatClock(audioCurrent)}</span>
+                  <span>{formatClock(audioDuration)}</span>
                 </div>
               </div>
-              <Volume2 className="h-5 w-5 shrink-0 text-[#0F172B]" />
+              <button
+                type="button"
+                onClick={toggleMute}
+                disabled={!audioSrc}
+                className="shrink-0 text-[#0F172B] disabled:opacity-50"
+                aria-label={audioMuted ? "Réactiver le son" : "Couper le son"}
+              >
+                {audioMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+              </button>
+              {audioSrc && (
+                <audio
+                  ref={audioRef}
+                  src={audioSrc}
+                  preload="metadata"
+                  className="hidden"
+                  onPlay={() => setAudioPlaying(true)}
+                  onPause={() => setAudioPlaying(false)}
+                  onEnded={() => setAudioPlaying(false)}
+                  onTimeUpdate={(e) => setAudioCurrent(e.currentTarget.currentTime)}
+                  onLoadedMetadata={(e) => setAudioDuration(e.currentTarget.duration || 0)}
+                  onVolumeChange={(e) => setAudioMuted(e.currentTarget.muted)}
+                />
+              )}
             </div>
           </div>
 
@@ -347,13 +452,15 @@ export function ProjectDetailsView() {
               <X className="h-4 w-4" />
               <span>Fermer</span>
             </button>
-            <button
-              type="button"
+            <a
+              href={projectName ? getProjectTranscriptionBundleUrl(projectName) : "#"}
+              download
+              aria-disabled={!projectName}
               className="inline-flex h-[38px] items-center gap-1 rounded-xl border border-[#E2E8F0] bg-white px-3 text-sm font-semibold text-[#45556C] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172B]"
             >
               <Download className="h-4 w-4" />
               <span>Exporter la transcription</span>
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -378,35 +485,51 @@ export function ProjectDetailsView() {
               <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-2 rounded-full bg-[#F8FAFC] px-3 py-2 text-[28px] text-[#007AFF]">
                 <Sparkles className="h-4 w-4" />
                 <span className="text-[14px] font-semibold leading-none text-[#007AFF]">
-                  {keywordsCount} Mots-clés identifiés
+                  {knowledgeGraphNodeCount > 0 ? knowledgeGraphKeywordCount : keywordsCount} Mots-clés identifiés
                 </span>
               </div>
-              <button
-                type="button"
-                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] text-[#45556C] transition-colors hover:bg-white"
-              >
-                <Eye className="h-4 w-4" />
-              </button>
+              {knowledgeGraphViewUrl && knowledgeGraphNodeCount > 0 && (
+                <a
+                  href={knowledgeGraphViewUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-[12px] border border-[#E2E8F0] bg-[#F8FAFC] text-[#45556C] transition-colors hover:bg-white"
+                  aria-label="Ouvrir le graphe en plein écran"
+                >
+                  <Eye className="h-4 w-4" />
+                </a>
+              )}
 
-              <div className="relative h-full w-full rounded-[10px] bg-[#F8FAFC]">
-                {[
-                  "left-[15%] top-[65%]", "left-[32%] top-[56%]", "left-[48%] top-[45%]", "left-[58%] top-[30%]",
-                  "left-[68%] top-[58%]", "left-[75%] top-[38%]", "left-[21%] top-[42%]", "left-[41%] top-[24%]",
-                  "left-[55%] top-[70%]", "left-[80%] top-[64%]", "left-[27%] top-[70%]", "left-[63%] top-[48%]",
-                ].map((pos, idx) => (
-                  <span
-                    key={idx}
-                    className={`absolute ${pos} h-2 w-2 rounded-full ${
-                      idx % 4 === 0
-                        ? "bg-[#007AFF]"
-                        : idx % 3 === 0
-                          ? "bg-[#22C55E]"
-                          : idx % 2 === 0
-                            ? "bg-[#EF4444]"
-                            : "bg-[#F97316]"
-                    }`}
+              <div className="relative h-full w-full overflow-hidden rounded-[10px] bg-[#F8FAFC]">
+                {knowledgeGraphViewUrl && knowledgeGraphNodeCount > 0 ? (
+                  <iframe
+                    key={knowledgeGraphNodeCount}
+                    src={knowledgeGraphViewUrl}
+                    title="Knowledge graph"
+                    className="h-full w-full border-0"
                   />
-                ))}
+                ) : (
+                  <>
+                    {[
+                      "left-[15%] top-[65%]", "left-[32%] top-[56%]", "left-[48%] top-[45%]", "left-[58%] top-[30%]",
+                      "left-[68%] top-[58%]", "left-[75%] top-[38%]", "left-[21%] top-[42%]", "left-[41%] top-[24%]",
+                      "left-[55%] top-[70%]", "left-[80%] top-[64%]", "left-[27%] top-[70%]", "left-[63%] top-[48%]",
+                    ].map((pos, idx) => (
+                      <span
+                        key={idx}
+                        className={`absolute ${pos} h-2 w-2 rounded-full ${
+                          idx % 4 === 0
+                            ? "bg-[#007AFF]"
+                            : idx % 3 === 0
+                              ? "bg-[#22C55E]"
+                              : idx % 2 === 0
+                                ? "bg-[#EF4444]"
+                                : "bg-[#F97316]"
+                        }`}
+                      />
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </div>

@@ -1880,6 +1880,10 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 project=project_name,
                 file=audio_path.name,
             )
+            try:
+                await loop.run_in_executor(None, _rebuild_knowledge_graph, project_name)
+            except Exception as exc:  # pragma: no cover - event extraction is best-effort
+                logger.warning("Knowledge graph build failed for %s: %s", project_name, exc)
         except Exception as exc:
             log_progress(
                 "TRANSCRIPTION_FAILED",
@@ -1888,6 +1892,58 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 error=str(exc),
             )
             raise
+
+    def _rebuild_knowledge_graph(project_name: str) -> None:
+        from memoiredesterritoires.transcription.transcription_event_extraction import extract_events_robust
+
+        data = fetch_analysis_results(
+            analysis_type="transcription",
+            source_path_contains=project_name,
+            limit=50,
+        )
+        texts = [
+            entry["result"]["transcription"]
+            for entry in data.get("entries", [])
+            if isinstance(entry.get("result"), dict) and entry["result"].get("transcription")
+        ]
+        combined = "\n\n".join(texts)
+        if not combined.strip():
+            return
+        events_data = extract_events_robust(combined)
+        nodes: Dict[str, Dict[str, Any]] = {}
+        edges: List[Dict[str, Any]] = []
+        for idx, event in enumerate(events_data.get("events", [])):
+            eid = f"event_{idx}"
+            nodes[eid] = {
+                "id": eid,
+                "name": event.get("title", eid),
+                "type": "Event",
+                "description": event.get("description", ""),
+                "time": event.get("approximate_time", ""),
+            }
+            for actor in event.get("actors", []) or []:
+                if actor not in nodes:
+                    nodes[actor] = {"id": actor, "name": actor, "type": "Person"}
+                edges.append({"id": f"actor_{idx}_{actor}", "source": actor, "target": eid, "type": "PARTICIPATED_IN"})
+            for place in event.get("places", []) or []:
+                if place not in nodes:
+                    nodes[place] = {"id": place, "name": place, "type": "Place"}
+                edges.append({"id": f"place_{idx}_{place}", "source": eid, "target": place, "type": "HAPPENED_IN"})
+            for kw in event.get("keywords", []) or []:
+                if kw not in nodes:
+                    nodes[kw] = {"id": kw, "name": kw, "type": "Keyword"}
+                edges.append({"id": f"kw_{idx}_{kw}", "source": eid, "target": kw, "type": "HAS_TOPIC"})
+        graph_data = {"nodes": list(nodes.values()), "edges": edges}
+        project_path = settings.projects_dir / project_name
+        project_path.mkdir(parents=True, exist_ok=True)
+        (project_path / "events.json").write_text(json.dumps(events_data, ensure_ascii=False, indent=2), encoding="utf-8")
+        (project_path / "graph.json").write_text(json.dumps(graph_data, ensure_ascii=False, indent=2), encoding="utf-8")
+        logger.info(
+            "Knowledge graph saved | project=%s events=%d nodes=%d",
+            project_name,
+            len(events_data.get("events", [])),
+            len(nodes),
+        )
 
     def fetch_project_transcriptions(project_name: str) -> List[Dict[str, Any]]:
         """Retrieve stored transcriptions for a project from the Parquet dataset."""
@@ -3327,6 +3383,47 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         automation_runner.ensure_project_exists(project_name)
         files = list_project_audio_files(project_name)
         return {"files": files}
+
+    @app.get("/projects/{project_name}/audio-file", tags=["projects"])
+    async def stream_project_audio_file(project_name: str, file: str = Query(..., description="File name under the project audio/ directory")):
+        try:
+            audio_path = get_project_audio_file(project_name, file)
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        return FileResponse(audio_path)
+
+    @app.get("/projects/{project_name}/transcription-bundle", tags=["projects"])
+    async def download_transcription_bundle(project_name: str):
+        import io
+        import zipfile
+
+        project_path = settings.projects_dir / project_name
+        if not project_path.exists():
+            raise HTTPException(status_code=404, detail="Projet introuvable")
+
+        transcripts = fetch_project_transcriptions(project_name)
+        events_file = project_path / "events.json"
+        graph_file = project_path / "graph.json"
+
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+            for entry in transcripts:
+                file_name = entry.get("file_name") or "transcription.txt"
+                safe_name = re.sub(r"[^A-Za-z0-9._-]+", "_", Path(file_name).stem) or "transcription"
+                zf.writestr(f"transcriptions/{safe_name}.txt", entry.get("transcription") or "")
+                if entry.get("summary"):
+                    zf.writestr(f"summaries/{safe_name}.json", json.dumps(entry["summary"], ensure_ascii=False, indent=2))
+            if events_file.exists():
+                zf.writestr("events.json", events_file.read_text(encoding="utf-8"))
+            if graph_file.exists():
+                zf.writestr("graph.json", graph_file.read_text(encoding="utf-8"))
+        buffer.seek(0)
+
+        from fastapi.responses import StreamingResponse
+
+        safe_project = re.sub(r"[^A-Za-z0-9._-]+", "_", project_name) or "project"
+        headers = {"Content-Disposition": f'attachment; filename="{safe_project}_transcriptions.zip"'}
+        return StreamingResponse(buffer, media_type="application/zip", headers=headers)
 
     @app.get("/projects/{project_name}/final-audio", tags=["projects"])
     async def stream_project_audio(project_name: str):

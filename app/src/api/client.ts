@@ -416,6 +416,24 @@ export function getScenarioSlideshowUrl(sessionId: string) {
   return `${base}/sessions/${sessionId}/slideshow/file`;
 }
 
+export function getProjectAudioFileUrl(projectName: string, fileName: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  return `${base}/projects/${encodeURIComponent(projectName)}/audio-file?file=${encodeURIComponent(fileName)}`;
+}
+
+export function getProjectTranscriptionBundleUrl(projectName: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  return `${base}/projects/${encodeURIComponent(projectName)}/transcription-bundle`;
+}
+
+export function getProjectKnowledgeGraphViewUrl(projectName: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  const base = prefix.length > 0 ? prefix : "";
+  return `${base}/projects/${encodeURIComponent(projectName)}/knowledge-graph-view`;
+}
+
 export function getProjectFinalAudioUrl(projectName: string) {
   const prefix = (API_BASE_URL || "").replace(/\/$/, "");
   const base = prefix.length > 0 ? prefix : "";

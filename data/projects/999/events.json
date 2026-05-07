@@ -1,0 +1,41 @@
+{
+  "events": [
+    {
+      "title": "Activité et apogée des chantiers navals de Nantes",
+      "description": "Période d'intense activité industrielle marquée par le savoir-faire des soudeurs et charpentiers construisant des navires d'envergure sur les bords de la Loire.",
+      "approximate_time": "1950-1960",
+      "actors": [
+        "soudeurs",
+        "charpentiers"
+      ],
+      "places": [
+        "Nantes",
+        "Loire"
+      ],
+      "keywords": [
+        "chantiers navals",
+        "construction navale",
+        "industrie",
+        "acier"
+      ]
+    },
+    {
+      "title": "Lancement du paquebot France",
+      "description": "Construction et naissance du célèbre paquebot de 106 000 tonnes, symbole de fierté nationale et chef-d'œuvre de la construction navale française.",
+      "approximate_time": "1960",
+      "actors": [
+        "soudeurs",
+        "charpentiers"
+      ],
+      "places": [
+        "Nantes"
+      ],
+      "keywords": [
+        "paquebot France",
+        "fierté nationale",
+        "paquebot",
+        "construction navale"
+      ]
+    }
+  ]
+}
