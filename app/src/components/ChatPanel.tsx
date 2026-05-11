@@ -129,7 +129,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
     }
     const message = input.trim();
     setMessages((prev) => [...prev, { role: "user", content: message }]);
-    ws.send(JSON.stringify({ text: message }));
+    const currentNotes = (window as Window & { __projectNotes?: string }).__projectNotes;
+    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined }));
     setInput("");
   };
 

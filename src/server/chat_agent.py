@@ -72,7 +72,7 @@ class ChatAgent:
         if not self.client:
             logger.warning("ChatAgent initialized without Anthropic credentials")
 
-    async def handle_message(self, session_id: str, user_text: str, session_store, websocket) -> None:
+    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None) -> None:
         if not self.client:
             await websocket.send_json({"type": "error", "message": "Missing Anthropic credentials"})
             return
@@ -87,7 +87,25 @@ class ChatAgent:
         # Inject project context on first message so agent knows the project_name
         session_data = session_store.load_session(session_id) if hasattr(session_store, "load_session") else {}
         project_name = (session_data or {}).get("project_name", "") if isinstance(session_data, dict) else ""
-        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]" if project_name else ""
+
+        # Read current project_notes in real time so agent always sees latest textarea content
+        # frontend_notes (sent from browser) takes priority over what's stored in config.json
+        project_notes_context = ""
+        if project_name:
+            _notes = ""
+            if frontend_notes and frontend_notes.strip():
+                _notes = frontend_notes.strip()
+            else:
+                try:
+                    from memoiredesterritoires.project_config import load_project_config
+                    _cfg = load_project_config(project_name)
+                    _notes = (_cfg or {}).get("project_notes", "")
+                except Exception:
+                    pass
+            if _notes and _notes.strip():
+                project_notes_context = f"\n\n[Contexte narratif actuel du projet (textarea) :\n{_notes.strip()}\n]"
+
+        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}" if project_name else ""
 
         if project_name:
             payload = f"[projet: \"{project_name}\"] {user_text}{project_context}"
