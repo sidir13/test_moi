@@ -1,0 +1,289 @@
+{
+  "nodes": [
+    {
+      "id": "event_0",
+      "name": "Embauche de Jean Peneau aux chantiers de la Loire",
+      "type": "Event",
+      "description": "Jean Peneau commence sa carrière aux chantiers navals de la Loire à l'âge de 20 ans au parc à ferrons, où il est affecté au tri des goussets en acier destinés aux coques des navires.",
+      "time": "05 février 1957"
+    },
+    {
+      "id": "Jean Peneau",
+      "name": "Jean Peneau",
+      "type": "Person"
+    },
+    {
+      "id": "Nantes",
+      "name": "Nantes",
+      "type": "Place"
+    },
+    {
+      "id": "Chantiers de la Loire",
+      "name": "Chantiers de la Loire",
+      "type": "Place"
+    },
+    {
+      "id": "Parc à ferrons",
+      "name": "Parc à ferrons",
+      "type": "Place"
+    },
+    {
+      "id": "Embauche",
+      "name": "Embauche",
+      "type": "Keyword"
+    },
+    {
+      "id": "Construction navale",
+      "name": "Construction navale",
+      "type": "Keyword"
+    },
+    {
+      "id": "Goussets",
+      "name": "Goussets",
+      "type": "Keyword"
+    },
+    {
+      "id": "Acier",
+      "name": "Acier",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_1",
+      "name": "Affectation sur la construction de sous-marins",
+      "type": "Event",
+      "description": "Jean Peneau est muté pour travailler pendant sept ans et demi sur la construction de sous-marins sur différents sites.",
+      "time": "Entre 1957 et 1969"
+    },
+    {
+      "id": "Indret",
+      "name": "Indret",
+      "type": "Place"
+    },
+    {
+      "id": "Cherbourg",
+      "name": "Cherbourg",
+      "type": "Place"
+    },
+    {
+      "id": "Sous-marins",
+      "name": "Sous-marins",
+      "type": "Keyword"
+    },
+    {
+      "id": "Mutation",
+      "name": "Mutation",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_2",
+      "name": "Retour de Jean Peneau à Nantes",
+      "type": "Event",
+      "description": "Après ses missions à l'étranger et dans d'autres ports français, Jean Peneau revient travailler aux chantiers de Nantes.",
+      "time": "Juillet 1969"
+    },
+    {
+      "id": "Retour",
+      "name": "Retour",
+      "type": "Keyword"
+    },
+    {
+      "id": "Chantiers navals",
+      "name": "Chantiers navals",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_3",
+      "name": "Désindustrialisation et fermeture des chantiers navals",
+      "type": "Event",
+      "description": "Baisse des commandes et arrêt progressif de l'activité industrielle sur l'île de Nantes, entraînant la disparition des bureaux d'études et des métiers spécialisés comme les traceurs et charpentiers de fer.",
+      "time": "Fin du XXe siècle"
+    },
+    {
+      "id": "Dessinateurs",
+      "name": "Dessinateurs",
+      "type": "Person"
+    },
+    {
+      "id": "Traceurs",
+      "name": "Traceurs",
+      "type": "Person"
+    },
+    {
+      "id": "Charpentiers de fer",
+      "name": "Charpentiers de fer",
+      "type": "Person"
+    },
+    {
+      "id": "Île de Nantes",
+      "name": "Île de Nantes",
+      "type": "Place"
+    },
+    {
+      "id": "Désindustrialisation",
+      "name": "Désindustrialisation",
+      "type": "Keyword"
+    },
+    {
+      "id": "Fermeture",
+      "name": "Fermeture",
+      "type": "Keyword"
+    },
+    {
+      "id": "Crise navale",
+      "name": "Crise navale",
+      "type": "Keyword"
+    }
+  ],
+  "edges": [
+    {
+      "id": "actor_0_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_0_Nantes",
+      "source": "event_0",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_0_Chantiers de la Loire",
+      "source": "event_0",
+      "target": "Chantiers de la Loire",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_0_Parc à ferrons",
+      "source": "event_0",
+      "target": "Parc à ferrons",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_0_Embauche",
+      "source": "event_0",
+      "target": "Embauche",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_Construction navale",
+      "source": "event_0",
+      "target": "Construction navale",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_Goussets",
+      "source": "event_0",
+      "target": "Goussets",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_Acier",
+      "source": "event_0",
+      "target": "Acier",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_1_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_1_Indret",
+      "source": "event_1",
+      "target": "Indret",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Cherbourg",
+      "source": "event_1",
+      "target": "Cherbourg",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_1_Sous-marins",
+      "source": "event_1",
+      "target": "Sous-marins",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_Mutation",
+      "source": "event_1",
+      "target": "Mutation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_Construction navale",
+      "source": "event_1",
+      "target": "Construction navale",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_2_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_2_Nantes",
+      "source": "event_2",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_2_Retour",
+      "source": "event_2",
+      "target": "Retour",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_Chantiers navals",
+      "source": "event_2",
+      "target": "Chantiers navals",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_3_Dessinateurs",
+      "source": "Dessinateurs",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_Traceurs",
+      "source": "Traceurs",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_Charpentiers de fer",
+      "source": "Charpentiers de fer",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_3_Île de Nantes",
+      "source": "event_3",
+      "target": "Île de Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_3_Désindustrialisation",
+      "source": "event_3",
+      "target": "Désindustrialisation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_Fermeture",
+      "source": "event_3",
+      "target": "Fermeture",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_Crise navale",
+      "source": "event_3",
+      "target": "Crise navale",
+      "type": "HAS_TOPIC"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-05-11T07:55:03.218662",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3,
+  "tts_voice_id": "NOpBlnGInO9m6vDvFkFC",
+  "scenario_config": {
+    "generation_parameters": {}
+  }
+}

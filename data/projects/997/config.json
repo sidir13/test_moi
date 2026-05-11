@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-05-11T07:53:11.621502",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3
+}

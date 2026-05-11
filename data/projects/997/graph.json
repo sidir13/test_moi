@@ -1,0 +1,295 @@
+{
+  "nodes": [
+    {
+      "id": "event_0",
+      "name": "Entrée de Jean Peneau aux chantiers de la Loire",
+      "type": "Event",
+      "description": "Jean Peneau commence sa carrière aux chantiers navals de la Loire à l'âge de 20 ans.",
+      "time": "5 février 1957"
+    },
+    {
+      "id": "Jean Peneau",
+      "name": "Jean Peneau",
+      "type": "Person"
+    },
+    {
+      "id": "Nantes",
+      "name": "Nantes",
+      "type": "Place"
+    },
+    {
+      "id": "Chantiers de la Loire",
+      "name": "Chantiers de la Loire",
+      "type": "Place"
+    },
+    {
+      "id": "embauche",
+      "name": "embauche",
+      "type": "Keyword"
+    },
+    {
+      "id": "construction navale",
+      "name": "construction navale",
+      "type": "Keyword"
+    },
+    {
+      "id": "jeunesse",
+      "name": "jeunesse",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_1",
+      "name": "Mutation de Jean Peneau à Dubigeon et Cherbourg",
+      "type": "Event",
+      "description": "Jean Peneau est muté aux chantiers Dubigeon puis envoyé à Cherbourg pour travailler sur la construction de sous-marins durant sept ans et demi.",
+      "time": "Entre 1957 et 1969"
+    },
+    {
+      "id": "Cherbourg",
+      "name": "Cherbourg",
+      "type": "Place"
+    },
+    {
+      "id": "Dubigeon",
+      "name": "Dubigeon",
+      "type": "Place"
+    },
+    {
+      "id": "sous-marins",
+      "name": "sous-marins",
+      "type": "Keyword"
+    },
+    {
+      "id": "mutation",
+      "name": "mutation",
+      "type": "Keyword"
+    },
+    {
+      "id": "savoir-faire",
+      "name": "savoir-faire",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_2",
+      "name": "Retour de Jean Peneau à Nantes",
+      "type": "Event",
+      "description": "Après ses années passées à travailler sur les sous-marins à Cherbourg, Jean Peneau revient s'installer à Nantes.",
+      "time": "Juillet 1969"
+    },
+    {
+      "id": "retour",
+      "name": "retour",
+      "type": "Keyword"
+    },
+    {
+      "id": "carrière",
+      "name": "carrière",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_3",
+      "name": "Déclin et fermeture des chantiers navals",
+      "type": "Event",
+      "description": "Diminution progressive des commandes de navires entraînant le silence des cales et la fermeture successive des chantiers sur l'île de Nantes, affectant de nombreux corps de métiers.",
+      "time": "Fin du XXe siècle"
+    },
+    {
+      "id": "dessinateurs",
+      "name": "dessinateurs",
+      "type": "Person"
+    },
+    {
+      "id": "traceurs",
+      "name": "traceurs",
+      "type": "Person"
+    },
+    {
+      "id": "charpentiers de fer",
+      "name": "charpentiers de fer",
+      "type": "Person"
+    },
+    {
+      "id": "Île de Nantes",
+      "name": "Île de Nantes",
+      "type": "Place"
+    },
+    {
+      "id": "désindustrialisation",
+      "name": "désindustrialisation",
+      "type": "Keyword"
+    },
+    {
+      "id": "chômage",
+      "name": "chômage",
+      "type": "Keyword"
+    },
+    {
+      "id": "fermeture",
+      "name": "fermeture",
+      "type": "Keyword"
+    },
+    {
+      "id": "mémoire",
+      "name": "mémoire",
+      "type": "Keyword"
+    }
+  ],
+  "edges": [
+    {
+      "id": "actor_0_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_0_Nantes",
+      "source": "event_0",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_0_Chantiers de la Loire",
+      "source": "event_0",
+      "target": "Chantiers de la Loire",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_0_embauche",
+      "source": "event_0",
+      "target": "embauche",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_construction navale",
+      "source": "event_0",
+      "target": "construction navale",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_jeunesse",
+      "source": "event_0",
+      "target": "jeunesse",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_1_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_1_Nantes",
+      "source": "event_1",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Cherbourg",
+      "source": "event_1",
+      "target": "Cherbourg",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Dubigeon",
+      "source": "event_1",
+      "target": "Dubigeon",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_1_sous-marins",
+      "source": "event_1",
+      "target": "sous-marins",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_mutation",
+      "source": "event_1",
+      "target": "mutation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_savoir-faire",
+      "source": "event_1",
+      "target": "savoir-faire",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_2_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_2_Nantes",
+      "source": "event_2",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_2_retour",
+      "source": "event_2",
+      "target": "retour",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_carrière",
+      "source": "event_2",
+      "target": "carrière",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_3_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_dessinateurs",
+      "source": "dessinateurs",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_traceurs",
+      "source": "traceurs",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_charpentiers de fer",
+      "source": "charpentiers de fer",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_3_Île de Nantes",
+      "source": "event_3",
+      "target": "Île de Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_3_désindustrialisation",
+      "source": "event_3",
+      "target": "désindustrialisation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_chômage",
+      "source": "event_3",
+      "target": "chômage",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_fermeture",
+      "source": "event_3",
+      "target": "fermeture",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_mémoire",
+      "source": "event_3",
+      "target": "mémoire",
+      "type": "HAS_TOPIC"
+    }
+  ]
+}

@@ -6,5 +6,16 @@
   "voice_instructions": "",
   "voice_instructions_source": "",
   "tts_provider": "elevenlabs",
-  "scenario_target": 3
+  "scenario_target": 3,
+  "scenario_config": {
+    "generation_parameters": {
+      "duree": {
+        "value": 120,
+        "user_specified": true
+      }
+    }
+  },
+  "target_duration": 120,
+  "include_citations": true,
+  "source_usage_level": "modere"
 }
