@@ -269,7 +269,7 @@ TOOLS = [
     },
     {
         "name": "select_voice",
-        "description": "Choisit parmi les 9 voix ElevenLabs prédéfinies (Voix 1 à Voix 9) pour la SYNTHÈSE VOCALE de la narration. Utilise ce tool quand l'utilisateur dit 'sélectionne la voix X', 'choisis une voix d'enfant', etc. Les IDs sont fixes : Voix 1=5l4ttmr4SKNgi0HnOelT, Voix 2=flHkNRp1BlvT73UL6gyz, Voix 3=jK7dAsiVAhbApIS8KkWB, Voix 4=NOpBlnGInO9m6vDvFkFC (enfant), Voix 5=jUHQdLfy668sllNiNTSW, Voix 6=tKaoyJLW05zqV0tIH9FD, Voix 7=T4BwQ2ZwlS2BbHIfci4H, Voix 8=GYzIdoKkRyANjBvkKYfO, Voix 9=TojRWZatQyy9dujEdiQ1.",
+        "description": "Choisit parmi les 9 voix ElevenLabs prédéfinies (Voix 1 à Voix 9) pour la SYNTHÈSE VOCALE de la narration. Utilise ce tool quand l'utilisateur dit 'sélectionne la voix X' ou décrit un type de voix. IDs fixes : Voix 1=5l4ttmr4SKNgi0HnOelT (Paul K, homme français grave, narrateur), Voix 2=flHkNRp1BlvT73UL6gyz (Jessica, femme américaine dramatique), Voix 3=jK7dAsiVAhbApIS8KkWB (Vincent, homme expressif), Voix 4=NOpBlnGInO9m6vDvFkFC (Grandpa Spuds, homme âgé américain conteur), Voix 5=jUHQdLfy668sllNiNTSW (Clément, homme français parisien audioguide), Voix 6=tKaoyJLW05zqV0tIH9FD (Gaëlle, femme française audiobooks), Voix 7=T4BwQ2ZwlS2BbHIfci4H (Souni, femme française jeune douce), Voix 8=GYzIdoKkRyANjBvkKYfO (Koraly, femme française captivante audioguides), Voix 9=TojRWZatQyy9dujEdiQ1 (Koraly Storyteller, femme française immersive).",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -927,15 +927,15 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "list_voice_options":
         return {
             "voices": [
-                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Voix 1", "description": "Femme adulte, ton chaleureux et posé, idéale pour narration historique"},
-                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Voix 2", "description": "Homme adulte, grave et solennel, idéal pour documentaire"},
-                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Voix 3", "description": "Femme jeune adulte, dynamique et claire, idéale pour journalisme"},
-                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Voix 4", "description": "Enfant (8-10 ans), voix innocente et curieuse, idéale pour récits d'enfance"},
-                {"id": "jUHQdLfy668sllNiNTSW", "label": "Voix 5", "description": "Homme âgé, voix sage et chevrotante, idéale pour témoignages anciens"},
-                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Voix 6", "description": "Femme âgée, ton maternel et doux, idéale pour récits intimes"},
-                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Voix 7", "description": "Homme adulte, ton neutre et informatif, idéal pour documentaire pédagogique"},
-                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Voix 8", "description": "Femme adulte, accent régional marqué, idéale pour récits territoriaux"},
-                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Voix 9", "description": "Adolescent, ton spontané et vivant, idéal pour témoignages de jeunesse"},
+                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Voix 1", "description": "Paul K — homme français, voix grave et chaleureuse, accent parisien neutre, idéal pour narration documentaire et audiobooks"},
+                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Voix 2", "description": "Jessica — femme américaine, voix expressive et dramatique, idéale pour personnages et animation"},
+                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Voix 3", "description": "Vincent — homme, voix fluide et expressive, idéale pour narration et publicité"},
+                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Voix 4", "description": "Grandpa Spuds — homme âgé américain, ton de grand-père conteur, idéal pour récits et histoires"},
+                {"id": "jUHQdLfy668sllNiNTSW", "label": "Voix 5", "description": "Clément — homme français parisien, ton calme et clair, idéal pour audioguides et narration neutre"},
+                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Voix 6", "description": "Gaëlle — femme française, voix chaleureuse et claire, idéale pour audiobooks, contes et jeux vidéo"},
+                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Voix 7", "description": "Souni — femme française jeune, voix douce et apaisante, idéale pour conversation ou narration"},
+                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Voix 8", "description": "Koraly — femme française, accent parisien, voix captivante et immersive, idéale pour audioguides de musées et expositions"},
+                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Voix 9", "description": "Koraly Storyteller — femme française, voix expressive et enveloppante, idéale pour audiobooks et storytelling long"},
             ]
         }
     elif tool_name == "select_voice":
