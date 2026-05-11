@@ -134,6 +134,17 @@ export function ProjectDetailsView() {
   }, [projectName]);
 
   useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ text: string }>).detail;
+      if (typeof detail?.text === "string") {
+        setNotes(detail.text);
+      }
+    };
+    window.addEventListener("project-notes-updated", handler);
+    return () => window.removeEventListener("project-notes-updated", handler);
+  }, []);
+
+  useEffect(() => {
     if (!projectName || !profileQuery.data) return;
     if (notesPrefilledFor.current === projectName) return;
     setNotes(profileQuery.data.project_notes ?? "");

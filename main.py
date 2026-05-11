@@ -189,8 +189,22 @@ TOOLS = [
         }
     },
     {
+        "name": "get_project_notes",
+        "description": "Lire le contenu actuel du champ 'Contexte narratif' (project_notes) du projet. Appeler EN PREMIER avant de modifier ou transformer le texte existant.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Nom du projet"
+                }
+            },
+            "required": ["project_name"]
+        }
+    },
+    {
         "name": "update_project_notes",
-        "description": "Mettre à jour les notes/brief utilisateur pour un projet dans data/projects/<nom>/config.json",
+        "description": "Mettre à jour le champ 'Contexte narratif' du projet (textarea visible sur la page Détails du projet). Utiliser pour : générer un texte narratif, reformuler, corriger, améliorer, raccourcir le contenu existant. Le textarea se met à jour automatiquement dans l'interface.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -200,7 +214,7 @@ TOOLS = [
                 },
                 "description": {
                     "type": "string",
-                    "description": "Texte libre décrivant les attentes utilisateur"
+                    "description": "Nouveau texte du contexte narratif (remplace l'existant)"
                 }
             },
             "required": ["description"]
@@ -896,6 +910,14 @@ def execute_tool(tool_name: str, tool_input: dict):
             scenarios_dir=tool_input["scenarios_dir"],
             project_name=tool_input.get("project_name"),
         )
+    elif tool_name == "get_project_notes":
+        from memoiredesterritoires.project_config import load_project_config
+        project = tool_input.get("project_name", "")
+        entry = load_project_config(project) if project else {}
+        return {
+            "project": project,
+            "project_notes": entry.get("project_notes", ""),
+        }
     elif tool_name == "update_project_notes":
         return update_project_notes(
             project_name=tool_input.get("project_name"),

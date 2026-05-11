@@ -55,6 +55,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           type: string;
           text?: string;
           tool?: string;
+          input?: Record<string, unknown>;
+          result?: string;
           message?: string;
         };
         if (payload.type === "assistant_text") {
@@ -71,6 +73,27 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           ]);
           if (payload.tool === "auto_select_audio" || payload.tool === "select_audio_manually") {
             window.dispatchEvent(new Event("audio-selection-updated"));
+          }
+          if (payload.tool === "select_voice") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              if (res?.voice_id) {
+                window.dispatchEvent(new CustomEvent("voice-selected", { detail: { voice_id: res.voice_id, voice_label: res.voice_label, reason: res.reason } }));
+              }
+            } catch { /* ignore parse errors */ }
+          }
+          if (payload.tool === "update_project_notes") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              window.dispatchEvent(new CustomEvent("project-notes-updated", {
+                detail: { text: res?.project_notes ?? "" }
+              }));
+            } catch {
+              window.dispatchEvent(new CustomEvent("project-notes-updated", { detail: { text: "" } }));
+            }
+          }
+          if (payload.tool === "transcribe_audio" || payload.tool === "save_analysis_result") {
+            window.dispatchEvent(new Event("transcription-updated"));
           }
         } else if (payload.type === "error") {
           setMessages((prev) => [
