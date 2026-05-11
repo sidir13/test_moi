@@ -1,0 +1,86 @@
+{
+  "events": [
+    {
+      "title": "Embauche de Jean Penot aux chantiers de la Loire",
+      "description": "Jean Penot commence sa carrière aux chantiers navals, débutant au nettoyage avant de trier les goussets dans le parc à fer.",
+      "approximate_time": "5 février 1957",
+      "actors": [
+        "Jean Penot"
+      ],
+      "places": [
+        "Prairie au duc",
+        "Chantiers de la Loire"
+      ],
+      "keywords": [
+        "embauche",
+        "construction navale",
+        "parc à fer",
+        "goussets"
+      ]
+    },
+    {
+      "title": "Mutation aux chantiers Dubigeon",
+      "description": "Jean Penot est transféré des Chantiers de la Loire vers l'entreprise Dubigeon peu après son embauche initiale.",
+      "approximate_time": "Après février 1957",
+      "actors": [
+        "Jean Penot"
+      ],
+      "places": [
+        "Dubigeon"
+      ],
+      "keywords": [
+        "mutation",
+        "chantier naval"
+      ]
+    },
+    {
+      "title": "Travail sur les sous-marins à Cherbourg",
+      "description": "Jean Penot travaille pendant sept ans et demi sur la construction de sous-marins classiques, puis sur le premier sous-marin atomique.",
+      "approximate_time": "Entre 1961 et 1969 environ",
+      "actors": [
+        "Jean Penot"
+      ],
+      "places": [
+        "Cherbourg"
+      ],
+      "keywords": [
+        "sous-marins",
+        "sous-marin atomique",
+        "construction navale"
+      ]
+    },
+    {
+      "title": "Retour aux bords de Loire",
+      "description": "Jean Penot revient travailler sur les chantiers navals de la Loire (Nantes) après sa période à Cherbourg.",
+      "approximate_time": "Juillet 1969",
+      "actors": [
+        "Jean Penot"
+      ],
+      "places": [
+        "Bords de Loire",
+        "Nantes"
+      ],
+      "keywords": [
+        "retour",
+        "Loire"
+      ]
+    },
+    {
+      "title": "Fermeture définitive des cales",
+      "description": "Cessation définitive de l'activité de construction navale sur le site de la prairie au duc, marquant la fin d'une époque industrielle.",
+      "approximate_time": "Non précisé (Passé historique)",
+      "actors": [
+        "Ouvriers"
+      ],
+      "places": [
+        "Prairie au duc",
+        "Cales"
+      ],
+      "keywords": [
+        "fermeture",
+        "fin d'activité",
+        "mémoire"
+      ]
+    }
+  ]
+}

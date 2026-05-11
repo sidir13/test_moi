@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,55 +9,219 @@ import {
   RotateCcw,
   Volume2,
   Play,
+  Loader2,
 } from "lucide-react";
-import { fetchProjectAudio } from "@/api/client";
+import { fetchProjectAudio, fetchScenarios, selectScenario } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 
+type SentenceSource = { sentence: string; sources: string[] };
+type ScenarioPart = {
+  titre: string;
+  texte_narration: string;
+  sentence_sources: SentenceSource[];
+};
 type ScenarioChoice = {
   id: number;
   label: string;
   title: string;
   tags: string[];
   duration: string;
+  parties: ScenarioPart[];
+  aiPercent: number;
+  hasSourcing: boolean;
+  raw: Record<string, unknown>;
+};
+
+const formatDuration = (seconds: unknown): string => {
+  const value = typeof seconds === "number" ? seconds : Number(seconds);
+  if (!Number.isFinite(value) || value <= 0) return "—";
+  const m = Math.floor(value / 60);
+  const s = Math.floor(value % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+};
+
+const tagsForScenario = (raw: Record<string, unknown>): string[] => {
+  const payload = (raw.scenario as Record<string, unknown> | undefined) ?? raw;
+  const out = new Set<string>();
+  const angle = (payload?.axe_narratif ?? raw.axe_narratif) as string | undefined;
+  if (angle && typeof angle === "string") out.add(angle.replace(/_/g, " "));
+  const themes = ((payload as Record<string, unknown>)?.themes ??
+    (raw.scenario_config as Record<string, unknown> | undefined)?.historical_context) as
+    | Record<string, unknown>
+    | undefined;
+  const primary = themes?.primary;
+  if (Array.isArray(primary)) {
+    primary.slice(0, 2).forEach((t) => typeof t === "string" && out.add(t));
+  }
+  const tagsField = (payload as Record<string, unknown>)?.tags;
+  if (Array.isArray(tagsField)) {
+    tagsField.slice(0, 2).forEach((t) => typeof t === "string" && out.add(t));
+  }
+  return Array.from(out).slice(0, 3);
+};
+
+const renderTextWithSourcing = (text: string, sentences: SentenceSource[]) => {
+  const sourced = sentences.filter((s) => s.sources.length > 0 && s.sentence.length > 0);
+  if (!text || sourced.length === 0) {
+    return <span>{text}</span>;
+  }
+  const matches: { start: number; end: number; sources: string[] }[] = [];
+  for (const item of sourced) {
+    const pos = text.indexOf(item.sentence);
+    if (pos >= 0) {
+      matches.push({ start: pos, end: pos + item.sentence.length, sources: item.sources });
+    }
+  }
+  if (matches.length === 0) return <span>{text}</span>;
+  matches.sort((a, b) => a.start - b.start);
+  const merged: typeof matches = [];
+  for (const m of matches) {
+    const last = merged[merged.length - 1];
+    if (last && m.start < last.end) {
+      last.end = Math.max(last.end, m.end);
+      last.sources = Array.from(new Set([...last.sources, ...m.sources]));
+    } else {
+      merged.push({ ...m });
+    }
+  }
+  const out: ReactNode[] = [];
+  let cursor = 0;
+  merged.forEach((m, i) => {
+    if (cursor < m.start) out.push(<span key={`p-${i}`}>{text.slice(cursor, m.start)}</span>);
+    out.push(
+      <span
+        key={`h-${i}`}
+        title={m.sources.join(", ")}
+        className="rounded bg-[#DBEAFE] px-0.5 text-[#1D4ED8]"
+      >
+        {text.slice(m.start, m.end)}
+      </span>
+    );
+    cursor = m.end;
+  });
+  if (cursor < text.length) out.push(<span key="tail">{text.slice(cursor)}</span>);
+  return <>{out}</>;
 };
 
 export function ChoixScenarioView() {
   const navigate = useNavigate();
-  const { projectName, lastProjectName, setCurrentStep } = useSessionStore();
+  const { projectName, lastProjectName, setCurrentStep, sessionId } = useSessionStore();
   const resolvedProjectName = projectName ?? lastProjectName;
   const [openIds, setOpenIds] = useState<number[]>([1]);
+  const [activeTab, setActiveTab] = useState<Record<number, "generation" | "sourcing">>({});
+  const [selectingId, setSelectingId] = useState<number | null>(null);
+  const [selectionError, setSelectionError] = useState<string | null>(null);
+
+  const setTab = (id: number, tab: "generation" | "sourcing") => {
+    setActiveTab((prev) => ({ ...prev, [id]: tab }));
+  };
+
   const projectAudioQuery = useQuery({
     queryKey: ["choix-scenario-project-audio", resolvedProjectName],
     queryFn: () => fetchProjectAudio(resolvedProjectName!),
     enabled: Boolean(resolvedProjectName),
   });
+  const scenariosQuery = useQuery({
+    queryKey: ["scenarios", sessionId],
+    queryFn: () => fetchScenarios(sessionId!),
+    enabled: Boolean(sessionId),
+  });
+
   const uploadedAudioName = projectAudioQuery.data?.[0] ?? "audio_uploadé.mp3";
-  const scenarios: ScenarioChoice[] = [
-    {
-      id: 1,
-      label: "Scénario 1",
-      title: "Récit chronologique des événements",
-      tags: ["Narratif", "Chronologique"],
-      duration: "2:42",
-    },
-    {
-      id: 2,
-      label: "Scénario 2",
-      title: "Voix locale et mémoire vivante",
-      tags: ["Immersif", "Témoignages"],
-      duration: "3:05",
-    },
-    {
-      id: 3,
-      label: "Scénario 3",
-      title: "Regards croisés sur le territoire",
-      tags: ["Comparatif", "Contextuel"],
-      duration: "2:28",
-    },
-  ];
+
+  const scenarios = useMemo<ScenarioChoice[]>(() => {
+    const data = scenariosQuery.data ?? [];
+    return data.map((entry, idx) => {
+      const raw = (entry ?? {}) as Record<string, unknown>;
+      const payload = (raw.scenario as Record<string, unknown> | undefined) ?? raw;
+      const title =
+        (payload?.titre as string | undefined) ||
+        (payload?.title as string | undefined) ||
+        (raw.titre as string | undefined) ||
+        `Scénario ${idx + 1}`;
+      const duration = formatDuration(
+        (payload?.duree_estimee as unknown) ?? (payload?.duration as unknown) ?? (raw?.duree as unknown)
+      );
+
+      const partiesRaw = Array.isArray(payload?.parties) ? (payload.parties as unknown[]) : [];
+      const parties: ScenarioPart[] = partiesRaw
+        .map((p, partIdx) => {
+          if (!p || typeof p !== "object") return null;
+          const part = p as Record<string, unknown>;
+          const sentenceSourcesRaw = Array.isArray(part.sentence_sources)
+            ? (part.sentence_sources as unknown[])
+            : [];
+          const sentence_sources: SentenceSource[] = sentenceSourcesRaw
+            .map((it) => {
+              if (!it || typeof it !== "object") return null;
+              const obj = it as Record<string, unknown>;
+              if (typeof obj.sentence !== "string") return null;
+              const sourcesArr = Array.isArray(obj.sources) ? obj.sources : [];
+              return {
+                sentence: obj.sentence.trim(),
+                sources: sourcesArr
+                  .filter((s): s is string => typeof s === "string")
+                  .map((s) => s.trim())
+                  .filter(Boolean),
+              };
+            })
+            .filter((x): x is SentenceSource => x !== null && x.sentence.length > 0);
+          return {
+            titre: typeof part.titre === "string" ? part.titre : `Partie ${partIdx + 1}`,
+            texte_narration: typeof part.texte_narration === "string" ? part.texte_narration : "",
+            sentence_sources,
+          };
+        })
+        .filter((x): x is ScenarioPart => x !== null);
+
+      let totalChars = 0;
+      let sourcedChars = 0;
+      for (const part of parties) {
+        totalChars += part.texte_narration.length;
+        for (const s of part.sentence_sources) {
+          if (s.sources.length > 0) sourcedChars += s.sentence.length;
+        }
+      }
+      const aiPercent =
+        totalChars > 0
+          ? Math.max(0, Math.min(100, Math.round(100 - (sourcedChars / totalChars) * 100)))
+          : 100;
+      const hasSourcing = parties.some((p) => p.sentence_sources.length > 0);
+
+      return {
+        id: (raw.scenario_index as number | undefined) ?? idx + 1,
+        label: `Scénario ${(raw.scenario_index as number | undefined) ?? idx + 1}`,
+        title,
+        tags: tagsForScenario(raw),
+        duration,
+        parties,
+        aiPercent,
+        hasSourcing,
+        raw,
+      };
+    });
+  }, [scenariosQuery.data]);
 
   const toggleOpen = (id: number) => {
     setOpenIds((prev) => (prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id]));
+  };
+
+  const handleSelect = async (scenario: ScenarioChoice) => {
+    if (!sessionId) {
+      setSelectionError("Session manquante.");
+      return;
+    }
+    setSelectingId(scenario.id);
+    setSelectionError(null);
+    try {
+      await selectScenario(sessionId, scenario.raw);
+      setCurrentStep("edition_text");
+      navigate("/step/edition_text");
+    } catch (err) {
+      setSelectionError(err instanceof Error ? err.message : "Sélection impossible.");
+    } finally {
+      setSelectingId(null);
+    }
   };
 
   return (
@@ -76,6 +240,22 @@ export function ChoixScenarioView() {
         </div>
 
         <div className="flex w-full flex-col gap-7 rounded-b-[14px] border-b-[0.8px] border-[#E2E8F0] bg-white px-5 py-5">
+          {scenariosQuery.isLoading && (
+            <div className="flex items-center gap-2 text-[14px] text-[#45556C]">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Chargement des scénarios…
+            </div>
+          )}
+          {!scenariosQuery.isLoading && scenarios.length === 0 && (
+            <p className="text-[14px] text-[#45556C]">
+              Aucun scénario disponible. Lancez la génération depuis l'étape précédente.
+            </p>
+          )}
+          {selectionError && (
+            <div className="rounded-lg border border-[#FF3B30] bg-[#fff1f0] px-4 py-3 text-sm text-[#FF3B30]">
+              {selectionError}
+            </div>
+          )}
           {scenarios.map((scenario) => {
             const isOpen = openIds.includes(scenario.id);
             return (
@@ -148,6 +328,68 @@ export function ChoixScenarioView() {
                   </div>
                 </div>
 
+                {isOpen && scenario.parties.length > 0 && (() => {
+                  const tab = activeTab[scenario.id] ?? "generation";
+                  const sourcingDisabled = !scenario.hasSourcing;
+                  return (
+                    <div className="flex w-full flex-col gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <h5 className="text-[16px] font-semibold text-[#0F172B]">Texte de scénario</h5>
+                        <div className="flex items-center gap-2">
+                          {tab === "sourcing" && (
+                            <span className="inline-flex h-7 items-center gap-1 rounded-full bg-[#EFF6FF] px-3 text-[12px] font-semibold text-[#1D4ED8]">
+                              Texte rédigé à {scenario.aiPercent}% par l&apos;IA
+                            </span>
+                          )}
+                          <div className="inline-flex overflow-hidden rounded-[10px] border border-[#E2E8F0]">
+                            <button
+                              type="button"
+                              onClick={() => setTab(scenario.id, "generation")}
+                              className={`px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                                tab === "generation"
+                                  ? "bg-[#0F172B] text-white"
+                                  : "bg-white text-[#45556C] hover:bg-[#F8FAFC]"
+                              }`}
+                            >
+                              Génération
+                            </button>
+                            <button
+                              type="button"
+                              disabled={sourcingDisabled}
+                              onClick={() => !sourcingDisabled && setTab(scenario.id, "sourcing")}
+                              className={`px-3 py-1.5 text-[13px] font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
+                                tab === "sourcing"
+                                  ? "bg-[#0F172B] text-white"
+                                  : "bg-white text-[#45556C] hover:bg-[#F8FAFC]"
+                              }`}
+                              title={sourcingDisabled ? "Aucune source identifiée pour ce scénario" : undefined}
+                            >
+                              Sourcing
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex max-h-[420px] flex-col gap-4 overflow-y-auto pr-1 text-[14px] leading-[22px] text-[#0F172B]">
+                        {scenario.parties.map((part, i) => (
+                          <div key={i} className="flex flex-col gap-1.5">
+                            {part.titre && (
+                              <p className="text-[15px] font-semibold text-[#0F172B]">{part.titre}</p>
+                            )}
+                            {part.texte_narration && (
+                              <p className="whitespace-pre-line text-[14px] text-[#45556C]">
+                                {tab === "sourcing"
+                                  ? renderTextWithSourcing(part.texte_narration, part.sentence_sources)
+                                  : part.texte_narration}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 <div className="flex w-full items-center justify-end gap-2">
                   <button
                     type="button"
@@ -158,13 +400,15 @@ export function ChoixScenarioView() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => {
-                      setCurrentStep("edition_text");
-                      navigate("/step/edition_text");
-                    }}
-                    className="inline-flex h-[38px] items-center gap-1 rounded-[12px] bg-[#007AFF] px-3 py-2 text-[14px] font-medium leading-[14px] text-white transition-colors hover:bg-[#006ae0]"
+                    onClick={() => handleSelect(scenario)}
+                    disabled={selectingId !== null}
+                    className="inline-flex h-[38px] items-center gap-1 rounded-[12px] bg-[#007AFF] px-3 py-2 text-[14px] font-medium leading-[14px] text-white transition-colors hover:bg-[#006ae0] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    <span>Sélectionner</span>
+                    {selectingId === scenario.id ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <span>Sélectionner</span>
+                    )}
                   </button>
                 </div>
               </article>

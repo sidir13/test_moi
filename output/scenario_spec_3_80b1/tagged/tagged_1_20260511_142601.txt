@@ -1,0 +1,17 @@
+=== PARTIE 1 : L'aube sous tension ===
+
+{aube_urbaine_silence.wav}
+
+[posé] Six heures. [pause] Le quartier se tait encore. Derrière les volets clos, chaque coin de rue appartient déjà à quelqu'un.
+
+=== PARTIE 2 : Le jour et ses violences ===
+
+{rumeur_rue_lointaine.wav}
+
+En plein jour, les rivalités éclatent. [accentué] Les confrontations marquent les frontières invisibles. [pause] La violence organisée règle les comptes que personne d'autre ne tranche.
+
+=== PARTIE 3 : Le soir referme la boucle ===
+
+{silence_crepuscule_urbain.wav}
+
+[ralentit] Le soir tombe. Le quartier se tait à nouveau. [pause] Demain, six heures, [atténué] tout recommence.

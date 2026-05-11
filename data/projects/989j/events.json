@@ -1,0 +1,24 @@
+{
+  "events": [
+    {
+      "title": "Activité industrielle et construction navale à Nantes",
+      "description": "Période de forte activité industrielle sur les bords de la Loire impliquant des soudeurs et charpentiers. Cette ère est marquée par la fabrication de navires d'envergure, dont le célèbre paquebot France, symbole de la fierté nationale et de la maîtrise de l'acier.",
+      "approximate_time": "1950-1960",
+      "actors": [
+        "soudeurs",
+        "charpentiers"
+      ],
+      "places": [
+        "Nantes",
+        "La Loire"
+      ],
+      "keywords": [
+        "chantiers navals",
+        "industrie",
+        "construction",
+        "paquebot France",
+        "acier"
+      ]
+    }
+  ]
+}

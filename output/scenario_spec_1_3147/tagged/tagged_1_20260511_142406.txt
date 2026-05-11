@@ -1,0 +1,17 @@
+=== PARTIE 1 : L'aube — le regard s'éveille ===
+
+{vent_leger_aube.wav}
+
+[posé] Aube au Japon. [pause] Un poète s'arrête devant l'étang. En dix-sept syllabes, il saisit l'instant.
+
+=== PARTIE 2 : Le jour — dix-sept syllabes ===
+
+[pause]
+
+Cinq, sept, cinq. [accentué] Trois vers suffisent. [pause] Depuis Bashô au dix-septième siècle, le haïku lie la nature au temps qui passe, sans un mot de trop.
+
+=== PARTIE 3 : Le soir — le silence après le mot ===
+
+{clapotis_eau_calme.wav}
+
+[pause] [ralentit] Le soir tombe. Le poème est écrit. [pause] Il reste le silence [étire] — et ce qu'il laisse voir.

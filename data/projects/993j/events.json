@@ -1,0 +1,26 @@
+{
+  "events": [
+    {
+      "title": "Activité industrielle des chantiers navals de Nantes",
+      "description": "Période de forte activité où des soudeurs et charpentiers construisaient des navires sur la Loire, marquée notamment par la construction du paquebot France.",
+      "approximate_time": "1950-1960",
+      "actors": [
+        "soudeurs",
+        "charpentiers",
+        "ouvriers des chantiers navals"
+      ],
+      "places": [
+        "Nantes",
+        "La Loire"
+      ],
+      "keywords": [
+        "chantiers navals",
+        "construction navale",
+        "industrie",
+        "paquebot France",
+        "acier",
+        "fierté nationale"
+      ]
+    }
+  ]
+}

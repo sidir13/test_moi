@@ -205,19 +205,31 @@ export async function fetchModels(): Promise<LlmModelInfo[]> {
   return data.models as LlmModelInfo[];
 }
 
+export type ScenarioSpec = {
+  prompt: string;
+  audience?: string;
+  tone?: string;
+  target_duration?: number;
+  source_usage_level?: "leger" | "modere" | "central";
+  tts_provider?: "elevenlabs" | "qwen";
+  tts_voice_id?: string | null;
+};
+
 export async function generateScenarios(
   sessionId: string,
   prompt: string,
   scenarioTarget?: number,
   mode: "simple" | "expert" = "simple",
-  modelId?: string
+  modelId?: string,
+  scenarioSpecs?: ScenarioSpec[]
 ) {
   const { data } = await api.post("/scenarios/generate", {
     session_id: sessionId,
     prompt,
     mode,
     scenario_target: scenarioTarget,
-    model_id: modelId || undefined
+    model_id: modelId || undefined,
+    scenario_specs: scenarioSpecs && scenarioSpecs.length > 0 ? scenarioSpecs : undefined
   });
   return data;
 }

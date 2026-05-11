@@ -1,0 +1,21 @@
+=== PARTIE 1 : La sirène du matin ===
+
+{brume_matinale_loire.wav}
+
+[posé] Un matin de brume sur la Prairie-au-Duc. [pause] La sirène déchire l'air humide de la Loire.
+
+{sirene_chantier_naval.wav}
+
+=== PARTIE 2 : Le trait et le métal ===
+
+{ambiance_salle_tracage.wav}
+
+Dans la salle de traçage, table inclinée, règle et compas. [pause] Jean Peneau raconte : [posé] [atténué] « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. » [pause]
+
+=== PARTIE 3 : La débauche et la mémoire ===
+
+{vacarme_rivets_metal.wav}
+
+Le vacarme des rivets rythme l'après-midi. [pause] Puis la sirène sonne la débauche. Les plans sont roulés, les compas reposés. [ralentit] Les cales se sont tues, mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.
+
+{silence_progressif.wav}
