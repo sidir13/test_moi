@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
@@ -105,12 +105,13 @@ const renderTextWithSourcing = (text: string, sentences: SentenceSource[]) => {
 
 export function ChoixScenarioView() {
   const navigate = useNavigate();
-  const { projectName, lastProjectName, setCurrentStep, sessionId } = useSessionStore();
+  const { projectName, lastProjectName, setCurrentStep, sessionId, updateProgress } = useSessionStore();
   const resolvedProjectName = projectName ?? lastProjectName;
   const [openIds, setOpenIds] = useState<number[]>([1]);
   const [activeTab, setActiveTab] = useState<Record<number, "generation" | "sourcing">>({});
   const [selectingId, setSelectingId] = useState<number | null>(null);
   const [selectionError, setSelectionError] = useState<string | null>(null);
+  const [partsByScenario, setPartsByScenario] = useState<Record<number, ScenarioPart[]>>({});
 
   const setTab = (id: number, tab: "generation" | "sourcing") => {
     setActiveTab((prev) => ({ ...prev, [id]: tab }));
@@ -202,8 +203,31 @@ export function ChoixScenarioView() {
     });
   }, [scenariosQuery.data]);
 
+  useEffect(() => {
+    if (scenarios.length > 0) {
+      updateProgress({ scenariosReady: true });
+      setPartsByScenario((prev) => {
+        const next = { ...prev };
+        scenarios.forEach((s) => {
+          if (!next[s.id]) {
+            next[s.id] = s.parties.map((p) => ({ ...p }));
+          }
+        });
+        return next;
+      });
+    }
+  }, [scenarios, updateProgress]);
+
   const toggleOpen = (id: number) => {
     setOpenIds((prev) => (prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id]));
+  };
+
+  const updatePart = (scenarioId: number, partIdx: number, patch: Partial<ScenarioPart>) => {
+    setPartsByScenario((prev) => {
+      const current = prev[scenarioId] ?? [];
+      const next = current.map((p, i) => (i === partIdx ? { ...p, ...patch } : p));
+      return { ...prev, [scenarioId]: next };
+    });
   };
 
   const handleSelect = async (scenario: ScenarioChoice) => {
@@ -214,7 +238,18 @@ export function ChoixScenarioView() {
     setSelectingId(scenario.id);
     setSelectionError(null);
     try {
-      await selectScenario(sessionId, scenario.raw);
+      const editedParts = partsByScenario[scenario.id] ?? scenario.parties;
+      const merged: Record<string, unknown> = { ...scenario.raw };
+      const innerSource =
+        (merged.scenario as Record<string, unknown> | undefined) ?? merged;
+      const innerClone: Record<string, unknown> = { ...innerSource, parties: editedParts };
+      if ("scenario" in merged) {
+        merged.scenario = innerClone;
+      } else {
+        merged.parties = editedParts;
+      }
+      await selectScenario(sessionId, merged);
+      updateProgress({ scenarioChosen: true });
       setCurrentStep("edition_text");
       navigate("/step/edition_text");
     } catch (err) {
@@ -331,6 +366,7 @@ export function ChoixScenarioView() {
                 {isOpen && scenario.parties.length > 0 && (() => {
                   const tab = activeTab[scenario.id] ?? "generation";
                   const sourcingDisabled = !scenario.hasSourcing;
+                  const liveParts = partsByScenario[scenario.id] ?? scenario.parties;
                   return (
                     <div className="flex w-full flex-col gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-4">
                       <div className="flex items-center justify-between gap-3">
@@ -338,7 +374,7 @@ export function ChoixScenarioView() {
                         <div className="flex items-center gap-2">
                           {tab === "sourcing" && (
                             <span className="inline-flex h-7 items-center gap-1 rounded-full bg-[#EFF6FF] px-3 text-[12px] font-semibold text-[#1D4ED8]">
-                              Texte rédigé à {scenario.aiPercent}% par l&apos;IA
+                              Texte inspiré à {100 - scenario.aiPercent}% de la source
                             </span>
                           )}
                           <div className="inline-flex overflow-hidden rounded-[10px] border border-[#E2E8F0]">
@@ -371,17 +407,36 @@ export function ChoixScenarioView() {
                       </div>
 
                       <div className="flex max-h-[420px] flex-col gap-4 overflow-y-auto pr-1 text-[14px] leading-[22px] text-[#0F172B]">
-                        {scenario.parties.map((part, i) => (
+                        {liveParts.map((part, i) => (
                           <div key={i} className="flex flex-col gap-1.5">
-                            {part.titre && (
-                              <p className="text-[15px] font-semibold text-[#0F172B]">{part.titre}</p>
-                            )}
-                            {part.texte_narration && (
-                              <p className="whitespace-pre-line text-[14px] text-[#45556C]">
-                                {tab === "sourcing"
-                                  ? renderTextWithSourcing(part.texte_narration, part.sentence_sources)
-                                  : part.texte_narration}
-                              </p>
+                            {tab === "generation" ? (
+                              <>
+                                <input
+                                  type="text"
+                                  value={part.titre}
+                                  onChange={(e) => updatePart(scenario.id, i, { titre: e.target.value })}
+                                  placeholder="Titre de la partie"
+                                  className="w-full rounded-md border border-transparent bg-transparent px-1 text-[15px] font-semibold text-[#0F172B] outline-none transition-colors hover:border-[#E2E8F0] focus:border-[#007AFF]"
+                                />
+                                <textarea
+                                  value={part.texte_narration}
+                                  onChange={(e) => updatePart(scenario.id, i, { texte_narration: e.target.value })}
+                                  placeholder="Texte de narration…"
+                                  rows={Math.max(3, Math.ceil((part.texte_narration?.length ?? 0) / 80))}
+                                  className="w-full resize-y rounded-md border border-transparent bg-transparent px-1 text-[14px] leading-[22px] text-[#45556C] outline-none transition-colors hover:border-[#E2E8F0] focus:border-[#007AFF]"
+                                />
+                              </>
+                            ) : (
+                              <>
+                                {part.titre && (
+                                  <p className="text-[15px] font-semibold text-[#0F172B]">{part.titre}</p>
+                                )}
+                                {part.texte_narration && (
+                                  <p className="whitespace-pre-line text-[14px] text-[#45556C]">
+                                    {renderTextWithSourcing(part.texte_narration, part.sentence_sources)}
+                                  </p>
+                                )}
+                              </>
                             )}
                           </div>
                         ))}

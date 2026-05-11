@@ -1,0 +1,74 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le souffle des saisons — Poètes du Japon d'Edo",
+  "resumeHistoire": "Dans le Japon de la période Edo, une forme poétique brève naît au croisement de la spiritualité zen et de l'observation minutieuse de la nature. Des poètes, souvent issus de milieux modestes, parcourent les routes entre Edo, Kyoto et les provinces reculées, capturant en quelques syllabes l'essence d'un instant. Leur art, le haïku, devient le miroir d'une société où l'esthétique du dépouillement — le wabi-sabi — imprègne le quotidien. De saison en saison, ces chroniqueurs de l'éphémère lèguent une tradition littéraire qui traverse les siècles.",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 34,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le monde en dix-sept syllabes",
+      "duree_cible": 12.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "contemplation_calme",
+      "elements_necessaires": [
+        "Évocation sensorielle du Japon d'Edo — paysage, saisons",
+        "Présentation du haïku comme pratique sociale et poétique",
+        "Ancrage géographique : Edo, Kyoto",
+        "Ton neutre informatif, registre accessible"
+      ],
+      "mood": "contemplatif_descriptif"
+    },
+    {
+      "partie": 2,
+      "titre": "Poètes des chemins",
+      "duree_cible": 12.0,
+      "fonction_narrative": "développement_social",
+      "position_arc_emotionnel": "élévation_douce",
+      "elements_necessaires": [
+        "Le quotidien des poètes — voyages, simplicité, observation",
+        "Lien entre spiritualité zen, wabi-sabi et écriture",
+        "Citation directe d'un haïku classique (issu de la tradition connue)",
+        "Dimension collective : une communauté de lettrés et d'artisans du mot"
+      ],
+      "mood": "intime_lumineux"
+    },
+    {
+      "partie": 3,
+      "titre": "L'écho qui demeure",
+      "duree_cible": 10.0,
+      "fonction_narrative": "résolution_résonance",
+      "position_arc_emotionnel": "apaisement_méditatif",
+      "elements_necessaires": [
+        "Transmission de la tradition à travers les générations",
+        "Ouverture sur la persistance du haïku au-delà de la période Edo",
+        "Retour à l'image de la nature — boucle narrative"
+      ],
+      "mood": "méditatif_universel"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_croissante_vers_apaisement",
+  "rythme_general": "dynamique — phrases courtes, images nettes, enchaînements fluides sans temps mort",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_thematique",
+      "duree": 1.5,
+      "description": "Du paysage général on glisse vers les silhouettes des poètes sur les routes — la dernière image de la partie 1 (le décor) devient le cadre dans lequel apparaissent les figures humaines de la partie 2."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_temporel",
+      "duree": 1.5,
+      "description": "Depuis la voix d'un poète citée en partie 2, on élargit le regard vers le temps long — la citation résonne encore tandis que la narration évoque la transmission et la permanence."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un mouvement unique en trois vagues — décor, figures humaines, héritage — sans rupture marquée. Les transitions sont des fondus narratifs, pas des coupes. REGISTRE : vocabulaire courant, phrases de 8 à 15 mots maximum, aucun jargon littéraire non expliqué. TON : neutre et informatif tout du long, sans lyrisme excessif ; laisser les images parler. ARCHIVES AUDIO : les transcriptions disponibles concernent les chantiers navals de Nantes et ne sont PAS exploitables pour ce sujet sur le haïku japonais ; ne pas les citer. CITATIONS : intégrer un haïku classique attribuable à la tradition de la période Edo (ex. œuvres largement connues du canon poétique japonais) comme seule citation directe. DURÉE : 68 mots maximum au total — chaque mot compte, privilégier la densité évocatrice. FORMAT MOSAÏQUE : les trois sections fonctionnent comme des fragments juxtaposés d'un même tableau, reliés par le fil des saisons."
+}

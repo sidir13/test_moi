@@ -1,0 +1,173 @@
+{
+  "scenario_id": 1,
+  "titre": "Le tracé d'un monde englouti",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Sur les bords de Loire, à Nantes, les chantiers navals rythmaient la vie de milliers d'hommes. Du matin au soir, dessinateurs, traceurs et charpentiers de fer formaient une chaîne invisible reliant le plan à la coque. Jean Peneau, entré à 20 ans aux chantiers de la Loire en 1957, incarne ce savoir-faire transmis sur le tas. Puis les commandes se sont raréfiées et les cales se sont tues, ne laissant que la mémoire des hommes comme trace d'un monde disparu.",
+  "duree_estimee": 59.019480519480524,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le matin — le trait sur le papier",
+      "duree": 19.09090909090909,
+      "texte_narration": "Un bruit de crayon gratte le papier calque. Sur les bords de Loire, à Nantes, des hommes penchés sur leurs tables donnent forme aux coques. Dehors, le vacarme des cales. Ici, le silence du trait.",
+      "ton": {
+        "global": "contemplatif_précis",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'coques' (0.5s)",
+          "après 'cales' (0.8s)"
+        ],
+        "intonation": "posée, descriptive, sobre"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le geste du crayon",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Contraste silence/vacarme",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un bruit de crayon gratte le papier calque.",
+          "sources": [
+            "[00:00] Sur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque."
+          ]
+        },
+        {
+          "sentence": "Sur les bords de Loire, à Nantes, des hommes penchés sur leurs tables donnent forme aux coques.",
+          "sources": [
+            "[00:00] Dans les bureaux d'études des chantiers navals, des hommes penchés sur leurs tables donnent forme aux coques, aux membrures, aux cloisons."
+          ]
+        },
+        {
+          "sentence": "Dehors, le vacarme des cales.",
+          "sources": [
+            "[00:00] Dehors, le vacarme des cales, ici le silence du trait."
+          ]
+        },
+        {
+          "sentence": "Ici, le silence du trait.",
+          "sources": [
+            "[00:00] Dehors, le vacarme des cales, ici le silence du trait."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La journée — du plan à la coque",
+      "duree": 20.5,
+      "texte_narration": "La source précise : [ARCHIVE : « Chaque ligne tracée deviendra tôle, rivet, navire. »] Jean Peneau entre aux chantiers en 1957, à vingt ans. On lui confie un balai, puis le parc à ferrons où un petit train achemine les goussets vers les coques.",
+      "ton": {
+        "global": "actif_concret",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'navire' (0.5s)",
+          "après 'vingt ans' (0.3s)"
+        ],
+        "intonation": "dynamique, factuelle, progressive"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:12",
+          "action": "Citation directe — chaîne du plan à la matière",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:16",
+          "action": "Entrée de Jean Peneau, gestes concrets",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "La source précise : [ARCHIVE : « Chaque ligne tracée deviendra tôle, rivet, navire. »]",
+          "sources": [
+            "[00:00] Chaque ligne tracée deviendra tôle, rivet, navire."
+          ]
+        },
+        {
+          "sentence": "Jean Peneau entre aux chantiers en 1957, à vingt ans.",
+          "sources": [
+            "[00:00] Le 5 février 1957, Jean Peneau franchit la grille des chantiers de la Loire. Il a tout juste 20 ans."
+          ]
+        },
+        {
+          "sentence": "On lui confie un balai, puis le parc à ferrons où un petit train achemine les goussets vers les coques.",
+          "sources": [
+            "[00:30] Un jour, on lui confie un balai, puis il rejoint le parc à ferrons où l'on trie les goussets, ces pièces de renfort en acier chargées sur un petit train à plateau qui les achemine vers les coques en construction."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — les cales se taisent",
+      "duree": 19.42857142857143,
+      "texte_narration": "Puis les commandes se raréfient. Les cales se taisent. Sur l'île de Nantes, les tables à dessin ont disparu. Restent les hommes, et dans leurs mots, le tracé précis d'un monde englouti.",
+      "ton": {
+        "global": "élégiaque_sobre",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'se taisent' (1.0s)",
+          "après 'disparu' (0.5s)"
+        ],
+        "intonation": "ralentie, mélancolique contenue, finale suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:24",
+          "action": "Déclin — silence progressif",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:29",
+          "action": "Boucle narrative — retour au mot 'tracé'",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis les commandes se raréfient.",
+          "sources": [
+            "[01:00] Puis les commandes se raréfient, les cales se taisent, les chantiers ferment un à un."
+          ]
+        },
+        {
+          "sentence": "Les cales se taisent.",
+          "sources": [
+            "[01:00] Puis les commandes se raréfient, les cales se taisent, les chantiers ferment un à un."
+          ]
+        },
+        {
+          "sentence": "Sur l'île de Nantes, les tables à dessin ont disparu.",
+          "sources": [
+            "[01:00] Sur l'île de Nantes, là où l'on construisait des navires, les tables à dessin ont disparu."
+          ]
+        },
+        {
+          "sentence": "Restent les hommes, et dans leurs mots, le tracé précis d'un monde englouti.",
+          "sources": [
+            "[01:00] Restent les hommes, leur mémoire et dans leurs mots le tracé précis d'un monde englouti."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 110,
+    "duree_lecture_estimee": 59.019480519480524,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ : Le récit ouvre sur le geste du trait (crayon/papier) et se referme sur le mot 'tracé' — boucle sémantique qui unifie les 34 secondes. FLUIDITÉ : Pas de titres annoncés à l'oral, les sections s'enchaînent comme un mouvement unique. REGISTRE : Grand public, phrases courtes, vocabulaire concret, ton neutre informatif maintenu tout du long. CITATIONS : Intégrer au moins un fragment direct de la source (ex. 'chaque ligne tracée deviendra tôle, rivet, navire'). DÉBIT : ~68 mots maximum — chaque mot compte, privilégier l'image concrète au commentaire abstrait. NOTE IMPORTANTE : Bien que la demande mentionne 'gangs', le matériau source concerne exclusivement les chantiers navals de Nantes — le récit reste fidèle aux faits documentés."
+}

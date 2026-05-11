@@ -166,18 +166,23 @@ export function ProjectDetailsView() {
     if (progressPrefilledFor.current === projectName) return;
     const hasStored = Boolean(profileQuery.data.last_scenarios?.length);
     const hasFinal = Boolean(profileQuery.data.final_scenario);
+    const hasTranscriptions = Boolean(transcriptionsQuery.data?.length);
+    const hasProjectAudio = Boolean(projectAudioQuery.data?.length);
     setProgress({
       audioReady: Boolean(
-        profileQuery.data.final_audio?.path || profileQuery.data.audio_selection?.voices?.length
+        profileQuery.data.final_audio?.path ||
+          profileQuery.data.audio_selection?.voices?.length ||
+          hasTranscriptions ||
+          hasProjectAudio
       ),
       transcriptionsReviewed:
-        Boolean(profileQuery.data.final_audio?.path) || hasStored || hasFinal,
+        Boolean(profileQuery.data.final_audio?.path) || hasStored || hasFinal || hasTranscriptions,
       scenariosReady: hasStored || hasFinal,
       scenarioChosen: hasFinal,
       scenarioEdited: false
     });
     progressPrefilledFor.current = projectName;
-  }, [profileQuery.data, projectName, setProgress]);
+  }, [profileQuery.data, projectName, setProgress, transcriptionsQuery.data, projectAudioQuery.data]);
 
   const preferenceOptions = profileQuery.data?.preference_options;
   const toneOptions = preferenceOptions?.tone_options ?? [];

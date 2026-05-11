@@ -1,4 +1,6 @@
-import { MessageSquarePlus, PencilLine, Play, Sparkles, Volume2 } from "lucide-react";
+import { ChevronRight, MessageSquarePlus, PencilLine, Play, Sparkles, Volume2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useSessionStore } from "@/hooks/useSessionStore";
 
 type InlineTagProps = {
   label: string;
@@ -172,9 +174,27 @@ export function EditionScenario() {
 }
 
 export function EditionTextView() {
+  const navigate = useNavigate();
+  const { setCurrentStep } = useSessionStore();
+
+  const goToAudioEdition = () => {
+    setCurrentStep("scenario_edit");
+    navigate("/step/scenario_edit");
+  };
+
   return (
-    <div className="mx-auto w-full max-w-[1100px] p-6">
+    <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-4 p-6">
       <EditionScenario />
+      <div className="flex w-full items-center justify-end">
+        <button
+          type="button"
+          onClick={goToAudioEdition}
+          className="inline-flex h-[38px] items-center gap-1 rounded-[12px] bg-[#007AFF] px-4 py-2 text-[14px] font-medium leading-[14px] text-white transition-colors hover:bg-[#006ae0]"
+        >
+          <span>Suivant : Édition de l&apos;audio</span>
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }

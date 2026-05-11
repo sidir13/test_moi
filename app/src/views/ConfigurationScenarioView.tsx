@@ -27,6 +27,18 @@ import { useQueryClient } from "@tanstack/react-query";
 
 type AiProvider = "eleven_labs" | "qwen_local";
 
+const ELEVEN_LABS_VOICES: { id: string; name: string; descriptor: string }[] = [
+  { id: "5l4ttmr4SKNgi0HnOelT", name: "Paul K", descriptor: "Deep French Narrator – Confident, middle-aged, FR" },
+  { id: "flHkNRp1BlvT73UL6gyz", name: "Jessica Anne Bogart", descriptor: "Character & Animation – Crisp, middle-aged, US" },
+  { id: "jK7dAsiVAhbApIS8KkWB", name: "Vincent (JC)", descriptor: "Smooth, classy, middle-aged, FR" },
+  { id: "NOpBlnGInO9m6vDvFkFC", name: "Grandpa Spuds Oxley", descriptor: "Friendly grandpa – Gentle, older, US" },
+  { id: "jUHQdLfy668sllNiNTSW", name: "Clément", descriptor: "Top Voice France – Calm, middle-aged, FR" },
+  { id: "tKaoyJLW05zqV0tIH9FD", name: "Gaëlle", descriptor: "Audiobooks & Storytelling – Warm, middle-aged, FR" },
+  { id: "T4BwQ2ZwlS2BbHIfci4H", name: "Souni", descriptor: "Gentle French female – Calm, young, FR" },
+  { id: "GYzIdoKkRyANjBvkKYfO", name: "Koraly", descriptor: "Smooth & Captivating – Pro voice clone, FR" },
+  { id: "TojRWZatQyy9dujEdiQ1", name: "Koraly (Storyteller)", descriptor: "Storyteller – Audiobook-tuned, FR" },
+];
+
 type ScenarioItem = {
   id: number;
   title: string;
@@ -37,16 +49,18 @@ type ScenarioItem = {
   narrativeTone: string;
   sourceMatch: number;
   durationSeconds: number;
+  ttsVoiceId: string;
 };
 
 export function ConfigurationScenarioView() {
   const navigate = useNavigate();
-  const { projectName, lastProjectName, setProjectName, sessionId, setScenarioTarget } = useSessionStore();
+  const { projectName, lastProjectName, setProjectName, sessionId, setScenarioTarget, updateProgress } = useSessionStore();
   const queryClient = useQueryClient();
   const resolvedProjectName = projectName ?? lastProjectName;
   const [showAiDropdownId, setShowAiDropdownId] = useState<number | null>(null);
   const [showAudienceDropdownId, setShowAudienceDropdownId] = useState<number | null>(null);
   const [showToneDropdownId, setShowToneDropdownId] = useState<number | null>(null);
+  const [showVoiceDropdownId, setShowVoiceDropdownId] = useState<number | null>(null);
   const [showGenerationPopup, setShowGenerationPopup] = useState(false);
   const [generationError, setGenerationError] = useState<string | null>(null);
   const [scenarios, setScenarios] = useState<ScenarioItem[]>([
@@ -60,6 +74,7 @@ export function ConfigurationScenarioView() {
       narrativeTone: "Sélectionnez",
       sourceMatch: 70,
       durationSeconds: 90,
+      ttsVoiceId: ELEVEN_LABS_VOICES[0].id,
     },
   ]);
   const maxChars = 3000;
@@ -130,6 +145,7 @@ export function ConfigurationScenarioView() {
     if (showAiDropdownId === id) setShowAiDropdownId(null);
     if (showAudienceDropdownId === id) setShowAudienceDropdownId(null);
     if (showToneDropdownId === id) setShowToneDropdownId(null);
+    if (showVoiceDropdownId === id) setShowVoiceDropdownId(null);
   };
 
   const reverseFormatLabel = (label: string, options: string[]) => {
@@ -166,6 +182,7 @@ export function ConfigurationScenarioView() {
       target_duration: s.durationSeconds,
       source_usage_level: sourceUsageFromMatch(s.sourceMatch),
       tts_provider: s.aiProvider === "qwen_local" ? "qwen" : "elevenlabs",
+      tts_voice_id: s.aiProvider === "eleven_labs" ? s.ttsVoiceId : null,
     }));
     const combinedPrompt = specs
       .map((s) => s.prompt)
@@ -388,21 +405,61 @@ export function ConfigurationScenarioView() {
                       </div>
                     </div>
 
-                    {scenario.aiProvider !== "qwen_local" && (
-                      <div className="flex flex-col gap-2">
-                        <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Choisir une voix</label>
-                        <button
-                          type="button"
-                          className="inline-flex min-h-[66px] w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] p-3"
-                        >
-                          <span className="inline-flex items-center gap-2 text-[14px] font-medium text-[#0F172B]">
-                            <AudioLines className="h-4 w-4" />
-                            Ben – Calm, Older, Masculine
-                          </span>
-                          <ChevronDown className="h-4 w-4 text-[#45556C]" />
-                        </button>
-                      </div>
-                    )}
+                    {scenario.aiProvider !== "qwen_local" && (() => {
+                      const selectedVoice =
+                        ELEVEN_LABS_VOICES.find((v) => v.id === scenario.ttsVoiceId) ?? ELEVEN_LABS_VOICES[0];
+                      return (
+                        <div className="relative flex flex-col gap-2">
+                          <label className="text-[14px] font-medium leading-5 text-[#0F172B]">Choisir une voix</label>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setShowVoiceDropdownId((prev) => (prev === scenario.id ? null : scenario.id))
+                            }
+                            className="inline-flex min-h-[66px] w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F4F4F4] p-3 text-left transition-colors hover:bg-[#eef2f7]"
+                          >
+                            <span className="flex items-center gap-2">
+                              <AudioLines className="h-4 w-4 text-[#0F172B]" />
+                              <span className="flex flex-col">
+                                <span className="text-[14px] font-medium text-[#0F172B]">{selectedVoice.name}</span>
+                                <span className="text-[12px] font-normal text-[#45556C]">{selectedVoice.descriptor}</span>
+                              </span>
+                            </span>
+                            <ChevronDown className="h-4 w-4 text-[#45556C]" />
+                          </button>
+
+                          {showVoiceDropdownId === scenario.id && (
+                            <div className="absolute left-0 right-0 top-[96px] z-30 max-h-[320px] overflow-y-auto rounded-lg border border-[#E2E8F0] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+                              {ELEVEN_LABS_VOICES.map((voice, index) => {
+                                const isActive = voice.id === scenario.ttsVoiceId;
+                                return (
+                                  <button
+                                    key={voice.id}
+                                    type="button"
+                                    onClick={() => {
+                                      updateScenario(scenario.id, { ttsVoiceId: voice.id });
+                                      setShowVoiceDropdownId(null);
+                                    }}
+                                    className={`flex w-full items-start justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-[#F8FAFC] ${
+                                      index < ELEVEN_LABS_VOICES.length - 1 ? "border-b border-[#E2E8F0]" : ""
+                                    }`}
+                                  >
+                                    <span className="flex items-start gap-2">
+                                      <AudioLines className="mt-0.5 h-4 w-4 text-[#0F172B]" />
+                                      <span className="flex flex-col">
+                                        <span className="text-[14px] font-semibold leading-tight text-[#0F172B]">{voice.name}</span>
+                                        <span className="text-[12px] font-normal leading-snug text-[#45556C]">{voice.descriptor}</span>
+                                      </span>
+                                    </span>
+                                    {isActive ? <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#007AFF]" /> : null}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
 
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center justify-between text-[14px] font-medium leading-5 text-[#0F172B]">
@@ -484,6 +541,7 @@ export function ConfigurationScenarioView() {
         onClose={() => setShowGenerationPopup(false)}
         onComplete={() => {
           setShowGenerationPopup(false);
+          updateProgress({ scenariosReady: true });
           navigate("/step/choix_scenario");
         }}
         onError={(msg) => {

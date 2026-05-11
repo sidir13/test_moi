@@ -2,19 +2,14 @@
   "nodes": [
     {
       "id": "event_0",
-      "name": "Activité et apogée des chantiers navals de Nantes",
+      "name": "Embauche et débuts de Jean Peneau aux chantiers de la Loire",
       "type": "Event",
-      "description": "Période d'intense activité industrielle marquée par le savoir-faire des soudeurs et charpentiers construisant des navires d'envergure sur les bords de la Loire.",
-      "time": "1950-1960"
+      "description": "À l'âge de 20 ans, Jean Peneau commence sa carrière aux chantiers navals de la Loire. Débutant au balai, il est rapidement affecté au parc à ferrons pour trier les goussets (pièces d'acier) acheminés par train.",
+      "time": "5 février 1957"
     },
     {
-      "id": "soudeurs",
-      "name": "soudeurs",
-      "type": "Person"
-    },
-    {
-      "id": "charpentiers",
-      "name": "charpentiers",
+      "id": "Jean Peneau",
+      "name": "Jean Peneau",
       "type": "Person"
     },
     {
@@ -23,9 +18,19 @@
       "type": "Place"
     },
     {
-      "id": "Loire",
-      "name": "Loire",
+      "id": "Chantiers de la Loire",
+      "name": "Chantiers de la Loire",
       "type": "Place"
+    },
+    {
+      "id": "Parc à ferrons",
+      "name": "Parc à ferrons",
+      "type": "Place"
+    },
+    {
+      "id": "embauche",
+      "name": "embauche",
+      "type": "Keyword"
     },
     {
       "id": "chantiers navals",
@@ -33,13 +38,8 @@
       "type": "Keyword"
     },
     {
-      "id": "construction navale",
-      "name": "construction navale",
-      "type": "Keyword"
-    },
-    {
-      "id": "industrie",
-      "name": "industrie",
+      "id": "goussets",
+      "name": "goussets",
       "type": "Keyword"
     },
     {
@@ -48,38 +48,121 @@
       "type": "Keyword"
     },
     {
+      "id": "jeunesse",
+      "name": "jeunesse",
+      "type": "Keyword"
+    },
+    {
       "id": "event_1",
-      "name": "Lancement du paquebot France",
+      "name": "Mutation aux chantiers Dubigeon et à Cherbourg",
       "type": "Event",
-      "description": "Construction et naissance du célèbre paquebot de 106 000 tonnes, symbole de fierté nationale et chef-d'œuvre de la construction navale française.",
-      "time": "1960"
+      "description": "Jean Peneau est muté au chantier Dubigeon puis à Cherbourg, où il participe à la construction de sous-marins pendant sept ans et demi.",
+      "time": "Entre 1957 et 1969"
     },
     {
-      "id": "paquebot France",
-      "name": "paquebot France",
+      "id": "Dubigeon",
+      "name": "Dubigeon",
+      "type": "Place"
+    },
+    {
+      "id": "Cherbourg",
+      "name": "Cherbourg",
+      "type": "Place"
+    },
+    {
+      "id": "sous-marins",
+      "name": "sous-marins",
       "type": "Keyword"
     },
     {
-      "id": "fierté nationale",
-      "name": "fierté nationale",
+      "id": "mutation",
+      "name": "mutation",
       "type": "Keyword"
     },
     {
-      "id": "paquebot",
-      "name": "paquebot",
+      "id": "construction navale",
+      "name": "construction navale",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_2",
+      "name": "Retour de Jean Peneau à Nantes",
+      "type": "Event",
+      "description": "Après son expérience sur les sous-marins, il réintègre les chantiers nantais, retrouvant un environnement de travail marqué par le compagnonnage entre traceurs, dessinateurs et charpentiers de fer.",
+      "time": "Juillet 1969"
+    },
+    {
+      "id": "dessinateurs",
+      "name": "dessinateurs",
+      "type": "Person"
+    },
+    {
+      "id": "traceurs",
+      "name": "traceurs",
+      "type": "Person"
+    },
+    {
+      "id": "charpentiers de fer",
+      "name": "charpentiers de fer",
+      "type": "Person"
+    },
+    {
+      "id": "retour",
+      "name": "retour",
+      "type": "Keyword"
+    },
+    {
+      "id": "climat de travail",
+      "name": "climat de travail",
+      "type": "Keyword"
+    },
+    {
+      "id": "compagnonnage",
+      "name": "compagnonnage",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_3",
+      "name": "Fermeture des chantiers navals de Nantes",
+      "type": "Event",
+      "description": "Conséquence de la raréfaction des commandes, les chantiers navals situés sur l'île de Nantes cessent leur activité, marquant la fin d'une ère industrielle.",
+      "time": "Fin du XXe siècle"
+    },
+    {
+      "id": "Ouvriers",
+      "name": "Ouvriers",
+      "type": "Person"
+    },
+    {
+      "id": "Dessinateurs",
+      "name": "Dessinateurs",
+      "type": "Person"
+    },
+    {
+      "id": "Île de Nantes",
+      "name": "Île de Nantes",
+      "type": "Place"
+    },
+    {
+      "id": "fermeture",
+      "name": "fermeture",
+      "type": "Keyword"
+    },
+    {
+      "id": "désindustrialisation",
+      "name": "désindustrialisation",
+      "type": "Keyword"
+    },
+    {
+      "id": "mémoire",
+      "name": "mémoire",
       "type": "Keyword"
     }
   ],
   "edges": [
     {
-      "id": "actor_0_soudeurs",
-      "source": "soudeurs",
-      "target": "event_0",
-      "type": "PARTICIPATED_IN"
-    },
-    {
-      "id": "actor_0_charpentiers",
-      "source": "charpentiers",
+      "id": "actor_0_Jean Peneau",
+      "source": "Jean Peneau",
       "target": "event_0",
       "type": "PARTICIPATED_IN"
     },
@@ -90,10 +173,22 @@
       "type": "HAPPENED_IN"
     },
     {
-      "id": "place_0_Loire",
+      "id": "place_0_Chantiers de la Loire",
       "source": "event_0",
-      "target": "Loire",
+      "target": "Chantiers de la Loire",
       "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_0_Parc à ferrons",
+      "source": "event_0",
+      "target": "Parc à ferrons",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_0_embauche",
+      "source": "event_0",
+      "target": "embauche",
+      "type": "HAS_TOPIC"
     },
     {
       "id": "kw_0_chantiers navals",
@@ -102,15 +197,9 @@
       "type": "HAS_TOPIC"
     },
     {
-      "id": "kw_0_construction navale",
+      "id": "kw_0_goussets",
       "source": "event_0",
-      "target": "construction navale",
-      "type": "HAS_TOPIC"
-    },
-    {
-      "id": "kw_0_industrie",
-      "source": "event_0",
-      "target": "industrie",
+      "target": "goussets",
       "type": "HAS_TOPIC"
     },
     {
@@ -120,14 +209,14 @@
       "type": "HAS_TOPIC"
     },
     {
-      "id": "actor_1_soudeurs",
-      "source": "soudeurs",
-      "target": "event_1",
-      "type": "PARTICIPATED_IN"
+      "id": "kw_0_jeunesse",
+      "source": "event_0",
+      "target": "jeunesse",
+      "type": "HAS_TOPIC"
     },
     {
-      "id": "actor_1_charpentiers",
-      "source": "charpentiers",
+      "id": "actor_1_Jean Peneau",
+      "source": "Jean Peneau",
       "target": "event_1",
       "type": "PARTICIPATED_IN"
     },
@@ -138,27 +227,117 @@
       "type": "HAPPENED_IN"
     },
     {
-      "id": "kw_1_paquebot France",
+      "id": "place_1_Dubigeon",
       "source": "event_1",
-      "target": "paquebot France",
+      "target": "Dubigeon",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Cherbourg",
+      "source": "event_1",
+      "target": "Cherbourg",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_1_sous-marins",
+      "source": "event_1",
+      "target": "sous-marins",
       "type": "HAS_TOPIC"
     },
     {
-      "id": "kw_1_fierté nationale",
+      "id": "kw_1_mutation",
       "source": "event_1",
-      "target": "fierté nationale",
-      "type": "HAS_TOPIC"
-    },
-    {
-      "id": "kw_1_paquebot",
-      "source": "event_1",
-      "target": "paquebot",
+      "target": "mutation",
       "type": "HAS_TOPIC"
     },
     {
       "id": "kw_1_construction navale",
       "source": "event_1",
       "target": "construction navale",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_2_Jean Peneau",
+      "source": "Jean Peneau",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_2_dessinateurs",
+      "source": "dessinateurs",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_2_traceurs",
+      "source": "traceurs",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_2_charpentiers de fer",
+      "source": "charpentiers de fer",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_2_Nantes",
+      "source": "event_2",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_2_retour",
+      "source": "event_2",
+      "target": "retour",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_climat de travail",
+      "source": "event_2",
+      "target": "climat de travail",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_compagnonnage",
+      "source": "event_2",
+      "target": "compagnonnage",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_3_Ouvriers",
+      "source": "Ouvriers",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_Dessinateurs",
+      "source": "Dessinateurs",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_3_Île de Nantes",
+      "source": "event_3",
+      "target": "Île de Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_3_fermeture",
+      "source": "event_3",
+      "target": "fermeture",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_désindustrialisation",
+      "source": "event_3",
+      "target": "désindustrialisation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_mémoire",
+      "source": "event_3",
+      "target": "mémoire",
       "type": "HAS_TOPIC"
     }
   ]

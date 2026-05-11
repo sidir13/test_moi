@@ -1,0 +1,17 @@
+=== PARTIE 1 : Le matin — le trait sur le papier ===
+
+{crayon_papier_calque.wav}
+
+Un bruit de crayon gratte le papier calque. [pause] Sur les bords de Loire, à Nantes, des hommes penchés sur leurs tables donnent forme aux coques. Dehors, le vacarme des cales. [posé] Ici, le silence du trait.
+
+=== PARTIE 2 : La journée — du plan à la coque ===
+
+{activite_chantier_naval.wav}
+
+La source précise : [posé] [atténué] « Chaque ligne tracée deviendra tôle, rivet, navire. » [pause] Jean Peneau entre aux chantiers en 1957, à vingt ans. On lui confie un balai, puis le parc à ferrons où un petit train achemine les goussets vers les coques.
+
+=== PARTIE 3 : Le soir — les cales se taisent ===
+
+{silence_cales_vides.wav}
+
+[ralentit] Puis les commandes se raréfient. Les cales se taisent. [pause] Sur l'île de Nantes, les tables à dessin ont disparu. [posé] Restent les hommes, et dans leurs mots, le tracé précis d'un monde englouti.

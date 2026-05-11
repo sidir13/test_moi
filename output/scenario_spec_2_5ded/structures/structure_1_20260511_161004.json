@@ -1,0 +1,75 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le tracé d'un monde englouti",
+  "resumeHistoire": "Sur les bords de Loire, à Nantes, les chantiers navals rythmaient la vie de milliers d'hommes. Du matin au soir, dessinateurs, traceurs et charpentiers de fer formaient une chaîne invisible reliant le plan à la coque. Jean Peneau, entré à 20 ans aux chantiers de la Loire en 1957, incarne ce savoir-faire transmis sur le tas. Puis les commandes se sont raréfiées et les cales se sont tues, ne laissant que la mémoire des hommes comme trace d'un monde disparu.",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 34,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le matin — le trait sur le papier",
+      "duree_cible": 12.0,
+      "fonction_narrative": "exposition_et_ouverture_circulaire",
+      "position_arc_emotionnel": "calme_immersif",
+      "elements_necessaires": [
+        "ambiance matinale des bureaux d'études",
+        "geste du crayon sur papier calque",
+        "silence du trait vs vacarme des cales",
+        "citation directe adaptée de la source"
+      ],
+      "mood": "contemplatif_précis"
+    },
+    {
+      "partie": 2,
+      "titre": "La journée — du plan à la coque",
+      "duree_cible": 12.0,
+      "fonction_narrative": "developpement_et_tension",
+      "position_arc_emotionnel": "montee_dynamique",
+      "elements_necessaires": [
+        "chaîne de transmission du savoir",
+        "gestes concrets : tri des goussets, petit train à plateau",
+        "Jean Peneau comme figure incarnée",
+        "rythme de travail collectif"
+      ],
+      "mood": "actif_concret"
+    },
+    {
+      "partie": 3,
+      "titre": "Le soir — les cales se taisent",
+      "duree_cible": 10.0,
+      "fonction_narrative": "resolution_et_retour_circulaire",
+      "position_arc_emotionnel": "melancolie_apaisee",
+      "elements_necessaires": [
+        "fermeture des chantiers",
+        "disparition des tables à dessin",
+        "retour à l'image du tracé — boucle narrative",
+        "mémoire des hommes comme seul vestige"
+      ],
+      "mood": "elegiaque_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_elegiaque",
+  "rythme_general": "varie — calme contemplatif puis dynamique concret puis ralenti mélancolique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Du silence du bureau d'études, on glisse vers le mouvement de la cale — le plan prend corps dans le métal."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_temporelle_douce",
+      "duree": 1.5,
+      "description": "Le rythme ralentit brusquement — les commandes se raréfient, le bruit s'éteint, retour au silence initial mais cette fois vide."
+    }
+  ],
+  "notes_production": "CONTINUITÉ : Le récit ouvre sur le geste du trait (crayon/papier) et se referme sur le mot 'tracé' — boucle sémantique qui unifie les 34 secondes. FLUIDITÉ : Pas de titres annoncés à l'oral, les sections s'enchaînent comme un mouvement unique. REGISTRE : Grand public, phrases courtes, vocabulaire concret, ton neutre informatif maintenu tout du long. CITATIONS : Intégrer au moins un fragment direct de la source (ex. 'chaque ligne tracée deviendra tôle, rivet, navire'). DÉBIT : ~68 mots maximum — chaque mot compte, privilégier l'image concrète au commentaire abstrait. NOTE IMPORTANTE : Bien que la demande mentionne 'gangs', le matériau source concerne exclusivement les chantiers navals de Nantes — le récit reste fidèle aux faits documentés."
+}

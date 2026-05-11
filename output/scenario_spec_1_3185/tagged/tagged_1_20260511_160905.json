@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Le souffle des saisons — Poètes du Japon d'Edo",
+  "taggedText": "=== PARTIE 1 : Le monde en dix-sept syllabes ===\n\n[posé] Edo, dix-septième siècle. [pause] Entre les rizières et les temples, une forme poétique brève se répand : le haïku. En dix-sept syllabes, artisans et lettrés capturent [étire] le frémissement d'une saison.\n\n=== PARTIE 2 : Poètes des chemins ===\n\n{pas_chemin_terre.wav}\nDes poètes marchent de Kyoto aux provinces reculées, le pinceau dans la besace. [pause] Bashō murmure : [posé] [chuchote] « Un vieil étang — une grenouille plonge — le bruit de l'eau. » [pause] L'esprit zen imprègne chaque vers.\n\n=== PARTIE 3 : L'écho qui demeure ===\n\n[ralentit] De génération en génération, la tradition se transmet. [pause] Aujourd'hui encore, dix-sept syllabes suffisent à fixer [accentué] l'éclat d'un instant.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le monde en dix-sept syllabes",
+      "taggedText": "[posé] Edo, dix-septième siècle. [pause] Entre les rizières et les temples, une forme poétique brève se répand : le haïku. En dix-sept syllabes, artisans et lettrés capturent [étire] le frémissement d'une saison."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Poètes des chemins",
+      "taggedText": "{pas_chemin_terre.wav}\nDes poètes marchent de Kyoto aux provinces reculées, le pinceau dans la besace. [pause] Bashō murmure : [posé] [chuchote] « Un vieil étang — une grenouille plonge — le bruit de l'eau. » [pause] L'esprit zen imprègne chaque vers."
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'écho qui demeure",
+      "taggedText": "[ralentit] De génération en génération, la tradition se transmet. [pause] Aujourd'hui encore, dix-sept syllabes suffisent à fixer [accentué] l'éclat d'un instant."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 10,
+    "soundTags": 1,
+    "originalWordCount": 85
+  }
+}

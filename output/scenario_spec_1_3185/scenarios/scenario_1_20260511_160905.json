@@ -1,0 +1,137 @@
+{
+  "scenario_id": 1,
+  "titre": "Le souffle des saisons — Poètes du Japon d'Edo",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "Dans le Japon de la période Edo, une forme poétique brève naît au croisement de la spiritualité zen et de l'observation minutieuse de la nature. Des poètes, souvent issus de milieux modestes, parcourent les routes entre Edo, Kyoto et les provinces reculées, capturant en quelques syllabes l'essence d'un instant. Leur art, le haïku, devient le miroir d'une société où l'esthétique du dépouillement — le wabi-sabi — imprègne le quotidien. De saison en saison, ces chroniqueurs de l'éphémère lèguent une tradition littéraire qui traverse les siècles.",
+  "duree_estimee": 46.93506493506493,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le monde en dix-sept syllabes",
+      "duree": 16.909090909090907,
+      "texte_narration": "Edo, dix-septième siècle. Entre les rizières et les temples, une forme poétique brève se répand : le haïku. En dix-sept syllabes, artisans et lettrés capturent le frémissement d'une saison.",
+      "ton": {
+        "global": "contemplatif_descriptif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'le haïku' (1s)"
+        ],
+        "intonation": "posée, neutre, légèrement évocatrice"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ancrage géographique et temporel immédiat",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Présentation du haïku comme pratique sociale",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Edo, dix-septième siècle.",
+          "sources": []
+        },
+        {
+          "sentence": "Entre les rizières et les temples, une forme poétique brève se répand : le haïku.",
+          "sources": []
+        },
+        {
+          "sentence": "En dix-sept syllabes, artisans et lettrés capturent le frémissement d'une saison.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Poètes des chemins",
+      "duree": 17.454545454545453,
+      "texte_narration": "Des poètes marchent de Kyoto aux provinces reculées, le pinceau dans la besace. Bashō murmure : « Un vieil étang — une grenouille plonge — le bruit de l'eau. » L'esprit zen imprègne chaque vers.",
+      "ton": {
+        "global": "intime_lumineux",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'besace' (0.5s)",
+          "après 'le bruit de l'eau' (1.5s)"
+        ],
+        "intonation": "douce, recueillie, légère élévation sur le haïku"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:12",
+          "action": "Image des poètes itinérants",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:16",
+          "action": "Citation du haïku de Bashō",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Des poètes marchent de Kyoto aux provinces reculées, le pinceau dans la besace.",
+          "sources": []
+        },
+        {
+          "sentence": "Bashō murmure : « Un vieil étang — une grenouille plonge — le bruit de l'eau. »",
+          "sources": []
+        },
+        {
+          "sentence": "L'esprit zen imprègne chaque vers.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'écho qui demeure",
+      "duree": 12.571428571428571,
+      "texte_narration": "De génération en génération, la tradition se transmet. Aujourd'hui encore, dix-sept syllabes suffisent à fixer l'éclat d'un instant.",
+      "ton": {
+        "global": "méditatif_universel",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'se transmet' (1s)"
+        ],
+        "intonation": "apaisée, conclusive, ouverte"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:24",
+          "action": "Idée de transmission à travers les siècles",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:28",
+          "action": "Boucle narrative — retour à l'image de l'instant",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "De génération en génération, la tradition se transmet.",
+          "sources": []
+        },
+        {
+          "sentence": "Aujourd'hui encore, dix-sept syllabes suffisent à fixer l'éclat d'un instant.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 85,
+    "duree_lecture_estimee": 46.93506493506493,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme un mouvement unique en trois vagues — décor, figures humaines, héritage — sans rupture marquée. Les transitions sont des fondus narratifs, pas des coupes. REGISTRE : vocabulaire courant, phrases de 8 à 15 mots maximum, aucun jargon littéraire non expliqué. TON : neutre et informatif tout du long, sans lyrisme excessif ; laisser les images parler. ARCHIVES AUDIO : les transcriptions disponibles concernent les chantiers navals de Nantes et ne sont PAS exploitables pour ce sujet sur le haïku japonais ; ne pas les citer. CITATIONS : intégrer un haïku classique attribuable à la tradition de la période Edo (ex. œuvres largement connues du canon poétique japonais) comme seule citation directe. DURÉE : 68 mots maximum au total — chaque mot compte, privilégier la densité évocatrice. FORMAT MOSAÏQUE : les trois sections fonctionnent comme des fragments juxtaposés d'un même tableau, reliés par le fil des saisons."
+}

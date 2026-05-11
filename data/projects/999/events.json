@@ -1,40 +1,77 @@
 {
   "events": [
     {
-      "title": "Activité et apogée des chantiers navals de Nantes",
-      "description": "Période d'intense activité industrielle marquée par le savoir-faire des soudeurs et charpentiers construisant des navires d'envergure sur les bords de la Loire.",
-      "approximate_time": "1950-1960",
+      "title": "Embauche et débuts de Jean Peneau aux chantiers de la Loire",
+      "description": "À l'âge de 20 ans, Jean Peneau commence sa carrière aux chantiers navals de la Loire. Débutant au balai, il est rapidement affecté au parc à ferrons pour trier les goussets (pièces d'acier) acheminés par train.",
+      "approximate_time": "5 février 1957",
       "actors": [
-        "soudeurs",
-        "charpentiers"
+        "Jean Peneau"
       ],
       "places": [
         "Nantes",
-        "Loire"
+        "Chantiers de la Loire",
+        "Parc à ferrons"
       ],
       "keywords": [
+        "embauche",
         "chantiers navals",
-        "construction navale",
-        "industrie",
-        "acier"
+        "goussets",
+        "acier",
+        "jeunesse"
       ]
     },
     {
-      "title": "Lancement du paquebot France",
-      "description": "Construction et naissance du célèbre paquebot de 106 000 tonnes, symbole de fierté nationale et chef-d'œuvre de la construction navale française.",
-      "approximate_time": "1960",
+      "title": "Mutation aux chantiers Dubigeon et à Cherbourg",
+      "description": "Jean Peneau est muté au chantier Dubigeon puis à Cherbourg, où il participe à la construction de sous-marins pendant sept ans et demi.",
+      "approximate_time": "Entre 1957 et 1969",
       "actors": [
-        "soudeurs",
-        "charpentiers"
+        "Jean Peneau"
+      ],
+      "places": [
+        "Nantes",
+        "Dubigeon",
+        "Cherbourg"
+      ],
+      "keywords": [
+        "sous-marins",
+        "mutation",
+        "construction navale"
+      ]
+    },
+    {
+      "title": "Retour de Jean Peneau à Nantes",
+      "description": "Après son expérience sur les sous-marins, il réintègre les chantiers nantais, retrouvant un environnement de travail marqué par le compagnonnage entre traceurs, dessinateurs et charpentiers de fer.",
+      "approximate_time": "Juillet 1969",
+      "actors": [
+        "Jean Peneau",
+        "dessinateurs",
+        "traceurs",
+        "charpentiers de fer"
       ],
       "places": [
         "Nantes"
       ],
       "keywords": [
-        "paquebot France",
-        "fierté nationale",
-        "paquebot",
-        "construction navale"
+        "retour",
+        "climat de travail",
+        "compagnonnage"
+      ]
+    },
+    {
+      "title": "Fermeture des chantiers navals de Nantes",
+      "description": "Conséquence de la raréfaction des commandes, les chantiers navals situés sur l'île de Nantes cessent leur activité, marquant la fin d'une ère industrielle.",
+      "approximate_time": "Fin du XXe siècle",
+      "actors": [
+        "Ouvriers",
+        "Dessinateurs"
+      ],
+      "places": [
+        "Île de Nantes"
+      ],
+      "keywords": [
+        "fermeture",
+        "désindustrialisation",
+        "mémoire"
       ]
     }
   ]

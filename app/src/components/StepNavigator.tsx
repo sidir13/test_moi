@@ -19,14 +19,21 @@ export function StepNavigator() {
     switch (stepId) {
       case "project_selection":
       case "project_details":
+        return true;
       case "audio_sources":
         return true;
       case "transcription_review":
         return progress.audioReady;
+      case "configuration_scenario":
+        return progress.audioReady;
       case "scenario_review":
         return progress.transcriptionsReviewed;
+      case "choix_scenario":
+        return progress.scenariosReady;
       case "scenario_edit":
         return progress.scenariosReady && progress.scenarioChosen;
+      case "edition_text":
+        return progress.scenarioChosen;
       case "final_validation":
         return progress.scenarioEdited;
       default:

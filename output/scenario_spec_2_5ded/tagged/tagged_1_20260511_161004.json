@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Le tracé d'un monde englouti",
+  "taggedText": "=== PARTIE 1 : Le matin — le trait sur le papier ===\n\n{crayon_papier_calque.wav}\n\nUn bruit de crayon gratte le papier calque. [pause] Sur les bords de Loire, à Nantes, des hommes penchés sur leurs tables donnent forme aux coques. Dehors, le vacarme des cales. [posé] Ici, le silence du trait.\n\n=== PARTIE 2 : La journée — du plan à la coque ===\n\n{activite_chantier_naval.wav}\n\nLa source précise : [posé] [atténué] « Chaque ligne tracée deviendra tôle, rivet, navire. » [pause] Jean Peneau entre aux chantiers en 1957, à vingt ans. On lui confie un balai, puis le parc à ferrons où un petit train achemine les goussets vers les coques.\n\n=== PARTIE 3 : Le soir — les cales se taisent ===\n\n{silence_cales_vides.wav}\n\n[ralentit] Puis les commandes se raréfient. Les cales se taisent. [pause] Sur l'île de Nantes, les tables à dessin ont disparu. [posé] Restent les hommes, et dans leurs mots, le tracé précis d'un monde englouti.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le matin — le trait sur le papier",
+      "taggedText": "{crayon_papier_calque.wav}\n\nUn bruit de crayon gratte le papier calque. [pause] Sur les bords de Loire, à Nantes, des hommes penchés sur leurs tables donnent forme aux coques. Dehors, le vacarme des cales. [posé] Ici, le silence du trait."
+    },
+    {
+      "partie_id": 2,
+      "titre": "La journée — du plan à la coque",
+      "taggedText": "{activite_chantier_naval.wav}\n\nLa source précise : [posé] [atténué] « Chaque ligne tracée deviendra tôle, rivet, navire. » [pause] Jean Peneau entre aux chantiers en 1957, à vingt ans. On lui confie un balai, puis le parc à ferrons où un petit train achemine les goussets vers les coques."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — les cales se taisent",
+      "taggedText": "{silence_cales_vides.wav}\n\n[ralentit] Puis les commandes se raréfient. Les cales se taisent. [pause] Sur l'île de Nantes, les tables à dessin ont disparu. [posé] Restent les hommes, et dans leurs mots, le tracé précis d'un monde englouti."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 8,
+    "soundTags": 3,
+    "originalWordCount": 110
+  }
+}
