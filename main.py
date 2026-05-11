@@ -207,7 +207,7 @@ TOOLS = [
     },
     {
         "name": "auto_select_audio",
-        "description": "Sélectionne automatiquement des pistes vocales (1-3) et ambiances (0-2) pour un projet donné.",
+        "description": "Sélectionne automatiquement des FICHIERS AUDIO ENREGISTRÉS (témoignages, interviews, fichiers uploadés par l'utilisateur) pour les transcrire. NE PAS utiliser pour choisir une voix ElevenLabs TTS — pour ça, utiliser 'select_voice'.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -256,6 +256,40 @@ TOOLS = [
                 "max_backgrounds": {"type": "integer", "minimum": 0, "maximum": 2, "default": 2}
             },
             "required": ["project_name"]
+        }
+    },
+    {
+        "name": "list_voice_options",
+        "description": "Retourne la liste des voix ElevenLabs disponibles avec leurs caractéristiques pour aider à choisir la plus adaptée au projet.",
+        "input_schema": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    {
+        "name": "select_voice",
+        "description": "Choisit parmi les 9 voix ElevenLabs prédéfinies (Voix 1 à Voix 9) pour la SYNTHÈSE VOCALE de la narration. Utilise ce tool quand l'utilisateur dit 'sélectionne la voix X', 'choisis une voix d'enfant', etc. Les IDs sont fixes : Voix 1=5l4ttmr4SKNgi0HnOelT, Voix 2=flHkNRp1BlvT73UL6gyz, Voix 3=jK7dAsiVAhbApIS8KkWB, Voix 4=NOpBlnGInO9m6vDvFkFC (enfant), Voix 5=jUHQdLfy668sllNiNTSW, Voix 6=tKaoyJLW05zqV0tIH9FD, Voix 7=T4BwQ2ZwlS2BbHIfci4H, Voix 8=GYzIdoKkRyANjBvkKYfO, Voix 9=TojRWZatQyy9dujEdiQ1.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Nom du projet (utilise la session active si absent)"
+                },
+                "voice_id": {
+                    "type": "string",
+                    "description": "ID de la voix ElevenLabs choisie (ex: NOpBlnGInO9m6vDvFkFC pour Voix 4)"
+                },
+                "voice_label": {
+                    "type": "string",
+                    "description": "Label lisible de la voix (ex: 'Voix 4')"
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "Justification du choix de cette voix"
+                }
+            },
+            "required": ["voice_id"]
         }
     },
     {
@@ -757,7 +791,17 @@ def select_audio_tracks(
                     break
     selected_voices = selected_voices[:max_voice_tracks]
 
-    selected_backgrounds = current.get("backgrounds", [])[:]
+    raw_backgrounds = current.get("backgrounds", [])
+    if isinstance(raw_backgrounds, dict):
+        # Format: {"ambient": "path"|None, "punctual": [...]}
+        selected_backgrounds = []
+        for v in raw_backgrounds.values():
+            if isinstance(v, list):
+                selected_backgrounds.extend(x for x in v if x)
+            elif v:
+                selected_backgrounds.append(v)
+    else:
+        selected_backgrounds = raw_backgrounds[:]
     if background_identifiers and max_backgrounds > 0:
         for ident in background_identifiers:
             listing = find_background_sounds(keyword=ident, limit=max_backgrounds)
@@ -871,6 +915,28 @@ def execute_tool(tool_name: str, tool_input: dict):
             max_voice_tracks=int(tool_input.get("max_voice_tracks", 3)),
             max_backgrounds=int(tool_input.get("max_backgrounds", 2)),
         )
+    elif tool_name == "list_voice_options":
+        return {
+            "voices": [
+                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Voix 1", "description": "Femme adulte, ton chaleureux et posé, idéale pour narration historique"},
+                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Voix 2", "description": "Homme adulte, grave et solennel, idéal pour documentaire"},
+                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Voix 3", "description": "Femme jeune adulte, dynamique et claire, idéale pour journalisme"},
+                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Voix 4", "description": "Enfant (8-10 ans), voix innocente et curieuse, idéale pour récits d'enfance"},
+                {"id": "jUHQdLfy668sllNiNTSW", "label": "Voix 5", "description": "Homme âgé, voix sage et chevrotante, idéale pour témoignages anciens"},
+                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Voix 6", "description": "Femme âgée, ton maternel et doux, idéale pour récits intimes"},
+                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Voix 7", "description": "Homme adulte, ton neutre et informatif, idéal pour documentaire pédagogique"},
+                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Voix 8", "description": "Femme adulte, accent régional marqué, idéale pour récits territoriaux"},
+                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Voix 9", "description": "Adolescent, ton spontané et vivant, idéal pour témoignages de jeunesse"},
+            ]
+        }
+    elif tool_name == "select_voice":
+        project_name = tool_input.get("project_name")
+        voice_id = tool_input["voice_id"]
+        current = load_audio_selection(project_name) if project_name else {}
+        current["tts_voice_id"] = voice_id
+        if project_name:
+            save_audio_selection(project_name, current)
+        return {"status": "ok", "voice_id": voice_id, "voice_label": tool_input.get("voice_label", ""), "reason": tool_input.get("reason", "")}
     elif tool_name == "get_audio_info":
         return get_audio_info(tool_input.get("audio_file") or tool_input.get("path"))
     elif tool_name == "adjust_audio_volume":

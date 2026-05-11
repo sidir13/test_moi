@@ -84,7 +84,15 @@ class ChatAgent:
         history = session_store.get_chat_history(session_id)
         messages: List[Dict[str, Any]] = history[:] if history else []
 
-        payload = f"{user_text}\n\n{self.skill_context}" if not messages else user_text
+        # Inject project context on first message so agent knows the project_name
+        session_data = session_store.load_session(session_id) if hasattr(session_store, "load_session") else {}
+        project_name = (session_data or {}).get("project_name", "") if isinstance(session_data, dict) else ""
+        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]" if project_name else ""
+
+        if project_name:
+            payload = f"[projet: \"{project_name}\"] {user_text}{project_context}"
+        else:
+            payload = user_text
         messages.append({"role": "user", "content": payload})
 
         loop = asyncio.get_running_loop()
@@ -95,9 +103,42 @@ class ChatAgent:
                     None,
                 lambda: self.client.messages.create(
                     model=self.model,
-                    max_tokens=1024,
+                    max_tokens=4096,
                     tools=TOOLS,
-                    system="Tu es un assistant qui aide l'utilisateur à préparer son projet d'archive sonore historique. IMPORTANT: N'utilise JAMAIS le tool 'generate_historical_scenario' sauf si l'utilisateur te demande EXPLICITEMENT de générer des scénarios (ex: 'génère les scénarios', 'crée les scénarios', 'lance la génération'). Aide-le plutôt à affiner son contexte historique, ses notes de projet, à sélectionner ses sources audio, et à enrichir son brief. N'anticipe pas ses demandes - attends qu'il te le demande clairement.",
+                    system=(
+                        "Tu es un assistant proactif et expert qui aide l'utilisateur à préparer son projet d'archive sonore historique.\n\n"
+
+                        "══════ VOIX ELEVENLABS — RÈGLE ABSOLUE ══════\n"
+                        "Il existe 9 voix ElevenLabs prédéfinies pour la SYNTHÈSE DE LA NARRATION. Ce ne sont PAS des fichiers audio — ce sont des IDs de voix dans le système.\n"
+                        "Quand l'utilisateur dit 'sélectionne la voix X' ou 'choisis une voix d'enfant' → appelle IMMÉDIATEMENT 'select_voice' avec l'ID correspondant.\n"
+                        "NE DEMANDE JAMAIS de fichier, de chemin ou de description. NE DIS PAS que tu n'as pas accès aux fichiers.\n"
+                        "MAPPING (à utiliser directement) :\n"
+                        "  Voix 1 → 5l4ttmr4SKNgi0HnOelT  (femme adulte, chaleureux)\n"
+                        "  Voix 2 → flHkNRp1BlvT73UL6gyz  (homme adulte, grave)\n"
+                        "  Voix 3 → jK7dAsiVAhbApIS8KkWB  (femme jeune, dynamique)\n"
+                        "  Voix 4 → NOpBlnGInO9m6vDvFkFC  (ENFANT 8-10 ans)\n"
+                        "  Voix 5 → jUHQdLfy668sllNiNTSW  (homme âgé, sage)\n"
+                        "  Voix 6 → tKaoyJLW05zqV0tIH9FD  (femme âgée, maternel)\n"
+                        "  Voix 7 → T4BwQ2ZwlS2BbHIfci4H  (homme neutre, pédagogique)\n"
+                        "  Voix 8 → GYzIdoKkRyANjBvkKYfO  (femme, accent régional)\n"
+                        "  Voix 9 → TojRWZatQyy9dujEdiQ1  (adolescent)\n"
+                        "Exemple : 'sélectionne la voix 1' → select_voice(voice_id='5l4ttmr4SKNgi0HnOelT', voice_label='Voix 1', project_name=<projet_actif>)\n"
+                        "Exemple : 'voix d'enfant' → select_voice(voice_id='NOpBlnGInO9m6vDvFkFC', voice_label='Voix 4', ...)\n\n"
+
+                        "══════ DISTINCTION CRITIQUE ══════\n"
+                        "'auto_select_audio' = sélectionner des FICHIERS ENREGISTRÉS uploadés par l'utilisateur (interviews, témoignages à transcrire). À N'UTILISER QUE pour les fichiers du projet.\n"
+                        "'select_voice' = choisir UNE des 9 voix ElevenLabs pour la synthèse vocale. À utiliser quand on parle de Voix 1-9.\n\n"
+
+                        "AUTRES ACTIONS DIRECTES :\n"
+                        "- Ambiances sonores → 'find_background_sounds' puis 'select_audio_manually'\n"
+                        "- Fichiers audio enregistrés → 'auto_select_audio'\n"
+                        "- Transcriptions existantes → 'list_analysis_results'\n"
+                        "- Transcrire → 'transcribe_audio'\n"
+                        "- Brief projet → 'update_project_notes'\n\n"
+
+                        "RÈGLE : N'utilise JAMAIS 'generate_historical_scenario' sauf si l'utilisateur dit explicitement 'génère les scénarios'.\n"
+                        "Sois proactif : agis immédiatement sans demander confirmation inutile."
+                    ),
                     messages=messages,
                 ),
             )
