@@ -37,6 +37,7 @@ from project_store import (
     list_project_audio_files,
     load_project_settings,
 )
+from memoiredesterritoires.project_config import update_project_config
 from memoiredesterritoires.audio_tools.audio_tools import get_audio_info
 from memoiredesterritoires.audio_tools.audio_tools import find_background_sounds
 from memoiredesterritoires.audio_tools.audio_tools import adjust_audio_volume
@@ -936,6 +937,7 @@ def execute_tool(tool_name: str, tool_input: dict):
         current["tts_voice_id"] = voice_id
         if project_name:
             save_audio_selection(project_name, current)
+            update_project_config(project_name, {"tts_voice_id": voice_id})
         return {"status": "ok", "voice_id": voice_id, "voice_label": tool_input.get("voice_label", ""), "reason": tool_input.get("reason", "")}
     elif tool_name == "get_audio_info":
         return get_audio_info(tool_input.get("audio_file") or tool_input.get("path"))
