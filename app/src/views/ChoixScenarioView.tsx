@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,12 +14,21 @@ import {
 import { fetchProjectAudio, fetchScenarios, selectScenario } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 
+type SentenceSource = { sentence: string; sources: string[] };
+type ScenarioPart = {
+  titre: string;
+  texte_narration: string;
+  sentence_sources: SentenceSource[];
+};
 type ScenarioChoice = {
   id: number;
   label: string;
   title: string;
   tags: string[];
   duration: string;
+  parties: ScenarioPart[];
+  aiPercent: number;
+  hasSourcing: boolean;
   raw: Record<string, unknown>;
 };
 
@@ -51,13 +60,61 @@ const tagsForScenario = (raw: Record<string, unknown>): string[] => {
   return Array.from(out).slice(0, 3);
 };
 
+const renderTextWithSourcing = (text: string, sentences: SentenceSource[]) => {
+  const sourced = sentences.filter((s) => s.sources.length > 0 && s.sentence.length > 0);
+  if (!text || sourced.length === 0) {
+    return <span>{text}</span>;
+  }
+  const matches: { start: number; end: number; sources: string[] }[] = [];
+  for (const item of sourced) {
+    const pos = text.indexOf(item.sentence);
+    if (pos >= 0) {
+      matches.push({ start: pos, end: pos + item.sentence.length, sources: item.sources });
+    }
+  }
+  if (matches.length === 0) return <span>{text}</span>;
+  matches.sort((a, b) => a.start - b.start);
+  const merged: typeof matches = [];
+  for (const m of matches) {
+    const last = merged[merged.length - 1];
+    if (last && m.start < last.end) {
+      last.end = Math.max(last.end, m.end);
+      last.sources = Array.from(new Set([...last.sources, ...m.sources]));
+    } else {
+      merged.push({ ...m });
+    }
+  }
+  const out: ReactNode[] = [];
+  let cursor = 0;
+  merged.forEach((m, i) => {
+    if (cursor < m.start) out.push(<span key={`p-${i}`}>{text.slice(cursor, m.start)}</span>);
+    out.push(
+      <span
+        key={`h-${i}`}
+        title={m.sources.join(", ")}
+        className="rounded bg-[#DBEAFE] px-0.5 text-[#1D4ED8]"
+      >
+        {text.slice(m.start, m.end)}
+      </span>
+    );
+    cursor = m.end;
+  });
+  if (cursor < text.length) out.push(<span key="tail">{text.slice(cursor)}</span>);
+  return <>{out}</>;
+};
+
 export function ChoixScenarioView() {
   const navigate = useNavigate();
   const { projectName, lastProjectName, setCurrentStep, sessionId } = useSessionStore();
   const resolvedProjectName = projectName ?? lastProjectName;
   const [openIds, setOpenIds] = useState<number[]>([1]);
+  const [activeTab, setActiveTab] = useState<Record<number, "generation" | "sourcing">>({});
   const [selectingId, setSelectingId] = useState<number | null>(null);
   const [selectionError, setSelectionError] = useState<string | null>(null);
+
+  const setTab = (id: number, tab: "generation" | "sourcing") => {
+    setActiveTab((prev) => ({ ...prev, [id]: tab }));
+  };
 
   const projectAudioQuery = useQuery({
     queryKey: ["choix-scenario-project-audio", resolvedProjectName],
@@ -85,12 +142,61 @@ export function ChoixScenarioView() {
       const duration = formatDuration(
         (payload?.duree_estimee as unknown) ?? (payload?.duration as unknown) ?? (raw?.duree as unknown)
       );
+
+      const partiesRaw = Array.isArray(payload?.parties) ? (payload.parties as unknown[]) : [];
+      const parties: ScenarioPart[] = partiesRaw
+        .map((p, partIdx) => {
+          if (!p || typeof p !== "object") return null;
+          const part = p as Record<string, unknown>;
+          const sentenceSourcesRaw = Array.isArray(part.sentence_sources)
+            ? (part.sentence_sources as unknown[])
+            : [];
+          const sentence_sources: SentenceSource[] = sentenceSourcesRaw
+            .map((it) => {
+              if (!it || typeof it !== "object") return null;
+              const obj = it as Record<string, unknown>;
+              if (typeof obj.sentence !== "string") return null;
+              const sourcesArr = Array.isArray(obj.sources) ? obj.sources : [];
+              return {
+                sentence: obj.sentence.trim(),
+                sources: sourcesArr
+                  .filter((s): s is string => typeof s === "string")
+                  .map((s) => s.trim())
+                  .filter(Boolean),
+              };
+            })
+            .filter((x): x is SentenceSource => x !== null && x.sentence.length > 0);
+          return {
+            titre: typeof part.titre === "string" ? part.titre : `Partie ${partIdx + 1}`,
+            texte_narration: typeof part.texte_narration === "string" ? part.texte_narration : "",
+            sentence_sources,
+          };
+        })
+        .filter((x): x is ScenarioPart => x !== null);
+
+      let totalChars = 0;
+      let sourcedChars = 0;
+      for (const part of parties) {
+        totalChars += part.texte_narration.length;
+        for (const s of part.sentence_sources) {
+          if (s.sources.length > 0) sourcedChars += s.sentence.length;
+        }
+      }
+      const aiPercent =
+        totalChars > 0
+          ? Math.max(0, Math.min(100, Math.round(100 - (sourcedChars / totalChars) * 100)))
+          : 100;
+      const hasSourcing = parties.some((p) => p.sentence_sources.length > 0);
+
       return {
         id: (raw.scenario_index as number | undefined) ?? idx + 1,
         label: `Scénario ${(raw.scenario_index as number | undefined) ?? idx + 1}`,
         title,
         tags: tagsForScenario(raw),
         duration,
+        parties,
+        aiPercent,
+        hasSourcing,
         raw,
       };
     });
@@ -221,6 +327,68 @@ export function ChoixScenarioView() {
                     </div>
                   </div>
                 </div>
+
+                {isOpen && scenario.parties.length > 0 && (() => {
+                  const tab = activeTab[scenario.id] ?? "generation";
+                  const sourcingDisabled = !scenario.hasSourcing;
+                  return (
+                    <div className="flex w-full flex-col gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <h5 className="text-[16px] font-semibold text-[#0F172B]">Texte de scénario</h5>
+                        <div className="flex items-center gap-2">
+                          {tab === "sourcing" && (
+                            <span className="inline-flex h-7 items-center gap-1 rounded-full bg-[#EFF6FF] px-3 text-[12px] font-semibold text-[#1D4ED8]">
+                              Texte rédigé à {scenario.aiPercent}% par l&apos;IA
+                            </span>
+                          )}
+                          <div className="inline-flex overflow-hidden rounded-[10px] border border-[#E2E8F0]">
+                            <button
+                              type="button"
+                              onClick={() => setTab(scenario.id, "generation")}
+                              className={`px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                                tab === "generation"
+                                  ? "bg-[#0F172B] text-white"
+                                  : "bg-white text-[#45556C] hover:bg-[#F8FAFC]"
+                              }`}
+                            >
+                              Génération
+                            </button>
+                            <button
+                              type="button"
+                              disabled={sourcingDisabled}
+                              onClick={() => !sourcingDisabled && setTab(scenario.id, "sourcing")}
+                              className={`px-3 py-1.5 text-[13px] font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
+                                tab === "sourcing"
+                                  ? "bg-[#0F172B] text-white"
+                                  : "bg-white text-[#45556C] hover:bg-[#F8FAFC]"
+                              }`}
+                              title={sourcingDisabled ? "Aucune source identifiée pour ce scénario" : undefined}
+                            >
+                              Sourcing
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex max-h-[420px] flex-col gap-4 overflow-y-auto pr-1 text-[14px] leading-[22px] text-[#0F172B]">
+                        {scenario.parties.map((part, i) => (
+                          <div key={i} className="flex flex-col gap-1.5">
+                            {part.titre && (
+                              <p className="text-[15px] font-semibold text-[#0F172B]">{part.titre}</p>
+                            )}
+                            {part.texte_narration && (
+                              <p className="whitespace-pre-line text-[14px] text-[#45556C]">
+                                {tab === "sourcing"
+                                  ? renderTextWithSourcing(part.texte_narration, part.sentence_sources)
+                                  : part.texte_narration}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 <div className="flex w-full items-center justify-end gap-2">
                   <button
