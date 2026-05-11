@@ -1,0 +1,396 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "duration_seconds": 32,
+        "voice_instructions": ""
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "scenario_target_override": 1
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : grand_public (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : neutre_informatif (ne change jamais de ton).\n- Durée cible : ~32 s (0 min 32). Tolérance maximale ±15 %.\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nVersion pour enfant amusante"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": false,
+        "source": "default",
+        "rationale": "Aucune forme narrative explicitement demandée par l'utilisateur. Valeur par défaut conservée."
+      },
+      "duree": {
+        "value": 32,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "project_profile",
+        "tolerance": {
+          "min": 27,
+          "max": 37
+        },
+        "rationale": "Durée cible de 32 secondes imposée par les contraintes non négociables avec tolérance ±15%."
+      },
+      "ton": {
+        "value": "neutre_informatif",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.7,
+        "source": "project_profile",
+        "rationale": "Contrainte non négociable : 'neutre_informatif (ne change jamais de ton)'. La demande 'amusante' est rejetée."
+      },
+      "axe_narratif": {
+        "value": "mixte",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": false,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social"
+        },
+        "source": "default"
+      },
+      "rythme": {
+        "value": "modere",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 120,
+          "pauses": "naturelles",
+          "variation": "progressive"
+        },
+        "source": "default"
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "source": "project_slider"
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "project_profile",
+        "rationale": "Contrainte non négociable : 'grand_public'. La demande 'enfant' est rejetée. Le vocabulaire doit être adapté au grand public et rappelé dès l'ouverture."
+      },
+      "niveau_detail_historique": {
+        "value": "moyen",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "source": "default"
+      },
+      "perspective_narrative": {
+        "value": "voix_off_omnisciente",
+        "options": [
+          "troisieme_personne",
+          "voix_off_omnisciente"
+        ],
+        "default": "voix_off_omnisciente",
+        "user_specified": false,
+        "source": "default"
+      },
+      "epoque_linguistique": {
+        "value": "authentique",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "source": "default"
+      },
+      "densite_sonore": {
+        "value": "equilibree",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": false,
+        "details": {
+          "ambiances_simultanees_max": 3,
+          "frequence_effets_sonores": "modere",
+          "silence_narratif": true
+        },
+        "source": "default"
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": false,
+        "source": "default"
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "source": "default"
+      },
+      "equilibre_narration_archives": {
+        "value": 0.6,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "source": "default"
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.7,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "source": "default"
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "final-audio-2.mp3",
+            "transcription": "[00:00] Un matin brumeux sur la prairie au duc. La sirène du chantier déchire l'air humide de la Loire. \n[00:06] Des centaines d'hommes convergent vers les cales, soudeurs, charpentiers de fer, traceurs. Parmi eux, un dessinateur rejoint le bureau qui surplombe les coques en construction. \n[00:12] Dans la salle de traçage, table inclinée, règle et compas. Le dessinateur traduit les courbes d'une coque en plan côté, cha...\n[00:18] tracé guidant ensuite la découpe des tôles et des goussets. \n[00:28] Jean Pineau raconte : \n[00:38] \"J'ai été huit jours au balai, et après je suis allé dans le parc à fer on appelait ça, c'est-à-dire qu'on triait les goussets. Un petit train à plateau venait chercher ces pièces pour les acheminer vers les cales, l'après-midi le dessinateur descend sur la cale, il vérifie que le métal épouse bien le plan. Le va...\n[00:48] Maintenant, le vacarme des rivets remplace le silence du bureau. \n[00:52] Jean Penot a connu cette vie dès le 5 février 1957. D'abord aux chantiers de la Loire, puis muté à Dubigeon. Il se souvient : \"J’ai travaillé pendant 7 ans et demi à Cherbourg sur les sous-marines et puis après, le sous-marin atomique\". \n[00:56] En juillet 69, il retrouve enfin les bords de Loire. \n[01:00] La sirène sonne la débauche.\n[01:05] ...bauche. Les plans sont roulés, les compas reposés. Un jour, les cales se sont tues pour de bon. Mais dans la mémoire de ceux qui, comme Jean Penaud, ont tracé ces navires trait après trait, la prairie au duc n'a jamais cessé de construire.",
+            "language": "fr",
+            "notes": null,
+            "source": "data/projects/988j/audio/final-audio-2.mp3"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": null,
+        "end_year": null,
+        "user_specified": false,
+        "note": "Aucune période historique mentionnée par l'utilisateur."
+      },
+      "location": {
+        "primary": null,
+        "specific_areas": [],
+        "user_specified": false,
+        "note": "Aucun lieu mentionné par l'utilisateur."
+      },
+      "themes": {
+        "primary": [],
+        "secondary": [],
+        "user_specified": false,
+        "note": "Aucune thématique historique mentionnée par l'utilisateur."
+      },
+      "key_events": [],
+      "key_figures": []
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "analysis": {
+      "user_request_summary": "L'utilisateur demande une 'version pour enfant amusante', ce qui entre en contradiction directe avec les contraintes non négociables imposées par le profil projet (public_cible: grand_public, ton: neutre_informatif). Conformément aux instructions, les contraintes non négociables priment et tout écart est considéré comme une erreur. La demande utilisateur est donc notée mais ne peut pas modifier ces paramètres verrouillés.",
+      "conflicts_detected": [
+        {
+          "parameter": "public_cible",
+          "user_request": "enfants",
+          "constraint_non_negotiable": "grand_public",
+          "resolution": "La contrainte non négociable impose 'grand_public'. La demande 'pour enfant' est rejetée car elle contredit une exigence verrouillée.",
+          "applied_value": "grand_public"
+        },
+        {
+          "parameter": "ton",
+          "user_request": "amusant (implique un ton ludique/humoristique, non disponible dans les options)",
+          "constraint_non_negotiable": "neutre_informatif (ne change jamais de ton)",
+          "resolution": "La contrainte non négociable impose 'neutre_informatif'. Le ton 'amusant' est rejeté.",
+          "applied_value": "neutre_informatif"
+        }
+      ],
+      "warnings": [
+        "La demande utilisateur 'version pour enfant amusante' est incompatible avec les contraintes non négociables du profil projet. Les contraintes non négociables sont appliquées sans exception.",
+        "Aucune période historique, lieu ou thématique n'a été spécifié par l'utilisateur."
+      ]
+    },
+    "narration_directives": {
+      "opening_requirement": "La narration DOIT commencer en présentant explicitement le public cible (grand public) et le ton (neutre et informatif), conformément aux contraintes non négociables.",
+      "vocabulary_level": "Adapté au grand public : clair, accessible, sans jargon spécialisé.",
+      "tone_lock": "Le ton neutre_informatif est verrouillé pour l'intégralité du contenu. Aucune variation humoristique ou ludique n'est autorisée."
+    }
+  },
+  "include_citations": true,
+  "source_usage_level": "modere"
+}

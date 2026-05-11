@@ -963,6 +963,16 @@ class StepTransitionRequest(BaseModel):
     payload: dict = Field(default_factory=dict)
 
 
+class ScenarioSpec(BaseModel):
+    prompt: str = ""
+    audience: Optional[str] = None
+    tone: Optional[str] = None
+    target_duration: Optional[int] = Field(default=None, ge=10, le=3600)
+    source_usage_level: Optional[str] = Field(default=None, description="leger | modere | central")
+    tts_provider: Optional[str] = Field(default=None, description="elevenlabs | qwen")
+    tts_voice_id: Optional[str] = None
+
+
 class ScenarioGenerationRequest(BaseModel):
     session_id: str
     prompt: str
@@ -970,6 +980,7 @@ class ScenarioGenerationRequest(BaseModel):
     output_dir: str = "./output"
     scenario_target: Optional[int] = Field(default=None, ge=1, le=5)
     model_id: Optional[str] = Field(default=None, description="Model key (opus, sonnet, gemini) or full OpenRouter ID")
+    scenario_specs: Optional[List[ScenarioSpec]] = Field(default=None, description="Per-scenario overrides (prompt, audience, tone, duration, source_usage_level, tts)")
 
 
 class ScenarioGenerationResponse(BaseModel):
@@ -2711,7 +2722,64 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 cloned.setdefault("scenario_index", target_index)
                 return cloned
 
-            result = await loop.run_in_executor(None, lambda: scenario_skill.run(params))
+            specs = req.scenario_specs or []
+            if specs:
+                aggregated_scenarios: List[dict] = []
+                aggregated_config: Optional[dict] = None
+                base_output_dir = Path(req.output_dir or "./output")
+                for spec_idx, spec in enumerate(specs, start=1):
+                    mark(2, "running", f"Scénario {spec_idx}/{len(specs)} : génération en cours")
+                    spec_profile = dict(project_profile)
+                    if spec.audience:
+                        spec_profile["audience"] = spec.audience
+                    if spec.tone:
+                        spec_profile["tone"] = spec.tone
+                    if spec.target_duration is not None:
+                        spec_profile["target_duration"] = spec.target_duration
+                    if spec.source_usage_level in {"leger", "modere", "central"}:
+                        spec_profile["source_usage_level"] = spec.source_usage_level
+                    spec_constraints = build_project_constraints(spec_profile)
+                    spec_constraint_block = build_constraint_prompt_block(spec_constraints)
+                    spec_overrides = build_config_overrides_from_constraints(spec_constraints)
+                    user_prompt = (spec.prompt or "").strip()
+                    chunks: List[str] = []
+                    if project_notes and project_notes.strip():
+                        chunks.append(project_notes.strip())
+                    if spec_constraint_block:
+                        chunks.append(spec_constraint_block)
+                    if user_prompt:
+                        chunks.append(user_prompt)
+                    spec_prompt = "\n\n".join(chunks)
+                    spec_params = dict(params)
+                    spec_params["prompt"] = spec_prompt
+                    spec_params["scenario_target"] = 1
+                    spec_params["output_dir"] = str(
+                        (base_output_dir / f"scenario_spec_{spec_idx}_{uuid4().hex[:4]}").resolve()
+                    )
+                    if spec.source_usage_level in {"leger", "modere", "central"}:
+                        spec_params["source_usage_level"] = spec.source_usage_level
+                    if spec.tts_provider in {"elevenlabs", "qwen"}:
+                        spec_params["tts_provider"] = spec.tts_provider
+                    if spec_overrides:
+                        spec_params["config_overrides"] = spec_overrides
+                    spec_result = await loop.run_in_executor(None, lambda p=spec_params: scenario_skill.run(p))
+                    aggregated_config = aggregated_config or spec_result.get("config")
+                    spec_scenarios = spec_result.get("scenarios", [])
+                    if spec_scenarios and isinstance(spec_scenarios[0], dict):
+                        scenario_payload = dict(spec_scenarios[0])
+                        scenario_payload["scenario_index"] = spec_idx
+                        scenario_payload["spec"] = {
+                            "audience": spec.audience,
+                            "tone": spec.tone,
+                            "target_duration": spec.target_duration,
+                            "source_usage_level": spec.source_usage_level,
+                            "tts_provider": spec.tts_provider,
+                            "tts_voice_id": spec.tts_voice_id,
+                        }
+                        aggregated_scenarios.append(scenario_payload)
+                result = {"scenarios": aggregated_scenarios, "config": aggregated_config, "skill_metadata": {"scenario_count": len(aggregated_scenarios)}}
+            else:
+                result = await loop.run_in_executor(None, lambda: scenario_skill.run(params))
             scenario_count = result.get("skill_metadata", {}).get("scenario_count") or len(result.get("scenarios", []))
             finish_step(2, f"{scenario_count} scénario(s) généré(s)")
 

@@ -1,0 +1,72 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Une journée dans la guerre des rues",
+  "resumeHistoire": "Du matin au soir, une journée type dans un territoire disputé par des gangs rivaux. À l'aube, le quartier semble calme, mais la tension est palpable. Au fil des heures, les rivalités territoriales s'expriment par des confrontations et des actes de violence organisée. Le soir venu, le cycle se referme : demain sera identique, pris dans la spirale des guerres de clans.",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 32,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube sous tension",
+      "duree_cible": 10.0,
+      "fonction_narrative": "exposition_circulaire",
+      "position_arc_emotionnel": "tension_latente",
+      "elements_necessaires": [
+        "atmosphère matinale trompeusement calme",
+        "présence territoriale des gangs",
+        "ton neutre informatif, registre accessible"
+      ],
+      "mood": "immersif_oppressant"
+    },
+    {
+      "partie": 2,
+      "titre": "Le jour et ses violences",
+      "duree_cible": 14.0,
+      "fonction_narrative": "climax",
+      "position_arc_emotionnel": "intensite_maximale",
+      "elements_necessaires": [
+        "rivalités territoriales concrètes",
+        "confrontations armées urbaines",
+        "rythme dynamique et dense"
+      ],
+      "mood": "brutal_factuel"
+    },
+    {
+      "partie": 3,
+      "titre": "Le soir referme la boucle",
+      "duree_cible": 8.0,
+      "fonction_narrative": "resolution_circulaire",
+      "position_arc_emotionnel": "retour_au_calme_apparent",
+      "elements_necessaires": [
+        "retour au point de départ",
+        "cycle infernal suggéré",
+        "ouverture sur la répétition"
+      ],
+      "mood": "sombre_resigné"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_tension_croissante",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "bascule_sonore",
+      "duree": 1.5,
+      "description": "Le calme du matin se brise — un son urbain amorce la montée en intensité, passage fluide du silence à la violence."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_narratif",
+      "duree": 1.5,
+      "description": "La violence retombe, le récit ralentit pour refermer la boucle sur l'image du matin, suggérant le recommencement."
+    }
+  ],
+  "notes_production": "CONTINUITÉ : Le récit forme une boucle — la première et la dernière phrase doivent se faire écho. Le ton reste strictement neutre et informatif, sans jugement moral. Le registre est accessible au grand public. Aucune adresse directe à l'auditeur. Le contexte historique fourni (chantiers navals) n'est PAS le sujet : le récit porte sur la violence de gangs et les guerres de clans comme demandé par l'utilisateur. Les formulations restent vagues sur les lieux et dates précis car le contexte ne fournit pas de faits sourcés sur ce sujet. Privilégier l'évocation immersive d'une journée type plutôt que des faits inventés. Débit lent (~2 mots/seconde), maximum 64 mots au total. Ambiance sonore immersive recommandée."
+}

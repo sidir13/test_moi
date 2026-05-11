@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Une journée sur les cales de la Prairie-au-Duc",
+  "taggedText": "=== PARTIE 1 : La sirène du matin ===\n\n{brume_matinale_loire.wav}\n\n[posé] Un matin de brume sur la Prairie-au-Duc. [pause] La sirène déchire l'air humide de la Loire.\n\n{sirene_chantier_naval.wav}\n\n=== PARTIE 2 : Le trait et le métal ===\n\n{ambiance_salle_tracage.wav}\n\nDans la salle de traçage, table inclinée, règle et compas. [pause] Jean Peneau raconte : [posé] [atténué] « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. » [pause]\n\n=== PARTIE 3 : La débauche et la mémoire ===\n\n{vacarme_rivets_metal.wav}\n\nLe vacarme des rivets rythme l'après-midi. [pause] Puis la sirène sonne la débauche. Les plans sont roulés, les compas reposés. [ralentit] Les cales se sont tues, mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.\n\n{silence_progressif.wav}",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La sirène du matin",
+      "taggedText": "{brume_matinale_loire.wav}\n\n[posé] Un matin de brume sur la Prairie-au-Duc. [pause] La sirène déchire l'air humide de la Loire.\n\n{sirene_chantier_naval.wav}"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le trait et le métal",
+      "taggedText": "{ambiance_salle_tracage.wav}\n\nDans la salle de traçage, table inclinée, règle et compas. [pause] Jean Peneau raconte : [posé] [atténué] « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. » [pause]"
+    },
+    {
+      "partie_id": 3,
+      "titre": "La débauche et la mémoire",
+      "taggedText": "{vacarme_rivets_metal.wav}\n\nLe vacarme des rivets rythme l'après-midi. [pause] Puis la sirène sonne la débauche. Les plans sont roulés, les compas reposés. [ralentit] Les cales se sont tues, mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.\n\n{silence_progressif.wav}"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 8,
+    "soundTags": 5,
+    "originalWordCount": 96
+  }
+}

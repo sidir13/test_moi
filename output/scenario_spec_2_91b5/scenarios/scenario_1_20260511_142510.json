@@ -1,0 +1,160 @@
+{
+  "scenario_id": 1,
+  "titre": "Une journée sur les cales de la Prairie-au-Duc",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Un matin brumeux, la sirène des chantiers navals de la Prairie-au-Duc déchire l'air humide de la Loire : des centaines d'ouvriers convergent vers les cales. Parmi eux, un dessinateur partage sa journée entre la salle de traçage et la vérification sur les coques en construction, tandis que le vacarme des rivets rythme les heures. À travers la voix de Jean Peneau, qui a connu cette vie dès 1957, on découvre les gestes concrets d'un métier aujourd'hui disparu. Le soir, la sirène sonne la débauche, les plans sont roulés — mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.",
+  "duree_estimee": 51.62845849802371,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La sirène du matin",
+      "duree": 9.818181818181818,
+      "texte_narration": "Un matin de brume sur la Prairie-au-Duc. La sirène déchire l'air humide de la Loire.",
+      "ton": {
+        "global": "atmosphérique, posé",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'Prairie-au-Duc' (1.5s)"
+        ],
+        "intonation": "grave, lente, descriptive"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Image de brume matinale, sirène au loin",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:04",
+          "action": "Sirène qui perce, ouvriers en marche",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un matin de brume sur la Prairie-au-Duc.",
+          "sources": [
+            "[00:00] Un matin brumeux sur la prairie au duc."
+          ]
+        },
+        {
+          "sentence": "La sirène déchire l'air humide de la Loire.",
+          "sources": [
+            "[00:00] La sirène du chantier déchire l'air humide de la Loire."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le trait et le métal",
+      "duree": 16.17391304347826,
+      "texte_narration": "Dans la salle de traçage, table inclinée, règle et compas. Jean Peneau raconte : [ARCHIVE : « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. »]",
+      "ton": {
+        "global": "précis, vivant",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'compas' (1s)",
+          "avant la citation (0.5s)"
+        ],
+        "intonation": "descriptive puis testimoniale"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:08",
+          "action": "Gros plan sur la table de traçage, outils",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:12",
+          "action": "Voix de Jean Peneau, témoignage des débuts",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Dans la salle de traçage, table inclinée, règle et compas.",
+          "sources": [
+            "[00:12] Dans la salle de traçage, table inclinée, règle et compas."
+          ]
+        },
+        {
+          "sentence": "Jean Peneau raconte : [ARCHIVE : « J'ai été huit jours au balai, et après je suis allé dans le parc à fer. »]",
+          "sources": [
+            "[00:38] \"J'ai été huit jours au balai, et après je suis allé dans le parc à fer on appelait ça, c'est-à-dire qu'on triait les goussets.\""
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "La débauche et la mémoire",
+      "duree": 25.636363636363633,
+      "texte_narration": "Le vacarme des rivets rythme l'après-midi. Puis la sirène sonne la débauche. Les plans sont roulés, les compas reposés. Les cales se sont tues, mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.",
+      "ton": {
+        "global": "élégiaque, apaisé",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'débauche' (1.5s)",
+          "après 'reposés' (1s)",
+          "après 'tues' (1s)"
+        ],
+        "intonation": "descendante, mélancolique, lumineuse sur la dernière phrase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:18",
+          "action": "Vacarme industriel, rivets, métal",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:21",
+          "action": "Sirène de fin, silence progressif",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:25",
+          "action": "Ouverture mémorielle, fermeture du récit",
+          "duree": 7.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le vacarme des rivets rythme l'après-midi.",
+          "sources": [
+            "[00:48] Maintenant, le vacarme des rivets remplace le silence du bureau."
+          ]
+        },
+        {
+          "sentence": "Puis la sirène sonne la débauche.",
+          "sources": [
+            "[01:00] La sirène sonne la débauche."
+          ]
+        },
+        {
+          "sentence": "Les plans sont roulés, les compas reposés.",
+          "sources": [
+            "[01:05] Les plans sont roulés, les compas reposés."
+          ]
+        },
+        {
+          "sentence": "Les cales se sont tues, mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.",
+          "sources": [
+            "[01:05] Un jour, les cales se sont tues pour de bon. Mais dans la mémoire de ceux qui, comme Jean Penaud, ont tracé ces navires trait après trait, la prairie au duc n'a jamais cessé de construire."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 96,
+    "duree_lecture_estimee": 51.62845849802371,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "FLUIDITÉ : Le récit suit le fil d'une seule journée, du matin au soir — ne jamais rompre cette ligne temporelle. Les trois sections doivent s'enchaîner comme un mouvement continu, sans annonces de chapitres. REGISTRE : Grand public, phrases simples et imagées, vocabulaire accessible. Ton neutre et informatif tout du long — pas d'exclamations, pas d'adresse au public. CITATIONS : Intégrer naturellement un fragment court de Jean Peneau (ex. « J'ai été huit jours au balai ») comme témoignage vivant, fondu dans la narration. DURÉE CRITIQUE : 64 mots maximum au total (~2 mots/seconde). Chaque mot compte — privilégier les images concrètes aux explications. AMBIANCE SONORE suggérée : sirène, bruits de chantier, silence final."
+}

@@ -1,0 +1,73 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Une journée sur les cales de la Prairie-au-Duc",
+  "resumeHistoire": "Un matin brumeux, la sirène des chantiers navals de la Prairie-au-Duc déchire l'air humide de la Loire : des centaines d'ouvriers convergent vers les cales. Parmi eux, un dessinateur partage sa journée entre la salle de traçage et la vérification sur les coques en construction, tandis que le vacarme des rivets rythme les heures. À travers la voix de Jean Peneau, qui a connu cette vie dès 1957, on découvre les gestes concrets d'un métier aujourd'hui disparu. Le soir, la sirène sonne la débauche, les plans sont roulés — mais dans la mémoire de ceux qui ont tracé ces navires, la Prairie-au-Duc n'a jamais cessé de construire.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 32,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La sirène du matin",
+      "duree_cible": 8.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "eveil",
+      "elements_necessaires": [
+        "brume matinale sur la Prairie-au-Duc",
+        "sirène du chantier",
+        "convergence des ouvriers vers les cales"
+      ],
+      "mood": "atmosphérique, concret, sensoriel"
+    },
+    {
+      "partie": 2,
+      "titre": "Le trait et le métal",
+      "duree_cible": 10.0,
+      "fonction_narrative": "développement_documentaire",
+      "position_arc_emotionnel": "immersion",
+      "elements_necessaires": [
+        "salle de traçage — table inclinée, règle et compas",
+        "citation directe de Jean Peneau sur ses débuts",
+        "geste du dessinateur traduisant courbes en plans"
+      ],
+      "mood": "précis, vivant, rythmé"
+    },
+    {
+      "partie": 3,
+      "titre": "La débauche et la mémoire",
+      "duree_cible": 14.0,
+      "fonction_narrative": "resolution_emotionnelle",
+      "position_arc_emotionnel": "nostalgie_apaisée",
+      "elements_necessaires": [
+        "descente sur la cale l'après-midi — vacarme des rivets",
+        "sirène de fin de journée",
+        "plans roulés, compas reposés",
+        "ouverture mémorielle — la Prairie-au-Duc vit encore dans les souvenirs"
+      ],
+      "mood": "dense, élégiaque, lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "eveil_immersion_nostalgie",
+  "rythme_general": "dynamique — phrases courtes et concrètes, tempo ancré dans les heures de la journée",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Du flux collectif des ouvriers arrivant, on glisse vers le geste individuel du dessinateur à sa table — la foule se resserre sur un homme et ses outils."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_sensoriel",
+      "duree": 1.5,
+      "description": "Le silence concentré du bureau de traçage cède au vacarme des rivets sur la cale — passage du trait au métal, du matin à l'après-midi, puis glissement vers le soir et la mémoire."
+    }
+  ],
+  "notes_production": "FLUIDITÉ : Le récit suit le fil d'une seule journée, du matin au soir — ne jamais rompre cette ligne temporelle. Les trois sections doivent s'enchaîner comme un mouvement continu, sans annonces de chapitres. REGISTRE : Grand public, phrases simples et imagées, vocabulaire accessible. Ton neutre et informatif tout du long — pas d'exclamations, pas d'adresse au public. CITATIONS : Intégrer naturellement un fragment court de Jean Peneau (ex. « J'ai été huit jours au balai ») comme témoignage vivant, fondu dans la narration. DURÉE CRITIQUE : 64 mots maximum au total (~2 mots/seconde). Chaque mot compte — privilégier les images concrètes aux explications. AMBIANCE SONORE suggérée : sirène, bruits de chantier, silence final."
+}

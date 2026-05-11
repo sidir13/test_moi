@@ -1,0 +1,73 @@
+{
+  "events": [
+    {
+      "title": "Embauche de Jean Penaud aux Chantiers de la Loire",
+      "description": "Jean Penaud commence sa carrière aux Chantiers de la Loire à Nantes à l'âge de 20 ans, débutant par des tâches de nettoyage avant de rejoindre le parc à ferrons.",
+      "approximate_time": "5 février 1957",
+      "actors": [
+        "Jean Penaud"
+      ],
+      "places": [
+        "Nantes",
+        "Chantiers de la Loire"
+      ],
+      "keywords": [
+        "embauche",
+        "construction navale",
+        "parc à ferrons"
+      ]
+    },
+    {
+      "title": "Mutation aux chantiers Dubigeon et Cherbourg",
+      "description": "Après ses débuts à Nantes, Jean Penaud est muté chez Dubigeon puis envoyé à Cherbourg pour travailler pendant sept ans et demi sur la construction de sous-marins.",
+      "approximate_time": "Entre 1957 et 1969",
+      "actors": [
+        "Jean Penaud"
+      ],
+      "places": [
+        "Dubigeon",
+        "Cherbourg"
+      ],
+      "keywords": [
+        "sous-marins",
+        "mutation",
+        "construction navale"
+      ]
+    },
+    {
+      "title": "Retour de Jean Penaud à Nantes",
+      "description": "Après avoir travaillé sur les sous-marins à Cherbourg, Jean Penaud réintègre les chantiers nantais.",
+      "approximate_time": "Juillet 1969",
+      "actors": [
+        "Jean Penaud"
+      ],
+      "places": [
+        "Nantes"
+      ],
+      "keywords": [
+        "retour",
+        "travail"
+      ]
+    },
+    {
+      "title": "Fermeture progressive des chantiers navals de Nantes",
+      "description": "Le déclin des commandes entraîne le silence des cales et la fermeture successive des chantiers navals sur l'île de Nantes, marquant la fin d'une époque industrielle.",
+      "approximate_time": "Seconde moitié du XXe siècle",
+      "actors": [
+        "dessinateurs",
+        "traceurs",
+        "charpentiers de fer"
+      ],
+      "places": [
+        "Île de Nantes",
+        "Loire"
+      ],
+      "keywords": [
+        "désindustrialisation",
+        "fermeture",
+        "mémoire",
+        "chantiers navals"
+      ]
+    }
+  ]
+}

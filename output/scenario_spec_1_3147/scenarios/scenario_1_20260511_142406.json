@@ -1,0 +1,158 @@
+{
+  "scenario_id": 1,
+  "titre": "Dix-sept syllabes au fil du jour",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Du matin au soir, le haïku japonais accompagne le passage du temps comme un art de l'instant. Au lever du jour, le poète observe la nature avec une attention absolue, captant en dix-sept syllabes la rosée, le vol d'un oiseau, la lumière qui change. Cette forme poétique millénaire, née de la tradition littéraire japonaise, transforme chaque moment ordinaire en contemplation. Le soir venu, le silence retrouvé porte encore l'écho de ces mots brefs, comme une empreinte légère sur le monde.",
+  "duree_estimee": 33.09768492377188,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube — le regard s'éveille",
+      "duree": 9.818181818181818,
+      "texte_narration": "Aube au Japon. Un poète s'arrête devant l'étang. En dix-sept syllabes, il saisit l'instant.",
+      "ton": {
+        "global": "serein_minimaliste",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'Japon' (1.5s)",
+          "après 'étang' (1s)"
+        ],
+        "intonation": "posée, contemplative, sans affect"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur l'image de l'aube",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:04",
+          "action": "Le poète face à la nature",
+          "duree": 3.5
+        },
+        {
+          "timestamp": "0:07",
+          "action": "Introduction du haïku comme forme brève",
+          "duree": 3.5
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aube au Japon.",
+          "sources": []
+        },
+        {
+          "sentence": "Un poète s'arrête devant l'étang.",
+          "sources": []
+        },
+        {
+          "sentence": "En dix-sept syllabes, il saisit l'instant.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le jour — dix-sept syllabes",
+      "duree": 13.565217391304348,
+      "texte_narration": "Cinq, sept, cinq. Trois vers suffisent. Depuis Bashô au dix-septième siècle, le haïku lie la nature au temps qui passe, sans un mot de trop.",
+      "ton": {
+        "global": "precis_lumineux",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'cinq' (1s)",
+          "après 'suffisent' (1s)"
+        ],
+        "intonation": "claire, factuelle, légèrement admirative"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:11",
+          "action": "Énoncé de la structure 5-7-5",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:14",
+          "action": "Référence à Bashô et à la tradition",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:19",
+          "action": "Lien nature-concision",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Cinq, sept, cinq.",
+          "sources": []
+        },
+        {
+          "sentence": "Trois vers suffisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Depuis Bashô au dix-septième siècle, le haïku lie la nature au temps qui passe, sans un mot de trop.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — le silence après le mot",
+      "duree": 9.714285714285715,
+      "texte_narration": "Le soir tombe. Le poème est écrit. Il reste le silence — et ce qu'il laisse voir.",
+      "ton": {
+        "global": "suspendu_epure",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'tombe' (1.5s)",
+          "après 'silence' (2s)"
+        ],
+        "intonation": "descendante, apaisée, suspendue en fin"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:23",
+          "action": "Retour au crépuscule",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:26",
+          "action": "Le poème achevé",
+          "duree": 2.5
+        },
+        {
+          "timestamp": "0:28",
+          "action": "Ouverture contemplative sur le silence",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le soir tombe.",
+          "sources": []
+        },
+        {
+          "sentence": "Le poème est écrit.",
+          "sources": []
+        },
+        {
+          "sentence": "Il reste le silence — et ce qu'il laisse voir.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 61,
+    "duree_lecture_estimee": 33.09768492377188,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Récit très court (≈64 mots max). Chaque phrase doit être ciselée comme un haïku : pas un mot de trop. La fluidité repose sur le fil conducteur de la journée (matin → jour → soir) qui structure sans forcer. Aucune adresse au public. Ton neutre informatif maintenu tout du long. Les archives audio disponibles concernent les chantiers navals et ne sont PAS pertinentes pour ce sujet — ne pas les utiliser. Densité sonore minimaliste : silences entre les sections, pas de musique envahissante. Privilégier un son d'ambiance naturel très discret (vent, eau) si habillage sonore."
+}

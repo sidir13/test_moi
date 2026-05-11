@@ -1,0 +1,415 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "duration_seconds": 32,
+        "voice_instructions": ""
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "scenario_target_override": 1
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : grand_public (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : neutre_informatif (ne change jamais de ton).\n- Durée cible : ~32 s (0 min 32). Tolérance maximale ±15 %.\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nVersion Haiku japonais"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": false,
+        "note": "Aucune forme narrative explicitement demandée. La mention 'Version Haiku japonais' suggère un format poétique ultra-condensé, mais ne correspond à aucune option de forme disponible. Valeur par défaut conservée. Le style haiku influencera la structure narrative (concision extrême, images évocatrices, essence en trois temps)."
+      },
+      "duree": {
+        "value": 32,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "project_profile",
+        "tolerance_min": 27,
+        "tolerance_max": 37,
+        "note": "Durée explicitement spécifiée : ~32s avec tolérance ±15%. Hors du range standard [60-600] mais imposée comme contrainte non négociable."
+      },
+      "ton": {
+        "value": "neutre_informatif",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.7,
+        "source": "project_profile",
+        "note": "Explicitement spécifié comme contrainte non négociable. Ne doit jamais changer."
+      },
+      "axe_narratif": {
+        "value": "mixte",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": false,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social"
+        },
+        "note": "Non spécifié. Avec 1 seul scénario et format haiku, l'axe mixte sera condensé en une seule image narrative essentielle."
+      },
+      "rythme": {
+        "value": "lent_contemplatif",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 100,
+          "pauses": "naturelles",
+          "variation": "minimale"
+        },
+        "note": "Ajusté de 'modere' à 'lent_contemplatif' pour cohérence avec le format haiku (contemplation, silences significatifs) tout en respectant la contrainte de 32s."
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "source": "project_slider"
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "project_profile",
+        "note": "Contrainte non négociable. Vocabulaire adapté, rappelé dès l'ouverture de la narration."
+      },
+      "niveau_detail_historique": {
+        "value": "leger",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "note": "Ajusté de 'moyen' à 'leger' pour cohérence : 32 secondes en format haiku ne permettent pas un niveau de détail moyen. Condensation maximale requise."
+      },
+      "perspective_narrative": {
+        "value": "voix_off_omnisciente",
+        "options": [
+          "troisieme_personne",
+          "voix_off_omnisciente"
+        ],
+        "default": "voix_off_omnisciente",
+        "user_specified": false
+      },
+      "epoque_linguistique": {
+        "value": "authentique",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "note": "Conservé par défaut. Le format haiku japonais renforce la pertinence d'un registre authentique et épuré."
+      },
+      "densite_sonore": {
+        "value": "minimaliste",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": false,
+        "details": {
+          "ambiances_simultanees_max": 1,
+          "frequence_effets_sonores": "rare",
+          "silence_narratif": true
+        },
+        "note": "Ajusté de 'equilibree' à 'minimaliste' pour cohérence avec le format haiku (épure, silences porteurs de sens) et la durée de 32s."
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": false,
+        "note": "Format haiku en trois temps (kigo/kireji) s'inscrit naturellement dans une structure chronologique condensée : passé → instant présent → résonance."
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "note": "Règle critique respectée : jamais user_specified=true sur ce paramètre."
+      },
+      "equilibre_narration_archives": {
+        "value": 0.8,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "note": "Ajusté de 0.6 à 0.8 (davantage de narration) : en 32s format haiku, la narration prime sur les archives sonores. Peu de place pour des extraits d'archives."
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.5,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "note": "Ajusté de 0.7 à 0.5 : le public grand_public et le format ultra-court nécessitent un meilleur équilibre vers l'accessibilité."
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "final-audio-2.mp3",
+            "transcription": "[00:00] Un matin brumeux sur la prairie au duc. La sirène du chantier déchire l'air humide de la Loire. \n[00:06] Des centaines d'hommes convergent vers les cales, soudeurs, charpentiers de fer, traceurs. Parmi eux, un dessinateur rejoint le bureau qui surplombe les coques en construction. \n[00:12] Dans la salle de traçage, table inclinée, règle et compas. Le dessinateur traduit les courbes d'une coque en plan côté, cha...\n[00:18] tracé guidant ensuite la découpe des tôles et des goussets. \n[00:28] Jean Pineau raconte : \n[00:38] \"J'ai été huit jours au balai, et après je suis allé dans le parc à fer on appelait ça, c'est-à-dire qu'on triait les goussets. Un petit train à plateau venait chercher ces pièces pour les acheminer vers les cales, l'après-midi le dessinateur descend sur la cale, il vérifie que le métal épouse bien le plan. Le va...\n[00:48] Maintenant, le vacarme des rivets remplace le silence du bureau. \n[00:52] Jean Penot a connu cette vie dès le 5 février 1957. D'abord aux chantiers de la Loire, puis muté à Dubigeon. Il se souvient : \"J’ai travaillé pendant 7 ans et demi à Cherbourg sur les sous-marines et puis après, le sous-marin atomique\". \n[00:56] En juillet 69, il retrouve enfin les bords de Loire. \n[01:00] La sirène sonne la débauche.\n[01:05] ...bauche. Les plans sont roulés, les compas reposés. Un jour, les cales se sont tues pour de bon. Mais dans la mémoire de ceux qui, comme Jean Penaud, ont tracé ces navires trait après trait, la prairie au duc n'a jamais cessé de construire.",
+            "language": "fr",
+            "notes": null,
+            "source": "data/projects/988j/audio/final-audio-2.mp3"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": null,
+        "end_year": null,
+        "user_specified": false,
+        "note": "Aucune période historique spécifiée par l'utilisateur. La mention 'Haiku japonais' évoque la tradition poétique japonaise (origines XVIIe siècle, Matsuo Bashō) mais aucune période n'est explicitement demandée."
+      },
+      "location": {
+        "primary": null,
+        "specific_areas": [],
+        "user_specified": false,
+        "note": "Aucun lieu spécifié. La référence au haiku japonais suggère implicitement le Japon mais ce n'est pas une demande explicite de contexte géographique."
+      },
+      "themes": {
+        "primary": [
+          "haiku_japonais",
+          "poesie_contemplative",
+          "tradition_litteraire"
+        ],
+        "secondary": [
+          "esthetique_japonaise",
+          "rapport_nature_temps",
+          "concision_narrative"
+        ],
+        "user_specified": false,
+        "note": "Thèmes déduits de la mention 'Version Haiku japonais'. Aucun thème historique explicitement spécifié par l'utilisateur."
+      },
+      "key_events": [],
+      "key_figures": []
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "style_specifique": {
+      "format_haiku": true,
+      "description": "Version Haiku japonais demandée. Implique : structure en trois temps, concision extrême, images évocatrices, silences significatifs, capture d'un instant essentiel. La narration de ~32s doit incarner l'esprit du haiku — suggérer plutôt qu'expliquer, évoquer plutôt que décrire exhaustivement.",
+      "user_specified": true
+    },
+    "contraintes_non_negociables": {
+      "ouverture_obligatoire": "Présenter explicitement le public cible (grand_public) et le ton (neutre_informatif) dès le début de la narration.",
+      "ton_invariable": "neutre_informatif — ne jamais changer de ton.",
+      "duree_stricte": "32 secondes ±15% (entre 27s et 37s).",
+      "tout_ecart_est_erreur": true
+    },
+    "coherence_adjustments_log": [
+      {
+        "parametre": "rythme",
+        "de": "modere",
+        "vers": "lent_contemplatif",
+        "raison": "Cohérence avec le format haiku (contemplation, pauses significatives)"
+      },
+      {
+        "parametre": "niveau_detail_historique",
+        "de": "moyen",
+        "vers": "leger",
+        "raison": "32 secondes en format haiku imposent une condensation maximale"
+      },
+      {
+        "parametre": "densite_sonore",
+        "de": "equilibree",
+        "vers": "minimaliste",
+        "raison": "Le haiku exige l'épure ; durée ultra-courte incompatible avec une densité sonore équilibrée"
+      },
+      {
+        "parametre": "equilibre_narration_archives",
+        "de": 0.6,
+        "vers": 0.8,
+        "raison": "En 32s format haiku, la narration doit primer ; peu de place pour des archives sonores"
+      },
+      {
+        "parametre": "authenticite_vs_accessibilite",
+        "de": 0.7,
+        "vers": 0.5,
+        "raison": "Public grand_public + format ultra-court nécessitent davantage d'accessibilité"
+      }
+    ]
+  },
+  "include_citations": true,
+  "source_usage_level": "modere"
+}

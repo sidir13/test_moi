@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,8 +9,9 @@ import {
   RotateCcw,
   Volume2,
   Play,
+  Loader2,
 } from "lucide-react";
-import { fetchProjectAudio } from "@/api/client";
+import { fetchProjectAudio, fetchScenarios, selectScenario } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 
 type ScenarioChoice = {
@@ -19,45 +20,102 @@ type ScenarioChoice = {
   title: string;
   tags: string[];
   duration: string;
+  raw: Record<string, unknown>;
+};
+
+const formatDuration = (seconds: unknown): string => {
+  const value = typeof seconds === "number" ? seconds : Number(seconds);
+  if (!Number.isFinite(value) || value <= 0) return "—";
+  const m = Math.floor(value / 60);
+  const s = Math.floor(value % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+};
+
+const tagsForScenario = (raw: Record<string, unknown>): string[] => {
+  const payload = (raw.scenario as Record<string, unknown> | undefined) ?? raw;
+  const out = new Set<string>();
+  const angle = (payload?.axe_narratif ?? raw.axe_narratif) as string | undefined;
+  if (angle && typeof angle === "string") out.add(angle.replace(/_/g, " "));
+  const themes = ((payload as Record<string, unknown>)?.themes ??
+    (raw.scenario_config as Record<string, unknown> | undefined)?.historical_context) as
+    | Record<string, unknown>
+    | undefined;
+  const primary = themes?.primary;
+  if (Array.isArray(primary)) {
+    primary.slice(0, 2).forEach((t) => typeof t === "string" && out.add(t));
+  }
+  const tagsField = (payload as Record<string, unknown>)?.tags;
+  if (Array.isArray(tagsField)) {
+    tagsField.slice(0, 2).forEach((t) => typeof t === "string" && out.add(t));
+  }
+  return Array.from(out).slice(0, 3);
 };
 
 export function ChoixScenarioView() {
   const navigate = useNavigate();
-  const { projectName, lastProjectName, setCurrentStep } = useSessionStore();
+  const { projectName, lastProjectName, setCurrentStep, sessionId } = useSessionStore();
   const resolvedProjectName = projectName ?? lastProjectName;
   const [openIds, setOpenIds] = useState<number[]>([1]);
+  const [selectingId, setSelectingId] = useState<number | null>(null);
+  const [selectionError, setSelectionError] = useState<string | null>(null);
+
   const projectAudioQuery = useQuery({
     queryKey: ["choix-scenario-project-audio", resolvedProjectName],
     queryFn: () => fetchProjectAudio(resolvedProjectName!),
     enabled: Boolean(resolvedProjectName),
   });
+  const scenariosQuery = useQuery({
+    queryKey: ["scenarios", sessionId],
+    queryFn: () => fetchScenarios(sessionId!),
+    enabled: Boolean(sessionId),
+  });
+
   const uploadedAudioName = projectAudioQuery.data?.[0] ?? "audio_uploadé.mp3";
-  const scenarios: ScenarioChoice[] = [
-    {
-      id: 1,
-      label: "Scénario 1",
-      title: "Récit chronologique des événements",
-      tags: ["Narratif", "Chronologique"],
-      duration: "2:42",
-    },
-    {
-      id: 2,
-      label: "Scénario 2",
-      title: "Voix locale et mémoire vivante",
-      tags: ["Immersif", "Témoignages"],
-      duration: "3:05",
-    },
-    {
-      id: 3,
-      label: "Scénario 3",
-      title: "Regards croisés sur le territoire",
-      tags: ["Comparatif", "Contextuel"],
-      duration: "2:28",
-    },
-  ];
+
+  const scenarios = useMemo<ScenarioChoice[]>(() => {
+    const data = scenariosQuery.data ?? [];
+    return data.map((entry, idx) => {
+      const raw = (entry ?? {}) as Record<string, unknown>;
+      const payload = (raw.scenario as Record<string, unknown> | undefined) ?? raw;
+      const title =
+        (payload?.titre as string | undefined) ||
+        (payload?.title as string | undefined) ||
+        (raw.titre as string | undefined) ||
+        `Scénario ${idx + 1}`;
+      const duration = formatDuration(
+        (payload?.duree_estimee as unknown) ?? (payload?.duration as unknown) ?? (raw?.duree as unknown)
+      );
+      return {
+        id: (raw.scenario_index as number | undefined) ?? idx + 1,
+        label: `Scénario ${(raw.scenario_index as number | undefined) ?? idx + 1}`,
+        title,
+        tags: tagsForScenario(raw),
+        duration,
+        raw,
+      };
+    });
+  }, [scenariosQuery.data]);
 
   const toggleOpen = (id: number) => {
     setOpenIds((prev) => (prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id]));
+  };
+
+  const handleSelect = async (scenario: ScenarioChoice) => {
+    if (!sessionId) {
+      setSelectionError("Session manquante.");
+      return;
+    }
+    setSelectingId(scenario.id);
+    setSelectionError(null);
+    try {
+      await selectScenario(sessionId, scenario.raw);
+      setCurrentStep("edition_text");
+      navigate("/step/edition_text");
+    } catch (err) {
+      setSelectionError(err instanceof Error ? err.message : "Sélection impossible.");
+    } finally {
+      setSelectingId(null);
+    }
   };
 
   return (
@@ -76,6 +134,22 @@ export function ChoixScenarioView() {
         </div>
 
         <div className="flex w-full flex-col gap-7 rounded-b-[14px] border-b-[0.8px] border-[#E2E8F0] bg-white px-5 py-5">
+          {scenariosQuery.isLoading && (
+            <div className="flex items-center gap-2 text-[14px] text-[#45556C]">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Chargement des scénarios…
+            </div>
+          )}
+          {!scenariosQuery.isLoading && scenarios.length === 0 && (
+            <p className="text-[14px] text-[#45556C]">
+              Aucun scénario disponible. Lancez la génération depuis l'étape précédente.
+            </p>
+          )}
+          {selectionError && (
+            <div className="rounded-lg border border-[#FF3B30] bg-[#fff1f0] px-4 py-3 text-sm text-[#FF3B30]">
+              {selectionError}
+            </div>
+          )}
           {scenarios.map((scenario) => {
             const isOpen = openIds.includes(scenario.id);
             return (
@@ -158,13 +232,15 @@ export function ChoixScenarioView() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => {
-                      setCurrentStep("edition_text");
-                      navigate("/step/edition_text");
-                    }}
-                    className="inline-flex h-[38px] items-center gap-1 rounded-[12px] bg-[#007AFF] px-3 py-2 text-[14px] font-medium leading-[14px] text-white transition-colors hover:bg-[#006ae0]"
+                    onClick={() => handleSelect(scenario)}
+                    disabled={selectingId !== null}
+                    className="inline-flex h-[38px] items-center gap-1 rounded-[12px] bg-[#007AFF] px-3 py-2 text-[14px] font-medium leading-[14px] text-white transition-colors hover:bg-[#006ae0] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    <span>Sélectionner</span>
+                    {selectingId === scenario.id ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <span>Sélectionner</span>
+                    )}
                   </button>
                 </div>
               </article>

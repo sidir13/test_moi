@@ -1,0 +1,73 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Dix-sept syllabes au fil du jour",
+  "resumeHistoire": "Du matin au soir, le haïku japonais accompagne le passage du temps comme un art de l'instant. Au lever du jour, le poète observe la nature avec une attention absolue, captant en dix-sept syllabes la rosée, le vol d'un oiseau, la lumière qui change. Cette forme poétique millénaire, née de la tradition littéraire japonaise, transforme chaque moment ordinaire en contemplation. Le soir venu, le silence retrouvé porte encore l'écho de ces mots brefs, comme une empreinte légère sur le monde.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 32,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube — le regard s'éveille",
+      "duree_cible": 11,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "évocation du matin",
+        "présentation du haïku comme art de l'instant",
+        "ton neutre informatif",
+        "registre grand public"
+      ],
+      "mood": "serein_minimaliste"
+    },
+    {
+      "partie": 2,
+      "titre": "Le jour — dix-sept syllabes",
+      "duree_cible": 12,
+      "fonction_narrative": "developpement",
+      "position_arc_emotionnel": "attention_concentree",
+      "elements_necessaires": [
+        "structure du haïku (5-7-5)",
+        "lien nature-concision",
+        "citation possible d'un maître"
+      ],
+      "mood": "precis_lumineux"
+    },
+    {
+      "partie": 3,
+      "titre": "Le soir — le silence après le mot",
+      "duree_cible": 9,
+      "fonction_narrative": "resolution",
+      "position_arc_emotionnel": "apaisement",
+      "elements_necessaires": [
+        "retour au silence",
+        "écho de la tradition",
+        "ouverture contemplative"
+      ],
+      "mood": "suspendu_epure"
+    }
+  ],
+  "arc_emotionnel_global": "contemplation_croissante_puis_apaisement",
+  "rythme_general": "dynamique_mais_epure",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Du réveil sensoriel vers la forme poétique elle-même — glissement fluide du paysage vers le mot qui le capture."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo",
+      "duree": 1.5,
+      "description": "De la précision du vers vers le silence qui suit — le haïku se referme comme le jour décline."
+    }
+  ],
+  "notes_production": "Récit très court (≈64 mots max). Chaque phrase doit être ciselée comme un haïku : pas un mot de trop. La fluidité repose sur le fil conducteur de la journée (matin → jour → soir) qui structure sans forcer. Aucune adresse au public. Ton neutre informatif maintenu tout du long. Les archives audio disponibles concernent les chantiers navals et ne sont PAS pertinentes pour ce sujet — ne pas les utiliser. Densité sonore minimaliste : silences entre les sections, pas de musique envahissante. Privilégier un son d'ambiance naturel très discret (vent, eau) si habillage sonore."
+}

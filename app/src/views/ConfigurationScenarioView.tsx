@@ -13,9 +13,17 @@ import {
   RotateCcw,
   Check,
 } from "lucide-react";
-import { fetchProjectProfile } from "@/api/client";
+import {
+  fetchProjectProfile,
+  generateScenarios,
+  fetchProjectAudio,
+  saveAudioSelection,
+  type ScenarioSpec,
+} from "@/api/client";
+import axios from "axios";
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { ScenarioGenerationPopup } from "@/components/ScenarioGenerationPopup";
+import { useQueryClient } from "@tanstack/react-query";
 
 type AiProvider = "eleven_labs" | "qwen_local";
 
@@ -33,12 +41,14 @@ type ScenarioItem = {
 
 export function ConfigurationScenarioView() {
   const navigate = useNavigate();
-  const { projectName, lastProjectName, setProjectName } = useSessionStore();
+  const { projectName, lastProjectName, setProjectName, sessionId, setScenarioTarget } = useSessionStore();
+  const queryClient = useQueryClient();
   const resolvedProjectName = projectName ?? lastProjectName;
   const [showAiDropdownId, setShowAiDropdownId] = useState<number | null>(null);
   const [showAudienceDropdownId, setShowAudienceDropdownId] = useState<number | null>(null);
   const [showToneDropdownId, setShowToneDropdownId] = useState<number | null>(null);
   const [showGenerationPopup, setShowGenerationPopup] = useState(false);
+  const [generationError, setGenerationError] = useState<string | null>(null);
   const [scenarios, setScenarios] = useState<ScenarioItem[]>([
     {
       id: 1,
@@ -49,7 +59,7 @@ export function ConfigurationScenarioView() {
       targetAudience: "Sélectionnez",
       narrativeTone: "Sélectionnez",
       sourceMatch: 70,
-      durationSeconds: 275,
+      durationSeconds: 90,
     },
   ]);
   const maxChars = 3000;
@@ -122,6 +132,81 @@ export function ConfigurationScenarioView() {
     if (showToneDropdownId === id) setShowToneDropdownId(null);
   };
 
+  const reverseFormatLabel = (label: string, options: string[]) => {
+    if (!label || label === "Sélectionnez") return undefined;
+    const match = options.find((opt) => formatOptionLabel(opt) === label);
+    return match ?? label.toLowerCase().replace(/\s+/g, "_");
+  };
+
+  const sourceUsageFromMatch = (value: number): "leger" | "modere" | "central" => {
+    if (value <= 33) return "leger";
+    if (value <= 66) return "modere";
+    return "central";
+  };
+
+  const extractError = (err: unknown): string => {
+    if (axios.isAxiosError(err)) {
+      const detail = err.response?.data?.detail;
+      if (typeof detail === "string" && detail.trim().length > 0) return detail;
+      return err.message;
+    }
+    if (err instanceof Error) return err.message;
+    return "Génération impossible.";
+  };
+
+  const handleGenerate = async () => {
+    if (!sessionId || !resolvedProjectName) {
+      setGenerationError("Aucune session active : sélectionnez d'abord un projet.");
+      return;
+    }
+    const specs: ScenarioSpec[] = scenarios.map((s) => ({
+      prompt: s.prompt.trim(),
+      audience: reverseFormatLabel(s.targetAudience, audienceOptions),
+      tone: reverseFormatLabel(s.narrativeTone, toneOptions),
+      target_duration: s.durationSeconds,
+      source_usage_level: sourceUsageFromMatch(s.sourceMatch),
+      tts_provider: s.aiProvider === "qwen_local" ? "qwen" : "elevenlabs",
+    }));
+    const combinedPrompt = specs
+      .map((s) => s.prompt)
+      .filter((p) => Boolean(p))
+      .join("\n\n");
+    setGenerationError(null);
+    setScenarioTarget(scenarios.length);
+    setShowGenerationPopup(true);
+
+    try {
+      const projectAudio = await fetchProjectAudio(resolvedProjectName);
+      if (!projectAudio || projectAudio.length === 0) {
+        throw new Error(
+          "Aucun fichier audio dans ce projet. Importez d'abord vos sources audio."
+        );
+      }
+      const ttsProvider = specs[0]?.tts_provider ?? "elevenlabs";
+      await saveAudioSelection(sessionId, {
+        project_name: resolvedProjectName,
+        voices: projectAudio.slice(0, 3),
+        backgrounds: { ambient: null, punctual: [] },
+        auto_backgrounds: false,
+        tts_provider: ttsProvider,
+        tts_voice_id: null,
+      });
+
+      await generateScenarios(
+        sessionId,
+        combinedPrompt,
+        scenarios.length,
+        "simple",
+        undefined,
+        specs
+      );
+      queryClient.invalidateQueries({ queryKey: ["scenarios", sessionId] });
+    } catch (err) {
+      setShowGenerationPopup(false);
+      setGenerationError(extractError(err));
+    }
+  };
+
   return (
     <div className="mx-auto w-full max-w-[1100px] min-h-[806px] overflow-y-auto p-6">
       <section className="w-full overflow-hidden rounded-[14px] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
@@ -141,8 +226,9 @@ export function ConfigurationScenarioView() {
           <div className="flex h-[38px] w-full items-center justify-end">
             <button
               type="button"
-              onClick={() => setShowGenerationPopup(true)}
-              className="inline-flex h-[38px] items-center gap-1 rounded-xl bg-[#007AFF] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#006ae0]"
+              onClick={handleGenerate}
+              disabled={!sessionId}
+              className="inline-flex h-[38px] items-center gap-1 rounded-xl bg-[#007AFF] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#006ae0] disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Sparkles className="h-4 w-4" />
               <span>Générer</span>
@@ -386,12 +472,23 @@ export function ConfigurationScenarioView() {
         </div>
       </section>
 
+      {generationError && (
+        <div className="mt-4 rounded-lg border border-[#FF3B30] bg-[#fff1f0] px-4 py-3 text-sm text-[#FF3B30]">
+          {generationError}
+        </div>
+      )}
+
       <ScenarioGenerationPopup
         open={showGenerationPopup}
+        sessionId={sessionId}
         onClose={() => setShowGenerationPopup(false)}
         onComplete={() => {
           setShowGenerationPopup(false);
           navigate("/step/choix_scenario");
+        }}
+        onError={(msg) => {
+          setShowGenerationPopup(false);
+          setGenerationError(msg);
         }}
       />
     </div>
