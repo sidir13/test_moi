@@ -136,8 +136,10 @@ export function ProjectDetailsView() {
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent<{ text: string }>).detail;
-      if (typeof detail?.text === "string") {
+      if (typeof detail?.text === "string" && detail.text.length > 0) {
         setNotes(detail.text);
+        // Reset guard so query refetch (invalidateQueries fallback) also applies fresh data
+        notesPrefilledFor.current = null;
       }
     };
     window.addEventListener("project-notes-updated", handler);

@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft, ArrowUp, Wrench, CheckCircle2, AlertCircle }
 import { cn } from "@/lib/utils";
 import { getWsBaseUrl } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
+import { useQueryClient } from "@tanstack/react-query";
 import aiLogoUrl from "@/assets/svg/ai-logo.svg?url";
 
 type MessageRole = "user" | "assistant" | "system";
@@ -25,7 +26,8 @@ type ChatPanelProps = {
 
 export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelProps) => {
   const { t } = useTranslation();
-  const { chatPlaceholder, currentStep, sessionId } = useSessionStore();
+  const { chatPlaceholder, currentStep, sessionId, projectName } = useSessionStore();
+  const queryClient = useQueryClient();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<string | null>(null);
@@ -85,11 +87,16 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           if (payload.tool === "update_project_notes") {
             try {
               const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
-              window.dispatchEvent(new CustomEvent("project-notes-updated", {
-                detail: { text: res?.project_notes ?? "" }
-              }));
-            } catch {
-              window.dispatchEvent(new CustomEvent("project-notes-updated", { detail: { text: "" } }));
+              const updatedText: string | undefined = res?.project_notes;
+              if (typeof updatedText === "string" && updatedText.length > 0) {
+                window.dispatchEvent(new CustomEvent("project-notes-updated", {
+                  detail: { text: updatedText }
+                }));
+              }
+            } catch { /* ignore parse errors */ }
+            // Fallback: invalidate project profile so React Query refetches fresh data
+            if (projectName) {
+              queryClient.invalidateQueries({ queryKey: ["project-profile", projectName] });
             }
           }
           if (payload.tool === "transcribe_audio" || payload.tool === "save_analysis_result") {
