@@ -189,22 +189,8 @@ TOOLS = [
         }
     },
     {
-        "name": "get_project_notes",
-        "description": "Lire le contenu actuel du champ 'Contexte narratif' (project_notes) du projet. Appeler EN PREMIER avant de modifier ou transformer le texte existant.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "project_name": {
-                    "type": "string",
-                    "description": "Nom du projet"
-                }
-            },
-            "required": ["project_name"]
-        }
-    },
-    {
         "name": "update_project_notes",
-        "description": "Mettre à jour le champ 'Contexte narratif' du projet (textarea visible sur la page Détails du projet). Utiliser pour : générer un texte narratif, reformuler, corriger, améliorer, raccourcir le contenu existant. Le textarea se met à jour automatiquement dans l'interface.",
+        "description": "Mettre à jour le champ 'Contexte narratif' du projet (textarea visible sur la page Détails du projet). Utiliser pour : générer un texte narratif, reformuler, corriger, améliorer, raccourcir le contenu existant. Le textarea se met à jour automatiquement dans l'interface. IMPORTANT : le contenu actuel du textarea est déjà injecté dans chaque message utilisateur — utilise-le directement, ne relis pas la base.",
         "input_schema": {
             "type": "object",
             "properties": {

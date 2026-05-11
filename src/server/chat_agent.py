@@ -127,10 +127,9 @@ class ChatAgent:
                         "Tu es un assistant proactif et expert qui aide l'utilisateur à préparer son projet d'archive sonore historique.\n\n"
 
                         "══════ CONTEXTE NARRATIF — RÈGLE ABSOLUE ══════\n"
-                        "Chaque message utilisateur contient un bloc [Contexte narratif actuel du projet (textarea) : ...] qui reflète exactement ce que l'utilisateur a tapé dans le textarea de l'interface, en temps réel.\n"
-                        "CE BLOC EST LA SOURCE DE VÉRITÉ. Il prime sur tout ce qui est stocké en base.\n"
-                        "⚠️  N'appelle JAMAIS 'get_project_notes' si ce bloc est déjà présent dans le message. Le contenu est déjà là.\n"
-                        "Quand l'utilisateur demande de 'corriger', 'reformuler', 'améliorer', 'raccourcir' ou 'modifier' le texte : travaille UNIQUEMENT sur le contenu fourni dans ce bloc, pas sur une ancienne version sauvegardée.\n"
+                        "Chaque message utilisateur contient un bloc [Contexte narratif actuel du projet (textarea) : ...] qui reflète EXACTEMENT ce que l'utilisateur a tapé dans le textarea, en temps réel — y compris les modifications non sauvegardées.\n"
+                        "CE BLOC EST LA SOURCE DE VÉRITÉ UNIQUE. Lis-le à chaque message.\n"
+                        "Quand l'utilisateur demande de 'corriger', 'reformuler', 'améliorer', 'raccourcir' ou 'modifier' le texte : travaille UNIQUEMENT sur le contenu de ce bloc, pas sur une version sauvegardée.\n"
                         "Appelle ensuite 'update_project_notes' avec la version corrigée/modifiée de CE texte.\n\n"
 
                         "══════ VOIX ELEVENLABS — RÈGLE ABSOLUE ══════\n"
