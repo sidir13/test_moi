@@ -1,0 +1,64 @@
+{
+  "scenario_id": 1,
+  "titre": "Le Crayon et l'Univers",
+  "axe_narratif": "personnage_historique",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Dans le silence feutré d'un bureau californien du début des années 1970, George Lucas trace sur le papier les premiers contours d'un univers qui changera le cinéma. Chaque trait de crayon est un acte de foi, une constellation qui naît. Entre ses doigts, la science-fiction américaine trouve sa mythologie moderne. C'est l'instant fragile où Star Wars passe du rêve à l'esquisse, du silence à la légende.",
+  "duree_estimee": 15.600000000000001,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le geste créateur",
+      "duree": 15.600000000000001,
+      "texte_narration": "Californie, début des années soixante-dix. Dans le silence d'un bureau, un crayon gratte le papier. Sous les doigts de George Lucas, un univers naît.",
+      "ton": {
+        "global": "poétique, contemplatif, intime",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'soixante-dix' (1.5s)",
+          "après 'papier' (1s)"
+        ],
+        "intonation": "voix basse, presque murmurée, révérencieuse"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ancrage temporel et géographique",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Image du geste créateur - crayon sur papier",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:11",
+          "action": "Révélation du créateur et de la naissance de l'univers",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Californie, début des années soixante-dix.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans le silence d'un bureau, un crayon gratte le papier.",
+          "sources": []
+        },
+        {
+          "sentence": "Sous les doigts de George Lucas, un univers naît.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 26,
+    "duree_lecture_estimee": 15.600000000000001,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Format ultra-court (15s) = une seule section narrative dense et poétique. Pas de transitions internes nécessaires. La fluidité réside dans la cohérence du ton contemplatif du début à la fin. Privilégier les images fortes et les formulations épurées. Le débit narratif doit être particulièrement lent (~2 mots/seconde) pour créer l'atmosphère méditative recherchée. L'angle 'journée type' est ici interprété comme un INSTANT FIGÉ dans une journée de travail créatif — le moment où le crayon touche le papier. Ambiance sonore minimaliste : grattement de crayon, respiration, silence habité. Rigueur historique : période 1971-1974 confirmée pour le développement initial de Star Wars, Californie confirmée comme lieu. Pas d'invention de dates précises ou d'événements non sourcés. La dimension poétique porte sur l'ATMOSPHÈRE du geste créateur, pas sur les faits."
+}

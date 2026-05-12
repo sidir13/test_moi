@@ -1,579 +1,634 @@
-import { type DragEvent, type FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import {
-  Save, RefreshCw, Plus, Trash2, Upload, Film, Loader2,
-  AlertCircle, CheckCircle2, Volume2, Code2, FileText
+  Check,
+  ChevronLeft,
+  Loader2,
+  Music,
+  Play,
+  Plus,
+  Search,
+  SkipBack,
+  Square,
+  Upload,
+  Volume2,
+  X,
 } from "lucide-react";
 
 import {
-  API_BASE_URL,
   advanceStep,
-  fetchSelectedScenario,
-  selectScenario,
+  fetchBackgroundSounds,
   fetchScenarioAudio,
-  synthesizeScenarioAudio,
+  fetchSelectedScenario,
   getScenarioAudioUrl,
-  fetchScenarioImages,
-  uploadScenarioImage,
-  deleteScenarioImage,
-  reorderScenarioImages,
-  fetchSlideshow,
-  createSlideshow,
-  getScenarioSlideshowUrl
+  synthesizeScenarioAudio,
 } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 
-type ScenarioPartDraft = { titre: string; texte_narration: string };
-type TaggedPartDraft = { titre: string; taggedText: string };
+// ─── AudioClip ───────────────────────────────────────────────────────────────
 
-function extractErrorMessage(err: unknown): string | null {
-  if (axios.isAxiosError(err)) {
-    const detail = err.response?.data?.detail;
-    if (typeof detail === "string" && detail.trim()) return detail;
-    if (typeof err.message === "string") return err.message;
-  } else if (err instanceof Error) return err.message;
-  return null;
+type ClipVariant = "Story" | "Ambient" | "Effet sonore" | "Ajouter";
+
+type Clip = {
+  id: string;
+  label: string;
+  variant: ClipVariant;
+  start: number; // seconds
+  end: number;   // seconds
+};
+
+const CLIP_STYLES: Record<ClipVariant, { bg: string; border: string; text: string; dashed?: boolean }> = {
+  Story:           { bg: "#eff6ff",     border: "#007aff", text: "#007aff" },
+  Ambient:         { bg: "#cdffd1",     border: "#04a404", text: "#04a404" },
+  "Effet sonore":  { bg: "#fdebf9",     border: "#c8009c", text: "#c8009c" },
+  Ajouter:         { bg: "transparent", border: "#c8009c", text: "#c8009c", dashed: true },
+};
+
+type AudioClipProps = {
+  label: string;
+  variant: ClipVariant;
+  start: number;
+  end: number;
+  totalDuration: number;
+};
+
+function AudioClip({ label, variant, start, end, totalDuration }: AudioClipProps) {
+  const { bg, border, text, dashed } = CLIP_STYLES[variant];
+  const leftPct = (start / totalDuration) * 100;
+  const widthPct = Math.max(((end - start) / totalDuration) * 100, 0);
+
+  return (
+    <div
+      className="absolute top-[5px] h-[58px] rounded-[6px] flex items-center gap-2 px-3 overflow-hidden select-none"
+      style={{
+        left: `${leftPct}%`,
+        width: `${widthPct}%`,
+        backgroundColor: bg,
+        border: `1px ${dashed ? "dashed" : "solid"} ${border}`,
+        color: text,
+        minWidth: 36,
+      }}
+    >
+      {variant === "Ajouter" ? (
+        <span className="flex items-center gap-1 text-[13px] font-normal whitespace-nowrap">
+          <Plus className="h-3 w-3 shrink-0" />
+          {label}
+        </span>
+      ) : (
+        <span className="text-[13px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+          {label}
+        </span>
+      )}
+    </div>
+  );
 }
 
-function extractScenario(raw: Record<string, unknown>): Record<string, unknown> {
-  if (raw?.scenario && typeof raw.scenario === "object") return raw.scenario as Record<string, unknown>;
+// ─── Time ruler ──────────────────────────────────────────────────────────────
+
+function TimeRuler({ totalDuration }: { totalDuration: number }) {
+  const step = totalDuration <= 10 ? 1 : totalDuration <= 30 ? 5 : totalDuration <= 120 ? 10 : 30;
+  const markers: number[] = [];
+  for (let t = 0; t <= totalDuration; t += step) markers.push(t);
+
+  return (
+    <div className="relative h-[28px] w-full border-b border-[#e2e8f0] bg-[#f8fafc]">
+      {markers.map((t) => {
+        const pct = (t / totalDuration) * 100;
+        return (
+          <div
+            key={t}
+            className="absolute flex flex-col items-center"
+            style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
+          >
+            <div className="w-px h-[6px] bg-[#cbd5e1]" />
+            <span className="text-[10px] text-[#94a3b8] mt-0.5 whitespace-nowrap">{t}s</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── Track ───────────────────────────────────────────────────────────────────
+
+const LABEL_W = 160;
+
+function Track({
+  label,
+  type,
+  clips,
+  totalDuration,
+}: {
+  label: string;
+  type: string;
+  clips: Clip[];
+  totalDuration: number;
+}) {
+  return (
+    <div className="flex h-[68px] border-b border-[#e2e8f0] last:border-b-0">
+      <div
+        className="shrink-0 flex flex-col justify-center px-4 border-r border-[#e2e8f0] bg-[#f8fafc]"
+        style={{ width: LABEL_W }}
+      >
+        <span className="text-[13px] font-semibold text-[#0f172b] leading-tight">{label}</span>
+        <span className="text-[11px] text-[#94a3b8] leading-tight mt-0.5">{type}</span>
+      </div>
+      <div className="relative flex-1 overflow-hidden bg-white">
+        {clips.map((clip) => (
+          <AudioClip
+            key={clip.id}
+            label={clip.label}
+            variant={clip.variant}
+            start={clip.start}
+            end={clip.end}
+            totalDuration={totalDuration}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Gallery tabs ─────────────────────────────────────────────────────────────
+
+type GalleryTab = "Sons ambiants" | "Effets sonores" | "Mes sons";
+const GALLERY_TABS: GalleryTab[] = ["Sons ambiants", "Effets sonores", "Mes sons"];
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function fmtTime(s: number): string {
+  const hh = Math.floor(s / 3600).toString().padStart(2, "0");
+  const mm = Math.floor((s % 3600) / 60).toString().padStart(2, "0");
+  const ss = Math.floor(s % 60).toString().padStart(2, "0");
+  return `${hh}:${mm}:${ss}`;
+}
+
+function extractPayload(raw: Record<string, unknown>): Record<string, unknown> {
+  if (raw.scenario && typeof raw.scenario === "object") return raw.scenario as Record<string, unknown>;
   return raw;
 }
 
-function buildUpdatedScenario(
-  original: Record<string, unknown>,
-  title: string,
-  parts: ScenarioPartDraft[],
-  freeText: string,
-  taggedParts: TaggedPartDraft[] = []
-): Record<string, unknown> {
-  const base = { ...original };
-  const target = (base.scenario && typeof base.scenario === "object")
-    ? { ...(base.scenario as Record<string, unknown>) }
-    : { ...base };
-  target.titre = title;
-  if (parts.length > 0) {
-    target.parties = parts.map((part, idx) => ({
-      titre: part.titre || `Partie ${idx + 1}`,
-      texte_narration: part.texte_narration ?? ""
-    }));
-    delete target.texte;
-    delete target.texte_narration;
-  } else {
-    delete target.parties;
-    target.texte_narration = freeText;
-  }
-  let updated: Record<string, unknown>;
-  if (base.scenario && typeof base.scenario === "object") {
-    updated = { ...base, scenario: target };
-  } else {
-    updated = target;
-  }
-  if (taggedParts.length > 0 && base.taggedOutput && typeof base.taggedOutput === "object") {
-    const taggedBase = base.taggedOutput as Record<string, unknown>;
-    updated = {
-      ...updated,
-      taggedOutput: {
-        ...taggedBase,
-        parties: taggedParts.map((tp, idx) => ({
-          ...(Array.isArray(taggedBase.parties) ? ((taggedBase.parties as unknown[])[idx] ?? {}) : {}),
-          titre: tp.titre || `Partie ${idx + 1}`,
-          taggedText: tp.taggedText ?? ""
-        }))
-      }
-    };
-  }
-  return updated;
-}
+// ─── Main view ────────────────────────────────────────────────────────────────
 
 export function ScenarioEditView() {
-  const { sessionId, setCurrentStep, updateProgress } = useSessionStore();
+  const { sessionId, updateProgress, setCurrentStep } = useSessionStore();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
-  const [title, setTitle] = useState("");
-  const [partsDraft, setPartsDraft] = useState<ScenarioPartDraft[]>([]);
-  const [taggedPartsDraft, setTaggedPartsDraft] = useState<TaggedPartDraft[]>([]);
-  const [showTags, setShowTags] = useState(false);
-  const [freeText, setFreeText] = useState("");
-  const [status, setStatus] = useState<string | null>(null);
-  const [audioStatus, setAudioStatus] = useState<string | null>(null);
-  const [imageStatus, setImageStatus] = useState<string | null>(null);
-  const [videoStatus, setVideoStatus] = useState<string | null>(null);
-  const [isDraggingFiles, setIsDraggingFiles] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isPlaying, setIsPlaying]       = useState(false);
+  const [currentTime, setCurrentTime]   = useState(0);
+  const [audioDuration, setAudioDuration] = useState<number | null>(null);
+  const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
+  const [activeTab, setActiveTab]         = useState<GalleryTab>("Sons ambiants");
+  const [searchQuery, setSearchQuery]     = useState("");
+  const [showCategories, setShowCategories] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
+  const [isGenerating, setIsGenerating]   = useState(false);
+  const [statusMsg, setStatusMsg]         = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
     queryFn: () => fetchSelectedScenario(sessionId!),
-    enabled: Boolean(sessionId)
+    enabled: Boolean(sessionId),
   });
   const audioQuery = useQuery({
     queryKey: ["scenario-audio", sessionId],
     queryFn: () => fetchScenarioAudio(sessionId!),
-    enabled: Boolean(sessionId)
+    enabled: Boolean(sessionId),
   });
-  const imagesQuery = useQuery({
-    queryKey: ["scenario-images", sessionId],
-    queryFn: () => fetchScenarioImages(sessionId!),
-    enabled: Boolean(sessionId)
-  });
-  const slideshowQuery = useQuery({
-    queryKey: ["scenario-slideshow", sessionId],
-    queryFn: () => fetchSlideshow(sessionId!),
-    enabled: Boolean(sessionId)
+  const soundsQuery = useQuery({
+    queryKey: ["background-sounds", searchQuery],
+    queryFn: () => fetchBackgroundSounds(searchQuery || undefined),
   });
 
-  useEffect(() => {
-    if (!selectionQuery.data) return;
-    const raw = selectionQuery.data as Record<string, unknown>;
-    const payload = extractScenario(raw);
-    setTitle((payload.titre as string) ?? "");
-    if (Array.isArray(payload.parties) && payload.parties.length > 0) {
-      setPartsDraft((payload.parties as Array<Record<string, unknown>>).map((part, idx) => ({
-        titre: (part?.titre as string) ?? `Partie ${idx + 1}`,
-        texte_narration: ((part?.texte_narration ?? part?.texte) as string) ?? ""
-      })));
-      setFreeText("");
-    } else {
-      setPartsDraft([]);
-      setFreeText(((payload.texte_narration ?? payload.texte) as string) ?? "");
-    }
-    const taggedParties = (raw?.taggedOutput as Record<string, unknown> | undefined)?.parties;
-    if (Array.isArray(taggedParties) && taggedParties.length > 0) {
-      setTaggedPartsDraft((taggedParties as Array<Record<string, unknown>>).map((tp, idx) => ({
-        titre: (tp?.titre as string) ?? `Partie ${idx + 1}`,
-        taggedText: (tp?.taggedText as string) ?? ""
-      })));
-    } else {
-      setTaggedPartsDraft([]);
-    }
-  }, [selectionQuery.data]);
-
-  const audioJobStatus = audioQuery.data?.status;
+  const audioJobStatus  = audioQuery.data?.status;
   const isAudioProcessing = audioJobStatus === "pending" || audioJobStatus === "running";
-  const hasAudioError = audioJobStatus === "failed";
-  const audioReady = audioJobStatus === "done" && Boolean(audioQuery.data?.path);
+  const audioReady      = audioJobStatus === "done" && Boolean(audioQuery.data?.path);
 
   useEffect(() => {
     if (!sessionId || !isAudioProcessing) return;
-    const interval = setInterval(() => audioQuery.refetch(), 4000);
-    return () => clearInterval(interval);
+    const iv = setInterval(() => audioQuery.refetch(), 4000);
+    return () => clearInterval(iv);
   }, [sessionId, isAudioProcessing, audioQuery]);
-
-  useEffect(() => {
-    if (isAudioProcessing) setAudioStatus("Audio en cours de génération…");
-    else if (hasAudioError) setAudioStatus(audioQuery.data?.error ? `Échec : ${audioQuery.data.error}` : "Génération impossible.");
-    else if (audioJobStatus === "done") setAudioStatus(null);
-  }, [audioJobStatus, isAudioProcessing, hasAudioError, audioQuery.data?.error]);
 
   const audioSrc = useMemo(() => {
     if (!sessionId || !audioReady || !audioQuery.data?.path) return null;
     const base = getScenarioAudioUrl(sessionId).replace(/\/$/, "");
-    const ts = audioQuery.data.generated_at ? `?ts=${encodeURIComponent(audioQuery.data.generated_at)}` : "";
+    const ts = audioQuery.data.generated_at
+      ? `?ts=${encodeURIComponent(audioQuery.data.generated_at)}`
+      : "";
     return `${base}${ts}`;
   }, [audioQuery.data, sessionId, audioReady]);
 
-  const slideshowSrc = useMemo(() => {
-    if (!sessionId || !slideshowQuery.data?.path) return null;
-    const base = getScenarioSlideshowUrl(sessionId).replace(/\/$/, "");
-    const ts = slideshowQuery.data.created_at ? `?ts=${encodeURIComponent(slideshowQuery.data.created_at)}` : "";
-    return `${base}${ts}`;
-  }, [sessionId, slideshowQuery.data]);
+  useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (isPlaying) el.play().catch(() => setIsPlaying(false));
+    else el.pause();
+  }, [isPlaying]);
 
-  const images = imagesQuery.data ?? [];
-  const imagesLimitReached = images.length >= 10;
-  const apiBase = useMemo(() => (API_BASE_URL || "").replace(/\/$/, ""), []);
-  const hasTaggedText = taggedPartsDraft.length > 0;
+  const totalDuration = audioDuration ?? 60;
 
-  if (!sessionId) return <p className="text-sm text-muted-foreground">Démarrez une session.</p>;
-  if (selectionQuery.isLoading) return (
-    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-      <Loader2 className="h-4 w-4 animate-spin" />Chargement du scénario…
-    </div>
-  );
-  if (!selectionQuery.data) return <p className="text-sm text-muted-foreground">Aucun scénario sélectionné. Retournez à l'étape précédente.</p>;
+  // Narration clips from scenario parts
+  const narrationClips = useMemo((): Clip[] => {
+    if (!selectionQuery.data) {
+      return [{ id: "n0", label: "Story", variant: "Story", start: 0, end: totalDuration }];
+    }
+    const raw = selectionQuery.data as Record<string, unknown>;
+    const payload = extractPayload(raw);
+    const parts = Array.isArray(payload.parties)
+      ? (payload.parties as Array<Record<string, unknown>>)
+      : null;
 
-  const persistScenario = async () => {
-    if (!sessionId || !selectionQuery.data) return;
-    const updated = buildUpdatedScenario(selectionQuery.data as Record<string, unknown>, title, partsDraft, freeText, taggedPartsDraft);
-    await selectScenario(sessionId, updated);
-    await queryClient.invalidateQueries({ queryKey: ["selected-scenario", sessionId] });
+    if (!parts || parts.length === 0) {
+      return [{ id: "n0", label: "Story", variant: "Story", start: 0, end: totalDuration }];
+    }
+
+    const texts = parts.map((p) => ((p.texte_narration ?? p.texte) as string) ?? "");
+    const totalChars = texts.reduce((sum, t) => sum + t.length, 0) || 1;
+    let cursor = 0;
+    return parts.map((p, idx) => {
+      const dur = (texts[idx].length / totalChars) * totalDuration;
+      const clip: Clip = {
+        id: `n${idx}`,
+        label: (p.titre as string) ?? `Partie ${idx + 1}`,
+        variant: "Story",
+        start: cursor,
+        end: cursor + dur,
+      };
+      cursor += dur;
+      return clip;
+    });
+  }, [selectionQuery.data, totalDuration]);
+
+  const ambientClips = useMemo((): Clip[] => {
+    if (!selectedBackground) return [];
+    return [{ id: "amb0", label: selectedBackground, variant: "Ambient", start: 0, end: totalDuration }];
+  }, [selectedBackground, totalDuration]);
+
+  const sfxClips: Clip[] = [
+    { id: "sfx-add", label: "Ajouter un effet sonore", variant: "Ajouter", start: 0, end: totalDuration * 0.18 },
+  ];
+
+  // Gallery data
+  const allSounds = soundsQuery.data ?? [];
+  const categories = useMemo(() => {
+    const cats = new Set(allSounds.map((s) => s.category).filter(Boolean) as string[]);
+    return Array.from(cats);
+  }, [allSounds]);
+
+  const filteredSounds = useMemo(() => {
+    let list = allSounds;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter((s) => s.name.toLowerCase().includes(q));
+    }
+    if (selectedCategories.size > 0) {
+      list = list.filter((s) => s.category && selectedCategories.has(s.category));
+    }
+    return list;
+  }, [allSounds, searchQuery, selectedCategories]);
+
+  const toggleCategory = (cat: string) => {
+    setSelectedCategories((prev) => {
+      const next = new Set(prev);
+      next.has(cat) ? next.delete(cat) : next.add(cat);
+      return next;
+    });
   };
 
-  const regenerateAudio = async () => {
+  const handleValidate = async () => {
     if (!sessionId) return;
-    setAudioStatus("Génération d'un nouvel audio…");
-    await persistScenario();
+    setIsGenerating(true);
+    setStatusMsg("Génération de l'audio…");
     try {
-      const job = await synthesizeScenarioAudio(sessionId);
-      if (job?.status && job.status !== "done") setAudioStatus("Audio en cours de génération…");
-      else setAudioStatus(null);
+      await synthesizeScenarioAudio(sessionId);
       await audioQuery.refetch();
-    } catch (err) {
-      setAudioStatus(extractErrorMessage(err) ?? "Impossible de régénérer l'audio.");
-    }
-  };
-
-  const handleUploadImages = async (files: FileList | null) => {
-    if (!sessionId || !files) return;
-    setImageStatus("Téléversement en cours…");
-    try {
-      for (const file of Array.from(files)) {
-        if ((imagesQuery.data?.length ?? 0) >= 10) break;
-        await uploadScenarioImage(sessionId, file);
-      }
-      await imagesQuery.refetch();
-      setImageStatus("Images ajoutées.");
+      await advanceStep(sessionId, "scenario_edit", {});
+      updateProgress({ scenarioEdited: true });
+      setCurrentStep("final_validation");
+      navigate("/step/final_validation");
     } catch {
-      setImageStatus("Impossible d'ajouter les images.");
+      setStatusMsg("Erreur lors de la génération. Réessayez.");
+      setIsGenerating(false);
     }
   };
 
-  const handleCreateSlideshow = async () => {
-    if (images.length === 0) { setVideoStatus("Ajoutez des images d'abord."); return; }
-    if (!audioQuery.data?.path) { setVideoStatus("Générez l'audio avant le diaporama."); return; }
-    setVideoStatus("Création du diaporama…");
-    try {
-      await createSlideshow(sessionId!);
-      await slideshowQuery.refetch();
-      setVideoStatus("Diaporama créé.");
-    } catch (err) {
-      setVideoStatus(extractErrorMessage(err) ?? "Création impossible.");
-    }
-  };
-
-  const handleDropFiles = async (evt: DragEvent<HTMLDivElement>) => {
-    evt.preventDefault();
-    setIsDraggingFiles(false);
-    if (!imagesLimitReached && evt.dataTransfer.files.length > 0) {
-      await handleUploadImages(evt.dataTransfer.files);
-      evt.dataTransfer.clearData();
-    }
-  };
-
-  const handleDragStart = (evt: DragEvent<HTMLDivElement>, id: string) => {
-    evt.dataTransfer.setData("text/plain", id);
-  };
-
-  const handleDropOnImage = async (evt: DragEvent<HTMLDivElement>, targetId: string) => {
-    evt.preventDefault();
-    const fromId = evt.dataTransfer.getData("text/plain");
-    if (fromId && fromId !== targetId && sessionId && imagesQuery.data) {
-      const list = [...imagesQuery.data];
-      const fromIdx = list.findIndex((i) => i.id === fromId);
-      const toIdx = list.findIndex((i) => i.id === targetId);
-      if (fromIdx !== -1 && toIdx !== -1) {
-        const reordered = [...list];
-        const [moved] = reordered.splice(fromIdx, 1);
-        reordered.splice(toIdx, 0, moved);
-        await reorderScenarioImages(sessionId, reordered.map((i) => i.id));
-        await imagesQuery.refetch();
-      }
-    }
-  };
-
-  const handleSubmit = async (evt: FormEvent) => {
-    evt.preventDefault();
-    setStatus("Sauvegarde en cours…");
-    await persistScenario();
-    const refreshed = await audioQuery.refetch();
-    if (!refreshed.data?.path) {
-      setStatus("Générez l'audio avant de passer à la validation finale.");
-      return;
-    }
-    if ((imagesQuery.data?.length ?? 0) > 0 && audioQuery.data?.path && !slideshowQuery.data?.path) {
-      await createSlideshow(sessionId!).catch(() => {});
-    }
-    await advanceStep(sessionId, "scenario_edit", { titre: title });
-    updateProgress({ scenarioEdited: true });
-    setCurrentStep("final_validation");
-    navigate("/step/final_validation");
-  };
-
-  const scenarioTitle = title?.trim();
-  const heading = scenarioTitle ? `Modifier le scénario — ${scenarioTitle}` : "Modifier le scénario";
+  if (!sessionId) return null;
 
   return (
-    <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-6">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{heading}</h2>
-          <p className="text-sm text-muted-foreground mt-1">Affinez le texte, réécoutez et validez votre scénario.</p>
+    <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-4">
+
+      {/* ── Block 1 – Timeline ─────────────────────────────────────────────── */}
+      <div className="rounded-[14px] border border-[#8ea4bd] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)] overflow-hidden">
+
+        {/* Header */}
+        <div className="flex items-center gap-2 border-b border-[#e2e8f0] bg-[#f8fafc] px-5 py-4">
+          <Music className="h-4 w-4 text-[#45556c] shrink-0" />
+          <div className="flex flex-col gap-0.5">
+            <h2 className="text-[14px] font-medium text-[#45556c] leading-none">Édition de l'audio</h2>
+            <p className="text-[13px] text-[#94a3b8] leading-none">
+              Personnaliser l'audio pour le transformer en artefact.
+            </p>
+          </div>
         </div>
+
+        <div className="flex flex-col gap-0">
+
+          {/* Action bar */}
+          <div className="flex items-center justify-between px-5 py-3 border-b border-[#e2e8f0]">
+            {/* Left: transport controls + time + volume */}
+            <div className="flex items-center gap-3">
+              {/* Transport */}
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => { if (audioRef.current) audioRef.current.currentTime = 0; setCurrentTime(0); }}
+                  className="flex h-8 w-8 items-center justify-center rounded-md text-[#45556c] hover:bg-[#f1f5f9]"
+                  aria-label="Retour au début"
+                >
+                  <SkipBack className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsPlaying((v) => !v)}
+                  disabled={!audioSrc}
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-[#007aff] text-white hover:bg-[#006ae0] disabled:opacity-40"
+                  aria-label={isPlaying ? "Pause" : "Lecture"}
+                >
+                  {isPlaying
+                    ? <Square className="h-3.5 w-3.5 fill-current" />
+                    : <Play className="h-3.5 w-3.5 fill-current" />
+                  }
+                </button>
+              </div>
+
+              {/* Time */}
+              <span className="text-[14px] font-semibold text-[#0f172b] tabular-nums">
+                {fmtTime(currentTime)}
+                <span className="mx-1.5 text-[#e2e8f0]">|</span>
+                <span className="font-normal text-[#94a3b8]">{fmtTime(totalDuration)}</span>
+              </span>
+
+              {/* Volume */}
+              <div className="flex items-center gap-1.5">
+                <Volume2 className="h-3.5 w-3.5 text-[#94a3b8]" />
+                <div className="relative h-1.5 w-20 rounded-full bg-[#e2e8f0]">
+                  <div className="h-1.5 w-1/2 rounded-full bg-[#94a3b8]" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: X reset + add track + status */}
+            <div className="flex items-center gap-2">
+              {isAudioProcessing && (
+                <span className="flex items-center gap-1 text-[12px] text-[#64748b]">
+                  <Loader2 className="h-3 w-3 animate-spin" /> En cours…
+                </span>
+              )}
+              {statusMsg && !isAudioProcessing && (
+                <span className="text-[12px] text-[#64748b]">{statusMsg}</span>
+              )}
+              <button
+                type="button"
+                onClick={() => { setCurrentTime(0); if (audioRef.current) audioRef.current.currentTime = 0; }}
+                className="flex h-7 w-7 items-center justify-center rounded-md text-[#94a3b8] hover:bg-[#f1f5f9] hover:text-[#45556c]"
+                aria-label="Réinitialiser"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                className="inline-flex h-8 items-center gap-1.5 rounded-[8px] border border-[#e2e8f0] bg-white px-3 text-[13px] font-medium text-[#45556c] hover:bg-[#f8fafc]"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                Ajouter une piste
+              </button>
+            </div>
+          </div>
+
+          {/* Ruler + tracks */}
+          <div className="flex">
+            {/* Label column spacer */}
+            <div
+              className="shrink-0 border-r border-[#e2e8f0] bg-[#f8fafc]"
+              style={{ width: LABEL_W }}
+            />
+            {/* Ruler */}
+            <div className="flex-1">
+              <TimeRuler totalDuration={totalDuration} />
+            </div>
+          </div>
+
+          {/* Tracks */}
+          <div className="border-t border-[#e2e8f0]">
+            <Track label="Narration"     type="Narration"     clips={narrationClips} totalDuration={totalDuration} />
+            <Track label="Ambient"       type="Ambient"       clips={ambientClips}   totalDuration={totalDuration} />
+            <Track label="Sound Effects" type="Sound effects" clips={sfxClips}        totalDuration={totalDuration} />
+          </div>
+        </div>
+
+        {/* Validate button */}
+        <div className="flex items-center justify-end gap-3 border-t border-[#e2e8f0] px-5 py-3">
+          {isGenerating && (
+            <span className="flex items-center gap-1.5 text-[13px] text-[#64748b]">
+              <Loader2 className="h-3.5 w-3.5 animate-spin" /> Génération…
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={handleValidate}
+            disabled={isGenerating || isAudioProcessing}
+            className="inline-flex h-[38px] items-center gap-1.5 rounded-[12px] bg-[#007aff] px-5 text-[14px] font-medium text-white hover:bg-[#006ae0] disabled:opacity-50"
+          >
+            {isGenerating ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : (
+              <Check className="h-3.5 w-3.5" />
+            )}
+            Valider version finale
+          </button>
+        </div>
+
+        {/* Hidden audio */}
+        {audioSrc && (
+          <audio
+            ref={audioRef}
+            src={audioSrc}
+            className="hidden"
+            onLoadedMetadata={(e) =>
+              setAudioDuration((e.target as HTMLAudioElement).duration || null)
+            }
+            onTimeUpdate={(e) =>
+              setCurrentTime((e.target as HTMLAudioElement).currentTime)
+            }
+            onEnded={() => setIsPlaying(false)}
+          />
+        )}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-        {/* Scenario title */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Titre du scénario</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Titre du scénario" />
-          </CardContent>
-        </Card>
+      {/* ── Block 2 – Audio gallery ────────────────────────────────────────── */}
+      <div className="rounded-[14px] border border-[#8ea4bd] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)] overflow-hidden">
 
-        {/* Narrative structure */}
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Structure narrative</CardTitle>
-                <CardDescription>Éditez les parties du scénario.</CardDescription>
-              </div>
-              {hasTaggedText && (
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowTags((p) => !p)}
-                >
-                  {showTags ? <><FileText className="mr-1.5 h-3.5 w-3.5" />Texte brut</> : <><Code2 className="mr-1.5 h-3.5 w-3.5" />Balises ElevenLabs</>}
-                </Button>
-              )}
-            </div>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            {showTags && hasTaggedText ? (
-              <>
-                <p className="text-xs text-muted-foreground">
-                  Texte balisé envoyé à ElevenLabs. Les balises <code className="rounded bg-muted px-1">[pause]</code>, <code className="rounded bg-muted px-1">[posé]</code>, etc. seront interprétées par le moteur vocal.
-                </p>
-                {taggedPartsDraft.map((tp, idx) => (
-                  <div key={idx} className="flex flex-col gap-2 rounded-lg border border-border p-3">
-                    <p className="text-sm font-semibold">{tp.titre || `Partie ${idx + 1}`}</p>
-                    <Textarea
-                      rows={8}
-                      value={tp.taggedText}
-                      className="font-mono text-xs"
-                      onChange={(e) => setTaggedPartsDraft((prev) => prev.map((p, i) => i === idx ? { ...p, taggedText: e.target.value } : p))}
-                    />
-                  </div>
-                ))}
-              </>
-            ) : partsDraft.length === 0 ? (
-              <>
-                <Textarea rows={12} value={freeText} onChange={(e) => setFreeText(e.target.value)} placeholder="Corps du scénario…" />
-                <Button type="button" variant="outline" size="sm" className="w-fit" onClick={() => { setPartsDraft([{ titre: "Partie 1", texte_narration: freeText }]); setFreeText(""); }}>
-                  <Plus className="mr-1.5 h-3.5 w-3.5" />
-                  Découper en parties
-                </Button>
-              </>
-            ) : (
-              <>
-                {partsDraft.map((part, idx) => (
-                  <div key={idx} className="flex flex-col gap-2 rounded-lg border border-border p-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <Label className="text-xs text-muted-foreground">Titre de la partie</Label>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-7 text-destructive hover:text-destructive"
-                        onClick={() => setPartsDraft((prev) => prev.filter((_, i) => i !== idx))}
-                      >
-                        <Trash2 className="h-3.5 w-3.5" />
-                      </Button>
-                    </div>
-                    <Input
-                      value={part.titre}
-                      onChange={(e) => setPartsDraft((prev) => prev.map((p, i) => i === idx ? { ...p, titre: e.target.value } : p))}
-                      placeholder={`Partie ${idx + 1}`}
-                    />
-                    <Textarea
-                      rows={5}
-                      value={part.texte_narration}
-                      onChange={(e) => setPartsDraft((prev) => prev.map((p, i) => i === idx ? { ...p, texte_narration: e.target.value } : p))}
-                      placeholder="Texte de narration…"
-                    />
-                  </div>
-                ))}
-                <Button type="button" variant="outline" size="sm" className="w-fit" onClick={() => setPartsDraft((prev) => [...prev, { titre: `Partie ${prev.length + 1}`, texte_narration: "" }])}>
-                  <Plus className="mr-1.5 h-3.5 w-3.5" />
-                  Ajouter une partie
-                </Button>
-              </>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Audio preview */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Volume2 className="h-4 w-4" />
-              Pré-écoute audio
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3">
-            {audioQuery.isFetching && !audioSrc && (
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Loader2 className="h-4 w-4 animate-spin" />Chargement…
-              </div>
-            )}
-            {isAudioProcessing && (
-              <div className="flex items-center gap-2 text-sm text-primary">
-                <Loader2 className="h-4 w-4 animate-spin" />Audio en cours de génération…
-              </div>
-            )}
-            {hasAudioError && (
-              <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{audioQuery.data?.error ?? "Génération impossible."}</AlertDescription>
-              </Alert>
-            )}
-            {audioSrc && (
-              <>
-                <audio controls src={audioSrc} preload="auto" className="w-full rounded-lg" />
-                {audioQuery.data?.generated_at && (
-                  <p className="text-xs text-muted-foreground flex items-center gap-1">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-success" />
-                    Généré le {new Date(audioQuery.data.generated_at).toLocaleString()}
-                  </p>
-                )}
-              </>
-            )}
-            {!audioSrc && !audioQuery.isFetching && !isAudioProcessing && (
-              <p className="text-sm text-muted-foreground">Aucun audio disponible.</p>
-            )}
-            {audioStatus && (
-              <p className="text-sm text-muted-foreground">{audioStatus}</p>
-            )}
-            <Button type="button" variant="outline" size="sm" className="w-fit" onClick={regenerateAudio} disabled={isAudioProcessing}>
-              <RefreshCw className={cn("mr-1.5 h-3.5 w-3.5", isAudioProcessing && "animate-spin")} />
-              Régénérer l'audio
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Images & slideshow */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Film className="h-4 w-4" />
-              Images & diaporama
-              <Badge variant="secondary" className="text-xs">{images.length} / 10</Badge>
-            </CardTitle>
-            <CardDescription>Ajoutez jusqu'à 10 images, réorganisez par glisser-déposer, puis générez un diaporama synchronisé.</CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              multiple
-              className="hidden"
-              onChange={(e) => { handleUploadImages(e.target.files); e.target.value = ""; }}
-            />
-            <div
-              role="button"
-              tabIndex={0}
-              aria-disabled={imagesLimitReached}
-              onClick={() => !imagesLimitReached && fileInputRef.current?.click()}
-              onKeyDown={(e) => { if ((e.key === "Enter" || e.key === " ") && !imagesLimitReached) { e.preventDefault(); fileInputRef.current?.click(); } }}
-              onDragEnter={(e) => { e.preventDefault(); if (!imagesLimitReached) setIsDraggingFiles(true); }}
-              onDragOver={(e) => { e.preventDefault(); if (!imagesLimitReached) setIsDraggingFiles(true); }}
-              onDragLeave={(e) => { e.preventDefault(); setIsDraggingFiles(false); }}
-              onDrop={handleDropFiles}
-              className={cn(
-                "flex flex-col items-center justify-center rounded-xl border-2 border-dashed px-4 py-8 text-center transition-colors",
-                isDraggingFiles ? "border-primary bg-primary/5" : "border-border hover:border-primary/50",
-                imagesLimitReached && "cursor-not-allowed opacity-50"
-              )}
-            >
-              <Upload className="h-6 w-6 mb-2 text-muted-foreground" />
-              <p className="text-sm font-medium">
-                {imagesLimitReached ? "Limite atteinte (10 images)" : "Déposez vos visuels ici"}
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-[#e2e8f0] bg-[#f8fafc] px-5 py-4">
+          <div className="flex items-center gap-2">
+            <Music className="h-4 w-4 text-[#45556c] shrink-0" />
+            <div className="flex flex-col gap-0.5">
+              <h2 className="text-[14px] font-medium text-[#45556c] leading-none">Galerie audio</h2>
+              <p className="text-[13px] text-[#94a3b8] leading-none">
+                Choisissez le scénario qui correspond le mieux à vos objectifs de médiation
               </p>
-              {!imagesLimitReached && (
-                <p className="text-xs text-muted-foreground mt-1">Cliquez ou glissez-déposez des JPEG / PNG</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            className="inline-flex h-[38px] items-center gap-1.5 rounded-[12px] bg-[#007aff] px-4 text-[14px] font-medium text-white hover:bg-[#006ae0]"
+          >
+            <Upload className="h-3.5 w-3.5" />
+            Importer un fichier audio
+          </button>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex border-b border-[#e2e8f0] px-5">
+          {GALLERY_TABS.map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              onClick={() => setActiveTab(tab)}
+              className={`relative py-3 px-4 text-[13px] font-medium transition-colors ${
+                activeTab === tab
+                  ? "text-[#007aff] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#007aff]"
+                  : "text-[#94a3b8] hover:text-[#45556c]"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Search + list */}
+        <div className="flex flex-col gap-0">
+          {/* Search bar */}
+          <div className="flex items-center gap-2 border-b border-[#e2e8f0] px-5 py-2.5">
+            <Search className="h-4 w-4 shrink-0 text-[#94a3b8]" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Rechercher une piste audio ou filtrer la bibliothèque"
+              className="flex-1 bg-transparent text-[14px] text-[#0f172b] outline-none placeholder:text-[#94a3b8]"
+            />
+          </div>
+
+          {/* List + optional category panel */}
+          <div className="relative flex">
+            {/* Sound list */}
+            <div className="flex-1">
+              {/* Column headers */}
+              <div className="flex items-center justify-between px-5 py-2 border-b border-[#e2e8f0] bg-[#f8fafc]">
+                <button
+                  type="button"
+                  onClick={() => setShowCategories((v) => !v)}
+                  className="flex items-center gap-1.5 text-[12px] font-medium text-[#45556c] hover:text-[#0f172b]"
+                >
+                  <ChevronLeft
+                    className={`h-3.5 w-3.5 transition-transform ${showCategories ? "rotate-180" : ""}`}
+                  />
+                  Catégories
+                </button>
+                <span className="text-[12px] text-[#94a3b8]">Catégorie</span>
+              </div>
+
+              {soundsQuery.isLoading ? (
+                <div className="flex items-center justify-center gap-2 py-10 text-[13px] text-[#94a3b8]">
+                  <Loader2 className="h-4 w-4 animate-spin" /> Chargement…
+                </div>
+              ) : filteredSounds.length === 0 ? (
+                <p className="py-10 text-center text-[13px] text-[#94a3b8]">
+                  Aucune piste disponible.
+                </p>
+              ) : (
+                <div className="divide-y divide-[#e2e8f0]">
+                  {filteredSounds.map((sound) => (
+                    <div
+                      key={sound.name}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() =>
+                        setSelectedBackground(
+                          selectedBackground === sound.name ? null : sound.name
+                        )
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setSelectedBackground(
+                            selectedBackground === sound.name ? null : sound.name
+                          );
+                        }
+                      }}
+                      className={`flex items-center justify-between px-5 py-2.5 cursor-pointer transition-colors hover:bg-[#f8fafc] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#007aff] ${
+                        selectedBackground === sound.name ? "bg-[#eff6ff]" : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <button
+                          type="button"
+                          aria-label={`Écouter ${sound.name}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e2e8f0] bg-white text-[#0f172b] hover:bg-[#f8fafc]"
+                        >
+                          <Play className="h-3 w-3 fill-current" />
+                        </button>
+                        <span
+                          className={`truncate text-[14px] ${
+                            selectedBackground === sound.name
+                              ? "font-medium text-[#007aff]"
+                              : "font-normal text-[#0f172b]"
+                          }`}
+                        >
+                          {sound.name}
+                        </span>
+                      </div>
+                      <span className="ml-4 shrink-0 text-[13px] text-[#94a3b8]">
+                        {sound.category ?? "—"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
-            {imageStatus && <p className="text-sm text-muted-foreground">{imageStatus}</p>}
 
-            {images.length > 0 && (
-              <div className="flex flex-wrap gap-3">
-                {images.map((image) => (
-                  <div
-                    key={image.id}
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, image.id)}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={(e) => handleDropOnImage(e, image.id)}
-                    className="relative h-32 w-32 shrink-0 overflow-hidden rounded-lg border border-border bg-muted cursor-grab active:cursor-grabbing"
-                  >
-                    <img
-                      src={`${apiBase}${image.download_url}`}
-                      alt={image.original_name ?? image.filename}
-                      className="h-full w-full object-cover"
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="icon"
-                      className="absolute right-1 top-1 h-6 w-6 rounded-full opacity-80 hover:opacity-100"
-                      onClick={() => deleteScenarioImage(sessionId!, image.id).then(() => imagesQuery.refetch())}
-                      aria-label="Supprimer"
+            {/* Category filter panel */}
+            {showCategories && categories.length > 0 && (
+              <div className="w-[220px] shrink-0 border-l border-[#e2e8f0]">
+                <div className="border-b border-[#e2e8f0] px-4 py-2.5">
+                  <span className="text-[12px] font-semibold text-[#45556c]">Catégories</span>
+                </div>
+                <div className="flex flex-col divide-y divide-[#e2e8f0]">
+                  {categories.map((cat) => (
+                    <label
+                      key={cat}
+                      className="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[#f8fafc]"
                     >
-                      <Trash2 className="h-3 w-3" />
-                    </Button>
-                  </div>
-                ))}
+                      <span className="text-[13px] text-[#0f172b]">{cat}</span>
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories.has(cat)}
+                        onChange={() => toggleCategory(cat)}
+                        className="h-4 w-4 rounded border-[#d1d5db] accent-[#007aff]"
+                      />
+                    </label>
+                  ))}
+                </div>
               </div>
             )}
-
-            <div className="flex items-center gap-3 flex-wrap">
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={handleCreateSlideshow}
-                disabled={images.length === 0}
-              >
-                <Film className="mr-1.5 h-3.5 w-3.5" />
-                Créer le diaporama
-              </Button>
-              {videoStatus && <span className="text-sm text-muted-foreground">{videoStatus}</span>}
-            </div>
-
-            {slideshowSrc && (
-              <div className="flex flex-col gap-2">
-                <p className="text-sm font-medium">Diaporama généré</p>
-                <video controls src={slideshowSrc} className="w-full max-h-80 rounded-lg" />
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {status && (
-          <Alert variant={status.includes("Générez") ? "warning" : "default"}>
-            <AlertDescription>{status}</AlertDescription>
-          </Alert>
-        )}
-
-        <Separator />
-        <div className="flex gap-3">
-          <Button type="button" variant="outline" onClick={async () => { setStatus("Sauvegarde…"); await persistScenario(); setStatus("Scénario mis à jour."); setTimeout(() => setStatus(null), 2000); }}>
-            <Save className="mr-1.5 h-4 w-4" />
-            Sauvegarder le texte
-          </Button>
-          <Button type="submit">
-            Valider l'édition
-          </Button>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

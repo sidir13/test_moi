@@ -1,0 +1,31 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Le Crayon et l'Univers",
+  "resumeHistoire": "Dans le silence feutré d'un bureau californien du début des années 1970, George Lucas trace sur le papier les premiers contours d'un univers qui changera le cinéma. Chaque trait de crayon est un acte de foi, une constellation qui naît. Entre ses doigts, la science-fiction américaine trouve sa mythologie moderne. C'est l'instant fragile où Star Wars passe du rêve à l'esquisse, du silence à la légende.",
+  "axe_narratif": "personnage_historique",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 15,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le geste créateur",
+      "duree_cible": 15.0,
+      "fonction_narrative": "moment_fondateur",
+      "position_arc_emotionnel": "contemplation_inspiree",
+      "elements_necessaires": [
+        "Ambiance intime du bureau",
+        "Geste physique de l'écriture (crayon sur papier)",
+        "Transformation idée → univers",
+        "Naissance de Star Wars",
+        "Solitude créative",
+        "Début années 1970, Californie"
+      ],
+      "mood": "poetique_intime",
+      "notes_section": "Section unique concentrée. Capturer l'essence du moment créateur en 30 mots maximum. Rythme lent, contemplatif. Sons de crayon possibles en ambiance. Évocation poétique sans longueurs. Chaque mot compte."
+    }
+  ],
+  "arc_emotionnel_global": "instant_suspendu",
+  "rythme_general": "lent_meditatif",
+  "transitions_cles": [],
+  "notes_production": "Format ultra-court (15s) = une seule section narrative dense et poétique. Pas de transitions internes nécessaires. La fluidité réside dans la cohérence du ton contemplatif du début à la fin. Privilégier les images fortes et les formulations épurées. Le débit narratif doit être particulièrement lent (~2 mots/seconde) pour créer l'atmosphère méditative recherchée. L'angle 'journée type' est ici interprété comme un INSTANT FIGÉ dans une journée de travail créatif — le moment où le crayon touche le papier. Ambiance sonore minimaliste : grattement de crayon, respiration, silence habité. Rigueur historique : période 1971-1974 confirmée pour le développement initial de Star Wars, Californie confirmée comme lieu. Pas d'invention de dates précises ou d'événements non sourcés. La dimension poétique porte sur l'ATMOSPHÈRE du geste créateur, pas sur les faits."
+}
