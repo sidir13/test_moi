@@ -134,9 +134,24 @@ export function ProjectDetailsView() {
   }, [projectName]);
 
   useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ text: string }>).detail;
+      if (typeof detail?.text === "string" && detail.text.length > 0) {
+        setNotes(detail.text);
+        (window as Window & { __projectNotes?: string }).__projectNotes = detail.text;
+        // Reset guard so query refetch (invalidateQueries fallback) also applies fresh data
+        notesPrefilledFor.current = null;
+      }
+    };
+    window.addEventListener("project-notes-updated", handler);
+    return () => window.removeEventListener("project-notes-updated", handler);
+  }, []);
+
+  useEffect(() => {
     if (!projectName || !profileQuery.data) return;
     if (notesPrefilledFor.current === projectName) return;
     setNotes(profileQuery.data.project_notes ?? "");
+    (window as Window & { __projectNotes?: string }).__projectNotes = profileQuery.data.project_notes ?? "";
     notesPrefilledFor.current = projectName;
   }, [profileQuery.data, projectName]);
 
@@ -596,7 +611,7 @@ export function ProjectDetailsView() {
             <Textarea
               rows={6}
               value={notes}
-              onChange={(e) => setNotes(e.target.value)}
+              onChange={(e) => { setNotes(e.target.value); (window as Window & { __projectNotes?: string }).__projectNotes = e.target.value; }}
               placeholder="Quelle histoire souhaitez-vous raconter ? Quelle période, quel territoire, quels événements ?"
             />
           </CardContent>

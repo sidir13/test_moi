@@ -1,0 +1,23 @@
+=== PARTIE 1 : Les sables de Tatooine ===
+
+{vent_desert_lointain.wav}
+
+[posé] Imaginez une planète de sable et de silence. [pause] Deux soleils brûlent un horizon sans fin. [étire] Ici, sur Tatooine, un jeune fermier nommé Luke Skywalker répare des droïdes [pause] et rêve d'un ciel qu'il n'atteindra jamais.
+
+=== PARTIE 2 : Le message dans la machine ===
+
+[pause]
+
+Un jour, deux droïdes surgissent du désert. [ralentit] L'un d'eux porte un message : une princesse appelle à l'aide. Luke rencontre alors Obi-Wan Kenobi, vieux ermite qui murmure : [posé] [atténué] « Ton père était un chevalier Jedi. Un homme puissant. » [pause] Le passé de son père se révèle. [accentué] Tout bascule.
+
+=== PARTIE 3 : L'éveil d'un rebelle ===
+
+{souffle_hyperespace.wav}
+
+Luke rejoint la rébellion. Il découvre la Force, [ralentit] cette énergie invisible qui lie tous les êtres vivants. Face à lui se dresse l'Empire et son arme absolue : [pause] l'Étoile de la Mort. Dans le cockpit de son chasseur, le fermier de Tatooine devient pilote. Un narrateur raconte : [posé] [atténué] « Utilise la Force, Luke. » [pause] [accentué] Le tir est lancé.
+
+=== PARTIE 4 : L'espoir d'une galaxie ===
+
+{explosion_lointaine_sourde.wav}
+
+[pause] L'Étoile de la Mort explose. La galaxie respire. [posé] Luke Skywalker revient parmi les siens, médaille au cou, mais le chemin ne fait que commencer. [ralentit] Derrière lui, les dunes de Tatooine. Devant, un destin encore à écrire. [pause] [étire] Un fermier est devenu l'espoir de milliards d'êtres.

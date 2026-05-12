@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Le tracé des navires perdus",
+  "taggedText": "=== PARTIE 1 : Le bruit du trait ===\n\n{crayon_sur_papier_calque.wav}\n\nSur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque. [pause] Dans les bureaux d'études des Chantiers Navals, des hommes penchés sur leurs tables donnent forme aux coques, aux membrures, aux cloisons. [pause] Dehors, le vacarme des cales. [atténué] Ici, le silence du trait.\n\n=== PARTIE 2 : Un homme franchit la grille ===\n\n{grille_metallique_ouverture.wav}\n\n[accentué] Le 5 février 1957, Jean Penaud franchit la grille des Chantiers de la Loire. Il a tout juste vingt ans. [pause] La source raconte : [posé] [atténué] « Les huit premiers jours, on lui confie un balai. Puis il rejoint le parc à ferrons où l'on trie les goussets, ces pièces de renfort en acier, chargées sur un petit train à plateau. » [pause] Muté à Indret, envoyé à Cherbourg, il travaille sept ans et demi sur les sous-marins. En juillet 1969, il revient à Nantes.\n\n=== PARTIE 3 : La chaîne invisible ===\n\n{martelement_cale_lointain.wav}\n\nAutour de lui, dessinateurs, traceurs et charpentiers de fer forment une chaîne. [pause] Le témoignage précise : [posé] [atténué] « Le plan quitte la table, descend dans la cale, guide la main du soudeur. [pause] Ce savoir-faire ne s'apprend pas dans les livres. Il se transmet d'un homme à l'autre, sur le tas, au fil des navires. » [pause]\n\n=== PARTIE 4 : Les cales se taisent ===\n\n{silence_progressif_chantier.wav}\n\n[ralentit] Puis les commandes se raréfient. [pause] Les cales se taisent. [pause] Les chantiers ferment, un à un, sur l'île de Nantes. [atténué] Là où l'on construisait des navires, les tables à dessin ont disparu. [pause] Le récit conclut : [posé] [triste] « Restent les hommes, leur mémoire, et dans leurs mots, le tracé précis d'un monde englouti. » [pause]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bruit du trait",
+      "taggedText": "{crayon_sur_papier_calque.wav}\n\nSur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque. [pause] Dans les bureaux d'études des Chantiers Navals, des hommes penchés sur leurs tables donnent forme aux coques, aux membrures, aux cloisons. [pause] Dehors, le vacarme des cales. [atténué] Ici, le silence du trait."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Un homme franchit la grille",
+      "taggedText": "{grille_metallique_ouverture.wav}\n\n[accentué] Le 5 février 1957, Jean Penaud franchit la grille des Chantiers de la Loire. Il a tout juste vingt ans. [pause] La source raconte : [posé] [atténué] « Les huit premiers jours, on lui confie un balai. Puis il rejoint le parc à ferrons où l'on trie les goussets, ces pièces de renfort en acier, chargées sur un petit train à plateau. » [pause] Muté à Indret, envoyé à Cherbourg, il travaille sept ans et demi sur les sous-marins. En juillet 1969, il revient à Nantes."
+    },
+    {
+      "partie_id": 3,
+      "titre": "La chaîne invisible",
+      "taggedText": "{martelement_cale_lointain.wav}\n\nAutour de lui, dessinateurs, traceurs et charpentiers de fer forment une chaîne. [pause] Le témoignage précise : [posé] [atténué] « Le plan quitte la table, descend dans la cale, guide la main du soudeur. [pause] Ce savoir-faire ne s'apprend pas dans les livres. Il se transmet d'un homme à l'autre, sur le tas, au fil des navires. » [pause]"
+    },
+    {
+      "partie_id": 4,
+      "titre": "Les cales se taisent",
+      "taggedText": "{silence_progressif_chantier.wav}\n\n[ralentit] Puis les commandes se raréfient. [pause] Les cales se taisent. [pause] Les chantiers ferment, un à un, sur l'île de Nantes. [atténué] Là où l'on construisait des navires, les tables à dessin ont disparu. [pause] Le récit conclut : [posé] [triste] « Restent les hommes, leur mémoire, et dans leurs mots, le tracé précis d'un monde englouti. » [pause]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 21,
+    "soundTags": 4,
+    "originalWordCount": 238
+  }
+}

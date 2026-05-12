@@ -576,7 +576,9 @@ export function ProjectSelectionView() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <Label className="text-[14px] font-semibold text-foreground">Fichiers audio principaux</Label>
+                <Label className="text-[14px] font-semibold text-foreground">
+                  Fichiers audio principaux <span className="text-destructive">*</span>
+                </Label>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -604,7 +606,7 @@ export function ProjectSelectionView() {
               <div className="flex justify-end">
                 <Button
                   type="submit"
-                  disabled={createMutation.isPending || !name.trim()}
+                  disabled={createMutation.isPending || !name.trim() || selectedFiles.length === 0}
                   className="h-[46px] rounded-[14px] bg-primary px-6 text-base font-medium text-primary-foreground hover:bg-primary/90"
                 >
                   {createMutation.isPending ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}

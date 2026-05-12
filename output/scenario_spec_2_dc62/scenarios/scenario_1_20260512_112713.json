@@ -1,0 +1,234 @@
+{
+  "scenario_id": 1,
+  "titre": "Le tracé des navires perdus",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "Sur les bords de Loire, à Nantes, les Chantiers Navals bruissaient d'une activité intense où dessinateurs, traceurs et charpentiers de fer donnaient naissance aux navires. En février 1957, le jeune Jean Penaud, vingt ans, franchit la grille des Chantiers de la Loire et découvrit ce monde de transmission et de savoir-faire, du balai des premiers jours aux sous-marins de Cherbourg. Mais les commandes se raréfièrent, les cales se turent, et les chantiers fermèrent un à un sur l'île de Nantes. Restent aujourd'hui les hommes, leur mémoire, et dans leurs mots le tracé précis d'un monde englouti.",
+  "duree_estimee": 132.2189723320158,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bruit du trait",
+      "duree": 25.636363636363633,
+      "texte_narration": "Sur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque. Dans les bureaux d'études des Chantiers Navals, des hommes penchés sur leurs tables donnent forme aux coques, aux membrures, aux cloisons. Dehors, le vacarme des cales. Ici, le silence du trait.",
+      "ton": {
+        "global": "contemplatif_précis",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'cloisons' (1.5s)",
+          "après 'cales' (1s)"
+        ],
+        "intonation": "posée, descriptive, immersive"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le bruit du crayon — ambiance feutrée",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Contraste intérieur/extérieur : silence du bureau vs vacarme des cales",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Sur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque.",
+          "sources": [
+            "[00:00] Sur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque."
+          ]
+        },
+        {
+          "sentence": "Dans les bureaux d'études des Chantiers Navals, des hommes penchés sur leurs tables donnent forme aux coques, aux membrures, aux cloisons.",
+          "sources": [
+            "[00:00] Dans les bureaux d'études des Chantiers Navals, des hommes penchés sur leurs tables donnent forme aux coques, aux membrures, aux cloisons."
+          ]
+        },
+        {
+          "sentence": "Dehors, le vacarme des cales.",
+          "sources": [
+            "[00:00] Dehors, le vacarme des cales, ici le silence du trait."
+          ]
+        },
+        {
+          "sentence": "Ici, le silence du trait.",
+          "sources": [
+            "[00:00] Dehors, le vacarme des cales, ici le silence du trait."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Un homme franchit la grille",
+      "duree": 42.78260869565217,
+      "texte_narration": "Le 5 février 1957, Jean Penaud franchit la grille des Chantiers de la Loire. Il a tout juste vingt ans. La source raconte : [ARCHIVE : « Les huit premiers jours, on lui confie un balai. Puis il rejoint le parc à ferrons où l'on trie les goussets, ces pièces de renfort en acier, chargées sur un petit train à plateau. »] Muté à Indret, envoyé à Cherbourg, il travaille sept ans et demi sur les sous-marins. En juillet 1969, il revient à Nantes.",
+      "ton": {
+        "global": "dynamique_documentaire",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'vingt ans' (1s)",
+          "après 'plateau' (1s)"
+        ],
+        "intonation": "narrative, rythmée, factuelle"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:22",
+          "action": "Jean Penaud franchit la grille — ancrage humain",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:32",
+          "action": "Parcours accéléré : Indret, Cherbourg, retour Nantes",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le 5 février 1957, Jean Penaud franchit la grille des Chantiers de la Loire.",
+          "sources": [
+            "[00:00] Le 5 février 1957, Jean Penaud franchit la grille des Chantiers de la Loire."
+          ]
+        },
+        {
+          "sentence": "Il a tout juste vingt ans.",
+          "sources": [
+            "[00:00] Il a tout juste 20 ans."
+          ]
+        },
+        {
+          "sentence": "La source raconte : [ARCHIVE : « Les huit premiers jours, on lui confie un balai. Puis il rejoint le parc à ferrons où l'on trie les goussets, ces pièces de renfort en acier, chargées sur un petit train à plateau. »]",
+          "sources": [
+            "[00:30] Jour, on lui confie un balai. Puis il rejoint le parc à ferrons où l'on trie les goussets, ces pièces de renfort en acier, chargées sur un petit train à plateau qui les achemine vers les coques en construction."
+          ]
+        },
+        {
+          "sentence": "Muté à Indret, envoyé à Cherbourg, il travaille sept ans et demi sur les sous-marins.",
+          "sources": [
+            "[00:30] Plus tard, muté à Indret, puis envoyé à Cherbourg, il travaille 7 ans et demi sur les sous-marins."
+          ]
+        },
+        {
+          "sentence": "En juillet 1969, il revient à Nantes.",
+          "sources": [
+            "[00:30] En juillet 1969, il revient à Nantes."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "La chaîne invisible",
+      "duree": 32.0,
+      "texte_narration": "Autour de lui, dessinateurs, traceurs et charpentiers de fer forment une chaîne. Le témoignage précise : [ARCHIVE : « Le plan quitte la table, descend dans la cale, guide la main du soudeur. Ce savoir-faire ne s'apprend pas dans les livres. Il se transmet d'un homme à l'autre, sur le tas, au fil des navires. »]",
+      "ton": {
+        "global": "solennel_admiratif",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'chaîne' (1s)",
+          "après 'soudeur' (1.5s)"
+        ],
+        "intonation": "légèrement suspendue, admirative, ralentie"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:47",
+          "action": "Évocation de la chaîne humaine — sommet émotionnel",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:55",
+          "action": "Charnière du diptyque : dernier instant du monde vivant",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Autour de lui, dessinateurs, traceurs et charpentiers de fer forment une chaîne.",
+          "sources": [
+            "[00:30] Jean Pineau n'est pas seul. Autour de lui, dessinateurs, traceurs et charpentiers de fer forment une chaîne."
+          ]
+        },
+        {
+          "sentence": "Le témoignage précise : [ARCHIVE : « Le plan quitte la table, descend dans la cale, guide la main du soudeur. Ce savoir-faire ne s'apprend pas dans les livres. Il se transmet d'un homme à l'autre, sur le tas, au fil des navires. »]",
+          "sources": [
+            "[01:00] C'est un trait invisible, le plan quitte la table, descend dans la cale, guide la main du soudeur. Ce savoir-faire ne s'apprend pas dans les livres, il se transmet d'un homme à l'autre, sur le tas, au fil des navires."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Les cales se taisent",
+      "duree": 31.8,
+      "texte_narration": "Puis les commandes se raréfient. Les cales se taisent. Les chantiers ferment, un à un, sur l'île de Nantes. Là où l'on construisait des navires, les tables à dessin ont disparu. Le récit conclut : [ARCHIVE : « Restent les hommes, leur mémoire, et dans leurs mots, le tracé précis d'un monde englouti. »]",
+      "ton": {
+        "global": "élégiaque_digne",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'raréfient' (1.5s)",
+          "après 'taisent' (1.5s)",
+          "après 'disparu' (2s)"
+        ],
+        "intonation": "descendante, lente, grave, puis apaisée sur la dernière phrase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Basculement — trois phrases courtes marquant le déclin",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:18",
+          "action": "Citation finale — ouverture sur la mémoire",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis les commandes se raréfient.",
+          "sources": [
+            "[01:00] Puis les commandes se raréfient"
+          ]
+        },
+        {
+          "sentence": "Les cales se taisent.",
+          "sources": [
+            "[01:00] les cales se taisent"
+          ]
+        },
+        {
+          "sentence": "Les chantiers ferment, un à un, sur l'île de Nantes.",
+          "sources": [
+            "[01:00] les chantiers ferment, un à un, sur l'île de Nantes"
+          ]
+        },
+        {
+          "sentence": "Là où l'on construisait des navires, les tables à dessin ont disparu.",
+          "sources": [
+            "[01:00] là où l'on construisait des navires. Les tables à dessin ont disparu."
+          ]
+        },
+        {
+          "sentence": "Le récit conclut : [ARCHIVE : « Restent les hommes, leur mémoire, et dans leurs mots, le tracé précis d'un monde englouti. »]",
+          "sources": [
+            "[01:00] Restent les hommes, leur mémoire et dans leurs mots, le tracé précis d'un monde englouti."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 238,
+    "duree_lecture_estimee": 132.2189723320158,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme un seul souffle en quatre mouvements, pas quatre blocs séparés. Les transitions sont des inflexions de voix et de rythme, jamais des coupures. — REGISTRE : Grand public, phrases courtes et concrètes, vocabulaire accessible. Ton neutre et informatif tout au long, sans emphase excessive. — CITATIONS : Les passages de la source audio sont le cœur du récit. Les intégrer comme narration directe en voix off, pas comme extraits séparés. Le texte de la source est si bien écrit qu'il peut être repris quasi tel quel dans plusieurs passages. — AMBIANCE SONORE : Privilégier une conception immersive — crayon sur papier, martèlement lointain des cales, silence progressif pour la partie finale. — DIPTYQUE AVANT/APRÈS : La partie 3 (chaîne invisible) sert de charnière. Avant elle : un monde vivant. Après elle : un monde disparu. Le mot « puis » dans la source marque exactement ce basculement. — DÉBIT : Environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit rester dense et concise. — ATTENTION : Ne pas inventer de faits au-delà de ce que la source fournit. Le nom apparaît sous deux orthographes (Penaud/Pineau) dans la source ; choisir une seule graphie cohérente."
+}

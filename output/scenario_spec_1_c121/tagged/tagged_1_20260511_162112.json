@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Matsuo Bashō — Le marcheur des mots",
+  "taggedText": "=== PARTIE 1 : Un homme sur la route ===\n\n[pause] Nous sommes au Japon, fin du dix-septième siècle. [posé] Sur les chemins boueux de la province d'Iga, un homme marche seul. Il porte un carnet et un pinceau. Il s'appelle Matsuo Bashō. [pause] Il a quitté Edo, la capitale, pour arpenter le pays à pied.\n\n=== PARTIE 2 : Dix-sept syllabes pour dire le monde ===\n\n[posé] Bashō écrit des haïkus. Trois vers, dix-sept syllabes, pas une de plus. Chaque poème capture un instant : une lumière, un son, un frisson de saison. [pause] Il murmure : [posé] [chuchote] « Vieil étang — une grenouille plonge, bruit de l'eau. » [pause] Cette simplicité porte un nom : wabi-sabi, la beauté du dépouillement. Le zen imprègne chaque mot.\n\n=== PARTIE 3 : L'héritage du poète errant ===\n\nBashō meurt en 1694, loin de chez lui, toujours en route. [pause] Il laisse derrière lui des centaines de haïkus et une tradition vivante. De Kyoto aux salons littéraires du monde entier, le haïku est aujourd'hui pratiqué dans toutes les langues. [ralentit] Il confie, dans l'un de ses derniers poèmes : [posé] [triste] « En voyage, malade — mon rêve erre sur des landes desséchées. » [pause]\n\n=== PARTIE 4 : Silence final ===\n\n[ralentit] [chuchote] Le chemin continue. Les mots se taisent. [pause] Il reste le silence entre les vers. [pause]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un homme sur la route",
+      "taggedText": "[pause] Nous sommes au Japon, fin du dix-septième siècle. [posé] Sur les chemins boueux de la province d'Iga, un homme marche seul. Il porte un carnet et un pinceau. Il s'appelle Matsuo Bashō. [pause] Il a quitté Edo, la capitale, pour arpenter le pays à pied."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Dix-sept syllabes pour dire le monde",
+      "taggedText": "[posé] Bashō écrit des haïkus. Trois vers, dix-sept syllabes, pas une de plus. Chaque poème capture un instant : une lumière, un son, un frisson de saison. [pause] Il murmure : [posé] [chuchote] « Vieil étang — une grenouille plonge, bruit de l'eau. » [pause] Cette simplicité porte un nom : wabi-sabi, la beauté du dépouillement. Le zen imprègne chaque mot."
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'héritage du poète errant",
+      "taggedText": "Bashō meurt en 1694, loin de chez lui, toujours en route. [pause] Il laisse derrière lui des centaines de haïkus et une tradition vivante. De Kyoto aux salons littéraires du monde entier, le haïku est aujourd'hui pratiqué dans toutes les langues. [ralentit] Il confie, dans l'un de ses derniers poèmes : [posé] [triste] « En voyage, malade — mon rêve erre sur des landes desséchées. » [pause]"
+    },
+    {
+      "partie_id": 4,
+      "titre": "Silence final",
+      "taggedText": "[ralentit] [chuchote] Le chemin continue. Les mots se taisent. [pause] Il reste le silence entre les vers. [pause]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 17,
+    "soundTags": 0,
+    "originalWordCount": 175
+  }
+}

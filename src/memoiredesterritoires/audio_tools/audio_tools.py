@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import List, Literal, Optional
 import logging
@@ -10,7 +11,7 @@ import numpy as np
 logger = logging.getLogger(__name__)
 
 AUDIO_EXTENSIONS      = {".wav", ".mp3", ".flac", ".ogg", ".aiff", ".aac"}
-BACKGROUND_SOUNDS_DIR = Path("data/eng")
+BACKGROUND_SOUNDS_DIR = Path(os.getenv("BACKGROUND_SOUNDS_DIR", "data/audio/background_sounds"))
 
 FadeType = Literal["linear", "exponential", "logarithmic", "equal_power", "sigmoid"]
 

@@ -1,4 +1,4 @@
-import { ChevronRight, MessageSquarePlus, PencilLine, Play, Sparkles, Volume2 } from "lucide-react";
+import { ChevronRight, PencilLine, Play, Sparkles, Volume2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useSessionStore } from "@/hooks/useSessionStore";
 
@@ -156,10 +156,6 @@ export function EditionScenario() {
             </button>
             <KeyWordChip label="Effet Sonore" variant="effet-sonore" />
             <KeyWordChip label="Respiration" variant="respiration" />
-            <button type="button" className="inline-flex items-center gap-1 text-[14px] font-medium text-[#0F172B]">
-              <MessageSquarePlus className="h-4 w-4" />
-              <span>Ajouter un commentaire</span>
-            </button>
           </div>
 
           <div className="flex w-full flex-col gap-8 rounded-[12px] border-t border-[#E2E8F0] bg-white p-[18px]">

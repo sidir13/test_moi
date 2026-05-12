@@ -1,0 +1,98 @@
+{
+  "scenario_id": 1,
+  "titre_global": "George Lucas — L'homme qui réinventa les étoiles",
+  "resumeHistoire": "Au début des années 1970, un jeune cinéaste californien nommé George Lucas rêve d'un space opera inspiré des mythologies anciennes. En 1977, Star Wars déferle sur les écrans américains et bouleverse à jamais l'industrie du cinéma, inventant le blockbuster moderne et le merchandising de masse. À travers le portrait de Lucas — de ses premiers brouillons à la création d'Industrial Light & Magic —, ce récit retrace comment un seul homme a engendré une mythologie contemporaine qui, un demi-siècle plus tard, continue de façonner la culture populaire mondiale.",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le rêve sur papier",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme_intrigant",
+      "elements_necessaires": [
+        "George Lucas jeune cinéaste en Californie, début des années 1970",
+        "Brouillons et premières esquisses d'un univers spatial",
+        "Atmosphère intime et silencieuse du travail créatif",
+        "Citation archive adaptée : le geste du crayon sur le papier comme métaphore de création"
+      ],
+      "mood": "contemplatif_intime"
+    },
+    {
+      "partie": 2,
+      "titre": "La naissance d'un univers",
+      "duree_cible": 30,
+      "fonction_narrative": "developpement_ascendant",
+      "position_arc_emotionnel": "montee_en_puissance",
+      "elements_necessaires": [
+        "Sortie de Star Wars en 1977 aux États-Unis",
+        "Tournage à Elstree Studios et en Tunisie",
+        "Création d'Industrial Light & Magic pour les effets spéciaux",
+        "Impact immédiat : révolution du cinéma, naissance du blockbuster moderne",
+        "Citation archive : le savoir-faire qui se transmet d'un homme à l'autre, transposé à l'équipe ILM"
+      ],
+      "mood": "epique_emergent"
+    },
+    {
+      "partie": 3,
+      "titre": "Une mythologie pour le monde",
+      "duree_cible": 25,
+      "fonction_narrative": "climax_et_ouverture",
+      "position_arc_emotionnel": "sommet_emotionnel",
+      "elements_necessaires": [
+        "Expansion de la franchise sur cinq décennies (1977-2024)",
+        "Skywalker Ranch comme sanctuaire créatif",
+        "Influence culturelle planétaire : mythologie contemporaine, communautés de fans",
+        "Merchandising et modèle transmédiatique",
+        "Écho archive : mémoire et tracé précis d'un monde qui perdure"
+      ],
+      "mood": "ample_admiratif"
+    },
+    {
+      "partie": 4,
+      "titre": "L'empreinte",
+      "duree_cible": 10,
+      "fonction_narrative": "conclusion_resonance",
+      "position_arc_emotionnel": "apaisement_contemplatif",
+      "elements_necessaires": [
+        "Retour au geste initial : un homme, une idée, un crayon",
+        "Ouverture sur la postérité et la transmission"
+      ],
+      "mood": "suspendu_solennel"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel",
+  "rythme_general": "lent_contemplatif",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du silence du bureau de Lucas au vacarme des plateaux de tournage — passage du rêve à la réalisation concrète."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "elargissement_de_focale",
+      "duree": 2.0,
+      "description": "De l'événement cinématographique de 1977, la perspective s'élargit aux décennies suivantes et à l'impact mondial."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_intime",
+      "duree": 1.5,
+      "description": "Après l'ampleur planétaire, retour au geste simple et solitaire du créateur — boucle narrative."
+    }
+  ],
+  "notes_production": "Maintenir un débit lent et posé (~2 mots/seconde). Les citations des archives (crayon sur papier, transmission du savoir-faire, mémoire d'un monde) sont utilisées comme métaphores transposées au parcours de Lucas — les intégrer de manière fluide sans rupture de ton. La narration est en voix off omnisciente, registre accessible grand public, ton neutre et informatif tout du long. Aucune adresse directe à l'auditeur. Privilégier des phrases courtes, un vocabulaire clair. L'ambiance sonore minimaliste (pas de musique décrite dans le texte) laisse la voix porter le récit. La structure en boucle (crayon → monde → crayon) assure la cohérence émotionnelle du crescendo puis de l'apaisement final."
+}

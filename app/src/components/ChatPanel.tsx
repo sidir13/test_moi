@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft, ArrowUp, Wrench, CheckCircle2, AlertCircle }
 import { cn } from "@/lib/utils";
 import { getWsBaseUrl } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
+import { useQueryClient } from "@tanstack/react-query";
 import aiLogoUrl from "@/assets/svg/ai-logo.svg?url";
 
 type MessageRole = "user" | "assistant" | "system";
@@ -25,7 +26,8 @@ type ChatPanelProps = {
 
 export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelProps) => {
   const { t } = useTranslation();
-  const { chatPlaceholder, currentStep, sessionId } = useSessionStore();
+  const { chatPlaceholder, currentStep, sessionId, projectName } = useSessionStore();
+  const queryClient = useQueryClient();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<string | null>(null);
@@ -55,6 +57,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           type: string;
           text?: string;
           tool?: string;
+          input?: Record<string, unknown>;
+          result?: string;
           message?: string;
         };
         if (payload.type === "assistant_text") {
@@ -71,6 +75,32 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           ]);
           if (payload.tool === "auto_select_audio" || payload.tool === "select_audio_manually") {
             window.dispatchEvent(new Event("audio-selection-updated"));
+          }
+          if (payload.tool === "select_voice") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              if (res?.voice_id) {
+                window.dispatchEvent(new CustomEvent("voice-selected", { detail: { voice_id: res.voice_id, voice_label: res.voice_label, reason: res.reason } }));
+              }
+            } catch { /* ignore parse errors */ }
+          }
+          if (payload.tool === "update_project_notes") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              const updatedText: string | undefined = res?.project_notes;
+              if (typeof updatedText === "string" && updatedText.length > 0) {
+                window.dispatchEvent(new CustomEvent("project-notes-updated", {
+                  detail: { text: updatedText }
+                }));
+              }
+            } catch { /* ignore parse errors */ }
+            // Fallback: invalidate project profile so React Query refetches fresh data
+            if (projectName) {
+              queryClient.invalidateQueries({ queryKey: ["project-profile", projectName] });
+            }
+          }
+          if (payload.tool === "transcribe_audio" || payload.tool === "save_analysis_result") {
+            window.dispatchEvent(new Event("transcription-updated"));
           }
         } else if (payload.type === "error") {
           setMessages((prev) => [
@@ -99,7 +129,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
     }
     const message = input.trim();
     setMessages((prev) => [...prev, { role: "user", content: message }]);
-    ws.send(JSON.stringify({ text: message }));
+    const currentNotes = (window as Window & { __projectNotes?: string }).__projectNotes;
+    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined }));
     setInput("");
   };
 

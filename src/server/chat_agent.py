@@ -72,7 +72,7 @@ class ChatAgent:
         if not self.client:
             logger.warning("ChatAgent initialized without Anthropic credentials")
 
-    async def handle_message(self, session_id: str, user_text: str, session_store, websocket) -> None:
+    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None) -> None:
         if not self.client:
             await websocket.send_json({"type": "error", "message": "Missing Anthropic credentials"})
             return
@@ -84,7 +84,33 @@ class ChatAgent:
         history = session_store.get_chat_history(session_id)
         messages: List[Dict[str, Any]] = history[:] if history else []
 
-        payload = f"{user_text}\n\n{self.skill_context}" if not messages else user_text
+        # Inject project context on first message so agent knows the project_name
+        session_data = session_store.load_session(session_id) if hasattr(session_store, "load_session") else {}
+        project_name = (session_data or {}).get("project_name", "") if isinstance(session_data, dict) else ""
+
+        # Read current project_notes in real time so agent always sees latest textarea content
+        # frontend_notes (sent from browser) takes priority over what's stored in config.json
+        project_notes_context = ""
+        if project_name:
+            _notes = ""
+            if frontend_notes and frontend_notes.strip():
+                _notes = frontend_notes.strip()
+            else:
+                try:
+                    from memoiredesterritoires.project_config import load_project_config
+                    _cfg = load_project_config(project_name)
+                    _notes = (_cfg or {}).get("project_notes", "")
+                except Exception:
+                    pass
+            if _notes and _notes.strip():
+                project_notes_context = f"\n\n[Contexte narratif actuel du projet (textarea) :\n{_notes.strip()}\n]"
+
+        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}" if project_name else ""
+
+        if project_name:
+            payload = f"[projet: \"{project_name}\"] {user_text}{project_context}"
+        else:
+            payload = user_text
         messages.append({"role": "user", "content": payload})
 
         loop = asyncio.get_running_loop()
@@ -95,9 +121,48 @@ class ChatAgent:
                     None,
                 lambda: self.client.messages.create(
                     model=self.model,
-                    max_tokens=1024,
+                    max_tokens=4096,
                     tools=TOOLS,
-                    system="Tu es un assistant qui aide l'utilisateur à préparer son projet d'archive sonore historique. IMPORTANT: N'utilise JAMAIS le tool 'generate_historical_scenario' sauf si l'utilisateur te demande EXPLICITEMENT de générer des scénarios (ex: 'génère les scénarios', 'crée les scénarios', 'lance la génération'). Aide-le plutôt à affiner son contexte historique, ses notes de projet, à sélectionner ses sources audio, et à enrichir son brief. N'anticipe pas ses demandes - attends qu'il te le demande clairement.",
+                    system=(
+                        "Tu es un assistant proactif et expert qui aide l'utilisateur à préparer son projet d'archive sonore historique.\n\n"
+
+                        "══════ CONTEXTE NARRATIF — RÈGLE ABSOLUE ══════\n"
+                        "Chaque message utilisateur contient un bloc [Contexte narratif actuel du projet (textarea) : ...] qui reflète EXACTEMENT ce que l'utilisateur a tapé dans le textarea, en temps réel — y compris les modifications non sauvegardées.\n"
+                        "CE BLOC EST LA SOURCE DE VÉRITÉ UNIQUE. Lis-le à chaque message.\n"
+                        "Quand l'utilisateur demande de 'corriger', 'reformuler', 'améliorer', 'raccourcir' ou 'modifier' le texte : travaille UNIQUEMENT sur le contenu de ce bloc, pas sur une version sauvegardée.\n"
+                        "Appelle ensuite 'update_project_notes' avec la version corrigée/modifiée de CE texte.\n\n"
+
+                        "══════ VOIX ELEVENLABS — RÈGLE ABSOLUE ══════\n"
+                        "Il existe 9 voix ElevenLabs prédéfinies pour la SYNTHÈSE DE LA NARRATION. Ce ne sont PAS des fichiers audio — ce sont des IDs de voix dans le système.\n"
+                        "Quand l'utilisateur dit 'sélectionne la voix X' ou 'choisis une voix d'enfant' → appelle IMMÉDIATEMENT 'select_voice' avec l'ID correspondant.\n"
+                        "NE DEMANDE JAMAIS de fichier, de chemin ou de description. NE DIS PAS que tu n'as pas accès aux fichiers.\n"
+                        "MAPPING (à utiliser directement) :\n"
+                        "  Voix 1 → 5l4ttmr4SKNgi0HnOelT  (Paul K — homme français, voix grave et chaleureuse, narrateur documentaire)\n"
+                        "  Voix 2 → flHkNRp1BlvT73UL6gyz  (Jessica — femme américaine, personnage expressif, ton dramatique)\n"
+                        "  Voix 3 → jK7dAsiVAhbApIS8KkWB  (Vincent — homme, voix fluide et expressive, narration et pub)\n"
+                        "  Voix 4 → NOpBlnGInO9m6vDvFkFC  (Grandpa Spuds — homme âgé américain, grand-père conteur)\n"
+                        "  Voix 5 → jUHQdLfy668sllNiNTSW  (Clément — homme français parisien, narrateur calme et clair, audioguides)\n"
+                        "  Voix 6 → tKaoyJLW05zqV0tIH9FD  (Gaëlle — femme française, voix chaleureuse pour audiobooks et contes)\n"
+                        "  Voix 7 → T4BwQ2ZwlS2BbHIfci4H  (Souni — femme française jeune, voix douce pour narration)\n"
+                        "  Voix 8 → GYzIdoKkRyANjBvkKYfO  (Koraly — femme française parisienne, voix captivante pour audioguides et musées)\n"
+                        "  Voix 9 → TojRWZatQyy9dujEdiQ1  (Koraly Storyteller — femme française, voix immersive pour audiobooks)\n"
+                        "Exemple : 'sélectionne la voix 1' → select_voice(voice_id='5l4ttmr4SKNgi0HnOelT', voice_label='Voix 1', project_name=<projet_actif>)\n"
+                        "Exemple : 'voix d'enfant' → select_voice(voice_id='NOpBlnGInO9m6vDvFkFC', voice_label='Voix 4', ...)\n\n"
+
+                        "══════ DISTINCTION CRITIQUE ══════\n"
+                        "'auto_select_audio' = sélectionner des FICHIERS ENREGISTRÉS uploadés par l'utilisateur (interviews, témoignages à transcrire). À N'UTILISER QUE pour les fichiers du projet.\n"
+                        "'select_voice' = choisir UNE des 9 voix ElevenLabs pour la synthèse vocale. À utiliser quand on parle de Voix 1-9.\n\n"
+
+                        "AUTRES ACTIONS DIRECTES :\n"
+                        "- Ambiances sonores → 'find_background_sounds' puis 'select_audio_manually'\n"
+                        "- Fichiers audio enregistrés → 'auto_select_audio'\n"
+                        "- Transcriptions existantes → 'list_analysis_results'\n"
+                        "- Transcrire → 'transcribe_audio'\n"
+                        "- Brief projet → 'update_project_notes'\n\n"
+
+                        "RÈGLE : N'utilise JAMAIS 'generate_historical_scenario' sauf si l'utilisateur dit explicitement 'génère les scénarios'.\n"
+                        "Sois proactif : agis immédiatement sans demander confirmation inutile."
+                    ),
                     messages=messages,
                 ),
             )

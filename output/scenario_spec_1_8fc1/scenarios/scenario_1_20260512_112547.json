@@ -1,0 +1,225 @@
+{
+  "scenario_id": 1,
+  "titre": "George Lucas — L'homme qui réinventa les étoiles",
+  "axe_narratif": "evenement_historique",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Au début des années 1970, un jeune cinéaste californien nommé George Lucas rêve d'un space opera inspiré des mythologies anciennes. En 1977, Star Wars déferle sur les écrans américains et bouleverse à jamais l'industrie du cinéma, inventant le blockbuster moderne et le merchandising de masse. À travers le portrait de Lucas — de ses premiers brouillons à la création d'Industrial Light & Magic —, ce récit retrace comment un seul homme a engendré une mythologie contemporaine qui, un demi-siècle plus tard, continue de façonner la culture populaire mondiale.",
+  "duree_estimee": 103.26877470355731,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le rêve sur papier",
+      "duree": 25.636363636363633,
+      "texte_narration": "Californie, début des années soixante-dix. Dans une pièce silencieuse, un jeune cinéaste nommé George Lucas gratte le papier de son crayon. Comme le témoigne un créateur de l'époque : [ARCHIVE : « un bruit de crayon gratte le papier calque »]. Ligne après ligne, un univers spatial prend forme.",
+      "ton": {
+        "global": "contemplatif_intime",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'George Lucas' (1s)",
+          "après la citation archive (1.5s)"
+        ],
+        "intonation": "posée, murmurée, lente"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le geste créatif de Lucas",
+          "duree": 12.0
+        },
+        {
+          "timestamp": "0:12",
+          "action": "Citation archive — le crayon sur le papier",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:20",
+          "action": "Transition vers l'univers en gestation",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Californie, début des années soixante-dix.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans une pièce silencieuse, un jeune cinéaste nommé George Lucas gratte le papier de son crayon.",
+          "sources": [
+            "[00:00] Sur les bords de Loire, à Nantes, un bruit de crayon gratte le papier calque."
+          ]
+        },
+        {
+          "sentence": "Comme le témoigne un créateur de l'époque : [ARCHIVE : « un bruit de crayon gratte le papier calque »].",
+          "sources": [
+            "[00:00] un bruit de crayon gratte le papier calque."
+          ]
+        },
+        {
+          "sentence": "Ligne après ligne, un univers spatial prend forme.",
+          "sources": [
+            "[00:00] Chaque ligne tracée deviendra tôle, rivée, navire."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La naissance d'un univers",
+      "duree": 38.08695652173913,
+      "texte_narration": "En mai 1977, Star Wars déferle sur les écrans américains. Le film a été tourné aux studios d'Elstree, en Angleterre, et dans les déserts de Tunisie. Pour donner vie à ses visions, Lucas fonde Industrial Light & Magic. Un témoin de ces ateliers précise : [ARCHIVE : « Ce savoir-faire ne s'apprend pas dans les livres, il se transmet d'un homme à l'autre, sur le tas »]. Le blockbuster moderne vient de naître.",
+      "ton": {
+        "global": "epique_emergent",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'américains' (1s)",
+          "après la citation archive (1.5s)",
+          "après 'de naître' (2s)"
+        ],
+        "intonation": "montée progressive en intensité, affirmée sur la dernière phrase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Sortie du film — impact immédiat",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "0:35",
+          "action": "Création d'ILM et citation archive sur la transmission",
+          "duree": 12.0
+        },
+        {
+          "timestamp": "0:47",
+          "action": "Affirmation : naissance du blockbuster",
+          "duree": 8.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "En mai 1977, Star Wars déferle sur les écrans américains.",
+          "sources": []
+        },
+        {
+          "sentence": "Le film a été tourné aux studios d'Elstree, en Angleterre, et dans les déserts de Tunisie.",
+          "sources": []
+        },
+        {
+          "sentence": "Pour donner vie à ses visions, Lucas fonde Industrial Light & Magic.",
+          "sources": []
+        },
+        {
+          "sentence": "Un témoin de ces ateliers précise : [ARCHIVE : « Ce savoir-faire ne s'apprend pas dans les livres, il se transmet d'un homme à l'autre, sur le tas »].",
+          "sources": [
+            "[01:00] Ce savoir-faire ne s'apprend pas dans les livres, il se transmet d'un homme à l'autre, sur le tas, au fil des navires."
+          ]
+        },
+        {
+          "sentence": "Le blockbuster moderne vient de naître.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Une mythologie pour le monde",
+      "duree": 30.545454545454543,
+      "texte_narration": "Depuis son Skywalker Ranch, en Californie, Lucas bâtit une franchise qui traverse cinq décennies. Des millions de fans à travers le monde font de Star Wars une mythologie contemporaine. Et un chroniqueur murmure : [ARCHIVE : « Restent les hommes, leur mémoire et dans leurs mots, le tracé précis d'un monde »]. Ce monde-là ne s'éteint pas.",
+      "ton": {
+        "global": "ample_admiratif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'décennies' (1s)",
+          "après la citation archive (2s)"
+        ],
+        "intonation": "ample, solennelle, légèrement admirative"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:55",
+          "action": "Expansion de la franchise sur cinq décennies",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "1:05",
+          "action": "Citation archive — mémoire et tracé d'un monde",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "1:15",
+          "action": "Affirmation de la pérennité",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Depuis son Skywalker Ranch, en Californie, Lucas bâtit une franchise qui traverse cinq décennies.",
+          "sources": []
+        },
+        {
+          "sentence": "Des millions de fans à travers le monde font de Star Wars une mythologie contemporaine.",
+          "sources": []
+        },
+        {
+          "sentence": "Et un chroniqueur murmure : [ARCHIVE : « Restent les hommes, leur mémoire et dans leurs mots, le tracé précis d'un monde »].",
+          "sources": [
+            "[01:00] Restent les hommes, leur mémoire et dans leurs mots, le tracé précis d'un monde englouti."
+          ]
+        },
+        {
+          "sentence": "Ce monde-là ne s'éteint pas.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'empreinte",
+      "duree": 9.0,
+      "texte_narration": "Un homme, un crayon, une idée. Et des étoiles qui, depuis, ne cessent de briller.",
+      "ton": {
+        "global": "suspendu_solennel",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'idée' (2s)",
+          "après 'briller' (3s — silence final)"
+        ],
+        "intonation": "murmurée, apaisée, suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:20",
+          "action": "Retour au geste initial — boucle narrative",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Ouverture sur la postérité — silence",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un homme, un crayon, une idée.",
+          "sources": [
+            "[00:00] un bruit de crayon gratte le papier calque."
+          ]
+        },
+        {
+          "sentence": "Et des étoiles qui, depuis, ne cessent de briller.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 191,
+    "duree_lecture_estimee": 103.26877470355731,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Maintenir un débit lent et posé (~2 mots/seconde). Les citations des archives (crayon sur papier, transmission du savoir-faire, mémoire d'un monde) sont utilisées comme métaphores transposées au parcours de Lucas — les intégrer de manière fluide sans rupture de ton. La narration est en voix off omnisciente, registre accessible grand public, ton neutre et informatif tout du long. Aucune adresse directe à l'auditeur. Privilégier des phrases courtes, un vocabulaire clair. L'ambiance sonore minimaliste (pas de musique décrite dans le texte) laisse la voix porter le récit. La structure en boucle (crayon → monde → crayon) assure la cohérence émotionnelle du crescendo puis de l'apaisement final."
+}

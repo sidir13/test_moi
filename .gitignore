@@ -149,3 +149,6 @@ models/qwen3-tts/
 
 # Slideshow / generated videos
 slideshow*.mp4
+
+# claude
+.claude

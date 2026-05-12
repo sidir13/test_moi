@@ -1,0 +1,98 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Luke Skywalker — Le fermier devenu légende",
+  "resumeHistoire": "Sur la planète désertique de Tatooine, un jeune fermier nommé Luke Skywalker mène une existence ordinaire, loin de l'agitation galactique. Mais la découverte d'un message caché dans un droïde va bouleverser son destin et le projeter au cœur de la rébellion contre l'Empire. Guidé par la Force et par les enseignements d'un vieux maître Jedi, il entreprend un voyage qui le mènera de l'anonymat des dunes à la destruction de l'Étoile de la Mort. Son portrait est celui d'un homme ordinaire rattrapé par une destinée extraordinaire, dont le parcours incarne l'espoir de toute une galaxie.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Les sables de Tatooine",
+      "duree_cible": 22,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme_contemplatif",
+      "elements_necessaires": [
+        "Présentation de Tatooine et de son isolement",
+        "Portrait du jeune fermier Luke Skywalker dans son quotidien",
+        "Sentiment d'enfermement et de rêve d'ailleurs",
+        "Citation archive adaptée : invitation immersive à imaginer le décor"
+      ],
+      "mood": "mélancolique_et_vaste"
+    },
+    {
+      "partie": 2,
+      "titre": "Le message dans la machine",
+      "duree_cible": 20,
+      "fonction_narrative": "élément_déclencheur",
+      "position_arc_emotionnel": "tension_montante",
+      "elements_necessaires": [
+        "Arrivée des droïdes R2-D2 et C-3PO",
+        "Découverte du message de la princesse Leia",
+        "Rencontre avec Obi-Wan Kenobi et révélation sur le passé de son père",
+        "Bascule du destin de Luke"
+      ],
+      "mood": "mystérieux_et_urgent"
+    },
+    {
+      "partie": 3,
+      "titre": "L'éveil d'un rebelle",
+      "duree_cible": 25,
+      "fonction_narrative": "développement_climax",
+      "position_arc_emotionnel": "intensité_maximale",
+      "elements_necessaires": [
+        "Entrée dans la rébellion et découverte de la Force",
+        "Confrontation avec la puissance de l'Empire et l'Étoile de la Mort",
+        "Montée en puissance de Luke comme pilote et combattant",
+        "Citation archive : écho narratif sur la transformation d'un homme ordinaire"
+      ],
+      "mood": "épique_et_tendu"
+    },
+    {
+      "partie": 4,
+      "titre": "L'espoir d'une galaxie",
+      "duree_cible": 23,
+      "fonction_narrative": "résolution_ouverture",
+      "position_arc_emotionnel": "apaisement_avec_résonance",
+      "elements_necessaires": [
+        "Destruction de l'Étoile de la Mort et victoire symbolique",
+        "Retour sur le chemin parcouru depuis Tatooine",
+        "Ouverture sur le destin encore à écrire de Luke",
+        "Résonance émotionnelle : un fermier devenu symbole d'espoir"
+      ],
+      "mood": "solennel_et_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "ascension_heroique — du calme contemplatif à l'intensité épique, puis apaisement solennel",
+  "rythme_general": "Lent et immersif en ouverture, accélération progressive au centre, ralentissement final pour laisser résonner le portrait",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "rupture_douce",
+      "duree": 2.0,
+      "description": "Du silence des dunes à un signal sonore lointain — le quotidien de Luke est interrompu par l'arrivée inattendue des droïdes, comme un souffle nouveau dans le désert."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "La révélation d'Obi-Wan entraîne Luke dans un mouvement irrésistible — la narration accélère, le monde s'élargit de Tatooine à la galaxie entière."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "decrescendo_solennel",
+      "duree": 2.5,
+      "description": "Après le fracas de la bataille, le récit ralentit. La voix off reprend du recul pour contempler le chemin parcouru par Luke, du fermier anonyme au héros célébré."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est le regard extérieur porté sur Luke Skywalker — on le suit, on le décrit, on ne parle jamais en son nom. La voix off omnisciente garde un ton neutre et informatif tout au long, sans exclamation ni adresse directe au public. Le registre reste accessible (grand public), phrases courtes, vocabulaire courant. L'archive audio disponible (Loire/chantiers navals) est thématiquement éloignée du sujet Star Wars : elle sera utilisée uniquement comme MODÈLE STYLISTIQUE pour l'invitation immersive d'ouverture (structure « Imaginez… »), jamais citée littéralement dans un contexte Star Wars. Aucune date historique réelle n'est mobilisée — l'univers est entièrement fictif. Les citations directes prendront la forme de répliques iconiques de la saga, intégrées naturellement dans le flux narratif. Densité sonore minimaliste : silences et respirations entre les sections, pas de surcharge d'ambiances. Le débit cible est d'environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit pouvoir s'enchaîner sans annonce de chapitre — la fluidité prime sur la segmentation."
+}

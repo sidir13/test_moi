@@ -1,0 +1,11 @@
+{
+  "voices": [
+    "final-audio.mp3"
+  ],
+  "backgrounds": {
+    "ambient": null,
+    "punctual": []
+  },
+  "auto_backgrounds": false,
+  "tts_voice_id": null
+}

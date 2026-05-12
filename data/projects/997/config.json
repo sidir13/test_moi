@@ -1,0 +1,47 @@
+{
+  "created_at": "2026-05-12T08:41:32.421264",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3,
+  "last_scenarios": [
+    {
+      "error": "Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}",
+      "scenario_id": 1,
+      "scenario_index": 1,
+      "spec": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "target_duration": 18,
+        "source_usage_level": "central",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "flHkNRp1BlvT73UL6gyz"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    },
+    {
+      "error": "Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/settings/keys', 'code': 403}}",
+      "scenario_id": 1,
+      "scenario_index": 2,
+      "spec": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "target_duration": 90,
+        "source_usage_level": "central",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "5l4ttmr4SKNgi0HnOelT"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    }
+  ],
+  "last_scenarios_generated_at": "2026-05-12T08:43:27.965232"
+}

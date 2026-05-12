@@ -3772,7 +3772,8 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 if not text:
                     await websocket.send_json({"type": "error", "message": "Message vide"})
                     continue
-                await chat_agent.handle_message(session_id, text, session_store, websocket)
+                frontend_notes = payload.get("project_notes") or None
+                await chat_agent.handle_message(session_id, text, session_store, websocket, frontend_notes=frontend_notes)
         except WebSocketDisconnect:
             logger.info("websocket disconnected")
 

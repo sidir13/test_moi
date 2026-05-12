@@ -1,0 +1,227 @@
+{
+  "scenario_id": 1,
+  "titre": "Matsuo Bashō — Le marcheur des mots",
+  "axe_narratif": "contexte_social",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Dans le Japon de l'époque Edo, un homme quitte sa vie confortable pour parcourir les chemins boueux du pays, un pinceau et un carnet pour seuls compagnons. Matsuo Bashō, né dans la province d'Iga, transforme le haïku — forme poétique de dix-sept syllabes — en un art majeur, nourri par l'observation de la nature et l'esprit du zen. Son existence itinérante, faite de solitude choisie et de contemplation des saisons, incarne l'esthétique wabi-sabi : la beauté dans le dépouillement. Ce portrait retrace le parcours d'un poète dont les vers, vieux de plus de trois siècles, résonnent encore aujourd'hui.",
+  "duree_estimee": 96.21818181818182,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Un homme sur la route",
+      "duree": 25.09090909090909,
+      "texte_narration": "Nous sommes au Japon, fin du dix-septième siècle. Sur les chemins boueux de la province d'Iga, un homme marche seul. Il porte un carnet et un pinceau. Il s'appelle Matsuo Bashō. Il a quitté Edo, la capitale, pour arpenter le pays à pied.",
+      "ton": {
+        "global": "calme_evocateur",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'marche seul' (1s)",
+          "après 'Matsuo Bashō' (1s)"
+        ],
+        "intonation": "posée, contemplative, ouverture lente"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture immersive — image du marcheur solitaire",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Révélation du nom de Bashō",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Ancrage géographique — Edo",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nous sommes au Japon, fin du dix-septième siècle.",
+          "sources": []
+        },
+        {
+          "sentence": "Sur les chemins boueux de la province d'Iga, un homme marche seul.",
+          "sources": []
+        },
+        {
+          "sentence": "Il porte un carnet et un pinceau.",
+          "sources": []
+        },
+        {
+          "sentence": "Il s'appelle Matsuo Bashō.",
+          "sources": []
+        },
+        {
+          "sentence": "Il a quitté Edo, la capitale, pour arpenter le pays à pied.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Dix-sept syllabes pour dire le monde",
+      "duree": 29.454545454545453,
+      "texte_narration": "Bashō écrit des haïkus. Trois vers, dix-sept syllabes, pas une de plus. Chaque poème capture un instant : une lumière, un son, un frisson de saison. Il murmure : [ARCHIVE : « Vieil étang — une grenouille plonge, bruit de l'eau. »] Cette simplicité porte un nom : wabi-sabi, la beauté du dépouillement. Le zen imprègne chaque mot.",
+      "ton": {
+        "global": "méditatif_dense",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'pas une de plus' (1s)",
+          "après 'bruit de l'eau' (2s)",
+          "après 'du dépouillement' (1s)"
+        ],
+        "intonation": "lente et recueillie, légère suspension après le haïku"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Définition accessible du haïku",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:33",
+          "action": "Citation du haïku de la grenouille — moment de silence",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:42",
+          "action": "Lien wabi-sabi et zen",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Bashō écrit des haïkus.",
+          "sources": []
+        },
+        {
+          "sentence": "Trois vers, dix-sept syllabes, pas une de plus.",
+          "sources": []
+        },
+        {
+          "sentence": "Chaque poème capture un instant : une lumière, un son, un frisson de saison.",
+          "sources": []
+        },
+        {
+          "sentence": "Il murmure : [ARCHIVE : « Vieil étang — une grenouille plonge, bruit de l'eau. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Cette simplicité porte un nom : wabi-sabi, la beauté du dépouillement.",
+          "sources": []
+        },
+        {
+          "sentence": "Le zen imprègne chaque mot.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'héritage du poète errant",
+      "duree": 33.27272727272727,
+      "texte_narration": "Bashō meurt en 1694, loin de chez lui, toujours en route. Il laisse derrière lui des centaines de haïkus et une tradition vivante. De Kyoto aux salons littéraires du monde entier, le haïku est aujourd'hui pratiqué dans toutes les langues. Il confie, dans l'un de ses derniers poèmes : [ARCHIVE : « En voyage, malade — mon rêve erre sur des landes desséchées. »]",
+      "ton": {
+        "global": "serein_lumineux",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'toujours en route' (1s)",
+          "après 'toutes les langues' (1s)",
+          "après 'landes desséchées' (2s)"
+        ],
+        "intonation": "ton qui s'élargit puis se pose avec gravité sur le dernier haïku"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:55",
+          "action": "Mort de Bashō — image du voyageur au bout du chemin",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:02",
+          "action": "Élargissement — héritage mondial du haïku",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:10",
+          "action": "Citation du dernier haïku — gravité et émotion",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Bashō meurt en 1694, loin de chez lui, toujours en route.",
+          "sources": []
+        },
+        {
+          "sentence": "Il laisse derrière lui des centaines de haïkus et une tradition vivante.",
+          "sources": []
+        },
+        {
+          "sentence": "De Kyoto aux salons littéraires du monde entier, le haïku est aujourd'hui pratiqué dans toutes les langues.",
+          "sources": []
+        },
+        {
+          "sentence": "Il confie, dans l'un de ses derniers poèmes : [ARCHIVE : « En voyage, malade — mon rêve erre sur des landes desséchées. »]",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Silence final",
+      "duree": 8.4,
+      "texte_narration": "Le chemin continue. Les mots se taisent. Il reste le silence entre les vers.",
+      "ton": {
+        "global": "minimaliste_suspendu",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'continue' (1s)",
+          "après 'se taisent' (2s)",
+          "après 'entre les vers' (3s)"
+        ],
+        "intonation": "murmurée, presque un souffle, laissant le silence conclure"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:20",
+          "action": "Image du chemin qui se prolonge",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Silence final — le récit s'éteint doucement",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le chemin continue.",
+          "sources": []
+        },
+        {
+          "sentence": "Les mots se taisent.",
+          "sources": []
+        },
+        {
+          "sentence": "Il reste le silence entre les vers.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 175,
+    "duree_lecture_estimee": 96.21818181818182,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "FLUIDITÉ : Le récit doit être lu d'un souffle continu, sans annonce de chapitres. Les transitions sont des glissements de pensée, pas des coupures. REGISTRE : vocabulaire courant, phrases courtes (12-18 mots max), pas de jargon littéraire non expliqué. TON : neutre et informatif tout du long — pas de lyrisme excessif, laisser les haïkus cités porter l'émotion. DENSITÉ SONORE : minimaliste — silences de 1-2 secondes après chaque citation de haïku pour laisser résonner. SOURCES : la transcription audio disponible concerne un sujet différent (chantiers navals) ; elle ne sera pas utilisée factuellement mais son style d'ouverture immersive (« Imaginez… ») servira de modèle narratif. Les faits sur Bashō s'appuient sur le contexte historique fourni (période Edo, lieux Iga-Ueno/Edo/Kyoto, thèmes haïku/zen/wabi-sabi). Ne pas inventer de dates précises au-delà de ce qui est attesté dans le contexte."
+}

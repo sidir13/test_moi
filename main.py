@@ -37,6 +37,7 @@ from project_store import (
     list_project_audio_files,
     load_project_settings,
 )
+from memoiredesterritoires.project_config import update_project_config
 from memoiredesterritoires.audio_tools.audio_tools import get_audio_info
 from memoiredesterritoires.audio_tools.audio_tools import find_background_sounds
 from memoiredesterritoires.audio_tools.audio_tools import adjust_audio_volume
@@ -189,7 +190,7 @@ TOOLS = [
     },
     {
         "name": "update_project_notes",
-        "description": "Mettre à jour les notes/brief utilisateur pour un projet dans data/projects/<nom>/config.json",
+        "description": "Mettre à jour le champ 'Contexte narratif' du projet (textarea visible sur la page Détails du projet). Utiliser pour : générer un texte narratif, reformuler, corriger, améliorer, raccourcir le contenu existant. Le textarea se met à jour automatiquement dans l'interface. IMPORTANT : le contenu actuel du textarea est déjà injecté dans chaque message utilisateur — utilise-le directement, ne relis pas la base.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -199,7 +200,7 @@ TOOLS = [
                 },
                 "description": {
                     "type": "string",
-                    "description": "Texte libre décrivant les attentes utilisateur"
+                    "description": "Nouveau texte du contexte narratif (remplace l'existant)"
                 }
             },
             "required": ["description"]
@@ -207,7 +208,7 @@ TOOLS = [
     },
     {
         "name": "auto_select_audio",
-        "description": "Sélectionne automatiquement des pistes vocales (1-3) et ambiances (0-2) pour un projet donné.",
+        "description": "Sélectionne automatiquement des FICHIERS AUDIO ENREGISTRÉS (témoignages, interviews, fichiers uploadés par l'utilisateur) pour les transcrire. NE PAS utiliser pour choisir une voix ElevenLabs TTS — pour ça, utiliser 'select_voice'.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -256,6 +257,40 @@ TOOLS = [
                 "max_backgrounds": {"type": "integer", "minimum": 0, "maximum": 2, "default": 2}
             },
             "required": ["project_name"]
+        }
+    },
+    {
+        "name": "list_voice_options",
+        "description": "Retourne la liste des voix ElevenLabs disponibles avec leurs caractéristiques pour aider à choisir la plus adaptée au projet.",
+        "input_schema": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    {
+        "name": "select_voice",
+        "description": "Choisit parmi les 9 voix ElevenLabs prédéfinies (Voix 1 à Voix 9) pour la SYNTHÈSE VOCALE de la narration. Utilise ce tool quand l'utilisateur dit 'sélectionne la voix X' ou décrit un type de voix. IDs fixes : Voix 1=5l4ttmr4SKNgi0HnOelT (Paul K, homme français grave, narrateur), Voix 2=flHkNRp1BlvT73UL6gyz (Jessica, femme américaine dramatique), Voix 3=jK7dAsiVAhbApIS8KkWB (Vincent, homme expressif), Voix 4=NOpBlnGInO9m6vDvFkFC (Grandpa Spuds, homme âgé américain conteur), Voix 5=jUHQdLfy668sllNiNTSW (Clément, homme français parisien audioguide), Voix 6=tKaoyJLW05zqV0tIH9FD (Gaëlle, femme française audiobooks), Voix 7=T4BwQ2ZwlS2BbHIfci4H (Souni, femme française jeune douce), Voix 8=GYzIdoKkRyANjBvkKYfO (Koraly, femme française captivante audioguides), Voix 9=TojRWZatQyy9dujEdiQ1 (Koraly Storyteller, femme française immersive).",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "project_name": {
+                    "type": "string",
+                    "description": "Nom du projet (utilise la session active si absent)"
+                },
+                "voice_id": {
+                    "type": "string",
+                    "description": "ID de la voix ElevenLabs choisie (ex: NOpBlnGInO9m6vDvFkFC pour Voix 4)"
+                },
+                "voice_label": {
+                    "type": "string",
+                    "description": "Label lisible de la voix (ex: 'Voix 4')"
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "Justification du choix de cette voix"
+                }
+            },
+            "required": ["voice_id"]
         }
     },
     {
@@ -757,7 +792,17 @@ def select_audio_tracks(
                     break
     selected_voices = selected_voices[:max_voice_tracks]
 
-    selected_backgrounds = current.get("backgrounds", [])[:]
+    raw_backgrounds = current.get("backgrounds", [])
+    if isinstance(raw_backgrounds, dict):
+        # Format: {"ambient": "path"|None, "punctual": [...]}
+        selected_backgrounds = []
+        for v in raw_backgrounds.values():
+            if isinstance(v, list):
+                selected_backgrounds.extend(x for x in v if x)
+            elif v:
+                selected_backgrounds.append(v)
+    else:
+        selected_backgrounds = raw_backgrounds[:]
     if background_identifiers and max_backgrounds > 0:
         for ident in background_identifiers:
             listing = find_background_sounds(keyword=ident, limit=max_backgrounds)
@@ -851,6 +896,14 @@ def execute_tool(tool_name: str, tool_input: dict):
             scenarios_dir=tool_input["scenarios_dir"],
             project_name=tool_input.get("project_name"),
         )
+    elif tool_name == "get_project_notes":
+        from memoiredesterritoires.project_config import load_project_config
+        project = tool_input.get("project_name", "")
+        entry = load_project_config(project) if project else {}
+        return {
+            "project": project,
+            "project_notes": entry.get("project_notes", ""),
+        }
     elif tool_name == "update_project_notes":
         return update_project_notes(
             project_name=tool_input.get("project_name"),
@@ -871,6 +924,29 @@ def execute_tool(tool_name: str, tool_input: dict):
             max_voice_tracks=int(tool_input.get("max_voice_tracks", 3)),
             max_backgrounds=int(tool_input.get("max_backgrounds", 2)),
         )
+    elif tool_name == "list_voice_options":
+        return {
+            "voices": [
+                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Voix 1", "description": "Paul K — homme français, voix grave et chaleureuse, accent parisien neutre, idéal pour narration documentaire et audiobooks"},
+                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Voix 2", "description": "Jessica — femme américaine, voix expressive et dramatique, idéale pour personnages et animation"},
+                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Voix 3", "description": "Vincent — homme, voix fluide et expressive, idéale pour narration et publicité"},
+                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Voix 4", "description": "Grandpa Spuds — homme âgé américain, ton de grand-père conteur, idéal pour récits et histoires"},
+                {"id": "jUHQdLfy668sllNiNTSW", "label": "Voix 5", "description": "Clément — homme français parisien, ton calme et clair, idéal pour audioguides et narration neutre"},
+                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Voix 6", "description": "Gaëlle — femme française, voix chaleureuse et claire, idéale pour audiobooks, contes et jeux vidéo"},
+                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Voix 7", "description": "Souni — femme française jeune, voix douce et apaisante, idéale pour conversation ou narration"},
+                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Voix 8", "description": "Koraly — femme française, accent parisien, voix captivante et immersive, idéale pour audioguides de musées et expositions"},
+                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Voix 9", "description": "Koraly Storyteller — femme française, voix expressive et enveloppante, idéale pour audiobooks et storytelling long"},
+            ]
+        }
+    elif tool_name == "select_voice":
+        project_name = tool_input.get("project_name")
+        voice_id = tool_input["voice_id"]
+        current = load_audio_selection(project_name) if project_name else {}
+        current["tts_voice_id"] = voice_id
+        if project_name:
+            save_audio_selection(project_name, current)
+            update_project_config(project_name, {"tts_voice_id": voice_id})
+        return {"status": "ok", "voice_id": voice_id, "voice_label": tool_input.get("voice_label", ""), "reason": tool_input.get("reason", "")}
     elif tool_name == "get_audio_info":
         return get_audio_info(tool_input.get("audio_file") or tool_input.get("path"))
     elif tool_name == "adjust_audio_volume":

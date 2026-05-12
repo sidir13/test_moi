@@ -130,6 +130,20 @@ export function AudioSelectionView() {
     return () => window.removeEventListener("audio-selection-updated", handler);
   }, [selectionQuery]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ voice_id: string; voice_label?: string; reason?: string }>).detail;
+      if (detail?.voice_id) {
+        // Mise à jour visuelle immédiate — select_voice a déjà sauvegardé côté serveur
+        setSelectedVoiceId(detail.voice_id);
+        // Invalider le cache pour resynchronisation en arrière-plan (sans bloquer l'UI)
+        queryClient.invalidateQueries({ queryKey: ["audio-selection", sessionId] });
+      }
+    };
+    window.addEventListener("voice-selected", handler);
+    return () => window.removeEventListener("voice-selected", handler);
+  }, [sessionId, queryClient]);
+
   useEffect(() => { voicePreviewUrlsRef.current = voicePreviewUrls; }, [voicePreviewUrls]);
   useEffect(() => () => { Object.values(voicePreviewUrlsRef.current).forEach(URL.revokeObjectURL); }, []);
 

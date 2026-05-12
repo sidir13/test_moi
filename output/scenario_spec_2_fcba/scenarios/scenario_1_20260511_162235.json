@@ -1,0 +1,226 @@
+{
+  "scenario_id": 1,
+  "titre": "Luke Skywalker — Le fermier devenu légende",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Sur la planète désertique de Tatooine, un jeune fermier nommé Luke Skywalker mène une existence ordinaire, loin de l'agitation galactique. Mais la découverte d'un message caché dans un droïde va bouleverser son destin et le projeter au cœur de la rébellion contre l'Empire. Guidé par la Force et par les enseignements d'un vieux maître Jedi, il entreprend un voyage qui le mènera de l'anonymat des dunes à la destruction de l'Étoile de la Mort. Son portrait est celui d'un homme ordinaire rattrapé par une destinée extraordinaire, dont le parcours incarne l'espoir de toute une galaxie.",
+  "duree_estimee": 107.2128740824393,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Les sables de Tatooine",
+      "duree": 20.181818181818183,
+      "texte_narration": "Imaginez une planète de sable et de silence. Deux soleils brûlent un horizon sans fin. Ici, sur Tatooine, un jeune fermier nommé Luke Skywalker répare des droïdes et rêve d'un ciel qu'il n'atteindra jamais.",
+      "ton": {
+        "global": "mélancolique_et_vaste",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'silence' (1.5s)",
+          "après 'sans fin' (1s)"
+        ],
+        "intonation": "posée, contemplative, légèrement suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture immersive — invitation à imaginer le décor désertique",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Présentation de Luke dans son quotidien ordinaire",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Imaginez une planète de sable et de silence.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        },
+        {
+          "sentence": "Deux soleils brûlent un horizon sans fin.",
+          "sources": []
+        },
+        {
+          "sentence": "Ici, sur Tatooine, un jeune fermier nommé Luke Skywalker répare des droïdes et rêve d'un ciel qu'il n'atteindra jamais.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le message dans la machine",
+      "duree": 28.17391304347826,
+      "texte_narration": "Un jour, deux droïdes surgissent du désert. L'un d'eux porte un message : une princesse appelle à l'aide. Luke rencontre alors Obi-Wan Kenobi, vieux ermite qui murmure : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »] Le passé de son père se révèle. Tout bascule.",
+      "ton": {
+        "global": "mystérieux_et_urgent",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'message' (1s)",
+          "après 'à l'aide' (1.5s)",
+          "après la citation (1s)"
+        ],
+        "intonation": "tension croissante, voix plus basse sur la citation"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:22",
+          "action": "Arrivée des droïdes — rupture du quotidien",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:28",
+          "action": "Rencontre avec Obi-Wan et révélation sur le père",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un jour, deux droïdes surgissent du désert.",
+          "sources": []
+        },
+        {
+          "sentence": "L'un d'eux porte un message : une princesse appelle à l'aide.",
+          "sources": []
+        },
+        {
+          "sentence": "Luke rencontre alors Obi-Wan Kenobi, vieux ermite qui murmure : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »]",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Le passé de son père se révèle.",
+          "sources": []
+        },
+        {
+          "sentence": "Tout bascule.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'éveil d'un rebelle",
+      "duree": 32.0,
+      "texte_narration": "Luke rejoint la rébellion. Il découvre la Force, cette énergie invisible qui lie tous les êtres vivants. Face à lui se dresse l'Empire et son arme absolue : l'Étoile de la Mort. Dans le cockpit de son chasseur, le fermier de Tatooine devient pilote. Un narrateur raconte : [ARCHIVE : « Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux. »] Le tir est lancé.",
+      "ton": {
+        "global": "épique_et_tendu",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'vivants' (1s)",
+          "après 'la Mort' (1.5s)",
+          "après la citation (1s)"
+        ],
+        "intonation": "montée en intensité progressive, souffle retenu avant le tir"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:42",
+          "action": "Découverte de la Force et entrée dans la rébellion",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:50",
+          "action": "Confrontation avec l'Étoile de la Mort — climax",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Luke rejoint la rébellion.",
+          "sources": []
+        },
+        {
+          "sentence": "Il découvre la Force, cette énergie invisible qui lie tous les êtres vivants.",
+          "sources": []
+        },
+        {
+          "sentence": "Face à lui se dresse l'Empire et son arme absolue : l'Étoile de la Mort.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans le cockpit de son chasseur, le fermier de Tatooine devient pilote.",
+          "sources": []
+        },
+        {
+          "sentence": "Un narrateur raconte : [ARCHIVE : « Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux. »]",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Le tir est lancé.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'espoir d'une galaxie",
+      "duree": 26.857142857142858,
+      "texte_narration": "L'Étoile de la Mort explose. La galaxie respire. Luke Skywalker revient parmi les siens, médaille au cou, mais le chemin ne fait que commencer. Derrière lui, les dunes de Tatooine. Devant, un destin encore à écrire. Un fermier est devenu l'espoir de milliards d'êtres.",
+      "ton": {
+        "global": "solennel_et_lumineux",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'explose' (2s)",
+          "après 'respire' (1.5s)",
+          "après 'à écrire' (1.5s)"
+        ],
+        "intonation": "apaisée, lumineuse, légère suspension finale"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:07",
+          "action": "Victoire — destruction de l'Étoile de la Mort",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:15",
+          "action": "Ouverture sur l'avenir — résonance finale",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "L'Étoile de la Mort explose.",
+          "sources": []
+        },
+        {
+          "sentence": "La galaxie respire.",
+          "sources": []
+        },
+        {
+          "sentence": "Luke Skywalker revient parmi les siens, médaille au cou, mais le chemin ne fait que commencer.",
+          "sources": []
+        },
+        {
+          "sentence": "Derrière lui, les dunes de Tatooine.",
+          "sources": []
+        },
+        {
+          "sentence": "Devant, un destin encore à écrire.",
+          "sources": []
+        },
+        {
+          "sentence": "Un fermier est devenu l'espoir de milliards d'êtres.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 202,
+    "duree_lecture_estimee": 107.2128740824393,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le fil conducteur est le regard extérieur porté sur Luke Skywalker — on le suit, on le décrit, on ne parle jamais en son nom. La voix off omnisciente garde un ton neutre et informatif tout au long, sans exclamation ni adresse directe au public. Le registre reste accessible (grand public), phrases courtes, vocabulaire courant. L'archive audio disponible (Loire/chantiers navals) est thématiquement éloignée du sujet Star Wars : elle sera utilisée uniquement comme MODÈLE STYLISTIQUE pour l'invitation immersive d'ouverture (structure « Imaginez… »), jamais citée littéralement dans un contexte Star Wars. Aucune date historique réelle n'est mobilisée — l'univers est entièrement fictif. Les citations directes prendront la forme de répliques iconiques de la saga, intégrées naturellement dans le flux narratif. Densité sonore minimaliste : silences et respirations entre les sections, pas de surcharge d'ambiances. Le débit cible est d'environ 2 mots/seconde, soit ~180 mots maximum pour 90 secondes. Chaque section doit pouvoir s'enchaîner sans annonce de chapitre — la fluidité prime sur la segmentation."
+}

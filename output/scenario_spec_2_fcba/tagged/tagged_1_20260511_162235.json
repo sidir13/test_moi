@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Luke Skywalker — Le fermier devenu légende",
+  "taggedText": "=== PARTIE 1 : Les sables de Tatooine ===\n\n{vent_desert_lointain.wav}\n\n[posé] Imaginez une planète de sable et de silence. [pause] Deux soleils brûlent un horizon sans fin. [étire] Ici, sur Tatooine, un jeune fermier nommé Luke Skywalker répare des droïdes [pause] et rêve d'un ciel qu'il n'atteindra jamais.\n\n=== PARTIE 2 : Le message dans la machine ===\n\n[pause]\n\nUn jour, deux droïdes surgissent du désert. [ralentit] L'un d'eux porte un message : une princesse appelle à l'aide. Luke rencontre alors Obi-Wan Kenobi, vieux ermite qui murmure : [posé] [atténué] « Ton père était un chevalier Jedi. Un homme puissant. » [pause] Le passé de son père se révèle. [accentué] Tout bascule.\n\n=== PARTIE 3 : L'éveil d'un rebelle ===\n\n{souffle_hyperespace.wav}\n\nLuke rejoint la rébellion. Il découvre la Force, [ralentit] cette énergie invisible qui lie tous les êtres vivants. Face à lui se dresse l'Empire et son arme absolue : [pause] l'Étoile de la Mort. Dans le cockpit de son chasseur, le fermier de Tatooine devient pilote. Un narrateur raconte : [posé] [atténué] « Utilise la Force, Luke. » [pause] [accentué] Le tir est lancé.\n\n=== PARTIE 4 : L'espoir d'une galaxie ===\n\n{explosion_lointaine_sourde.wav}\n\n[pause] L'Étoile de la Mort explose. La galaxie respire. [posé] Luke Skywalker revient parmi les siens, médaille au cou, mais le chemin ne fait que commencer. [ralentit] Derrière lui, les dunes de Tatooine. Devant, un destin encore à écrire. [pause] [étire] Un fermier est devenu l'espoir de milliards d'êtres.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Les sables de Tatooine",
+      "taggedText": "{vent_desert_lointain.wav}\n\n[posé] Imaginez une planète de sable et de silence. [pause] Deux soleils brûlent un horizon sans fin. [étire] Ici, sur Tatooine, un jeune fermier nommé Luke Skywalker répare des droïdes [pause] et rêve d'un ciel qu'il n'atteindra jamais."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le message dans la machine",
+      "taggedText": "[pause]\n\nUn jour, deux droïdes surgissent du désert. [ralentit] L'un d'eux porte un message : une princesse appelle à l'aide. Luke rencontre alors Obi-Wan Kenobi, vieux ermite qui murmure : [posé] [atténué] « Ton père était un chevalier Jedi. Un homme puissant. » [pause] Le passé de son père se révèle. [accentué] Tout bascule."
+    },
+    {
+      "partie_id": 3,
+      "titre": "L'éveil d'un rebelle",
+      "taggedText": "{souffle_hyperespace.wav}\n\nLuke rejoint la rébellion. Il découvre la Force, [ralentit] cette énergie invisible qui lie tous les êtres vivants. Face à lui se dresse l'Empire et son arme absolue : [pause] l'Étoile de la Mort. Dans le cockpit de son chasseur, le fermier de Tatooine devient pilote. Un narrateur raconte : [posé] [atténué] « Utilise la Force, Luke. » [pause] [accentué] Le tir est lancé."
+    },
+    {
+      "partie_id": 4,
+      "titre": "L'espoir d'une galaxie",
+      "taggedText": "{explosion_lointaine_sourde.wav}\n\n[pause] L'Étoile de la Mort explose. La galaxie respire. [posé] Luke Skywalker revient parmi les siens, médaille au cou, mais le chemin ne fait que commencer. [ralentit] Derrière lui, les dunes de Tatooine. Devant, un destin encore à écrire. [pause] [étire] Un fermier est devenu l'espoir de milliards d'êtres."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 21,
+    "soundTags": 3,
+    "originalWordCount": 202
+  }
+}
