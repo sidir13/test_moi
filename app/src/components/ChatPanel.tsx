@@ -102,6 +102,16 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           if (payload.tool === "transcribe_audio" || payload.tool === "save_analysis_result") {
             window.dispatchEvent(new Event("transcription-updated"));
           }
+          if (payload.tool === "update_prompt_field") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              if (res?.status === "ok") {
+                window.dispatchEvent(new CustomEvent("scenario-prompt-updated", {
+                  detail: { scenario_index: res.scenario_index ?? 0, action: res.action, content: res.content }
+                }));
+              }
+            } catch { /* ignore parse errors */ }
+          }
         } else if (payload.type === "error") {
           setMessages((prev) => [
             ...prev,
@@ -130,7 +140,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
     const message = input.trim();
     setMessages((prev) => [...prev, { role: "user", content: message }]);
     const currentNotes = (window as Window & { __projectNotes?: string }).__projectNotes;
-    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined }));
+    const scenarioPrompts = (window as Window & { __scenarioPrompts?: string[] }).__scenarioPrompts;
+    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined, scenario_prompts: scenarioPrompts || undefined }));
     setInput("");
   };
 

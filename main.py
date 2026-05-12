@@ -757,6 +757,30 @@ TOOLS = [
         },
         "required": ["voice_file", "background_file"]
         }
+    },
+    {
+        "name": "update_prompt_field",
+        "description": "Met à jour le champ 'prompt' d'un scénario dans le formulaire de configuration visible sur la page. Utilise cet outil chaque fois que l'utilisateur demande de générer, compléter, améliorer, corriger, raccourcir ou traduire le contenu d'un prompt de scénario. Ne mets JAMAIS le texte dans le chat — applique-le directement via cet outil.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "enum": ["replace", "append"],
+                    "description": "replace : remplace entièrement le contenu. append : ajoute à la suite du texte existant."
+                },
+                "content": {
+                    "type": "string",
+                    "description": "Le texte à injecter dans le champ prompt."
+                },
+                "scenario_index": {
+                    "type": "integer",
+                    "description": "Index du scénario à modifier (0 = premier, 1 = deuxième, etc.). Défaut : 0.",
+                    "default": 0
+                }
+            },
+            "required": ["action", "content"]
+        }
     }
 ]
 
@@ -986,6 +1010,13 @@ def execute_tool(tool_name: str, tool_input: dict):
         return project_config_builder_skill.run(tool_input)
     elif tool_name == "generate_historical_scenario":
         return scenario_maker_skill.run(tool_input)
+    elif tool_name == "update_prompt_field":
+        return {
+            "status": "ok",
+            "action": tool_input["action"],
+            "content": tool_input["content"],
+            "scenario_index": tool_input.get("scenario_index", 0),
+        }
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 

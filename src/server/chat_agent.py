@@ -72,7 +72,7 @@ class ChatAgent:
         if not self.client:
             logger.warning("ChatAgent initialized without Anthropic credentials")
 
-    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None) -> None:
+    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None, scenario_prompts: list | None = None) -> None:
         if not self.client:
             await websocket.send_json({"type": "error", "message": "Missing Anthropic credentials"})
             return
@@ -105,12 +105,18 @@ class ChatAgent:
             if _notes and _notes.strip():
                 project_notes_context = f"\n\n[Contexte narratif actuel du projet (textarea) :\n{_notes.strip()}\n]"
 
-        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}" if project_name else ""
+        # Build scenario prompts context from live frontend values
+        scenario_prompts_context = ""
+        if scenario_prompts:
+            lines = [f"  Scénario {i+1} : \"{p}\"" for i, p in enumerate(scenario_prompts)]
+            scenario_prompts_context = "\n\n[Prompts actuels des scénarios du formulaire :\n" + "\n".join(lines) + "\n]"
+
+        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}{scenario_prompts_context}" if project_name else scenario_prompts_context
 
         if project_name:
             payload = f"[projet: \"{project_name}\"] {user_text}{project_context}"
         else:
-            payload = user_text
+            payload = user_text + (project_context if project_context else "")
         messages.append({"role": "user", "content": payload})
 
         loop = asyncio.get_running_loop()
@@ -158,7 +164,14 @@ class ChatAgent:
                         "- Fichiers audio enregistrés → 'auto_select_audio'\n"
                         "- Transcriptions existantes → 'list_analysis_results'\n"
                         "- Transcrire → 'transcribe_audio'\n"
-                        "- Brief projet → 'update_project_notes'\n\n"
+                        "- Brief projet → 'update_project_notes'\n"
+                        "- Prompt de scénario → 'update_prompt_field'\n\n"
+
+                        "══════ CHAMP PROMPT SCÉNARIO — RÈGLE ABSOLUE ══════\n"
+                        "Chaque message utilisateur peut contenir un bloc [Prompts actuels des scénarios du formulaire : ...] qui reflète le contenu actuel des champs 'prompt' sur la page de configuration des scénarios.\n"
+                        "CE BLOC EST LA SOURCE DE VÉRITÉ pour les prompts. Lis-le avant toute modification.\n"
+                        "Quand l'utilisateur demande de 'générer', 'améliorer', 'corriger', 'raccourcir' ou 'traduire' un prompt de scénario → appelle TOUJOURS 'update_prompt_field' avec le résultat. Ne mets JAMAIS le texte généré dans le chat — applique-le directement via l'outil.\n"
+                        "Paramètre 'scenario_index' : 0 = premier scénario, 1 = deuxième, etc. (défaut : 0 si non précisé).\n\n"
 
                         "RÈGLE : N'utilise JAMAIS 'generate_historical_scenario' sauf si l'utilisateur dit explicitement 'génère les scénarios'.\n"
                         "Sois proactif : agis immédiatement sans demander confirmation inutile."
