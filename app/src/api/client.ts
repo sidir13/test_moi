@@ -361,6 +361,16 @@ export async function synthesizeScenarioAudio(
   return data as ScenarioAudioMetadata;
 }
 
+export async function remixScenarioAudio(sessionId: string) {
+  const { data } = await api.post(`/sessions/${sessionId}/scenario-audio/remix`);
+  return data as ScenarioAudioMetadata;
+}
+
+export function getBackgroundSoundPreviewUrl(path: string) {
+  const prefix = (API_BASE_URL || "").replace(/\/$/, "");
+  return `${prefix}/background-sounds/preview?path=${encodeURIComponent(path)}`;
+}
+
 export function getScenarioAudioUrl(sessionId: string) {
   const prefix = (API_BASE_URL || "").replace(/\/$/, "");
   const base = prefix.length > 0 ? prefix : "";

@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Loader2,
   Music,
+  Pause,
   Play,
   Plus,
   Search,
@@ -19,12 +20,17 @@ import {
 
 import {
   advanceStep,
+  fetchAudioSelection,
   fetchBackgroundSounds,
   fetchScenarioAudio,
   fetchSelectedScenario,
+  getBackgroundSoundPreviewUrl,
   getScenarioAudioUrl,
+  remixScenarioAudio,
+  saveAudioSelection,
   synthesizeScenarioAudio,
   uploadBackgroundSound,
+  type BackgroundSound,
 } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -37,8 +43,8 @@ type Clip = {
   id: string;
   label: string;
   variant: ClipVariant;
-  start: number; // seconds
-  end: number;   // seconds
+  start: number;
+  end: number;
   onClick?: () => void;
 };
 
@@ -180,7 +186,15 @@ function extractPayload(raw: Record<string, unknown>): Record<string, unknown> {
 
 // ─── Import sound modal ───────────────────────────────────────────────────────
 
-function ImportSoundModal({ open, onClose, onSuccess }: { open: boolean; onClose: () => void; onSuccess: () => void }) {
+function ImportSoundModal({
+  open,
+  onClose,
+  onSuccess,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onSuccess: (path: string) => void;
+}) {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -195,9 +209,9 @@ function ImportSoundModal({ open, onClose, onSuccess }: { open: boolean; onClose
     setIsUploading(true);
     setError(null);
     try {
-      await uploadBackgroundSound(title.trim() || file.name.replace(/\.[^.]+$/, ""), file);
+      const result = await uploadBackgroundSound(title.trim() || file.name.replace(/\.[^.]+$/, ""), file);
       reset();
-      onSuccess();
+      onSuccess(result.path as string);
       onClose();
     } catch {
       setError("Erreur lors de l'importation. Vérifiez le format du fichier.");
@@ -278,25 +292,30 @@ function ImportSoundModal({ open, onClose, onSuccess }: { open: boolean; onClose
 // ─── Main view ────────────────────────────────────────────────────────────────
 
 export function ScenarioEditView() {
-  const { sessionId, updateProgress, setCurrentStep } = useSessionStore();
+  const { sessionId, projectName, lastProjectName, updateProgress, setCurrentStep } = useSessionStore();
+  const resolvedProjectName = projectName ?? lastProjectName;
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const [isPlaying, setIsPlaying]       = useState(false);
-  const [currentTime, setCurrentTime]   = useState(0);
-  const [audioDuration, setAudioDuration] = useState<number | null>(null);
-  const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
-  const [activeTab, setActiveTab]         = useState<GalleryTab>("Sons ambiants");
-  const [searchQuery, setSearchQuery]     = useState("");
+  const [isPlaying, setIsPlaying]           = useState(false);
+  const [currentTime, setCurrentTime]       = useState(0);
+  const [audioDuration, setAudioDuration]   = useState<number | null>(null);
+  const [audioKey, setAudioKey]             = useState(0);
+  const [activeTab, setActiveTab]           = useState<GalleryTab>("Sons ambiants");
+  const [searchQuery, setSearchQuery]       = useState("");
   const [showCategories, setShowCategories] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
-  const [isGenerating, setIsGenerating]   = useState(false);
-  const [statusMsg, setStatusMsg]         = useState<string | null>(null);
-  const [isDragging, setIsDragging]       = useState(false);
+  const [isGenerating, setIsGenerating]     = useState(false);
+  const [isRemixing, setIsRemixing]         = useState(false);
+  const [statusMsg, setStatusMsg]           = useState<string | null>(null);
+  const [isDragging, setIsDragging]         = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
-  const audioRef      = useRef<HTMLAudioElement | null>(null);
-  const timelineRef   = useRef<HTMLDivElement | null>(null);
-  const wasPlayingRef = useRef(false);
+  const [playingPreview, setPlayingPreview] = useState<string | null>(null);
+
+  const audioRef        = useRef<HTMLAudioElement | null>(null);
+  const timelineRef     = useRef<HTMLDivElement | null>(null);
+  const wasPlayingRef   = useRef(false);
+  const previewAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
@@ -308,14 +327,19 @@ export function ScenarioEditView() {
     queryFn: () => fetchScenarioAudio(sessionId!),
     enabled: Boolean(sessionId),
   });
+  const audioSelectionQuery = useQuery({
+    queryKey: ["audio-selection", sessionId],
+    queryFn: () => fetchAudioSelection(sessionId!),
+    enabled: Boolean(sessionId),
+  });
   const soundsQuery = useQuery({
     queryKey: ["background-sounds", searchQuery],
     queryFn: () => fetchBackgroundSounds(searchQuery || undefined),
   });
 
-  const audioJobStatus  = audioQuery.data?.status;
+  const audioJobStatus    = audioQuery.data?.status;
   const isAudioProcessing = audioJobStatus === "pending" || audioJobStatus === "running";
-  const audioReady      = audioJobStatus === "done" && Boolean(audioQuery.data?.path);
+  const audioReady        = audioJobStatus === "done" && Boolean(audioQuery.data?.path);
 
   useEffect(() => {
     if (!sessionId || !isAudioProcessing) return;
@@ -326,11 +350,8 @@ export function ScenarioEditView() {
   const audioSrc = useMemo(() => {
     if (!sessionId || !audioReady || !audioQuery.data?.path) return null;
     const base = getScenarioAudioUrl(sessionId).replace(/\/$/, "");
-    const ts = audioQuery.data.generated_at
-      ? `?ts=${encodeURIComponent(audioQuery.data.generated_at)}`
-      : "";
-    return `${base}${ts}`;
-  }, [audioQuery.data, sessionId, audioReady]);
+    return `${base}?k=${audioKey}`;
+  }, [audioQuery.data, sessionId, audioReady, audioKey]);
 
   useEffect(() => {
     const el = audioRef.current;
@@ -340,6 +361,11 @@ export function ScenarioEditView() {
   }, [isPlaying]);
 
   const totalDuration = audioDuration ?? 60;
+
+  // Derived audio selection state
+  const ambientPath    = audioSelectionQuery.data?.backgrounds?.ambient ?? null;
+  const punctualPaths  = audioSelectionQuery.data?.backgrounds?.punctual ?? [];
+  const allSounds      = soundsQuery.data ?? [];
 
   // Narration clips from scenario parts
   const narrationClips = useMemo((): Clip[] => {
@@ -374,16 +400,49 @@ export function ScenarioEditView() {
   }, [selectionQuery.data, totalDuration]);
 
   const ambientClips = useMemo((): Clip[] => {
-    if (!selectedBackground) return [];
-    return [{ id: "amb0", label: selectedBackground, variant: "Ambient", start: 0, end: totalDuration }];
-  }, [selectedBackground, totalDuration]);
+    if (!ambientPath) return [];
+    const soundName =
+      allSounds.find((s) => s.path === ambientPath)?.name ??
+      ambientPath.split("/").pop()?.replace(/\.[^.]+$/, "") ??
+      "Ambient";
+    return [{ id: "amb0", label: soundName, variant: "Ambient", start: 0, end: totalDuration }];
+  }, [ambientPath, totalDuration, allSounds]);
 
-  const sfxClips: Clip[] = [
-    { id: "sfx-add", label: "Ajouter un effet sonore", variant: "Ajouter", start: 0, end: totalDuration * 0.18, onClick: () => setShowImportModal(true) },
-  ];
+  const sfxClips = useMemo((): Clip[] => {
+    const clips: Clip[] = [];
+    const slotW = 0.18 * totalDuration;
+    const gap   = 0.05 * totalDuration;
+
+    for (let i = 0; i < Math.min(punctualPaths.length, 3); i++) {
+      const name =
+        allSounds.find((s) => s.path === punctualPaths[i])?.name ??
+        punctualPaths[i].split("/").pop()?.replace(/\.[^.]+$/, "") ??
+        `SFX ${i + 1}`;
+      const start = i * (slotW + gap);
+      clips.push({
+        id: `sfx${i}`,
+        label: name,
+        variant: "Effet sonore",
+        start,
+        end: Math.min(start + slotW, totalDuration),
+      });
+    }
+    if (punctualPaths.length < 3) {
+      const i = punctualPaths.length;
+      const start = i * (slotW + gap);
+      clips.push({
+        id: "sfx-add",
+        label: "Ajouter un effet sonore",
+        variant: "Ajouter",
+        start,
+        end: Math.min(start + slotW, totalDuration),
+        onClick: () => setShowImportModal(true),
+      });
+    }
+    return clips;
+  }, [punctualPaths, totalDuration, allSounds]);
 
   // Gallery data
-  const allSounds = soundsQuery.data ?? [];
   const categories = useMemo(() => {
     const cats = new Set(allSounds.map((s) => s.category).filter(Boolean) as string[]);
     return Array.from(cats);
@@ -407,6 +466,75 @@ export function ScenarioEditView() {
       next.has(cat) ? next.delete(cat) : next.add(cat);
       return next;
     });
+  };
+
+  // ── Preview playback ──────────────────────────────────────────────────────
+
+  const togglePreview = (sound: BackgroundSound) => {
+    if (playingPreview === sound.path) {
+      previewAudioRef.current?.pause();
+      previewAudioRef.current = null;
+      setPlayingPreview(null);
+    } else {
+      previewAudioRef.current?.pause();
+      const audio = new Audio(getBackgroundSoundPreviewUrl(sound.path));
+      audio.play().catch(() => {});
+      audio.onended = () => setPlayingPreview(null);
+      previewAudioRef.current = audio;
+      setPlayingPreview(sound.path);
+    }
+  };
+
+  useEffect(() => {
+    return () => { previewAudioRef.current?.pause(); };
+  }, []);
+
+  // ── Remix helpers ─────────────────────────────────────────────────────────
+
+  const triggerRemix = async () => {
+    if (!sessionId) return;
+    setIsRemixing(true);
+    try {
+      await remixScenarioAudio(sessionId);
+      setAudioKey((k) => k + 1);
+      queryClient.invalidateQueries({ queryKey: ["scenario-audio", sessionId] });
+    } finally {
+      setIsRemixing(false);
+    }
+  };
+
+  const selectAmbient = async (soundPath: string | null) => {
+    if (!sessionId || !resolvedProjectName) return;
+    const current = audioSelectionQuery.data;
+    const newPath = ambientPath === soundPath ? null : soundPath;
+    await saveAudioSelection(sessionId, {
+      project_name: resolvedProjectName,
+      voices: current?.voices ?? [],
+      backgrounds: { ambient: newPath, punctual: current?.backgrounds?.punctual ?? [] },
+      auto_backgrounds: current?.auto_backgrounds ?? false,
+      tts_voice_id: current?.tts_voice_id,
+      tts_provider: current?.tts_provider,
+    });
+    queryClient.invalidateQueries({ queryKey: ["audio-selection", sessionId] });
+    await triggerRemix();
+  };
+
+  const addSfx = async (soundPath: string) => {
+    if (!sessionId || !resolvedProjectName) return;
+    const current = audioSelectionQuery.data;
+    const existing = current?.backgrounds?.punctual ?? [];
+    if (existing.includes(soundPath) || existing.length >= 3) return;
+    const newPunctual = [...existing, soundPath];
+    await saveAudioSelection(sessionId, {
+      project_name: resolvedProjectName,
+      voices: current?.voices ?? [],
+      backgrounds: { ambient: current?.backgrounds?.ambient ?? null, punctual: newPunctual },
+      auto_backgrounds: current?.auto_backgrounds ?? false,
+      tts_voice_id: current?.tts_voice_id,
+      tts_provider: current?.tts_provider,
+    });
+    queryClient.invalidateQueries({ queryKey: ["audio-selection", sessionId] });
+    await triggerRemix();
   };
 
   // ── Scrubbing ─────────────────────────────────────────────────────────────
@@ -494,7 +622,6 @@ export function ScenarioEditView() {
           <div className="flex items-center justify-between px-5 py-3 border-b border-[#e2e8f0]">
             {/* Left: transport controls + time + volume */}
             <div className="flex items-center gap-3">
-              {/* Transport */}
               <div className="flex items-center gap-1">
                 <button
                   type="button"
@@ -518,14 +645,12 @@ export function ScenarioEditView() {
                 </button>
               </div>
 
-              {/* Time */}
               <span className="text-[14px] font-semibold text-[#0f172b] tabular-nums">
                 {fmtTime(currentTime)}
                 <span className="mx-1.5 text-[#e2e8f0]">|</span>
                 <span className="font-normal text-[#94a3b8]">{fmtTime(totalDuration)}</span>
               </span>
 
-              {/* Volume */}
               <div className="flex items-center gap-1.5">
                 <Volume2 className="h-3.5 w-3.5 text-[#94a3b8]" />
                 <div className="relative h-1.5 w-20 rounded-full bg-[#e2e8f0]">
@@ -534,14 +659,15 @@ export function ScenarioEditView() {
               </div>
             </div>
 
-            {/* Right: X reset + add track + status */}
+            {/* Right: indicators + buttons */}
             <div className="flex items-center gap-2">
-              {isAudioProcessing && (
+              {(isAudioProcessing || isRemixing) && (
                 <span className="flex items-center gap-1 text-[12px] text-[#64748b]">
-                  <Loader2 className="h-3 w-3 animate-spin" /> En cours…
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  {isRemixing ? "Remix…" : "En cours…"}
                 </span>
               )}
-              {statusMsg && !isAudioProcessing && (
+              {statusMsg && !isAudioProcessing && !isRemixing && (
                 <span className="text-[12px] text-[#64748b]">{statusMsg}</span>
               )}
               <button
@@ -613,7 +739,7 @@ export function ScenarioEditView() {
           <button
             type="button"
             onClick={handleValidate}
-            disabled={isGenerating || isAudioProcessing}
+            disabled={isGenerating || isAudioProcessing || isRemixing}
             className="inline-flex h-[38px] items-center gap-1.5 rounded-[12px] bg-[#007aff] px-5 text-[14px] font-medium text-white hover:bg-[#006ae0] disabled:opacity-50"
           >
             {isGenerating ? (
@@ -628,6 +754,7 @@ export function ScenarioEditView() {
         {/* Hidden audio */}
         {audioSrc && (
           <audio
+            key={audioSrc}
             ref={audioRef}
             src={audioSrc}
             className="hidden"
@@ -727,52 +854,66 @@ export function ScenarioEditView() {
                 </p>
               ) : (
                 <div className="divide-y divide-[#e2e8f0]">
-                  {filteredSounds.map((sound) => (
-                    <div
-                      key={sound.name}
-                      role="button"
-                      tabIndex={0}
-                      onClick={() =>
-                        setSelectedBackground(
-                          selectedBackground === sound.name ? null : sound.name
-                        )
-                      }
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          setSelectedBackground(
-                            selectedBackground === sound.name ? null : sound.name
-                          );
-                        }
-                      }}
-                      className={`flex items-center justify-between px-5 py-2.5 cursor-pointer transition-colors hover:bg-[#f8fafc] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#007aff] ${
-                        selectedBackground === sound.name ? "bg-[#eff6ff]" : ""
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <button
-                          type="button"
-                          aria-label={`Écouter ${sound.name}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e2e8f0] bg-white text-[#0f172b] hover:bg-[#f8fafc]"
-                        >
-                          <Play className="h-3 w-3 fill-current" />
-                        </button>
-                        <span
-                          className={`truncate text-[14px] ${
-                            selectedBackground === sound.name
-                              ? "font-medium text-[#007aff]"
-                              : "font-normal text-[#0f172b]"
-                          }`}
-                        >
-                          {sound.name}
+                  {filteredSounds.map((sound) => {
+                    const isAmbientSelected = ambientPath === sound.path;
+                    const isSfxSelected    = punctualPaths.includes(sound.path);
+                    const isSelected       = activeTab === "Sons ambiants" ? isAmbientSelected : isSfxSelected;
+                    const isPreviewing     = playingPreview === sound.path;
+
+                    return (
+                      <div
+                        key={sound.path}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => {
+                          if (activeTab === "Sons ambiants") {
+                            selectAmbient(sound.path);
+                          } else {
+                            addSfx(sound.path);
+                          }
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            if (activeTab === "Sons ambiants") {
+                              selectAmbient(sound.path);
+                            } else {
+                              addSfx(sound.path);
+                            }
+                          }
+                        }}
+                        className={`flex items-center justify-between px-5 py-2.5 cursor-pointer transition-colors hover:bg-[#f8fafc] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#007aff] ${
+                          isSelected ? "bg-[#eff6ff]" : ""
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <button
+                            type="button"
+                            aria-label={isPreviewing ? `Arrêter ${sound.name}` : `Écouter ${sound.name}`}
+                            onClick={(e) => { e.stopPropagation(); togglePreview(sound); }}
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e2e8f0] bg-white text-[#0f172b] hover:bg-[#f8fafc]"
+                          >
+                            {isPreviewing
+                              ? <Pause className="h-3 w-3 fill-current" />
+                              : <Play className="h-3 w-3 fill-current" />
+                            }
+                          </button>
+                          <span
+                            className={`truncate text-[14px] ${
+                              isSelected
+                                ? "font-medium text-[#007aff]"
+                                : "font-normal text-[#0f172b]"
+                            }`}
+                          >
+                            {sound.name}
+                          </span>
+                        </div>
+                        <span className="ml-4 shrink-0 text-[13px] text-[#94a3b8]">
+                          {sound.category ?? "—"}
                         </span>
                       </div>
-                      <span className="ml-4 shrink-0 text-[13px] text-[#94a3b8]">
-                        {sound.category ?? "—"}
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -808,7 +949,10 @@ export function ScenarioEditView() {
       <ImportSoundModal
         open={showImportModal}
         onClose={() => setShowImportModal(false)}
-        onSuccess={() => queryClient.invalidateQueries({ queryKey: ["background-sounds"] })}
+        onSuccess={async (path) => {
+          queryClient.invalidateQueries({ queryKey: ["background-sounds"] });
+          await addSfx(path);
+        }}
       />
     </div>
   );

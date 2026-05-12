@@ -3,8 +3,10 @@
     "Qwen_tts_a-mature-contemplative-narrato_20260204T092112Z.wav"
   ],
   "backgrounds": {
-    "ambient": null,
-    "punctual": []
+    "ambient": "data/audio/background_sounds/histoire-secondaire/audio.wav",
+    "punctual": [
+      "data/audio/background_sounds/scottishperson-sound-effect-cat-chattering-and-meowing-282900/scottishperson-sound-effect-cat-chattering-and-meowing-282900.mp3"
+    ]
   },
   "auto_backgrounds": false,
   "tts_voice_id": "GYzIdoKkRyANjBvkKYfO"

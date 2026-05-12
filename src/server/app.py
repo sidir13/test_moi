@@ -3191,6 +3191,74 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
             raise HTTPException(status_code=404, detail="Fichier audio introuvable")
         return FileResponse(audio_path)
 
+    @app.post("/sessions/{session_id}/scenario-audio/remix", tags=["sessions"])
+    async def remix_scenario_audio(session_id: str) -> dict:
+        session = session_store.load_session(session_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Session not found")
+        metadata = session_store.get_scenario_audio(session_id)
+        if not metadata:
+            raise HTTPException(status_code=404, detail="Aucun audio généré pour ce scénario")
+
+        dry_path_str = metadata.get("voice_only_path") or metadata.get("path")
+        if not dry_path_str:
+            raise HTTPException(status_code=404, detail="Chemin audio introuvable")
+
+        dry_path = Path(dry_path_str)
+        if not dry_path.is_absolute():
+            dry_path = (Path.cwd() / dry_path).resolve()
+        if not dry_path.exists():
+            raise HTTPException(status_code=404, detail=f"Fichier audio introuvable: {dry_path_str}")
+
+        current_path_str = metadata.get("path") or dry_path_str
+        current_path = Path(current_path_str)
+        if not current_path.is_absolute():
+            current_path = (Path.cwd() / current_path).resolve()
+
+        has_dry = bool(metadata.get("voice_only_path"))
+        if has_dry and dry_path != current_path:
+            shutil.copy2(str(dry_path), str(current_path))
+
+        scenario = session.get("selected_scenario")
+        text: Optional[str] = scenario_to_text(scenario) if scenario else None
+        project_name = session["project_name"]
+
+        try:
+            (
+                layered_path,
+                backgrounds_applied,
+                new_dry_path,
+                backgrounds_requested,
+                background_plan,
+            ) = apply_background_selection(current_path, project_name, text)
+        except Exception as exc:
+            logger.exception("Remix background layering failed for session %s", session_id)
+            raise HTTPException(status_code=500, detail=f"Erreur lors du remix: {exc}") from exc
+
+        updated_metadata: Dict[str, Any] = {
+            **metadata,
+            "path": str(layered_path),
+            "backgrounds_applied": backgrounds_applied,
+            "background_tracks_requested": backgrounds_requested,
+            "remixed_at": datetime.utcnow().isoformat(),
+        }
+        if background_plan:
+            updated_metadata["background_plan"] = background_plan
+
+        if has_dry:
+            updated_metadata["voice_only_path"] = metadata["voice_only_path"]
+        elif new_dry_path:
+            updated_metadata["voice_only_path"] = str(new_dry_path)
+
+        session_store.save_scenario_audio(session_id, updated_metadata)
+        log_progress(
+            "SCENARIO_AUDIO_REMIX_DONE",
+            session=session_id,
+            project=project_name,
+            layers=backgrounds_applied,
+        )
+        return updated_metadata
+
     def _serialize_image_entry(session_id: str, entry: Dict[str, Any]) -> Dict[str, Any]:
         data = dict(entry)
         data["download_url"] = f"/sessions/{session_id}/scenario-images/{entry['id']}"
