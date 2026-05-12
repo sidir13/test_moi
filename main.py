@@ -983,15 +983,15 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "list_voice_options":
         return {
             "voices": [
-                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Voix 1", "description": "Paul K — homme français, voix grave et chaleureuse, accent parisien neutre, idéal pour narration documentaire et audiobooks"},
-                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Voix 2", "description": "Jessica — femme américaine, voix expressive et dramatique, idéale pour personnages et animation"},
-                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Voix 3", "description": "Vincent — homme, voix fluide et expressive, idéale pour narration et publicité"},
-                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Voix 4", "description": "Grandpa Spuds — homme âgé américain, ton de grand-père conteur, idéal pour récits et histoires"},
-                {"id": "jUHQdLfy668sllNiNTSW", "label": "Voix 5", "description": "Clément — homme français parisien, ton calme et clair, idéal pour audioguides et narration neutre"},
-                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Voix 6", "description": "Gaëlle — femme française, voix chaleureuse et claire, idéale pour audiobooks, contes et jeux vidéo"},
-                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Voix 7", "description": "Souni — femme française jeune, voix douce et apaisante, idéale pour conversation ou narration"},
-                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Voix 8", "description": "Koraly — femme française, accent parisien, voix captivante et immersive, idéale pour audioguides de musées et expositions"},
-                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Voix 9", "description": "Koraly Storyteller — femme française, voix expressive et enveloppante, idéale pour audiobooks et storytelling long"},
+                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Paul K", "description": "Paul K — homme français, voix grave et chaleureuse, accent parisien neutre, idéal pour narration documentaire et audiobooks"},
+                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Jessica Anne Bogart", "description": "Jessica Anne Bogart — femme américaine, voix expressive et dramatique, idéale pour personnages et animation"},
+                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Vincent (JC)", "description": "Vincent (JC) — homme, voix fluide et expressive, idéale pour narration et publicité"},
+                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Grandpa Spuds Oxley", "description": "Grandpa Spuds Oxley — homme âgé américain, ton de grand-père conteur, idéal pour récits et histoires"},
+                {"id": "jUHQdLfy668sllNiNTSW", "label": "Clément", "description": "Clément — homme français parisien, ton calme et clair, idéal pour audioguides et narration neutre"},
+                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Gaëlle", "description": "Gaëlle — femme française, voix chaleureuse et claire, idéale pour audiobooks, contes et jeux vidéo"},
+                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Souni", "description": "Souni — femme française jeune, voix douce et apaisante, idéale pour conversation ou narration"},
+                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Koraly", "description": "Koraly — femme française, accent parisien, voix captivante et immersive, idéale pour audioguides de musées et expositions"},
+                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Koraly (Storyteller)", "description": "Koraly (Storyteller) — femme française, voix expressive et enveloppante, idéale pour audiobooks et storytelling long"},
             ]
         }
     elif tool_name == "select_voice":
