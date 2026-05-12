@@ -408,24 +408,38 @@ export function ScenarioEditView() {
             </div>
           </div>
 
-          {/* Ruler + tracks */}
-          <div className="flex">
-            {/* Label column spacer */}
-            <div
-              className="shrink-0 border-r border-[#e2e8f0] bg-[#f8fafc]"
-              style={{ width: LABEL_W }}
-            />
-            {/* Ruler */}
-            <div className="flex-1">
-              <TimeRuler totalDuration={totalDuration} />
-            </div>
-          </div>
+          {/* Ruler + tracks (shared relative container for playhead) */}
+          <div className="relative">
+            {/* Playhead — spans ruler + all tracks */}
+            {totalDuration > 0 && (
+              <div
+                className="pointer-events-none absolute top-0 bottom-0 z-10 w-[2px] bg-[#007aff] opacity-80"
+                style={{
+                  left: `calc(${LABEL_W}px + (100% - ${LABEL_W}px) * ${currentTime / totalDuration})`,
+                }}
+              >
+                {/* Small triangle at top */}
+                <div className="absolute -top-0 left-1/2 -translate-x-1/2 border-x-[5px] border-b-[6px] border-x-transparent border-b-[#007aff]" />
+              </div>
+            )}
 
-          {/* Tracks */}
-          <div className="border-t border-[#e2e8f0]">
-            <Track label="Narration"     type="Narration"     clips={narrationClips} totalDuration={totalDuration} />
-            <Track label="Ambient"       type="Ambient"       clips={ambientClips}   totalDuration={totalDuration} />
-            <Track label="Sound Effects" type="Sound effects" clips={sfxClips}        totalDuration={totalDuration} />
+            {/* Ruler row */}
+            <div className="flex">
+              <div
+                className="shrink-0 border-r border-[#e2e8f0] bg-[#f8fafc]"
+                style={{ width: LABEL_W }}
+              />
+              <div className="flex-1">
+                <TimeRuler totalDuration={totalDuration} />
+              </div>
+            </div>
+
+            {/* Tracks */}
+            <div className="border-t border-[#e2e8f0]">
+              <Track label="Narration"     type="Narration"     clips={narrationClips} totalDuration={totalDuration} />
+              <Track label="Ambient"       type="Ambient"       clips={ambientClips}   totalDuration={totalDuration} />
+              <Track label="Sound Effects" type="Sound effects" clips={sfxClips}        totalDuration={totalDuration} />
+            </div>
           </div>
         </div>
 
