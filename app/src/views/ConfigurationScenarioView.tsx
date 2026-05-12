@@ -104,6 +104,31 @@ export function ConfigurationScenarioView() {
     }
   }, [projectName, lastProjectName, setProjectName]);
 
+  // Keep window.__scenarioPrompts in sync so ChatPanel can read prompt values
+  useEffect(() => {
+    (window as Window & { __scenarioPrompts?: string[] }).__scenarioPrompts = scenarios.map((s) => s.prompt);
+    return () => {
+      (window as Window & { __scenarioPrompts?: string[] }).__scenarioPrompts = undefined;
+    };
+  }, [scenarios]);
+
+  // Listen for scenario-prompt-updated events dispatched by the chat agent tool
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { scenario_index, action, content } = (e as CustomEvent<{ scenario_index: number; action: "replace" | "append"; content: string }>).detail;
+      const idx = scenario_index ?? 0;
+      setScenarios((prev) =>
+        prev.map((s, i) =>
+          i === idx
+            ? { ...s, prompt: action === "replace" ? content : s.prompt + (s.prompt ? "\n" : "") + content }
+            : s
+        )
+      );
+    };
+    window.addEventListener("scenario-prompt-updated", handler);
+    return () => window.removeEventListener("scenario-prompt-updated", handler);
+  }, []);
+
   useEffect(() => {
     if (!projectProfileQuery.data) return;
     const selectedAudience = projectProfileQuery.data.audience ?? audienceOptions[0] ?? "Sélectionnez";

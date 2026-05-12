@@ -757,6 +757,62 @@ TOOLS = [
         },
         "required": ["voice_file", "background_file"]
         }
+    },
+    {
+        "name": "update_prompt_field",
+        "description": "Met à jour le champ 'prompt' d'un scénario dans le formulaire de configuration visible sur la page. Utilise cet outil chaque fois que l'utilisateur demande de générer, compléter, améliorer, corriger, raccourcir ou traduire le contenu d'un prompt de scénario. Ne mets JAMAIS le texte dans le chat — applique-le directement via cet outil.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "enum": ["replace", "append"],
+                    "description": "replace : remplace entièrement le contenu. append : ajoute à la suite du texte existant."
+                },
+                "content": {
+                    "type": "string",
+                    "description": "Le texte à injecter dans le champ prompt."
+                },
+                "scenario_index": {
+                    "type": "integer",
+                    "description": "Index du scénario à modifier (0 = premier, 1 = deuxième, etc.). Défaut : 0.",
+                    "default": 0
+                }
+            },
+            "required": ["action", "content"]
+        }
+    },
+    {
+        "name": "update_tagged_scenario",
+        "description": "Modifie le texte balisé du scénario sur la page d'édition (edition_text). Utilise cet outil pour : supprimer un paragraphe, modifier le texte d'un paragraphe, ajouter/supprimer des balises de respiration ou d'effet sonore, renuméroter les paragraphes. Renvoie la liste COMPLÈTE et mise à jour de tous les paragraphes. Ne mets JAMAIS le texte modifié dans le chat — applique-le directement via cet outil.\n\nFormat des balises dans taggedText :\n- Effet sonore : {nom_fichier.wav}\n- Respiration/pause : [pause 2s] ou [silence 1.5s]\n- Instruction voix : [ton grave] [murmure] [ralentissement] etc.\n\nRègle suppression : quand tu supprimes un paragraphe, recalcule les partie_id pour qu'ils restent consécutifs à partir de 1.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "paragraphs": {
+                    "type": "array",
+                    "description": "Liste COMPLÈTE des paragraphes mis à jour (tous les paragraphes, pas seulement ceux modifiés).",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "partie_id": {
+                                "type": "integer",
+                                "description": "Numéro du paragraphe (1, 2, 3…). Doit être consécutif."
+                            },
+                            "titre": {
+                                "type": "string",
+                                "description": "Titre du paragraphe."
+                            },
+                            "taggedText": {
+                                "type": "string",
+                                "description": "Texte complet du paragraphe avec les balises inline."
+                            }
+                        },
+                        "required": ["partie_id", "titre", "taggedText"]
+                    }
+                }
+            },
+            "required": ["paragraphs"]
+        }
     }
 ]
 
@@ -927,15 +983,15 @@ def execute_tool(tool_name: str, tool_input: dict):
     elif tool_name == "list_voice_options":
         return {
             "voices": [
-                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Voix 1", "description": "Paul K — homme français, voix grave et chaleureuse, accent parisien neutre, idéal pour narration documentaire et audiobooks"},
-                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Voix 2", "description": "Jessica — femme américaine, voix expressive et dramatique, idéale pour personnages et animation"},
-                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Voix 3", "description": "Vincent — homme, voix fluide et expressive, idéale pour narration et publicité"},
-                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Voix 4", "description": "Grandpa Spuds — homme âgé américain, ton de grand-père conteur, idéal pour récits et histoires"},
-                {"id": "jUHQdLfy668sllNiNTSW", "label": "Voix 5", "description": "Clément — homme français parisien, ton calme et clair, idéal pour audioguides et narration neutre"},
-                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Voix 6", "description": "Gaëlle — femme française, voix chaleureuse et claire, idéale pour audiobooks, contes et jeux vidéo"},
-                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Voix 7", "description": "Souni — femme française jeune, voix douce et apaisante, idéale pour conversation ou narration"},
-                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Voix 8", "description": "Koraly — femme française, accent parisien, voix captivante et immersive, idéale pour audioguides de musées et expositions"},
-                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Voix 9", "description": "Koraly Storyteller — femme française, voix expressive et enveloppante, idéale pour audiobooks et storytelling long"},
+                {"id": "5l4ttmr4SKNgi0HnOelT", "label": "Paul K", "description": "Paul K — homme français, voix grave et chaleureuse, accent parisien neutre, idéal pour narration documentaire et audiobooks"},
+                {"id": "flHkNRp1BlvT73UL6gyz", "label": "Jessica Anne Bogart", "description": "Jessica Anne Bogart — femme américaine, voix expressive et dramatique, idéale pour personnages et animation"},
+                {"id": "jK7dAsiVAhbApIS8KkWB", "label": "Vincent (JC)", "description": "Vincent (JC) — homme, voix fluide et expressive, idéale pour narration et publicité"},
+                {"id": "NOpBlnGInO9m6vDvFkFC", "label": "Grandpa Spuds Oxley", "description": "Grandpa Spuds Oxley — homme âgé américain, ton de grand-père conteur, idéal pour récits et histoires"},
+                {"id": "jUHQdLfy668sllNiNTSW", "label": "Clément", "description": "Clément — homme français parisien, ton calme et clair, idéal pour audioguides et narration neutre"},
+                {"id": "tKaoyJLW05zqV0tIH9FD", "label": "Gaëlle", "description": "Gaëlle — femme française, voix chaleureuse et claire, idéale pour audiobooks, contes et jeux vidéo"},
+                {"id": "T4BwQ2ZwlS2BbHIfci4H", "label": "Souni", "description": "Souni — femme française jeune, voix douce et apaisante, idéale pour conversation ou narration"},
+                {"id": "GYzIdoKkRyANjBvkKYfO", "label": "Koraly", "description": "Koraly — femme française, accent parisien, voix captivante et immersive, idéale pour audioguides de musées et expositions"},
+                {"id": "TojRWZatQyy9dujEdiQ1", "label": "Koraly (Storyteller)", "description": "Koraly (Storyteller) — femme française, voix expressive et enveloppante, idéale pour audiobooks et storytelling long"},
             ]
         }
     elif tool_name == "select_voice":
@@ -986,6 +1042,18 @@ def execute_tool(tool_name: str, tool_input: dict):
         return project_config_builder_skill.run(tool_input)
     elif tool_name == "generate_historical_scenario":
         return scenario_maker_skill.run(tool_input)
+    elif tool_name == "update_prompt_field":
+        return {
+            "status": "ok",
+            "action": tool_input["action"],
+            "content": tool_input["content"],
+            "scenario_index": tool_input.get("scenario_index", 0),
+        }
+    elif tool_name == "update_tagged_scenario":
+        return {
+            "status": "ok",
+            "paragraphs": tool_input["paragraphs"],
+        }
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
 

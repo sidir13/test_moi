@@ -102,6 +102,26 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           if (payload.tool === "transcribe_audio" || payload.tool === "save_analysis_result") {
             window.dispatchEvent(new Event("transcription-updated"));
           }
+          if (payload.tool === "update_prompt_field") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              if (res?.status === "ok") {
+                window.dispatchEvent(new CustomEvent("scenario-prompt-updated", {
+                  detail: { scenario_index: res.scenario_index ?? 0, action: res.action, content: res.content }
+                }));
+              }
+            } catch { /* ignore parse errors */ }
+          }
+          if (payload.tool === "update_tagged_scenario") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              if (res?.status === "ok" && Array.isArray(res.paragraphs)) {
+                window.dispatchEvent(new CustomEvent("tagged-scenario-updated", {
+                  detail: { paragraphs: res.paragraphs }
+                }));
+              }
+            } catch { /* ignore parse errors */ }
+          }
         } else if (payload.type === "error") {
           setMessages((prev) => [
             ...prev,
@@ -130,7 +150,10 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
     const message = input.trim();
     setMessages((prev) => [...prev, { role: "user", content: message }]);
     const currentNotes = (window as Window & { __projectNotes?: string }).__projectNotes;
-    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined }));
+    const scenarioPrompts = (window as Window & { __scenarioPrompts?: string[] }).__scenarioPrompts;
+    const taggedParagraphs = (window as Window & { __taggedParagraphs?: unknown[] }).__taggedParagraphs;
+    const ttsProvider = (window as Window & { __ttsProvider?: string }).__ttsProvider;
+    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined, scenario_prompts: scenarioPrompts || undefined, tagged_paragraphs: taggedParagraphs || undefined, tts_provider: ttsProvider || undefined }));
     setInput("");
   };
 
