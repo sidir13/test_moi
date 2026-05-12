@@ -3,9 +3,10 @@
     "Qwen_tts_a-mature-contemplative-narrato_20260204T092112Z.wav"
   ],
   "backgrounds": {
-    "ambient": "data/audio/background_sounds/histoire-secondaire/audio.wav",
+    "ambient": "data/audio/background_sounds/scottishperson-sound-effect-cat-chattering-and-meowing-282900/scottishperson-sound-effect-cat-chattering-and-meowing-282900.mp3",
     "punctual": [
-      "data/audio/background_sounds/scottishperson-sound-effect-cat-chattering-and-meowing-282900/scottishperson-sound-effect-cat-chattering-and-meowing-282900.mp3"
+      "data/audio/background_sounds/alice-soundz-storm-lightning-and-thunder-sound-effect-224176/alice_soundz-storm-lightning-and-thunder-sound-effect-224176.mp3",
+      "data/audio/background_sounds/freesound-community-demon-pig-104996/freesound_community-demon-pig-104996.mp3"
     ]
   },
   "auto_backgrounds": false,

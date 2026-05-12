@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -35,7 +35,13 @@ import {
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-// ─── AudioClip ───────────────────────────────────────────────────────────────
+// ─── Constants ───────────────────────────────────────────────────────────────
+
+const PX_PER_SEC  = 15;
+const LABEL_W     = 160;
+const SFX_CLIP_DUR = 15; // default SFX clip duration in seconds
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type ClipVariant = "Story" | "Ambient" | "Effet sonore" | "Ajouter";
 
@@ -43,10 +49,13 @@ type Clip = {
   id: string;
   label: string;
   variant: ClipVariant;
-  start: number;
-  end: number;
+  start: number; // seconds
+  end: number;   // seconds
   onClick?: () => void;
+  onDragStart?: (e: React.MouseEvent) => void;
 };
+
+// ─── Styles ───────────────────────────────────────────────────────────────────
 
 const CLIP_STYLES: Record<ClipVariant, { bg: string; border: string; text: string; dashed?: boolean }> = {
   Story:           { bg: "#eff6ff",     border: "#007aff", text: "#007aff" },
@@ -55,34 +64,37 @@ const CLIP_STYLES: Record<ClipVariant, { bg: string; border: string; text: strin
   Ajouter:         { bg: "transparent", border: "#c8009c", text: "#c8009c", dashed: true },
 };
 
+// ─── AudioClip ───────────────────────────────────────────────────────────────
+
 type AudioClipProps = {
   label: string;
   variant: ClipVariant;
-  start: number;
-  end: number;
-  totalDuration: number;
+  startPx: number;
+  widthPx: number;
   onClick?: () => void;
+  onDragStart?: (e: React.MouseEvent) => void;
 };
 
-function AudioClip({ label, variant, start, end, totalDuration, onClick }: AudioClipProps) {
+function AudioClip({ label, variant, startPx, widthPx, onClick, onDragStart }: AudioClipProps) {
   const { bg, border, text, dashed } = CLIP_STYLES[variant];
-  const leftPct = (start / totalDuration) * 100;
-  const widthPct = Math.max(((end - start) / totalDuration) * 100, 0);
+  const isDraggable = Boolean(onDragStart);
 
   return (
     <div
       className="absolute top-[5px] h-[58px] rounded-[6px] flex items-center gap-2 px-3 overflow-hidden select-none"
       style={{
-        left: `${leftPct}%`,
-        width: `${widthPct}%`,
+        left: startPx,
+        width: Math.max(widthPx, 36),
         backgroundColor: bg,
         border: `1px ${dashed ? "dashed" : "solid"} ${border}`,
         color: text,
-        minWidth: 36,
-        cursor: onClick ? "pointer" : undefined,
+        cursor: isDraggable ? "grab" : onClick ? "pointer" : undefined,
       }}
-      onClick={onClick}
-      onMouseDown={onClick ? (e) => e.stopPropagation() : undefined}
+      onClick={!isDraggable ? onClick : undefined}
+      onMouseDown={(e) => {
+        if (onDragStart || onClick) e.stopPropagation();
+        if (onDragStart) onDragStart(e);
+      }}
     >
       {variant === "Ajouter" ? (
         <span className="flex items-center gap-1 text-[13px] font-normal whitespace-nowrap">
@@ -106,61 +118,37 @@ function TimeRuler({ totalDuration }: { totalDuration: number }) {
   for (let t = 0; t <= totalDuration; t += step) markers.push(t);
 
   return (
-    <div className="relative h-[28px] w-full border-b border-[#e2e8f0] bg-[#f8fafc]">
-      {markers.map((t) => {
-        const pct = (t / totalDuration) * 100;
-        return (
-          <div
-            key={t}
-            className="absolute flex flex-col items-center"
-            style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
-          >
-            <div className="w-px h-[6px] bg-[#cbd5e1]" />
-            <span className="text-[10px] text-[#94a3b8] mt-0.5 whitespace-nowrap">{t}s</span>
-          </div>
-        );
-      })}
+    <div className="relative h-[28px] border-b border-[#e2e8f0] bg-[#f8fafc]">
+      {markers.map((t) => (
+        <div
+          key={t}
+          className="absolute flex flex-col items-center"
+          style={{ left: t * PX_PER_SEC, transform: "translateX(-50%)" }}
+        >
+          <div className="w-px h-[6px] bg-[#cbd5e1]" />
+          <span className="text-[10px] text-[#94a3b8] mt-0.5 whitespace-nowrap">{t}s</span>
+        </div>
+      ))}
     </div>
   );
 }
 
-// ─── Track ───────────────────────────────────────────────────────────────────
+// ─── TrackContent ─────────────────────────────────────────────────────────────
 
-const LABEL_W = 160;
-
-function Track({
-  label,
-  type,
-  clips,
-  totalDuration,
-}: {
-  label: string;
-  type: string;
-  clips: Clip[];
-  totalDuration: number;
-}) {
+function TrackContent({ clips }: { clips: Clip[] }) {
   return (
-    <div className="flex h-[68px] border-b border-[#e2e8f0] last:border-b-0">
-      <div
-        className="shrink-0 flex flex-col justify-center px-4 border-r border-[#e2e8f0] bg-[#f8fafc]"
-        style={{ width: LABEL_W }}
-      >
-        <span className="text-[13px] font-semibold text-[#0f172b] leading-tight">{label}</span>
-        <span className="text-[11px] text-[#94a3b8] leading-tight mt-0.5">{type}</span>
-      </div>
-      <div className="relative flex-1 overflow-hidden bg-white">
-        {clips.map((clip) => (
-          <AudioClip
-            key={clip.id}
-            label={clip.label}
-            variant={clip.variant}
-            start={clip.start}
-            end={clip.end}
-            totalDuration={totalDuration}
-            onClick={clip.onClick}
-          />
-        ))}
-      </div>
+    <div className="relative h-[68px] border-b border-[#e2e8f0] last:border-b-0 bg-white">
+      {clips.map((clip) => (
+        <AudioClip
+          key={clip.id}
+          label={clip.label}
+          variant={clip.variant}
+          startPx={clip.start * PX_PER_SEC}
+          widthPx={Math.max((clip.end - clip.start) * PX_PER_SEC, 36)}
+          onClick={clip.onClick}
+          onDragStart={clip.onDragStart}
+        />
+      ))}
     </div>
   );
 }
@@ -289,6 +277,10 @@ function ImportSoundModal({
   );
 }
 
+// ─── SFX position state ───────────────────────────────────────────────────────
+
+type SfxPos = { startSec: number; durationSec: number };
+
 // ─── Main view ────────────────────────────────────────────────────────────────
 
 export function ScenarioEditView() {
@@ -308,14 +300,24 @@ export function ScenarioEditView() {
   const [isGenerating, setIsGenerating]     = useState(false);
   const [isRemixing, setIsRemixing]         = useState(false);
   const [statusMsg, setStatusMsg]           = useState<string | null>(null);
-  const [isDragging, setIsDragging]         = useState(false);
+  const [isScrubbingTimeline, setIsScrubbingTimeline] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [playingPreview, setPlayingPreview] = useState<string | null>(null);
 
-  const audioRef        = useRef<HTMLAudioElement | null>(null);
-  const timelineRef     = useRef<HTMLDivElement | null>(null);
-  const wasPlayingRef   = useRef(false);
-  const previewAudioRef = useRef<HTMLAudioElement | null>(null);
+  // SFX draggable positions
+  const [sfxPositions, setSfxPositions]     = useState<Record<string, SfxPos>>({});
+  const [clipDrag, setClipDrag]             = useState<{
+    path: string;
+    origStartSec: number;
+    origMouseX: number;
+  } | null>(null);
+
+  const audioRef          = useRef<HTMLAudioElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const wasPlayingRef     = useRef(false);
+  const previewAudioRef   = useRef<HTMLAudioElement | null>(null);
+
+  // ── Queries ──────────────────────────────────────────────────────────────
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
@@ -349,8 +351,7 @@ export function ScenarioEditView() {
 
   const audioSrc = useMemo(() => {
     if (!sessionId || !audioReady || !audioQuery.data?.path) return null;
-    const base = getScenarioAudioUrl(sessionId).replace(/\/$/, "");
-    return `${base}?k=${audioKey}`;
+    return `${getScenarioAudioUrl(sessionId)}?k=${audioKey}`;
   }, [audioQuery.data, sessionId, audioReady, audioKey]);
 
   useEffect(() => {
@@ -360,14 +361,38 @@ export function ScenarioEditView() {
     else el.pause();
   }, [isPlaying]);
 
+  // Auto-scroll playhead into view during playback
+  useEffect(() => {
+    if (!isPlaying || !scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const playheadPx = currentTime * PX_PER_SEC;
+    const { scrollLeft, clientWidth } = container;
+    if (playheadPx > scrollLeft + clientWidth - 80 || playheadPx < scrollLeft + 20) {
+      container.scrollLeft = Math.max(0, playheadPx - clientWidth / 2);
+    }
+  }, [currentTime, isPlaying]);
+
   const totalDuration = audioDuration ?? 60;
+  const timelineWidth = Math.max(totalDuration * PX_PER_SEC, 700);
 
   // Derived audio selection state
-  const ambientPath    = audioSelectionQuery.data?.backgrounds?.ambient ?? null;
-  const punctualPaths  = audioSelectionQuery.data?.backgrounds?.punctual ?? [];
-  const allSounds      = soundsQuery.data ?? [];
+  const ambientPath   = audioSelectionQuery.data?.backgrounds?.ambient ?? null;
+  const punctualPaths = audioSelectionQuery.data?.backgrounds?.punctual ?? [];
+  const allSounds     = soundsQuery.data ?? [];
 
-  // Narration clips from scenario parts
+  // Initialise SFX positions when punctualPaths changes
+  useEffect(() => {
+    setSfxPositions((prev) => {
+      const next: Record<string, SfxPos> = {};
+      punctualPaths.forEach((path, i) => {
+        next[path] = prev[path] ?? { startSec: i * (SFX_CLIP_DUR + 5), durationSec: SFX_CLIP_DUR };
+      });
+      return next;
+    });
+  }, [punctualPaths]);
+
+  // ── Clips ────────────────────────────────────────────────────────────────
+
   const narrationClips = useMemo((): Clip[] => {
     if (!selectionQuery.data) {
       return [{ id: "n0", label: "Story", variant: "Story", start: 0, end: totalDuration }];
@@ -377,11 +402,9 @@ export function ScenarioEditView() {
     const parts = Array.isArray(payload.parties)
       ? (payload.parties as Array<Record<string, unknown>>)
       : null;
-
     if (!parts || parts.length === 0) {
       return [{ id: "n0", label: "Story", variant: "Story", start: 0, end: totalDuration }];
     }
-
     const texts = parts.map((p) => ((p.texte_narration ?? p.texte) as string) ?? "");
     const totalChars = texts.reduce((sum, t) => sum + t.length, 0) || 1;
     let cursor = 0;
@@ -408,41 +431,38 @@ export function ScenarioEditView() {
     return [{ id: "amb0", label: soundName, variant: "Ambient", start: 0, end: totalDuration }];
   }, [ambientPath, totalDuration, allSounds]);
 
-  const sfxClips = useMemo((): Clip[] => {
-    const clips: Clip[] = [];
-    const slotW = 0.18 * totalDuration;
-    const gap   = 0.05 * totalDuration;
+  // SFX clips computed at render (not memoized — needs fresh drag handlers)
+  const sfxClips: Clip[] = [];
+  for (let i = 0; i < Math.min(punctualPaths.length, 3); i++) {
+    const path = punctualPaths[i];
+    const pos  = sfxPositions[path] ?? { startSec: i * (SFX_CLIP_DUR + 5), durationSec: SFX_CLIP_DUR };
+    const name =
+      allSounds.find((s) => s.path === path)?.name ??
+      path.split("/").pop()?.replace(/\.[^.]+$/, "") ??
+      `SFX ${i + 1}`;
+    sfxClips.push({
+      id: `sfx-${i}`,
+      label: name,
+      variant: "Effet sonore",
+      start: pos.startSec,
+      end: pos.startSec + pos.durationSec,
+      onDragStart: (e) => handleSfxDragStart(path, pos.startSec, e),
+    });
+  }
+  if (punctualPaths.length < 3) {
+    const i = punctualPaths.length;
+    sfxClips.push({
+      id: "sfx-add",
+      label: "Ajouter un effet sonore",
+      variant: "Ajouter",
+      start: i * (SFX_CLIP_DUR + 5),
+      end: i * (SFX_CLIP_DUR + 5) + SFX_CLIP_DUR,
+      onClick: () => setShowImportModal(true),
+    });
+  }
 
-    for (let i = 0; i < Math.min(punctualPaths.length, 3); i++) {
-      const name =
-        allSounds.find((s) => s.path === punctualPaths[i])?.name ??
-        punctualPaths[i].split("/").pop()?.replace(/\.[^.]+$/, "") ??
-        `SFX ${i + 1}`;
-      const start = i * (slotW + gap);
-      clips.push({
-        id: `sfx${i}`,
-        label: name,
-        variant: "Effet sonore",
-        start,
-        end: Math.min(start + slotW, totalDuration),
-      });
-    }
-    if (punctualPaths.length < 3) {
-      const i = punctualPaths.length;
-      const start = i * (slotW + gap);
-      clips.push({
-        id: "sfx-add",
-        label: "Ajouter un effet sonore",
-        variant: "Ajouter",
-        start,
-        end: Math.min(start + slotW, totalDuration),
-        onClick: () => setShowImportModal(true),
-      });
-    }
-    return clips;
-  }, [punctualPaths, totalDuration, allSounds]);
+  // ── Gallery ───────────────────────────────────────────────────────────────
 
-  // Gallery data
   const categories = useMemo(() => {
     const cats = new Set(allSounds.map((s) => s.category).filter(Boolean) as string[]);
     return Array.from(cats);
@@ -485,9 +505,7 @@ export function ScenarioEditView() {
     }
   };
 
-  useEffect(() => {
-    return () => { previewAudioRef.current?.pause(); };
-  }, []);
+  useEffect(() => { return () => { previewAudioRef.current?.pause(); }; }, []);
 
   // ── Remix helpers ─────────────────────────────────────────────────────────
 
@@ -503,7 +521,7 @@ export function ScenarioEditView() {
     }
   };
 
-  const selectAmbient = async (soundPath: string | null) => {
+  const selectAmbient = async (soundPath: string) => {
     if (!sessionId || !resolvedProjectName) return;
     const current = audioSelectionQuery.data;
     const newPath = ambientPath === soundPath ? null : soundPath;
@@ -537,35 +555,105 @@ export function ScenarioEditView() {
     await triggerRemix();
   };
 
-  // ── Scrubbing ─────────────────────────────────────────────────────────────
+  const removeSfx = async (soundPath: string) => {
+    if (!sessionId || !resolvedProjectName) return;
+    const current = audioSelectionQuery.data;
+    const newPunctual = (current?.backgrounds?.punctual ?? []).filter((p) => p !== soundPath);
+    setSfxPositions((prev) => {
+      const next = { ...prev };
+      delete next[soundPath];
+      return next;
+    });
+    await saveAudioSelection(sessionId, {
+      project_name: resolvedProjectName,
+      voices: current?.voices ?? [],
+      backgrounds: { ambient: current?.backgrounds?.ambient ?? null, punctual: newPunctual },
+      auto_backgrounds: current?.auto_backgrounds ?? false,
+      tts_voice_id: current?.tts_voice_id,
+      tts_provider: current?.tts_provider,
+    });
+    queryClient.invalidateQueries({ queryKey: ["audio-selection", sessionId] });
+    await triggerRemix();
+  };
 
-  const computeTimeFromMouseX = (clientX: number): number => {
-    if (!timelineRef.current) return 0;
-    const rect = timelineRef.current.getBoundingClientRect();
-    const clipWidth = rect.width - LABEL_W;
-    const x = Math.max(0, Math.min(clipWidth, clientX - rect.left - LABEL_W));
-    return (x / clipWidth) * totalDuration;
+  const toggleSfx = (soundPath: string) => {
+    if (punctualPaths.includes(soundPath)) removeSfx(soundPath);
+    else addSfx(soundPath);
+  };
+
+  // ── SFX clip dragging ─────────────────────────────────────────────────────
+
+  const handleSfxDragStart = useCallback(
+    (path: string, startSec: number, e: React.MouseEvent) => {
+      e.stopPropagation();
+      setClipDrag({ path, origStartSec: startSec, origMouseX: e.clientX });
+    },
+    [],
+  );
+
+  // Cursor during clip drag
+  useEffect(() => {
+    if (clipDrag) {
+      document.body.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
+    } else {
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    }
+    return () => {
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+  }, [clipDrag]);
+
+  useEffect(() => {
+    if (!clipDrag) return;
+    const durSec = sfxPositions[clipDrag.path]?.durationSec ?? SFX_CLIP_DUR;
+    const onMove = (e: MouseEvent) => {
+      const dx = e.clientX - clipDrag.origMouseX;
+      const newStart = Math.max(0, clipDrag.origStartSec + dx / PX_PER_SEC);
+      setSfxPositions((prev) => ({
+        ...prev,
+        [clipDrag.path]: { ...prev[clipDrag.path], startSec: newStart, durationSec: durSec },
+      }));
+    };
+    const onUp = () => setClipDrag(null);
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+    return () => {
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clipDrag]);
+
+  // ── Timeline scrubbing ────────────────────────────────────────────────────
+
+  const computeTimeFromScrollX = (clientX: number): number => {
+    const scrollLeft = scrollContainerRef.current?.scrollLeft ?? 0;
+    const rect       = scrollContainerRef.current?.getBoundingClientRect();
+    if (!rect) return 0;
+    const x = clientX - rect.left + scrollLeft;
+    return Math.max(0, Math.min(totalDuration, x / PX_PER_SEC));
   };
 
   const handleTimelineMouseDown = (e: React.MouseEvent) => {
-    if (!audioSrc) return;
-    if (e.clientX - (timelineRef.current?.getBoundingClientRect().left ?? 0) < LABEL_W) return;
+    if (!audioSrc || clipDrag) return;
     wasPlayingRef.current = isPlaying;
     audioRef.current?.pause();
     setIsPlaying(false);
-    setIsDragging(true);
-    const t = computeTimeFromMouseX(e.clientX);
-    setCurrentTime(t);
+    setIsScrubbingTimeline(true);
+    setCurrentTime(computeTimeFromScrollX(e.clientX));
   };
 
   useEffect(() => {
-    if (!isDragging) return;
-    const onMove = (e: MouseEvent) => setCurrentTime(computeTimeFromMouseX(e.clientX));
+    if (!isScrubbingTimeline) return;
+    const onMove = (e: MouseEvent) => setCurrentTime(computeTimeFromScrollX(e.clientX));
     const onUp = (e: MouseEvent) => {
-      const t = computeTimeFromMouseX(e.clientX);
+      const t = computeTimeFromScrollX(e.clientX);
       setCurrentTime(t);
       if (audioRef.current) audioRef.current.currentTime = t;
-      setIsDragging(false);
+      setIsScrubbingTimeline(false);
       if (wasPlayingRef.current) {
         audioRef.current?.play().catch(() => {});
         setIsPlaying(true);
@@ -578,7 +666,9 @@ export function ScenarioEditView() {
       document.removeEventListener("mouseup", onUp);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDragging, totalDuration]);
+  }, [isScrubbingTimeline, totalDuration]);
+
+  // ── Validate ──────────────────────────────────────────────────────────────
 
   const handleValidate = async () => {
     if (!sessionId) return;
@@ -599,6 +689,14 @@ export function ScenarioEditView() {
 
   if (!sessionId) return null;
 
+  // ── Track label rows ──────────────────────────────────────────────────────
+
+  const TRACK_LABELS = [
+    { label: "Narration",     type: "Narration" },
+    { label: "Ambient",       type: "Ambient" },
+    { label: "Sound Effects", type: "Sound effects" },
+  ];
+
   return (
     <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-4">
 
@@ -616,11 +714,10 @@ export function ScenarioEditView() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col">
 
           {/* Action bar */}
           <div className="flex items-center justify-between px-5 py-3 border-b border-[#e2e8f0]">
-            {/* Left: transport controls + time + volume */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1">
                 <button
@@ -640,8 +737,7 @@ export function ScenarioEditView() {
                 >
                   {isPlaying
                     ? <Square className="h-3.5 w-3.5 fill-current" />
-                    : <Play className="h-3.5 w-3.5 fill-current" />
-                  }
+                    : <Play className="h-3.5 w-3.5 fill-current" />}
                 </button>
               </div>
 
@@ -659,7 +755,6 @@ export function ScenarioEditView() {
               </div>
             </div>
 
-            {/* Right: indicators + buttons */}
             <div className="flex items-center gap-2">
               {(isAudioProcessing || isRemixing) && (
                 <span className="flex items-center gap-1 text-[12px] text-[#64748b]">
@@ -688,43 +783,51 @@ export function ScenarioEditView() {
             </div>
           </div>
 
-          {/* Ruler + tracks (shared relative container for playhead) */}
-          <div
-            ref={timelineRef}
-            className="relative"
-            onMouseDown={handleTimelineMouseDown}
-            style={{ cursor: audioSrc ? "col-resize" : "default" }}
-          >
-            {/* Playhead — spans ruler + all tracks */}
-            {totalDuration > 0 && (
-              <div
-                className="absolute top-0 bottom-0 z-10 w-[2px] bg-[#007aff] opacity-80 select-none"
-                style={{
-                  left: `calc(${LABEL_W}px + (100% - ${LABEL_W}px) * ${currentTime / totalDuration})`,
-                  cursor: "col-resize",
-                  userSelect: "none",
-                }}
-              >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 border-x-[5px] border-b-[6px] border-x-transparent border-b-[#007aff]" />
-              </div>
-            )}
+          {/* Timeline: fixed labels column + scrollable clip area */}
+          <div className="flex border-t border-[#e2e8f0]">
 
-            {/* Ruler row */}
-            <div className="flex">
-              <div
-                className="shrink-0 border-r border-[#e2e8f0] bg-[#f8fafc]"
-                style={{ width: LABEL_W }}
-              />
-              <div className="flex-1">
-                <TimeRuler totalDuration={totalDuration} />
-              </div>
+            {/* Fixed labels column */}
+            <div className="shrink-0 z-20 border-r border-[#e2e8f0]" style={{ width: LABEL_W }}>
+              {/* Ruler placeholder row */}
+              <div className="h-[28px] bg-[#f8fafc] border-b border-[#e2e8f0]" />
+              {/* Track labels */}
+              {TRACK_LABELS.map(({ label, type }) => (
+                <div
+                  key={label}
+                  className="h-[68px] flex flex-col justify-center px-4 border-b border-[#e2e8f0] bg-[#f8fafc] last:border-b-0"
+                >
+                  <span className="text-[13px] font-semibold text-[#0f172b] leading-tight">{label}</span>
+                  <span className="text-[11px] text-[#94a3b8] leading-tight mt-0.5">{type}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Tracks */}
-            <div className="border-t border-[#e2e8f0]">
-              <Track label="Narration"     type="Narration"     clips={narrationClips} totalDuration={totalDuration} />
-              <Track label="Ambient"       type="Ambient"       clips={ambientClips}   totalDuration={totalDuration} />
-              <Track label="Sound Effects" type="Sound effects" clips={sfxClips}        totalDuration={totalDuration} />
+            {/* Scrollable clip area */}
+            <div
+              ref={scrollContainerRef}
+              className="overflow-x-auto flex-1 relative"
+              onMouseDown={handleTimelineMouseDown}
+              style={{ cursor: clipDrag ? "grabbing" : audioSrc ? "col-resize" : "default" }}
+            >
+              {/* Playhead */}
+              {totalDuration > 0 && (
+                <div
+                  className="absolute top-0 bottom-0 z-10 w-[2px] bg-[#007aff] opacity-80 pointer-events-none select-none"
+                  style={{ left: currentTime * PX_PER_SEC }}
+                >
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 border-x-[5px] border-b-[6px] border-x-transparent border-b-[#007aff]" />
+                </div>
+              )}
+
+              {/* Wide inner content */}
+              <div style={{ width: timelineWidth }}>
+                <TimeRuler totalDuration={totalDuration} />
+                <div className="border-t border-[#e2e8f0]">
+                  <TrackContent clips={narrationClips} />
+                  <TrackContent clips={ambientClips} />
+                  <TrackContent clips={sfxClips} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -813,7 +916,6 @@ export function ScenarioEditView() {
 
         {/* Search + list */}
         <div className="flex flex-col gap-0">
-          {/* Search bar */}
           <div className="flex items-center gap-2 border-b border-[#e2e8f0] px-5 py-2.5">
             <Search className="h-4 w-4 shrink-0 text-[#94a3b8]" />
             <input
@@ -825,11 +927,8 @@ export function ScenarioEditView() {
             />
           </div>
 
-          {/* List + optional category panel */}
           <div className="relative flex">
-            {/* Sound list */}
             <div className="flex-1">
-              {/* Column headers */}
               <div className="flex items-center justify-between px-5 py-2 border-b border-[#e2e8f0] bg-[#f8fafc]">
                 <button
                   type="button"
@@ -856,9 +955,9 @@ export function ScenarioEditView() {
                 <div className="divide-y divide-[#e2e8f0]">
                   {filteredSounds.map((sound) => {
                     const isAmbientSelected = ambientPath === sound.path;
-                    const isSfxSelected    = punctualPaths.includes(sound.path);
-                    const isSelected       = activeTab === "Sons ambiants" ? isAmbientSelected : isSfxSelected;
-                    const isPreviewing     = playingPreview === sound.path;
+                    const isSfxSelected     = punctualPaths.includes(sound.path);
+                    const isSelected        = activeTab === "Sons ambiants" ? isAmbientSelected : isSfxSelected;
+                    const isPreviewing      = playingPreview === sound.path;
 
                     return (
                       <div
@@ -866,20 +965,14 @@ export function ScenarioEditView() {
                         role="button"
                         tabIndex={0}
                         onClick={() => {
-                          if (activeTab === "Sons ambiants") {
-                            selectAmbient(sound.path);
-                          } else {
-                            addSfx(sound.path);
-                          }
+                          if (activeTab === "Sons ambiants") selectAmbient(sound.path);
+                          else toggleSfx(sound.path);
                         }}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            if (activeTab === "Sons ambiants") {
-                              selectAmbient(sound.path);
-                            } else {
-                              addSfx(sound.path);
-                            }
+                            if (activeTab === "Sons ambiants") selectAmbient(sound.path);
+                            else toggleSfx(sound.path);
                           }
                         }}
                         className={`flex items-center justify-between px-5 py-2.5 cursor-pointer transition-colors hover:bg-[#f8fafc] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#007aff] ${
@@ -895,14 +988,11 @@ export function ScenarioEditView() {
                           >
                             {isPreviewing
                               ? <Pause className="h-3 w-3 fill-current" />
-                              : <Play className="h-3 w-3 fill-current" />
-                            }
+                              : <Play className="h-3 w-3 fill-current" />}
                           </button>
                           <span
                             className={`truncate text-[14px] ${
-                              isSelected
-                                ? "font-medium text-[#007aff]"
-                                : "font-normal text-[#0f172b]"
+                              isSelected ? "font-medium text-[#007aff]" : "font-normal text-[#0f172b]"
                             }`}
                           >
                             {sound.name}
@@ -918,7 +1008,6 @@ export function ScenarioEditView() {
               )}
             </div>
 
-            {/* Category filter panel */}
             {showCategories && categories.length > 0 && (
               <div className="w-[220px] shrink-0 border-l border-[#e2e8f0]">
                 <div className="border-b border-[#e2e8f0] px-4 py-2.5">
