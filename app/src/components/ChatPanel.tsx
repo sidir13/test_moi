@@ -152,7 +152,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
     const currentNotes = (window as Window & { __projectNotes?: string }).__projectNotes;
     const scenarioPrompts = (window as Window & { __scenarioPrompts?: string[] }).__scenarioPrompts;
     const taggedParagraphs = (window as Window & { __taggedParagraphs?: unknown[] }).__taggedParagraphs;
-    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined, scenario_prompts: scenarioPrompts || undefined, tagged_paragraphs: taggedParagraphs || undefined }));
+    const ttsProvider = (window as Window & { __ttsProvider?: string }).__ttsProvider;
+    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined, scenario_prompts: scenarioPrompts || undefined, tagged_paragraphs: taggedParagraphs || undefined, tts_provider: ttsProvider || undefined }));
     setInput("");
   };
 

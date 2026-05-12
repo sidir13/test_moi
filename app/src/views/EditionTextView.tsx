@@ -1,7 +1,7 @@
 ﻿import { useEffect } from "react";
 import { MessageSquarePlus, PencilLine, Play, Sparkles, Volume2, Loader2 } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchSelectedScenario, selectScenario } from "@/api/client";
+import { fetchSelectedScenario, selectScenario, fetchProjectProfile } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 
 type TaggedParagraph = { partie_id: number; titre: string; taggedText: string };
@@ -26,9 +26,9 @@ type KeyWordChipProps = {
   variant: "respiration" | "effet-sonore";
 };
 
-function parseTaggedText(text: string): ContentChunk[] {
+function parseTaggedText(text: string, hideEffetSonore = false): ContentChunk[] {
   const chunks: ContentChunk[] = [];
-  const regex = /(\{[^}]+\}|\[[^\]]+\])/g;
+  const regex = /(\ {[^}]+\}|\[[^\]]+\])/g;
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   while ((match = regex.exec(text)) !== null) {
@@ -37,7 +37,11 @@ function parseTaggedText(text: string): ContentChunk[] {
     }
     const tag = match[1];
     if (tag.startsWith("{")) {
-      chunks.push({ type: "tag", value: tag.slice(1, -1), variant: "effet-sonore" });
+      if (hideEffetSonore) {
+        chunks.push({ type: "text", value: tag });
+      } else {
+        chunks.push({ type: "tag", value: tag.slice(1, -1), variant: "effet-sonore" });
+      }
     } else {
       const inner = tag.slice(1, -1);
       if (/^(pause|silence|respiration)/i.test(inner)) {
@@ -97,8 +101,17 @@ function ParagraphBlock({ index, title, content }: ParagraphBlockProps) {
 }
 
 export function EditionScenario() {
-  const { sessionId } = useSessionStore();
+  const { sessionId, projectName } = useSessionStore();
   const queryClient = useQueryClient();
+
+  const profileQuery = useQuery({
+    queryKey: ["project-profile", projectName],
+    queryFn: () => fetchProjectProfile(projectName!),
+    enabled: Boolean(projectName),
+  });
+
+  const ttsProvider: "elevenlabs" | "qwen" =
+    profileQuery.data?.tts_provider === "qwen" ? "qwen" : "elevenlabs";
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
@@ -141,6 +154,13 @@ export function EditionScenario() {
       (window as Window & { __taggedParagraphs?: TaggedParagraph[] }).__taggedParagraphs = undefined;
     };
   }, [taggedParagraphs]);
+
+  useEffect(() => {
+    (window as Window & { __ttsProvider?: string }).__ttsProvider = ttsProvider;
+    return () => {
+      (window as Window & { __ttsProvider?: string }).__ttsProvider = undefined;
+    };
+  }, [ttsProvider]);
 
   useEffect(() => {
     const handler = async (e: Event) => {
@@ -232,7 +252,7 @@ export function EditionScenario() {
               <Sparkles className="h-4 w-4" />
               <span>Demander a l&apos;agent IA</span>
             </button>
-            <KeyWordChip label="Effet Sonore" variant="effet-sonore" />
+            {ttsProvider === "elevenlabs" && <KeyWordChip label="Effet Sonore" variant="effet-sonore" />}
             <KeyWordChip label="Respiration" variant="respiration" />
             <button type="button" className="inline-flex items-center gap-1 text-[14px] font-medium text-[#0F172B]">
               <MessageSquarePlus className="h-4 w-4" />
@@ -249,7 +269,7 @@ export function EditionScenario() {
                   key={paragraph.partie_id}
                   index={paragraph.partie_id}
                   title={paragraph.titre}
-                  content={parseTaggedText(paragraph.taggedText)}
+                  content={parseTaggedText(paragraph.taggedText, ttsProvider === "qwen")}
                 />
               ))
             )}

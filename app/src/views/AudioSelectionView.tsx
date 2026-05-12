@@ -30,16 +30,16 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
-const ELEVEN_LABS_VOICE_OPTIONS = [
-  { id: "5l4ttmr4SKNgi0HnOelT", label: "Voix 1" },
-  { id: "flHkNRp1BlvT73UL6gyz", label: "Voix 2" },
-  { id: "jK7dAsiVAhbApIS8KkWB", label: "Voix 3" },
-  { id: "NOpBlnGInO9m6vDvFkFC", label: "Voix 4" },
-  { id: "jUHQdLfy668sllNiNTSW", label: "Voix 5" },
-  { id: "tKaoyJLW05zqV0tIH9FD", label: "Voix 6" },
-  { id: "T4BwQ2ZwlS2BbHIfci4H", label: "Voix 7" },
-  { id: "GYzIdoKkRyANjBvkKYfO", label: "Voix 8" },
-  { id: "TojRWZatQyy9dujEdiQ1", label: "Voix 9" }
+const ELEVEN_LABS_VOICES: { id: string; name: string; descriptor: string }[] = [
+  { id: "5l4ttmr4SKNgi0HnOelT", name: "Paul K", descriptor: "Deep French Narrator – Confident, middle-aged, FR" },
+  { id: "flHkNRp1BlvT73UL6gyz", name: "Jessica Anne Bogart", descriptor: "Character & Animation – Crisp, middle-aged, US" },
+  { id: "jK7dAsiVAhbApIS8KkWB", name: "Vincent (JC)", descriptor: "Smooth, classy, middle-aged, FR" },
+  { id: "NOpBlnGInO9m6vDvFkFC", name: "Grandpa Spuds Oxley", descriptor: "Friendly grandpa – Gentle, older, US" },
+  { id: "jUHQdLfy668sllNiNTSW", name: "Clément", descriptor: "Top Voice France – Calm, middle-aged, FR" },
+  { id: "tKaoyJLW05zqV0tIH9FD", name: "Gaëlle", descriptor: "Audiobooks & Storytelling – Warm, middle-aged, FR" },
+  { id: "T4BwQ2ZwlS2BbHIfci4H", name: "Souni", descriptor: "Gentle French female – Calm, young, FR" },
+  { id: "GYzIdoKkRyANjBvkKYfO", name: "Koraly", descriptor: "Smooth & Captivating – Pro voice clone, FR" },
+  { id: "TojRWZatQyy9dujEdiQ1", name: "Koraly (Storyteller)", descriptor: "Storyteller – Audiobook-tuned, FR" },
 ];
 
 const formatDuration = (seconds?: number) => {
@@ -366,7 +366,7 @@ export function AudioSelectionView() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {ELEVEN_LABS_VOICE_OPTIONS.map((voice, index) => {
+              {ELEVEN_LABS_VOICES.map((voice) => {
                 const isSelected = selectedVoiceId === voice.id;
                 return (
                   <div
@@ -384,13 +384,14 @@ export function AudioSelectionView() {
                     <input type="radio" name="voice-choice" checked={isSelected} readOnly className="sr-only" />
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold bg-primary/10 text-primary rounded-full px-2 py-0.5">
-                        Voix {index + 1}
+                        {voice.name}
                       </span>
                       <span className={cn(
                         "h-3 w-3 rounded-full border-2 transition-colors",
                         isSelected ? "border-primary bg-primary" : "border-muted-foreground/30"
                       )} />
                     </div>
+                    <p className="text-[10px] text-muted-foreground leading-tight">{voice.descriptor}</p>
                     <Button
                       type="button"
                       variant="outline"

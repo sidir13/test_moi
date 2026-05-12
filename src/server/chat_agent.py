@@ -72,7 +72,7 @@ class ChatAgent:
         if not self.client:
             logger.warning("ChatAgent initialized without Anthropic credentials")
 
-    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None, scenario_prompts: list | None = None, tagged_paragraphs: list | None = None) -> None:
+    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None, scenario_prompts: list | None = None, tagged_paragraphs: list | None = None, tts_provider: str | None = None) -> None:
         if not self.client:
             await websocket.send_json({"type": "error", "message": "Missing Anthropic credentials"})
             return
@@ -118,6 +118,15 @@ class ChatAgent:
             for p in tagged_paragraphs:
                 parts.append(f"  Paragraphe {p.get('partie_id', '?')} — {p.get('titre', '')}:\n{p.get('taggedText', '')}")
             tagged_paragraphs_context = "\n\n[Paragraphes actuels du scénario en édition (texte balisé) :\n" + "\n\n".join(parts) + "\n]"
+
+        # Inject TTS provider context so LLM knows which tags are allowed
+        tts_context = ""
+        if tts_provider:
+            if tts_provider == "qwen":
+                tts_context = "\n\n[Provider TTS actif : Qwen (local) — les balises {nom.wav} sont INTERDITES. Utiliser uniquement [pause Xs], [silence Xs] et instructions de voix.]"
+            else:
+                tts_context = "\n\n[Provider TTS actif : ElevenLabs — les balises {nom.wav} (effet sonore) sont autorisées.]"
+        tagged_paragraphs_context += tts_context
 
         project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}{scenario_prompts_context}{tagged_paragraphs_context}" if project_name else (scenario_prompts_context + tagged_paragraphs_context)
 
@@ -185,7 +194,7 @@ class ChatAgent:
                         "Sur la page d'édition (edition_text), chaque message contient un bloc [Paragraphes actuels du scénario en édition...] avec le texte exact de chaque paragraphe incluant ses balises.\n"
                         "CE BLOC EST LA SOURCE DE VÉRITÉ UNIQUE pour le texte en cours d'édition.\n"
                         "Quand l'utilisateur demande de : supprimer un paragraphe, modifier/corriger/ajouter du texte, ajouter ou supprimer des balises ({fichier.wav}, [pause Xs], [instruction]) → appelle TOUJOURS 'update_tagged_scenario' avec la liste COMPLÈTE et mise à jour de TOUS les paragraphes.\n"
-                        "Règles balises : {nom.wav} = effet sonore, [pause Xs] ou [silence Xs] = respiration, [ton X] [murmure] etc. = instruction voix.\n"
+                        "Règles balises : {nom.wav} = effet sonore (UNIQUEMENT si ElevenLabs — INTERDIT si Qwen), [pause Xs] ou [silence Xs] = respiration, [ton X] [murmure] etc. = instruction voix.\n"
                         "Suppression de paragraphe : renumérote les partie_id restants pour qu'ils soient consécutifs (1, 2, 3…).\n"
                         "Si l'utilisateur laisse le LLM décider où placer les balises : place-les aux endroits narrativement pertinents.\n"
                         "Ne mets JAMAIS le texte modifié dans le chat — applique-le directement via l'outil.\n\n"
