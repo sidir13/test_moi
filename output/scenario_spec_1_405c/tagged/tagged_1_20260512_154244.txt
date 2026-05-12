@@ -1,0 +1,9 @@
+=== PARTIE 1 : La Loire en pleine activité ===
+
+{chantier_naval_marteaux_soudure.wav}
+Nantes, 1950. [pause] Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence. Une voix raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] En 1960, le paquebot France émerge : [accentué] cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial.
+
+=== PARTIE 2 : Les vestiges silencieux ===
+
+{silence_vent_fleuve.wav}
+Aujourd'hui, [posé] les marteaux se sont tus. [pause] Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu [ralentit] — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie.

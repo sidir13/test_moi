@@ -1,0 +1,771 @@
+{
+  "created_at": "2026-05-12T13:39:40.821872",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3,
+  "last_scenarios": [
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Nantes : l'étoile des chantiers navals s'éteint",
+        "resumeHistoire": "En 1950, les chantiers navals de Nantes bourdonnent d'activité, telle une base rebelle en pleine effervescence. Des coques immenses prennent forme sous les mains de soudeurs et charpentiers. En 1960, le paquebot France naît ici : 106 000 tonnes de rêve et d'acier, un vaisseau aussi majestueux qu'un destroyer impérial. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, vestiges silencieux d'une époque révolue.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "avant_apres_evenement",
+        "duree_totale": 28,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "La Loire en pleine activité",
+            "duree_cible": 14.0,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "montée_épique",
+            "elements_necessaires": [
+              "Citation directe : Loire en 1950",
+              "Chantiers navals de Nantes",
+              "Soudeurs et charpentiers",
+              "Paquebot France 1960 — 106 000 tonnes",
+              "Référence Star Wars intégrée naturellement"
+            ],
+            "mood": "épique_industriel"
+          },
+          {
+            "partie": 2,
+            "titre": "Les vestiges silencieux",
+            "duree_cible": 14.0,
+            "fonction_narrative": "resolution_melancolique",
+            "position_arc_emotionnel": "retombée_nostalgique",
+            "elements_necessaires": [
+              "Contraste avant/après",
+              "Grues jaunes comme témoins",
+              "Ton neutre informatif maintenu",
+              "Référence Star Wars en écho mélancolique"
+            ],
+            "mood": "nostalgique_contemplatif"
+          }
+        ],
+        "arc_emotionnel_global": "crescendo_puis_decrescendo",
+        "rythme_general": "varie — montée épique puis ralentissement mélancolique",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "bascule_temporelle",
+            "duree": 2.0,
+            "description": "Passage fluide du passé glorieux au présent silencieux, comme un fondu enchaîné entre deux époques — la transition se fait par le mot 'Aujourd'hui' qui marque la rupture temporelle sans casser le flux narratif."
+          }
+        ],
+        "notes_production": "CONTINUITÉ : Le récit est un bloc unique de ~56 mots, lu en voix off omnisciente. Le ton reste neutre et informatif tout du long. Les références Star Wars doivent s'intégrer comme des comparaisons naturelles du narrateur (pas de rupture de ton). La partie 1 utilise la citation source quasi intégralement. La partie 2 est le miroir inversé — même lieu, silence au lieu du bruit. Pas d'adresse au public. Registre accessible grand public. Densité sonore riche : prévoir ambiances industrielles (marteaux, soudure) en partie 1, puis silence et vent en partie 2."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Nantes : l'étoile des chantiers navals s'éteint",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "avant_apres_evenement",
+        "resumeHistoire": "En 1950, les chantiers navals de Nantes bourdonnent d'activité, telle une base rebelle en pleine effervescence. Des coques immenses prennent forme sous les mains de soudeurs et charpentiers. En 1960, le paquebot France naît ici : 106 000 tonnes de rêve et d'acier, un vaisseau aussi majestueux qu'un destroyer impérial. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, vestiges silencieux d'une époque révolue.",
+        "duree_estimee": 45.68181818181819,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "La Loire en pleine activité",
+            "duree": 25.5,
+            "texte_narration": "Nantes, 1950. Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence. Une voix raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »] En 1960, le paquebot France émerge : cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial.",
+            "ton": {
+              "global": "neutre_informatif avec souffle épique contenu",
+              "tempo_lecture": 120,
+              "pauses": [
+                "après 'Nantes, 1950' (1s)",
+                "après 'charpentiers' (0.5s)"
+              ],
+              "intonation": "montée progressive, culminant sur 'destroyer impérial'"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture sèche — nom du lieu et date",
+                "duree": 2.0
+              },
+              {
+                "timestamp": "0:05",
+                "action": "Citation archive — immersion sonore industrielle",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:10",
+                "action": "Révélation du paquebot France — pic épique",
+                "duree": 4.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Nantes, 1950.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              },
+              {
+                "sentence": "Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+                ]
+              },
+              {
+                "sentence": "Une voix raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »]",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              },
+              {
+                "sentence": "En 1960, le paquebot France émerge : cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial.",
+                "sources": [
+                  "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêve et d'acier."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Les vestiges silencieux",
+            "duree": 20.181818181818183,
+            "texte_narration": "Aujourd'hui, les marteaux se sont tus. Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie.",
+            "ton": {
+              "global": "neutre_informatif teinté de mélancolie sobre",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'se sont tus' (1.5s)",
+                "après 'empire déchu' (1s)"
+              ],
+              "intonation": "descendante, voix posée, fin suspendue"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:14",
+                "action": "Rupture temporelle — silence après le bruit",
+                "duree": 3.0
+              },
+              {
+                "timestamp": "0:18",
+                "action": "Image des grues jaunes — témoins muets",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:23",
+                "action": "Métaphore Star Wars finale — flotte oubliée",
+                "duree": 5.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Aujourd'hui, les marteaux se sont tus.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              },
+              {
+                "sentence": "Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 88,
+          "duree_lecture_estimee": 45.68181818181819,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ : Le récit est un bloc unique de ~56 mots, lu en voix off omnisciente. Le ton reste neutre et informatif tout du long. Les références Star Wars doivent s'intégrer comme des comparaisons naturelles du narrateur (pas de rupture de ton). La partie 1 utilise la citation source quasi intégralement. La partie 2 est le miroir inversé — même lieu, silence au lieu du bruit. Pas d'adresse au public. Registre accessible grand public. Densité sonore riche : prévoir ambiances industrielles (marteaux, soudure) en partie 1, puis silence et vent en partie 2."
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Nantes : l'étoile des chantiers navals s'éteint",
+        "taggedText": "=== PARTIE 1 : La Loire en pleine activité ===\n\n{chantier_naval_marteaux_soudure.wav}\nNantes, 1950. [pause] Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence. Une voix raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] En 1960, le paquebot France émerge : [accentué] cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial.\n\n=== PARTIE 2 : Les vestiges silencieux ===\n\n{silence_vent_fleuve.wav}\nAujourd'hui, [posé] les marteaux se sont tus. [pause] Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu [ralentit] — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "La Loire en pleine activité",
+            "taggedText": "{chantier_naval_marteaux_soudure.wav}\nNantes, 1950. [pause] Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence. Une voix raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] En 1960, le paquebot France émerge : [accentué] cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial."
+          },
+          {
+            "partie_id": 2,
+            "titre": "Les vestiges silencieux",
+            "taggedText": "{silence_vent_fleuve.wav}\nAujourd'hui, [posé] les marteaux se sont tus. [pause] Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu [ralentit] — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 8,
+          "soundTags": 2,
+          "originalWordCount": 88
+        }
+      },
+      "scenario_index": 1,
+      "spec": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "target_duration": 28,
+        "source_usage_level": "central",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "5l4ttmr4SKNgi0HnOelT"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    },
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Le France — Acier et Rêve sur la Loire",
+        "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes façonnent dans les années 1950 un géant des mers. Sous les mains des soudeurs et charpentiers, le paquebot France prend forme — 106 000 tonnes de fierté nationale lancées en 1960. Ce portrait d'un navire légendaire, raconté en trois haïkus japonais au ton neutre et informatif, évoque la naissance, la splendeur et la mémoire d'un passé industriel glorieux dont seules les grues jaunes de Nantes gardent aujourd'hui la trace.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "portrait_individuel",
+        "duree_totale": 25,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Naissance — Le chantier",
+            "duree_cible": 8.0,
+            "fonction_narrative": "exposition",
+            "position_arc_emotionnel": "éveil",
+            "elements_necessaires": [
+              "Format haïku japonais (5-7-5 syllabes)",
+              "Évocation des chantiers navals de Nantes années 1950",
+              "Mains des soudeurs et charpentiers",
+              "Ton neutre_informatif, registre grand_public"
+            ],
+            "mood": "industriel, naissant"
+          },
+          {
+            "partie": 2,
+            "titre": "Splendeur — Le France",
+            "duree_cible": 9.0,
+            "fonction_narrative": "climax",
+            "position_arc_emotionnel": "sommet",
+            "elements_necessaires": [
+              "Format haïku japonais (5-7-5 syllabes)",
+              "Le paquebot France, 1960, 106 000 tonnes",
+              "Citation source : « fierté nationale »",
+              "Grandeur et accomplissement"
+            ],
+            "mood": "majestueux, solennel"
+          },
+          {
+            "partie": 3,
+            "titre": "Mémoire — Les grues jaunes",
+            "duree_cible": 8.0,
+            "fonction_narrative": "résolution_élégiaque",
+            "position_arc_emotionnel": "apaisement mélancolique",
+            "elements_necessaires": [
+              "Format haïku japonais (5-7-5 syllabes)",
+              "Citation source : « seules les grues jaunes témoignent de ce passé glorieux »",
+              "Contraste présent/passé",
+              "Fermeture contemplative"
+            ],
+            "mood": "nostalgique, contemplatif"
+          }
+        ],
+        "arc_emotionnel_global": "ascension_puis_élégie",
+        "rythme_general": "modere — trois haïkus espacés par de brefs silences, rythme méditatif propre à la forme poétique japonaise",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "progression_naturelle",
+            "duree": 1.5,
+            "description": "Silence bref après le premier haïku. Le bruit d'ambiance des chantiers s'estompe et laisse place à une nappe sonore plus ample, marquant le passage du labeur à la grandeur accomplie."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "bascule_temporelle",
+            "duree": 1.5,
+            "description": "Silence méditatif. La majesté du France s'éteint doucement ; un son lointain de vent portuaire introduit le haïku final, ancré dans le présent et la mémoire."
+          }
+        ],
+        "notes_production": "FORME : Trois haïkus japonais authentiques (5-7-5 syllabes chacun, en français). Chaque haïku correspond à une section. Le total textuel ne dépasse pas ~50 mots. FLUIDITÉ : Les trois poèmes forment un triptyque cohérent — naissance, apogée, mémoire — et se lisent comme un seul souffle narratif en trois temps. Les silences inter-haïkus (1,5 s chacun) font partie intégrante du rythme et ne doivent pas être comblés. TON : Neutre et informatif même dans la forme poétique — pas de lyrisme excessif, les images restent factuelles et traçables aux sources. REGISTRE : Grand public — vocabulaire simple, images concrètes. VOIX OFF : Lecture posée, diction claire, sans adresse directe au public. RIGUEUR HISTORIQUE : Aucun fait ajouté au-delà des sources (Nantes, chantiers navals, soudeurs, charpentiers, paquebot France, 1960, 106 000 tonnes, grues jaunes). DURÉE : ~25 s au total (3 × ~5 s de lecture + 2 × 1,5 s de silence + marges d'ouverture/fermeture)."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Le France — Acier et Rêve sur la Loire",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "portrait_individuel",
+        "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes façonnent dans les années 1950 un géant des mers. Sous les mains des soudeurs et charpentiers, le paquebot France prend forme — 106 000 tonnes de fierté nationale lancées en 1960. Ce portrait d'un navire légendaire, raconté en trois haïkus japonais au ton neutre et informatif, évoque la naissance, la splendeur et la mémoire d'un passé industriel glorieux dont seules les grues jaunes de Nantes gardent aujourd'hui la trace.",
+        "duree_estimee": 23.210526315789473,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Naissance — Le chantier",
+            "duree": 7.800000000000001,
+            "texte_narration": "Nantes, bord de Loire —\nles soudeurs façonnent l'acier.\nCoques dans la brume.",
+            "ton": {
+              "global": "neutre_informatif, posé",
+              "tempo_lecture": 100,
+              "pauses": [
+                "après 'brume' (1.5s avant haïku suivant)"
+              ],
+              "intonation": "Lecture claire, détachée, chaque vers séparé par un micro-silence"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture sur le premier haïku — ton posé, diction nette",
+                "duree": 5.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Nantes, bord de Loire — les soudeurs façonnent l'acier. Coques dans la brume.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité. Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Splendeur — Le France",
+            "duree": 7.199999999999999,
+            "texte_narration": "Mille neuf cent soixante —\nle France, fierté nationale.\nCent six mille tonnes.",
+            "ton": {
+              "global": "neutre_informatif, solennel",
+              "tempo_lecture": 100,
+              "pauses": [
+                "après 'tonnes' (1.5s avant haïku suivant)"
+              ],
+              "intonation": "Légère ampleur sur 'fierté nationale', retour neutre sur le dernier vers"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:09",
+                "action": "Climax — évocation du lancement du paquebot, ton majestueux mais contenu",
+                "duree": 5.5
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Mille neuf cent soixante — le France, fierté nationale. Cent six mille tonnes.",
+                "sources": [
+                  "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêve et d'acier."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Mémoire — Les grues jaunes",
+            "duree": 8.210526315789474,
+            "texte_narration": "Les grues jaunes veillent.\nSeules témoins du passé grand.\nLa Loire se souvient.",
+            "ton": {
+              "global": "neutre_informatif, contemplatif",
+              "tempo_lecture": 95,
+              "pauses": [
+                "après 'souvient' (2s — fin du triptyque, laisser résonner)"
+              ],
+              "intonation": "Lecture douce, légèrement descendante sur le dernier vers"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:19",
+                "action": "Résolution élégiaque — image des grues jaunes, fermeture contemplative",
+                "duree": 5.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Les grues jaunes veillent. Seules témoins du passé grand. La Loire se souvient.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 38,
+          "duree_lecture_estimee": 23.210526315789473,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "FORME : Trois haïkus japonais authentiques (5-7-5 syllabes chacun, en français). Chaque haïku correspond à une section. Le total textuel ne dépasse pas ~50 mots. FLUIDITÉ : Les trois poèmes forment un triptyque cohérent — naissance, apogée, mémoire — et se lisent comme un seul souffle narratif en trois temps. Les silences inter-haïkus (1,5 s chacun) font partie intégrante du rythme et ne doivent pas être comblés. TON : Neutre et informatif même dans la forme poétique — pas de lyrisme excessif, les images restent factuelles et traçables aux sources. REGISTRE : Grand public — vocabulaire simple, images concrètes. VOIX OFF : Lecture posée, diction claire, sans adresse directe au public. RIGUEUR HISTORIQUE : Aucun fait ajouté au-delà des sources (Nantes, chantiers navals, soudeurs, charpentiers, paquebot France, 1960, 106 000 tonnes, grues jaunes). DURÉE : ~25 s au total (3 × ~5 s de lecture + 2 × 1,5 s de silence + marges d'ouverture/fermeture)."
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Le France — Acier et Rêve sur la Loire",
+        "taggedText": "=== PARTIE 1 : Naissance — Le chantier ===\n\n[posé] Nantes, bord de Loire — [pause]\nles soudeurs façonnent l'acier. [pause]\nCoques dans la brume.\n\n[pause]\n\n=== PARTIE 2 : Splendeur — Le France ===\n\n[posé] Mille neuf cent soixante — [pause]\nle France, [accentué] fierté nationale. [pause]\nCent six mille tonnes.\n\n[pause]\n\n=== PARTIE 3 : Mémoire — Les grues jaunes ===\n\n[posé] Les grues jaunes veillent. [pause]\nSeules témoins du passé grand. [pause]\n[atténué] La Loire se souvient.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Naissance — Le chantier",
+            "taggedText": "[posé] Nantes, bord de Loire — [pause]\nles soudeurs façonnent l'acier. [pause]\nCoques dans la brume.\n\n[pause]"
+          },
+          {
+            "partie_id": 2,
+            "titre": "Splendeur — Le France",
+            "taggedText": "[posé] Mille neuf cent soixante — [pause]\nle France, [accentué] fierté nationale. [pause]\nCent six mille tonnes.\n\n[pause]"
+          },
+          {
+            "partie_id": 3,
+            "titre": "Mémoire — Les grues jaunes",
+            "taggedText": "[posé] Les grues jaunes veillent. [pause]\nSeules témoins du passé grand. [pause]\n[atténué] La Loire se souvient."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 13,
+          "soundTags": 0,
+          "originalWordCount": 38
+        }
+      },
+      "scenario_index": 2,
+      "spec": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "target_duration": 25,
+        "source_usage_level": "central",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "flHkNRp1BlvT73UL6gyz"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    },
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Capitaine Moustache et les coques d'acier",
+        "resumeHistoire": "Sur les chantiers navals de Nantes en 1950, un chat soudeur nommé Capitaine Moustache travaille chaque jour à façonner les coques immenses des navires. Sous ses pattes expertes et celles de ses compagnons — chiens charpentiers, musaraignes riveteuses et mouettes vigies — prend forme un paquebot colossal de 106 000 tonnes. En 1960, le navire est lancé, fierté de tous. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, et l'histoire revient à son point de départ : la Loire, silencieuse.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "portrait_individuel",
+        "duree_totale": 34,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "La Loire, aujourd'hui silencieuse",
+            "duree_cible": 6.0,
+            "fonction_narrative": "ouverture_circulaire",
+            "position_arc_emotionnel": "mélancolie_douce",
+            "elements_necessaires": [
+              "évocation des grues jaunes",
+              "silence présent",
+              "invitation immersive"
+            ],
+            "mood": "contemplatif"
+          },
+          {
+            "partie": 2,
+            "titre": "Capitaine Moustache au chantier",
+            "duree_cible": 14.0,
+            "fonction_narrative": "portrait_central",
+            "position_arc_emotionnel": "montée_énergie",
+            "elements_necessaires": [
+              "citation directe source : coques immenses, mains expertes, soudeurs, charpentiers",
+              "personnage chat soudeur",
+              "compagnons chiens musaraignes mouettes",
+              "Nantes 1950"
+            ],
+            "mood": "vivant_industriel"
+          },
+          {
+            "partie": 3,
+            "titre": "Le paquebot prend la mer",
+            "duree_cible": 8.0,
+            "fonction_narrative": "climax",
+            "position_arc_emotionnel": "fierté_sommet",
+            "elements_necessaires": [
+              "citation : 106 000 tonnes de rêve et d'acier",
+              "1960",
+              "fierté nationale"
+            ],
+            "mood": "solennel"
+          },
+          {
+            "partie": 4,
+            "titre": "Retour à la Loire",
+            "duree_cible": 6.0,
+            "fonction_narrative": "fermeture_circulaire",
+            "position_arc_emotionnel": "retour_mélancolie",
+            "elements_necessaires": [
+              "écho de l'ouverture",
+              "grues jaunes",
+              "passé glorieux"
+            ],
+            "mood": "contemplatif_nostalgique"
+          }
+        ],
+        "arc_emotionnel_global": "circulaire_nostalgique",
+        "rythme_general": "modere",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "plongée_temporelle",
+            "duree": 1.5,
+            "description": "Du présent silencieux, glissement vers le bruit des chantiers en 1950 — transition par contraste sonore implicite."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "progression_naturelle",
+            "duree": 1.5,
+            "description": "L'effort quotidien mène à l'aboutissement : le lancement du navire. Montée en intensité fluide."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "ellipse_douce",
+            "duree": 1.5,
+            "description": "Du sommet de fierté, retour au présent — le temps a passé, écho de l'ouverture."
+          }
+        ],
+        "notes_production": "Structure circulaire : la première et la dernière phrase doivent se faire écho (la Loire, les grues). Le personnage fictif Capitaine Moustache est un chat soudeur — ses compagnons animaux sont mentionnés brièvement. Les citations de la source audio sont intégrées naturellement dans la narration. Ton neutre et informatif maintenu tout au long. Registre accessible grand public. Aucun monologue intérieur — tout est raconté de l'extérieur. Ambiance sonore minimaliste suggérée : silence, puis métal, puis retour au silence. Total visé : ~68 mots maximum."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Capitaine Moustache et les coques d'acier",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "portrait_individuel",
+        "resumeHistoire": "Sur les chantiers navals de Nantes en 1950, un chat soudeur nommé Capitaine Moustache travaille chaque jour à façonner les coques immenses des navires. Sous ses pattes expertes et celles de ses compagnons — chiens charpentiers, musaraignes riveteuses et mouettes vigies — prend forme un paquebot colossal de 106 000 tonnes. En 1960, le navire est lancé, fierté de tous. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, et l'histoire revient à son point de départ : la Loire, silencieuse.",
+        "duree_estimee": 51.6,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "La Loire, aujourd'hui silencieuse",
+            "duree": 7.090909090909091,
+            "texte_narration": "Les grues jaunes de Nantes se dressent au-dessus de la Loire, immobiles.",
+            "ton": {
+              "global": "contemplatif, mélancolique",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'Loire' (1.5s)"
+              ],
+              "intonation": "posée, lente, regard sur un paysage vide"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Image d'ouverture : grues jaunes, fleuve silencieux",
+                "duree": 6.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Les grues jaunes de Nantes se dressent au-dessus de la Loire, immobiles.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950.",
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Capitaine Moustache au chantier",
+            "duree": 27.0,
+            "texte_narration": "En 1950, pourtant, ces quais grondaient. Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies. Un témoin raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »] Le métal rougeoyait du matin au soir.",
+            "ton": {
+              "global": "vivant, industriel, rythmé",
+              "tempo_lecture": 120,
+              "pauses": [
+                "après 'grondaient' (1s)",
+                "après la citation (0.5s)"
+              ],
+              "intonation": "énergie croissante, évocation d'un chantier en pleine activité"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:06",
+                "action": "Transition temporelle vers 1950, présentation de Capitaine Moustache",
+                "duree": 6.0
+              },
+              {
+                "timestamp": "0:12",
+                "action": "Citation archive — coques immenses, mains expertes",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "0:17",
+                "action": "Image du métal rougeoyant, énergie du chantier",
+                "duree": 3.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "En 1950, pourtant, ces quais grondaient.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité."
+                ]
+              },
+              {
+                "sentence": "Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies.",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              },
+              {
+                "sentence": "Un témoin raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »]",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              },
+              {
+                "sentence": "Le métal rougeoyait du matin au soir.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le paquebot prend la mer",
+            "duree": 10.90909090909091,
+            "texte_narration": "En 1960, leur œuvre glisse enfin vers le large : [ARCHIVE : « 106 000 tonnes de rêve et d'acier. »] Fierté nationale.",
+            "ton": {
+              "global": "solennel, sobre",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'large' (0.5s)",
+                "après la citation (1s)"
+              ],
+              "intonation": "gravité admirative, sommet émotionnel contenu"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:20",
+                "action": "Lancement du paquebot, citation des 106 000 tonnes",
+                "duree": 8.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "En 1960, leur œuvre glisse enfin vers le large : [ARCHIVE : « 106 000 tonnes de rêve et d'acier. »]",
+                "sources": [
+                  "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêve et d'acier."
+                ]
+              },
+              {
+                "sentence": "Fierté nationale.",
+                "sources": [
+                  "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+                ]
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "Retour à la Loire",
+            "duree": 6.6,
+            "texte_narration": "Aujourd'hui, les grues jaunes veillent seules. La Loire coule, silencieuse.",
+            "ton": {
+              "global": "contemplatif, nostalgique",
+              "tempo_lecture": 100,
+              "pauses": [
+                "après 'seules' (1.5s)",
+                "après 'silencieuse' (2s)"
+              ],
+              "intonation": "retombée douce, écho de l'ouverture, voix qui se retire"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:28",
+                "action": "Retour aux grues, écho de l'ouverture, fermeture circulaire",
+                "duree": 6.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Aujourd'hui, les grues jaunes veillent seules.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              },
+              {
+                "sentence": "La Loire coule, silencieuse.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 98,
+          "duree_lecture_estimee": 51.6,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "Structure circulaire : la première et la dernière phrase doivent se faire écho (la Loire, les grues). Le personnage fictif Capitaine Moustache est un chat soudeur — ses compagnons animaux sont mentionnés brièvement. Les citations de la source audio sont intégrées naturellement dans la narration. Ton neutre et informatif maintenu tout au long. Registre accessible grand public. Aucun monologue intérieur — tout est raconté de l'extérieur. Ambiance sonore minimaliste suggérée : silence, puis métal, puis retour au silence. Total visé : ~68 mots maximum."
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Capitaine Moustache et les coques d'acier",
+        "taggedText": "=== PARTIE 1 : La Loire, aujourd'hui silencieuse ===\n\n{silence_fleuve_lointain.wav}\n\n[posé] Les grues jaunes de Nantes se dressent au-dessus de la Loire, [ralentit] immobiles. [pause]\n\n=== PARTIE 2 : Capitaine Moustache au chantier ===\n\n{metal_martelage_chantier.wav}\n\nEn 1950, pourtant, ces quais grondaient. [précipité] Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies. [pause] Un témoin raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] Le métal rougeoyait du matin au soir.\n\n=== PARTIE 3 : Le paquebot prend la mer ===\n\nEn 1960, leur œuvre glisse enfin vers le large : [posé] [accentué] « 106 000 tonnes de rêve et d'acier. » [pause] [ralentit] Fierté nationale.\n\n=== PARTIE 4 : Retour à la Loire ===\n\n{silence_vent_leger_quai.wav}\n\n[posé] Aujourd'hui, les grues jaunes veillent seules. [ralentit] [triste] La Loire coule, silencieuse. [pause]",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "La Loire, aujourd'hui silencieuse",
+            "taggedText": "{silence_fleuve_lointain.wav}\n\n[posé] Les grues jaunes de Nantes se dressent au-dessus de la Loire, [ralentit] immobiles. [pause]"
+          },
+          {
+            "partie_id": 2,
+            "titre": "Capitaine Moustache au chantier",
+            "taggedText": "{metal_martelage_chantier.wav}\n\nEn 1950, pourtant, ces quais grondaient. [précipité] Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies. [pause] Un témoin raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] Le métal rougeoyait du matin au soir."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Le paquebot prend la mer",
+            "taggedText": "En 1960, leur œuvre glisse enfin vers le large : [posé] [accentué] « 106 000 tonnes de rêve et d'acier. » [pause] [ralentit] Fierté nationale."
+          },
+          {
+            "partie_id": 4,
+            "titre": "Retour à la Loire",
+            "taggedText": "{silence_vent_leger_quai.wav}\n\n[posé] Aujourd'hui, les grues jaunes veillent seules. [ralentit] [triste] La Loire coule, silencieuse. [pause]"
+          }
+        ],
+        "metadata": {
+          "voiceTags": 16,
+          "soundTags": 3,
+          "originalWordCount": 98
+        }
+      },
+      "scenario_index": 3,
+      "spec": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "target_duration": 34,
+        "source_usage_level": "central",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "GYzIdoKkRyANjBvkKYfO"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    }
+  ],
+  "last_scenarios_generated_at": "2026-05-12T13:44:58.607062"
+}

@@ -1,0 +1,179 @@
+{
+  "scenario_id": 1,
+  "titre": "Capitaine Moustache et les coques d'acier",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Sur les chantiers navals de Nantes en 1950, un chat soudeur nommé Capitaine Moustache travaille chaque jour à façonner les coques immenses des navires. Sous ses pattes expertes et celles de ses compagnons — chiens charpentiers, musaraignes riveteuses et mouettes vigies — prend forme un paquebot colossal de 106 000 tonnes. En 1960, le navire est lancé, fierté de tous. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, et l'histoire revient à son point de départ : la Loire, silencieuse.",
+  "duree_estimee": 51.6,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La Loire, aujourd'hui silencieuse",
+      "duree": 7.090909090909091,
+      "texte_narration": "Les grues jaunes de Nantes se dressent au-dessus de la Loire, immobiles.",
+      "ton": {
+        "global": "contemplatif, mélancolique",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'Loire' (1.5s)"
+        ],
+        "intonation": "posée, lente, regard sur un paysage vide"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Image d'ouverture : grues jaunes, fleuve silencieux",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Les grues jaunes de Nantes se dressent au-dessus de la Loire, immobiles.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950.",
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Capitaine Moustache au chantier",
+      "duree": 27.0,
+      "texte_narration": "En 1950, pourtant, ces quais grondaient. Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies. Un témoin raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »] Le métal rougeoyait du matin au soir.",
+      "ton": {
+        "global": "vivant, industriel, rythmé",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'grondaient' (1s)",
+          "après la citation (0.5s)"
+        ],
+        "intonation": "énergie croissante, évocation d'un chantier en pleine activité"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:06",
+          "action": "Transition temporelle vers 1950, présentation de Capitaine Moustache",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "0:12",
+          "action": "Citation archive — coques immenses, mains expertes",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:17",
+          "action": "Image du métal rougeoyant, énergie du chantier",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "En 1950, pourtant, ces quais grondaient.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950. Les chantiers navals de Nantes bourdonnaient d'activité."
+          ]
+        },
+        {
+          "sentence": "Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies.",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Un témoin raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »]",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "Le métal rougeoyait du matin au soir.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le paquebot prend la mer",
+      "duree": 10.90909090909091,
+      "texte_narration": "En 1960, leur œuvre glisse enfin vers le large : [ARCHIVE : « 106 000 tonnes de rêve et d'acier. »] Fierté nationale.",
+      "ton": {
+        "global": "solennel, sobre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'large' (0.5s)",
+          "après la citation (1s)"
+        ],
+        "intonation": "gravité admirative, sommet émotionnel contenu"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:20",
+          "action": "Lancement du paquebot, citation des 106 000 tonnes",
+          "duree": 8.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "En 1960, leur œuvre glisse enfin vers le large : [ARCHIVE : « 106 000 tonnes de rêve et d'acier. »]",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêve et d'acier."
+          ]
+        },
+        {
+          "sentence": "Fierté nationale.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Retour à la Loire",
+      "duree": 6.6,
+      "texte_narration": "Aujourd'hui, les grues jaunes veillent seules. La Loire coule, silencieuse.",
+      "ton": {
+        "global": "contemplatif, nostalgique",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'seules' (1.5s)",
+          "après 'silencieuse' (2s)"
+        ],
+        "intonation": "retombée douce, écho de l'ouverture, voix qui se retire"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:28",
+          "action": "Retour aux grues, écho de l'ouverture, fermeture circulaire",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, les grues jaunes veillent seules.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "La Loire coule, silencieuse.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 98,
+    "duree_lecture_estimee": 51.6,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Structure circulaire : la première et la dernière phrase doivent se faire écho (la Loire, les grues). Le personnage fictif Capitaine Moustache est un chat soudeur — ses compagnons animaux sont mentionnés brièvement. Les citations de la source audio sont intégrées naturellement dans la narration. Ton neutre et informatif maintenu tout au long. Registre accessible grand public. Aucun monologue intérieur — tout est raconté de l'extérieur. Ambiance sonore minimaliste suggérée : silence, puis métal, puis retour au silence. Total visé : ~68 mots maximum."
+}

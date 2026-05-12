@@ -1,0 +1,165 @@
+{
+  "nodes": [
+    {
+      "id": "event_0",
+      "name": "Activité intensive des chantiers navals de Nantes",
+      "type": "Event",
+      "description": "Période de forte activité industrielle caractérisée par la construction de coques de navires par des soudeurs et des charpentiers le long de la Loire.",
+      "time": "1950"
+    },
+    {
+      "id": "soudeurs",
+      "name": "soudeurs",
+      "type": "Person"
+    },
+    {
+      "id": "charpentiers",
+      "name": "charpentiers",
+      "type": "Person"
+    },
+    {
+      "id": "Nantes",
+      "name": "Nantes",
+      "type": "Place"
+    },
+    {
+      "id": "Loire",
+      "name": "Loire",
+      "type": "Place"
+    },
+    {
+      "id": "chantiers navals",
+      "name": "chantiers navals",
+      "type": "Keyword"
+    },
+    {
+      "id": "construction navale",
+      "name": "construction navale",
+      "type": "Keyword"
+    },
+    {
+      "id": "industrie",
+      "name": "industrie",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_1",
+      "name": "Construction et lancement du paquebot France",
+      "type": "Event",
+      "description": "Réalisation du célèbre paquebot de 106 000 tonnes, symbole de fierté nationale et chef-d'œuvre de la construction navale en acier.",
+      "time": "1960"
+    },
+    {
+      "id": "Chantiers navals",
+      "name": "Chantiers navals",
+      "type": "Place"
+    },
+    {
+      "id": "paquebot France",
+      "name": "paquebot France",
+      "type": "Keyword"
+    },
+    {
+      "id": "acier",
+      "name": "acier",
+      "type": "Keyword"
+    },
+    {
+      "id": "fierté nationale",
+      "name": "fierté nationale",
+      "type": "Keyword"
+    }
+  ],
+  "edges": [
+    {
+      "id": "actor_0_soudeurs",
+      "source": "soudeurs",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_0_charpentiers",
+      "source": "charpentiers",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_0_Nantes",
+      "source": "event_0",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_0_Loire",
+      "source": "event_0",
+      "target": "Loire",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_0_chantiers navals",
+      "source": "event_0",
+      "target": "chantiers navals",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_construction navale",
+      "source": "event_0",
+      "target": "construction navale",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_industrie",
+      "source": "event_0",
+      "target": "industrie",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_1_soudeurs",
+      "source": "soudeurs",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_1_charpentiers",
+      "source": "charpentiers",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_1_Nantes",
+      "source": "event_1",
+      "target": "Nantes",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Chantiers navals",
+      "source": "event_1",
+      "target": "Chantiers navals",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_1_paquebot France",
+      "source": "event_1",
+      "target": "paquebot France",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_acier",
+      "source": "event_1",
+      "target": "acier",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_fierté nationale",
+      "source": "event_1",
+      "target": "fierté nationale",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_construction navale",
+      "source": "event_1",
+      "target": "construction navale",
+      "type": "HAS_TOPIC"
+    }
+  ]
+}

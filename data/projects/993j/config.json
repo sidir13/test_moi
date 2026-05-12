@@ -1,0 +1,253 @@
+{
+  "created_at": "2026-05-12T14:04:20.895311",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3,
+  "tts_voice_id": "GYzIdoKkRyANjBvkKYfO",
+  "last_scenarios": [
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+        "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes vibrent d'une activité intense dans les années 1950. Des centaines d'ouvriers — soudeurs, charpentiers, riveurs — façonnent de leurs mains des coques immenses, donnant naissance à des géants d'acier dont le plus célèbre, le paquebot France, est lancé en 1960 : 106 000 tonnes de rêves et de fierté nationale. Mais cette épopée ouvrière s'éteint progressivement, laissant derrière elle un paysage de grues silencieuses et de cales désertées. Le récit suit l'arc d'une communauté entière, de l'effervescence glorieuse au silence mélancolique d'un monde disparu.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "duree_totale": 49,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Le fleuve et les hommes",
+            "duree_cible": 14.0,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "éveil — curiosité montante",
+            "elements_necessaires": [
+              "Invitation immersive temporelle (années 1950)",
+              "La Loire comme décor vivant",
+              "Premiers signes d'activité industrielle",
+              "Registre accessible pour touriste"
+            ],
+            "mood": "atmosphérique, évocateur, promesse de grandeur"
+          },
+          {
+            "partie": 2,
+            "titre": "La ruche d'acier",
+            "duree_cible": 16.0,
+            "fonction_narrative": "développement — portrait collectif",
+            "position_arc_emotionnel": "montée en puissance — fierté",
+            "elements_necessaires": [
+              "Les métiers : soudeurs, charpentiers",
+              "Le quotidien physique des ouvriers",
+              "Les coques immenses prenant forme",
+              "Le paquebot France — 1960 — 106 000 tonnes",
+              "Dimension de fierté nationale"
+            ],
+            "mood": "épique, charnel, vibrant d'énergie collective"
+          },
+          {
+            "partie": 3,
+            "titre": "Les grues silencieuses",
+            "duree_cible": 19.0,
+            "fonction_narrative": "résolution — élégie sociale",
+            "position_arc_emotionnel": "sommet émotionnel puis descente mélancolique",
+            "elements_necessaires": [
+              "Contraste temporel passé/présent",
+              "Les grues jaunes comme vestiges témoins",
+              "Silence là où régnait le vacarme",
+              "Ouverture contemplative — mémoire des lieux"
+            ],
+            "mood": "mélancolique, solennel, dramatique contenu"
+          }
+        ],
+        "arc_emotionnel_global": "crescendo_emotionnel — de l'éveil sensoriel à la fierté épique, culminant dans une mélancolie poignante",
+        "rythme_general": "modéré — phrases courtes et denses, tempo qui s'élargit progressivement vers la fin pour laisser résonner l'émotion",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "progression_naturelle",
+            "duree": 1.5,
+            "description": "Du décor fluvial, le regard se resserre sur les hommes au travail. La transition se fait par le son évoqué : du murmure du fleuve au vacarme des chantiers. Pas de rupture — le fleuve mène naturellement aux cales."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "contraste_temporel",
+            "duree": 2.0,
+            "description": "Bascule dramatique du passé glorieux au présent silencieux. Une phrase charnière marque le passage du temps — le fracas des marteaux s'éteint pour laisser place au vent sur les quais déserts. Le contraste est le climax émotionnel."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un seul souffle en trois mouvements, sans annonce de chapitre ni rupture artificielle. La voix off omnisciente adopte un registre clair et évocateur, accessible à un touriste découvrant Nantes. Le ton dramatique immersif repose sur des images sensorielles fortes (mains, acier, bruit, silence) plutôt que sur l'emphase vocale. Les transitions sont tissées dans le texte — chaque section s'enchaîne par une image-pont. Le débit visé est d'environ 2 mots/seconde (≈98 mots total). Privilégier des phrases courtes, rythmées, avec des silences implicites entre les blocs d'images. La citation directe éventuelle doit rester brève et intégrée au flux narratif. Ne jamais s'adresser directement au public. L'authenticité linguistique passe par le vocabulaire des métiers (soudeurs, charpentiers, coques, cales) sans jargon excessif."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes vibrent d'une activité intense dans les années 1950. Des centaines d'ouvriers — soudeurs, charpentiers, riveurs — façonnent de leurs mains des coques immenses, donnant naissance à des géants d'acier dont le plus célèbre, le paquebot France, est lancé en 1960 : 106 000 tonnes de rêves et de fierté nationale. Mais cette épopée ouvrière s'éteint progressivement, laissant derrière elle un paysage de grues silencieuses et de cales désertées. Le récit suit l'arc d'une communauté entière, de l'effervescence glorieuse au silence mélancolique d'un monde disparu.",
+        "duree_estimee": 47.0,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+            "duree": 47.0,
+            "texte_narration": "Nantes, années cinquante. La Loire charrie des reflets d'acier. Sur ses rives, un vacarme immense s'élève.\n\nDes centaines de soudeurs, de charpentiers, courbés sur des coques gigantesques. Leurs mains façonnent des géants. En 1960, le plus grand d'entre eux glisse vers le fleuve : le paquebot France. Cent six mille tonnes de fierté nationale.\n\nPuis les commandes se tarissent. Les marteaux se taisent, un à un. Aujourd'hui, seules les grues jaunes veillent encore, sentinelles muettes d'un monde englouti. Le silence a remplacé le vacarme. Mais la Loire, elle, se souvient.",
+            "ton": {
+              "global": "dramatique_immersif",
+              "tempo_lecture": 120,
+              "pauses": [
+                "après 's'élève' (1.5s)",
+                "après 'fierté nationale' (2s)",
+                "après 'un à un' (1.5s)",
+                "après 'monde englouti' (1s)"
+              ],
+              "intonation": "Grave et posée en ouverture, montée épique sur le paquebot France, descente lente et mélancolique sur la fin — dernière phrase suspendue, contemplative."
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture atmosphérique — Nantes, la Loire, premiers bruits industriels",
+                "duree": 7.0
+              },
+              {
+                "timestamp": "0:07",
+                "action": "Portrait collectif des ouvriers — énergie physique, coques immenses",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "0:15",
+                "action": "Climax épique — lancement du paquebot France, 1960",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "0:23",
+                "action": "Bascule — le déclin, les marteaux se taisent",
+                "duree": 7.0
+              },
+              {
+                "timestamp": "0:30",
+                "action": "Élégie — grues jaunes, silence, mémoire du fleuve",
+                "duree": 19.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Nantes, années cinquante.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              },
+              {
+                "sentence": "La Loire charrie des reflets d'acier.",
+                "sources": [
+                  "[00:00] Imaginez la Loire en 1950."
+                ]
+              },
+              {
+                "sentence": "Sur ses rives, un vacarme immense s'élève.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+                ]
+              },
+              {
+                "sentence": "Des centaines de soudeurs, de charpentiers, courbés sur des coques gigantesques.",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              },
+              {
+                "sentence": "Leurs mains façonnent des géants.",
+                "sources": [
+                  "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+                ]
+              },
+              {
+                "sentence": "En 1960, le plus grand d'entre eux glisse vers le fleuve : le paquebot France.",
+                "sources": [
+                  "[00:00] Le paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêves et d'acier."
+                ]
+              },
+              {
+                "sentence": "Cent six mille tonnes de fierté nationale.",
+                "sources": [
+                  "[00:00] Le paquebot France, fierté nationale, est né ici en 1960, 106 000 tonnes de rêves et d'acier."
+                ]
+              },
+              {
+                "sentence": "Puis les commandes se tarissent.",
+                "sources": []
+              },
+              {
+                "sentence": "Les marteaux se taisent, un à un.",
+                "sources": []
+              },
+              {
+                "sentence": "Aujourd'hui, seules les grues jaunes veillent encore, sentinelles muettes d'un monde englouti.",
+                "sources": [
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              },
+              {
+                "sentence": "Le silence a remplacé le vacarme.",
+                "sources": [
+                  "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité.",
+                  "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+                ]
+              },
+              {
+                "sentence": "Mais la Loire, elle, se souvient.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 94,
+          "duree_lecture_estimee": 47.0,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit forme un seul souffle en trois mouvements, sans annonce de chapitre ni rupture artificielle. La voix off omnisciente adopte un registre clair et évocateur, accessible à un touriste découvrant Nantes. Le ton dramatique immersif repose sur des images sensorielles fortes (mains, acier, bruit, silence) plutôt que sur l'emphase vocale. Les transitions sont tissées dans le texte — chaque section s'enchaîne par une image-pont. Le débit visé est d'environ 2 mots/seconde (≈98 mots total). Privilégier des phrases courtes, rythmées, avec des silences implicites entre les blocs d'images. La citation directe éventuelle doit rester brève et intégrée au flux narratif. Ne jamais s'adresser directement au public. L'authenticité linguistique passe par le vocabulaire des métiers (soudeurs, charpentiers, coques, cales) sans jargon excessif."
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+        "taggedText": "=== PARTIE 1 : Les mains de la Loire — Chronique des chantiers navals de Nantes ===\n\n{clapotis_loire_industriel.wav}\n\n[posé] Nantes, années cinquante. [pause] La Loire charrie des reflets d'acier. Sur ses rives, [pause] un vacarme immense s'élève.\n\n{martellement_chantier_naval.wav}\n\nDes centaines de soudeurs, de charpentiers, courbés sur des coques gigantesques. Leurs mains façonnent des géants. [pause] En 1960, le plus grand d'entre eux glisse vers le fleuve : [accentué] le paquebot France. [pause] Cent six mille tonnes de fierté nationale.\n\n{silence_vent_fleuve.wav}\n\n[ralentit] Puis les commandes se tarissent. Les marteaux se taisent, un à un. [pause] [triste] Aujourd'hui, seules les grues jaunes veillent encore, sentinelles muettes d'un monde englouti. Le silence a remplacé le vacarme. [pause] [chuchote] Mais la Loire, elle, se souvient.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+            "taggedText": "{clapotis_loire_industriel.wav}\n\n[posé] Nantes, années cinquante. [pause] La Loire charrie des reflets d'acier. Sur ses rives, [pause] un vacarme immense s'élève.\n\n{martellement_chantier_naval.wav}\n\nDes centaines de soudeurs, de charpentiers, courbés sur des coques gigantesques. Leurs mains façonnent des géants. [pause] En 1960, le plus grand d'entre eux glisse vers le fleuve : [accentué] le paquebot France. [pause] Cent six mille tonnes de fierté nationale.\n\n{silence_vent_fleuve.wav}\n\n[ralentit] Puis les commandes se tarissent. Les marteaux se taisent, un à un. [pause] [triste] Aujourd'hui, seules les grues jaunes veillent encore, sentinelles muettes d'un monde englouti. Le silence a remplacé le vacarme. [pause] [chuchote] Mais la Loire, elle, se souvient."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 11,
+          "soundTags": 3,
+          "originalWordCount": 94
+        }
+      },
+      "scenario_index": 1,
+      "spec": {
+        "audience": "touriste",
+        "tone": "dramatique_immersif",
+        "target_duration": 49,
+        "source_usage_level": "leger",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "GYzIdoKkRyANjBvkKYfO"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    }
+  ],
+  "last_scenarios_generated_at": "2026-05-12T14:12:06.886730"
+}

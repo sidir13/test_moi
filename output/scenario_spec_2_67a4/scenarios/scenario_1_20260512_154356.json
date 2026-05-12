@@ -1,0 +1,107 @@
+{
+  "scenario_id": 1,
+  "titre": "Le France — Acier et Rêve sur la Loire",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Sur les rives de la Loire, les chantiers navals de Nantes façonnent dans les années 1950 un géant des mers. Sous les mains des soudeurs et charpentiers, le paquebot France prend forme — 106 000 tonnes de fierté nationale lancées en 1960. Ce portrait d'un navire légendaire, raconté en trois haïkus japonais au ton neutre et informatif, évoque la naissance, la splendeur et la mémoire d'un passé industriel glorieux dont seules les grues jaunes de Nantes gardent aujourd'hui la trace.",
+  "duree_estimee": 23.210526315789473,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Naissance — Le chantier",
+      "duree": 7.800000000000001,
+      "texte_narration": "Nantes, bord de Loire —\nles soudeurs façonnent l'acier.\nCoques dans la brume.",
+      "ton": {
+        "global": "neutre_informatif, posé",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'brume' (1.5s avant haïku suivant)"
+        ],
+        "intonation": "Lecture claire, détachée, chaque vers séparé par un micro-silence"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le premier haïku — ton posé, diction nette",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nantes, bord de Loire — les soudeurs façonnent l'acier. Coques dans la brume.",
+          "sources": [
+            "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité. Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Splendeur — Le France",
+      "duree": 7.199999999999999,
+      "texte_narration": "Mille neuf cent soixante —\nle France, fierté nationale.\nCent six mille tonnes.",
+      "ton": {
+        "global": "neutre_informatif, solennel",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'tonnes' (1.5s avant haïku suivant)"
+        ],
+        "intonation": "Légère ampleur sur 'fierté nationale', retour neutre sur le dernier vers"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:09",
+          "action": "Climax — évocation du lancement du paquebot, ton majestueux mais contenu",
+          "duree": 5.5
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mille neuf cent soixante — le France, fierté nationale. Cent six mille tonnes.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêve et d'acier."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Mémoire — Les grues jaunes",
+      "duree": 8.210526315789474,
+      "texte_narration": "Les grues jaunes veillent.\nSeules témoins du passé grand.\nLa Loire se souvient.",
+      "ton": {
+        "global": "neutre_informatif, contemplatif",
+        "tempo_lecture": 95,
+        "pauses": [
+          "après 'souvient' (2s — fin du triptyque, laisser résonner)"
+        ],
+        "intonation": "Lecture douce, légèrement descendante sur le dernier vers"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:19",
+          "action": "Résolution élégiaque — image des grues jaunes, fermeture contemplative",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Les grues jaunes veillent. Seules témoins du passé grand. La Loire se souvient.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 38,
+    "duree_lecture_estimee": 23.210526315789473,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "FORME : Trois haïkus japonais authentiques (5-7-5 syllabes chacun, en français). Chaque haïku correspond à une section. Le total textuel ne dépasse pas ~50 mots. FLUIDITÉ : Les trois poèmes forment un triptyque cohérent — naissance, apogée, mémoire — et se lisent comme un seul souffle narratif en trois temps. Les silences inter-haïkus (1,5 s chacun) font partie intégrante du rythme et ne doivent pas être comblés. TON : Neutre et informatif même dans la forme poétique — pas de lyrisme excessif, les images restent factuelles et traçables aux sources. REGISTRE : Grand public — vocabulaire simple, images concrètes. VOIX OFF : Lecture posée, diction claire, sans adresse directe au public. RIGUEUR HISTORIQUE : Aucun fait ajouté au-delà des sources (Nantes, chantiers navals, soudeurs, charpentiers, paquebot France, 1960, 106 000 tonnes, grues jaunes). DURÉE : ~25 s au total (3 × ~5 s de lecture + 2 × 1,5 s de silence + marges d'ouverture/fermeture)."
+}

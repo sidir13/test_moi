@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Capitaine Moustache et les coques d'acier",
+  "taggedText": "=== PARTIE 1 : La Loire, aujourd'hui silencieuse ===\n\n{silence_fleuve_lointain.wav}\n\n[posé] Les grues jaunes de Nantes se dressent au-dessus de la Loire, [ralentit] immobiles. [pause]\n\n=== PARTIE 2 : Capitaine Moustache au chantier ===\n\n{metal_martelage_chantier.wav}\n\nEn 1950, pourtant, ces quais grondaient. [précipité] Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies. [pause] Un témoin raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] Le métal rougeoyait du matin au soir.\n\n=== PARTIE 3 : Le paquebot prend la mer ===\n\nEn 1960, leur œuvre glisse enfin vers le large : [posé] [accentué] « 106 000 tonnes de rêve et d'acier. » [pause] [ralentit] Fierté nationale.\n\n=== PARTIE 4 : Retour à la Loire ===\n\n{silence_vent_leger_quai.wav}\n\n[posé] Aujourd'hui, les grues jaunes veillent seules. [ralentit] [triste] La Loire coule, silencieuse. [pause]",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La Loire, aujourd'hui silencieuse",
+      "taggedText": "{silence_fleuve_lointain.wav}\n\n[posé] Les grues jaunes de Nantes se dressent au-dessus de la Loire, [ralentit] immobiles. [pause]"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Capitaine Moustache au chantier",
+      "taggedText": "{metal_martelage_chantier.wav}\n\nEn 1950, pourtant, ces quais grondaient. [précipité] Un chat soudeur que tous appelaient Capitaine Moustache y façonnait les coques, entouré de chiens charpentiers, de musaraignes riveteuses et de mouettes vigies. [pause] Un témoin raconte : [posé] [atténué] « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. » [pause] Le métal rougeoyait du matin au soir."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le paquebot prend la mer",
+      "taggedText": "En 1960, leur œuvre glisse enfin vers le large : [posé] [accentué] « 106 000 tonnes de rêve et d'acier. » [pause] [ralentit] Fierté nationale."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Retour à la Loire",
+      "taggedText": "{silence_vent_leger_quai.wav}\n\n[posé] Aujourd'hui, les grues jaunes veillent seules. [ralentit] [triste] La Loire coule, silencieuse. [pause]"
+    }
+  ],
+  "metadata": {
+    "voiceTags": 16,
+    "soundTags": 3,
+    "originalWordCount": 98
+  }
+}

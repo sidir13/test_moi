@@ -1,0 +1,95 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Capitaine Moustache et les coques d'acier",
+  "resumeHistoire": "Sur les chantiers navals de Nantes en 1950, un chat soudeur nommé Capitaine Moustache travaille chaque jour à façonner les coques immenses des navires. Sous ses pattes expertes et celles de ses compagnons — chiens charpentiers, musaraignes riveteuses et mouettes vigies — prend forme un paquebot colossal de 106 000 tonnes. En 1960, le navire est lancé, fierté de tous. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, et l'histoire revient à son point de départ : la Loire, silencieuse.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 34,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La Loire, aujourd'hui silencieuse",
+      "duree_cible": 6.0,
+      "fonction_narrative": "ouverture_circulaire",
+      "position_arc_emotionnel": "mélancolie_douce",
+      "elements_necessaires": [
+        "évocation des grues jaunes",
+        "silence présent",
+        "invitation immersive"
+      ],
+      "mood": "contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Capitaine Moustache au chantier",
+      "duree_cible": 14.0,
+      "fonction_narrative": "portrait_central",
+      "position_arc_emotionnel": "montée_énergie",
+      "elements_necessaires": [
+        "citation directe source : coques immenses, mains expertes, soudeurs, charpentiers",
+        "personnage chat soudeur",
+        "compagnons chiens musaraignes mouettes",
+        "Nantes 1950"
+      ],
+      "mood": "vivant_industriel"
+    },
+    {
+      "partie": 3,
+      "titre": "Le paquebot prend la mer",
+      "duree_cible": 8.0,
+      "fonction_narrative": "climax",
+      "position_arc_emotionnel": "fierté_sommet",
+      "elements_necessaires": [
+        "citation : 106 000 tonnes de rêve et d'acier",
+        "1960",
+        "fierté nationale"
+      ],
+      "mood": "solennel"
+    },
+    {
+      "partie": 4,
+      "titre": "Retour à la Loire",
+      "duree_cible": 6.0,
+      "fonction_narrative": "fermeture_circulaire",
+      "position_arc_emotionnel": "retour_mélancolie",
+      "elements_necessaires": [
+        "écho de l'ouverture",
+        "grues jaunes",
+        "passé glorieux"
+      ],
+      "mood": "contemplatif_nostalgique"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_nostalgique",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "plongée_temporelle",
+      "duree": 1.5,
+      "description": "Du présent silencieux, glissement vers le bruit des chantiers en 1950 — transition par contraste sonore implicite."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "L'effort quotidien mène à l'aboutissement : le lancement du navire. Montée en intensité fluide."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ellipse_douce",
+      "duree": 1.5,
+      "description": "Du sommet de fierté, retour au présent — le temps a passé, écho de l'ouverture."
+    }
+  ],
+  "notes_production": "Structure circulaire : la première et la dernière phrase doivent se faire écho (la Loire, les grues). Le personnage fictif Capitaine Moustache est un chat soudeur — ses compagnons animaux sont mentionnés brièvement. Les citations de la source audio sont intégrées naturellement dans la narration. Ton neutre et informatif maintenu tout au long. Registre accessible grand public. Aucun monologue intérieur — tout est raconté de l'extérieur. Ambiance sonore minimaliste suggérée : silence, puis métal, puis retour au silence. Total visé : ~68 mots maximum."
+}

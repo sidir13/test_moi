@@ -1,0 +1,53 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Nantes : l'étoile des chantiers navals s'éteint",
+  "resumeHistoire": "En 1950, les chantiers navals de Nantes bourdonnent d'activité, telle une base rebelle en pleine effervescence. Des coques immenses prennent forme sous les mains de soudeurs et charpentiers. En 1960, le paquebot France naît ici : 106 000 tonnes de rêve et d'acier, un vaisseau aussi majestueux qu'un destroyer impérial. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, vestiges silencieux d'une époque révolue.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 28,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "La Loire en pleine activité",
+      "duree_cible": 14.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "montée_épique",
+      "elements_necessaires": [
+        "Citation directe : Loire en 1950",
+        "Chantiers navals de Nantes",
+        "Soudeurs et charpentiers",
+        "Paquebot France 1960 — 106 000 tonnes",
+        "Référence Star Wars intégrée naturellement"
+      ],
+      "mood": "épique_industriel"
+    },
+    {
+      "partie": 2,
+      "titre": "Les vestiges silencieux",
+      "duree_cible": 14.0,
+      "fonction_narrative": "resolution_melancolique",
+      "position_arc_emotionnel": "retombée_nostalgique",
+      "elements_necessaires": [
+        "Contraste avant/après",
+        "Grues jaunes comme témoins",
+        "Ton neutre informatif maintenu",
+        "Référence Star Wars en écho mélancolique"
+      ],
+      "mood": "nostalgique_contemplatif"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_puis_decrescendo",
+  "rythme_general": "varie — montée épique puis ralentissement mélancolique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "bascule_temporelle",
+      "duree": 2.0,
+      "description": "Passage fluide du passé glorieux au présent silencieux, comme un fondu enchaîné entre deux époques — la transition se fait par le mot 'Aujourd'hui' qui marque la rupture temporelle sans casser le flux narratif."
+    }
+  ],
+  "notes_production": "CONTINUITÉ : Le récit est un bloc unique de ~56 mots, lu en voix off omnisciente. Le ton reste neutre et informatif tout du long. Les références Star Wars doivent s'intégrer comme des comparaisons naturelles du narrateur (pas de rupture de ton). La partie 1 utilise la citation source quasi intégralement. La partie 2 est le miroir inversé — même lieu, silence au lieu du bruit. Pas d'adresse au public. Registre accessible grand public. Densité sonore riche : prévoir ambiances industrielles (marteaux, soudure) en partie 1, puis silence et vent en partie 2."
+}

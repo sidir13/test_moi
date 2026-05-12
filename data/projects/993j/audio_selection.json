@@ -1,0 +1,11 @@
+{
+  "voices": [
+    "Qwen_tts_a-mature-contemplative-narrato_20260204T092112Z.wav"
+  ],
+  "backgrounds": {
+    "ambient": null,
+    "punctual": []
+  },
+  "auto_backgrounds": false,
+  "tts_voice_id": "GYzIdoKkRyANjBvkKYfO"
+}

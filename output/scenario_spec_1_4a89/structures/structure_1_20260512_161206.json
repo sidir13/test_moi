@@ -1,0 +1,76 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains de la Loire — Chronique des chantiers navals de Nantes",
+  "resumeHistoire": "Sur les bords de la Loire, les chantiers navals de Nantes vibrent d'une activité intense dans les années 1950. Des centaines d'ouvriers — soudeurs, charpentiers, riveurs — façonnent de leurs mains des coques immenses, donnant naissance à des géants d'acier dont le plus célèbre, le paquebot France, est lancé en 1960 : 106 000 tonnes de rêves et de fierté nationale. Mais cette épopée ouvrière s'éteint progressivement, laissant derrière elle un paysage de grues silencieuses et de cales désertées. Le récit suit l'arc d'une communauté entière, de l'effervescence glorieuse au silence mélancolique d'un monde disparu.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 49,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le fleuve et les hommes",
+      "duree_cible": 14.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "éveil — curiosité montante",
+      "elements_necessaires": [
+        "Invitation immersive temporelle (années 1950)",
+        "La Loire comme décor vivant",
+        "Premiers signes d'activité industrielle",
+        "Registre accessible pour touriste"
+      ],
+      "mood": "atmosphérique, évocateur, promesse de grandeur"
+    },
+    {
+      "partie": 2,
+      "titre": "La ruche d'acier",
+      "duree_cible": 16.0,
+      "fonction_narrative": "développement — portrait collectif",
+      "position_arc_emotionnel": "montée en puissance — fierté",
+      "elements_necessaires": [
+        "Les métiers : soudeurs, charpentiers",
+        "Le quotidien physique des ouvriers",
+        "Les coques immenses prenant forme",
+        "Le paquebot France — 1960 — 106 000 tonnes",
+        "Dimension de fierté nationale"
+      ],
+      "mood": "épique, charnel, vibrant d'énergie collective"
+    },
+    {
+      "partie": 3,
+      "titre": "Les grues silencieuses",
+      "duree_cible": 19.0,
+      "fonction_narrative": "résolution — élégie sociale",
+      "position_arc_emotionnel": "sommet émotionnel puis descente mélancolique",
+      "elements_necessaires": [
+        "Contraste temporel passé/présent",
+        "Les grues jaunes comme vestiges témoins",
+        "Silence là où régnait le vacarme",
+        "Ouverture contemplative — mémoire des lieux"
+      ],
+      "mood": "mélancolique, solennel, dramatique contenu"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_emotionnel — de l'éveil sensoriel à la fierté épique, culminant dans une mélancolie poignante",
+  "rythme_general": "modéré — phrases courtes et denses, tempo qui s'élargit progressivement vers la fin pour laisser résonner l'émotion",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "Du décor fluvial, le regard se resserre sur les hommes au travail. La transition se fait par le son évoqué : du murmure du fleuve au vacarme des chantiers. Pas de rupture — le fleuve mène naturellement aux cales."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_temporel",
+      "duree": 2.0,
+      "description": "Bascule dramatique du passé glorieux au présent silencieux. Une phrase charnière marque le passage du temps — le fracas des marteaux s'éteint pour laisser place au vent sur les quais déserts. Le contraste est le climax émotionnel."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit forme un seul souffle en trois mouvements, sans annonce de chapitre ni rupture artificielle. La voix off omnisciente adopte un registre clair et évocateur, accessible à un touriste découvrant Nantes. Le ton dramatique immersif repose sur des images sensorielles fortes (mains, acier, bruit, silence) plutôt que sur l'emphase vocale. Les transitions sont tissées dans le texte — chaque section s'enchaîne par une image-pont. Le débit visé est d'environ 2 mots/seconde (≈98 mots total). Privilégier des phrases courtes, rythmées, avec des silences implicites entre les blocs d'images. La citation directe éventuelle doit rester brève et intégrée au flux narratif. Ne jamais s'adresser directement au public. L'authenticité linguistique passe par le vocabulaire des métiers (soudeurs, charpentiers, coques, cales) sans jargon excessif."
+}

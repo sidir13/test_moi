@@ -1,0 +1,25 @@
+{
+  "events": [
+    {
+      "title": "Activité et apogée des chantiers navals de Nantes",
+      "description": "Période de forte activité industrielle impliquant des soudeurs et charpentiers dans la construction de grands navires sur les bords de la Loire, culminant avec la construction du paquebot France, une structure d'acier de 106 000 tonnes symbole de fierté nationale.",
+      "approximate_time": "1950-1960",
+      "actors": [
+        "soudeurs",
+        "charpentiers"
+      ],
+      "places": [
+        "Nantes",
+        "La Loire"
+      ],
+      "keywords": [
+        "chantiers navals",
+        "industrie",
+        "construction navale",
+        "paquebot France",
+        "acier",
+        "fierté nationale"
+      ]
+    }
+  ]
+}

@@ -2,7 +2,13 @@ import { ChevronRight, Loader2, PencilLine, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchSelectedScenario, selectScenario } from "@/api/client";
+import {
+  fetchProjectProfile,
+  fetchScenarioAudio,
+  fetchSelectedScenario,
+  selectScenario,
+  synthesizeScenarioAudio,
+} from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 
 type EditablePart = {
@@ -26,15 +32,33 @@ function KeyWordChip({ label, variant }: KeyWordChipProps) {
 
 export function EditionTextView() {
   const navigate = useNavigate();
-  const { sessionId, setCurrentStep } = useSessionStore();
+  const { sessionId, projectName, lastProjectName, setCurrentStep } = useSessionStore();
+  const resolvedProjectName = projectName ?? lastProjectName;
   const [parts, setParts] = useState<EditablePart[]>([]);
+  const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generateError, setGenerateError] = useState<string | null>(null);
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
     queryFn: () => fetchSelectedScenario(sessionId!),
     enabled: Boolean(sessionId),
   });
+
+  const profileQuery = useQuery({
+    queryKey: ["project-profile", resolvedProjectName],
+    queryFn: () => fetchProjectProfile(resolvedProjectName!),
+    enabled: Boolean(resolvedProjectName),
+  });
+
+  const audioQuery = useQuery({
+    queryKey: ["scenario-audio", sessionId],
+    queryFn: () => fetchScenarioAudio(sessionId!),
+    enabled: Boolean(sessionId),
+  });
+
+  const isElevenLabs = profileQuery.data?.tts_provider === "elevenlabs";
 
   useEffect(() => {
     if (!selectionQuery.data) return;
@@ -50,16 +74,26 @@ export function EditionTextView() {
         texte_narration: typeof p.texte_narration === "string" ? p.texte_narration : "",
       }))
     );
+    setIsDirty(false);
   }, [selectionQuery.data]);
 
   const updatePart = (idx: number, patch: Partial<EditablePart>) => {
     setParts((prev) => prev.map((p, i) => (i === idx ? { ...p, ...patch } : p)));
+    setIsDirty(true);
+  };
+
+  const proceedToScenarioEdit = () => {
+    setCurrentStep("scenario_edit");
+    navigate("/step/scenario_edit");
   };
 
   const goToAudioEdition = async () => {
     if (!sessionId) return;
+    setGenerateError(null);
     setIsSaving(true);
+
     try {
+      // 1. Save edited text
       if (selectionQuery.data) {
         const raw = selectionQuery.data as Record<string, unknown>;
         const merged: Record<string, unknown> = { ...raw };
@@ -70,11 +104,41 @@ export function EditionTextView() {
         }
         await selectScenario(sessionId, merged);
       }
+
+      // 2. Skip generation if audio is already done and text wasn't edited
+      const audio = audioQuery.data;
+      const needsAudio = isDirty || !audio?.path || audio?.status !== "done";
+      if (!needsAudio) {
+        proceedToScenarioEdit();
+        return;
+      }
     } finally {
       setIsSaving(false);
     }
-    setCurrentStep("scenario_edit");
-    navigate("/step/scenario_edit");
+
+    // 3. Show loading screen and generate
+    setIsGenerating(true);
+    try {
+      await synthesizeScenarioAudio(sessionId);
+
+      // 4. Poll until done or failed (max ~3 min)
+      for (let i = 0; i < 90; i++) {
+        await new Promise((r) => setTimeout(r, 2000));
+        const result = await fetchScenarioAudio(sessionId);
+        if (result?.status === "done") {
+          proceedToScenarioEdit();
+          return;
+        }
+        if (result?.status === "failed") {
+          throw new Error(result.error ?? "Génération de l'audio échouée.");
+        }
+      }
+      throw new Error("Délai de génération dépassé.");
+    } catch (err) {
+      setGenerateError(err instanceof Error ? err.message : "Erreur lors de la génération.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const raw = selectionQuery.data as Record<string, unknown> | undefined;
@@ -86,6 +150,22 @@ export function EditionTextView() {
     (payload?.title as string | undefined) ??
     "";
   const axeNarratif = (payload?.axe_narratif as string | undefined) ?? "";
+
+  if (isGenerating) {
+    return (
+      <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center justify-center gap-6 p-6">
+        <div className="w-full rounded-[14px] border border-[#8EA4BD] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.10)] flex flex-col items-center gap-6 py-20 px-8">
+          <Loader2 className="h-12 w-12 animate-spin text-[#007AFF]" />
+          <div className="flex flex-col items-center gap-2 text-center">
+            <h2 className="text-[20px] font-semibold text-[#0F172B]">Génération de l'audio</h2>
+            <p className="text-[14px] text-[#45556C]">
+              Synthèse vocale en cours, veuillez patienter…
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-4 p-6">
@@ -134,8 +214,12 @@ export function EditionTextView() {
                   <Sparkles className="h-4 w-4" />
                   <span>Demander à l&apos;agent IA</span>
                 </button>
-                <KeyWordChip label="Effet Sonore" variant="effet-sonore" />
-                <KeyWordChip label="Respiration" variant="respiration" />
+                {isElevenLabs && (
+                  <>
+                    <KeyWordChip label="Effet Sonore" variant="effet-sonore" />
+                    <KeyWordChip label="Respiration" variant="respiration" />
+                  </>
+                )}
               </div>
 
               {/* Editable parts */}
@@ -171,6 +255,19 @@ export function EditionTextView() {
           )}
         </div>
       </div>
+
+      {generateError && (
+        <div className="flex w-full items-center justify-between gap-3 rounded-[12px] border border-[#FF3B30] bg-[#fff1f0] px-4 py-3 text-[13px] text-[#FF3B30]">
+          <span>{generateError}</span>
+          <button
+            type="button"
+            onClick={proceedToScenarioEdit}
+            className="shrink-0 text-[13px] font-medium underline hover:no-underline"
+          >
+            Continuer sans audio
+          </button>
+        </div>
+      )}
 
       <div className="flex w-full items-center justify-end">
         <button

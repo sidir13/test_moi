@@ -160,6 +160,12 @@ export function ConfigurationScenarioView() {
     return "central";
   };
 
+  const sourceMatchLabel = (value: number): string => {
+    if (value <= 33) return "Léger";
+    if (value <= 66) return "Modéré";
+    return "Central";
+  };
+
   const extractError = (err: unknown): string => {
     if (axios.isAxiosError(err)) {
       const detail = err.response?.data?.detail;
@@ -200,13 +206,14 @@ export function ConfigurationScenarioView() {
         );
       }
       const ttsProvider = specs[0]?.tts_provider ?? "elevenlabs";
+      const ttsVoiceId = specs[0]?.tts_voice_id ?? null;
       await saveAudioSelection(sessionId, {
         project_name: resolvedProjectName,
         voices: projectAudio.slice(0, 3),
         backgrounds: { ambient: null, punctual: [] },
         auto_backgrounds: false,
         tts_provider: ttsProvider,
-        tts_voice_id: null,
+        tts_voice_id: ttsVoiceId,
       });
 
       await generateScenarios(
@@ -474,7 +481,7 @@ export function ConfigurationScenarioView() {
                         </button>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-[14px] font-normal text-[#45556C]">Identique</span>
+                        <span className="text-[14px] font-normal text-[#45556C]">{sourceMatchLabel(scenario.sourceMatch)}</span>
                         <input
                           type="range"
                           min={0}

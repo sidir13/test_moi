@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Le France — Acier et Rêve sur la Loire",
+  "taggedText": "=== PARTIE 1 : Naissance — Le chantier ===\n\n[posé] Nantes, bord de Loire — [pause]\nles soudeurs façonnent l'acier. [pause]\nCoques dans la brume.\n\n[pause]\n\n=== PARTIE 2 : Splendeur — Le France ===\n\n[posé] Mille neuf cent soixante — [pause]\nle France, [accentué] fierté nationale. [pause]\nCent six mille tonnes.\n\n[pause]\n\n=== PARTIE 3 : Mémoire — Les grues jaunes ===\n\n[posé] Les grues jaunes veillent. [pause]\nSeules témoins du passé grand. [pause]\n[atténué] La Loire se souvient.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Naissance — Le chantier",
+      "taggedText": "[posé] Nantes, bord de Loire — [pause]\nles soudeurs façonnent l'acier. [pause]\nCoques dans la brume.\n\n[pause]"
+    },
+    {
+      "partie_id": 2,
+      "titre": "Splendeur — Le France",
+      "taggedText": "[posé] Mille neuf cent soixante — [pause]\nle France, [accentué] fierté nationale. [pause]\nCent six mille tonnes.\n\n[pause]"
+    },
+    {
+      "partie_id": 3,
+      "titre": "Mémoire — Les grues jaunes",
+      "taggedText": "[posé] Les grues jaunes veillent. [pause]\nSeules témoins du passé grand. [pause]\n[atténué] La Loire se souvient."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 13,
+    "soundTags": 0,
+    "originalWordCount": 38
+  }
+}

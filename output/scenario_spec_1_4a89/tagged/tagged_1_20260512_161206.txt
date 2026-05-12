@@ -1,0 +1,13 @@
+=== PARTIE 1 : Les mains de la Loire — Chronique des chantiers navals de Nantes ===
+
+{clapotis_loire_industriel.wav}
+
+[posé] Nantes, années cinquante. [pause] La Loire charrie des reflets d'acier. Sur ses rives, [pause] un vacarme immense s'élève.
+
+{martellement_chantier_naval.wav}
+
+Des centaines de soudeurs, de charpentiers, courbés sur des coques gigantesques. Leurs mains façonnent des géants. [pause] En 1960, le plus grand d'entre eux glisse vers le fleuve : [accentué] le paquebot France. [pause] Cent six mille tonnes de fierté nationale.
+
+{silence_vent_fleuve.wav}
+
+[ralentit] Puis les commandes se tarissent. Les marteaux se taisent, un à un. [pause] [triste] Aujourd'hui, seules les grues jaunes veillent encore, sentinelles muettes d'un monde englouti. Le silence a remplacé le vacarme. [pause] [chuchote] Mais la Loire, elle, se souvient.

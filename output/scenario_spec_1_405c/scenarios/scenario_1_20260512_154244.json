@@ -1,0 +1,123 @@
+{
+  "scenario_id": 1,
+  "titre": "Nantes : l'étoile des chantiers navals s'éteint",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "En 1950, les chantiers navals de Nantes bourdonnent d'activité, telle une base rebelle en pleine effervescence. Des coques immenses prennent forme sous les mains de soudeurs et charpentiers. En 1960, le paquebot France naît ici : 106 000 tonnes de rêve et d'acier, un vaisseau aussi majestueux qu'un destroyer impérial. Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux, vestiges silencieux d'une époque révolue.",
+  "duree_estimee": 45.68181818181819,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "La Loire en pleine activité",
+      "duree": 25.5,
+      "texte_narration": "Nantes, 1950. Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence. Une voix raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »] En 1960, le paquebot France émerge : cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial.",
+      "ton": {
+        "global": "neutre_informatif avec souffle épique contenu",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'Nantes, 1950' (1s)",
+          "après 'charpentiers' (0.5s)"
+        ],
+        "intonation": "montée progressive, culminant sur 'destroyer impérial'"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sèche — nom du lieu et date",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "Citation archive — immersion sonore industrielle",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Révélation du paquebot France — pic épique",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nantes, 1950.",
+          "sources": [
+            "[00:00] Imaginez la Loire en 1950."
+          ]
+        },
+        {
+          "sentence": "Les chantiers navals bourdonnent comme un hangar rebelle en pleine effervescence.",
+          "sources": [
+            "[00:00] Les chantiers navals de Nantes bourdonnaient d'activité."
+          ]
+        },
+        {
+          "sentence": "Une voix raconte : [ARCHIVE : « Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers. »]",
+          "sources": [
+            "[00:00] Des coques immenses prenaient forme sous les mains expertes des soudeurs et des charpentiers."
+          ]
+        },
+        {
+          "sentence": "En 1960, le paquebot France émerge : cent six mille tonnes d'acier, un vaisseau aussi majestueux qu'un destroyer impérial.",
+          "sources": [
+            "[00:00] Le paquebot France, fierté nationale, est né ici en 1960. 106 000 tonnes de rêve et d'acier."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Les vestiges silencieux",
+      "duree": 20.181818181818183,
+      "texte_narration": "Aujourd'hui, les marteaux se sont tus. Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie.",
+      "ton": {
+        "global": "neutre_informatif teinté de mélancolie sobre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'se sont tus' (1.5s)",
+          "après 'empire déchu' (1s)"
+        ],
+        "intonation": "descendante, voix posée, fin suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:14",
+          "action": "Rupture temporelle — silence après le bruit",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Image des grues jaunes — témoins muets",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:23",
+          "action": "Métaphore Star Wars finale — flotte oubliée",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Aujourd'hui, les marteaux se sont tus.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        },
+        {
+          "sentence": "Seules les grues jaunes se dressent au bord du fleuve, sentinelles rouillées d'un empire déchu — comme les épaves d'une flotte oubliée, dérivant dans le silence de la galaxie.",
+          "sources": [
+            "[00:00] Aujourd'hui, seules les grues jaunes témoignent de ce passé glorieux."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 88,
+    "duree_lecture_estimee": 45.68181818181819,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ : Le récit est un bloc unique de ~56 mots, lu en voix off omnisciente. Le ton reste neutre et informatif tout du long. Les références Star Wars doivent s'intégrer comme des comparaisons naturelles du narrateur (pas de rupture de ton). La partie 1 utilise la citation source quasi intégralement. La partie 2 est le miroir inversé — même lieu, silence au lieu du bruit. Pas d'adresse au public. Registre accessible grand public. Densité sonore riche : prévoir ambiances industrielles (marteaux, soudure) en partie 1, puis silence et vent en partie 2."
+}
