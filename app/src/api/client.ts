@@ -361,8 +361,21 @@ export async function synthesizeScenarioAudio(
   return data as ScenarioAudioMetadata;
 }
 
-export async function remixScenarioAudio(sessionId: string) {
-  const { data } = await api.post(`/sessions/${sessionId}/scenario-audio/remix`);
+export type SfxPositionPayload = {
+  path: string;
+  start_seconds: number;
+  duration_seconds: number;
+};
+
+export async function remixScenarioAudio(
+  sessionId: string,
+  gainOverrides?: Record<string, number>,
+  sfxPositions?: SfxPositionPayload[]
+) {
+  const { data } = await api.post(`/sessions/${sessionId}/scenario-audio/remix`, {
+    gain_overrides: gainOverrides ?? null,
+    sfx_positions: sfxPositions && sfxPositions.length > 0 ? sfxPositions : null,
+  });
   return data as ScenarioAudioMetadata;
 }
 

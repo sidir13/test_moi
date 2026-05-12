@@ -719,6 +719,8 @@ def apply_background_selection(
     voice_path: Path,
     project_name: str,
     scenario_text: Optional[str] = None,
+    gain_overrides: Optional[Dict[str, float]] = None,
+    position_overrides: Optional[Dict[str, Dict[str, float]]] = None,
 ) -> tuple[Path, int, Optional[Path], int, List[Dict[str, Any]]]:
     """
     Mix the user-selected background sounds under the generated narration.
@@ -812,9 +814,22 @@ def apply_background_selection(
         ambient_path=ambient_selection["raw"] if ambient_selection else None,
         punctual_paths=[entry["raw"] for entry in punctual_selections],
     )
-    if not plan["ambient"] and not plan["punctual"]:
+    if not plan["ambient"] and not plan["punctual"] and not position_overrides:
         logger.info("No background plan generated for %s; leaving narration dry", project_name)
         return voice_path, 0, None, requested_layers, []
+
+    if position_overrides:
+        existing_by_file = {instr.get("file"): dict(instr) for instr in plan.get("punctual", [])}
+        new_punctual: List[Dict[str, Any]] = []
+        for raw_key, pos in position_overrides.items():
+            instr = dict(existing_by_file.get(raw_key, {"file": raw_key, "gain_db": PUNCTUAL_GAIN_DB}))
+            instr["start_seconds"] = pos["start_seconds"]
+            instr["duration_seconds"] = pos["duration_seconds"]
+            new_punctual.append(instr)
+        for raw_key, instr in existing_by_file.items():
+            if raw_key not in position_overrides:
+                new_punctual.append(instr)
+        plan = {**plan, "punctual": new_punctual}
 
     mixed_segment = voice_segment
     plan_metadata: List[Dict[str, Any]] = []
@@ -857,6 +872,8 @@ def apply_background_selection(
                         snippet = snippet[:duration_ms]
                         try:
                             gain = float(ambient_instruction.get("gain_db", AMBIENT_GAIN_DB))
+                            if gain_overrides:
+                                gain += gain_overrides.get(entry["raw"], 0.0)
                         except (TypeError, ValueError):
                             gain = AMBIENT_GAIN_DB
                         snippet = snippet + gain
@@ -894,6 +911,8 @@ def apply_background_selection(
         snippet = snippet[:duration_ms]
         try:
             gain = float(instruction.get("gain_db", PUNCTUAL_GAIN_DB))
+            if gain_overrides:
+                gain += gain_overrides.get(entry["raw"], 0.0)
         except (TypeError, ValueError):
             gain = PUNCTUAL_GAIN_DB
         snippet = snippet + gain
@@ -1014,6 +1033,17 @@ class TranscriptionUpdateRequest(BaseModel):
 class ScenarioAudioRequest(BaseModel):
     text: Optional[str] = None
     language: str = Field(default="French")
+
+
+class SfxPositionOverride(BaseModel):
+    path: str
+    start_seconds: float
+    duration_seconds: float
+
+
+class RemixPayload(BaseModel):
+    gain_overrides: Optional[Dict[str, float]] = None
+    sfx_positions: Optional[List[SfxPositionOverride]] = None
 
 
 class ImageOrderPayload(BaseModel):
@@ -3192,7 +3222,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         return FileResponse(audio_path)
 
     @app.post("/sessions/{session_id}/scenario-audio/remix", tags=["sessions"])
-    async def remix_scenario_audio(session_id: str) -> dict:
+    async def remix_scenario_audio(session_id: str, payload: RemixPayload = RemixPayload()) -> dict:
         session = session_store.load_session(session_id)
         if not session:
             raise HTTPException(status_code=404, detail="Session not found")
@@ -3223,6 +3253,13 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
         text: Optional[str] = scenario_to_text(scenario) if scenario else None
         project_name = session["project_name"]
 
+        gain_overrides = payload.gain_overrides or None
+        position_overrides: Optional[Dict[str, Dict[str, float]]] = None
+        if payload.sfx_positions:
+            position_overrides = {
+                s.path: {"start_seconds": s.start_seconds, "duration_seconds": s.duration_seconds}
+                for s in payload.sfx_positions
+            }
         try:
             (
                 layered_path,
@@ -3230,7 +3267,7 @@ def create_app(settings: Optional[AppSettings] = None) -> FastAPI:
                 new_dry_path,
                 backgrounds_requested,
                 background_plan,
-            ) = apply_background_selection(current_path, project_name, text)
+            ) = apply_background_selection(current_path, project_name, text, gain_overrides, position_overrides)
         except Exception as exc:
             logger.exception("Remix background layering failed for session %s", session_id)
             raise HTTPException(status_code=500, detail=f"Erreur lors du remix: {exc}") from exc

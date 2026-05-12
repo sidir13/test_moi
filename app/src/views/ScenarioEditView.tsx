@@ -31,15 +31,19 @@ import {
   synthesizeScenarioAudio,
   uploadBackgroundSound,
   type BackgroundSound,
+  type SfxPositionPayload,
 } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
-const PX_PER_SEC  = 15;
-const LABEL_W     = 160;
-const SFX_CLIP_DUR = 15; // default SFX clip duration in seconds
+const PX_PER_SEC       = 15;
+const LABEL_W          = 160;
+const SFX_CLIP_DUR     = 15;
+const CLIP_BASE_H      = 58;
+const CLIP_BOTTOM_Y    = 63; // track height (68) - bottom padding (5)
+const MIN_VOLUME_RATIO = 0.15;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -51,8 +55,10 @@ type Clip = {
   variant: ClipVariant;
   start: number; // seconds
   end: number;   // seconds
+  heightPx?: number;
   onClick?: () => void;
   onDragStart?: (e: React.MouseEvent) => void;
+  onVolumeDragStart?: (e: React.MouseEvent) => void;
 };
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
@@ -71,40 +77,61 @@ type AudioClipProps = {
   variant: ClipVariant;
   startPx: number;
   widthPx: number;
+  heightPx?: number;
   onClick?: () => void;
   onDragStart?: (e: React.MouseEvent) => void;
+  onVolumeDragStart?: (e: React.MouseEvent) => void;
 };
 
-function AudioClip({ label, variant, startPx, widthPx, onClick, onDragStart }: AudioClipProps) {
+function AudioClip({ label, variant, startPx, widthPx, heightPx = CLIP_BASE_H, onClick, onDragStart, onVolumeDragStart }: AudioClipProps) {
   const { bg, border, text, dashed } = CLIP_STYLES[variant];
-  const isDraggable = Boolean(onDragStart);
+  const isDraggable  = Boolean(onDragStart);
+  const isResizable  = Boolean(onVolumeDragStart);
+  const topPx        = CLIP_BOTTOM_Y - heightPx;
 
   return (
     <div
-      className="absolute top-[5px] h-[58px] rounded-[6px] flex items-center gap-2 px-3 overflow-hidden select-none"
+      className="absolute rounded-[6px] overflow-hidden select-none"
       style={{
         left: startPx,
+        top: topPx,
         width: Math.max(widthPx, 36),
+        height: heightPx,
         backgroundColor: bg,
         border: `1px ${dashed ? "dashed" : "solid"} ${border}`,
         color: text,
-        cursor: isDraggable ? "grab" : onClick ? "pointer" : undefined,
+        cursor: isDraggable ? "grab" : onClick ? "pointer" : "default",
       }}
-      onClick={!isDraggable ? onClick : undefined}
+      onClick={!isDraggable && !isResizable ? onClick : undefined}
       onMouseDown={(e) => {
-        if (onDragStart || onClick) e.stopPropagation();
+        if (onDragStart || onClick || onVolumeDragStart) e.stopPropagation();
         if (onDragStart) onDragStart(e);
       }}
     >
-      {variant === "Ajouter" ? (
-        <span className="flex items-center gap-1 text-[13px] font-normal whitespace-nowrap">
-          <Plus className="h-3 w-3 shrink-0" />
-          {label}
-        </span>
-      ) : (
-        <span className="text-[13px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-          {label}
-        </span>
+      {/* Volume resize handle at top */}
+      {isResizable && (
+        <div
+          className="absolute inset-x-0 top-0 h-3 cursor-ns-resize z-10 flex items-center justify-center hover:bg-black/10 rounded-t-[5px]"
+          onMouseDown={(e) => { e.stopPropagation(); onVolumeDragStart!(e); }}
+        >
+          <div className="w-6 h-[2px] rounded-full" style={{ backgroundColor: border, opacity: 0.55 }} />
+        </div>
+      )}
+
+      {/* Label — hidden when too short */}
+      {heightPx >= 24 && (
+        <div className="flex items-center gap-2 px-3 h-full">
+          {variant === "Ajouter" ? (
+            <span className="flex items-center gap-1 text-[13px] font-normal whitespace-nowrap">
+              <Plus className="h-3 w-3 shrink-0" />
+              {label}
+            </span>
+          ) : (
+            <span className="text-[13px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+              {label}
+            </span>
+          )}
+        </div>
       )}
     </div>
   );
@@ -145,8 +172,10 @@ function TrackContent({ clips }: { clips: Clip[] }) {
           variant={clip.variant}
           startPx={clip.start * PX_PER_SEC}
           widthPx={Math.max((clip.end - clip.start) * PX_PER_SEC, 36)}
+          heightPx={clip.heightPx}
           onClick={clip.onClick}
           onDragStart={clip.onDragStart}
+          onVolumeDragStart={clip.onVolumeDragStart}
         />
       ))}
     </div>
@@ -312,10 +341,20 @@ export function ScenarioEditView() {
     origMouseX: number;
   } | null>(null);
 
-  const audioRef          = useRef<HTMLAudioElement | null>(null);
+  // Clip volume levels (path → ratio 0..1, 1 = base, 0.15 = min)
+  const [clipVolumes, setClipVolumes]       = useState<Record<string, number>>({});
+  const [volumeDrag, setVolumeDrag]         = useState<{
+    path: string;
+    origRatio: number;
+    origMouseY: number;
+  } | null>(null);
+  const clipVolumesRef                      = useRef<Record<string, number>>({});
+  const sfxPositionsRef                     = useRef<Record<string, SfxPos>>({});
+
+  const audioRef           = useRef<HTMLAudioElement | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const wasPlayingRef     = useRef(false);
-  const previewAudioRef   = useRef<HTMLAudioElement | null>(null);
+  const wasPlayingRef      = useRef(false);
+  const previewAudioRef    = useRef<HTMLAudioElement | null>(null);
 
   // ── Queries ──────────────────────────────────────────────────────────────
 
@@ -391,6 +430,11 @@ export function ScenarioEditView() {
     });
   }, [punctualPaths]);
 
+  // Keep sfxPositionsRef in sync so drag/volume closures can read the latest positions
+  useEffect(() => {
+    sfxPositionsRef.current = sfxPositions;
+  }, [sfxPositions]);
+
   // ── Clips ────────────────────────────────────────────────────────────────
 
   const narrationClips = useMemo((): Clip[] => {
@@ -422,20 +466,31 @@ export function ScenarioEditView() {
     });
   }, [selectionQuery.data, totalDuration]);
 
-  const ambientClips = useMemo((): Clip[] => {
-    if (!ambientPath) return [];
+  // Ambient clips — computed inline to include live volume state
+  const ambientClips: Clip[] = [];
+  if (ambientPath) {
+    const ambientRatio = clipVolumes[ambientPath] ?? 1.0;
     const soundName =
       allSounds.find((s) => s.path === ambientPath)?.name ??
       ambientPath.split("/").pop()?.replace(/\.[^.]+$/, "") ??
       "Ambient";
-    return [{ id: "amb0", label: soundName, variant: "Ambient", start: 0, end: totalDuration }];
-  }, [ambientPath, totalDuration, allSounds]);
+    ambientClips.push({
+      id: "amb0",
+      label: soundName,
+      variant: "Ambient",
+      start: 0,
+      end: totalDuration,
+      heightPx: CLIP_BASE_H * ambientRatio,
+      onVolumeDragStart: (e) => handleVolumeDragStart(ambientPath, ambientRatio, e),
+    });
+  }
 
   // SFX clips computed at render (not memoized — needs fresh drag handlers)
   const sfxClips: Clip[] = [];
   for (let i = 0; i < Math.min(punctualPaths.length, 3); i++) {
     const path = punctualPaths[i];
-    const pos  = sfxPositions[path] ?? { startSec: i * (SFX_CLIP_DUR + 5), durationSec: SFX_CLIP_DUR };
+    const pos   = sfxPositions[path] ?? { startSec: i * (SFX_CLIP_DUR + 5), durationSec: SFX_CLIP_DUR };
+    const ratio = clipVolumes[path] ?? 1.0;
     const name =
       allSounds.find((s) => s.path === path)?.name ??
       path.split("/").pop()?.replace(/\.[^.]+$/, "") ??
@@ -446,7 +501,9 @@ export function ScenarioEditView() {
       variant: "Effet sonore",
       start: pos.startSec,
       end: pos.startSec + pos.durationSec,
+      heightPx: CLIP_BASE_H * ratio,
       onDragStart: (e) => handleSfxDragStart(path, pos.startSec, e),
+      onVolumeDragStart: (e) => handleVolumeDragStart(path, ratio, e),
     });
   }
   if (punctualPaths.length < 3) {
@@ -509,11 +566,30 @@ export function ScenarioEditView() {
 
   // ── Remix helpers ─────────────────────────────────────────────────────────
 
-  const triggerRemix = async () => {
+  const buildGainOverrides = (volumes: Record<string, number>): Record<string, number> | undefined => {
+    const result: Record<string, number> = {};
+    for (const [path, ratio] of Object.entries(volumes)) {
+      if (ratio < 0.999) {
+        result[path] = 20 * Math.log10(Math.max(ratio, 0.01));
+      }
+    }
+    return Object.keys(result).length > 0 ? result : undefined;
+  };
+
+  const buildSfxPositions = (positions: Record<string, SfxPos>): SfxPositionPayload[] =>
+    Object.entries(positions).map(([path, pos]) => ({
+      path,
+      start_seconds: pos.startSec,
+      duration_seconds: pos.durationSec,
+    }));
+
+  const triggerRemix = async (gainOverrides?: Record<string, number>) => {
     if (!sessionId) return;
     setIsRemixing(true);
+    const gains = gainOverrides ?? buildGainOverrides(clipVolumesRef.current);
+    const positions = buildSfxPositions(sfxPositionsRef.current);
     try {
-      await remixScenarioAudio(sessionId);
+      await remixScenarioAudio(sessionId, gains, positions.length > 0 ? positions : undefined);
       setAudioKey((k) => k + 1);
       queryClient.invalidateQueries({ queryKey: ["scenario-audio", sessionId] });
     } finally {
@@ -591,6 +667,54 @@ export function ScenarioEditView() {
     [],
   );
 
+  // ── Volume drag ───────────────────────────────────────────────────────────
+
+  const handleVolumeDragStart = useCallback(
+    (path: string, currentRatio: number, e: React.MouseEvent) => {
+      e.stopPropagation();
+      setVolumeDrag({ path, origRatio: currentRatio, origMouseY: e.clientY });
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (!volumeDrag) return;
+    const { path, origRatio, origMouseY } = volumeDrag;
+    const origHeightPx = origRatio * CLIP_BASE_H;
+    document.body.style.cursor    = "ns-resize";
+    document.body.style.userSelect = "none";
+    const onMove = (e: MouseEvent) => {
+      const dy = e.clientY - origMouseY;
+      const newRatio = Math.max(MIN_VOLUME_RATIO, Math.min(1.0, (origHeightPx - dy) / CLIP_BASE_H));
+      clipVolumesRef.current = { ...clipVolumesRef.current, [path]: newRatio };
+      setClipVolumes({ ...clipVolumesRef.current });
+    };
+    const onUp = () => {
+      document.body.style.cursor    = "";
+      document.body.style.userSelect = "";
+      setVolumeDrag(null);
+      const gains = buildGainOverrides(clipVolumesRef.current);
+      const positions = buildSfxPositions(sfxPositionsRef.current);
+      if (!sessionId) return;
+      setIsRemixing(true);
+      remixScenarioAudio(sessionId, gains, positions.length > 0 ? positions : undefined)
+        .then(() => {
+          setAudioKey((k) => k + 1);
+          queryClient.invalidateQueries({ queryKey: ["scenario-audio", sessionId] });
+        })
+        .finally(() => setIsRemixing(false));
+    };
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+    return () => {
+      document.body.style.cursor    = "";
+      document.body.style.userSelect = "";
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [volumeDrag, sessionId]);
+
   // Cursor during clip drag
   useEffect(() => {
     if (clipDrag) {
@@ -612,12 +736,23 @@ export function ScenarioEditView() {
     const onMove = (e: MouseEvent) => {
       const dx = e.clientX - clipDrag.origMouseX;
       const newStart = Math.max(0, clipDrag.origStartSec + dx / PX_PER_SEC);
-      setSfxPositions((prev) => ({
-        ...prev,
-        [clipDrag.path]: { ...prev[clipDrag.path], startSec: newStart, durationSec: durSec },
-      }));
+      const newPos: SfxPos = { startSec: newStart, durationSec: durSec };
+      sfxPositionsRef.current = { ...sfxPositionsRef.current, [clipDrag.path]: newPos };
+      setSfxPositions({ ...sfxPositionsRef.current });
     };
-    const onUp = () => setClipDrag(null);
+    const onUp = () => {
+      setClipDrag(null);
+      const gains = buildGainOverrides(clipVolumesRef.current);
+      const positions = buildSfxPositions(sfxPositionsRef.current);
+      if (!sessionId) return;
+      setIsRemixing(true);
+      remixScenarioAudio(sessionId, gains, positions.length > 0 ? positions : undefined)
+        .then(() => {
+          setAudioKey((k) => k + 1);
+          queryClient.invalidateQueries({ queryKey: ["scenario-audio", sessionId] });
+        })
+        .finally(() => setIsRemixing(false));
+    };
     document.addEventListener("mousemove", onMove);
     document.addEventListener("mouseup", onUp);
     return () => {
@@ -625,7 +760,7 @@ export function ScenarioEditView() {
       document.removeEventListener("mouseup", onUp);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clipDrag]);
+  }, [clipDrag, sessionId]);
 
   // ── Timeline scrubbing ────────────────────────────────────────────────────
 
