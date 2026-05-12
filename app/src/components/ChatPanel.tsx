@@ -112,6 +112,16 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
               }
             } catch { /* ignore parse errors */ }
           }
+          if (payload.tool === "update_tagged_scenario") {
+            try {
+              const res = typeof payload.result === "string" ? JSON.parse(payload.result) : payload.result;
+              if (res?.status === "ok" && Array.isArray(res.paragraphs)) {
+                window.dispatchEvent(new CustomEvent("tagged-scenario-updated", {
+                  detail: { paragraphs: res.paragraphs }
+                }));
+              }
+            } catch { /* ignore parse errors */ }
+          }
         } else if (payload.type === "error") {
           setMessages((prev) => [
             ...prev,
@@ -141,7 +151,8 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
     setMessages((prev) => [...prev, { role: "user", content: message }]);
     const currentNotes = (window as Window & { __projectNotes?: string }).__projectNotes;
     const scenarioPrompts = (window as Window & { __scenarioPrompts?: string[] }).__scenarioPrompts;
-    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined, scenario_prompts: scenarioPrompts || undefined }));
+    const taggedParagraphs = (window as Window & { __taggedParagraphs?: unknown[] }).__taggedParagraphs;
+    ws.send(JSON.stringify({ text: message, project_notes: currentNotes || undefined, scenario_prompts: scenarioPrompts || undefined, tagged_paragraphs: taggedParagraphs || undefined }));
     setInput("");
   };
 

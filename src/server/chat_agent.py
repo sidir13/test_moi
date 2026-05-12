@@ -72,7 +72,7 @@ class ChatAgent:
         if not self.client:
             logger.warning("ChatAgent initialized without Anthropic credentials")
 
-    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None, scenario_prompts: list | None = None) -> None:
+    async def handle_message(self, session_id: str, user_text: str, session_store, websocket, *, frontend_notes: str | None = None, scenario_prompts: list | None = None, tagged_paragraphs: list | None = None) -> None:
         if not self.client:
             await websocket.send_json({"type": "error", "message": "Missing Anthropic credentials"})
             return
@@ -111,7 +111,15 @@ class ChatAgent:
             lines = [f"  Scénario {i+1} : \"{p}\"" for i, p in enumerate(scenario_prompts)]
             scenario_prompts_context = "\n\n[Prompts actuels des scénarios du formulaire :\n" + "\n".join(lines) + "\n]"
 
-        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}{scenario_prompts_context}" if project_name else scenario_prompts_context
+        # Build tagged paragraphs context from live frontend values (edition_text page)
+        tagged_paragraphs_context = ""
+        if tagged_paragraphs:
+            parts = []
+            for p in tagged_paragraphs:
+                parts.append(f"  Paragraphe {p.get('partie_id', '?')} — {p.get('titre', '')}:\n{p.get('taggedText', '')}")
+            tagged_paragraphs_context = "\n\n[Paragraphes actuels du scénario en édition (texte balisé) :\n" + "\n\n".join(parts) + "\n]"
+
+        project_context = f"\n\n[Contexte session : projet actif = \"{project_name}\", session_id = {session_id}]{project_notes_context}{scenario_prompts_context}{tagged_paragraphs_context}" if project_name else (scenario_prompts_context + tagged_paragraphs_context)
 
         if project_name:
             payload = f"[projet: \"{project_name}\"] {user_text}{project_context}"
@@ -172,6 +180,15 @@ class ChatAgent:
                         "CE BLOC EST LA SOURCE DE VÉRITÉ pour les prompts. Lis-le avant toute modification.\n"
                         "Quand l'utilisateur demande de 'générer', 'améliorer', 'corriger', 'raccourcir' ou 'traduire' un prompt de scénario → appelle TOUJOURS 'update_prompt_field' avec le résultat. Ne mets JAMAIS le texte généré dans le chat — applique-le directement via l'outil.\n"
                         "Paramètre 'scenario_index' : 0 = premier scénario, 1 = deuxième, etc. (défaut : 0 si non précisé).\n\n"
+
+                        "══════ ÉDITION DU TEXTE BALISÉ — RÈGLE ABSOLUE ══════\n"
+                        "Sur la page d'édition (edition_text), chaque message contient un bloc [Paragraphes actuels du scénario en édition...] avec le texte exact de chaque paragraphe incluant ses balises.\n"
+                        "CE BLOC EST LA SOURCE DE VÉRITÉ UNIQUE pour le texte en cours d'édition.\n"
+                        "Quand l'utilisateur demande de : supprimer un paragraphe, modifier/corriger/ajouter du texte, ajouter ou supprimer des balises ({fichier.wav}, [pause Xs], [instruction]) → appelle TOUJOURS 'update_tagged_scenario' avec la liste COMPLÈTE et mise à jour de TOUS les paragraphes.\n"
+                        "Règles balises : {nom.wav} = effet sonore, [pause Xs] ou [silence Xs] = respiration, [ton X] [murmure] etc. = instruction voix.\n"
+                        "Suppression de paragraphe : renumérote les partie_id restants pour qu'ils soient consécutifs (1, 2, 3…).\n"
+                        "Si l'utilisateur laisse le LLM décider où placer les balises : place-les aux endroits narrativement pertinents.\n"
+                        "Ne mets JAMAIS le texte modifié dans le chat — applique-le directement via l'outil.\n\n"
 
                         "RÈGLE : N'utilise JAMAIS 'generate_historical_scenario' sauf si l'utilisateur dit explicitement 'génère les scénarios'.\n"
                         "Sois proactif : agis immédiatement sans demander confirmation inutile."

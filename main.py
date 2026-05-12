@@ -781,6 +781,38 @@ TOOLS = [
             },
             "required": ["action", "content"]
         }
+    },
+    {
+        "name": "update_tagged_scenario",
+        "description": "Modifie le texte balisé du scénario sur la page d'édition (edition_text). Utilise cet outil pour : supprimer un paragraphe, modifier le texte d'un paragraphe, ajouter/supprimer des balises de respiration ou d'effet sonore, renuméroter les paragraphes. Renvoie la liste COMPLÈTE et mise à jour de tous les paragraphes. Ne mets JAMAIS le texte modifié dans le chat — applique-le directement via cet outil.\n\nFormat des balises dans taggedText :\n- Effet sonore : {nom_fichier.wav}\n- Respiration/pause : [pause 2s] ou [silence 1.5s]\n- Instruction voix : [ton grave] [murmure] [ralentissement] etc.\n\nRègle suppression : quand tu supprimes un paragraphe, recalcule les partie_id pour qu'ils restent consécutifs à partir de 1.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "paragraphs": {
+                    "type": "array",
+                    "description": "Liste COMPLÈTE des paragraphes mis à jour (tous les paragraphes, pas seulement ceux modifiés).",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "partie_id": {
+                                "type": "integer",
+                                "description": "Numéro du paragraphe (1, 2, 3…). Doit être consécutif."
+                            },
+                            "titre": {
+                                "type": "string",
+                                "description": "Titre du paragraphe."
+                            },
+                            "taggedText": {
+                                "type": "string",
+                                "description": "Texte complet du paragraphe avec les balises inline."
+                            }
+                        },
+                        "required": ["partie_id", "titre", "taggedText"]
+                    }
+                }
+            },
+            "required": ["paragraphs"]
+        }
     }
 ]
 
@@ -1016,6 +1048,11 @@ def execute_tool(tool_name: str, tool_input: dict):
             "action": tool_input["action"],
             "content": tool_input["content"],
             "scenario_index": tool_input.get("scenario_index", 0),
+        }
+    elif tool_name == "update_tagged_scenario":
+        return {
+            "status": "ok",
+            "paragraphs": tool_input["paragraphs"],
         }
     else:
         raise ValueError(f"Unknown tool: {tool_name}")
