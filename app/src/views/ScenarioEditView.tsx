@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Check,
   ChevronLeft,
+  ChevronRight,
   Loader2,
   Music,
   Play,
@@ -23,8 +24,10 @@ import {
   fetchSelectedScenario,
   getScenarioAudioUrl,
   synthesizeScenarioAudio,
+  uploadBackgroundSound,
 } from "@/api/client";
 import { useSessionStore } from "@/hooks/useSessionStore";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // ─── AudioClip ───────────────────────────────────────────────────────────────
 
@@ -36,6 +39,7 @@ type Clip = {
   variant: ClipVariant;
   start: number; // seconds
   end: number;   // seconds
+  onClick?: () => void;
 };
 
 const CLIP_STYLES: Record<ClipVariant, { bg: string; border: string; text: string; dashed?: boolean }> = {
@@ -51,9 +55,10 @@ type AudioClipProps = {
   start: number;
   end: number;
   totalDuration: number;
+  onClick?: () => void;
 };
 
-function AudioClip({ label, variant, start, end, totalDuration }: AudioClipProps) {
+function AudioClip({ label, variant, start, end, totalDuration, onClick }: AudioClipProps) {
   const { bg, border, text, dashed } = CLIP_STYLES[variant];
   const leftPct = (start / totalDuration) * 100;
   const widthPct = Math.max(((end - start) / totalDuration) * 100, 0);
@@ -68,7 +73,10 @@ function AudioClip({ label, variant, start, end, totalDuration }: AudioClipProps
         border: `1px ${dashed ? "dashed" : "solid"} ${border}`,
         color: text,
         minWidth: 36,
+        cursor: onClick ? "pointer" : undefined,
       }}
+      onClick={onClick}
+      onMouseDown={onClick ? (e) => e.stopPropagation() : undefined}
     >
       {variant === "Ajouter" ? (
         <span className="flex items-center gap-1 text-[13px] font-normal whitespace-nowrap">
@@ -143,6 +151,7 @@ function Track({
             start={clip.start}
             end={clip.end}
             totalDuration={totalDuration}
+            onClick={clip.onClick}
           />
         ))}
       </div>
@@ -169,11 +178,109 @@ function extractPayload(raw: Record<string, unknown>): Record<string, unknown> {
   return raw;
 }
 
+// ─── Import sound modal ───────────────────────────────────────────────────────
+
+function ImportSoundModal({ open, onClose, onSuccess }: { open: boolean; onClose: () => void; onSuccess: () => void }) {
+  const [title, setTitle] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const reset = () => { setTitle(""); setFile(null); setError(null); };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!file) return;
+    setIsUploading(true);
+    setError(null);
+    try {
+      await uploadBackgroundSound(title.trim() || file.name.replace(/\.[^.]+$/, ""), file);
+      reset();
+      onSuccess();
+      onClose();
+    } catch {
+      setError("Erreur lors de l'importation. Vérifiez le format du fichier.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={(o) => { if (!o) { reset(); onClose(); } }}>
+      <DialogContent className="w-[622px] max-w-[95vw] min-h-[490px] gap-[10px] rounded-[18px] border border-[#E2E8F0] bg-background p-6 shadow-[0_2px_10px_rgba(0,0,0,0.10)]">
+        <DialogHeader className="space-y-2">
+          <DialogTitle className="text-[24px] font-semibold leading-[100%] text-foreground">
+            Importer un son
+          </DialogTitle>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="sound-title" className="text-[14px] font-semibold text-foreground">
+              Nom du fichier
+            </label>
+            <input
+              id="sound-title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Ex: Bruits de foule, Ambiance marché…"
+              className="h-11 rounded-[10px] border border-[#E2E8F0] bg-[#F4F4F4] px-3 text-sm text-foreground outline-none focus:border-[#007AFF]"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-[14px] font-semibold text-foreground">
+              Fichier audio <span className="text-red-500">*</span>
+            </label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".mp3,.wav,.m4a,audio/*"
+              className="hidden"
+              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="flex min-h-[230px] w-full flex-col items-center justify-center gap-3 rounded-[14px] border border-dashed border-blue-400/40 bg-background px-6 py-8 text-center transition-colors hover:bg-muted/30"
+            >
+              <Upload className="size-10 text-muted-foreground" />
+              <div className="space-y-1">
+                <p className="text-base font-medium text-[#45556C]">
+                  {file ? file.name : "Cliquez pour télécharger"}
+                </p>
+                <p className="text-sm text-muted-foreground">MP3, WAV, M4A jusqu'à 100MB</p>
+              </div>
+            </button>
+          </div>
+
+          {error && <p className="text-sm text-red-500">{error}</p>}
+
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              disabled={isUploading || !file}
+              className="inline-flex h-[46px] items-center gap-1 rounded-[14px] bg-[#007AFF] px-6 text-base font-medium text-white transition-colors hover:bg-[#006ae0] disabled:opacity-50"
+            >
+              {isUploading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Importer
+              <ChevronRight className="ml-1 h-4 w-4" />
+            </button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 // ─── Main view ────────────────────────────────────────────────────────────────
 
 export function ScenarioEditView() {
   const { sessionId, updateProgress, setCurrentStep } = useSessionStore();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [isPlaying, setIsPlaying]       = useState(false);
   const [currentTime, setCurrentTime]   = useState(0);
@@ -185,7 +292,11 @@ export function ScenarioEditView() {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [isGenerating, setIsGenerating]   = useState(false);
   const [statusMsg, setStatusMsg]         = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isDragging, setIsDragging]       = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
+  const audioRef      = useRef<HTMLAudioElement | null>(null);
+  const timelineRef   = useRef<HTMLDivElement | null>(null);
+  const wasPlayingRef = useRef(false);
 
   const selectionQuery = useQuery({
     queryKey: ["selected-scenario", sessionId],
@@ -268,7 +379,7 @@ export function ScenarioEditView() {
   }, [selectedBackground, totalDuration]);
 
   const sfxClips: Clip[] = [
-    { id: "sfx-add", label: "Ajouter un effet sonore", variant: "Ajouter", start: 0, end: totalDuration * 0.18 },
+    { id: "sfx-add", label: "Ajouter un effet sonore", variant: "Ajouter", start: 0, end: totalDuration * 0.18, onClick: () => setShowImportModal(true) },
   ];
 
   // Gallery data
@@ -297,6 +408,49 @@ export function ScenarioEditView() {
       return next;
     });
   };
+
+  // ── Scrubbing ─────────────────────────────────────────────────────────────
+
+  const computeTimeFromMouseX = (clientX: number): number => {
+    if (!timelineRef.current) return 0;
+    const rect = timelineRef.current.getBoundingClientRect();
+    const clipWidth = rect.width - LABEL_W;
+    const x = Math.max(0, Math.min(clipWidth, clientX - rect.left - LABEL_W));
+    return (x / clipWidth) * totalDuration;
+  };
+
+  const handleTimelineMouseDown = (e: React.MouseEvent) => {
+    if (!audioSrc) return;
+    if (e.clientX - (timelineRef.current?.getBoundingClientRect().left ?? 0) < LABEL_W) return;
+    wasPlayingRef.current = isPlaying;
+    audioRef.current?.pause();
+    setIsPlaying(false);
+    setIsDragging(true);
+    const t = computeTimeFromMouseX(e.clientX);
+    setCurrentTime(t);
+  };
+
+  useEffect(() => {
+    if (!isDragging) return;
+    const onMove = (e: MouseEvent) => setCurrentTime(computeTimeFromMouseX(e.clientX));
+    const onUp = (e: MouseEvent) => {
+      const t = computeTimeFromMouseX(e.clientX);
+      setCurrentTime(t);
+      if (audioRef.current) audioRef.current.currentTime = t;
+      setIsDragging(false);
+      if (wasPlayingRef.current) {
+        audioRef.current?.play().catch(() => {});
+        setIsPlaying(true);
+      }
+    };
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+    return () => {
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDragging, totalDuration]);
 
   const handleValidate = async () => {
     if (!sessionId) return;
@@ -409,17 +563,23 @@ export function ScenarioEditView() {
           </div>
 
           {/* Ruler + tracks (shared relative container for playhead) */}
-          <div className="relative">
+          <div
+            ref={timelineRef}
+            className="relative"
+            onMouseDown={handleTimelineMouseDown}
+            style={{ cursor: audioSrc ? "col-resize" : "default" }}
+          >
             {/* Playhead — spans ruler + all tracks */}
             {totalDuration > 0 && (
               <div
-                className="pointer-events-none absolute top-0 bottom-0 z-10 w-[2px] bg-[#007aff] opacity-80"
+                className="absolute top-0 bottom-0 z-10 w-[2px] bg-[#007aff] opacity-80 select-none"
                 style={{
                   left: `calc(${LABEL_W}px + (100% - ${LABEL_W}px) * ${currentTime / totalDuration})`,
+                  cursor: "col-resize",
+                  userSelect: "none",
                 }}
               >
-                {/* Small triangle at top */}
-                <div className="absolute -top-0 left-1/2 -translate-x-1/2 border-x-[5px] border-b-[6px] border-x-transparent border-b-[#007aff]" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 border-x-[5px] border-b-[6px] border-x-transparent border-b-[#007aff]" />
               </div>
             )}
 
@@ -498,6 +658,7 @@ export function ScenarioEditView() {
           </div>
           <button
             type="button"
+            onClick={() => setShowImportModal(true)}
             className="inline-flex h-[38px] items-center gap-1.5 rounded-[12px] bg-[#007aff] px-4 text-[14px] font-medium text-white hover:bg-[#006ae0]"
           >
             <Upload className="h-3.5 w-3.5" />
@@ -643,6 +804,12 @@ export function ScenarioEditView() {
           </div>
         </div>
       </div>
+
+      <ImportSoundModal
+        open={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        onSuccess={() => queryClient.invalidateQueries({ queryKey: ["background-sounds"] })}
+      />
     </div>
   );
 }
