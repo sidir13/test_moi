@@ -143,6 +143,22 @@ function valueToHTML(text: string, hideEffetSonore = false): string {
       if (chunk.type === "text") return escapeHtml(chunk.value);
       if (hideEffetSonore && chunk.variant === "effet-sonore")
         return escapeHtml(` {${chunk.value}}`);
+
+      // Only render as chip if it's a genuine production tag (short, no archive markers).
+      // Archive references like [ARCHIVE : « ... »] must stay as plain editable text.
+      const isGenuineTag =
+        chunk.variant === "effet-sonore" ||
+        chunk.variant === "respiration" ||
+        (chunk.variant === "voix" &&
+          !chunk.value.includes(":") &&
+          !chunk.value.includes("«") &&
+          !chunk.value.includes("»") &&
+          chunk.value.length < 60);
+
+      if (!isGenuineTag) {
+        return escapeHtml(`[${chunk.value}]`);
+      }
+
       const chipClass =
         chunk.variant === "respiration"
           ? "inline-flex items-center rounded-[4px] border border-[#623DC7] bg-[#E1D6FF] px-2 py-1 text-[12px] font-medium text-[#2F1E64]"
