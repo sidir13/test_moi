@@ -167,7 +167,9 @@ function valueToHTML(text: string, hideEffetSonore = false): string {
           : "inline-flex items-center rounded-[4px] border border-[#64748B] bg-[#F1F5F9] px-2 py-1 text-[12px] font-medium text-[#334155]";
       // data-tag stores the raw tag text for round-trip serialization
       const rawTag = chunk.variant === "effet-sonore" ? ` {${chunk.value}}` : `[${chunk.value}]`;
-      return `<span contenteditable="false" data-tag="${escapeHtml(rawTag)}" class="${chipClass}">${escapeHtml(chunk.value)}</span>`;
+      // Display friendly label instead of raw syntax
+      const displayLabel = chunk.variant === "respiration" ? "Respiration" : chunk.variant === "effet-sonore" ? "Effet Sonore" : chunk.value;
+      return `<span contenteditable="false" data-tag="${escapeHtml(rawTag)}" class="${chipClass}">${escapeHtml(displayLabel)}</span>`;
     })
     .join("");
 }
@@ -287,19 +289,20 @@ function TaggedTextarea({ value, onChange, hideEffetSonore, placeholder }: Tagge
           const chipClass = /^(pause|silence|respiration)/i.test(inner)
             ? "inline-flex items-center rounded-[4px] border border-[#623DC7] bg-[#E1D6FF] px-2 py-1 text-[12px] font-medium text-[#2F1E64]"
             : "inline-flex items-center rounded-[4px] border border-[#64748B] bg-[#F1F5F9] px-2 py-1 text-[12px] font-medium text-[#334155]";
+          const chipLabel = /^(pause|silence|respiration)/i.test(inner) ? "Respiration" : inner;
           if (rawDrag.startsWith(" ")) {
             const space = document.createTextNode(" ");
             range.insertNode(space);
             range.setStartAfter(space);
           }
-          const chip = createChip(trimmed, inner, chipClass);
+          const chip = createChip(trimmed, chipLabel, chipClass);
           range.insertNode(chip);
           range.setStartAfter(chip);
         } else if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
           // Effet-sonore: leading space IS part of the tag syntax
           const chip = createChip(
             rawDrag, // " {son.wav}" — space included
-            trimmed.slice(1, -1),
+            "Effet Sonore",
             "inline-flex items-center rounded-[4px] border border-[#C8009C] bg-[#FDEBF9] px-2 py-1 text-[12px] font-medium text-[#7D005F]",
           );
           range.insertNode(chip);
@@ -567,8 +570,8 @@ export function EditionTextView() {
                   <Sparkles className="h-4 w-4" />
                   <span>Demander à l&apos;agent IA</span>
                 </button>
-                {isElevenLabs && <KeyWordChip label="Effet Sonore" variant="effet-sonore" dragText=" {son.wav}" />}
-                <KeyWordChip label="Respiration" variant="respiration" dragText=" [pause 2s]" />
+                {isElevenLabs && <KeyWordChip label="Effet Sonore" variant="effet-sonore" dragText=" {Effet sonore}" />}
+                <KeyWordChip label="Respiration" variant="respiration" dragText=" [Respiration]" />
               </div>
 
               <div className="flex w-full flex-col gap-8 rounded-[12px] border-t border-[#E2E8F0] bg-white p-[18px]">

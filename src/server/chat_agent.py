@@ -196,7 +196,12 @@ class ChatAgent:
                         "Quand l'utilisateur demande de : supprimer un paragraphe, modifier/corriger/ajouter du texte, ajouter ou supprimer des balises ({fichier.wav}, [pause Xs], [instruction]) → appelle TOUJOURS 'update_tagged_scenario' avec la liste COMPLÈTE et mise à jour de TOUS les paragraphes.\n"
                         "Règles balises : {nom.wav} = effet sonore (UNIQUEMENT si ElevenLabs — INTERDIT si Qwen), [pause Xs] ou [silence Xs] = respiration, [ton X] [murmure] etc. = instruction voix.\n"
                         "Suppression de paragraphe : renumérote les partie_id restants pour qu'ils soient consécutifs (1, 2, 3…).\n"
-                        "Si l'utilisateur laisse le LLM décider où placer les balises : place-les aux endroits narrativement pertinents.\n"
+                        "PLACEMENT PRÉCIS DE BALISES — RÈGLE ABSOLUE :\n"
+                        "Quand l'utilisateur dit 'ajoute une respiration après [mot/phrase]', 'place un effet sonore avant [X]', 'mets une pause ici' ou formulation équivalente :\n"
+                        "1. Trouve le texte exact dans le paragraphe concerné (source de vérité = bloc [Paragraphes actuels...]).\n"
+                        "2. Insère la balise AU BON ENDROIT dans la chaîne de caractères du paragraphe. Ex : 'bonjour [pause 2s] monde'.\n"
+                        "3. Appelle immédiatement update_tagged_scenario avec le texte modifié.\n"
+                        "Si l'utilisateur laisse le LLM décider où placer les balises : place-les aux endroits narrativement pertinents (fins de phrases, moments de tension, pauses naturelles).\n"
                         "Ne mets JAMAIS le texte modifié dans le chat — applique-le directement via l'outil.\n\n"
 
                         "RÈGLE : N'utilise JAMAIS 'generate_historical_scenario' sauf si l'utilisateur dit explicitement 'génère les scénarios'.\n"
