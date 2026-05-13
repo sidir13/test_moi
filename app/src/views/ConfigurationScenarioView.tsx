@@ -129,6 +129,23 @@ export function ConfigurationScenarioView() {
     return () => window.removeEventListener("scenario-prompt-updated", handler);
   }, []);
 
+  // Listen for voice-selected events dispatched by the chat agent (select_voice tool)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { voice_id } = (e as CustomEvent<{ voice_id: string; voice_label: string }>).detail;
+      if (!voice_id) return;
+      // Apply to the first open scenario, or to all if none is open
+      setScenarios((prev) => {
+        const openIdx = prev.findIndex((s) => s.isOpen);
+        return prev.map((s, i) =>
+          (openIdx === -1 || i === openIdx) ? { ...s, ttsVoiceId: voice_id } : s
+        );
+      });
+    };
+    window.addEventListener("voice-selected", handler);
+    return () => window.removeEventListener("voice-selected", handler);
+  }, []);
+
   useEffect(() => {
     if (!projectProfileQuery.data) return;
     const selectedAudience = projectProfileQuery.data.audience ?? audienceOptions[0] ?? "Sélectionnez";
