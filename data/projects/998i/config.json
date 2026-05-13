@@ -12,287 +12,185 @@
     {
       "structure": {
         "scenario_id": 1,
-        "titre_global": "Les enfants de Treichville racontent",
-        "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte une histoire transmise par son grand frère, mêlant aventure en brousse, serpent et guérisseur. À travers ce conte et les questions qui suivent, se dessine le portrait d'une famille ordinaire : un père retraité de la SAPCO, une mère qui vend au restaurant, un frère réparateur de ventilateurs à Treichville. Le récit revient à son point de départ — la parole enfantine, fragile et vivante, qui porte en elle tout un monde social.",
+        "titre_global": "Voix d'enfance à Treichville",
+        "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant de dix ans raconte sa journée et son monde. Entre le conte transmis par son grand frère — l'histoire de Kwaku et Kofie partis en brousse — et la réalité quotidienne de sa famille, se dessine un portrait vivant. Sa mère vend des bananes dans un restaurant, son père est retraité de la SAPCO où l'on fabrique du chocolat, et son grand frère répare des ventilateurs à Treichville. Du conte du matin aux gestes du quotidien, c'est toute une vie familiale qui se dévoile à travers la parole d'un enfant.",
         "axe_narratif": "mixte",
-        "angle_scenarisation": "chronique_sociale",
+        "angle_scenarisation": "journee_type",
         "duree_totale": 90,
         "structure": [
           {
             "partie": 1,
-            "titre": "Une voix d'enfant s'élève",
-            "duree_cible": 20,
-            "fonction_narrative": "ouverture_circulaire",
-            "position_arc_emotionnel": "curiosité",
+            "titre": "Le conte du matin",
+            "duree_cible": 30,
+            "fonction_narrative": "exposition_immersive",
+            "position_arc_emotionnel": "éveil_curiosité",
             "elements_necessaires": [
-              "introduction de la parole enfantine",
-              "contexte oral ivoirien",
-              "amorce du conte de Kwaku et Kofie"
+              "Citation directe du conte de Kwaku et Kofie",
+              "Voix de l'enfant conteur",
+              "Transmission orale par le grand frère",
+              "Atmosphère de parole enfantine"
             ],
-            "mood": "intime_et_vivant"
+            "mood": "narratif_intime"
           },
           {
             "partie": 2,
-            "titre": "Le conte de brousse",
-            "duree_cible": 25,
-            "fonction_narrative": "immersion_narrative",
-            "position_arc_emotionnel": "tension",
+            "titre": "Le monde des adultes",
+            "duree_cible": 35,
+            "fonction_narrative": "développement_portrait",
+            "position_arc_emotionnel": "ancrage_concret",
             "elements_necessaires": [
-              "citation directe du conte",
-              "serpent sur l'arbre",
-              "recours au féticheur puis au marabout",
-              "résolution de la guérison"
+              "Citations sur la mère qui vend au restaurant",
+              "Le père retraité de la SAPCO",
+              "Le grand frère réparateur de ventilateurs à Treichville",
+              "La fabrique de chocolat",
+              "Vie familiale racontée par l'enfant"
             ],
-            "mood": "narratif_tendu"
+            "mood": "documentaire_chaleureux"
           },
           {
             "partie": 3,
-            "titre": "Portrait d'une famille",
-            "duree_cible": 30,
-            "fonction_narrative": "chronique_sociale",
-            "position_arc_emotionnel": "chaleur",
+            "titre": "Le champ et l'ailleurs",
+            "duree_cible": 25,
+            "fonction_narrative": "ouverture_résolution",
+            "position_arc_emotionnel": "élargissement",
             "elements_necessaires": [
-              "citations directes sur la famille",
-              "grand frère réparateur à Treichville",
-              "mère vendeuse",
-              "père retraité de la SAPCO",
-              "enfant de 10 ans habitant Nongo"
+              "Citation sur le départ au champ avec l'oncle",
+              "Le village comme autre espace de vie",
+              "Contraste ville/village",
+              "Clôture sur la parole de l'enfant"
             ],
-            "mood": "documentaire_tendre"
-          },
-          {
-            "partie": 4,
-            "titre": "Retour à la parole",
-            "duree_cible": 15,
-            "fonction_narrative": "fermeture_circulaire",
-            "position_arc_emotionnel": "apaisement",
-            "elements_necessaires": [
-              "retour au geste de raconter",
-              "transmission orale comme lien social",
-              "écho à l'ouverture"
-            ],
-            "mood": "réflexif_minimaliste"
+            "mood": "contemplatif_ouvert"
           }
         ],
-        "arc_emotionnel_global": "circulaire_intimiste",
-        "rythme_general": "dynamique",
+        "arc_emotionnel_global": "crescendo_intime",
+        "rythme_general": "varie — lent et conteur au début, plus rythmé au centre avec les détails familiaux, apaisé en fin",
         "transitions_cles": [
           {
             "entre_parties": [
               1,
               2
             ],
-            "type": "glissement_naturel",
-            "duree": 2.0,
-            "description": "La voix off cède la place à la citation directe du conte, sans annonce — on entre dans l'histoire comme l'enfant y entre lui-même."
+            "type": "progression_naturelle",
+            "duree": 3.0,
+            "description": "Du conte imaginaire à la réalité familiale — la voix off glisse de l'histoire racontée par le grand frère vers la question : qui est ce grand frère ? Transition par le lien de transmission."
           },
           {
             "entre_parties": [
               2,
               3
             ],
-            "type": "pivot_thematique",
+            "type": "élargissement_spatial",
             "duree": 2.0,
-            "description": "Du conte on passe à celui qui le raconte : la question 'Qui t'a raconté cette histoire ?' sert de bascule vers le portrait familial."
-          },
-          {
-            "entre_parties": [
-              3,
-              4
-            ],
-            "type": "retour_circulaire",
-            "duree": 2.0,
-            "description": "Du portrait social, la narration remonte vers l'acte même de raconter, bouclant sur l'ouverture."
+            "description": "De l'univers urbain de Treichville et Nongo vers le village et le champ — passage fluide du quotidien citadin à l'autre versant de la vie de l'enfant."
           }
         ],
-        "notes_production": "Fluidité absolue entre sections — pas de marqueurs de chapitres audibles. Le ton reste neutre et informatif tout au long, avec un registre accessible (grand public). Les citations directes de l'enfant doivent être intégrées dans le flux narratif, introduites par la voix off sans rupture. L'ambiance sonore reste minimaliste : silences et respiration naturelle du récit. La structure circulaire doit se sentir sans être explicitée. Le débit visé est d'environ 2 mots par seconde, soit 180 mots maximum. Privilégier des phrases courtes et concrètes."
+        "notes_production": "FLUIDITÉ : Le récit doit couler comme une seule parole continue. Pas de ruptures marquées entre sections — les transitions sont narratives, jamais annoncées. CITATIONS : Intégrer largement les paroles de l'enfant en les enchâssant dans la narration (voix off qui introduit, citation directe, voix off qui reprend). RYTHME AUDIO : La partie 1 adopte le tempo du conte oral, légèrement plus lent. La partie 2 s'accélère avec l'accumulation des détails concrets. La partie 3 ralentit pour ouvrir sur un horizon plus large. TON : Neutre et informatif mais jamais froid — la chaleur vient des citations elles-mêmes, pas du commentaire. REGISTRE : Grand public, phrases courtes et claires, vocabulaire accessible. Ne jamais expliquer ce qui est évident dans les citations."
       },
       "scenario": {
         "scenario_id": 1,
-        "titre": "Les enfants de Treichville racontent",
+        "titre": "Voix d'enfance à Treichville",
         "axe_narratif": "mixte",
-        "angle_scenarisation": "chronique_sociale",
-        "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte une histoire transmise par son grand frère, mêlant aventure en brousse, serpent et guérisseur. À travers ce conte et les questions qui suivent, se dessine le portrait d'une famille ordinaire : un père retraité de la SAPCO, une mère qui vend au restaurant, un frère réparateur de ventilateurs à Treichville. Le récit revient à son point de départ — la parole enfantine, fragile et vivante, qui porte en elle tout un monde social.",
-        "duree_estimee": 111.58215697346134,
+        "angle_scenarisation": "journee_type",
+        "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant de dix ans raconte sa journée et son monde. Entre le conte transmis par son grand frère — l'histoire de Kwaku et Kofie partis en brousse — et la réalité quotidienne de sa famille, se dessine un portrait vivant. Sa mère vend des bananes dans un restaurant, son père est retraité de la SAPCO où l'on fabrique du chocolat, et son grand frère répare des ventilateurs à Treichville. Du conte du matin aux gestes du quotidien, c'est toute une vie familiale qui se dévoile à travers la parole d'un enfant.",
+        "duree_estimee": 118.1219649915302,
         "parties": [
           {
             "partie_id": 1,
-            "titre": "Une voix d'enfant s'élève",
-            "duree": 19.09090909090909,
-            "texte_narration": "Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole. Il raconte une histoire que son grand frère lui a transmise. Celle de deux enfants, Kwaku et Kofie, partis en brousse.",
+            "titre": "Le conte du matin",
+            "duree": 43.090909090909086,
+            "texte_narration": "Un enfant de dix ans prend la parole. Il raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »] Ce conte, c'est son grand frère qui le lui a transmis.",
             "ton": {
-              "global": "intime, posé, ouverture douce",
+              "global": "narratif_intime",
               "tempo_lecture": 110,
               "pauses": [
-                "après 'prend la parole' (1.5s)",
-                "après 'transmise' (1s)"
+                "après 'prend la parole' (1s)",
+                "après la citation (1.5s)"
               ],
-              "intonation": "calme, légèrement suspendue"
+              "intonation": "douce, posée, légèrement suspendue pendant la citation"
             },
             "moments_cles": [
               {
                 "timestamp": "0:00",
-                "action": "Entrée immédiate dans le contexte — voix d'enfant évoquée",
-                "duree": 2.0
+                "action": "Entrée immédiate dans la voix de l'enfant",
+                "duree": 3.0
               },
               {
-                "timestamp": "0:08",
-                "action": "Mention de la transmission fraternelle",
-                "duree": 1.5
+                "timestamp": "0:05",
+                "action": "Citation du conte de Kwaku et Kofie",
+                "duree": 20.0
               },
               {
-                "timestamp": "0:14",
-                "action": "Noms de Kwaku et Kofie — amorce du conte",
-                "duree": 2.0
+                "timestamp": "0:27",
+                "action": "Mention du grand frère transmetteur",
+                "duree": 3.0
               }
             ],
             "ambiances_continues": [],
             "sentence_sources": [
               {
-                "sentence": "Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole.",
+                "sentence": "Un enfant de dix ans prend la parole.",
                 "sources": [
-                  "[02:43] - Quel âge tu as ? [02:46] - Moi ? J'ai 10 ans."
+                  "[02:46] Moi ? J'ai 10 ans."
                 ]
               },
               {
-                "sentence": "Il raconte une histoire que son grand frère lui a transmise.",
+                "sentence": "Il raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »]",
                 "sources": [
-                  "[01:30] - Qui c'est qui t'a raconté cette histoire ? [01:36] - C'est mon grand-frère."
+                  "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse. L'autre-là dit : « On n'a qu'aller tuer maman ». Maintenant, l'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver."
                 ]
               },
               {
-                "sentence": "Celle de deux enfants, Kwaku et Kofie, partis en brousse.",
+                "sentence": "Ce conte, c'est son grand frère qui le lui a transmis.",
                 "sources": [
-                  "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse."
+                  "[01:34] Qui t'a raconté cette histoire ? [01:36] C'est mon grand-frère."
                 ]
               }
             ]
           },
           {
             "partie_id": 2,
-            "titre": "Le conte de brousse",
-            "duree": 35.47826086956522,
-            "texte_narration": "L'enfant raconte : [ARCHIVE : « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »] Les deux garçons montent sur un arbre. Un serpent les attend. L'un d'eux est mordu. Le féticheur échoue. L'enfant précise : [ARCHIVE : « Il est parti chez un marabout. Le marabout là l'a guéri. »]",
+            "titre": "Le monde des adultes",
+            "duree": 40.173913043478265,
+            "texte_narration": "Son grand frère, justement, travaille à Treichville. L'enfant précise : [ARCHIVE : « Il répare des ventilateurs. »] Sa mère tient un petit commerce. Il confie : [ARCHIVE : « Maman elle vend. Elle vend tout, bananes. Elle vend dans un restaurant. »] Et son père ? L'enfant glisse : [ARCHIVE : « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. »] La SAPCO, c'est l'usine où l'on fabrique le chocolat. L'enfant sourit : [ARCHIVE : « Et tu manges beaucoup d'chocolat ? Oui. »]",
             "ton": {
-              "global": "narratif, légère tension puis résolution",
+              "global": "documentaire_chaleureux",
               "tempo_lecture": 115,
               "pauses": [
-                "après la première archive (1.5s)",
-                "après 'les attend' (1s)",
-                "après 'échoue' (1s)"
+                "après 'ventilateurs' (1s)",
+                "après 'restaurant' (1s)",
+                "après 'retraité' (0.5s)"
               ],
-              "intonation": "montée en tension puis retombée apaisée"
+              "intonation": "rythme plus vif, accumulation de détails concrets"
             },
             "moments_cles": [
               {
-                "timestamp": "0:20",
-                "action": "Première citation directe du conte — tension installée",
-                "duree": 2.0
-              },
-              {
                 "timestamp": "0:30",
-                "action": "Serpent sur l'arbre — image centrale",
-                "duree": 1.5
+                "action": "Portrait du grand frère réparateur",
+                "duree": 8.0
               },
               {
                 "timestamp": "0:38",
-                "action": "Guérison par le marabout — résolution",
-                "duree": 2.0
+                "action": "La mère au restaurant",
+                "duree": 10.0
+              },
+              {
+                "timestamp": "0:50",
+                "action": "Le père retraité et la SAPCO",
+                "duree": 17.0
               }
             ],
             "ambiances_continues": [],
             "sentence_sources": [
               {
-                "sentence": "L'enfant raconte : [ARCHIVE : « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »]",
+                "sentence": "Son grand frère, justement, travaille à Treichville.",
                 "sources": [
-                  "[00:00] L'autre-là dit : « On n'a qu'aller tuer maman ». Maintenant, l'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver."
+                  "[01:38] C'est ton grand-frère, il fait quoi ton grand-frère ? [01:40] Mon grand-frère... il travaille. [01:42] Il travaille où ça ? [01:44] Il travaille à Treichville."
                 ]
               },
               {
-                "sentence": "Les deux garçons montent sur un arbre.",
+                "sentence": "L'enfant précise : [ARCHIVE : « Il répare des ventilateurs. »]",
                 "sources": [
-                  "[00:30] ils ont monté sur l'arbre."
-                ]
-              },
-              {
-                "sentence": "Un serpent les attend.",
-                "sources": [
-                  "[00:30] il y avait un serpent sur l'arbre."
-                ]
-              },
-              {
-                "sentence": "L'un d'eux est mordu.",
-                "sources": [
-                  "[00:30] truc serpent a bouffé Angela."
-                ]
-              },
-              {
-                "sentence": "Le féticheur échoue.",
-                "sources": [
-                  "[01:00] Le féticheur ne ne pouvait pas lui guérir."
-                ]
-              },
-              {
-                "sentence": "L'enfant précise : [ARCHIVE : « Il est parti chez un marabout. Le marabout là l'a guéri. »]",
-                "sources": [
-                  "[01:00] Donc il est parti chez un marabout. Le marabout là l'a guéri."
-                ]
-              }
-            ]
-          },
-          {
-            "partie_id": 3,
-            "titre": "Portrait d'une famille",
-            "duree": 38.727272727272734,
-            "texte_narration": "Le conte s'achève. On interroge l'enfant sur les siens. Il confie : [ARCHIVE : « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. »] Sa mère tient un petit commerce. Il ajoute : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »] Son père, lui, ne travaille plus. Retraité de la SAPCO, l'usine où l'on fabrique le chocolat. L'enfant habite Nongo. Il a dix ans.",
-            "ton": {
-              "global": "documentaire, chaleureux, factuel",
-              "tempo_lecture": 110,
-              "pauses": [
-                "après 'les siens' (1s)",
-                "après 'ventilateurs' (1.5s)",
-                "après 'restaurant' (1s)",
-                "après 'chocolat' (1.5s)"
-              ],
-              "intonation": "posée, tendre sans sentimentalisme"
-            },
-            "moments_cles": [
-              {
-                "timestamp": "0:45",
-                "action": "Transition du conte vers le réel — portrait familial",
-                "duree": 2.0
-              },
-              {
-                "timestamp": "0:52",
-                "action": "Grand frère réparateur à Treichville",
-                "duree": 1.5
-              },
-              {
-                "timestamp": "1:05",
-                "action": "Père retraité de la SAPCO — ancrage social",
-                "duree": 2.0
-              }
-            ],
-            "ambiances_continues": [],
-            "sentence_sources": [
-              {
-                "sentence": "Le conte s'achève.",
-                "sources": [
-                  "[01:00] D'accord, merci."
-                ]
-              },
-              {
-                "sentence": "On interroge l'enfant sur les siens.",
-                "sources": [
-                  "[01:38] - C'est ton grand-frère, il fait quoi ton grand-frère ?"
-                ]
-              },
-              {
-                "sentence": "Il confie : [ARCHIVE : « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. »]",
-                "sources": [
-                  "[01:40] - Mon grand-frère... il travaille.",
-                  "[01:44] - Il travaille à Treichville.",
-                  "[01:48] - Il répare mes... ventilateurs."
+                  "[01:48] Il répare mes... ventilateurs."
                 ]
               },
               {
@@ -302,128 +200,123 @@
                 ]
               },
               {
-                "sentence": "Il ajoute : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »]",
+                "sentence": "Il confie : [ARCHIVE : « Maman elle vend. Elle vend tout, bananes. Elle vend dans un restaurant. »]",
                 "sources": [
-                  "[02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
+                  "[02:07] Maman elle vend. [02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
                 ]
               },
               {
-                "sentence": "Son père, lui, ne travaille plus.",
+                "sentence": "Et son père ?",
                 "sources": [
-                  "[02:17] Mon père ? Mon père travaille pas."
+                  "[02:15] Et ton père ?"
                 ]
               },
               {
-                "sentence": "Retraité de la SAPCO, l'usine où l'on fabrique le chocolat.",
+                "sentence": "L'enfant glisse : [ARCHIVE : « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. »]",
                 "sources": [
-                  "[02:22] Non, il est retraité.",
-                  "[02:27] Il travaillait il travaillait au SAPO.",
+                  "[02:17] Mon père ? Mon père travaille pas. [02:22] Non, il est retraité. [02:27] Il travaillait il travaillait au SAPO."
+                ]
+              },
+              {
+                "sentence": "La SAPCO, c'est l'usine où l'on fabrique le chocolat.",
+                "sources": [
                   "[02:36] Le SAPCO ? C'est où on fabrique les chocolats."
                 ]
               },
               {
-                "sentence": "L'enfant habite Nongo.",
+                "sentence": "L'enfant sourit : [ARCHIVE : « Et tu manges beaucoup d'chocolat ? Oui. »]",
                 "sources": [
-                  "[02:50] - J'habite à Nongo."
-                ]
-              },
-              {
-                "sentence": "Il a dix ans.",
-                "sources": [
-                  "[02:46] - Moi ? J'ai 10 ans."
+                  "[02:39] Ah, trop fort ! Et tu manges beaucoup d'chocolat ? [02:41] Oui."
                 ]
               }
             ]
           },
           {
-            "partie_id": 4,
-            "titre": "Retour à la parole",
-            "duree": 18.28571428571429,
-            "texte_narration": "Dix ans, et déjà porteur d'histoires reçues, répétées, offertes. Dans sa voix, un conte de brousse et le monde entier d'une famille. La parole circule. Elle ne s'arrête pas.",
+            "partie_id": 3,
+            "titre": "Le champ et l'ailleurs",
+            "duree": 34.85714285714286,
+            "texte_narration": "Mais cet enfant de Nongo connaît aussi le village. Il se souvient : [ARCHIVE : « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais son fils lui il a pris une autre direction. »] Entre la ville et la brousse, entre le conte et le réel, sa parole trace un monde entier.",
             "ton": {
-              "global": "réflexif, apaisé, circulaire",
+              "global": "contemplatif_ouvert",
               "tempo_lecture": 105,
               "pauses": [
-                "après 'offertes' (2s)",
-                "après 'famille' (1.5s)",
-                "après 'circule' (1s)"
+                "après 'le village' (1s)",
+                "après la citation (2s)",
+                "fin du récit (2s)"
               ],
-              "intonation": "descendante, douce, conclusive"
+              "intonation": "ralentissement progressif, ouverture contemplative"
             },
             "moments_cles": [
               {
-                "timestamp": "1:15",
-                "action": "Retour à la figure de l'enfant conteur — écho à l'ouverture",
-                "duree": 2.0
+                "timestamp": "1:05",
+                "action": "Transition vers le village",
+                "duree": 5.0
+              },
+              {
+                "timestamp": "1:10",
+                "action": "Citation du départ au champ",
+                "duree": 15.0
               },
               {
                 "timestamp": "1:25",
-                "action": "Image finale — la parole qui continue",
-                "duree": 2.0
+                "action": "Clôture ouverte",
+                "duree": 5.0
               }
             ],
             "ambiances_continues": [],
             "sentence_sources": [
               {
-                "sentence": "Dix ans, et déjà porteur d'histoires reçues, répétées, offertes.",
+                "sentence": "Mais cet enfant de Nongo connaît aussi le village.",
                 "sources": [
-                  "[02:46] - Moi ? J'ai 10 ans.",
-                  "[01:36] - C'est mon grand-frère."
+                  "[02:48] 10 ans ! Tu habites où ? [02:50] J'habite à Nongo."
                 ]
               },
               {
-                "sentence": "Dans sa voix, un conte de brousse et le monde entier d'une famille.",
-                "sources": []
+                "sentence": "Il se souvient : [ARCHIVE : « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais son fils lui il a pris une autre direction. »]",
+                "sources": [
+                  "[02:59] J'étais au village. Mon oncle vient on va partir au champ. On va partir au champ, on est arrivés là-bas. On était ensemble mais maintenant son fils lui il a pris une autre direction."
+                ]
               },
               {
-                "sentence": "La parole circule.",
-                "sources": []
-              },
-              {
-                "sentence": "Elle ne s'arrête pas.",
+                "sentence": "Entre la ville et la brousse, entre le conte et le réel, sa parole trace un monde entier.",
                 "sources": []
               }
             ]
           }
         ],
         "metadata": {
-          "nombre_mots": 206,
-          "duree_lecture_estimee": 111.58215697346134,
+          "nombre_mots": 217,
+          "duree_lecture_estimee": 118.1219649915302,
           "nombre_archives_utilisees": 0,
           "nombre_ambiances": 0
         },
-        "notes_pour_agent_3": "Fluidité absolue entre sections — pas de marqueurs de chapitres audibles. Le ton reste neutre et informatif tout au long, avec un registre accessible (grand public). Les citations directes de l'enfant doivent être intégrées dans le flux narratif, introduites par la voix off sans rupture. L'ambiance sonore reste minimaliste : silences et respiration naturelle du récit. La structure circulaire doit se sentir sans être explicitée. Le débit visé est d'environ 2 mots par seconde, soit 180 mots maximum. Privilégier des phrases courtes et concrètes."
+        "notes_pour_agent_3": "FLUIDITÉ : Le récit doit couler comme une seule parole continue. Pas de ruptures marquées entre sections — les transitions sont narratives, jamais annoncées. CITATIONS : Intégrer largement les paroles de l'enfant en les enchâssant dans la narration (voix off qui introduit, citation directe, voix off qui reprend). RYTHME AUDIO : La partie 1 adopte le tempo du conte oral, légèrement plus lent. La partie 2 s'accélère avec l'accumulation des détails concrets. La partie 3 ralentit pour ouvrir sur un horizon plus large. TON : Neutre et informatif mais jamais froid — la chaleur vient des citations elles-mêmes, pas du commentaire. REGISTRE : Grand public, phrases courtes et claires, vocabulaire accessible. Ne jamais expliquer ce qui est évident dans les citations."
       },
       "taggedOutput": {
         "scenario_id": 1,
-        "titre": "Les enfants de Treichville racontent",
-        "taggedText": "=== PARTIE 1 : Une voix d'enfant s'élève ===\n\n[posé] Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole. [pause] Il raconte une histoire que son grand frère lui a transmise. Celle de deux enfants, Kwaku et Kofie, partis en brousse.\n\n=== PARTIE 2 : Le conte de brousse ===\n\n[pause] L'enfant raconte : [posé] [atténué] « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons montent sur un arbre. Un serpent les attend. L'un d'eux est mordu. Le féticheur échoue. L'enfant précise : [posé] [atténué] « Il est parti chez un marabout. Le marabout là l'a guéri. » [pause]\n\n=== PARTIE 3 : Portrait d'une famille ===\n\nLe conte s'achève. [pause] On interroge l'enfant sur les siens. Il confie : [posé] [atténué] « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. » [pause] Sa mère tient un petit commerce. Il ajoute : [posé] [atténué] « Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Son père, lui, ne travaille plus. Retraité de la SAPCO, l'usine où l'on fabrique le chocolat. L'enfant habite Nongo. Il a dix ans.\n\n=== PARTIE 4 : Retour à la parole ===\n\n[pause] [ralentit] Dix ans, et déjà porteur d'histoires reçues, répétées, offertes. Dans sa voix, un conte de brousse et le monde entier d'une famille. [pause] La parole circule. [posé] Elle ne s'arrête pas.",
+        "titre": "Voix d'enfance à Treichville",
+        "taggedText": "=== PARTIE 1 : Le conte du matin ===\n[ton: narratif_intime] [intonation: douce, posée, légèrement suspendue pendant la citation]\n\n{pause 2s}\n\nUn enfant de dix ans prend la parole. Il raconte :\n\n{posé} {atténué} « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'à aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » {pause}\n\nCe conte, c'est son grand frère qui le lui a transmis.\n\n{ambience_porte_grincement.wav}\n\n=== PARTIE 2 : Le monde des adultes ===\n[ton: documentaire_chaleureux] [intonation: rythme plus vif, accumulation de détails concrets]\n\nSon grand frère, justement, travaille à Treignac. L'enfant précise :\n\n{posé} {atténué} « Il répare des ventilateurs. » {pause}\n\nSa mère tient un petit commerce. Il confie :\n\n{posé} {atténué} « Maman les vend. Elle vend tout, bananes. Elle vend dans un restaurant. » {pause}\n\nEt son père ? L'enfant glisse :\n\n{posé} {atténué} « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. » {pause}\n\nLa SAPCO, c'est l'usine où l'on fabrique le chocolat. L'enfant sourit :\n\n{posé} {atténué} « Et tu manges beaucoup d'chocolat ? Oui. » {pause}\n\n{ambience_foule_agitee.wav}\n\n=== PARTIE 3 : Le champ et l'ailleurs ===\n[ton: contemplatif_ouvert] [intonation: ralentissement progressif, ouverture contemplative]\n\nMais cet enfant de Nongo connaît aussi le village. Il se souvient :\n\n{posé} {atténué} « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais son fils lui il a pris une autre direction. » {pause}\n\n{pause 2s}\n\nEntre la ville et la brousse, entre le conte et le réel, sa parole dessine un monde entier.\n\n{ambience_vent_mer.wav}",
         "parties": [
           {
             "partie_id": 1,
-            "titre": "Une voix d'enfant s'élève",
-            "taggedText": "[posé] Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole. [pause] Il raconte une histoire que son grand frère lui a transmise. Celle de deux enfants, Kwaku et Kofie, partis en brousse."
+            "titre": "Le conte du matin",
+            "taggedText": "{pause 2s}\n\nUn enfant de dix ans prend la parole. Il raconte :\n\n{posé} {atténué} « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'à aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » {pause}\n\nCe conte, c'est son grand frère qui le lui a transmis.\n\n{ambience_porte_grincement.wav}"
           },
           {
             "partie_id": 2,
-            "titre": "Le conte de brousse",
-            "taggedText": "[pause] L'enfant raconte : [posé] [atténué] « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons montent sur un arbre. Un serpent les attend. L'un d'eux est mordu. Le féticheur échoue. L'enfant précise : [posé] [atténué] « Il est parti chez un marabout. Le marabout là l'a guéri. » [pause]"
+            "titre": "Le monde des adultes",
+            "taggedText": "Son grand frère, justement, travaille à Treignac. L'enfant précise :\n\n{posé} {atténué} « Il répare des ventilateurs. » {pause}\n\nSa mère tient un petit commerce. Il confie :\n\n{posé} {atténué} « Maman les vend. Elle vend tout, bananes. Elle vend dans un restaurant. » {pause}\n\nEt son père ? L'enfant glisse :\n\n{posé} {atténué} « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. » {pause}\n\nLa SAPCO, c'est l'usine où l'on fabrique le chocolat. L'enfant sourit :\n\n{posé} {atténué} « Et tu manges beaucoup d'chocolat ? Oui. » {pause}\n\n{ambience_foule_agitee.wav}"
           },
           {
             "partie_id": 3,
-            "titre": "Portrait d'une famille",
-            "taggedText": "Le conte s'achève. [pause] On interroge l'enfant sur les siens. Il confie : [posé] [atténué] « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. » [pause] Sa mère tient un petit commerce. Il ajoute : [posé] [atténué] « Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Son père, lui, ne travaille plus. Retraité de la SAPCO, l'usine où l'on fabrique le chocolat. L'enfant habite Nongo. Il a dix ans."
-          },
-          {
-            "partie_id": 4,
-            "titre": "Retour à la parole",
-            "taggedText": "[pause] [ralentit] Dix ans, et déjà porteur d'histoires reçues, répétées, offertes. Dans sa voix, un conte de brousse et le monde entier d'une famille. [pause] La parole circule. [posé] Elle ne s'arrête pas."
+            "titre": "Le champ et l'ailleurs",
+            "taggedText": "Mais cet enfant de Nongo connaît aussi le village. Il se souvient :\n\n{posé} {atténué} « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais son fils lui il a pris une autre direction. » {pause}\n\n{pause 2s}\n\nEntre la ville et la brousse, entre le conte et le réel, sa parole dessine un monde entier.\n\n{ambience_vent_mer.wav}"
           }
         ],
         "metadata": {
-          "voiceTags": 20,
-          "soundTags": 0,
-          "originalWordCount": 206
+          "voiceTags": 6,
+          "soundTags": 23,
+          "originalWordCount": 217
         }
       },
       "scenario_index": 1,
@@ -441,5 +334,5 @@
       }
     }
   ],
-  "last_scenarios_generated_at": "2026-05-13T09:17:30.576811"
+  "last_scenarios_generated_at": "2026-05-13T09:23:32.285057"
 }

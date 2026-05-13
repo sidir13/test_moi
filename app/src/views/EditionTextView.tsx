@@ -37,6 +37,7 @@ type ParagraphBlockProps = {
 type KeyWordChipProps = {
   label: string;
   variant: "respiration" | "effet-sonore";
+  dragText?: string;
 };
 
 function parseTaggedText(text: string, hideEffetSonore = false): ContentChunk[] {
@@ -103,12 +104,24 @@ function ParagraphBlock({ index, title, content }: ParagraphBlockProps) {
   );
 }
 
-function KeyWordChip({ label, variant }: KeyWordChipProps) {
-  const className =
+function KeyWordChip({ label, variant, dragText }: KeyWordChipProps) {
+  const baseClass =
     variant === "respiration"
       ? "inline-flex h-6 items-center gap-1 rounded-[4px] border border-[#623DC7] bg-[#E1D6FF] px-2 py-1 text-[12px] font-medium text-[#2F1E64]"
       : "inline-flex h-6 items-center gap-1 rounded-[4px] border border-[#C8009C] bg-[#FDEBF9] px-2 py-1 text-[12px] font-medium text-[#7D005F]";
-  return <span className={className}>{label}</span>;
+  const className = dragText ? `${baseClass} cursor-grab active:cursor-grabbing select-none` : baseClass;
+  return (
+    <span
+      className={className}
+      draggable={Boolean(dragText)}
+      onDragStart={dragText ? (e) => {
+        e.dataTransfer.setData("text/plain", dragText);
+        e.dataTransfer.effectAllowed = "copy";
+      } : undefined}
+    >
+      {label}
+    </span>
+  );
 }
 
 export function EditionTextView() {
@@ -208,6 +221,22 @@ export function EditionTextView() {
     window.addEventListener("tagged-scenario-updated", handler);
     return () => window.removeEventListener("tagged-scenario-updated", handler);
   }, [sessionId, selectionQuery.data]);
+
+  // Auto-save to backend 1.5s after last change so refresh doesn't lose edits
+  useEffect(() => {
+    if (!isDirty || !sessionId || !selectionQuery.data) return;
+    const timer = setTimeout(async () => {
+      const raw = selectionQuery.data as Record<string, unknown>;
+      const merged: Record<string, unknown> = { ...raw };
+      if (merged.scenario && typeof merged.scenario === "object") {
+        merged.scenario = { ...(merged.scenario as Record<string, unknown>), parties: parts };
+      } else {
+        merged.parties = parts;
+      }
+      await selectScenario(sessionId, merged);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [parts, isDirty, sessionId, selectionQuery.data]);
 
   const updatePart = (idx: number, patch: Partial<EditablePart>) => {
     setParts((prev) => prev.map((p, i) => (i === idx ? { ...p, ...patch } : p)));
@@ -339,12 +368,8 @@ export function EditionTextView() {
                   <Sparkles className="h-4 w-4" />
                   <span>Demander à l&apos;agent IA</span>
                 </button>
-                {isElevenLabs && (
-                  <>
-                    <KeyWordChip label="Effet Sonore" variant="effet-sonore" />
-                    <KeyWordChip label="Respiration" variant="respiration" />
-                  </>
-                )}
+                {isElevenLabs && <KeyWordChip label="Effet Sonore" variant="effet-sonore" dragText=" {son.wav}" />}
+                <KeyWordChip label="Respiration" variant="respiration" dragText=" [pause 2s]" />
               </div>
 
               <div className="flex w-full flex-col gap-8 rounded-[12px] border-t border-[#E2E8F0] bg-white p-[18px]">
@@ -368,6 +393,16 @@ export function EditionTextView() {
                     <textarea
                       value={part.texte_narration}
                       onChange={(e) => updatePart(idx, { texte_narration: e.target.value })}
+                      onDragOver={(e) => { if (e.dataTransfer.types.includes("text/plain")) e.preventDefault(); }}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        const tagText = e.dataTransfer.getData("text/plain");
+                        if (!tagText) return;
+                        const ta = e.currentTarget;
+                        const pos = ta.selectionStart ?? ta.value.length;
+                        const updated = ta.value.slice(0, pos) + tagText + ta.value.slice(pos);
+                        updatePart(idx, { texte_narration: updated });
+                      }}
                       placeholder="Texte de narration…"
                       rows={Math.max(3, Math.ceil((part.texte_narration?.length ?? 0) / 80))}
                       className="w-full resize-y rounded-md border border-transparent bg-transparent px-1 text-[14px] font-normal leading-6 text-[#334155] outline-none transition-colors hover:border-[#E2E8F0] focus:border-[#007AFF]"

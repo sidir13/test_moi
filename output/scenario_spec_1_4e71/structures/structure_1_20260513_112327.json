@@ -1,0 +1,76 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Voix d'enfance à Treichville",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant de dix ans raconte sa journée et son monde. Entre le conte transmis par son grand frère — l'histoire de Kwaku et Kofie partis en brousse — et la réalité quotidienne de sa famille, se dessine un portrait vivant. Sa mère vend des bananes dans un restaurant, son père est retraité de la SAPCO où l'on fabrique du chocolat, et son grand frère répare des ventilateurs à Treichville. Du conte du matin aux gestes du quotidien, c'est toute une vie familiale qui se dévoile à travers la parole d'un enfant.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le conte du matin",
+      "duree_cible": 30,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "éveil_curiosité",
+      "elements_necessaires": [
+        "Citation directe du conte de Kwaku et Kofie",
+        "Voix de l'enfant conteur",
+        "Transmission orale par le grand frère",
+        "Atmosphère de parole enfantine"
+      ],
+      "mood": "narratif_intime"
+    },
+    {
+      "partie": 2,
+      "titre": "Le monde des adultes",
+      "duree_cible": 35,
+      "fonction_narrative": "développement_portrait",
+      "position_arc_emotionnel": "ancrage_concret",
+      "elements_necessaires": [
+        "Citations sur la mère qui vend au restaurant",
+        "Le père retraité de la SAPCO",
+        "Le grand frère réparateur de ventilateurs à Treichville",
+        "La fabrique de chocolat",
+        "Vie familiale racontée par l'enfant"
+      ],
+      "mood": "documentaire_chaleureux"
+    },
+    {
+      "partie": 3,
+      "titre": "Le champ et l'ailleurs",
+      "duree_cible": 25,
+      "fonction_narrative": "ouverture_résolution",
+      "position_arc_emotionnel": "élargissement",
+      "elements_necessaires": [
+        "Citation sur le départ au champ avec l'oncle",
+        "Le village comme autre espace de vie",
+        "Contraste ville/village",
+        "Clôture sur la parole de l'enfant"
+      ],
+      "mood": "contemplatif_ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "crescendo_intime",
+  "rythme_general": "varie — lent et conteur au début, plus rythmé au centre avec les détails familiaux, apaisé en fin",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 3.0,
+      "description": "Du conte imaginaire à la réalité familiale — la voix off glisse de l'histoire racontée par le grand frère vers la question : qui est ce grand frère ? Transition par le lien de transmission."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement_spatial",
+      "duree": 2.0,
+      "description": "De l'univers urbain de Treichville et Nongo vers le village et le champ — passage fluide du quotidien citadin à l'autre versant de la vie de l'enfant."
+    }
+  ],
+  "notes_production": "FLUIDITÉ : Le récit doit couler comme une seule parole continue. Pas de ruptures marquées entre sections — les transitions sont narratives, jamais annoncées. CITATIONS : Intégrer largement les paroles de l'enfant en les enchâssant dans la narration (voix off qui introduit, citation directe, voix off qui reprend). RYTHME AUDIO : La partie 1 adopte le tempo du conte oral, légèrement plus lent. La partie 2 s'accélère avec l'accumulation des détails concrets. La partie 3 ralentit pour ouvrir sur un horizon plus large. TON : Neutre et informatif mais jamais froid — la chaleur vient des citations elles-mêmes, pas du commentaire. REGISTRE : Grand public, phrases courtes et claires, vocabulaire accessible. Ne jamais expliquer ce qui est évident dans les citations."
+}

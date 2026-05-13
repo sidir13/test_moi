@@ -1,0 +1,46 @@
+=== PARTIE 1 : Le conte du matin ===
+[ton: narratif_intime] [intonation: douce, posée, légèrement suspendue pendant la citation]
+
+{pause 2s}
+
+Un enfant de dix ans prend la parole. Il raconte :
+
+{posé} {atténué} « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'à aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » {pause}
+
+Ce conte, c'est son grand frère qui le lui a transmis.
+
+{ambience_porte_grincement.wav}
+
+=== PARTIE 2 : Le monde des adultes ===
+[ton: documentaire_chaleureux] [intonation: rythme plus vif, accumulation de détails concrets]
+
+Son grand frère, justement, travaille à Treignac. L'enfant précise :
+
+{posé} {atténué} « Il répare des ventilateurs. » {pause}
+
+Sa mère tient un petit commerce. Il confie :
+
+{posé} {atténué} « Maman les vend. Elle vend tout, bananes. Elle vend dans un restaurant. » {pause}
+
+Et son père ? L'enfant glisse :
+
+{posé} {atténué} « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. » {pause}
+
+La SAPCO, c'est l'usine où l'on fabrique le chocolat. L'enfant sourit :
+
+{posé} {atténué} « Et tu manges beaucoup d'chocolat ? Oui. » {pause}
+
+{ambience_foule_agitee.wav}
+
+=== PARTIE 3 : Le champ et l'ailleurs ===
+[ton: contemplatif_ouvert] [intonation: ralentissement progressif, ouverture contemplative]
+
+Mais cet enfant de Nongo connaît aussi le village. Il se souvient :
+
+{posé} {atténué} « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais son fils lui il a pris une autre direction. » {pause}
+
+{pause 2s}
+
+Entre la ville et la brousse, entre le conte et le réel, sa parole dessine un monde entier.
+
+{ambience_vent_mer.wav}
