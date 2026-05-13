@@ -1,0 +1,250 @@
+{
+  "scenario_id": 1,
+  "titre": "Les mains qui fabriquent le chocolat",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "Un enfant d'une dizaine d'années, habitant Angré à Abidjan, raconte le monde du travail tel qu'il le voit à travers sa famille. Son père, aujourd'hui retraité, travaillait autrefois à la SAPCO, l'usine où l'on fabrique le chocolat. Son grand frère répare des ventilateurs à Treichville, sa mère tient un petit restaurant de rue. À travers cette voix d'enfant, c'est toute une chronique sociale qui se dessine : celle des familles ivoiriennes dont le quotidien est tissé par l'évolution industrielle, entre les usines d'hier et les petits métiers d'aujourd'hui. Le récit boucle sur lui-même, revenant à l'enfant qui observe ce monde en mouvement sans encore en mesurer toute la portée.",
+  "duree_estimee": 98.4505928853755,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'enfant et l'usine à chocolat",
+      "duree": 18.545454545454547,
+      "texte_narration": "Un garçon de dix ans habite Angré, à Abidjan. Son père ne travaille plus. Avant, il était ouvrier. Quand on lui demande où, l'enfant précise : [ARCHIVE : « C'est où on fabrique les chocolats. »]",
+      "ton": {
+        "global": "intime_quotidien",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'ne travaille plus' (1.5s)",
+          "après 'chocolats' (2s)"
+        ],
+        "intonation": "douce, posée, légèrement curieuse"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Rumeur urbaine lointaine, voix d'enfants en arrière-plan",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:15",
+          "action": "Voix d'enfant — citation archive",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un garçon de dix ans habite Angré, à Abidjan.",
+          "sources": [
+            "[02:46] Moi j'ai dix ans.",
+            "[02:50] J'habite à Angré."
+          ]
+        },
+        {
+          "sentence": "Son père ne travaille plus.",
+          "sources": [
+            "[02:16] Mon pa... Mon père travaille pas."
+          ]
+        },
+        {
+          "sentence": "Avant, il était ouvrier.",
+          "sources": [
+            "[02:27] Il travaillait... Il travaillait au SAPCO."
+          ]
+        },
+        {
+          "sentence": "Quand on lui demande où, l'enfant précise : [ARCHIVE : « C'est où on fabrique les chocolats. »]",
+          "sources": [
+            "[02:36] Tu connais ? C'est où on fabrique les chocolats."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le temps des usines",
+      "duree": 21.81818181818182,
+      "texte_narration": "La SAPCO transformait le cacao ivoirien en pâte, en beurre, en poudre. Des hommes comme ce père y passaient leurs journées, entre chaleur des machines et odeur de fèves torréfiées. Aujourd'hui, l'enfant confie simplement : [ARCHIVE : « Il est retraité. »]",
+      "ton": {
+        "global": "nostalgique_sobre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'en poudre' (1s)",
+          "après 'torréfiées' (1.5s)",
+          "après 'retraité' (2s)"
+        ],
+        "intonation": "grave et calme, tempo légèrement ralenti"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:22",
+          "action": "Transition sonore : machines lointaines, bruits métalliques sourds",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:35",
+          "action": "Machines s'estompent — silence relatif",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "La SAPCO transformait le cacao ivoirien en pâte, en beurre, en poudre.",
+          "sources": [
+            "[02:36] Tu connais ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Des hommes comme ce père y passaient leurs journées, entre chaleur des machines et odeur de fèves torréfiées.",
+          "sources": [
+            "[02:27] Il travaillait... Il travaillait au SAPCO."
+          ]
+        },
+        {
+          "sentence": "Aujourd'hui, l'enfant confie simplement : [ARCHIVE : « Il est retraité. »]",
+          "sources": [
+            "[02:21] Non, il est-il est retraité."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les métiers d'aujourd'hui",
+      "duree": 26.08695652173913,
+      "texte_narration": "Mais la famille travaille toujours. Le grand frère est à Treichville. L'enfant raconte : [ARCHIVE : « Il répare les ventilateurs. »] Et la mère tient son commerce. Il ajoute : [ARCHIVE : « Maman, elle vend. Elle vend d'un restaurant. »] L'usine a cédé la place aux ateliers de quartier, aux étals de rue.",
+      "ton": {
+        "global": "vivant_documentaire",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'ventilateurs' (1.5s)",
+          "après 'restaurant' (1.5s)"
+        ],
+        "intonation": "plus vive, rythme légèrement accéléré"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:42",
+          "action": "Ambiance marché, voix multiples, ventilateur qui tourne",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:55",
+          "action": "Citation enfant — mère au restaurant",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Mais la famille travaille toujours.",
+          "sources": [
+            "[01:40] Mon grand-frère ? Il travaille."
+          ]
+        },
+        {
+          "sentence": "Le grand frère est à Treichville.",
+          "sources": [
+            "[01:44] Il travaille à Treichville."
+          ]
+        },
+        {
+          "sentence": "L'enfant raconte : [ARCHIVE : « Il répare les ventilateurs. »]",
+          "sources": [
+            "[01:48] Il répare les v-ventilateurs.",
+            "[01:56] Il fait de la réparation des ventilateurs."
+          ]
+        },
+        {
+          "sentence": "Et la mère tient son commerce.",
+          "sources": [
+            "[02:05] Mes parents ? Maman, elle vend."
+          ]
+        },
+        {
+          "sentence": "Il ajoute : [ARCHIVE : « Maman, elle vend. Elle vend d'un restaurant. »]",
+          "sources": [
+            "[02:05] Mes parents ? Maman, elle vend.",
+            "[02:10] Elle vend... tout... banane... Elle vend d'un restaurant."
+          ]
+        },
+        {
+          "sentence": "L'usine a cédé la place aux ateliers de quartier, aux étals de rue.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le regard de l'enfant",
+      "duree": 32.0,
+      "texte_narration": "L'enfant, lui, écoute les histoires que son grand frère lui transmet. Il glisse : [ARCHIVE : « Moi j'ai dix ans. »] Dix ans, et déjà tout un monde industriel derrière lui — celui de son père. Devant lui, les rues d'Angré, les ventilateurs à réparer, le commerce de sa mère. Le chocolat, il n'en mange pas.",
+      "ton": {
+        "global": "contemplatif_ouvert",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'dix ans' (2s)",
+          "après 'de son père' (1.5s)",
+          "après 'mange pas' (3s)"
+        ],
+        "intonation": "douce, suspendue, ouverte — retour au calme initial"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:07",
+          "action": "Retour ambiance urbaine douce, voix d'enfants lointaines",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Silence progressif — clôture",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "L'enfant, lui, écoute les histoires que son grand frère lui transmet.",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "Il glisse : [ARCHIVE : « Moi j'ai dix ans. »]",
+          "sources": [
+            "[02:46] Moi j'ai dix ans."
+          ]
+        },
+        {
+          "sentence": "Dix ans, et déjà tout un monde industriel derrière lui — celui de son père.",
+          "sources": [
+            "[02:27] Il travaillait... Il travaillait au SAPCO."
+          ]
+        },
+        {
+          "sentence": "Devant lui, les rues d'Angré, les ventilateurs à réparer, le commerce de sa mère.",
+          "sources": [
+            "[02:50] J'habite à Angré.",
+            "[01:48] Il répare les v-ventilateurs.",
+            "[02:10] Elle vend... tout... banane... Elle vend d'un restaurant."
+          ]
+        },
+        {
+          "sentence": "Le chocolat, il n'en mange pas.",
+          "sources": [
+            "[02:41] Non."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 180,
+    "duree_lecture_estimee": 98.4505928853755,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le fil conducteur est la voix de l'enfant comme guide implicite — il ne narre pas lui-même, mais ses paroles (citations directes tirées de l'archive) ponctuent et ancrent le récit porté par la voix off à la 3e personne. La voix off adopte un registre simple et accessible (grand public), des phrases courtes, un ton neutre et informatif sans affect excessif. Les citations de l'enfant issues de l'archive (SAPCO, ventilateurs, restaurant, âge) sont intégrées comme des moments d'authenticité au cœur de la narration — elles ne doivent jamais sembler plaquées mais émerger naturellement du récit. L'ambiance sonore est immersive et évolutive : elle accompagne les transitions temporelles (usine hier / rue aujourd'hui) sans jamais couvrir la narration. La structure circulaire impose de retrouver en fin de récit le même climat sonore et émotionnel qu'à l'ouverture. IMPORTANT : aucun fait historique n'est inventé — seuls les éléments présents dans l'archive (SAPCO, Treichville, Angré, métiers familiaux) sont utilisés. Le mot total visé est d'environ 180 mots de narration (hors indications sonores), soit ~90 secondes à débit modéré. L'équilibre narration/archives est de 50/50 : environ la moitié du texte final devrait être constituée de citations directes de l'enfant."
+}

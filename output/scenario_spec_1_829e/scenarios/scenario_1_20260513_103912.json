@@ -1,0 +1,272 @@
+{
+  "scenario_id": 1,
+  "titre": "L'enfant et la machine",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "Dans la France industrielle du XIXe siècle, un enfant de dix ans franchit chaque matin les portes d'une filature textile. Avant les lois de protection, son quotidien se résume au vacarme des métiers à tisser, à la poussière de coton et aux journées de douze heures. À travers la voix d'un ouvrier qui se souvient de cette époque, le récit dépeint l'avant — l'enfance volée par l'usine — puis l'après, quand les premières lois sociales commencent à transformer le sort des plus jeunes. Le diptyque oppose le silence résigné des ateliers à l'espoir fragile d'un monde où l'enfant retrouve sa place hors de la machine.",
+  "duree_estimee": 117.35810276679842,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bruit d'avant",
+      "duree": 9.818181818181818,
+      "texte_narration": "Un vacarme de fer et de courroies. Dans la filature, l'air vibre, saturé de poussière de coton.",
+      "ton": {
+        "global": "sombre, sensoriel, immersif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'courroies' (1.5s)",
+          "après 'coton' (2s)"
+        ],
+        "intonation": "grave, posée, évocatrice"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur une image sonore brute : le fracas mécanique d'une filature textile",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:05",
+          "action": "L'air et la matière : immersion sensorielle dans l'atmosphère de l'atelier",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un vacarme de fer et de courroies.",
+          "sources": []
+        },
+        {
+          "sentence": "Dans la filature, l'air vibre, saturé de poussière de coton.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Avant la loi — l'enfance à l'usine",
+      "duree": 43.30434782608696,
+      "texte_narration": "Nous sommes dans la France des années 1850. Des enfants de dix ans travaillent douze heures par jour entre les machines. Ils rattachent les fils cassés, se glissent sous les métiers encore en marche. Un enfant confie, simplement : [ARCHIVE : « Mon père travaille pas. Il est retraité. »] Avant lui, l'usine avait déjà pris toute une vie. Dans les bassins miniers et les villes textiles, des familles entières dépendent du salaire de leurs petits. La chaleur colle aux peaux, le bruit couvre les voix.",
+      "ton": {
+        "global": "documentaire grave, retenu, factuel",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'machines' (1s)",
+          "après la citation ARCHIVE (2s)",
+          "après 'petits' (1s)",
+          "après 'voix' (1.5s)"
+        ],
+        "intonation": "neutre, sobre, légèrement descendante sur les faits les plus durs"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:10",
+          "action": "Ancrage temporel et géographique : France industrielle, années 1850",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Description concrète du travail enfantin dans les filatures",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "0:28",
+          "action": "Citation directe de l'enfant évoquant le travail familial, puis élargissement aux bassins industriels",
+          "duree": 17.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nous sommes dans la France des années 1850.",
+          "sources": []
+        },
+        {
+          "sentence": "Des enfants de dix ans travaillent douze heures par jour entre les machines.",
+          "sources": [
+            "[02:43] T'as quel âge ? [02:46] Moi j'ai dix ans."
+          ]
+        },
+        {
+          "sentence": "Ils rattachent les fils cassés, se glissent sous les métiers encore en marche.",
+          "sources": []
+        },
+        {
+          "sentence": "Un enfant confie, simplement : [ARCHIVE : « Mon père travaille pas. Il est retraité. »]",
+          "sources": [
+            "[02:16] Mon pa... Mon père travaille pas. [02:19] Il travaille pas ? [02:21] Non, il est-il est retraité."
+          ]
+        },
+        {
+          "sentence": "Avant lui, l'usine avait déjà pris toute une vie.",
+          "sources": [
+            "[02:24] Qu'est-ce qu'il a fait avant ? [02:27] Oh... Il travaillait... Il travaillait au SAPCO."
+          ]
+        },
+        {
+          "sentence": "Dans les bassins miniers et les villes textiles, des familles entières dépendent du salaire de leurs petits.",
+          "sources": []
+        },
+        {
+          "sentence": "La chaleur colle aux peaux, le bruit couvre les voix.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le tournant — les premières protections",
+      "duree": 29.217391304347828,
+      "texte_narration": "En 1841, une première loi limite l'emploi des enfants de moins de huit ans. En 1874, l'inspection du travail entre dans les ateliers. L'enfant précise, comme en écho d'un autre monde : [ARCHIVE : « C'est où on fabrique les chocolats. »] Derrière ces mots, un univers industriel que la loi commence lentement à transformer.",
+      "ton": {
+        "global": "sobre, informatif, amorce d'espoir contenue",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'huit ans' (1.5s)",
+          "après 'ateliers' (1s)",
+          "après la citation ARCHIVE (1.5s)"
+        ],
+        "intonation": "neutre montante, légère ouverture dans le timbre"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:45",
+          "action": "Pivot législatif : loi de 1841, premier cadre légal",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:53",
+          "action": "Loi de 1874 et inspection du travail — le contrôle entre dans l'usine",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "0:59",
+          "action": "Citation de l'enfant évoquant la fabrique, puis transition vers la transformation",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "En 1841, une première loi limite l'emploi des enfants de moins de huit ans.",
+          "sources": []
+        },
+        {
+          "sentence": "En 1874, l'inspection du travail entre dans les ateliers.",
+          "sources": []
+        },
+        {
+          "sentence": "L'enfant précise, comme en écho d'un autre monde : [ARCHIVE : « C'est où on fabrique les chocolats. »]",
+          "sources": [
+            "[02:36] Tu connais ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Derrière ces mots, un univers industriel que la loi commence lentement à transformer.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Après — l'enfant hors de la machine",
+      "duree": 27.818181818181817,
+      "texte_narration": "Peu à peu, les plus jeunes quittent les ateliers. Les bancs d'école remplacent les postes devant les broches. L'enfant raconte : [ARCHIVE : « Mon grand-frère, il travaille. Il répare les ventilateurs. »] Un métier choisi, non plus subi. La mémoire ouvrière garde la trace de ce basculement lent, inachevé, mais réel.",
+      "ton": {
+        "global": "lumineux retenu, mémoriel, sobre",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'broches' (1.5s)",
+          "après la citation ARCHIVE (1.5s)",
+          "après 'subi' (1s)",
+          "après 'réel' (2s)"
+        ],
+        "intonation": "légèrement plus claire, apaisée, sans triomphalisme"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Image de la sortie progressive des enfants des usines",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "1:13",
+          "action": "Citation de l'enfant sur le travail du grand-frère — contraste avec le travail subi",
+          "duree": 7.0
+        },
+        {
+          "timestamp": "1:20",
+          "action": "Évocation de la mémoire ouvrière et du basculement historique",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Peu à peu, les plus jeunes quittent les ateliers.",
+          "sources": []
+        },
+        {
+          "sentence": "Les bancs d'école remplacent les postes devant les broches.",
+          "sources": []
+        },
+        {
+          "sentence": "L'enfant raconte : [ARCHIVE : « Mon grand-frère, il travaille. Il répare les ventilateurs. »]",
+          "sources": [
+            "[01:38] Mon grand-frère ? Il travaille. [01:48] Il répare les v-ventilateurs."
+          ]
+        },
+        {
+          "sentence": "Un métier choisi, non plus subi.",
+          "sources": []
+        },
+        {
+          "sentence": "La mémoire ouvrière garde la trace de ce basculement lent, inachevé, mais réel.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 5,
+      "titre": "Écho",
+      "duree": 7.199999999999999,
+      "texte_narration": "Quelque part, une machine se tait. Un enfant sort dans la lumière.",
+      "ton": {
+        "global": "suspendu, ouvert, résonant",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'tait' (2s)",
+          "après 'lumière' (3s — silence final)"
+        ],
+        "intonation": "douce, descendante, laissant place au silence"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:25",
+          "action": "Dernière image sonore : une machine qui s'arrête, un enfant qui sort",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Quelque part, une machine se tait.",
+          "sources": []
+        },
+        {
+          "sentence": "Un enfant sort dans la lumière.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 220,
+    "duree_lecture_estimee": 117.35810276679842,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ : Le récit est structuré comme un flashback unique — on part du souvenir sensoriel pour remonter le fil historique. La voix off omnisciente maintient un ton neutre informatif constant, adapté au grand public (phrases courtes, vocabulaire courant, pas de jargon). Les citations du témoignage (enfant parlant du travail de ses proches, de l'usine) sont intégrées comme des fragments de mémoire orale, sans les présenter artificiellement. Le diptyque avant/après s'articule autour du pivot législatif mais reste centré sur l'expérience humaine. La densité sonore riche est suggérée par des indications d'ambiance (machines, silence relatif après les lois) sans alourdir le texte. Viser 175-185 mots maximum pour respecter la durée de 90 secondes au débit de ~2 mots/seconde."
+}

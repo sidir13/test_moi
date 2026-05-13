@@ -1,0 +1,134 @@
+{
+  "events": [
+    {
+      "title": "Travail du père au SAPCO",
+      "description": "Le père d'un des enfants travaillait dans l'usine de fabrication de chocolat SAPCO avant de prendre sa retraite.",
+      "approximate_time": "Passé (avant la retraite)",
+      "actors": [
+        "Le père de l'enfant"
+      ],
+      "places": [
+        "SAPCO"
+      ],
+      "keywords": [
+        "retraite",
+        "chocolat",
+        "usine"
+      ]
+    },
+    {
+      "title": "Expédition au champ et incident du marigot",
+      "description": "Un enfant se rend au champ avec son oncle. Au retour, il refuse de boire l'eau du marigot malgré sa soif, suivant ainsi les recommandations sanitaires de sa mère.",
+      "approximate_time": "Passé récent",
+      "actors": [
+        "L'enfant",
+        "L'oncle",
+        "Le fils de l'oncle"
+      ],
+      "places": [
+        "Champ",
+        "Marigot",
+        "Village"
+      ],
+      "keywords": [
+        "marigot",
+        "soif",
+        "champ",
+        "hygiène"
+      ]
+    },
+    {
+      "title": "Match de football entre l'ASEC et l'AFIC",
+      "description": "Récit d'une rencontre sportive au stade entre les équipes de l'ASEC et de l'AFIC, s'étant soldée par un score de 8-7.",
+      "approximate_time": "Inconnu",
+      "actors": [
+        "Keïta",
+        "Mamadou",
+        "ASEC",
+        "AFIC"
+      ],
+      "places": [
+        "Stade de Paris"
+      ],
+      "keywords": [
+        "football",
+        "match",
+        "score"
+      ]
+    },
+    {
+      "title": "Séjour au Ghana et retour à Abidjan",
+      "description": "Voyage familial au Ghana. Le père choisit de rester sur place alors que la grand-mère ramène l'enfant à Abidjan pour assurer sa subsistance.",
+      "approximate_time": "Passé",
+      "actors": [
+        "L'enfant",
+        "Le père",
+        "La grand-mère"
+      ],
+      "places": [
+        "Ghana",
+        "Abidjan"
+      ],
+      "keywords": [
+        "voyage",
+        "immigration",
+        "subsistance",
+        "famille"
+      ]
+    },
+    {
+      "title": "Vacances à Nokoué et chasse en brousse",
+      "description": "Séjour d'un enfant dans son village natal à Nokoué. Il y accompagne son oncle pour chasser le gibier en brousse afin de se nourrir.",
+      "approximate_time": "Été dernier",
+      "actors": [
+        "L'enfant",
+        "Le père",
+        "L'oncle"
+      ],
+      "places": [
+        "Nokoué",
+        "Brousse"
+      ],
+      "keywords": [
+        "chasse",
+        "vacances",
+        "village",
+        "alimentation"
+      ]
+    },
+    {
+      "title": "Voyage en bateau-bus vers le village",
+      "description": "Récit d'un déplacement fluvial en bateau-bus impliquant l'achat d'un ticket pour rejoindre le village d'origine.",
+      "approximate_time": "Inconnu",
+      "actors": [
+        "Le locuteur",
+        "Compagnons de voyage"
+      ],
+      "places": [
+        "Bateau-bus",
+        "Village"
+      ],
+      "keywords": [
+        "transport",
+        "bateau-bus",
+        "voyage"
+      ]
+    },
+    {
+      "title": "Le long voyage (194)",
+      "description": "Référence à un voyage historique ou de longue durée associé au nombre '194' (pouvant désigner une année, un convoi ou un matricule).",
+      "approximate_time": "194 (à préciser)",
+      "actors": [
+        "Le locuteur"
+      ],
+      "places": [
+        "Inconnu"
+      ],
+      "keywords": [
+        "long voyage",
+        "mémoire",
+        "194"
+      ]
+    }
+  ]
+}

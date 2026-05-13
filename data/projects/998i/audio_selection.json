@@ -1,0 +1,11 @@
+{
+  "voices": [
+    "145159_III_08_44k.mp3"
+  ],
+  "backgrounds": {
+    "ambient": null,
+    "punctual": []
+  },
+  "auto_backgrounds": false,
+  "tts_voice_id": "5l4ttmr4SKNgi0HnOelT"
+}

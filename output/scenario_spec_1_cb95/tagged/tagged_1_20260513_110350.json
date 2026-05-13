@@ -1,0 +1,27 @@
+{
+  "scenario_id": 1,
+  "titre": "Une journée ordinaire",
+  "taggedText": "=== PARTIE 1 : L'aube — les premiers gestes ===\n\n[chuchote] Cinq heures du matin. [pause] Le jour n'est pas encore levé. Une main pousse la couverture, des pieds touchent le sol froid. [pause] On allume le feu, on fait chauffer l'eau. [posé] Les gestes sont les mêmes que la veille, les mêmes que demain.\n\n=== PARTIE 2 : Le cœur du jour — le labeur ===\n\n{travail_exterieur_campagne.wav}\n\nDès que la lumière le permet, le travail commence. Aux champs, à l'atelier, à la maison — chacun sa tâche, chacun son rythme. [posé] Les heures s'étirent sans montre. On mesure le temps au soleil, à la fatigue dans les bras. [pause] Le repas de midi coupe la journée en deux. On mange vite, souvent debout. Puis on reprend. Un témoin de cette époque raconte : [posé] [atténué] « On ne comptait pas les heures, on comptait ce qu'il restait à faire. » [pause] Le soir approche quand les ombres s'allongent sur le sol.\n\n=== PARTIE 3 : Le soir — le repos ===\n\nLa nuit tombe. [pause] On range les outils. On retrouve la table, le pain, les visages familiers. [posé] Quelques mots échangés, parfois un silence qui suffit. [pause] Puis la chandelle s'éteint. [atténué] Demain, tout recommencera.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube — les premiers gestes",
+      "taggedText": "[chuchote] Cinq heures du matin. [pause] Le jour n'est pas encore levé. Une main pousse la couverture, des pieds touchent le sol froid. [pause] On allume le feu, on fait chauffer l'eau. [posé] Les gestes sont les mêmes que la veille, les mêmes que demain."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le cœur du jour — le labeur",
+      "taggedText": "{travail_exterieur_campagne.wav}\n\nDès que la lumière le permet, le travail commence. Aux champs, à l'atelier, à la maison — chacun sa tâche, chacun son rythme. [posé] Les heures s'étirent sans montre. On mesure le temps au soleil, à la fatigue dans les bras. [pause] Le repas de midi coupe la journée en deux. On mange vite, souvent debout. Puis on reprend. Un témoin de cette époque raconte : [posé] [atténué] « On ne comptait pas les heures, on comptait ce qu'il restait à faire. » [pause] Le soir approche quand les ombres s'allongent sur le sol."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — le repos",
+      "taggedText": "La nuit tombe. [pause] On range les outils. On retrouve la table, le pain, les visages familiers. [posé] Quelques mots échangés, parfois un silence qui suffit. [pause] Puis la chandelle s'éteint. [atténué] Demain, tout recommencera."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 13,
+    "soundTags": 1,
+    "originalWordCount": 165
+  }
+}

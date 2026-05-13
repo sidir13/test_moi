@@ -1,0 +1,603 @@
+{
+  "nodes": [
+    {
+      "id": "event_0",
+      "name": "Travail du père au SAPCO",
+      "type": "Event",
+      "description": "Le père d'un des enfants travaillait dans l'usine de fabrication de chocolat SAPCO avant de prendre sa retraite.",
+      "time": "Passé (avant la retraite)"
+    },
+    {
+      "id": "Le père de l'enfant",
+      "name": "Le père de l'enfant",
+      "type": "Person"
+    },
+    {
+      "id": "SAPCO",
+      "name": "SAPCO",
+      "type": "Place"
+    },
+    {
+      "id": "retraite",
+      "name": "retraite",
+      "type": "Keyword"
+    },
+    {
+      "id": "chocolat",
+      "name": "chocolat",
+      "type": "Keyword"
+    },
+    {
+      "id": "usine",
+      "name": "usine",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_1",
+      "name": "Expédition au champ et incident du marigot",
+      "type": "Event",
+      "description": "Un enfant se rend au champ avec son oncle. Au retour, il refuse de boire l'eau du marigot malgré sa soif, suivant ainsi les recommandations sanitaires de sa mère.",
+      "time": "Passé récent"
+    },
+    {
+      "id": "L'enfant",
+      "name": "L'enfant",
+      "type": "Person"
+    },
+    {
+      "id": "L'oncle",
+      "name": "L'oncle",
+      "type": "Person"
+    },
+    {
+      "id": "Le fils de l'oncle",
+      "name": "Le fils de l'oncle",
+      "type": "Person"
+    },
+    {
+      "id": "Champ",
+      "name": "Champ",
+      "type": "Place"
+    },
+    {
+      "id": "Marigot",
+      "name": "Marigot",
+      "type": "Place"
+    },
+    {
+      "id": "Village",
+      "name": "Village",
+      "type": "Place"
+    },
+    {
+      "id": "marigot",
+      "name": "marigot",
+      "type": "Keyword"
+    },
+    {
+      "id": "soif",
+      "name": "soif",
+      "type": "Keyword"
+    },
+    {
+      "id": "champ",
+      "name": "champ",
+      "type": "Keyword"
+    },
+    {
+      "id": "hygiène",
+      "name": "hygiène",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_2",
+      "name": "Match de football entre l'ASEC et l'AFIC",
+      "type": "Event",
+      "description": "Récit d'une rencontre sportive au stade entre les équipes de l'ASEC et de l'AFIC, s'étant soldée par un score de 8-7.",
+      "time": "Inconnu"
+    },
+    {
+      "id": "Keïta",
+      "name": "Keïta",
+      "type": "Person"
+    },
+    {
+      "id": "Mamadou",
+      "name": "Mamadou",
+      "type": "Person"
+    },
+    {
+      "id": "ASEC",
+      "name": "ASEC",
+      "type": "Person"
+    },
+    {
+      "id": "AFIC",
+      "name": "AFIC",
+      "type": "Person"
+    },
+    {
+      "id": "Stade de Paris",
+      "name": "Stade de Paris",
+      "type": "Place"
+    },
+    {
+      "id": "football",
+      "name": "football",
+      "type": "Keyword"
+    },
+    {
+      "id": "match",
+      "name": "match",
+      "type": "Keyword"
+    },
+    {
+      "id": "score",
+      "name": "score",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_3",
+      "name": "Séjour au Ghana et retour à Abidjan",
+      "type": "Event",
+      "description": "Voyage familial au Ghana. Le père choisit de rester sur place alors que la grand-mère ramène l'enfant à Abidjan pour assurer sa subsistance.",
+      "time": "Passé"
+    },
+    {
+      "id": "Le père",
+      "name": "Le père",
+      "type": "Person"
+    },
+    {
+      "id": "La grand-mère",
+      "name": "La grand-mère",
+      "type": "Person"
+    },
+    {
+      "id": "Ghana",
+      "name": "Ghana",
+      "type": "Place"
+    },
+    {
+      "id": "Abidjan",
+      "name": "Abidjan",
+      "type": "Place"
+    },
+    {
+      "id": "voyage",
+      "name": "voyage",
+      "type": "Keyword"
+    },
+    {
+      "id": "immigration",
+      "name": "immigration",
+      "type": "Keyword"
+    },
+    {
+      "id": "subsistance",
+      "name": "subsistance",
+      "type": "Keyword"
+    },
+    {
+      "id": "famille",
+      "name": "famille",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_4",
+      "name": "Vacances à Nokoué et chasse en brousse",
+      "type": "Event",
+      "description": "Séjour d'un enfant dans son village natal à Nokoué. Il y accompagne son oncle pour chasser le gibier en brousse afin de se nourrir.",
+      "time": "Été dernier"
+    },
+    {
+      "id": "Nokoué",
+      "name": "Nokoué",
+      "type": "Place"
+    },
+    {
+      "id": "Brousse",
+      "name": "Brousse",
+      "type": "Place"
+    },
+    {
+      "id": "chasse",
+      "name": "chasse",
+      "type": "Keyword"
+    },
+    {
+      "id": "vacances",
+      "name": "vacances",
+      "type": "Keyword"
+    },
+    {
+      "id": "village",
+      "name": "village",
+      "type": "Keyword"
+    },
+    {
+      "id": "alimentation",
+      "name": "alimentation",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_5",
+      "name": "Voyage en bateau-bus vers le village",
+      "type": "Event",
+      "description": "Récit d'un déplacement fluvial en bateau-bus impliquant l'achat d'un ticket pour rejoindre le village d'origine.",
+      "time": "Inconnu"
+    },
+    {
+      "id": "Le locuteur",
+      "name": "Le locuteur",
+      "type": "Person"
+    },
+    {
+      "id": "Compagnons de voyage",
+      "name": "Compagnons de voyage",
+      "type": "Person"
+    },
+    {
+      "id": "Bateau-bus",
+      "name": "Bateau-bus",
+      "type": "Place"
+    },
+    {
+      "id": "transport",
+      "name": "transport",
+      "type": "Keyword"
+    },
+    {
+      "id": "bateau-bus",
+      "name": "bateau-bus",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_6",
+      "name": "Le long voyage (194)",
+      "type": "Event",
+      "description": "Référence à un voyage historique ou de longue durée associé au nombre '194' (pouvant désigner une année, un convoi ou un matricule).",
+      "time": "194 (à préciser)"
+    },
+    {
+      "id": "Inconnu",
+      "name": "Inconnu",
+      "type": "Place"
+    },
+    {
+      "id": "long voyage",
+      "name": "long voyage",
+      "type": "Keyword"
+    },
+    {
+      "id": "mémoire",
+      "name": "mémoire",
+      "type": "Keyword"
+    },
+    {
+      "id": "194",
+      "name": "194",
+      "type": "Keyword"
+    }
+  ],
+  "edges": [
+    {
+      "id": "actor_0_Le père de l'enfant",
+      "source": "Le père de l'enfant",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_0_SAPCO",
+      "source": "event_0",
+      "target": "SAPCO",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_0_retraite",
+      "source": "event_0",
+      "target": "retraite",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_chocolat",
+      "source": "event_0",
+      "target": "chocolat",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_usine",
+      "source": "event_0",
+      "target": "usine",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_1_L'enfant",
+      "source": "L'enfant",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_1_L'oncle",
+      "source": "L'oncle",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_1_Le fils de l'oncle",
+      "source": "Le fils de l'oncle",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_1_Champ",
+      "source": "event_1",
+      "target": "Champ",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Marigot",
+      "source": "event_1",
+      "target": "Marigot",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_1_Village",
+      "source": "event_1",
+      "target": "Village",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_1_marigot",
+      "source": "event_1",
+      "target": "marigot",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_soif",
+      "source": "event_1",
+      "target": "soif",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_champ",
+      "source": "event_1",
+      "target": "champ",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_hygiène",
+      "source": "event_1",
+      "target": "hygiène",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_2_Keïta",
+      "source": "Keïta",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_2_Mamadou",
+      "source": "Mamadou",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_2_ASEC",
+      "source": "ASEC",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_2_AFIC",
+      "source": "AFIC",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_2_Stade de Paris",
+      "source": "event_2",
+      "target": "Stade de Paris",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_2_football",
+      "source": "event_2",
+      "target": "football",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_match",
+      "source": "event_2",
+      "target": "match",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_score",
+      "source": "event_2",
+      "target": "score",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_3_L'enfant",
+      "source": "L'enfant",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_Le père",
+      "source": "Le père",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_La grand-mère",
+      "source": "La grand-mère",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_3_Ghana",
+      "source": "event_3",
+      "target": "Ghana",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_3_Abidjan",
+      "source": "event_3",
+      "target": "Abidjan",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_3_voyage",
+      "source": "event_3",
+      "target": "voyage",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_immigration",
+      "source": "event_3",
+      "target": "immigration",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_subsistance",
+      "source": "event_3",
+      "target": "subsistance",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_famille",
+      "source": "event_3",
+      "target": "famille",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_4_L'enfant",
+      "source": "L'enfant",
+      "target": "event_4",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_4_Le père",
+      "source": "Le père",
+      "target": "event_4",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_4_L'oncle",
+      "source": "L'oncle",
+      "target": "event_4",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_4_Nokoué",
+      "source": "event_4",
+      "target": "Nokoué",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_4_Brousse",
+      "source": "event_4",
+      "target": "Brousse",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_4_chasse",
+      "source": "event_4",
+      "target": "chasse",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_4_vacances",
+      "source": "event_4",
+      "target": "vacances",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_4_village",
+      "source": "event_4",
+      "target": "village",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_4_alimentation",
+      "source": "event_4",
+      "target": "alimentation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_5_Le locuteur",
+      "source": "Le locuteur",
+      "target": "event_5",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_5_Compagnons de voyage",
+      "source": "Compagnons de voyage",
+      "target": "event_5",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_5_Bateau-bus",
+      "source": "event_5",
+      "target": "Bateau-bus",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_5_Village",
+      "source": "event_5",
+      "target": "Village",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_5_transport",
+      "source": "event_5",
+      "target": "transport",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_5_bateau-bus",
+      "source": "event_5",
+      "target": "bateau-bus",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_5_voyage",
+      "source": "event_5",
+      "target": "voyage",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_6_Le locuteur",
+      "source": "Le locuteur",
+      "target": "event_6",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_6_Inconnu",
+      "source": "event_6",
+      "target": "Inconnu",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_6_long voyage",
+      "source": "event_6",
+      "target": "long voyage",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_6_mémoire",
+      "source": "event_6",
+      "target": "mémoire",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_6_194",
+      "source": "event_6",
+      "target": "194",
+      "type": "HAS_TOPIC"
+    }
+  ]
+}

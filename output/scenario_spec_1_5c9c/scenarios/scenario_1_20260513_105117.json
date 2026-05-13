@@ -1,0 +1,344 @@
+{
+  "scenario_id": 1,
+  "titre": "Les voix de l'arbre à palabres",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "resumeHistoire": "En Côte d'Ivoire, un enfant de dix ans nommé raconte un conte transmis par son grand frère : l'histoire de Kwaku et Kofie, deux garçons partis en brousse où ils affrontent un serpent, avant d'être sauvés par un marabout au village. Ce conte, hérité de la tradition orale, révèle un monde où les récits passaient de bouche à oreille sous les arbres et dans les cours familiales. Mais l'enfant vit désormais en ville, à Treichville, entre un père retraité de la SAPCO et une mère qui tient un restaurant. Le récit bascule ainsi du village d'autrefois à la vie urbaine d'aujourd'hui, montrant comment les contes d'enfants portent encore la mémoire d'un monde rural en pleine transformation.",
+  "duree_estimee": 142.4935064935065,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le conte sous l'arbre",
+      "duree": 10.363636363636363,
+      "texte_narration": "Quelque part en Côte d'Ivoire, la nuit tombe sur un village. Un enfant écoute, les yeux grands ouverts.",
+      "ton": {
+        "global": "contemplatif_chaleureux",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'village' (1.5s)",
+          "après 'ouverts' (2s)"
+        ],
+        "intonation": "douce, posée, évocatrice"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ambiance nuit villageoise : grillons, voix lointaines, crépitement de feu",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:03",
+          "action": "Entrée de la voix off sur fond sonore immersif",
+          "duree": 7.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Quelque part en Côte d'Ivoire, la nuit tombe sur un village.",
+          "sources": []
+        },
+        {
+          "sentence": "Un enfant écoute, les yeux grands ouverts.",
+          "sources": [
+            "[01:30] Qui c'est qui t'a raconté cette histoire ?",
+            "[01:36] C'est mon grand-frère."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Kwaku, Kofie et le serpent",
+      "duree": 57.391304347826086,
+      "texte_narration": "Son grand frère raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »] Les deux garçons grimpent dans un arbre. Un serpent les attend. L'un d'eux est mordu. On l'emmène au village, chez un féticheur. L'enfant précise : [ARCHIVE : « Le féticheur ne pouvait pas lui guérir. Donc il est parti chez un marabout. Le marabout là l'a guéri. »]",
+      "ton": {
+        "global": "narratif_tendu_puis_résolu",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'les arriver' (1.5s)",
+          "après 'les attend' (1s)",
+          "après 'guéri' (2s)"
+        ],
+        "intonation": "montée en tension progressive, puis relâchement au dénouement"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:10",
+          "action": "Insertion extrait audio brut de l'enfant racontant le conte (Kwaku et Kofie)",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:20",
+          "action": "Tension sonore : bruissement de feuilles, sifflement évoquant le serpent",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:32",
+          "action": "Résolution : ambiance apaisée, le marabout guérit",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Son grand frère raconte :",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "[ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »]",
+          "sources": [
+            "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse. L'autre-là dit : « On n'a qu'aller tuer maman ». Maintenant, l'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver."
+          ]
+        },
+        {
+          "sentence": "Les deux garçons grimpent dans un arbre.",
+          "sources": [
+            "[00:30] ils ont monté sur l'arbre."
+          ]
+        },
+        {
+          "sentence": "Un serpent les attend.",
+          "sources": [
+            "[00:30] il y avait un serpent sur l'arbre."
+          ]
+        },
+        {
+          "sentence": "L'un d'eux est mordu.",
+          "sources": [
+            "[00:30] truc serpent a bouffé Angela."
+          ]
+        },
+        {
+          "sentence": "On l'emmène au village, chez un féticheur.",
+          "sources": [
+            "[01:00] Il est parti du village, c'est ça, ils sont venus prendre Yao. Maintenant, ils l'ont emmené chez un féticheur là-bas."
+          ]
+        },
+        {
+          "sentence": "L'enfant précise :",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « Le féticheur ne pouvait pas lui guéri. Donc il est parti chez un marabout. Le marabout là l'a guéri. »]",
+          "sources": [
+            "[01:00] Le féticheur ne ne pouvait pas lui guérir. Maintenant, on dit qu'il peut pas. Donc il est parti chez un marabout. Le marabout là l'a guéri."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "La voix qui raconte",
+      "duree": 21.272727272727273,
+      "texte_narration": "Le conte s'achève. On demande à l'enfant d'où vient cette histoire. Il confie : [ARCHIVE : « C'est mon grand frère. Il travaille à Treichville. Il répare des ventilateurs. »] La brousse du récit s'efface. La ville apparaît.",
+      "ton": {
+        "global": "intime_révélateur",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 's'achève' (1s)",
+          "après 'ventilateurs' (1.5s)",
+          "après 's'efface' (1s)"
+        ],
+        "intonation": "douce bascule, passage du merveilleux au quotidien"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:40",
+          "action": "Transition sonore : sons de brousse qui s'estompent, bruits urbains qui montent",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:44",
+          "action": "Insertion extrait audio brut : l'enfant répond aux questions sur son grand frère",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le conte s'achève.",
+          "sources": [
+            "[01:00] D'accord, merci."
+          ]
+        },
+        {
+          "sentence": "On demande à l'enfant d'où vient cette histoire.",
+          "sources": [
+            "[01:30] Qui c'est qui t'a raconté cette histoire ?"
+          ]
+        },
+        {
+          "sentence": "Il confie :",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « C'est mon grand frère. Il travaille à Treichville. Il répare des ventilateurs. »]",
+          "sources": [
+            "[01:36] C'est mon grand-frère.",
+            "[01:44] Il travaille à Treichville.",
+            "[01:48] Il répare mes... ventilateurs."
+          ]
+        },
+        {
+          "sentence": "La brousse du récit s'efface.",
+          "sources": []
+        },
+        {
+          "sentence": "La ville apparaît.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Entre Treichville et le village",
+      "duree": 38.60869565217391,
+      "texte_narration": "L'enfant a dix ans. Il habite à Nongo. Sa mère, il l'explique : [ARCHIVE : « Maman elle vend. Elle vend bananes. Elle vend dans un restaurant. »] Son père est retraité. Il travaillait à la SAPCO. L'enfant glisse, avec fierté : [ARCHIVE : « C'est où on fabrique les chocolats. »] Et puis il y a le village, aussi. Un autre enfant se souvient : [ARCHIVE : « J'étais au village. Mon oncle vient, on va partir au champ. »]",
+      "ton": {
+        "global": "descriptif_vivant",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'Nongo' (1s)",
+          "après 'restaurant' (1s)",
+          "après 'chocolats' (1.5s)",
+          "après 'champ' (2s)"
+        ],
+        "intonation": "vivante, légèrement souriante sur le chocolat, puis plus posée sur le village"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:55",
+          "action": "Ambiance urbaine : klaxons lointains, voix de marché",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:00",
+          "action": "Insertion extrait audio brut : l'enfant parle de sa mère et de la SAPCO",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "1:10",
+          "action": "Retour vers ambiance rurale : oiseaux, pas sur terre battue",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "L'enfant a dix ans.",
+          "sources": [
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        },
+        {
+          "sentence": "Il habite à Nongo.",
+          "sources": [
+            "[02:50] J'habite à Nongo."
+          ]
+        },
+        {
+          "sentence": "Sa mère, il l'explique :",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « Maman elle vend. Elle vend bananes. Elle vend dans un restaurant. »]",
+          "sources": [
+            "[02:07] Maman elle vend.",
+            "[02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
+          ]
+        },
+        {
+          "sentence": "Son père est retraité.",
+          "sources": [
+            "[02:22] Non, il est retraité."
+          ]
+        },
+        {
+          "sentence": "Il travaillait à la SAPCO.",
+          "sources": [
+            "[02:27] Il travaillait il travaillait au SAPO."
+          ]
+        },
+        {
+          "sentence": "L'enfant glisse, avec fierté :",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « C'est où on fabrique les chocolats. »]",
+          "sources": [
+            "[02:36] Le SAPCO ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Et puis il y a le village, aussi.",
+          "sources": []
+        },
+        {
+          "sentence": "Un autre enfant se souvient :",
+          "sources": []
+        },
+        {
+          "sentence": "[ARCHIVE : « J'étais au village. Mon oncle vient, on va partir au champ. »]",
+          "sources": [
+            "[02:59] J'étais au village. Mon oncle vient on va partir au champ."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 5,
+      "titre": "Les contes voyagent",
+      "duree": 14.857142857142858,
+      "texte_narration": "De la brousse à Treichville, les contes passent de bouche en bouche. Kwaku et Kofie vivent encore, dans la voix d'un enfant de dix ans.",
+      "ton": {
+        "global": "contemplatif_lumineux",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'bouche' (1.5s)",
+          "après 'ans' (3s — silence final)"
+        ],
+        "intonation": "apaisée, lumineuse, ouverte"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:20",
+          "action": "Retour discret de l'ambiance nocturne villageoise du début — boucle narrative",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:24",
+          "action": "Voix off sur dernière phrase, puis fondu sonore",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "De la brousse à Treichville, les contes passent de bouche en bouche.",
+          "sources": [
+            "[01:36] C'est mon grand-frère.",
+            "[01:44] Il travaille à Treichville.",
+            "[00:00] Il y avait... il y avait deux petits..."
+          ]
+        },
+        {
+          "sentence": "Kwaku et Kofie vivent encore, dans la voix d'un enfant de dix ans.",
+          "sources": [
+            "[00:00] il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie.",
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 268,
+    "duree_lecture_estimee": 142.4935064935065,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est construit comme un flashback enchâssé — on commence dans le souvenir d'un conte villageois, puis on remonte vers le présent urbain de l'enfant conteur. La fluidité repose sur le fait que c'est le MÊME enfant qui porte les deux mondes. Ne jamais séparer artificiellement 'conte' et 'réalité' : ils coexistent dans sa parole. Les citations directes des archives sont le fil conducteur — la voix off les introduit, les contextualise et les relie, sans jamais les écraser. Le ton reste neutre et informatif tout au long, sans condescendance ni lyrisme excessif. Le registre est simple, accessible au grand public, avec des phrases courtes adaptées au format audio. ATTENTION AU BUDGET MOTS : 180 mots maximum au total pour ~90 secondes. Chaque section doit être extrêmement concise. Les citations d'archives comptent dans le budget si elles sont lues par la voix off, mais pas si elles sont diffusées comme extraits sonores. Privilégier l'insertion d'extraits audio bruts pour enrichir sans alourdir le texte narré. La densité sonore immersive (sons de brousse, ville, voix d'enfants) compense la brièveté du texte."
+}

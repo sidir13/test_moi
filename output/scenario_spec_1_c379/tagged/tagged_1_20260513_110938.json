@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Les voix du quotidien",
+  "taggedText": "=== PARTIE 1 : Le geste répété ===\n\n{pas_carrelage_matin.wav}\n\nChaque matin, les mêmes mains poussent les mêmes portes. [pause] L'odeur du café se mêle au bruit des pas sur le carrelage. On se salue d'un mot bref, on accroche son tablier. [posé] La journée commence.\n\n=== PARTIE 2 : Ce qui les lie ===\n\nEntre ces murs, on partage plus que le travail. On se prête un outil, on garde l'enfant d'une collègue, on glisse un mot dans le vestiaire pour celle qui traverse un mauvais jour. [pause] L'une d'elles confie : [posé] [atténué] « On tenait ensemble, c'est tout. Personne demandait rien, mais tout le monde savait. » [pause] Ce savoir silencieux tisse des liens que rien d'officiel ne reconnaît.\n\n=== PARTIE 3 : Les luttes sous la surface ===\n\n{machines_usine_lointaines.wav}\n\nMais sous la routine, les corps s'usent. [précipité] Les cadences augmentent, les pauses raccourcissent. Certaines rentrent le soir avec des douleurs qu'elles n'osent pas déclarer. [pause] Une ancienne se souvient : [posé] [triste] « On serrait les dents. Si tu te plaignais, on te remplaçait. » [pause] La peur du remplacement impose un silence que chacune porte seule.\n\n=== PARTIE 4 : Le même geste, un autre regard ===\n\n{pas_carrelage_matin.wav}\n\n[ralentit] Le lendemain, les mêmes mains poussent les mêmes portes. Le café fume, les pas résonnent. [pause] Mais on sait désormais ce que ce geste répété contient : la fatigue, la solidarité, et la dignité têtue de celles qui tiennent.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le geste répété",
+      "taggedText": "{pas_carrelage_matin.wav}\n\nChaque matin, les mêmes mains poussent les mêmes portes. [pause] L'odeur du café se mêle au bruit des pas sur le carrelage. On se salue d'un mot bref, on accroche son tablier. [posé] La journée commence."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Ce qui les lie",
+      "taggedText": "Entre ces murs, on partage plus que le travail. On se prête un outil, on garde l'enfant d'une collègue, on glisse un mot dans le vestiaire pour celle qui traverse un mauvais jour. [pause] L'une d'elles confie : [posé] [atténué] « On tenait ensemble, c'est tout. Personne demandait rien, mais tout le monde savait. » [pause] Ce savoir silencieux tisse des liens que rien d'officiel ne reconnaît."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Les luttes sous la surface",
+      "taggedText": "{machines_usine_lointaines.wav}\n\nMais sous la routine, les corps s'usent. [précipité] Les cadences augmentent, les pauses raccourcissent. Certaines rentrent le soir avec des douleurs qu'elles n'osent pas déclarer. [pause] Une ancienne se souvient : [posé] [triste] « On serrait les dents. Si tu te plaignais, on te remplaçait. » [pause] La peur du remplacement impose un silence que chacune porte seule."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Le même geste, un autre regard",
+      "taggedText": "{pas_carrelage_matin.wav}\n\n[ralentit] Le lendemain, les mêmes mains poussent les mêmes portes. Le café fume, les pas résonnent. [pause] Mais on sait désormais ce que ce geste répété contient : la fatigue, la solidarité, et la dignité têtue de celles qui tiennent."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 13,
+    "soundTags": 3,
+    "originalWordCount": 194
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "scenario_id": 1,
+  "titre_global": "À l'usine de chocolat — Mémoires d'une famille ouvrière à Abidjan",
+  "resumeHistoire": "À travers les mots d'un enfant de dix ans vivant à Angré, dans l'agglomération d'Abidjan, se dessine le portrait d'une famille ouvrière ivoirienne. Son père, aujourd'hui retraité, a travaillé au SAPCO, une usine où l'on fabriquait du chocolat. Son grand-frère répare des ventilateurs à Treichville, sa mère tient un petit restaurant. Cette chronique sociale, construite autour d'un témoignage spontané, révèle le quotidien d'une famille dont la vie s'est organisée autour du travail industriel et du petit commerce, entre labeur et transmission.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le monde d'un enfant, la mémoire d'une usine",
+      "duree_cible": 25.0,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "ouverture_douce",
+      "elements_necessaires": [
+        "Planter le décor : Abidjan, quartier d'Angré",
+        "Présenter la voix de l'enfant comme fil conducteur",
+        "Évoquer l'atmosphère urbaine ivoirienne",
+        "Introduire la figure du père retraité du SAPCO"
+      ],
+      "mood": "intimiste, quotidien, chaleureux"
+    },
+    {
+      "partie": 2,
+      "titre": "Le SAPCO — Là où on fabrique le chocolat",
+      "duree_cible": 30.0,
+      "fonction_narrative": "développement_central",
+      "position_arc_emotionnel": "montée_émotionnelle",
+      "elements_necessaires": [
+        "Citation directe de l'enfant sur le SAPCO : 'C'est où on fabrique les chocolats'",
+        "Évocation de l'univers industriel du cacao/chocolat en Côte d'Ivoire",
+        "Atmosphère sonore suggérée : machines, chaleur, odeurs de cacao",
+        "Le père comme figure ouvrière — son parcours jusqu'à la retraite",
+        "Réalité du travail industriel vue à travers la mémoire familiale"
+      ],
+      "mood": "évocateur, documentaire, respectueux"
+    },
+    {
+      "partie": 3,
+      "titre": "Une famille entre labeur et transmission",
+      "duree_cible": 25.0,
+      "fonction_narrative": "élargissement_social",
+      "position_arc_emotionnel": "plateau_réflexif",
+      "elements_necessaires": [
+        "Le grand-frère réparateur de ventilateurs à Treichville — citation directe",
+        "La mère qui vend au restaurant — citation directe",
+        "Portrait d'une économie familiale diversifiée",
+        "Continuité entre générations : du travail industriel au petit artisanat"
+      ],
+      "mood": "social, vivant, ancré dans le réel"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce que racontent les enfants",
+      "duree_cible": 10.0,
+      "fonction_narrative": "conclusion_ouverte",
+      "position_arc_emotionnel": "apaisement_ouvert",
+      "elements_necessaires": [
+        "Retour sur la parole de l'enfant comme archive vivante",
+        "Ouverture sur la mémoire ouvrière transmise de génération en génération",
+        "Note finale sur ce que ces récits disent d'un monde industriel en mutation"
+      ],
+      "mood": "contemplatif, sobre, ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "intimiste_progressif",
+  "rythme_general": "Démarrage calme et ancré, montée vers l'évocation industrielle au centre, élargissement social, puis retombée douce et réflexive.",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "De la présentation de l'enfant et de son quartier, on glisse vers la mention du père et de l'usine — la citation de l'enfant sert de pont naturel."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "élargissement",
+      "duree": 2.0,
+      "description": "De l'usine du père, on ouvre sur les autres membres de la famille — le travail se décline sous d'autres formes, montrant la diversité des activités."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_réflexif",
+      "duree": 1.5,
+      "description": "Du portrait familial, on revient à la parole de l'enfant elle-même comme objet de mémoire — changement de focale du concret vers le symbolique."
+    }
+  ],
+  "notes_production": "Le récit doit être lu d'une voix posée, au débit lent (environ 2 mots/seconde). Les citations directes de l'enfant doivent être intégrées naturellement dans le flux narratif, sans annonce lourde. L'ambiance sonore industrielle (machines, bruits d'atelier) peut être suggérée dans le texte mais reste discrète — le cœur est la parole humaine. Maintenir un ton neutre et informatif tout au long, sans dramatisation. La fluidité entre sections est essentielle : pas de titres lus, pas de ruptures marquées. Le registre de langue reste accessible au grand public, phrases courtes, vocabulaire simple. Le total ne doit pas dépasser 180 mots narration + citations."
+}

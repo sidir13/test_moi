@@ -1,0 +1,37 @@
+{
+  "scenario_id": 1,
+  "titre": "L'enfant et la machine",
+  "taggedText": "=== PARTIE 1 : Le bruit d'avant ===\n\n{vacarme_filature_mecanique.wav}\n\n[posé] Un vacarme de fer et de courroies. [pause] Dans la filature, l'air vibre, saturé de poussière de coton.\n\n=== PARTIE 2 : Avant la loi — l'enfance à l'usine ===\n\n{machines_textiles_continu.wav}\n\nNous sommes dans la France des années 1850. Des enfants de dix ans travaillent douze heures par jour entre les machines. [pause] Ils rattachent les fils cassés, se glissent sous les métiers encore en marche. Un enfant confie, simplement : [posé] [atténué] « Mon père travaille pas. Il est retraité. » [pause] Avant lui, l'usine avait déjà pris toute une vie. Dans les bassins miniers et les villes textiles, des familles entières dépendent du salaire de leurs petits. [ralentit] La chaleur colle aux peaux, le bruit couvre les voix.\n\n=== PARTIE 3 : Le tournant — les premières protections ===\n\n{silence_relatif_atelier.wav}\n\nEn 1841, une première loi limite l'emploi des enfants de moins de huit ans. [pause] En 1874, l'inspection du travail entre dans les ateliers. L'enfant précise, comme en écho d'un autre monde : [posé] [atténué] « C'est où on fabrique les chocolats. » [pause] Derrière ces mots, un univers industriel que la loi commence lentement à transformer.\n\n=== PARTIE 4 : Après — l'enfant hors de la machine ===\n\n{ambiance_cour_ecole_lointaine.wav}\n\nPeu à peu, les plus jeunes quittent les ateliers. Les bancs d'école remplacent les postes devant les broches. L'enfant raconte : [posé] [atténué] « Mon grand-frère, il travaille. Il répare les ventilateurs. » [pause] Un métier choisi, non plus subi. [ralentit] La mémoire ouvrière garde la trace de ce basculement lent, inachevé, mais réel.\n\n=== PARTIE 5 : Écho ===\n\n{machine_ralentit_arret.wav}\n\n[ralentit] Quelque part, une machine se tait. [pause] Un enfant sort dans la lumière.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le bruit d'avant",
+      "taggedText": "{vacarme_filature_mecanique.wav}\n\n[posé] Un vacarme de fer et de courroies. [pause] Dans la filature, l'air vibre, saturé de poussière de coton."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Avant la loi — l'enfance à l'usine",
+      "taggedText": "{machines_textiles_continu.wav}\n\nNous sommes dans la France des années 1850. Des enfants de dix ans travaillent douze heures par jour entre les machines. [pause] Ils rattachent les fils cassés, se glissent sous les métiers encore en marche. Un enfant confie, simplement : [posé] [atténué] « Mon père travaille pas. Il est retraité. » [pause] Avant lui, l'usine avait déjà pris toute une vie. Dans les bassins miniers et les villes textiles, des familles entières dépendent du salaire de leurs petits. [ralentit] La chaleur colle aux peaux, le bruit couvre les voix."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le tournant — les premières protections",
+      "taggedText": "{silence_relatif_atelier.wav}\n\nEn 1841, une première loi limite l'emploi des enfants de moins de huit ans. [pause] En 1874, l'inspection du travail entre dans les ateliers. L'enfant précise, comme en écho d'un autre monde : [posé] [atténué] « C'est où on fabrique les chocolats. » [pause] Derrière ces mots, un univers industriel que la loi commence lentement à transformer."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Après — l'enfant hors de la machine",
+      "taggedText": "{ambiance_cour_ecole_lointaine.wav}\n\nPeu à peu, les plus jeunes quittent les ateliers. Les bancs d'école remplacent les postes devant les broches. L'enfant raconte : [posé] [atténué] « Mon grand-frère, il travaille. Il répare les ventilateurs. » [pause] Un métier choisi, non plus subi. [ralentit] La mémoire ouvrière garde la trace de ce basculement lent, inachevé, mais réel."
+    },
+    {
+      "partie_id": 5,
+      "titre": "Écho",
+      "taggedText": "{machine_ralentit_arret.wav}\n\n[ralentit] Quelque part, une machine se tait. [pause] Un enfant sort dans la lumière."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 17,
+    "soundTags": 5,
+    "originalWordCount": 220
+  }
+}

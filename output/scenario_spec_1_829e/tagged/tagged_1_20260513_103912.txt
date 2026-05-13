@@ -1,0 +1,29 @@
+=== PARTIE 1 : Le bruit d'avant ===
+
+{vacarme_filature_mecanique.wav}
+
+[posé] Un vacarme de fer et de courroies. [pause] Dans la filature, l'air vibre, saturé de poussière de coton.
+
+=== PARTIE 2 : Avant la loi — l'enfance à l'usine ===
+
+{machines_textiles_continu.wav}
+
+Nous sommes dans la France des années 1850. Des enfants de dix ans travaillent douze heures par jour entre les machines. [pause] Ils rattachent les fils cassés, se glissent sous les métiers encore en marche. Un enfant confie, simplement : [posé] [atténué] « Mon père travaille pas. Il est retraité. » [pause] Avant lui, l'usine avait déjà pris toute une vie. Dans les bassins miniers et les villes textiles, des familles entières dépendent du salaire de leurs petits. [ralentit] La chaleur colle aux peaux, le bruit couvre les voix.
+
+=== PARTIE 3 : Le tournant — les premières protections ===
+
+{silence_relatif_atelier.wav}
+
+En 1841, une première loi limite l'emploi des enfants de moins de huit ans. [pause] En 1874, l'inspection du travail entre dans les ateliers. L'enfant précise, comme en écho d'un autre monde : [posé] [atténué] « C'est où on fabrique les chocolats. » [pause] Derrière ces mots, un univers industriel que la loi commence lentement à transformer.
+
+=== PARTIE 4 : Après — l'enfant hors de la machine ===
+
+{ambiance_cour_ecole_lointaine.wav}
+
+Peu à peu, les plus jeunes quittent les ateliers. Les bancs d'école remplacent les postes devant les broches. L'enfant raconte : [posé] [atténué] « Mon grand-frère, il travaille. Il répare les ventilateurs. » [pause] Un métier choisi, non plus subi. [ralentit] La mémoire ouvrière garde la trace de ce basculement lent, inachevé, mais réel.
+
+=== PARTIE 5 : Écho ===
+
+{machine_ralentit_arret.wav}
+
+[ralentit] Quelque part, une machine se tait. [pause] Un enfant sort dans la lumière.

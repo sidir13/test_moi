@@ -1,0 +1,37 @@
+{
+  "scenario_id": 1,
+  "titre": "Les voix de l'arbre à palabres",
+  "taggedText": "=== PARTIE 1 : Le conte sous l'arbre ===\n\n{nuit_village_grillons_feu.wav}\n\n[posé] Quelque part en Côte d'Ivoire, la nuit tombe sur un village. [pause] Un enfant écoute, les yeux grands ouverts.\n\n=== PARTIE 2 : Kwaku, Kofie et le serpent ===\n\n{bruissement_feuilles_brousse.wav}\n\nSon grand frère raconte : [posé] [atténué] « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons grimpent dans un arbre. Un serpent les attend. [pause] L'un d'eux est mordu. On l'emmène au village, chez un féticheur. L'enfant précise : [posé] [atténué] « Le féticheur ne pouvait pas lui guérir. Donc il est parti chez un marabout. Le marabout là l'a guéri. » [pause]\n\n=== PARTIE 3 : La voix qui raconte ===\n\n{transition_brousse_vers_ville.wav}\n\nLe conte s'achève. [pause] On demande à l'enfant d'où vient cette histoire. Il confie : [posé] [atténué] « C'est mon grand frère. Il travaille à Treichville. Il répare des ventilateurs. » [pause] La brousse du récit s'efface. La ville apparaît.\n\n=== PARTIE 4 : Entre Treichville et le village ===\n\n{ambiance_marche_urbain.wav}\n\nL'enfant a dix ans. Il habite à Nongo. Sa mère, il l'explique : [posé] [atténué] « Maman elle vend. Elle vend bananes. Elle vend dans un restaurant. » [pause] Son père est retraité. Il travaillait à la SAPCO. L'enfant glisse, avec fierté : [posé] [joyeusement] « C'est où on fabrique les chocolats. » [pause] Et puis il y a le village, aussi. Un autre enfant se souvient : [posé] [atténué] « J'étais au village. Mon oncle vient, on va partir au champ. » [pause]\n\n{oiseaux_pas_terre_battue.wav}\n\n=== PARTIE 5 : Les contes voyagent ===\n\n{nuit_village_grillons_lointains.wav}\n\n[ralentit] De la brousse à Treichville, les contes passent de bouche en bouche. [pause] Kwaku et Kofie vivent encore, dans la voix d'un enfant de dix ans.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le conte sous l'arbre",
+      "taggedText": "{nuit_village_grillons_feu.wav}\n\n[posé] Quelque part en Côte d'Ivoire, la nuit tombe sur un village. [pause] Un enfant écoute, les yeux grands ouverts."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Kwaku, Kofie et le serpent",
+      "taggedText": "{bruissement_feuilles_brousse.wav}\n\nSon grand frère raconte : [posé] [atténué] « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons grimpent dans un arbre. Un serpent les attend. [pause] L'un d'eux est mordu. On l'emmène au village, chez un féticheur. L'enfant précise : [posé] [atténué] « Le féticheur ne pouvait pas lui guérir. Donc il est parti chez un marabout. Le marabout là l'a guéri. » [pause]"
+    },
+    {
+      "partie_id": 3,
+      "titre": "La voix qui raconte",
+      "taggedText": "{transition_brousse_vers_ville.wav}\n\nLe conte s'achève. [pause] On demande à l'enfant d'où vient cette histoire. Il confie : [posé] [atténué] « C'est mon grand frère. Il travaille à Treichville. Il répare des ventilateurs. » [pause] La brousse du récit s'efface. La ville apparaît."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Entre Treichville et le village",
+      "taggedText": "{ambiance_marche_urbain.wav}\n\nL'enfant a dix ans. Il habite à Nongo. Sa mère, il l'explique : [posé] [atténué] « Maman elle vend. Elle vend bananes. Elle vend dans un restaurant. » [pause] Son père est retraité. Il travaillait à la SAPCO. L'enfant glisse, avec fierté : [posé] [joyeusement] « C'est où on fabrique les chocolats. » [pause] Et puis il y a le village, aussi. Un autre enfant se souvient : [posé] [atténué] « J'étais au village. Mon oncle vient, on va partir au champ. » [pause]\n\n{oiseaux_pas_terre_battue.wav}"
+    },
+    {
+      "partie_id": 5,
+      "titre": "Les contes voyagent",
+      "taggedText": "{nuit_village_grillons_lointains.wav}\n\n[ralentit] De la brousse à Treichville, les contes passent de bouche en bouche. [pause] Kwaku et Kofie vivent encore, dans la voix d'un enfant de dix ans."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 24,
+    "soundTags": 6,
+    "originalWordCount": 268
+  }
+}

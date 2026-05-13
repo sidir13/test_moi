@@ -1,0 +1,256 @@
+{
+  "scenario_id": 1,
+  "titre": "À l'usine de chocolat — Mémoires d'une famille ouvrière à Abidjan",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "À travers les mots d'un enfant de dix ans vivant à Angré, dans l'agglomération d'Abidjan, se dessine le portrait d'une famille ouvrière ivoirienne. Son père, aujourd'hui retraité, a travaillé au SAPCO, une usine où l'on fabriquait du chocolat. Son grand-frère répare des ventilateurs à Treichville, sa mère tient un petit restaurant. Cette chronique sociale, construite autour d'un témoignage spontané, révèle le quotidien d'une famille dont la vie s'est organisée autour du travail industriel et du petit commerce, entre labeur et transmission.",
+  "duree_estimee": 99.23241106719368,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le monde d'un enfant, la mémoire d'une usine",
+      "duree": 21.81818181818182,
+      "texte_narration": "Angré, dans la périphérie d'Abidjan. Un enfant de dix ans parle de sa famille. Son père ne travaille plus. Interrogé, il précise : [ARCHIVE : « Mon père travaille pas. Non, il est retraité. »] Avant, il allait chaque jour à l'usine.",
+      "ton": {
+        "global": "intimiste, posé, chaleureux",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'Abidjan' (1.5s)",
+          "après 'retraité' (1.5s)"
+        ],
+        "intonation": "douce, narrative, sans emphase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le quartier d'Angré — image urbaine",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Introduction de la voix de l'enfant",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:15",
+          "action": "Citation sur le père retraité — bascule vers l'usine",
+          "duree": 6.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Angré, dans la périphérie d'Abidjan.",
+          "sources": [
+            "[02:50] J'habite à Angré."
+          ]
+        },
+        {
+          "sentence": "Un enfant de dix ans parle de sa famille.",
+          "sources": [
+            "[02:46] Moi j'ai dix ans."
+          ]
+        },
+        {
+          "sentence": "Son père ne travaille plus.",
+          "sources": [
+            "[02:16] Mon pa... Mon père travaille pas."
+          ]
+        },
+        {
+          "sentence": "Interrogé, il précise : [ARCHIVE : « Mon père travaille pas. Non, il est retraité. »]",
+          "sources": [
+            "[02:16] Mon pa... Mon père travaille pas.",
+            "[02:21] Non, il est-il est retraité."
+          ]
+        },
+        {
+          "sentence": "Avant, il allait chaque jour à l'usine.",
+          "sources": [
+            "[02:27] Il travaillait... Il travaillait au SAPCO."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le SAPCO — Là où on fabrique le chocolat",
+      "duree": 38.08695652173913,
+      "texte_narration": "L'enfant raconte : [ARCHIVE : « Il travaillait au SAPCO. »] Et quand on lui demande ce que c'est, il explique : [ARCHIVE : « Tu connais ? C'est où on fabrique les chocolats. »] Le SAPCO, une usine de transformation du cacao, au cœur de l'économie ivoirienne. Des chaînes de production, la chaleur des fours, l'odeur entêtante des fèves torréfiées. C'est là que le père a passé ses années de labeur, jusqu'à la retraite.",
+      "ton": {
+        "global": "évocateur, documentaire, respectueux",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'les chocolats' (2s)",
+          "après 'ivoirienne' (1s)",
+          "après 'retraite' (1.5s)"
+        ],
+        "intonation": "descriptive, légèrement admirative sur l'évocation industrielle"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Citation de l'enfant sur le SAPCO — cœur du récit",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:33",
+          "action": "Évocation sensorielle de l'usine de chocolat",
+          "duree": 6.0
+        },
+        {
+          "timestamp": "0:45",
+          "action": "Le père figure ouvrière — parcours jusqu'à la retraite",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "L'enfant raconte : [ARCHIVE : « Il travaillait au SAPCO. »]",
+          "sources": [
+            "[02:27] Il travaillait... Il travaillait au SAPCO."
+          ]
+        },
+        {
+          "sentence": "Et quand on lui demande ce que c'est, il explique : [ARCHIVE : « Tu connais ? C'est où on fabrique les chocolats. »]",
+          "sources": [
+            "[02:36] Tu connais ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Le SAPCO, une usine de transformation du cacao, au cœur de l'économie ivoirienne.",
+          "sources": [
+            "[02:36] Tu connais ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Des chaînes de production, la chaleur des fours, l'odeur entêtante des fèves torréfiées.",
+          "sources": []
+        },
+        {
+          "sentence": "C'est là que le père a passé ses années de labeur, jusqu'à la retraite.",
+          "sources": [
+            "[02:21] Non, il est-il est retraité.",
+            "[02:27] Il travaillait... Il travaillait au SAPCO."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Une famille entre labeur et transmission",
+      "duree": 26.727272727272727,
+      "texte_narration": "Autour du père, toute une famille travaille. Le grand-frère, lui, est à Treichville. L'enfant confie : [ARCHIVE : « Il répare les ventilateurs. »] Et la mère tient un petit commerce. Il ajoute : [ARCHIVE : « Maman, elle vend. Elle vend d'un restaurant. »] Chacun occupe sa place dans l'économie du quotidien.",
+      "ton": {
+        "global": "social, vivant, ancré",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'ventilateurs' (1.5s)",
+          "après 'restaurant' (1.5s)"
+        ],
+        "intonation": "narrative, sobre, respectueuse"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:55",
+          "action": "Portrait du grand-frère artisan à Treichville",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:02",
+          "action": "Portrait de la mère commerçante",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "1:12",
+          "action": "Vision d'ensemble — économie familiale diversifiée",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Autour du père, toute une famille travaille.",
+          "sources": []
+        },
+        {
+          "sentence": "Le grand-frère, lui, est à Treichville.",
+          "sources": [
+            "[01:44] Il travaille à Treichville."
+          ]
+        },
+        {
+          "sentence": "L'enfant confie : [ARCHIVE : « Il répare les ventilateurs. »]",
+          "sources": [
+            "[01:48] Il répare les v-ventilateurs."
+          ]
+        },
+        {
+          "sentence": "Et la mère tient un petit commerce.",
+          "sources": [
+            "[02:05] Mes parents ? Maman, elle vend."
+          ]
+        },
+        {
+          "sentence": "Il ajoute : [ARCHIVE : « Maman, elle vend. Elle vend d'un restaurant. »]",
+          "sources": [
+            "[02:05] Mes parents ? Maman, elle vend.",
+            "[02:10] Elle vend... tout... banane... Elle vend d'un restaurant."
+          ]
+        },
+        {
+          "sentence": "Chacun occupe sa place dans l'économie du quotidien.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Ce que racontent les enfants",
+      "duree": 12.6,
+      "texte_narration": "Un enfant de dix ans, quelques mots simples. Et dans sa voix, toute la mémoire ouvrière d'une famille d'Abidjan.",
+      "ton": {
+        "global": "contemplatif, sobre, ouvert",
+        "tempo_lecture": 100,
+        "pauses": [
+          "après 'simples' (2s)",
+          "après 'Abidjan' (2s — fin)"
+        ],
+        "intonation": "descendante, apaisée, conclusive"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:20",
+          "action": "Retour sur la parole de l'enfant comme archive vivante",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Ouverture finale — mémoire transmise",
+          "duree": 5.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un enfant de dix ans, quelques mots simples.",
+          "sources": [
+            "[02:46] Moi j'ai dix ans."
+          ]
+        },
+        {
+          "sentence": "Et dans sa voix, toute la mémoire ouvrière d'une famille d'Abidjan.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 183,
+    "duree_lecture_estimee": 99.23241106719368,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Le récit doit être lu d'une voix posée, au débit lent (environ 2 mots/seconde). Les citations directes de l'enfant doivent être intégrées naturellement dans le flux narratif, sans annonce lourde. L'ambiance sonore industrielle (machines, bruits d'atelier) peut être suggérée dans le texte mais reste discrète — le cœur est la parole humaine. Maintenir un ton neutre et informatif tout au long, sans dramatisation. La fluidité entre sections est essentielle : pas de titres lus, pas de ruptures marquées. Le registre de langue reste accessible au grand public, phrases courtes, vocabulaire simple. Le total ne doit pas dépasser 180 mots narration + citations."
+}

@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "À l'usine de chocolat — Mémoires d'une famille ouvrière à Abidjan",
+  "taggedText": "=== PARTIE 1 : Le monde d'un enfant, la mémoire d'une usine ===\n\n[posé] Angré, dans la périphérie d'Abidjan. [pause] Un enfant de dix ans parle de sa famille. Son père ne travaille plus. Interrogé, il précise : [posé] [atténué] « Mon père travaille pas. Non, il est retraité. » [pause] Avant, il allait chaque jour à l'usine.\n\n=== PARTIE 2 : Le SAPCO — Là où on fabrique le chocolat ===\n\nL'enfant raconte : [posé] [atténué] « Il travaillait au SAPCO. » [pause] Et quand on lui demande ce que c'est, il explique : [posé] [atténué] « Tu connais ? C'est où on fabrique les chocolats. » [pause] Le SAPCO, une usine de transformation du cacao, au cœur de l'économie ivoirienne. [ralentit] Des chaînes de production, la chaleur des fours, l'odeur entêtante des fèves torréfiées. C'est là que le père a passé ses années de labeur, jusqu'à la retraite.\n\n=== PARTIE 3 : Une famille entre labeur et transmission ===\n\nAutour du père, toute une famille travaille. Le grand-frère, lui, est à Treichville. L'enfant confie : [posé] [atténué] « Il répare les ventilateurs. » [pause] Et la mère tient un petit commerce. Il ajoute : [posé] [atténué] « Maman, elle vend. Elle vend d'un restaurant. » [pause] Chacun occupe sa place dans l'économie du quotidien.\n\n=== PARTIE 4 : Ce que racontent les enfants ===\n\n[ralentit] Un enfant de dix ans, quelques mots simples. [pause] Et dans sa voix, toute la mémoire ouvrière d'une famille d'Abidjan.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le monde d'un enfant, la mémoire d'une usine",
+      "taggedText": "[posé] Angré, dans la périphérie d'Abidjan. [pause] Un enfant de dix ans parle de sa famille. Son père ne travaille plus. Interrogé, il précise : [posé] [atténué] « Mon père travaille pas. Non, il est retraité. » [pause] Avant, il allait chaque jour à l'usine."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le SAPCO — Là où on fabrique le chocolat",
+      "taggedText": "L'enfant raconte : [posé] [atténué] « Il travaillait au SAPCO. » [pause] Et quand on lui demande ce que c'est, il explique : [posé] [atténué] « Tu connais ? C'est où on fabrique les chocolats. » [pause] Le SAPCO, une usine de transformation du cacao, au cœur de l'économie ivoirienne. [ralentit] Des chaînes de production, la chaleur des fours, l'odeur entêtante des fèves torréfiées. C'est là que le père a passé ses années de labeur, jusqu'à la retraite."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Une famille entre labeur et transmission",
+      "taggedText": "Autour du père, toute une famille travaille. Le grand-frère, lui, est à Treichville. L'enfant confie : [posé] [atténué] « Il répare les ventilateurs. » [pause] Et la mère tient un petit commerce. Il ajoute : [posé] [atténué] « Maman, elle vend. Elle vend d'un restaurant. » [pause] Chacun occupe sa place dans l'économie du quotidien."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Ce que racontent les enfants",
+      "taggedText": "[ralentit] Un enfant de dix ans, quelques mots simples. [pause] Et dans sa voix, toute la mémoire ouvrière d'une famille d'Abidjan."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 20,
+    "soundTags": 0,
+    "originalWordCount": 183
+  }
+}

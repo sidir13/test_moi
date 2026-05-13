@@ -1,0 +1,31 @@
+=== PARTIE 1 : Le conte sous l'arbre ===
+
+{nuit_village_grillons_feu.wav}
+
+[posé] Quelque part en Côte d'Ivoire, la nuit tombe sur un village. [pause] Un enfant écoute, les yeux grands ouverts.
+
+=== PARTIE 2 : Kwaku, Kofie et le serpent ===
+
+{bruissement_feuilles_brousse.wav}
+
+Son grand frère raconte : [posé] [atténué] « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons grimpent dans un arbre. Un serpent les attend. [pause] L'un d'eux est mordu. On l'emmène au village, chez un féticheur. L'enfant précise : [posé] [atténué] « Le féticheur ne pouvait pas lui guérir. Donc il est parti chez un marabout. Le marabout là l'a guéri. » [pause]
+
+=== PARTIE 3 : La voix qui raconte ===
+
+{transition_brousse_vers_ville.wav}
+
+Le conte s'achève. [pause] On demande à l'enfant d'où vient cette histoire. Il confie : [posé] [atténué] « C'est mon grand frère. Il travaille à Treichville. Il répare des ventilateurs. » [pause] La brousse du récit s'efface. La ville apparaît.
+
+=== PARTIE 4 : Entre Treichville et le village ===
+
+{ambiance_marche_urbain.wav}
+
+L'enfant a dix ans. Il habite à Nongo. Sa mère, il l'explique : [posé] [atténué] « Maman elle vend. Elle vend bananes. Elle vend dans un restaurant. » [pause] Son père est retraité. Il travaillait à la SAPCO. L'enfant glisse, avec fierté : [posé] [joyeusement] « C'est où on fabrique les chocolats. » [pause] Et puis il y a le village, aussi. Un autre enfant se souvient : [posé] [atténué] « J'étais au village. Mon oncle vient, on va partir au champ. » [pause]
+
+{oiseaux_pas_terre_battue.wav}
+
+=== PARTIE 5 : Les contes voyagent ===
+
+{nuit_village_grillons_lointains.wav}
+
+[ralentit] De la brousse à Treichville, les contes passent de bouche en bouche. [pause] Kwaku et Kofie vivent encore, dans la voix d'un enfant de dix ans.

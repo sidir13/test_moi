@@ -1,0 +1,123 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les voix de l'arbre à palabres",
+  "resumeHistoire": "En Côte d'Ivoire, un enfant de dix ans nommé raconte un conte transmis par son grand frère : l'histoire de Kwaku et Kofie, deux garçons partis en brousse où ils affrontent un serpent, avant d'être sauvés par un marabout au village. Ce conte, hérité de la tradition orale, révèle un monde où les récits passaient de bouche à oreille sous les arbres et dans les cours familiales. Mais l'enfant vit désormais en ville, à Treichville, entre un père retraité de la SAPCO et une mère qui tient un restaurant. Le récit bascule ainsi du village d'autrefois à la vie urbaine d'aujourd'hui, montrant comment les contes d'enfants portent encore la mémoire d'un monde rural en pleine transformation.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le conte sous l'arbre",
+      "duree_cible": 10,
+      "fonction_narrative": "ouverture_immersive",
+      "position_arc_emotionnel": "évocation_nostalgique",
+      "elements_necessaires": [
+        "Ambiance sonore immersive : nuit villageoise, bruits d'insectes, voix lointaines",
+        "Flashback vers le village — un enfant écoute un conte",
+        "Registre simple et accessible, ton neutre informatif",
+        "Poser le cadre : la tradition orale ivoirienne, transmission entre frères et aînés"
+      ],
+      "mood": "contemplatif_chaleureux"
+    },
+    {
+      "partie": 2,
+      "titre": "Kwaku, Kofie et le serpent",
+      "duree_cible": 30,
+      "fonction_narrative": "cœur_narratif_conte",
+      "position_arc_emotionnel": "tension_croissante",
+      "elements_necessaires": [
+        "Citation directe centrale du conte de l'enfant : Kwaku et Kofie partent en brousse, montée dans l'arbre, attaque du serpent",
+        "Intégration de la voix de l'enfant racontant (extraits audio archives)",
+        "Passage par le féticheur puis le marabout qui guérit",
+        "Rythme modéré mais progression dramatique claire",
+        "Ambiance sonore : brousse, tension, puis soulagement"
+      ],
+      "mood": "narratif_tendu_puis_résolu"
+    },
+    {
+      "partie": 3,
+      "titre": "La voix qui raconte",
+      "duree_cible": 15,
+      "fonction_narrative": "pivot_diptyque",
+      "position_arc_emotionnel": "bascule_temporelle",
+      "elements_necessaires": [
+        "Transition du conte vers le réel : qui est cet enfant ?",
+        "Citation directe : « C'est mon grand frère » qui lui a raconté, « il travaille à Treichville », « il répare des ventilateurs »",
+        "Bascule du monde du conte (village, brousse) vers le monde réel (ville, travail moderne)",
+        "Ambiance sonore : transition progressive de sons ruraux vers sons urbains"
+      ],
+      "mood": "intime_révélateur"
+    },
+    {
+      "partie": 4,
+      "titre": "Entre Treichville et le village",
+      "duree_cible": 25,
+      "fonction_narrative": "développement_contraste",
+      "position_arc_emotionnel": "réflexion_douce",
+      "elements_necessaires": [
+        "Portrait de la vie urbaine : mère qui vend au restaurant, père retraité de la SAPCO (fabrique de chocolat), l'enfant de 10 ans qui habite à Nongo",
+        "Citations directes : « Maman elle vend… bananes, elle vend dans un restaurant », « Mon père il est retraité », « Le SAPCO c'est où on fabrique les chocolats »",
+        "Écho du second témoignage : l'enfant qui allait au champ avec son oncle au village",
+        "Contraste avant/après : la vie rurale des contes vs la vie urbaine actuelle",
+        "Ambiance sonore urbaine immersive"
+      ],
+      "mood": "descriptif_vivant"
+    },
+    {
+      "partie": 5,
+      "titre": "Les contes voyagent",
+      "duree_cible": 10,
+      "fonction_narrative": "fermeture_résonance",
+      "position_arc_emotionnel": "apaisement_ouvert",
+      "elements_necessaires": [
+        "Synthèse narrative : les contes traversent le temps et l'espace, du village à la ville",
+        "Image finale : la parole transmise persiste malgré la transformation des modes de vie",
+        "Retour discret à l'ambiance du conte initial — boucle narrative",
+        "Pas de moralisation, laisser résonner"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "nostalgie_vers_lucidité_apaisée",
+  "rythme_general": "modéré avec accélération au conte puis ralentissement progressif vers la fin",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "immersion_directe",
+      "duree": 2.0,
+      "description": "La voix off glisse naturellement vers le conte : l'ambiance nocturne villageoise s'intensifie et la voix de l'enfant prend le relais, comme si on entrait dans le cercle des conteurs."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "rupture_douce",
+      "duree": 2.0,
+      "description": "Le conte se termine, un silence bref. La voix off reprend pour poser la question : qui est cet enfant qui raconte ? L'ambiance sonore commence à muter — premiers bruits urbains sous les derniers sons de brousse."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "De la figure du grand frère réparateur de ventilateurs, on élargit au portrait familial et au quartier. La transition est fluide, portée par la curiosité de l'enquêteur dans les archives."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "retour_contemplatif",
+      "duree": 2.0,
+      "description": "L'ambiance urbaine s'atténue doucement. Un écho lointain de voix d'enfants ramène à l'atmosphère initiale du conte. La voix off conclut avec retenue, laissant l'image ouverte."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est construit comme un flashback enchâssé — on commence dans le souvenir d'un conte villageois, puis on remonte vers le présent urbain de l'enfant conteur. La fluidité repose sur le fait que c'est le MÊME enfant qui porte les deux mondes. Ne jamais séparer artificiellement 'conte' et 'réalité' : ils coexistent dans sa parole. Les citations directes des archives sont le fil conducteur — la voix off les introduit, les contextualise et les relie, sans jamais les écraser. Le ton reste neutre et informatif tout au long, sans condescendance ni lyrisme excessif. Le registre est simple, accessible au grand public, avec des phrases courtes adaptées au format audio. ATTENTION AU BUDGET MOTS : 180 mots maximum au total pour ~90 secondes. Chaque section doit être extrêmement concise. Les citations d'archives comptent dans le budget si elles sont lues par la voix off, mais pas si elles sont diffusées comme extraits sonores. Privilégier l'insertion d'extraits audio bruts pour enrichir sans alourdir le texte narré. La densité sonore immersive (sons de brousse, ville, voix d'enfants) compense la brièveté du texte."
+}

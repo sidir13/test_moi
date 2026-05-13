@@ -1,0 +1,99 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les voix du quotidien",
+  "resumeHistoire": "Ce récit trace le portrait d'une communauté à travers les gestes ordinaires qui façonnent son existence collective. On y découvre les habitudes, les solidarités et les tensions silencieuses qui rythment la vie d'un groupe social ancré dans son époque. Le documentaire s'ouvre sur une scène du quotidien, plonge dans les luttes et les espoirs de ceux qui la composent, puis revient à ce même quotidien — transformé par le regard que l'on porte désormais sur lui. La structure circulaire invite l'auditeur à percevoir, sous la surface de l'ordinaire, la profondeur d'une histoire collective.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le geste répété",
+      "duree_cible": 20.0,
+      "fonction_narrative": "exposition_circulaire_ouverture",
+      "position_arc_emotionnel": "calme_immersif",
+      "elements_necessaires": [
+        "scène quotidienne concrète ouvrant le récit",
+        "ancrage sensoriel immédiat (sons, gestes, atmosphère)",
+        "présentation implicite du groupe social",
+        "registre accessible, phrases courtes",
+        "ton neutre et informatif posé dès les premiers mots"
+      ],
+      "mood": "descriptif_contemplatif"
+    },
+    {
+      "partie": 2,
+      "titre": "Ce qui les lie",
+      "duree_cible": 25.0,
+      "fonction_narrative": "developpement_social",
+      "position_arc_emotionnel": "montee_en_intensite",
+      "elements_necessaires": [
+        "description des habitudes collectives et des solidarités",
+        "citation directe d'un témoignage issu des sources",
+        "élargissement du cadre : du geste individuel au tissu social",
+        "éléments factuels traçables au contexte fourni"
+      ],
+      "mood": "narratif_engage"
+    },
+    {
+      "partie": 3,
+      "titre": "Les luttes sous la surface",
+      "duree_cible": 25.0,
+      "fonction_narrative": "tension_climax",
+      "position_arc_emotionnel": "pic_emotionnel",
+      "elements_necessaires": [
+        "révélation des difficultés, tensions ou combats du groupe",
+        "citation directe renforçant l'authenticité",
+        "contraste entre façade du quotidien et réalité des épreuves",
+        "rythme plus soutenu, phrases plus denses"
+      ],
+      "mood": "grave_sobre"
+    },
+    {
+      "partie": 4,
+      "titre": "Le même geste, un autre regard",
+      "duree_cible": 20.0,
+      "fonction_narrative": "resolution_circulaire_retour",
+      "position_arc_emotionnel": "apaisement_charge_de_sens",
+      "elements_necessaires": [
+        "retour à la scène d'ouverture ou à un écho direct",
+        "même geste quotidien perçu différemment après le récit",
+        "phrase de clôture ouvrant sur une résonance plus large",
+        "bouclage narratif fluide et naturel"
+      ],
+      "mood": "contemplatif_resonnant"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_avec_pic_central",
+  "rythme_general": "varie — ouverture lente et sensorielle, accélération progressive au centre, retour au calme chargé de sens",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "elargissement_naturel",
+      "duree": 2.0,
+      "description": "Du geste individuel observé en ouverture, la narration élargit le cadre pour révéler le collectif. Transition fluide par continuité thématique : le geste d'un seul devient celui de tous."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "bascule_tonale",
+      "duree": 2.0,
+      "description": "La solidarité décrite laisse entrevoir ses fissures. Une citation ou un fait précis fait basculer le récit vers les difficultés. Pas de rupture brutale : le ton se densifie progressivement."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_circulaire",
+      "duree": 2.5,
+      "description": "Après le pic de tension, le récit revient délibérément à la scène d'ouverture. Le silence ou le ralentissement du débit marque le passage. L'auditeur reconnaît la scène mais la perçoit autrement."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le récit est conçu comme un flux unique lu en voix off omnisciente, sans annonce de sections ni adresse au public. Les quatre parties ne sont pas des chapitres séparés mais des mouvements d'un même souffle narratif. — REGISTRE : Grand public, phrases courtes à moyennes, vocabulaire courant mais précis. Aucun jargon académique malgré le niveau de détail historique exigé ; la rigueur passe par l'exactitude des faits, pas par le lexique. — TON : Neutre et informatif de bout en bout. L'émotion naît des faits et des citations, jamais d'effets rhétoriques appuyés. — CITATIONS : Deux citations directes minimum (parties 2 et 3), intégrées naturellement dans le flux narratif (« Comme le disait l'un d'entre eux… » ou insertion directe entre guillemets). — STRUCTURE CIRCULAIRE : L'image ou la scène d'ouverture doit être suffisamment concrète et mémorable pour que son retour en clôture produise un effet de reconnaissance immédiat. — DURÉE : 180 mots maximum au total. Chaque section doit rester dense et économe. Prévoir environ 40 mots pour les parties 1 et 4, environ 50 mots pour les parties 2 et 3. — DENSITÉ SONORE : Équilibrée. Prévoir des indications pour ambiances sonores légères en ouverture et clôture, plus présentes au centre. — ÉPOQUE LINGUISTIQUE : Si des termes d'époque apparaissent dans les sources, les intégrer naturellement avec contexte suffisant pour compréhension immédiate."
+}

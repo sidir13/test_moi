@@ -1,0 +1,758 @@
+{
+  "nodes": [
+    {
+      "id": "event_0",
+      "name": "Match de football entre l'ASEC et l'AFRICA",
+      "type": "Event",
+      "description": "Une rencontre sportive s'est déroulée au stade Mamadou-Sangaré de Kofata. Le score final mentionné est de 8 buts pour l'ASEC et 7 buts pour l'AFRICA.",
+      "time": "Passé indéterminé"
+    },
+    {
+      "id": "L'équipe de l'ASEC",
+      "name": "L'équipe de l'ASEC",
+      "type": "Person"
+    },
+    {
+      "id": "L'équipe de l'AFRICA",
+      "name": "L'équipe de l'AFRICA",
+      "type": "Person"
+    },
+    {
+      "id": "Keita",
+      "name": "Keita",
+      "type": "Person"
+    },
+    {
+      "id": "Mamadou",
+      "name": "Mamadou",
+      "type": "Person"
+    },
+    {
+      "id": "Stade Mamadou-Sangaré",
+      "name": "Stade Mamadou-Sangaré",
+      "type": "Place"
+    },
+    {
+      "id": "Kofata",
+      "name": "Kofata",
+      "type": "Place"
+    },
+    {
+      "id": "football",
+      "name": "football",
+      "type": "Keyword"
+    },
+    {
+      "id": "match",
+      "name": "match",
+      "type": "Keyword"
+    },
+    {
+      "id": "score",
+      "name": "score",
+      "type": "Keyword"
+    },
+    {
+      "id": "sport",
+      "name": "sport",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_1",
+      "name": "Emploi au SAPCO",
+      "type": "Event",
+      "description": "Le père d'un des interlocuteurs travaillait à la SAPCO, une usine de fabrication de chocolat, avant de prendre sa retraite.",
+      "time": "Avant l'entretien (période d'activité professionnelle)"
+    },
+    {
+      "id": "Le père de l'interlocuteur",
+      "name": "Le père de l'interlocuteur",
+      "type": "Person"
+    },
+    {
+      "id": "Usine SAPCO",
+      "name": "Usine SAPCO",
+      "type": "Place"
+    },
+    {
+      "id": "travail",
+      "name": "travail",
+      "type": "Keyword"
+    },
+    {
+      "id": "chocolat",
+      "name": "chocolat",
+      "type": "Keyword"
+    },
+    {
+      "id": "retraite",
+      "name": "retraite",
+      "type": "Keyword"
+    },
+    {
+      "id": "industrie",
+      "name": "industrie",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_2",
+      "name": "Installation à Abidjan",
+      "type": "Event",
+      "description": "Récit d'un parcours de vie débutant par une naissance hors d'Abidjan suivie d'une installation durable dans la ville, notamment dans le quartier de Yopougon Attiéville.",
+      "time": "Enfance de l'interlocuteur"
+    },
+    {
+      "id": "Salomon",
+      "name": "Salomon",
+      "type": "Person"
+    },
+    {
+      "id": "Yopougon Attiéville",
+      "name": "Yopougon Attiéville",
+      "type": "Place"
+    },
+    {
+      "id": "Abidjan",
+      "name": "Abidjan",
+      "type": "Place"
+    },
+    {
+      "id": "Côte d'Ivoire",
+      "name": "Côte d'Ivoire",
+      "type": "Place"
+    },
+    {
+      "id": "habitation",
+      "name": "habitation",
+      "type": "Keyword"
+    },
+    {
+      "id": "naissance",
+      "name": "naissance",
+      "type": "Keyword"
+    },
+    {
+      "id": "quartier",
+      "name": "quartier",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_3",
+      "name": "Expédition au champ et incident du marigot",
+      "type": "Event",
+      "description": "Une sortie au champ avec son oncle où un cousin s'est égaré de direction. Au retour, l'enfant refuse de boire l'eau du marigot suivant les consignes maternelles.",
+      "time": "Passé récent"
+    },
+    {
+      "id": "L'oncle",
+      "name": "L'oncle",
+      "type": "Person"
+    },
+    {
+      "id": "Le fils de l'oncle (cousin)",
+      "name": "Le fils de l'oncle (cousin)",
+      "type": "Person"
+    },
+    {
+      "id": "La mère",
+      "name": "La mère",
+      "type": "Person"
+    },
+    {
+      "id": "Village d'Ayasap",
+      "name": "Village d'Ayasap",
+      "type": "Place"
+    },
+    {
+      "id": "Dabou",
+      "name": "Dabou",
+      "type": "Place"
+    },
+    {
+      "id": "Champ",
+      "name": "Champ",
+      "type": "Place"
+    },
+    {
+      "id": "Marigot",
+      "name": "Marigot",
+      "type": "Place"
+    },
+    {
+      "id": "champ",
+      "name": "champ",
+      "type": "Keyword"
+    },
+    {
+      "id": "famille",
+      "name": "famille",
+      "type": "Keyword"
+    },
+    {
+      "id": "marigot",
+      "name": "marigot",
+      "type": "Keyword"
+    },
+    {
+      "id": "eau",
+      "name": "eau",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_4",
+      "name": "Guérison de Yavo par un marabout",
+      "type": "Event",
+      "description": "Après l'échec d'un féticheur, Yavo est guéri par l'intervention d'un marabout.",
+      "time": "Passé indéterminé"
+    },
+    {
+      "id": "Yavo",
+      "name": "Yavo",
+      "type": "Person"
+    },
+    {
+      "id": "Le féticheur",
+      "name": "Le féticheur",
+      "type": "Person"
+    },
+    {
+      "id": "Le marabout",
+      "name": "Le marabout",
+      "type": "Person"
+    },
+    {
+      "id": "Village",
+      "name": "Village",
+      "type": "Place"
+    },
+    {
+      "id": "guérison",
+      "name": "guérison",
+      "type": "Keyword"
+    },
+    {
+      "id": "santé",
+      "name": "santé",
+      "type": "Keyword"
+    },
+    {
+      "id": "tradition",
+      "name": "tradition",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_5",
+      "name": "Départ du Ghana et migration vers Abidjan",
+      "type": "Event",
+      "description": "Le père (catéchiste) décide de rester au Ghana et organise le départ du narrateur. La grand-mère intervient pour emmener le narrateur à Abidjan afin de garantir sa subsistance alimentaire.",
+      "time": "Passé indéterminé"
+    },
+    {
+      "id": "Le père (catéchiste)",
+      "name": "Le père (catéchiste)",
+      "type": "Person"
+    },
+    {
+      "id": "Le narrateur",
+      "name": "Le narrateur",
+      "type": "Person"
+    },
+    {
+      "id": "La maman",
+      "name": "La maman",
+      "type": "Person"
+    },
+    {
+      "id": "La grand-mère",
+      "name": "La grand-mère",
+      "type": "Person"
+    },
+    {
+      "id": "Ghana",
+      "name": "Ghana",
+      "type": "Place"
+    },
+    {
+      "id": "séparation",
+      "name": "séparation",
+      "type": "Keyword"
+    },
+    {
+      "id": "départ",
+      "name": "départ",
+      "type": "Keyword"
+    },
+    {
+      "id": "migration",
+      "name": "migration",
+      "type": "Keyword"
+    },
+    {
+      "id": "nourriture",
+      "name": "nourriture",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_6",
+      "name": "Séjour et activités à Anokoua",
+      "type": "Event",
+      "description": "Le narrateur est confié à son oncle dans son village à Anokoua par son père. Il y pratique la chasse en brousse.",
+      "time": "Passé indéterminé"
+    },
+    {
+      "id": "Le père",
+      "name": "Le père",
+      "type": "Person"
+    },
+    {
+      "id": "Anokoua",
+      "name": "Anokoua",
+      "type": "Place"
+    },
+    {
+      "id": "Brousse",
+      "name": "Brousse",
+      "type": "Place"
+    },
+    {
+      "id": "village",
+      "name": "village",
+      "type": "Keyword"
+    },
+    {
+      "id": "chasse",
+      "name": "chasse",
+      "type": "Keyword"
+    },
+    {
+      "id": "vie quotidienne",
+      "name": "vie quotidienne",
+      "type": "Keyword"
+    },
+    {
+      "id": "event_7",
+      "name": "Voyage en bateau-bus",
+      "type": "Event",
+      "description": "Utilisation des transports en commun (bateau-bus) pour se rendre au village après l'achat d'un ticket.",
+      "time": "Passé indéterminé"
+    },
+    {
+      "id": "Bateau-bus",
+      "name": "Bateau-bus",
+      "type": "Place"
+    },
+    {
+      "id": "transport",
+      "name": "transport",
+      "type": "Keyword"
+    },
+    {
+      "id": "voyage",
+      "name": "voyage",
+      "type": "Keyword"
+    },
+    {
+      "id": "fleuve",
+      "name": "fleuve",
+      "type": "Keyword"
+    }
+  ],
+  "edges": [
+    {
+      "id": "actor_0_L'équipe de l'ASEC",
+      "source": "L'équipe de l'ASEC",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_0_L'équipe de l'AFRICA",
+      "source": "L'équipe de l'AFRICA",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_0_Keita",
+      "source": "Keita",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_0_Mamadou",
+      "source": "Mamadou",
+      "target": "event_0",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_0_Stade Mamadou-Sangaré",
+      "source": "event_0",
+      "target": "Stade Mamadou-Sangaré",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_0_Kofata",
+      "source": "event_0",
+      "target": "Kofata",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_0_football",
+      "source": "event_0",
+      "target": "football",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_match",
+      "source": "event_0",
+      "target": "match",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_score",
+      "source": "event_0",
+      "target": "score",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_0_sport",
+      "source": "event_0",
+      "target": "sport",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_1_Le père de l'interlocuteur",
+      "source": "Le père de l'interlocuteur",
+      "target": "event_1",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_1_Usine SAPCO",
+      "source": "event_1",
+      "target": "Usine SAPCO",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_1_travail",
+      "source": "event_1",
+      "target": "travail",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_chocolat",
+      "source": "event_1",
+      "target": "chocolat",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_retraite",
+      "source": "event_1",
+      "target": "retraite",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_1_industrie",
+      "source": "event_1",
+      "target": "industrie",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_2_Salomon",
+      "source": "Salomon",
+      "target": "event_2",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_2_Yopougon Attiéville",
+      "source": "event_2",
+      "target": "Yopougon Attiéville",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_2_Abidjan",
+      "source": "event_2",
+      "target": "Abidjan",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_2_Côte d'Ivoire",
+      "source": "event_2",
+      "target": "Côte d'Ivoire",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_2_habitation",
+      "source": "event_2",
+      "target": "habitation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_naissance",
+      "source": "event_2",
+      "target": "naissance",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_2_quartier",
+      "source": "event_2",
+      "target": "quartier",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_3_Salomon",
+      "source": "Salomon",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_L'oncle",
+      "source": "L'oncle",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_Le fils de l'oncle (cousin)",
+      "source": "Le fils de l'oncle (cousin)",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_3_La mère",
+      "source": "La mère",
+      "target": "event_3",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_3_Village d'Ayasap",
+      "source": "event_3",
+      "target": "Village d'Ayasap",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_3_Dabou",
+      "source": "event_3",
+      "target": "Dabou",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_3_Champ",
+      "source": "event_3",
+      "target": "Champ",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_3_Marigot",
+      "source": "event_3",
+      "target": "Marigot",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_3_champ",
+      "source": "event_3",
+      "target": "champ",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_famille",
+      "source": "event_3",
+      "target": "famille",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_marigot",
+      "source": "event_3",
+      "target": "marigot",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_3_eau",
+      "source": "event_3",
+      "target": "eau",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_4_Yavo",
+      "source": "Yavo",
+      "target": "event_4",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_4_Le féticheur",
+      "source": "Le féticheur",
+      "target": "event_4",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_4_Le marabout",
+      "source": "Le marabout",
+      "target": "event_4",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_4_Village",
+      "source": "event_4",
+      "target": "Village",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_4_guérison",
+      "source": "event_4",
+      "target": "guérison",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_4_santé",
+      "source": "event_4",
+      "target": "santé",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_4_tradition",
+      "source": "event_4",
+      "target": "tradition",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_5_Le père (catéchiste)",
+      "source": "Le père (catéchiste)",
+      "target": "event_5",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_5_Le narrateur",
+      "source": "Le narrateur",
+      "target": "event_5",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_5_La maman",
+      "source": "La maman",
+      "target": "event_5",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_5_La grand-mère",
+      "source": "La grand-mère",
+      "target": "event_5",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_5_Ghana",
+      "source": "event_5",
+      "target": "Ghana",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_5_Abidjan",
+      "source": "event_5",
+      "target": "Abidjan",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_5_séparation",
+      "source": "event_5",
+      "target": "séparation",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_5_départ",
+      "source": "event_5",
+      "target": "départ",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_5_migration",
+      "source": "event_5",
+      "target": "migration",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_5_famille",
+      "source": "event_5",
+      "target": "famille",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_5_nourriture",
+      "source": "event_5",
+      "target": "nourriture",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_6_Le narrateur",
+      "source": "Le narrateur",
+      "target": "event_6",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_6_Le père",
+      "source": "Le père",
+      "target": "event_6",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "actor_6_L'oncle",
+      "source": "L'oncle",
+      "target": "event_6",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_6_Anokoua",
+      "source": "event_6",
+      "target": "Anokoua",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "place_6_Brousse",
+      "source": "event_6",
+      "target": "Brousse",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_6_village",
+      "source": "event_6",
+      "target": "village",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_6_chasse",
+      "source": "event_6",
+      "target": "chasse",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_6_vie quotidienne",
+      "source": "event_6",
+      "target": "vie quotidienne",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "actor_7_Le narrateur",
+      "source": "Le narrateur",
+      "target": "event_7",
+      "type": "PARTICIPATED_IN"
+    },
+    {
+      "id": "place_7_Bateau-bus",
+      "source": "event_7",
+      "target": "Bateau-bus",
+      "type": "HAPPENED_IN"
+    },
+    {
+      "id": "kw_7_transport",
+      "source": "event_7",
+      "target": "transport",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_7_voyage",
+      "source": "event_7",
+      "target": "voyage",
+      "type": "HAS_TOPIC"
+    },
+    {
+      "id": "kw_7_fleuve",
+      "source": "event_7",
+      "target": "fleuve",
+      "type": "HAS_TOPIC"
+    }
+  ]
+}

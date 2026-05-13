@@ -1,0 +1,72 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Une journée ordinaire",
+  "resumeHistoire": "Ce récit suit le déroulement d'une journée type, du lever au coucher, à travers les gestes quotidiens et les rythmes de vie d'une époque révolue. Sans héros ni événement spectaculaire, c'est le concret des heures qui structure le récit : les tâches du matin, l'activité du jour, le repos du soir. L'histoire rend hommage à la banalité du quotidien, révélant ce que les grandes dates de l'Histoire ne racontent jamais. Le ton reste informatif et accessible, ancré dans le réel des témoignages disponibles.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'aube — les premiers gestes",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "calme_introductif",
+      "elements_necessaires": [
+        "ancrage temporel matinal",
+        "gestes concrets du réveil",
+        "atmosphère sensorielle sobre"
+      ],
+      "mood": "descriptif_posé"
+    },
+    {
+      "partie": 2,
+      "titre": "Le cœur du jour — le labeur",
+      "duree_cible": 40,
+      "fonction_narrative": "développement",
+      "position_arc_emotionnel": "montée_en_intensité",
+      "elements_necessaires": [
+        "activité principale de la journée",
+        "citation directe d'un témoignage",
+        "rythme des heures qui passent"
+      ],
+      "mood": "actif_documentaire"
+    },
+    {
+      "partie": 3,
+      "titre": "Le soir — le repos",
+      "duree_cible": 25,
+      "fonction_narrative": "résolution",
+      "position_arc_emotionnel": "apaisement_conclusif",
+      "elements_necessaires": [
+        "retour au calme",
+        "bilan implicite de la journée",
+        "ouverture sur la répétition du lendemain"
+      ],
+      "mood": "contemplatif_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "arc_en_cloche_douce",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Le passage du matin au travail se fait par une accélération légère du débit, marquant le début de l'activité sans rupture."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "decrescendo_naturel",
+      "duree": 2.0,
+      "description": "Le rythme ralentit progressivement, les phrases s'allongent, signalant la fin de l'effort et l'arrivée du soir."
+    }
+  ],
+  "notes_production": "Le récit doit couler comme une seule coulée narrative sans annonces de sections. Le ton reste neutre et informatif du début à la fin — aucune dramatisation. Le registre est accessible au grand public : phrases courtes, vocabulaire simple, pas de jargon. Les citations directes issues des sources doivent s'intégrer naturellement dans le flux narratif, introduites par une formulation sobre. L'ambiance sonore minimaliste soutient sans distraire. Le débit visé est d'environ 2 mots par seconde, soit un rythme posé et clair. Ne pas dépasser 180 mots au total."
+}

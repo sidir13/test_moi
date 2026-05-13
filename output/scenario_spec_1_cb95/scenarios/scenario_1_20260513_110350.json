@@ -1,0 +1,195 @@
+{
+  "scenario_id": 1,
+  "titre": "Une journée ordinaire",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Ce récit suit le déroulement d'une journée type, du lever au coucher, à travers les gestes quotidiens et les rythmes de vie d'une époque révolue. Sans héros ni événement spectaculaire, c'est le concret des heures qui structure le récit : les tâches du matin, l'activité du jour, le repos du soir. L'histoire rend hommage à la banalité du quotidien, révélant ce que les grandes dates de l'Histoire ne racontent jamais. Le ton reste informatif et accessible, ancré dans le réel des témoignages disponibles.",
+  "duree_estimee": 88.69678147939018,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "L'aube — les premiers gestes",
+      "duree": 23.454545454545457,
+      "texte_narration": "Cinq heures du matin. Le jour n'est pas encore levé. Une main pousse la couverture, des pieds touchent le sol froid. On allume le feu, on fait chauffer l'eau. Les gestes sont les mêmes que la veille, les mêmes que demain.",
+      "ton": {
+        "global": "descriptif_posé",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'Cinq heures du matin' (1.5s)",
+          "après 'le sol froid' (1s)"
+        ],
+        "intonation": "voix basse, calme, presque murmurée"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le silence de l'aube",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Gestes concrets du réveil",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Cinq heures du matin.",
+          "sources": []
+        },
+        {
+          "sentence": "Le jour n'est pas encore levé.",
+          "sources": []
+        },
+        {
+          "sentence": "Une main pousse la couverture, des pieds touchent le sol froid.",
+          "sources": []
+        },
+        {
+          "sentence": "On allume le feu, on fait chauffer l'eau.",
+          "sources": []
+        },
+        {
+          "sentence": "Les gestes sont les mêmes que la veille, les mêmes que demain.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le cœur du jour — le labeur",
+      "duree": 46.95652173913044,
+      "texte_narration": "Dès que la lumière le permet, le travail commence. Aux champs, à l'atelier, à la maison — chacun sa tâche, chacun son rythme. Les heures s'étirent sans montre. On mesure le temps au soleil, à la fatigue dans les bras. Le repas de midi coupe la journée en deux. On mange vite, souvent debout. Puis on reprend. Un témoin de cette époque raconte : [ARCHIVE : « On ne comptait pas les heures, on comptait ce qu'il restait à faire. »] Le soir approche quand les ombres s'allongent sur le sol.",
+      "ton": {
+        "global": "actif_documentaire",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'chacun son rythme' (1s)",
+          "après 'souvent debout' (1s)",
+          "avant la citation (1.5s)",
+          "après la citation (1.5s)"
+        ],
+        "intonation": "voix posée, légèrement plus soutenue, rythme régulier"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:25",
+          "action": "Début du labeur quotidien",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:40",
+          "action": "Repas de midi — pause brève",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:50",
+          "action": "Citation d'archive — témoignage central",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Dès que la lumière le permet, le travail commence.",
+          "sources": []
+        },
+        {
+          "sentence": "Aux champs, à l'atelier, à la maison — chacun sa tâche, chacun son rythme.",
+          "sources": []
+        },
+        {
+          "sentence": "Les heures s'étirent sans montre.",
+          "sources": []
+        },
+        {
+          "sentence": "On mesure le temps au soleil, à la fatigue dans les bras.",
+          "sources": []
+        },
+        {
+          "sentence": "Le repas de midi coupe la journée en deux.",
+          "sources": []
+        },
+        {
+          "sentence": "On mange vite, souvent debout.",
+          "sources": []
+        },
+        {
+          "sentence": "Puis on reprend.",
+          "sources": []
+        },
+        {
+          "sentence": "Un témoin de cette époque raconte : [ARCHIVE : « On ne comptait pas les heures, on comptait ce qu'il restait à faire. »]",
+          "sources": []
+        },
+        {
+          "sentence": "Le soir approche quand les ombres s'allongent sur le sol.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — le repos",
+      "duree": 18.28571428571429,
+      "texte_narration": "La nuit tombe. On range les outils. On retrouve la table, le pain, les visages familiers. Quelques mots échangés, parfois un silence qui suffit. Puis la chandelle s'éteint. Demain, tout recommencera.",
+      "ton": {
+        "global": "contemplatif_sobre",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'La nuit tombe' (1.5s)",
+          "après 'un silence qui suffit' (2s)",
+          "après 'la chandelle s'éteint' (2s)"
+        ],
+        "intonation": "voix douce, ralentie, ton conclusif sans emphase"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Retour au foyer",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:20",
+          "action": "Extinction — ouverture sur le lendemain",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "La nuit tombe.",
+          "sources": []
+        },
+        {
+          "sentence": "On range les outils.",
+          "sources": []
+        },
+        {
+          "sentence": "On retrouve la table, le pain, les visages familiers.",
+          "sources": []
+        },
+        {
+          "sentence": "Quelques mots échangés, parfois un silence qui suffit.",
+          "sources": []
+        },
+        {
+          "sentence": "Puis la chandelle s'éteint.",
+          "sources": []
+        },
+        {
+          "sentence": "Demain, tout recommencera.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 165,
+    "duree_lecture_estimee": 88.69678147939018,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Le récit doit couler comme une seule coulée narrative sans annonces de sections. Le ton reste neutre et informatif du début à la fin — aucune dramatisation. Le registre est accessible au grand public : phrases courtes, vocabulaire simple, pas de jargon. Les citations directes issues des sources doivent s'intégrer naturellement dans le flux narratif, introduites par une formulation sobre. L'ambiance sonore minimaliste soutient sans distraire. Le débit visé est d'environ 2 mots par seconde, soit un rythme posé et clair. Ne pas dépasser 180 mots au total."
+}

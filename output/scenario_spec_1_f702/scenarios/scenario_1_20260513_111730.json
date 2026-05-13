@@ -1,0 +1,287 @@
+{
+  "scenario_id": 1,
+  "titre": "Les enfants de Treichville racontent",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte une histoire transmise par son grand frère, mêlant aventure en brousse, serpent et guérisseur. À travers ce conte et les questions qui suivent, se dessine le portrait d'une famille ordinaire : un père retraité de la SAPCO, une mère qui vend au restaurant, un frère réparateur de ventilateurs à Treichville. Le récit revient à son point de départ — la parole enfantine, fragile et vivante, qui porte en elle tout un monde social.",
+  "duree_estimee": 111.58215697346134,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Une voix d'enfant s'élève",
+      "duree": 19.09090909090909,
+      "texte_narration": "Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole. Il raconte une histoire que son grand frère lui a transmise. Celle de deux enfants, Kwaku et Kofie, partis en brousse.",
+      "ton": {
+        "global": "intime, posé, ouverture douce",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'prend la parole' (1.5s)",
+          "après 'transmise' (1s)"
+        ],
+        "intonation": "calme, légèrement suspendue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Entrée immédiate dans le contexte — voix d'enfant évoquée",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Mention de la transmission fraternelle",
+          "duree": 1.5
+        },
+        {
+          "timestamp": "0:14",
+          "action": "Noms de Kwaku et Kofie — amorce du conte",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole.",
+          "sources": [
+            "[02:43] - Quel âge tu as ? [02:46] - Moi ? J'ai 10 ans."
+          ]
+        },
+        {
+          "sentence": "Il raconte une histoire que son grand frère lui a transmise.",
+          "sources": [
+            "[01:30] - Qui c'est qui t'a raconté cette histoire ? [01:36] - C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "Celle de deux enfants, Kwaku et Kofie, partis en brousse.",
+          "sources": [
+            "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le conte de brousse",
+      "duree": 35.47826086956522,
+      "texte_narration": "L'enfant raconte : [ARCHIVE : « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »] Les deux garçons montent sur un arbre. Un serpent les attend. L'un d'eux est mordu. Le féticheur échoue. L'enfant précise : [ARCHIVE : « Il est parti chez un marabout. Le marabout là l'a guéri. »]",
+      "ton": {
+        "global": "narratif, légère tension puis résolution",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après la première archive (1.5s)",
+          "après 'les attend' (1s)",
+          "après 'échoue' (1s)"
+        ],
+        "intonation": "montée en tension puis retombée apaisée"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:20",
+          "action": "Première citation directe du conte — tension installée",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:30",
+          "action": "Serpent sur l'arbre — image centrale",
+          "duree": 1.5
+        },
+        {
+          "timestamp": "0:38",
+          "action": "Guérison par le marabout — résolution",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "L'enfant raconte : [ARCHIVE : « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. »]",
+          "sources": [
+            "[00:00] L'autre-là dit : « On n'a qu'aller tuer maman ». Maintenant, l'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver."
+          ]
+        },
+        {
+          "sentence": "Les deux garçons montent sur un arbre.",
+          "sources": [
+            "[00:30] ils ont monté sur l'arbre."
+          ]
+        },
+        {
+          "sentence": "Un serpent les attend.",
+          "sources": [
+            "[00:30] il y avait un serpent sur l'arbre."
+          ]
+        },
+        {
+          "sentence": "L'un d'eux est mordu.",
+          "sources": [
+            "[00:30] truc serpent a bouffé Angela."
+          ]
+        },
+        {
+          "sentence": "Le féticheur échoue.",
+          "sources": [
+            "[01:00] Le féticheur ne ne pouvait pas lui guérir."
+          ]
+        },
+        {
+          "sentence": "L'enfant précise : [ARCHIVE : « Il est parti chez un marabout. Le marabout là l'a guéri. »]",
+          "sources": [
+            "[01:00] Donc il est parti chez un marabout. Le marabout là l'a guéri."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Portrait d'une famille",
+      "duree": 38.727272727272734,
+      "texte_narration": "Le conte s'achève. On interroge l'enfant sur les siens. Il confie : [ARCHIVE : « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. »] Sa mère tient un petit commerce. Il ajoute : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »] Son père, lui, ne travaille plus. Retraité de la SAPCO, l'usine où l'on fabrique le chocolat. L'enfant habite Nongo. Il a dix ans.",
+      "ton": {
+        "global": "documentaire, chaleureux, factuel",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'les siens' (1s)",
+          "après 'ventilateurs' (1.5s)",
+          "après 'restaurant' (1s)",
+          "après 'chocolat' (1.5s)"
+        ],
+        "intonation": "posée, tendre sans sentimentalisme"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:45",
+          "action": "Transition du conte vers le réel — portrait familial",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:52",
+          "action": "Grand frère réparateur à Treichville",
+          "duree": 1.5
+        },
+        {
+          "timestamp": "1:05",
+          "action": "Père retraité de la SAPCO — ancrage social",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le conte s'achève.",
+          "sources": [
+            "[01:00] D'accord, merci."
+          ]
+        },
+        {
+          "sentence": "On interroge l'enfant sur les siens.",
+          "sources": [
+            "[01:38] - C'est ton grand-frère, il fait quoi ton grand-frère ?"
+          ]
+        },
+        {
+          "sentence": "Il confie : [ARCHIVE : « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. »]",
+          "sources": [
+            "[01:40] - Mon grand-frère... il travaille.",
+            "[01:44] - Il travaille à Treichville.",
+            "[01:48] - Il répare mes... ventilateurs."
+          ]
+        },
+        {
+          "sentence": "Sa mère tient un petit commerce.",
+          "sources": [
+            "[02:07] Maman elle vend."
+          ]
+        },
+        {
+          "sentence": "Il ajoute : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »]",
+          "sources": [
+            "[02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
+          ]
+        },
+        {
+          "sentence": "Son père, lui, ne travaille plus.",
+          "sources": [
+            "[02:17] Mon père ? Mon père travaille pas."
+          ]
+        },
+        {
+          "sentence": "Retraité de la SAPCO, l'usine où l'on fabrique le chocolat.",
+          "sources": [
+            "[02:22] Non, il est retraité.",
+            "[02:27] Il travaillait il travaillait au SAPO.",
+            "[02:36] Le SAPCO ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "L'enfant habite Nongo.",
+          "sources": [
+            "[02:50] - J'habite à Nongo."
+          ]
+        },
+        {
+          "sentence": "Il a dix ans.",
+          "sources": [
+            "[02:46] - Moi ? J'ai 10 ans."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Retour à la parole",
+      "duree": 18.28571428571429,
+      "texte_narration": "Dix ans, et déjà porteur d'histoires reçues, répétées, offertes. Dans sa voix, un conte de brousse et le monde entier d'une famille. La parole circule. Elle ne s'arrête pas.",
+      "ton": {
+        "global": "réflexif, apaisé, circulaire",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'offertes' (2s)",
+          "après 'famille' (1.5s)",
+          "après 'circule' (1s)"
+        ],
+        "intonation": "descendante, douce, conclusive"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:15",
+          "action": "Retour à la figure de l'enfant conteur — écho à l'ouverture",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:25",
+          "action": "Image finale — la parole qui continue",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Dix ans, et déjà porteur d'histoires reçues, répétées, offertes.",
+          "sources": [
+            "[02:46] - Moi ? J'ai 10 ans.",
+            "[01:36] - C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "Dans sa voix, un conte de brousse et le monde entier d'une famille.",
+          "sources": []
+        },
+        {
+          "sentence": "La parole circule.",
+          "sources": []
+        },
+        {
+          "sentence": "Elle ne s'arrête pas.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 206,
+    "duree_lecture_estimee": 111.58215697346134,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "Fluidité absolue entre sections — pas de marqueurs de chapitres audibles. Le ton reste neutre et informatif tout au long, avec un registre accessible (grand public). Les citations directes de l'enfant doivent être intégrées dans le flux narratif, introduites par la voix off sans rupture. L'ambiance sonore reste minimaliste : silences et respiration naturelle du récit. La structure circulaire doit se sentir sans être explicitée. Le débit visé est d'environ 2 mots par seconde, soit 180 mots maximum. Privilégier des phrases courtes et concrètes."
+}

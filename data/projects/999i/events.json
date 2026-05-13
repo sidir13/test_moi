@@ -1,0 +1,158 @@
+{
+  "events": [
+    {
+      "title": "Match de football entre l'ASEC et l'AFRICA",
+      "description": "Une rencontre sportive s'est déroulée au stade Mamadou-Sangaré de Kofata. Le score final mentionné est de 8 buts pour l'ASEC et 7 buts pour l'AFRICA.",
+      "approximate_time": "Passé indéterminé",
+      "actors": [
+        "L'équipe de l'ASEC",
+        "L'équipe de l'AFRICA",
+        "Keita",
+        "Mamadou"
+      ],
+      "places": [
+        "Stade Mamadou-Sangaré",
+        "Kofata"
+      ],
+      "keywords": [
+        "football",
+        "match",
+        "score",
+        "sport"
+      ]
+    },
+    {
+      "title": "Emploi au SAPCO",
+      "description": "Le père d'un des interlocuteurs travaillait à la SAPCO, une usine de fabrication de chocolat, avant de prendre sa retraite.",
+      "approximate_time": "Avant l'entretien (période d'activité professionnelle)",
+      "actors": [
+        "Le père de l'interlocuteur"
+      ],
+      "places": [
+        "Usine SAPCO"
+      ],
+      "keywords": [
+        "travail",
+        "chocolat",
+        "retraite",
+        "industrie"
+      ]
+    },
+    {
+      "title": "Installation à Abidjan",
+      "description": "Récit d'un parcours de vie débutant par une naissance hors d'Abidjan suivie d'une installation durable dans la ville, notamment dans le quartier de Yopougon Attiéville.",
+      "approximate_time": "Enfance de l'interlocuteur",
+      "actors": [
+        "Salomon"
+      ],
+      "places": [
+        "Yopougon Attiéville",
+        "Abidjan",
+        "Côte d'Ivoire"
+      ],
+      "keywords": [
+        "habitation",
+        "naissance",
+        "quartier"
+      ]
+    },
+    {
+      "title": "Expédition au champ et incident du marigot",
+      "description": "Une sortie au champ avec son oncle où un cousin s'est égaré de direction. Au retour, l'enfant refuse de boire l'eau du marigot suivant les consignes maternelles.",
+      "approximate_time": "Passé récent",
+      "actors": [
+        "Salomon",
+        "L'oncle",
+        "Le fils de l'oncle (cousin)",
+        "La mère"
+      ],
+      "places": [
+        "Village d'Ayasap",
+        "Dabou",
+        "Champ",
+        "Marigot"
+      ],
+      "keywords": [
+        "champ",
+        "famille",
+        "marigot",
+        "eau"
+      ]
+    },
+    {
+      "title": "Guérison de Yavo par un marabout",
+      "description": "Après l'échec d'un féticheur, Yavo est guéri par l'intervention d'un marabout.",
+      "approximate_time": "Passé indéterminé",
+      "actors": [
+        "Yavo",
+        "Le féticheur",
+        "Le marabout"
+      ],
+      "places": [
+        "Village"
+      ],
+      "keywords": [
+        "guérison",
+        "santé",
+        "tradition"
+      ]
+    },
+    {
+      "title": "Départ du Ghana et migration vers Abidjan",
+      "description": "Le père (catéchiste) décide de rester au Ghana et organise le départ du narrateur. La grand-mère intervient pour emmener le narrateur à Abidjan afin de garantir sa subsistance alimentaire.",
+      "approximate_time": "Passé indéterminé",
+      "actors": [
+        "Le père (catéchiste)",
+        "Le narrateur",
+        "La maman",
+        "La grand-mère"
+      ],
+      "places": [
+        "Ghana",
+        "Abidjan"
+      ],
+      "keywords": [
+        "séparation",
+        "départ",
+        "migration",
+        "famille",
+        "nourriture"
+      ]
+    },
+    {
+      "title": "Séjour et activités à Anokoua",
+      "description": "Le narrateur est confié à son oncle dans son village à Anokoua par son père. Il y pratique la chasse en brousse.",
+      "approximate_time": "Passé indéterminé",
+      "actors": [
+        "Le narrateur",
+        "Le père",
+        "L'oncle"
+      ],
+      "places": [
+        "Anokoua",
+        "Brousse"
+      ],
+      "keywords": [
+        "village",
+        "chasse",
+        "vie quotidienne"
+      ]
+    },
+    {
+      "title": "Voyage en bateau-bus",
+      "description": "Utilisation des transports en commun (bateau-bus) pour se rendre au village après l'achat d'un ticket.",
+      "approximate_time": "Passé indéterminé",
+      "actors": [
+        "Le narrateur"
+      ],
+      "places": [
+        "Bateau-bus"
+      ],
+      "keywords": [
+        "transport",
+        "voyage",
+        "fleuve"
+      ]
+    }
+  ]
+}

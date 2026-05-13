@@ -1,0 +1,530 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "duration_seconds": 90,
+        "voice_instructions": ""
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "scenario_target_override": 1,
+      "analyse_version": "1.0",
+      "conflits_detectes": [
+        {
+          "parametre": "duree",
+          "conflit": "Contraintes non négociables (90 s) vs corps de la demande (8-12 min)",
+          "resolution": "Contraintes non négociables appliquées : 90 secondes"
+        },
+        {
+          "parametre": "ton",
+          "conflit": "Contraintes non négociables (neutre_informatif) vs corps de la demande (documentaire immersif, évocateur)",
+          "resolution": "Contraintes non négociables appliquées : neutre_informatif avec nuances stylistiques compatibles"
+        }
+      ],
+      "parametres_user_specified_true": [
+        "forme",
+        "duree",
+        "ton",
+        "axe_narratif",
+        "nombre_scenarios",
+        "public_cible",
+        "densite_sonore",
+        "structure_narrative",
+        "themes"
+      ],
+      "parametres_deduits_ou_defaut": [
+        "rythme",
+        "niveau_detail_historique",
+        "perspective_narrative",
+        "epoque_linguistique",
+        "angle_scenarisation",
+        "equilibre_narration_archives",
+        "authenticite_vs_accessibilite"
+      ],
+      "informations_manquantes": [
+        "Période historique précise",
+        "Localisation géographique",
+        "Type d'industrie spécifique (métallurgie, textile, automobile, etc.)",
+        "Époque linguistique souhaitée pour les témoignages"
+      ]
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : grand_public (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : neutre_informatif (ne change jamais de ton).\n- Durée cible : ~90 s (1 min 30). Tolérance maximale ±15 %.\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nCréez un récit immersif qui plonge l'auditeur dans l'univers industriel et humain d'une usine en activité.\nLe scénario doit :\n- Évoquer les sons caractéristiques de l'industrie : machines, outils, ambiances sonores typiques\n- Intégrer des témoignages d'ouvriers, de contremaîtres ou d'ingénieurs sur leur quotidien\n- Décrire l'évolution des techniques et des conditions de travail au fil du temps\n- Créer une atmosphère authentique qui fait ressentir la réalité du travail industriel\n- Structurer le récit en plusieurs parties : arrivée à l'usine, description des postes, témoignages humains, perspectives d'avenir\n\nTon : documentaire immersif, respectueux des témoins, évocateur sans être dramatique\nDurée cible : 8-12 minutes\nPublic : grand public intéressé par l'histoire industrielle et sociale"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": true,
+        "source": "demande_utilisateur",
+        "justification": "L'utilisateur demande explicitement un 'récit immersif' de type documentaire avec témoignages intégrés, structuré en parties thématiques — correspond à la forme documentaire."
+      },
+      "duree": {
+        "value": 90,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "project_profile",
+        "justification": "CONFLIT DÉTECTÉ — Les contraintes non négociables imposent ~90 s (±15 %, soit 76-103 s). Le corps de la demande suggère 8-12 minutes (480-720 s). Résolution : les contraintes non négociables priment explicitement ('Tout écart à ces exigences doit être considéré comme une erreur'). Valeur retenue : 90 secondes.",
+        "conflit_resolution": {
+          "source_contrainte_non_negociable": "~90 s, tolérance ±15 %",
+          "source_corps_demande": "8-12 minutes",
+          "regle_appliquee": "Les contraintes non négociables l'emportent systématiquement",
+          "plage_acceptable_secondes": [
+            76,
+            103
+          ]
+        }
+      },
+      "ton": {
+        "value": "neutre_informatif",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.7,
+        "source": "project_profile",
+        "justification": "CONFLIT DÉTECTÉ — Les contraintes non négociables imposent 'neutre_informatif' ('ne change jamais de ton'). Le corps de la demande demande 'documentaire immersif, respectueux des témoins, évocateur sans être dramatique'. Résolution : neutre_informatif est retenu conformément aux contraintes non négociables. Les qualités 'respectueux' et 'évocateur sans être dramatique' sont compatibles et intégrées comme nuances stylistiques.",
+        "conflit_resolution": {
+          "source_contrainte_non_negociable": "neutre_informatif (ne change jamais de ton)",
+          "source_corps_demande": "documentaire immersif, respectueux, évocateur sans être dramatique",
+          "regle_appliquee": "Ton neutre_informatif imposé ; nuances stylistiques du corps intégrées sans altérer le ton de base"
+        }
+      },
+      "axe_narratif": {
+        "value": "mixte",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": true,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social",
+          "travailleur": 0.3,
+          "objet_lieu": 0.25,
+          "contexte_social": 0.25,
+          "evolution_temporelle": 0.2
+        },
+        "source": "demande_utilisateur",
+        "justification": "L'utilisateur demande explicitement des témoignages d'ouvriers/contremaîtres (travailleur), des descriptions de l'usine et des postes (objet_lieu), l'évolution des techniques (evolution_temporelle) et les conditions de travail (contexte_social). Cela correspond à un axe mixte multi-dimensionnel."
+      },
+      "rythme": {
+        "value": "varie",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 130,
+          "pauses": "naturelles",
+          "variation": "progressive",
+          "note": "Tempo légèrement relevé pour couvrir la structure en 4 parties dans 90 secondes"
+        },
+        "justification": "Non spécifié explicitement mais fortement impliqué par la structure en parties (arrivée, description, témoignages, perspectives) qui appelle des variations de rythme. Ajusté de 'modere' à 'varie' par cohérence avec la structure demandée, tout en restant compatible avec la durée courte de 90 s."
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "source": "project_slider",
+        "justification": "Valeur de 1 conservée depuis la configuration projet."
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "project_profile",
+        "justification": "Spécifié à la fois dans les contraintes non négociables et dans le corps de la demande ('grand public intéressé par l'histoire industrielle et sociale'). Cohérence totale. La narration doit commencer en présentant explicitement le public cible."
+      },
+      "niveau_detail_historique": {
+        "value": "moyen",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "justification": "Non spécifié. Valeur par défaut 'moyen' cohérente avec le public grand_public et la durée contrainte de 90 s qui limite la profondeur possible."
+      },
+      "perspective_narrative": {
+        "value": "voix_off_omnisciente",
+        "options": [
+          "troisieme_personne",
+          "voix_off_omnisciente"
+        ],
+        "default": "voix_off_omnisciente",
+        "user_specified": false,
+        "justification": "Non spécifié explicitement mais cohérent avec le format documentaire immersif demandé, intégrant des témoignages en voix directe encadrés par une narration omnisciente."
+      },
+      "epoque_linguistique": {
+        "value": "mixte",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "justification": "Non spécifié mais ajusté de 'authentique' à 'mixte' par cohérence : le public grand_public nécessite une accessibilité linguistique, tandis que les témoignages d'ouvriers et contremaîtres appellent un vocabulaire technique authentique. Le mode mixte concilie les deux."
+      },
+      "densite_sonore": {
+        "value": "immersive",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": true,
+        "details": {
+          "ambiances_simultanees_max": 4,
+          "frequence_effets_sonores": "eleve",
+          "silence_narratif": true,
+          "couches_sonores": [
+            "ambiance_usine_fond_continu",
+            "machines_specifiques",
+            "voix_humaines_atelier",
+            "effets_ponctuels_outils"
+          ]
+        },
+        "source": "demande_utilisateur",
+        "justification": "L'utilisateur demande explicitement un 'récit immersif' avec 'sons caractéristiques de l'industrie : machines, outils, ambiances sonores typiques' et une 'atmosphère authentique qui fait ressentir la réalité du travail industriel'. Cela correspond clairement au niveau 'immersive'."
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": true,
+        "source": "demande_utilisateur",
+        "justification": "L'utilisateur spécifie explicitement une structure séquentielle en parties ordonnées : 'arrivée à l'usine → description des postes → témoignages humains → perspectives d'avenir'. Cette progression linéaire correspond à une structure chronologique."
+      },
+      "angle_scenarisation": {
+        "value": "journee_type",
+        "options": [
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "justification": "JAMAIS user_specified=true sur ce paramètre (règle critique). Déduit de la demande : la structure 'arrivée à l'usine → description des postes → témoignages → perspectives' évoque fortement une journée-type dans l'usine, avec des éléments de chronique sociale (évolution des conditions de travail).",
+        "angle_secondaire": "chronique_sociale"
+      },
+      "equilibre_narration_archives": {
+        "value": 0.5,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "justification": "Non spécifié. Ajusté de 0.6 à 0.5 pour équilibrer narration et témoignages/sons d'archives, car l'utilisateur demande à la fois des descriptions narratives ET des témoignages intégrés d'ouvriers/contremaîtres/ingénieurs, le tout dans un format immersif riche en ambiances sonores."
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.6,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "justification": "Non spécifié. Ajusté de 0.7 à 0.6 pour favoriser légèrement l'accessibilité, en cohérence avec le public grand_public et le ton neutre_informatif imposé. L'authenticité reste présente via les ambiances sonores industrielles et le vocabulaire technique contextualisé."
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "145159_III_08_44k.mp3",
+            "transcription": "[00:00] Il y avait... il y avait deux petits. Un un qui s'appelait Kwakou, l'un qui s'appelait Koukou. Maintenant les deux partaient en brousse. L'un l'autre là dit qu'on qu'on n'a qu'à aller manger mangue. Maintenant l'autre là dit lui l'a peur. Que il y a malheur qui peut les arriver là-bas. Maintenant l'autre là dit qui peut pas s'inquiéter que qu'il y a rien.\n[00:30] Ok, d'un village lointain au pied de la montagne syllabe, là il y avait un serpent syllabe. Serpent là n'est plus que là. Maintenant il y a Olly, il a pu parler du village, il a pu parler du village. Maintenant il, il est parti appeler ses parents. Il est venu, euh, truc serpent à, euh, au pied, maintenant puis...\n[01:00] Une partie du village, ça ils sont venus prendre Yavo. Ils l'ont amené chez un féticheur là-bas. Le féticheur ne ne pouvait pas le guérir. Maintenant on dit... il ne peut pas donc il est parti chez un marabout, le marabout là l'a guéri. On l'a fait sortir. D'accord merci ! Comment tu t'appelles ? Je m'appelle...\n[01:30] — Qui c'est qui t'a raconté cette histoire ?\n[01:32] — Hein ?\n[01:34] — Qui t'a raconté cette histoire ?\n[01:36] — C'est mon grand-frère.\n[01:38] — Ton grand-frère ? Il fait quoi ton grand-frère ?\n[01:40] — Mon grand-frère ? Il travaille.\n[01:42] — Il travaille où ça ?\n[01:44] — Il travaille à Treichville.\n[01:46] — Qu'est-ce qu'il fait ?\n[01:48] — Il répare les v-ventilateurs.\n[01:50] — Hein ?\n[01:52] — Ventilateurs.\n[01:54] — D'accord.\n[01:56] — Il fait de la réparation des ventilateurs.\n[01:58] — D'accord. Et tes parents ils font quoi ?\n[02:00] - Moi.\n[02:02] - Tes parents ?\n[02:05] - Mes parents ? Maman, elle vend.\n[02:08] - Elle vend quoi ?\n[02:10] - Elle vend... tout... banane... Elle vend d'un restaurant.\n[02:13] - Hum hum. Et ton père ?\n[02:16] - Mon pa... Mon père travaille pas.\n[02:19] - Il travaille pas ?\n[02:21] - Non, il est-il est retraité.\n[02:24] - Qu'est-ce qu'il a fait avant ?\n[02:27] - Oh... Il travaillait... Il travaillait au SAPCO.\n[02:29] Où ça ?\n[02:32] Au Sapo \n[02:34] Qu'est-ce que c'est ? Je connais pas.\n[02:36] Tu connais ? C'est où on fabrique les chocolats.\n[02:39] Ah, d'accord ! Et tu manges beaucoup de chocolat ?\n[02:41] Non.\n[02:43] T'as quel âge ?\n[02:46] Moi j'ai dix ans.\n[02:48] Dix ans. T'habites où ?\n[02:50] J'habite à Angré.\n[02:53] À Angré. D'accord. Quelle langue tu parles à la maison ?\n[02:55] On parle français. \n[02:57] Français ? Et ton ethnie c'est quoi ?\n[02:59] C'était drôle.\n[03:04] — Parler ?\n[03:09] — Mais des fois il parle barbare aussi.\n[03:14] — Hmm hmm.\n[03:19] — D'accord, merci. Vas-y.\n[03:24] — J'étais au village. Mon oncle vient on s'en va à son champ. On s'en va au champ on est arrivé là-bas. Il était absent mais maintenant son fils lui il a pris une autre direction. Lui il n'est pas parti dans son champ mais il est parti dans le champ de mon papa. On a on a pris sa direction il n'est pas là. Maintenant quand nous venons on va tailler lui-même dans son champ. Maintenant il pensait peut-être que c'était quelqu'un qui était venu...\n[03:29] C'est parce qu'il y a un garçon il s'en va au champ il va voler ses ses ses maniocs, l'oncle a crié : « Qui est ici ? » Mais il a dit : « Papa c'est moi » et puis quand il entend comme ça t’avait maintenant après il dit « Papa j'ai soif », il dit « Va boire l'eau du marigot », il dit il ne peut pas boire l'eau du marigot que ce n'est pas bon, maman dit n'est pas bon. Il on est parti, on arrive à la maison, j'ai dit à ma maman : « Maman je n'ai pas pu boire l'eau du marigot parce que ce n'est pas bon, que de laisser, que d'aller prendre l'eau à la pompe là-bas ».\n[03:59] Bon, je suis parti... je suis parti, je suis parti mon seul au champ. Quelqu'un est passé, j'ai vu des fourmis qui passaient en rang. Ils passaient. On a sauté ça. On est arrivé au champ. Mon grand frère a pris le couteau, il dit \"il va tuer\", et puis mon grand-père dit \"faut pas tuer, que c'est pas bon\". On est parti, et puis mon grand frère a tapé le tuyau et puis le tuyau a été jeté, mon grand-père dit \"faut jeter\", il a jeté. Et puis on est venu à la maison.\n[04:29] - C'est quel village, comment ça s'appelle ?\n[04:31] - Ayasap. \n[04:33] - C'est où ça ?\n[04:35] - Dabou.\n[04:37] - À côté de Dabou, d'accord. Tu es quoi, quelle ethnie ?\n[04:38] - Adjoukrou.\n[04:40] - Adjoukrou, d'accord. Et tu parles adjoukrou à la maison ?\n[04:42] - Oui.\n[04:44] - Oui ? Et le français, tu as appris ça où ?\n[04:45] - En Côte d'Ivoire.\n[04:47] - En Côte d'Ivoire, ouais. Tu as toujours habité Abidjan ?\n[04:49] - Oui.\n[04:51] - Oui, tu es née ici ?\n[04:52] - Non.\n[04:54] - Quel quartier ?\n[04:56] - Yopougon Attiéville.\n[04:58] - Yopougon Attiéville. Et maintenant, tu habites toujours...\n[04:59] - t'habites à Achiville ? \n[05:02] - Non.\n[05:04] - T'habites où ?\n[05:06] - Tac Tacassi.\n[05:08] - C'est où ça ?\n[05:10] - Devant de devant la la route.\n[05:12] - À Macounon.\n[05:14] - D'accord. Tu as quel âge ?\n[05:17] - J'ai 10 ans. \n[05:19] - Et c'est quoi ton nom ? \n[05:21] - Salomon.\n[05:23] - Salomon quoi ? \n[05:25] - Je m'appelle B Salomon.\n[05:27] - D'accord. Merci Salomon. Il y avait deux messieurs qui étaient au stade. L'autre-là s'appelait Kel-\n[05:29] Keita l'autre, là, sa maman d'où. J'étais au stade Mamadou-Sangaré Kofata Kofata. Tu as un truc l'ASEC l'ASEC a joué et l'AFICA a joué, elle a marqué sept buts et l'AF- truc l'ASEC a marqué huit buts. Maintenant quand Keita criait de joie, truc homme, lui qui s'appelle Mamadou a fui. Il allait dans le bus. Maintenant lui s'ap- lui qui s'appelle\n[05:59] Et Kaita est parti, que la ville n'est pas là. Donc il est parti au-dehors. La ville... Il a vu le... il a vu le monsieur là en train de... en train de monter dans un bus, donc le monsieur ne voulait pas partir, donc monsieur là a crié et tout, là le monsieur a donné son contact, puis il est venu. C'est fini.\n[06:07] D'accord, comment tu t'appelles ? [BIP] Est-ce que tu connais Kaita ? Et l'autre un...?\n[06:14] Non... C'est une histoire qu'elle m'a racontée comme ça.\n[06:22] Qui ça ? [BIP]\n[06:29] C’est une histoire qu’ils ont racontée comme ça. Ah d'accord ! Et comment tu la connais cette histoire ? Qui te l’a racontée ? Ce sont mes amis qui m’ont dit. Ah d’accord ! Tu as quel âge ? J’ai 12 ans. Tu as 12 ans. Et quelle langue tu parles à la maison ? Je parle le français. Le français ? Oui. Et ton ethnie c’est quoi ? Éboué. Éboué ? Tu parles pas éboué ? Non. Non ? Et tes parents ils parlent éboué ? Oui. Qu’est-ce qu’ils font tes parents ? Ma maman elle fait du commerce.\n[06:59] Il ne travaille pas, mais je ne sais pas quel travail il fait. Ta maman, elle fait quel commerce ? Elle vend des chaussures. Où ça ? À la maison. A la maison ? Oui. Et comment ça se passe à la maison ? Ben ça se passe bien. Non mais explique-moi un peu, si elle vend à la maison, les gens ils viennent chez elle ? Explique-moi un peu comment elle fait pour les vendre ? Non.\n[07:29] Elle elle est morte dehors. Elle vient s'asseoir quand quelqu'un passe si-- si il veut l'acheter, celui-là il demande, il paye.\n[07:31] Toi tu l'aides des fois à vendre ?\n[07:33] Non, moi je l'aide à laver les assiettes.\n[07:35] Ah, d'accord, tu fais la vaisselle ?\n[07:37] Oui.\n[07:38] Tu as quel âge, tu as dit ?\n[07:40] J'ai 12 ans.\n[07:42] 12 ans. Et tu as des frères et sœurs ?\n[07:44] Oui. J'ai deux fi-- deux sœurs et puis deux frères.\n[07:45] Et puis il y a il y a mon grand frère, le plus grand. Il fait il fait la couture. Il y a ma sœur qui va à l'école, elle est au cm1 comme moi. Et puis il y a mon grand frère, il fait il fréquente plus maintenant. Et ma sœur qui est en terminale. Et ton frère qui fréquente plus, il fait quoi ? À la maison, il fait rien. Il ne fait rien rien du tout ? Oui.\n[08:15] Mais dans sa journée il fait quoi ? Sa journée là ... y a des fois il s'en boit ... avec ses amis. \n[08:25] Ok, vas-y vas-y. \n[08:35] Il y avait une femme qui ne gagnait pas d'enfant, donc elle est partie chez le sorcier. Elle a dit elle ne gagne pas d'enfant qu'elle veut des enfants. En ce moment le sorcier lui a dit tu prends cette calebasse tu vas...\n[08:45] Elle s'est allée donner une marmite et puis tu attends pendant une semaine. Donc, elle dit elle a compris elle est partie, elle a pris les sept cailloux, elle a attendu pendant une semaine. Donc, maintenant quand elle est partie ouvrir la marmite, sept enfants sont sortis. Maintenant, ils sont maintenant elle elle a commencé à les embrasser. Maintenant, ils sont partis au champ. Maintenant, eux, elle est revenue, elle dit elle s'en va préparer. Maintenant, il y avait une sorcière elle était ja-\n[09:15] jalouse de la femme. Donc maintenant, elle a tué ses sept enfants. Maintenant quand la quand la sorcière est venue, la femme savait que c'était la sorcière qui avait tué ses enfants. Donc maintenant la la femme voulait tuer la sorcière aussi. Donc maintenant elle dit la femme dit elle va fêter la mort de ses sept enfants. Donc maintenant elle a elle a fait une tour et puis elle a fait un gros tour.\n[09:45] Elle a mis une nappe dessus. Maintenant quand la sorcière est arrivée, elle a dit à la sorcière de s'asseoir. Quand la sorcière s'assit, la sorcière est tombée dans le trou et celle-là a versé l'eau chaude sur la sorcière. La sorcière elle est morte. J'ai fini. T'appelles comment ? Je m'appelle [nom]. Quel âge ? 10 ans. 10 ans ? Quel est ton ethnie ? Apolonien. Apolonien. Tu parles ta langue ? Non. Non ? Tu parles français ? Oui.\n[10:15] D'accord. Et tes parents, ils font quoi ?\n[10:18] Maman, elle elle coud des habits. Mon papa il travaille à Assilove.\n[10:20] Assilove ? À Assilove.\n[10:23] Qu'est-ce que c'est ? C'est un travail où on met des des fiches et puis ils seront déposés sur plateau.\n[10:25] D'accord. Tu as des frères et sœurs ?\n[10:28] Oui.\n[10:30] Qu'est-ce que tu as ?\n[10:33] J'ai deux sœurs.\n[10:35] T'as deux sœurs ?\n[10:38] Oui.\n[10:40] Elle font quoi ?\n[10:43] Ma grande sœur elle elle est à l'école en 4e.\n[10:45] Alors, ton deuxième ?\n[10:46] - Et toi Dibo, tu veux faire quoi plus tard ?\n[10:47] - Je veux être pilote.\n[10:48] - Pilote ? Oui. Qu’est-ce qu’il faut faire pour devenir pilote ?\n[10:48] - Je ne sais pas.\n[10:49] - Tu ne sais pas ? C’est pas grave.\n[10:50] - Et toi, tu veux faire quoi ?\n[10:51] - Plus tard, je veux faire hôtesse de l’air.\n[10:52] - Hôtesse de l’air ! Pourquoi tu veux faire ça ?\n[10:52] - Pour faire des voyages.\n[10:53] - Des voyages ! Ok. Et toi, plus tard ?\n[10:54] - Moi, je veux être photographe.\n[10:55] - Photographe ? Mais qu’est-ce qu’on fait quand on est photographe ?\n[10:56] - On fait des photos. \n[10:56] - Ah, c’est bien ! Et pourquoi tu veux être photographe ?\n[10:57] - Pour faire des photos partout.\n[10:58] - Faire des photos partout… Dans le monde entier ?\n[10:59] - Oui.\n[11:00] - C’est bien ça. Et toi ?\n[11:00] - Moi plus tard, je veux être professeur.\n[11:01] - Professeur ? Oui. Et qu’est-ce qui est bien quand on est professeur ? \n[11:02] - Ben, on apprend à lire, à écrire et à compter aux enfants. \n[11:03] - Ah, c’est bien ça ! C’est un beau projet ! Et toi ?\n[11:03] - Moi, je veux devenir footballeur professionnel. \n[11:04] - Ah bon ? Footballeur professionnel ? Oui. Et ça se ressemble à quoi la vie d’un footballeur ?\n[11:05] - Ben, il gagne de l’argent, il court beaucoup et il marque des buts.\n[11:06] - Ah ! Et toi, tu sais marquer des buts ?\n[11:07] - Oui.\n[11:07] - Bon bébé. Super ! Et toi, qu’est-ce que tu veux faire plus tard ?\n[11:08] - Plus tard, je veux être maîtresse.\n[11:09] - Toi aussi, tu veux être maîtresse ? Oui. Et qu’est-ce que tu vas faire dans ta classe ?\n[11:10] - Je vais s’occuper des bébés.\n[11:11] - Tu vas t’occuper des bébés ? Oui. Ah, c’est une bonne idée. Et toi, qu’est-ce que tu veux faire ?\n[11:11] - Plus tard, je voudrais être ingénieur. \n[11:12] - Ingénieur ! Et qu’est-ce qu’on fait quand on est ingénieur ? \n[11:13] - Ben, on invente des machines !\n[11:14] - Oh ! Il y a plein de beaux projets ici ! Dites donc, vous avez plein d’idées ! Bravo à tous ! Au revoir !\n[11:15] - Au revoir !\n[11:15] C’est mon papa. Mon papa dit on n’a qu’à rester pour une semaine ici, il y a des pépés. On n’a qu'à partir. Il est parti dire ça un petit quelque chose. Et puis un monsieur nous a demandé, il dit « Où est ton papa ? ». Puis mon papa dit c’est un cathé... Catéchiste. Maintenant mon papa est venu, il est parti payer sardines. Quand il est venu, il dit « Papa, on n’a qu’à partir ». Il dit d’attendre un peu. De monsieur est venu encore, le monsieur a dit « Adieu mon papa ». Mon papa...\n[11:45] Non mon papa il a dit il a dit au monsieur là que moi j’vais partir. C’est ça il a dit à mon papa maintenant mon papa dit que de chose, va appeler maman enfin ma maman elle va venir me chercher et puis lui il va rester au Ghana. Maintenant que il est resté là-bas, ma grand-mère est venue nous chercher nous deux. Ma grand-mère est dans la cave de venir que si on reste là-bas chose on n’va pas trop manger que de venir à Abidjan c’est comme ça on est venu.\n[12:15] \"Bah, comme on l’fait, j’étais allé à Anokoua dans mon village. J’tais allé avec mon...\n[12:25] - C’est où ton village ?\n[12:35] - À Anokoua. J’tais allé avec mon père et puis il m’a laissé là-bas et puis il est il est venu à la maison. Donc chaque jour, moi et mon oncle on s’en va tchic à la brousse, on allait chercher on allait tuer des animaux pour venir à la maison. Quand on vient à la maison on les prépare puis on les mange, c’est fini !\"\n[12:45] - C’est tout ? Comment qu’t’as fait pour y aller là-bas ?\n[12:50] - J’étais à la… j’étais v’nu avec le bateau le bateau bus. On est v'nu, on est monté, on a payé un peu le ticket, puis on est entré. C’est comme ça on est v’nu dans mon village. Dans mon bateau, mon village.\n[12:55] - C’est de l’autre bord le voyage ?\n[12:59] - Oui. J’étais amené 194.\n[13:04] - Mais le voyage, c’est dur ? Combien d'temps ?\n[13:09] - Je sais pas.",
+            "language": "fr",
+            "notes": null,
+            "source": "data/projects/999i/audio/145159_III_08_44k.mp3"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": null,
+        "end_year": null,
+        "user_specified": false,
+        "justification": "Aucune période historique précise n'est mentionnée. L'utilisateur évoque 'l'évolution des techniques et des conditions de travail au fil du temps', ce qui suggère une traversée temporelle large mais sans bornes définies.",
+        "implied_scope": "evolution_longue_duree",
+        "suggested_range": {
+          "start_year": 1850,
+          "end_year": 2000,
+          "note": "Suggestion basée sur l'arc classique de l'industrialisation occidentale, à confirmer par l'utilisateur"
+        }
+      },
+      "location": {
+        "primary": null,
+        "specific_areas": [],
+        "user_specified": false,
+        "justification": "Aucun lieu géographique n'est spécifié. L'utilisateur parle d'une 'usine en activité' de manière générique.",
+        "implied_setting": {
+          "type": "usine_industrielle",
+          "caractere": "generique_representative",
+          "espaces_mentionnes": [
+            "entree_usine",
+            "postes_de_travail",
+            "ateliers"
+          ]
+        }
+      },
+      "themes": {
+        "primary": [
+          "travail_industriel",
+          "vie_ouvriere",
+          "evolution_techniques_production",
+          "conditions_de_travail"
+        ],
+        "secondary": [
+          "hierarchie_sociale_usine",
+          "paysage_sonore_industriel",
+          "modernisation_technologique",
+          "temoignage_memoire_ouvriere",
+          "perspectives_avenir_industrie"
+        ],
+        "user_specified": true,
+        "source": "demande_utilisateur",
+        "justification": "Thèmes explicitement détaillés dans la demande : sons industriels, témoignages de différents corps de métier (ouvriers, contremaîtres, ingénieurs), évolution des techniques, conditions de travail, atmosphère authentique du travail industriel."
+      },
+      "key_events": [],
+      "key_figures": []
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "structure_detaillee": {
+      "parties": [
+        {
+          "id": 1,
+          "titre": "Arrivée à l'usine",
+          "duree_estimee_secondes": 20,
+          "contenu": "Présentation du public cible et du ton (contrainte non négociable). Ambiance sonore d'approche : sirène, portail, pas sur le gravier, rumeur croissante des machines.",
+          "axe_dominant": "objet_lieu"
+        },
+        {
+          "id": 2,
+          "titre": "Description des postes",
+          "duree_estimee_secondes": 25,
+          "contenu": "Panorama des postes de travail, sons caractéristiques des machines et outils, gestes techniques.",
+          "axe_dominant": "objet_lieu"
+        },
+        {
+          "id": 3,
+          "titre": "Témoignages humains",
+          "duree_estimee_secondes": 25,
+          "contenu": "Voix d'ouvriers, contremaîtres, ingénieurs sur leur quotidien et l'évolution des conditions de travail.",
+          "axe_dominant": "travailleur"
+        },
+        {
+          "id": 4,
+          "titre": "Perspectives d'avenir",
+          "duree_estimee_secondes": 20,
+          "contenu": "Évolution des techniques, modernisation, regard vers l'avenir de l'industrie. Conclusion.",
+          "axe_dominant": "evolution_temporelle"
+        }
+      ],
+      "duree_totale_estimee_secondes": 90,
+      "user_specified": true,
+      "source": "demande_utilisateur",
+      "justification": "Structure en 4 parties explicitement demandée par l'utilisateur, répartie pour tenir dans les 90 secondes imposées."
+    },
+    "design_sonore": {
+      "ambiances_requises": [
+        "machines_industrielles_en_fonctionnement",
+        "outils_manuels_et_mecaniques",
+        "ambiance_atelier_voix_fond",
+        "sirene_usine",
+        "pas_et_deplacements",
+        "bruits_metalliques"
+      ],
+      "voix": {
+        "narrateur": "voix_off_omnisciente",
+        "temoins": [
+          "ouvrier",
+          "contremaitre",
+          "ingenieur"
+        ],
+        "style_temoignages": "citations_courtes_integrees"
+      },
+      "user_specified": true,
+      "source": "demande_utilisateur",
+      "justification": "L'utilisateur détaille explicitement les types de sons (machines, outils, ambiances) et les types de témoins (ouvriers, contremaîtres, ingénieurs)."
+    },
+    "contraintes_non_negociables": {
+      "ouverture_obligatoire": "Présenter explicitement le public cible (grand_public) et le ton (neutre_informatif) dès l'ouverture de la narration",
+      "ton_invariable": "neutre_informatif — ne jamais changer de ton au cours du récit",
+      "duree_stricte": {
+        "cible_secondes": 90,
+        "tolerance_pourcent": 15,
+        "min_secondes": 76,
+        "max_secondes": 103
+      },
+      "vocabulaire": "Adapté au grand public",
+      "regle": "Tout écart à ces exigences doit être considéré comme une erreur"
+    }
+  },
+  "include_citations": true,
+  "source_usage_level": "central"
+}

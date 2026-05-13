@@ -1,0 +1,97 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les enfants de Treichville racontent",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte une histoire transmise par son grand frère, mêlant aventure en brousse, serpent et guérisseur. À travers ce conte et les questions qui suivent, se dessine le portrait d'une famille ordinaire : un père retraité de la SAPCO, une mère qui vend au restaurant, un frère réparateur de ventilateurs à Treichville. Le récit revient à son point de départ — la parole enfantine, fragile et vivante, qui porte en elle tout un monde social.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Une voix d'enfant s'élève",
+      "duree_cible": 20,
+      "fonction_narrative": "ouverture_circulaire",
+      "position_arc_emotionnel": "curiosité",
+      "elements_necessaires": [
+        "introduction de la parole enfantine",
+        "contexte oral ivoirien",
+        "amorce du conte de Kwaku et Kofie"
+      ],
+      "mood": "intime_et_vivant"
+    },
+    {
+      "partie": 2,
+      "titre": "Le conte de brousse",
+      "duree_cible": 25,
+      "fonction_narrative": "immersion_narrative",
+      "position_arc_emotionnel": "tension",
+      "elements_necessaires": [
+        "citation directe du conte",
+        "serpent sur l'arbre",
+        "recours au féticheur puis au marabout",
+        "résolution de la guérison"
+      ],
+      "mood": "narratif_tendu"
+    },
+    {
+      "partie": 3,
+      "titre": "Portrait d'une famille",
+      "duree_cible": 30,
+      "fonction_narrative": "chronique_sociale",
+      "position_arc_emotionnel": "chaleur",
+      "elements_necessaires": [
+        "citations directes sur la famille",
+        "grand frère réparateur à Treichville",
+        "mère vendeuse",
+        "père retraité de la SAPCO",
+        "enfant de 10 ans habitant Nongo"
+      ],
+      "mood": "documentaire_tendre"
+    },
+    {
+      "partie": 4,
+      "titre": "Retour à la parole",
+      "duree_cible": 15,
+      "fonction_narrative": "fermeture_circulaire",
+      "position_arc_emotionnel": "apaisement",
+      "elements_necessaires": [
+        "retour au geste de raconter",
+        "transmission orale comme lien social",
+        "écho à l'ouverture"
+      ],
+      "mood": "réflexif_minimaliste"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_intimiste",
+  "rythme_general": "dynamique",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_naturel",
+      "duree": 2.0,
+      "description": "La voix off cède la place à la citation directe du conte, sans annonce — on entre dans l'histoire comme l'enfant y entre lui-même."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "pivot_thematique",
+      "duree": 2.0,
+      "description": "Du conte on passe à celui qui le raconte : la question 'Qui t'a raconté cette histoire ?' sert de bascule vers le portrait familial."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_circulaire",
+      "duree": 2.0,
+      "description": "Du portrait social, la narration remonte vers l'acte même de raconter, bouclant sur l'ouverture."
+    }
+  ],
+  "notes_production": "Fluidité absolue entre sections — pas de marqueurs de chapitres audibles. Le ton reste neutre et informatif tout au long, avec un registre accessible (grand public). Les citations directes de l'enfant doivent être intégrées dans le flux narratif, introduites par la voix off sans rupture. L'ambiance sonore reste minimaliste : silences et respiration naturelle du récit. La structure circulaire doit se sentir sans être explicitée. Le débit visé est d'environ 2 mots par seconde, soit 180 mots maximum. Privilégier des phrases courtes et concrètes."
+}

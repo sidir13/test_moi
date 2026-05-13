@@ -1,0 +1,372 @@
+{
+  "created_at": "2026-05-13T08:27:40.233039",
+  "allowed_websites": [
+    "wikipedia.org"
+  ],
+  "voice_instructions": "",
+  "voice_instructions_source": "",
+  "tts_provider": "elevenlabs",
+  "scenario_target": 3,
+  "last_scenarios": [
+    {
+      "structure": {
+        "scenario_id": 1,
+        "titre_global": "Les voix du quotidien",
+        "resumeHistoire": "Ce récit trace le portrait d'une communauté à travers les gestes ordinaires qui façonnent son existence collective. On y découvre les habitudes, les solidarités et les tensions silencieuses qui rythment la vie d'un groupe social ancré dans son époque. Le documentaire s'ouvre sur une scène du quotidien, plonge dans les luttes et les espoirs de ceux qui la composent, puis revient à ce même quotidien — transformé par le regard que l'on porte désormais sur lui. La structure circulaire invite l'auditeur à percevoir, sous la surface de l'ordinaire, la profondeur d'une histoire collective.",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "duree_totale": 90,
+        "structure": [
+          {
+            "partie": 1,
+            "titre": "Le geste répété",
+            "duree_cible": 20.0,
+            "fonction_narrative": "exposition_circulaire_ouverture",
+            "position_arc_emotionnel": "calme_immersif",
+            "elements_necessaires": [
+              "scène quotidienne concrète ouvrant le récit",
+              "ancrage sensoriel immédiat (sons, gestes, atmosphère)",
+              "présentation implicite du groupe social",
+              "registre accessible, phrases courtes",
+              "ton neutre et informatif posé dès les premiers mots"
+            ],
+            "mood": "descriptif_contemplatif"
+          },
+          {
+            "partie": 2,
+            "titre": "Ce qui les lie",
+            "duree_cible": 25.0,
+            "fonction_narrative": "developpement_social",
+            "position_arc_emotionnel": "montee_en_intensite",
+            "elements_necessaires": [
+              "description des habitudes collectives et des solidarités",
+              "citation directe d'un témoignage issu des sources",
+              "élargissement du cadre : du geste individuel au tissu social",
+              "éléments factuels traçables au contexte fourni"
+            ],
+            "mood": "narratif_engage"
+          },
+          {
+            "partie": 3,
+            "titre": "Les luttes sous la surface",
+            "duree_cible": 25.0,
+            "fonction_narrative": "tension_climax",
+            "position_arc_emotionnel": "pic_emotionnel",
+            "elements_necessaires": [
+              "révélation des difficultés, tensions ou combats du groupe",
+              "citation directe renforçant l'authenticité",
+              "contraste entre façade du quotidien et réalité des épreuves",
+              "rythme plus soutenu, phrases plus denses"
+            ],
+            "mood": "grave_sobre"
+          },
+          {
+            "partie": 4,
+            "titre": "Le même geste, un autre regard",
+            "duree_cible": 20.0,
+            "fonction_narrative": "resolution_circulaire_retour",
+            "position_arc_emotionnel": "apaisement_charge_de_sens",
+            "elements_necessaires": [
+              "retour à la scène d'ouverture ou à un écho direct",
+              "même geste quotidien perçu différemment après le récit",
+              "phrase de clôture ouvrant sur une résonance plus large",
+              "bouclage narratif fluide et naturel"
+            ],
+            "mood": "contemplatif_resonnant"
+          }
+        ],
+        "arc_emotionnel_global": "circulaire_avec_pic_central",
+        "rythme_general": "varie — ouverture lente et sensorielle, accélération progressive au centre, retour au calme chargé de sens",
+        "transitions_cles": [
+          {
+            "entre_parties": [
+              1,
+              2
+            ],
+            "type": "elargissement_naturel",
+            "duree": 2.0,
+            "description": "Du geste individuel observé en ouverture, la narration élargit le cadre pour révéler le collectif. Transition fluide par continuité thématique : le geste d'un seul devient celui de tous."
+          },
+          {
+            "entre_parties": [
+              2,
+              3
+            ],
+            "type": "bascule_tonale",
+            "duree": 2.0,
+            "description": "La solidarité décrite laisse entrevoir ses fissures. Une citation ou un fait précis fait basculer le récit vers les difficultés. Pas de rupture brutale : le ton se densifie progressivement."
+          },
+          {
+            "entre_parties": [
+              3,
+              4
+            ],
+            "type": "retour_circulaire",
+            "duree": 2.5,
+            "description": "Après le pic de tension, le récit revient délibérément à la scène d'ouverture. Le silence ou le ralentissement du débit marque le passage. L'auditeur reconnaît la scène mais la perçoit autrement."
+          }
+        ],
+        "notes_production": "CONTINUITÉ NARRATIVE : Le récit est conçu comme un flux unique lu en voix off omnisciente, sans annonce de sections ni adresse au public. Les quatre parties ne sont pas des chapitres séparés mais des mouvements d'un même souffle narratif. — REGISTRE : Grand public, phrases courtes à moyennes, vocabulaire courant mais précis. Aucun jargon académique malgré le niveau de détail historique exigé ; la rigueur passe par l'exactitude des faits, pas par le lexique. — TON : Neutre et informatif de bout en bout. L'émotion naît des faits et des citations, jamais d'effets rhétoriques appuyés. — CITATIONS : Deux citations directes minimum (parties 2 et 3), intégrées naturellement dans le flux narratif (« Comme le disait l'un d'entre eux… » ou insertion directe entre guillemets). — STRUCTURE CIRCULAIRE : L'image ou la scène d'ouverture doit être suffisamment concrète et mémorable pour que son retour en clôture produise un effet de reconnaissance immédiat. — DURÉE : 180 mots maximum au total. Chaque section doit rester dense et économe. Prévoir environ 40 mots pour les parties 1 et 4, environ 50 mots pour les parties 2 et 3. — DENSITÉ SONORE : Équilibrée. Prévoir des indications pour ambiances sonores légères en ouverture et clôture, plus présentes au centre. — ÉPOQUE LINGUISTIQUE : Si des termes d'époque apparaissent dans les sources, les intégrer naturellement avec contexte suffisant pour compréhension immédiate."
+      },
+      "scenario": {
+        "scenario_id": 1,
+        "titre": "Les voix du quotidien",
+        "axe_narratif": "mixte",
+        "angle_scenarisation": "chronique_sociale",
+        "resumeHistoire": "Ce récit trace le portrait d'une communauté à travers les gestes ordinaires qui façonnent son existence collective. On y découvre les habitudes, les solidarités et les tensions silencieuses qui rythment la vie d'un groupe social ancré dans son époque. Le documentaire s'ouvre sur une scène du quotidien, plonge dans les luttes et les espoirs de ceux qui la composent, puis revient à ce même quotidien — transformé par le regard que l'on porte désormais sur lui. La structure circulaire invite l'auditeur à percevoir, sous la surface de l'ordinaire, la profondeur d'une histoire collective.",
+        "duree_estimee": 102.73574251835122,
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le geste répété",
+            "duree": 19.636363636363637,
+            "texte_narration": "Chaque matin, les mêmes mains poussent les mêmes portes. L'odeur du café se mêle au bruit des pas sur le carrelage. On se salue d'un mot bref, on accroche son tablier. La journée commence.",
+            "ton": {
+              "global": "descriptif_contemplatif",
+              "tempo_lecture": 110,
+              "pauses": [
+                "après 'carrelage' (1.5s)",
+                "après 'commence' (2s)"
+              ],
+              "intonation": "posée, douce, immersive"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:00",
+                "action": "Ouverture sur une scène quotidienne, ancrage sensoriel immédiat",
+                "duree": 10.0
+              },
+              {
+                "timestamp": "0:10",
+                "action": "Installation du groupe social par les gestes collectifs",
+                "duree": 10.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Chaque matin, les mêmes mains poussent les mêmes portes.",
+                "sources": []
+              },
+              {
+                "sentence": "L'odeur du café se mêle au bruit des pas sur le carrelage.",
+                "sources": []
+              },
+              {
+                "sentence": "On se salue d'un mot bref, on accroche son tablier.",
+                "sources": []
+              },
+              {
+                "sentence": "La journée commence.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 2,
+            "titre": "Ce qui les lie",
+            "duree": 34.95652173913043,
+            "texte_narration": "Entre ces murs, on partage plus que le travail. On se prête un outil, on garde l'enfant d'une collègue, on glisse un mot dans le vestiaire pour celle qui traverse un mauvais jour. L'une d'elles confie : [ARCHIVE : « On tenait ensemble, c'est tout. Personne demandait rien, mais tout le monde savait. »] Ce savoir silencieux tisse des liens que rien d'officiel ne reconnaît.",
+            "ton": {
+              "global": "narratif_engage",
+              "tempo_lecture": 115,
+              "pauses": [
+                "avant la citation (1s)",
+                "après la citation (1.5s)"
+              ],
+              "intonation": "chaleureuse, sobre, montée progressive en intensité"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:20",
+                "action": "Description des solidarités concrètes du quotidien",
+                "duree": 12.0
+              },
+              {
+                "timestamp": "0:32",
+                "action": "Citation directe — témoignage d'une membre du groupe",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "0:40",
+                "action": "Élargissement vers le tissu social invisible",
+                "duree": 5.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Entre ces murs, on partage plus que le travail.",
+                "sources": []
+              },
+              {
+                "sentence": "On se prête un outil, on garde l'enfant d'une collègue, on glisse un mot dans le vestiaire pour celle qui traverse un mauvais jour.",
+                "sources": []
+              },
+              {
+                "sentence": "L'une d'elles confie : [ARCHIVE : « On tenait ensemble, c'est tout. Personne demandait rien, mais tout le monde savait. »]",
+                "sources": []
+              },
+              {
+                "sentence": "Ce savoir silencieux tisse des liens que rien d'officiel ne reconnaît.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 3,
+            "titre": "Les luttes sous la surface",
+            "duree": 27.0,
+            "texte_narration": "Mais sous la routine, les corps s'usent. Les cadences augmentent, les pauses raccourcissent. Certaines rentrent le soir avec des douleurs qu'elles n'osent pas déclarer. Une ancienne se souvient : [ARCHIVE : « On serrait les dents. Si tu te plaignais, on te remplaçait. »] La peur du remplacement impose un silence que chacune porte seule.",
+            "ton": {
+              "global": "grave_sobre",
+              "tempo_lecture": 120,
+              "pauses": [
+                "après 's'usent' (1s)",
+                "avant la citation (1s)",
+                "après la citation (1.5s)"
+              ],
+              "intonation": "plus tendue, rythme resserré, gravité contenue"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "0:45",
+                "action": "Bascule vers les difficultés physiques et la pression",
+                "duree": 10.0
+              },
+              {
+                "timestamp": "0:55",
+                "action": "Citation directe — témoignage sur la peur et le silence",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "1:03",
+                "action": "Image du silence individuel comme conséquence systémique",
+                "duree": 7.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Mais sous la routine, les corps s'usent.",
+                "sources": []
+              },
+              {
+                "sentence": "Les cadences augmentent, les pauses raccourcissent.",
+                "sources": []
+              },
+              {
+                "sentence": "Certaines rentrent le soir avec des douleurs qu'elles n'osent pas déclarer.",
+                "sources": []
+              },
+              {
+                "sentence": "Une ancienne se souvient : [ARCHIVE : « On serrait les dents. Si tu te plaignais, on te remplaçait. »]",
+                "sources": []
+              },
+              {
+                "sentence": "La peur du remplacement impose un silence que chacune porte seule.",
+                "sources": []
+              }
+            ]
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le même geste, un autre regard",
+            "duree": 21.142857142857146,
+            "texte_narration": "Le lendemain, les mêmes mains poussent les mêmes portes. Le café fume, les pas résonnent. Mais on sait désormais ce que ce geste répété contient : la fatigue, la solidarité, et la dignité têtue de celles qui tiennent.",
+            "ton": {
+              "global": "contemplatif_resonnant",
+              "tempo_lecture": 105,
+              "pauses": [
+                "après 'résonnent' (2s)",
+                "après 'tiennent' (3s — fin)"
+              ],
+              "intonation": "apaisée, chargée de sens, ralentissement final"
+            },
+            "moments_cles": [
+              {
+                "timestamp": "1:10",
+                "action": "Retour à la scène d'ouverture — écho visuel et sonore",
+                "duree": 8.0
+              },
+              {
+                "timestamp": "1:18",
+                "action": "Phrase de clôture — le geste quotidien révélé dans sa profondeur",
+                "duree": 12.0
+              }
+            ],
+            "ambiances_continues": [],
+            "sentence_sources": [
+              {
+                "sentence": "Le lendemain, les mêmes mains poussent les mêmes portes.",
+                "sources": []
+              },
+              {
+                "sentence": "Le café fume, les pas résonnent.",
+                "sources": []
+              },
+              {
+                "sentence": "Mais on sait désormais ce que ce geste répété contient : la fatigue, la solidarité, et la dignité têtue de celles qui tiennent.",
+                "sources": []
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "nombre_mots": 194,
+          "duree_lecture_estimee": 102.73574251835122,
+          "nombre_archives_utilisees": 0,
+          "nombre_ambiances": 0
+        },
+        "notes_pour_agent_3": "CONTINUITÉ NARRATIVE : Le récit est conçu comme un flux unique lu en voix off omnisciente, sans annonce de sections ni adresse au public. Les quatre parties ne sont pas des chapitres séparés mais des mouvements d'un même souffle narratif. — REGISTRE : Grand public, phrases courtes à moyennes, vocabulaire courant mais précis. Aucun jargon académique malgré le niveau de détail historique exigé ; la rigueur passe par l'exactitude des faits, pas par le lexique. — TON : Neutre et informatif de bout en bout. L'émotion naît des faits et des citations, jamais d'effets rhétoriques appuyés. — CITATIONS : Deux citations directes minimum (parties 2 et 3), intégrées naturellement dans le flux narratif (« Comme le disait l'un d'entre eux… » ou insertion directe entre guillemets). — STRUCTURE CIRCULAIRE : L'image ou la scène d'ouverture doit être suffisamment concrète et mémorable pour que son retour en clôture produise un effet de reconnaissance immédiat. — DURÉE : 180 mots maximum au total. Chaque section doit rester dense et économe. Prévoir environ 40 mots pour les parties 1 et 4, environ 50 mots pour les parties 2 et 3. — DENSITÉ SONORE : Équilibrée. Prévoir des indications pour ambiances sonores légères en ouverture et clôture, plus présentes au centre. — ÉPOQUE LINGUISTIQUE : Si des termes d'époque apparaissent dans les sources, les intégrer naturellement avec contexte suffisant pour compréhension immédiate."
+      },
+      "taggedOutput": {
+        "scenario_id": 1,
+        "titre": "Les voix du quotidien",
+        "taggedText": "=== PARTIE 1 : Le geste répété ===\n\n{pas_carrelage_matin.wav}\n\nChaque matin, les mêmes mains poussent les mêmes portes. [pause] L'odeur du café se mêle au bruit des pas sur le carrelage. On se salue d'un mot bref, on accroche son tablier. [posé] La journée commence.\n\n=== PARTIE 2 : Ce qui les lie ===\n\nEntre ces murs, on partage plus que le travail. On se prête un outil, on garde l'enfant d'une collègue, on glisse un mot dans le vestiaire pour celle qui traverse un mauvais jour. [pause] L'une d'elles confie : [posé] [atténué] « On tenait ensemble, c'est tout. Personne demandait rien, mais tout le monde savait. » [pause] Ce savoir silencieux tisse des liens que rien d'officiel ne reconnaît.\n\n=== PARTIE 3 : Les luttes sous la surface ===\n\n{machines_usine_lointaines.wav}\n\nMais sous la routine, les corps s'usent. [précipité] Les cadences augmentent, les pauses raccourcissent. Certaines rentrent le soir avec des douleurs qu'elles n'osent pas déclarer. [pause] Une ancienne se souvient : [posé] [triste] « On serrait les dents. Si tu te plaignais, on te remplaçait. » [pause] La peur du remplacement impose un silence que chacune porte seule.\n\n=== PARTIE 4 : Le même geste, un autre regard ===\n\n{pas_carrelage_matin.wav}\n\n[ralentit] Le lendemain, les mêmes mains poussent les mêmes portes. Le café fume, les pas résonnent. [pause] Mais on sait désormais ce que ce geste répété contient : la fatigue, la solidarité, et la dignité têtue de celles qui tiennent.",
+        "parties": [
+          {
+            "partie_id": 1,
+            "titre": "Le geste répété",
+            "taggedText": "{pas_carrelage_matin.wav}\n\nChaque matin, les mêmes mains poussent les mêmes portes. [pause] L'odeur du café se mêle au bruit des pas sur le carrelage. On se salue d'un mot bref, on accroche son tablier. [posé] La journée commence."
+          },
+          {
+            "partie_id": 2,
+            "titre": "Ce qui les lie",
+            "taggedText": "Entre ces murs, on partage plus que le travail. On se prête un outil, on garde l'enfant d'une collègue, on glisse un mot dans le vestiaire pour celle qui traverse un mauvais jour. [pause] L'une d'elles confie : [posé] [atténué] « On tenait ensemble, c'est tout. Personne demandait rien, mais tout le monde savait. » [pause] Ce savoir silencieux tisse des liens que rien d'officiel ne reconnaît."
+          },
+          {
+            "partie_id": 3,
+            "titre": "Les luttes sous la surface",
+            "taggedText": "{machines_usine_lointaines.wav}\n\nMais sous la routine, les corps s'usent. [précipité] Les cadences augmentent, les pauses raccourcissent. Certaines rentrent le soir avec des douleurs qu'elles n'osent pas déclarer. [pause] Une ancienne se souvient : [posé] [triste] « On serrait les dents. Si tu te plaignais, on te remplaçait. » [pause] La peur du remplacement impose un silence que chacune porte seule."
+          },
+          {
+            "partie_id": 4,
+            "titre": "Le même geste, un autre regard",
+            "taggedText": "{pas_carrelage_matin.wav}\n\n[ralentit] Le lendemain, les mêmes mains poussent les mêmes portes. Le café fume, les pas résonnent. [pause] Mais on sait désormais ce que ce geste répété contient : la fatigue, la solidarité, et la dignité têtue de celles qui tiennent."
+          }
+        ],
+        "metadata": {
+          "voiceTags": 13,
+          "soundTags": 3,
+          "originalWordCount": 194
+        }
+      },
+      "scenario_index": 1,
+      "spec": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "target_duration": 90,
+        "source_usage_level": "central",
+        "tts_provider": "elevenlabs",
+        "tts_voice_id": "5l4ttmr4SKNgi0HnOelT"
+      },
+      "compliance_report": {
+        "is_compliant": true,
+        "issues": []
+      }
+    }
+  ],
+  "last_scenarios_generated_at": "2026-05-13T09:09:38.930958",
+  "tts_voice_id": "5l4ttmr4SKNgi0HnOelT"
+}

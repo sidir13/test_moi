@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Les enfants de Treichville racontent",
+  "taggedText": "=== PARTIE 1 : Une voix d'enfant s'élève ===\n\n[posé] Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole. [pause] Il raconte une histoire que son grand frère lui a transmise. Celle de deux enfants, Kwaku et Kofie, partis en brousse.\n\n=== PARTIE 2 : Le conte de brousse ===\n\n[pause] L'enfant raconte : [posé] [atténué] « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons montent sur un arbre. Un serpent les attend. L'un d'eux est mordu. Le féticheur échoue. L'enfant précise : [posé] [atténué] « Il est parti chez un marabout. Le marabout là l'a guéri. » [pause]\n\n=== PARTIE 3 : Portrait d'une famille ===\n\nLe conte s'achève. [pause] On interroge l'enfant sur les siens. Il confie : [posé] [atténué] « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. » [pause] Sa mère tient un petit commerce. Il ajoute : [posé] [atténué] « Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Son père, lui, ne travaille plus. Retraité de la SAPCO, l'usine où l'on fabrique le chocolat. L'enfant habite Nongo. Il a dix ans.\n\n=== PARTIE 4 : Retour à la parole ===\n\n[pause] [ralentit] Dix ans, et déjà porteur d'histoires reçues, répétées, offertes. Dans sa voix, un conte de brousse et le monde entier d'une famille. [pause] La parole circule. [posé] Elle ne s'arrête pas.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Une voix d'enfant s'élève",
+      "taggedText": "[posé] Quelque part en Côte d'Ivoire, un garçon de dix ans prend la parole. [pause] Il raconte une histoire que son grand frère lui a transmise. Celle de deux enfants, Kwaku et Kofie, partis en brousse."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le conte de brousse",
+      "taggedText": "[pause] L'enfant raconte : [posé] [atténué] « L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Les deux garçons montent sur un arbre. Un serpent les attend. L'un d'eux est mordu. Le féticheur échoue. L'enfant précise : [posé] [atténué] « Il est parti chez un marabout. Le marabout là l'a guéri. » [pause]"
+    },
+    {
+      "partie_id": 3,
+      "titre": "Portrait d'une famille",
+      "taggedText": "Le conte s'achève. [pause] On interroge l'enfant sur les siens. Il confie : [posé] [atténué] « Mon grand-frère, il travaille. Il travaille à Treichville. Il répare des ventilateurs. » [pause] Sa mère tient un petit commerce. Il ajoute : [posé] [atténué] « Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Son père, lui, ne travaille plus. Retraité de la SAPCO, l'usine où l'on fabrique le chocolat. L'enfant habite Nongo. Il a dix ans."
+    },
+    {
+      "partie_id": 4,
+      "titre": "Retour à la parole",
+      "taggedText": "[pause] [ralentit] Dix ans, et déjà porteur d'histoires reçues, répétées, offertes. Dans sa voix, un conte de brousse et le monde entier d'une famille. [pause] La parole circule. [posé] Elle ne s'arrête pas."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 20,
+    "soundTags": 0,
+    "originalWordCount": 206
+  }
+}

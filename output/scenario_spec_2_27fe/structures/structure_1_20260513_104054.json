@@ -1,0 +1,103 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Les mains qui fabriquent le chocolat",
+  "resumeHistoire": "Un enfant d'une dizaine d'années, habitant Angré à Abidjan, raconte le monde du travail tel qu'il le voit à travers sa famille. Son père, aujourd'hui retraité, travaillait autrefois à la SAPCO, l'usine où l'on fabrique le chocolat. Son grand frère répare des ventilateurs à Treichville, sa mère tient un petit restaurant de rue. À travers cette voix d'enfant, c'est toute une chronique sociale qui se dessine : celle des familles ivoiriennes dont le quotidien est tissé par l'évolution industrielle, entre les usines d'hier et les petits métiers d'aujourd'hui. Le récit boucle sur lui-même, revenant à l'enfant qui observe ce monde en mouvement sans encore en mesurer toute la portée.",
+  "axe_narratif": "evolution_temporelle",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "L'enfant et l'usine à chocolat",
+      "duree_cible": 22.0,
+      "fonction_narrative": "exposition_ancrage",
+      "position_arc_emotionnel": "curiosité_douce",
+      "elements_necessaires": [
+        "Voix off posant le décor : un enfant de dix ans à Angré, Abidjan",
+        "Ambiance sonore immersive : rumeur urbaine lointaine, voix d'enfants",
+        "Introduction du père retraité de la SAPCO — usine de chocolat",
+        "Citation directe de l'enfant : « C'est où on fabrique les chocolats »",
+        "Registre simple, phrases courtes, ton neutre et informatif"
+      ],
+      "mood": "intime_quotidien"
+    },
+    {
+      "partie": 2,
+      "titre": "Le temps des usines",
+      "duree_cible": 20.0,
+      "fonction_narrative": "contextualisation_historique",
+      "position_arc_emotionnel": "gravité_calme",
+      "elements_necessaires": [
+        "Évocation du passé industriel ivoirien à travers la figure du père ouvrier",
+        "Ambiance sonore : machines lointaines, bruits métalliques d'usine",
+        "Lien entre travail à la SAPCO et transformation du cacao — paysage industriel",
+        "Narration à la 3e personne, chronique sociale du monde ouvrier",
+        "Transition douce vers le présent — le père ne travaille plus"
+      ],
+      "mood": "nostalgique_sobre"
+    },
+    {
+      "partie": 3,
+      "titre": "Les métiers d'aujourd'hui",
+      "duree_cible": 25.0,
+      "fonction_narrative": "developpement_comparaison",
+      "position_arc_emotionnel": "vitalité_quotidienne",
+      "elements_necessaires": [
+        "Le grand frère qui répare les ventilateurs à Treichville — citation : « Il répare les ventilateurs »",
+        "La mère qui vend au restaurant — citation : « Maman, elle vend… banane… Elle vend d'un restaurant »",
+        "Ambiance sonore : marché, rue animée, ventilateur qui tourne",
+        "Contraste passé/présent : de l'usine aux petits métiers urbains",
+        "Chronique sociale : une famille, plusieurs formes de travail, adaptation"
+      ],
+      "mood": "vivant_documentaire"
+    },
+    {
+      "partie": 4,
+      "titre": "Le regard de l'enfant",
+      "duree_cible": 23.0,
+      "fonction_narrative": "resolution_circulaire",
+      "position_arc_emotionnel": "douceur_reflexive",
+      "elements_necessaires": [
+        "Retour à l'enfant — boucle narrative vers le point de départ",
+        "Citation : « Moi j'ai dix ans » — ancrage dans le présent",
+        "Évocation des histoires transmises par le grand frère — mémoire familiale",
+        "Ambiance sonore : retour au calme, voix d'enfant en écho",
+        "Ouverture subtile : l'enfant hérite d'un monde en transformation",
+        "Clôture sans moralisation, ton neutre maintenu"
+      ],
+      "mood": "contemplatif_ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "circulaire_intimiste",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.5,
+      "description": "De la voix de l'enfant évoquant la SAPCO, on glisse vers l'évocation du passé industriel. Un son de machine s'installe progressivement sous la narration, créant un pont naturel entre le présent de l'enfant et le passé du père."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_doux",
+      "duree": 2.0,
+      "description": "Les bruits d'usine s'estompent, remplacés par une ambiance de rue vivante. La narration passe du père retraité aux métiers actuels de la famille — le mouvement est fluide, porté par le fil familial."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "retour_circulaire",
+      "duree": 2.5,
+      "description": "L'agitation urbaine se calme progressivement. On revient à la voix de l'enfant, comme au début. La boucle se ferme : c'est toujours lui qui observe, depuis son regard de dix ans, un monde façonné par le travail."
+    }
+  ],
+  "notes_production": "CONTINUITÉ NARRATIVE : Le fil conducteur est la voix de l'enfant comme guide implicite — il ne narre pas lui-même, mais ses paroles (citations directes tirées de l'archive) ponctuent et ancrent le récit porté par la voix off à la 3e personne. La voix off adopte un registre simple et accessible (grand public), des phrases courtes, un ton neutre et informatif sans affect excessif. Les citations de l'enfant issues de l'archive (SAPCO, ventilateurs, restaurant, âge) sont intégrées comme des moments d'authenticité au cœur de la narration — elles ne doivent jamais sembler plaquées mais émerger naturellement du récit. L'ambiance sonore est immersive et évolutive : elle accompagne les transitions temporelles (usine hier / rue aujourd'hui) sans jamais couvrir la narration. La structure circulaire impose de retrouver en fin de récit le même climat sonore et émotionnel qu'à l'ouverture. IMPORTANT : aucun fait historique n'est inventé — seuls les éléments présents dans l'archive (SAPCO, Treichville, Angré, métiers familiaux) sont utilisés. Le mot total visé est d'environ 180 mots de narration (hors indications sonores), soit ~90 secondes à débit modéré. L'équilibre narration/archives est de 50/50 : environ la moitié du texte final devrait être constituée de citations directes de l'enfant."
+}

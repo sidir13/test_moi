@@ -1,0 +1,119 @@
+{
+  "scenario_id": 1,
+  "titre_global": "L'enfant et la machine",
+  "resumeHistoire": "Dans la France industrielle du XIXe siècle, un enfant de dix ans franchit chaque matin les portes d'une filature textile. Avant les lois de protection, son quotidien se résume au vacarme des métiers à tisser, à la poussière de coton et aux journées de douze heures. À travers la voix d'un ouvrier qui se souvient de cette époque, le récit dépeint l'avant — l'enfance volée par l'usine — puis l'après, quand les premières lois sociales commencent à transformer le sort des plus jeunes. Le diptyque oppose le silence résigné des ateliers à l'espoir fragile d'un monde où l'enfant retrouve sa place hors de la machine.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "avant_apres_evenement",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le bruit d'avant",
+      "duree_cible": 10,
+      "fonction_narrative": "accroche_immersive",
+      "position_arc_emotionnel": "tension_sourde",
+      "elements_necessaires": [
+        "ambiance sonore industrielle évoquée",
+        "flashback : plongée dans le quotidien d'un enfant ouvrier",
+        "registre accessible grand public, ton neutre informatif"
+      ],
+      "mood": "sombre, sensoriel"
+    },
+    {
+      "partie": 2,
+      "titre": "Avant la loi — l'enfance à l'usine",
+      "duree_cible": 35,
+      "fonction_narrative": "exposition_diptyque_avant",
+      "position_arc_emotionnel": "gravité_croissante",
+      "elements_necessaires": [
+        "description des conditions de travail enfantin dans les filatures textiles",
+        "citation directe adaptée du témoignage : voix de l'enfant évoquant le travail familial",
+        "référence au contexte 1850-1880",
+        "paysage sonore : métiers mécaniques, chaleur, poussière",
+        "perspective omnisciente, ton factuel"
+      ],
+      "mood": "documentaire grave, retenu"
+    },
+    {
+      "partie": 3,
+      "titre": "Le tournant — les premières protections",
+      "duree_cible": 20,
+      "fonction_narrative": "pivot_narratif",
+      "position_arc_emotionnel": "basculement",
+      "elements_necessaires": [
+        "évocation des lois de protection (loi de 1841, loi de 1874)",
+        "contraste entre avant et après",
+        "transition temporelle fluide",
+        "citation ou écho de témoignage ouvrier"
+      ],
+      "mood": "sobre, informatif, amorce d'espoir"
+    },
+    {
+      "partie": 4,
+      "titre": "Après — l'enfant hors de la machine",
+      "duree_cible": 20,
+      "fonction_narrative": "resolution_diptyque_apres",
+      "position_arc_emotionnel": "apaisement_nuancé",
+      "elements_necessaires": [
+        "évocation de la transformation progressive",
+        "voix de l'enfant qui retrouve un espace hors usine",
+        "ouverture sur la mémoire ouvrière",
+        "note finale sobre sans moralisme"
+      ],
+      "mood": "lumineux retenu, mémoriel"
+    },
+    {
+      "partie": 5,
+      "titre": "Écho",
+      "duree_cible": 5,
+      "fonction_narrative": "clausule_sonore",
+      "position_arc_emotionnel": "silence_résonant",
+      "elements_necessaires": [
+        "dernière image sonore ou phrase courte",
+        "résonance émotionnelle sans surcharge"
+      ],
+      "mood": "suspendu, ouvert"
+    }
+  ],
+  "arc_emotionnel_global": "descente_puis_remontee_nuancee",
+  "rythme_general": "lent et dense en ouverture, accélération au pivot, ralentissement final",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "prolongement_sensoriel",
+      "duree": 2.0,
+      "description": "Le bruit de machines évoqué en accroche se prolonge naturellement dans la description du quotidien enfantin — pas de rupture, la caméra sonore recule pour révéler le contexte."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "contraste_temporel",
+      "duree": 2.5,
+      "description": "Une phrase-pont marque le passage du temps : du constat d'exploitation à l'apparition des premières lois. Le ton reste neutre, le rythme s'accélère légèrement."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "ouverture_lumineuse",
+      "duree": 2.0,
+      "description": "Transition douce : après l'énoncé de la loi, on revient à hauteur d'enfant pour montrer ce qui change concrètement — même perspective, atmosphère différente."
+    },
+    {
+      "entre_parties": [
+        4,
+        5
+      ],
+      "type": "decrescendo_naturel",
+      "duree": 1.5,
+      "description": "La narration se retire progressivement, laissant place à un dernier écho sonore ou une phrase suspendue."
+    }
+  ],
+  "notes_production": "CONTINUITÉ : Le récit est structuré comme un flashback unique — on part du souvenir sensoriel pour remonter le fil historique. La voix off omnisciente maintient un ton neutre informatif constant, adapté au grand public (phrases courtes, vocabulaire courant, pas de jargon). Les citations du témoignage (enfant parlant du travail de ses proches, de l'usine) sont intégrées comme des fragments de mémoire orale, sans les présenter artificiellement. Le diptyque avant/après s'articule autour du pivot législatif mais reste centré sur l'expérience humaine. La densité sonore riche est suggérée par des indications d'ambiance (machines, silence relatif après les lois) sans alourdir le texte. Viser 175-185 mots maximum pour respecter la durée de 90 secondes au débit de ~2 mots/seconde."
+}

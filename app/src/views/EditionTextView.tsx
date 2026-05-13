@@ -158,6 +158,57 @@ export function EditionTextView() {
     setIsDirty(false);
   }, [selectionQuery.data]);
 
+  const queryClient = useQueryClient();
+
+  // Sync parts → window.__taggedParagraphs so ChatPanel can send them to the LLM
+  // Also reads taggedOutput.parties[].taggedText as fallback (where Agent 3 stores data)
+  useEffect(() => {
+    const raw = selectionQuery.data as Record<string, unknown> | undefined;
+    const taggedOutput = raw?.taggedOutput as Record<string, unknown> | undefined;
+    const taggedParties = Array.isArray(taggedOutput?.parties) ? (taggedOutput!.parties as Array<Record<string, unknown>>) : [];
+
+    const paragraphs: TaggedParagraph[] = parts.map((p, i) => {
+      const tagged = taggedParties[i];
+      const taggedText = (p.texte_narration && p.texte_narration.length > 0)
+        ? p.texte_narration
+        : ((tagged?.taggedText as string) ?? "");
+      return { partie_id: i + 1, titre: p.titre, taggedText };
+    });
+    (window as Window & { __taggedParagraphs?: TaggedParagraph[] }).__taggedParagraphs = paragraphs;
+    return () => {
+      (window as Window & { __taggedParagraphs?: TaggedParagraph[] }).__taggedParagraphs = undefined;
+    };
+  }, [parts, selectionQuery.data]);
+
+  // Listen for LLM edits via update_tagged_scenario tool
+  useEffect(() => {
+    const handler = async (e: Event) => {
+      const { paragraphs } = (e as CustomEvent<{ paragraphs: TaggedParagraph[] }>).detail;
+      if (!Array.isArray(paragraphs) || paragraphs.length === 0) return;
+      // Update local parts state immediately (source of truth for the UI)
+      setParts(
+        paragraphs.map((p) => ({
+          titre: p.titre,
+          texte_narration: p.taggedText,
+        }))
+      );
+      setIsDirty(true);
+      // Persist to backend without triggering a refetch (would overwrite parts)
+      if (!sessionId) return;
+      const raw = (selectionQuery.data ?? {}) as Record<string, unknown>;
+      const updatedParties = paragraphs.map((p) => ({ titre: p.titre, texte_narration: p.taggedText }));
+      const merged: Record<string, unknown> = { ...raw };
+      if (merged.scenario && typeof merged.scenario === "object") {
+        merged.scenario = { ...(merged.scenario as Record<string, unknown>), parties: updatedParties };
+      } else {
+        merged.parties = updatedParties;
+      }
+      await selectScenario(sessionId, merged);
+    };
+    window.addEventListener("tagged-scenario-updated", handler);
+    return () => window.removeEventListener("tagged-scenario-updated", handler);
+  }, [sessionId, selectionQuery.data]);
+
   const updatePart = (idx: number, patch: Partial<EditablePart>) => {
     setParts((prev) => prev.map((p, i) => (i === idx ? { ...p, ...patch } : p)));
     setIsDirty(true);
