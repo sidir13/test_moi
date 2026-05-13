@@ -33,6 +33,14 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
   const [status, setStatus] = useState<string | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // Allow external code to focus the input via a CustomEvent
+  useEffect(() => {
+    const handler = () => inputRef.current?.focus();
+    window.addEventListener("focus-chat-input", handler);
+    return () => window.removeEventListener("focus-chat-input", handler);
+  }, []);
   const chatEnabled = Boolean(sessionId) && currentStep !== "project_selection";
 
   useEffect(() => {
@@ -256,6 +264,7 @@ export const ChatPanel = ({ collapsed = false, onToggleCollapsed }: ChatPanelPro
           className="flex h-[37.6px] items-center justify-between gap-2 rounded-[32px] border-[0.8px] border-[#007AFF] bg-white px-3 py-2"
         >
           <input
+            ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={

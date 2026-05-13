@@ -82,6 +82,13 @@ function Layout() {
     isProjectDetailsPage || isConfigurationScenarioPage || isChoixScenarioPage || isEditionTextPage;
   const [showProjectDetailsBanner, setShowProjectDetailsBanner] = useState(true);
   const [isChatCollapsed, setIsChatCollapsed] = useState(false);
+
+  // Allow views to expand the chat panel via a CustomEvent
+  useEffect(() => {
+    const handler = () => setIsChatCollapsed(false);
+    window.addEventListener("open-chat", handler);
+    return () => window.removeEventListener("open-chat", handler);
+  }, []);
   const { data: stepsResponse } = useQuery({ queryKey: ["steps"], queryFn: fetchSteps });
 
   useEffect(() => {

@@ -565,6 +565,11 @@ export function EditionTextView() {
               <div className="flex flex-wrap items-center gap-3 rounded-[14px] border-[0.8px] border-[#5BA9FF] bg-[#EFF6FF] p-[10px]">
                 <button
                   type="button"
+                  onClick={() => {
+                    window.dispatchEvent(new Event("open-chat"));
+                    // Small delay so the panel animates open before focusing input
+                    setTimeout(() => window.dispatchEvent(new Event("focus-chat-input")), 220);
+                  }}
                   className="inline-flex h-[38px] items-center gap-1 rounded-[12px] bg-[linear-gradient(135deg,#007AFF_0%,#8CC3FF_100%)] px-3 text-[14px] font-medium text-white"
                 >
                   <Sparkles className="h-4 w-4" />
