@@ -1,0 +1,249 @@
+{
+  "scenario_id": 1,
+  "titre": "L'enfant de Nongo",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "resumeHistoire": "Un garçon de dix ans, habitant le quartier de Nongo, raconte avec ses mots d'enfant une histoire transmise par son grand frère, réparateur de ventilateurs à Treichville. À travers ce conte mettant en scène deux garçons — Kwaku et Kofie — partis en brousse et confrontés à un serpent, puis soignés par un marabout, se dessine tout un univers familial et culturel. Le portrait de cet enfant, entre traditions orales héritées et quotidien modeste — une mère qui vend des bananes dans un restaurant, un père retraité de la SAPCO, la fabrique de chocolat —, révèle la vitalité de la transmission entre générations dans une famille ivoirienne ordinaire.",
+  "duree_estimee": 101.51524562394127,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le conte de la brousse",
+      "duree": 25.636363636363633,
+      "texte_narration": "Une voix raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse. »] Un serpent les attend sur un arbre. Un marabout finira par guérir le blessé.",
+      "ton": {
+        "global": "mystérieux, suspendu",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'brousse' (1.5s)",
+          "après 'arbre' (1s)"
+        ],
+        "intonation": "douce, légèrement contée"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Entrée directe dans le conte — citation de l'enfant",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "0:10",
+          "action": "Évocation du serpent et du marabout guérisseur",
+          "duree": 10.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Une voix raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse. »]",
+          "sources": [
+            "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse."
+          ]
+        },
+        {
+          "sentence": "Un serpent les attend sur un arbre.",
+          "sources": [
+            "[00:30] il y avait un serpent sur l'arbre."
+          ]
+        },
+        {
+          "sentence": "Un marabout finira par guérir le blessé.",
+          "sources": [
+            "[01:00] il est parti chez un marabout. Le marabout là l'a guéri."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La voix derrière le conte",
+      "duree": 12.521739130434781,
+      "texte_narration": "Celui qui parle a dix ans. Il habite à Nongo, en Côte d'Ivoire, et c'est en français qu'il livre son histoire.",
+      "ton": {
+        "global": "chaleureux, révélation douce",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'dix ans' (1s)"
+        ],
+        "intonation": "neutre, légèrement souriante"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:20",
+          "action": "Pivot temporel — on découvre l'identité du conteur",
+          "duree": 10.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Celui qui parle a dix ans.",
+          "sources": [
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        },
+        {
+          "sentence": "Il habite à Nongo, en Côte d'Ivoire, et c'est en français qu'il livre son histoire.",
+          "sources": [
+            "[02:50] J'habite à Nongo.",
+            "[02:55] Je parle français."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Portrait d'une famille",
+      "duree": 36.5,
+      "texte_narration": "On lui demande d'où vient ce conte. Il précise : [ARCHIVE : « C'est mon grand-frère. »] Ce grand frère répare des ventilateurs à Treichville. La mère, elle, tient un petit commerce. L'enfant explique : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »] Quant au père, il est retraité de la SAPCO. L'enfant ajoute : [ARCHIVE : « C'est où on fabrique les chocolats. »] Et d'en manger beaucoup ? Il glisse : [ARCHIVE : « Oui. »]",
+      "ton": {
+        "global": "vivant, tendre, informatif",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'grand-frère' (1s)",
+          "après 'restaurant' (1s)",
+          "après 'chocolats' (1s)"
+        ],
+        "intonation": "neutre avec chaleur contenue"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:30",
+          "action": "Révélation de la source du conte — le grand frère",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "0:40",
+          "action": "Portrait de la mère et du père",
+          "duree": 15.0
+        },
+        {
+          "timestamp": "0:55",
+          "action": "Le chocolat — détail enfantin",
+          "duree": 10.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "On lui demande d'où vient ce conte.",
+          "sources": [
+            "[01:30] Qui c'est qui t'a raconté cette histoire ?"
+          ]
+        },
+        {
+          "sentence": "Il précise : [ARCHIVE : « C'est mon grand-frère. »]",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "Ce grand frère répare des ventilateurs à Treichville.",
+          "sources": [
+            "[01:44] Il travaille à Treichville.",
+            "[01:48] Il répare mes... ventilateurs."
+          ]
+        },
+        {
+          "sentence": "La mère, elle, tient un petit commerce.",
+          "sources": [
+            "[02:07] Maman elle vend."
+          ]
+        },
+        {
+          "sentence": "L'enfant explique : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »]",
+          "sources": [
+            "[02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
+          ]
+        },
+        {
+          "sentence": "Quant au père, il est retraité de la SAPCO.",
+          "sources": [
+            "[02:22] Non, il est retraité.",
+            "[02:27] Il travaillait il travaillait au SAPO."
+          ]
+        },
+        {
+          "sentence": "L'enfant ajoute : [ARCHIVE : « C'est où on fabrique les chocolats. »]",
+          "sources": [
+            "[02:36] Le SAPCO ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Et d'en manger beaucoup ?",
+          "sources": [
+            "[02:39] Et tu manges beaucoup d'chocolat ?"
+          ]
+        },
+        {
+          "sentence": "Il glisse : [ARCHIVE : « Oui. »]",
+          "sources": [
+            "[02:41] Oui."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 4,
+      "titre": "Ce que transmet une histoire",
+      "duree": 26.857142857142858,
+      "texte_narration": "Un grand frère qui raconte, un petit frère qui retient, puis qui transmet à son tour. Entre Treichville et Nongo, entre un atelier de ventilateurs et un conte de brousse, la parole circule. L'enfant a dix ans. Il porte déjà des histoires plus anciennes que lui.",
+      "ton": {
+        "global": "contemplatif, lumineux, neutre",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'à son tour' (1.5s)",
+          "après 'circule' (1.5s)",
+          "après 'dix ans' (1s)"
+        ],
+        "intonation": "posée, légèrement suspendue en fin"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:05",
+          "action": "Élargissement — la chaîne de transmission orale",
+          "duree": 12.0
+        },
+        {
+          "timestamp": "1:17",
+          "action": "Fermeture — image de l'enfant porteur d'histoires",
+          "duree": 13.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un grand frère qui raconte, un petit frère qui retient, puis qui transmet à son tour.",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "Entre Treichville et Nongo, entre un atelier de ventilateurs et un conte de brousse, la parole circule.",
+          "sources": [
+            "[01:44] Il travaille à Treichville.",
+            "[01:48] Il répare mes... ventilateurs.",
+            "[02:50] J'habite à Nongo."
+          ]
+        },
+        {
+          "sentence": "L'enfant a dix ans.",
+          "sources": [
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        },
+        {
+          "sentence": "Il porte déjà des histoires plus anciennes que lui.",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 191,
+    "duree_lecture_estimee": 101.51524562394127,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "FLUIDITÉ ET CONTINUITÉ : Le récit commence en flashback par le conte de Kwaku et Kofie, comme si l'auditeur entendait d'abord une histoire ancienne, avant de découvrir qu'elle est portée par un enfant de dix ans. Ce retournement doux est le pivot central du documentaire. — Les citations directes de l'enfant (au moins 4-5 extraits) constituent le cœur battant du récit ; la voix off tisse autour d'elles sans jamais les écraser. — Le ton reste neutre et informatif tout au long : l'émotion naît des faits et des paroles de l'enfant, jamais d'effets rhétoriques. — Registre grand public : phrases courtes, vocabulaire accessible, pas de jargon ethnographique. — La structure en flashback impose que la partie 1 ne révèle PAS encore qui raconte ; le suspense léger est résolu en partie 2. — Ambiances sonores suggérées : brousse/nature pour la partie 1, transition vers ambiance urbaine/quartier pour les parties 2-3, retour à un calme contemplatif en partie 4. — Respecter strictement le budget de ~180 mots maximum pour l'ensemble. Chaque mot compte. — Ne pas inventer de détails biographiques absents de la transcription : s'en tenir à Nongo, Treichville, la SAPCO, le français parlé à la maison, l'âge de dix ans, et les éléments familiaux explicitement mentionnés."
+}

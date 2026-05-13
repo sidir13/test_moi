@@ -1,0 +1,32 @@
+{
+  "scenario_id": 1,
+  "titre": "Paroles d'enfant à Treichville",
+  "taggedText": "=== PARTIE 1 : Le conte de brousse ===\n\nUn gamin de dix ans raconte : [posé] [atténué] « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Ils grimpent dans un arbre. [pause] Un serpent les attend.\n\n=== PARTIE 2 : Le féticheur et le marabout ===\n\nL'enfant poursuit : [posé] [atténué] « Ils sont venus prendre Yao. Ils l'ont emmené chez un féticheur là-bas. Le féticheur ne pouvait pas lui guérir. Donc il est parti chez un marabout. Le marabout là l'a guéri. » [pause] Dans le conte comme dans la vie, on cherche le remède là où il se trouve.\n\n=== PARTIE 3 : Portrait d'une famille ===\n\nOn lui demande qui lui a transmis cette histoire. Il précise : [posé] [atténué] « C'est mon grand-frère. Il travaille à Treichville. Il répare des ventilateurs. » [pause] Sa mère, elle, tient un petit commerce. Il confie : [posé] [atténué] « Maman elle vend. Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Son père ne travaille plus. Il glisse : [posé] [atténué] « Il est retraité. Il travaillait au SAPCO. C'est où on fabrique les chocolats. » [pause]\n\n=== PARTIE 4 : Entre conte et quotidien ===\n\n[ralentit] Dix ans, une langue française apprise à Nongo, et dans la bouche un conte hérité — [pause] toute une famille tient dans une histoire de brousse.",
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le conte de brousse",
+      "taggedText": "Un gamin de dix ans raconte : [posé] [atténué] « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. L'autre-là dit : on n'a qu'aller tuer maman. L'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. » [pause] Ils grimpent dans un arbre. [pause] Un serpent les attend."
+    },
+    {
+      "partie_id": 2,
+      "titre": "Le féticheur et le marabout",
+      "taggedText": "L'enfant poursuit : [posé] [atténué] « Ils sont venus prendre Yao. Ils l'ont emmené chez un féticheur là-bas. Le féticheur ne pouvait pas lui guérir. Donc il est parti chez un marabout. Le marabout là l'a guéri. » [pause] Dans le conte comme dans la vie, on cherche le remède là où il se trouve."
+    },
+    {
+      "partie_id": 3,
+      "titre": "Portrait d'une famille",
+      "taggedText": "On lui demande qui lui a transmis cette histoire. Il précise : [posé] [atténué] « C'est mon grand-frère. Il travaille à Treichville. Il répare des ventilateurs. » [pause] Sa mère, elle, tient un petit commerce. Il confie : [posé] [atténué] « Maman elle vend. Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Son père ne travaille plus. Il glisse : [posé] [atténué] « Il est retraité. Il travaillait au SAPCO. C'est où on fabrique les chocolats. » [pause]"
+    },
+    {
+      "partie_id": 4,
+      "titre": "Entre conte et quotidien",
+      "taggedText": "[ralentit] Dix ans, une langue française apprise à Nongo, et dans la bouche un conte hérité — [pause] toute une famille tient dans une histoire de brousse."
+    }
+  ],
+  "metadata": {
+    "voiceTags": 18,
+    "soundTags": 0,
+    "originalWordCount": 219
+  }
+}

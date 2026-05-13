@@ -1,0 +1,76 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Voix d'enfance à Treichville",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte sa journée et son monde. Entre le conte transmis par son grand frère réparateur de ventilateurs à Treichville, la mère qui vend des bananes au restaurant, et le père retraité de la SAPCO — l'usine à chocolat —, c'est tout un univers familial et quotidien qui se dessine. Du village au champ, des histoires de serpents aux odeurs de cacao, cette voix d'enfant capture un fragment de vie ordinaire en Afrique de l'Ouest, où tradition orale et modernité cohabitent naturellement.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le matin — Les histoires du grand frère",
+      "duree_cible": 30,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "ouverture_intime",
+      "elements_necessaires": [
+        "Présentation de l'enfant (10 ans, habite à Nongo)",
+        "Le conte de Kwaku et Kofie transmis par le grand frère",
+        "Citation directe du conte : les deux petits partant en brousse",
+        "Atmosphère matinale, oralité familiale"
+      ],
+      "mood": "chaleureux_narratif"
+    },
+    {
+      "partie": 2,
+      "titre": "La journée — Le monde des adultes",
+      "duree_cible": 30,
+      "fonction_narrative": "développement",
+      "position_arc_emotionnel": "ancrage_concret",
+      "elements_necessaires": [
+        "Le grand frère qui répare les ventilateurs à Treichville",
+        "La mère qui vend au restaurant",
+        "Le père retraité de la SAPCO, l'usine à chocolat",
+        "Citations directes de l'enfant sur sa famille",
+        "Rythme du quotidien familial"
+      ],
+      "mood": "documentaire_vivant"
+    },
+    {
+      "partie": 3,
+      "titre": "Le soir — Du village au champ",
+      "duree_cible": 30,
+      "fonction_narrative": "résolution",
+      "position_arc_emotionnel": "ouverture_contemplative",
+      "elements_necessaires": [
+        "Le récit du départ au champ avec l'oncle",
+        "Citation directe sur le village et le champ",
+        "Lien entre tradition orale et vie quotidienne",
+        "Fermeture sur la transmission des histoires"
+      ],
+      "mood": "apaisé_évocateur"
+    }
+  ],
+  "arc_emotionnel_global": "immersion_progressive",
+  "rythme_general": "varie — ouverture narrative douce, accélération sur les détails familiaux, ralentissement contemplatif en clôture",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "progression_naturelle",
+      "duree": 2.0,
+      "description": "Du monde imaginaire du conte vers la réalité concrète de la famille — passage fluide de la voix du conteur à la voix de l'enfant décrivant ses proches"
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "glissement_temporel",
+      "duree": 2.0,
+      "description": "De l'univers urbain de Treichville vers le village et les champs — retour aux racines rurales, le quotidien rejoint la mémoire"
+    }
+  ],
+  "notes_production": "FLUIDITÉ : Le récit est porté par une voix off omnisciente au ton neutre et informatif, registre accessible grand public. Les citations directes de l'enfant constituent le cœur du récit — elles doivent être intégrées comme des moments d'écoute privilégiés, non comme des interruptions. La narration tisse un fil continu entre les paroles de l'enfant, créant un portrait par accumulation de détails concrets. Éviter toute condescendance — traiter cette voix d'enfant avec la même dignité qu'un témoignage adulte. Le rythme suit la journée : lenteur matinale du conte, vivacité du quotidien familial, apaisement vespéral. Pas d'adresse directe au public. Maintenir l'authenticité linguistique des citations (français ivoirien). Budget total : environ 180 mots maximum."
+}

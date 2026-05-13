@@ -1,0 +1,265 @@
+{
+  "scenario_id": 1,
+  "titre": "Paroles d'enfance à Nongo",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte sa vie quotidienne : un père retraité de la SAPCO, la fabrique de chocolat, une mère qui vend des bananes dans un restaurant, un grand frère réparateur de ventilateurs à Treichville. Entre deux éclats de voix, il livre aussi un conte transmis par son aîné — l'histoire de Kwaku et Kofie partis en brousse, où un serpent change le cours de l'aventure et où un marabout finit par guérir le blessé. À travers ces fragments de parole, c'est toute une journée d'enfant qui se dessine : le monde des adultes au travail, l'univers des histoires racontées le soir, et la fierté simple de dire qui l'on est.",
+  "duree_estimee": 124.29249011857708,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le matin — le monde des grands",
+      "duree": 37.56521739130435,
+      "texte_narration": "Nongo, quelque part en Côte d'Ivoire. Un garçon de dix ans grandit entre les adultes qui travaillent. Son père est retraité. Avant, il était à la SAPCO. L'enfant précise : [ARCHIVE : « C'est où on fabrique les chocolats. »] Sa mère tient un petit commerce. Il raconte : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »] Son grand frère, lui, a quitté le quartier pour Treichville, où il répare des ventilateurs.",
+      "ton": {
+        "global": "neutre, posé, familier",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'les chocolats.' (1.5s)",
+          "après 'un restaurant.' (1s)"
+        ],
+        "intonation": "descriptive, calme, légèrement chaleureuse"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ancrage géographique — Nongo, Côte d'Ivoire",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Citation SAPCO / chocolats",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:18",
+          "action": "Mention du grand frère à Treichville",
+          "duree": 2.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Nongo, quelque part en Côte d'Ivoire.",
+          "sources": [
+            "[02:50] J'habite à Nongo."
+          ]
+        },
+        {
+          "sentence": "Un garçon de dix ans grandit entre les adultes qui travaillent.",
+          "sources": [
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        },
+        {
+          "sentence": "Son père est retraité.",
+          "sources": [
+            "[02:22] Non, il est retraité."
+          ]
+        },
+        {
+          "sentence": "Avant, il était à la SAPCO.",
+          "sources": [
+            "[02:27] Il travaillait il travaillait au SAPO.",
+            "[02:32] On est au SAPCO."
+          ]
+        },
+        {
+          "sentence": "L'enfant précise : [ARCHIVE : « C'est où on fabrique les chocolats. »]",
+          "sources": [
+            "[02:36] Le SAPCO ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "Sa mère tient un petit commerce.",
+          "sources": [
+            "[02:07] Maman elle vend."
+          ]
+        },
+        {
+          "sentence": "Il raconte : [ARCHIVE : « Elle vend tout, bananes. Elle vend dans un restaurant. »]",
+          "sources": [
+            "[02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
+          ]
+        },
+        {
+          "sentence": "Son grand frère, lui, a quitté le quartier pour Treichville, où il répare des ventilateurs.",
+          "sources": [
+            "[01:44] Il travaille à Treichville.",
+            "[01:48] Il répare mes... ventilateurs."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "L'après-midi — le conte de Kwaku et Kofie",
+      "duree": 54.0,
+      "texte_narration": "C'est ce même grand frère qui lui transmet des histoires. L'enfant en restitue une, à sa manière : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. »] Les deux garçons partent en brousse. L'un lance aux autres : [ARCHIVE : « On n'a qu'aller tuer maman. »] L'autre hésite, sent le malheur venir. Ils grimpent dans un arbre. Un serpent les y attend et attaque. Le village accourt, emmène le blessé chez un féticheur. Sans résultat. L'enfant conclut : [ARCHIVE : « Il est parti chez un marabout. Le marabout là l'a guéri. »]",
+      "ton": {
+        "global": "neutre avec tension narrative croissante",
+        "tempo_lecture": 120,
+        "pauses": [
+          "après 'Kofie.' (1.5s)",
+          "après 'venir.' (1s)",
+          "après 'Sans résultat.' (1.5s)"
+        ],
+        "intonation": "narrative, légère accélération au moment du serpent, retour au calme sur la guérison"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:26",
+          "action": "Entrée dans le conte — présentation de Kwaku et Kofie",
+          "duree": 3.0
+        },
+        {
+          "timestamp": "0:38",
+          "action": "Tension — le serpent attaque",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "0:52",
+          "action": "Résolution — le marabout guérit",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "C'est ce même grand frère qui lui transmet des histoires.",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "L'enfant en restitue une, à sa manière : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. »]",
+          "sources": [
+            "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie."
+          ]
+        },
+        {
+          "sentence": "Les deux garçons partent en brousse.",
+          "sources": [
+            "[00:00] Maintenant, les deux partaient en brousse."
+          ]
+        },
+        {
+          "sentence": "L'un lance aux autres : [ARCHIVE : « On n'a qu'aller tuer maman. »]",
+          "sources": [
+            "[00:00] L'autre-là dit : « On n'a qu'aller tuer maman »."
+          ]
+        },
+        {
+          "sentence": "L'autre hésite, sent le malheur venir.",
+          "sources": [
+            "[00:00] Maintenant, l'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver."
+          ]
+        },
+        {
+          "sentence": "Ils grimpent dans un arbre.",
+          "sources": [
+            "[00:30] ils ont monté sur l'arbre."
+          ]
+        },
+        {
+          "sentence": "Un serpent les y attend et attaque.",
+          "sources": [
+            "[00:30] il y avait un serpent sur l'arbre.",
+            "[00:30] truc serpent a bouffé Angela."
+          ]
+        },
+        {
+          "sentence": "Le village accourt, emmène le blessé chez un féticheur.",
+          "sources": [
+            "[01:00] Il est parti du village, c'est ça, ils sont venus prendre Yao.",
+            "[01:00] ils l'ont emmené chez un féticheur là-bas."
+          ]
+        },
+        {
+          "sentence": "Sans résultat.",
+          "sources": [
+            "[01:00] Le féticheur ne ne pouvait pas lui guérir."
+          ]
+        },
+        {
+          "sentence": "L'enfant conclut : [ARCHIVE : « Il est parti chez un marabout. Le marabout là l'a guéri. »]",
+          "sources": [
+            "[01:00] Donc il est parti chez un marabout. Le marabout là l'a guéri."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — dire qui l'on est",
+      "duree": 32.72727272727273,
+      "texte_narration": "Le conte terminé, l'enfant revient à lui-même. On lui demande son âge. Il répond simplement : [ARCHIVE : « Moi ? J'ai dix ans. »] À la maison, il parle français. Au village, il part parfois au champ avec son oncle, sur les terres de son père. Les histoires, elles, continuent de passer d'un frère à l'autre, le soir venu.",
+      "ton": {
+        "global": "neutre, apaisé, ouvert",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'dix ans.' (2s)",
+          "après 'son père.' (1s)"
+        ],
+        "intonation": "douce, conclusive sans être sentencieuse"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:06",
+          "action": "Retour au réel — âge de l'enfant",
+          "duree": 2.0
+        },
+        {
+          "timestamp": "1:18",
+          "action": "Ouverture sur la transmission orale",
+          "duree": 3.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Le conte terminé, l'enfant revient à lui-même.",
+          "sources": []
+        },
+        {
+          "sentence": "On lui demande son âge.",
+          "sources": [
+            "[02:43] Quel âge tu as ?"
+          ]
+        },
+        {
+          "sentence": "Il répond simplement : [ARCHIVE : « Moi ? J'ai dix ans. »]",
+          "sources": [
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        },
+        {
+          "sentence": "À la maison, il parle français.",
+          "sources": [
+            "[02:55] Je parle français."
+          ]
+        },
+        {
+          "sentence": "Au village, il part parfois au champ avec son oncle, sur les terres de son père.",
+          "sources": [
+            "[02:59] J'étais au village. Mon oncle vient on va partir au champ.",
+            "[02:59] il est parti dans le champ de mon papa."
+          ]
+        },
+        {
+          "sentence": "Les histoires, elles, continuent de passer d'un frère à l'autre, le soir venu.",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 240,
+    "duree_lecture_estimee": 124.29249011857708,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "FLUIDITÉ : Le récit suit le fil d'une journée mais de manière souple — le matin est le temps du concret familial, l'après-midi celui du conte, le soir celui du retour à soi. Ne pas marquer les transitions par des formules lourdes ; privilégier des ponts narratifs naturels (ex. « C'est ce même grand frère qui, le soir venu, raconte des histoires… »). CITATIONS : Les paroles de l'enfant sont au cœur du récit — elles doivent être intégrées comme des moments de vérité, pas comme des illustrations. Le narrateur omniscient encadre mais n'écrase jamais la voix de l'enfant. TON : Strictement neutre et informatif, sans condescendance ni exotisme. DURÉE : Viser 175-185 mots maximum pour tenir les 90 secondes. Chaque section doit être dense et concise. REGISTRE : Grand public — phrases courtes, pas de jargon, clarté immédiate."
+}

@@ -1,0 +1,79 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Paroles d'enfance à Nongo",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte sa vie quotidienne : un père retraité de la SAPCO, la fabrique de chocolat, une mère qui vend des bananes dans un restaurant, un grand frère réparateur de ventilateurs à Treichville. Entre deux éclats de voix, il livre aussi un conte transmis par son aîné — l'histoire de Kwaku et Kofie partis en brousse, où un serpent change le cours de l'aventure et où un marabout finit par guérir le blessé. À travers ces fragments de parole, c'est toute une journée d'enfant qui se dessine : le monde des adultes au travail, l'univers des histoires racontées le soir, et la fierté simple de dire qui l'on est.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le matin — le monde des grands",
+      "duree_cible": 25,
+      "fonction_narrative": "exposition",
+      "position_arc_emotionnel": "ancrage_calme",
+      "elements_necessaires": [
+        "Situer Nongo et l'univers familial de l'enfant",
+        "Citation directe : père retraité de la SAPCO, « C'est où on fabrique les chocolats »",
+        "Citation directe : mère qui vend « bananes, elle vend dans un restaurant »",
+        "Grand frère qui répare des ventilateurs à Treichville",
+        "Ton neutre, vocabulaire accessible, registre grand public"
+      ],
+      "mood": "quotidien_familier"
+    },
+    {
+      "partie": 2,
+      "titre": "L'après-midi — le conte de Kwaku et Kofie",
+      "duree_cible": 40,
+      "fonction_narrative": "développement_central",
+      "position_arc_emotionnel": "montée_narrative",
+      "elements_necessaires": [
+        "Transition vers le temps du conte, transmis par le grand frère",
+        "Citation directe : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie »",
+        "Les deux enfants partent en brousse, montent sur un arbre, rencontre du serpent",
+        "Citation : « On n'a qu'aller tuer maman » — la proposition audacieuse d'un des enfants",
+        "Le serpent attaque, le village intervient, le féticheur échoue, le marabout guérit",
+        "Rythme qui épouse celui du conte oral : accélérations et suspens"
+      ],
+      "mood": "aventureux_tendu"
+    },
+    {
+      "partie": 3,
+      "titre": "Le soir — dire qui l'on est",
+      "duree_cible": 25,
+      "fonction_narrative": "résolution_ouverture",
+      "position_arc_emotionnel": "apaisement_réflexif",
+      "elements_necessaires": [
+        "Retour au réel : l'enfant a dix ans, il parle français à la maison",
+        "Citation : « Moi ? J'ai 10 ans »",
+        "Évocation du départ au champ avec l'oncle — fragment de vie rurale",
+        "Ouverture sur la transmission orale : les histoires circulent du grand frère à l'enfant",
+        "Clôture douce, sans moralisation"
+      ],
+      "mood": "intime_serein"
+    }
+  ],
+  "arc_emotionnel_global": "ancrage_montée_apaisement",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "glissement_thematique",
+      "duree": 3.0,
+      "description": "Du portrait familial concret, on glisse vers l'imaginaire : c'est justement ce grand frère de Treichville qui a transmis le conte. La voix off lie les deux mondes sans rupture."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "retour_au_reel",
+      "duree": 3.0,
+      "description": "Le conte s'achève sur la guérison par le marabout. La voix off ramène doucement l'auditeur vers l'enfant qui parle, sa voix à lui, son âge, son quotidien — comme un retour du soir après l'aventure de l'après-midi."
+    }
+  ],
+  "notes_production": "FLUIDITÉ : Le récit suit le fil d'une journée mais de manière souple — le matin est le temps du concret familial, l'après-midi celui du conte, le soir celui du retour à soi. Ne pas marquer les transitions par des formules lourdes ; privilégier des ponts narratifs naturels (ex. « C'est ce même grand frère qui, le soir venu, raconte des histoires… »). CITATIONS : Les paroles de l'enfant sont au cœur du récit — elles doivent être intégrées comme des moments de vérité, pas comme des illustrations. Le narrateur omniscient encadre mais n'écrase jamais la voix de l'enfant. TON : Strictement neutre et informatif, sans condescendance ni exotisme. DURÉE : Viser 175-185 mots maximum pour tenir les 90 secondes. Chaque section doit être dense et concise. REGISTRE : Grand public — phrases courtes, pas de jargon, clarté immédiate."
+}

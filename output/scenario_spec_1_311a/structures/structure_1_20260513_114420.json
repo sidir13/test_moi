@@ -1,0 +1,94 @@
+{
+  "scenario_id": 1,
+  "titre_global": "Paroles d'enfant à Treichville",
+  "resumeHistoire": "Un enfant d'une dizaine d'années, vivant dans un quartier populaire de Côte d'Ivoire, raconte une histoire transmise par son grand frère — un conte de brousse où deux garçons, Kwaku et Kofie, bravent l'interdit et affrontent un serpent. Entre le conte et la réalité, l'enfant dévoile par bribes son quotidien : une mère qui vend des bananes dans un restaurant, un père retraité d'une fabrique de chocolat, un frère réparateur de ventilateurs à Treichville. Ce portrait mosaïque dessine, à travers la voix d'un gamin de dix ans, la chronique ordinaire d'une famille modeste où se mêlent traditions orales et vie quotidienne.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "chronique_sociale",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le conte de brousse",
+      "duree_cible": 30.0,
+      "fonction_narrative": "exposition_immersive",
+      "position_arc_emotionnel": "intrigue_montante",
+      "elements_necessaires": [
+        "Citation directe de l'enfant racontant le conte de Kwaku et Kofie",
+        "Atmosphère orale — hésitations, rythme enfantin",
+        "Mention du serpent sur l'arbre et du danger"
+      ],
+      "mood": "mystérieux_enfantin"
+    },
+    {
+      "partie": 2,
+      "titre": "Le féticheur et le marabout",
+      "duree_cible": 20.0,
+      "fonction_narrative": "développement_narratif",
+      "position_arc_emotionnel": "tension_puis_résolution",
+      "elements_necessaires": [
+        "Citation sur le parcours de guérison — féticheur puis marabout",
+        "Narration contextualisant la coexistence des recours traditionnels",
+        "Transition vers le monde réel de l'enfant"
+      ],
+      "mood": "grave_puis_apaisé"
+    },
+    {
+      "partie": 3,
+      "titre": "Portrait d'une famille",
+      "duree_cible": 30.0,
+      "fonction_narrative": "chronique_sociale",
+      "position_arc_emotionnel": "chaleur_intime",
+      "elements_necessaires": [
+        "Citations directes : le frère qui répare des ventilateurs à Treichville",
+        "La mère qui vend des bananes dans un restaurant",
+        "Le père retraité du SAPCO, la fabrique de chocolat",
+        "L'enfant a dix ans, habite à Nongo, parle français"
+      ],
+      "mood": "tendre_documentaire"
+    },
+    {
+      "partie": 4,
+      "titre": "Entre conte et quotidien",
+      "duree_cible": 10.0,
+      "fonction_narrative": "conclusion_résonance",
+      "position_arc_emotionnel": "ouverture_contemplative",
+      "elements_necessaires": [
+        "Lien entre la tradition orale transmise par le grand frère et le quotidien familial",
+        "Image finale : une parole d'enfant qui porte un monde"
+      ],
+      "mood": "poétique_sobre"
+    }
+  ],
+  "arc_emotionnel_global": "curiosité_vers_intimité",
+  "rythme_general": "modere",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "continuité_narrative",
+      "duree": 2.0,
+      "description": "Le conte se poursuit naturellement — du danger du serpent vers la quête de guérison, sans rupture, comme dans le flux oral de l'enfant."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "glissement_du_conte_au_réel",
+      "duree": 3.0,
+      "description": "La voix off opère un glissement doux : « Mais qui est cet enfant conteur ? » — passage du monde du conte au portrait familial, en s'appuyant sur la question de l'enquêteur dans l'archive."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "élévation_contemplative",
+      "duree": 2.0,
+      "description": "Du détail concret du quotidien familial, la narration s'élève vers une réflexion sobre sur la transmission orale et la richesse de cette parole enfantine."
+    }
+  ],
+  "notes_production": "FLUIDITÉ : Le récit doit couler comme une conversation — l'enfant raconte un conte, puis on découvre qui il est. Ne jamais marquer de séparation artificielle entre les sections. Les citations de l'archive sont le cœur : les intégrer avec leurs hésitations et leur rythme propre, sans les lisser. TON : neutre et informatif, jamais condescendant — respect de la parole de l'enfant. PUBLIC : grand public, phrases courtes, vocabulaire simple, pas de jargon ethnographique. DURÉE : 90 secondes strictes, environ 180 mots maximum. Ratio narration/archives visé : 40% narration / 60% citations. CONTRAINTE PIRATE : NON APPLIQUÉE — elle entre en contradiction directe avec le ton neutre_informatif verrouillé par l'utilisateur et avec le format voix off narrative. Le ton neutre_informatif étant un paramètre verrouillé, il prime."
+}

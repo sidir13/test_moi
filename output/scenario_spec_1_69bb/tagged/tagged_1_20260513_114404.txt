@@ -1,0 +1,21 @@
+=== PARTIE 1 : Le conte de la brousse ===
+
+{grillons_brousse_nuit.wav}
+
+[chuchote] Une voix raconte : [pause] [posé] [atténué] « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse. » [pause] Un serpent les attend sur un arbre. [ralentit] Un marabout finira par guérir le blessé.
+
+=== PARTIE 2 : La voix derrière le conte ===
+
+{ambiance_quartier_calme.wav}
+
+[pause] Celui qui parle a dix ans. [posé] Il habite à Nongo, en Côte d'Ivoire, et c'est en français qu'il livre son histoire.
+
+=== PARTIE 3 : Portrait d'une famille ===
+
+On lui demande d'où vient ce conte. Il précise : [posé] [atténué] « C'est mon grand-frère. » [pause] Ce grand frère répare des ventilateurs à Treichville. La mère, elle, tient un petit commerce. L'enfant explique : [posé] [atténué] « Elle vend tout, bananes. Elle vend dans un restaurant. » [pause] Quant au père, il est retraité de la SAPCO. L'enfant ajoute : [posé] [atténué] « C'est où on fabrique les chocolats. » [pause] Et d'en manger beaucoup ? [joyeusement] Il glisse : [posé] [atténué] « Oui. » [pause]
+
+=== PARTIE 4 : Ce que transmet une histoire ===
+
+{vent_brousse_doux.wav}
+
+[posé] Un grand frère qui raconte, un petit frère qui retient, puis qui transmet à son tour. [pause] Entre Treichville et Nongo, entre un atelier de ventilateurs et un conte de brousse, la parole circule. [ralentit] L'enfant a dix ans. Il porte déjà des histoires plus anciennes que lui.

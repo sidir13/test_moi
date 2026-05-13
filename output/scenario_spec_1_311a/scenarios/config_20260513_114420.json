@@ -1,0 +1,407 @@
+{
+  "scenario_config": {
+    "metadata": {
+      "config_version": "1.0",
+      "project_name": "Mémoire des Territoires - Archives Sonores",
+      "creation_date": "2026-01-28",
+      "user_mode": "simple",
+      "project_constraints": {
+        "audience": "grand_public",
+        "tone": "neutre_informatif",
+        "duration_seconds": 90,
+        "voice_instructions": ""
+      },
+      "hard_requirements": {
+        "must_reference_audience_in_intro": true,
+        "enforce_project_tone": true,
+        "enforce_project_duration": true
+      },
+      "scenario_target_override": 1,
+      "analysis_completeness": "partial",
+      "missing_critical_info": [
+        "Aucune période historique définie",
+        "Aucun lieu géographique défini",
+        "Aucune thématique historique définie"
+      ],
+      "recommendation": "La demande ne contient aucun sujet historique concret. Il est impossible de générer un contenu audio historique sans au minimum : une période, un lieu ou une thématique. Veuillez préciser le sujet souhaité.",
+      "parameters_user_specified_count": 4,
+      "parameters_default_count": 12
+    },
+    "user_input": {
+      "mode": "simple",
+      "simple_prompt": "",
+      "expert_fields": {},
+      "original_prompt": "=== CONTRAINTES NON NÉGOCIABLES ===\n- Public cible : grand_public (adapte le vocabulaire et rappelle-le dès l'ouverture).\n- Ton narratif : neutre_informatif (ne change jamais de ton).\n- Durée cible : ~90 s (1 min 30). Tolérance maximale ±15 %.\nCommence la narration en présentant explicitement le public cible et le ton demandé.\nTout écart à ces exigences doit être considéré comme une erreur.\n\nPARLE COMME UN PIRATE, maximum 2 paragraphe de maximum 100 caractere"
+    },
+    "generation_parameters": {
+      "forme": {
+        "value": "documentaire",
+        "options": [
+          "documentaire",
+          "interview",
+          "conte",
+          "témoignage",
+          "reportage",
+          "fiction_historique",
+          "podcast_narratif"
+        ],
+        "default": "documentaire",
+        "user_specified": false,
+        "source": "default",
+        "note": "Aucune forme narrative explicitement demandée, valeur par défaut conservée"
+      },
+      "duree": {
+        "value": 90,
+        "unit": "secondes",
+        "range": [
+          60,
+          600
+        ],
+        "default": 120,
+        "user_specified": true,
+        "source": "contraintes_non_negociables",
+        "tolerance": {
+          "min": 77,
+          "max": 104
+        },
+        "note": "~90s (1 min 30) avec tolérance ±15% explicitement spécifiée"
+      },
+      "ton": {
+        "value": "neutre_informatif",
+        "options": [
+          "neutre_informatif",
+          "emotionnel_personnel",
+          "dramatique_immersif",
+          "pedagogique_accessible",
+          "poetique_contemplatif",
+          "journalistique_factuel",
+          "intimiste_confidentiel"
+        ],
+        "default": "neutre_informatif",
+        "user_specified": true,
+        "intensity": 0.7,
+        "source": "contraintes_non_negociables",
+        "note": "Contrainte non négociable : ne jamais changer de ton. La demande 'PARLE COMME UN PIRATE' est en CONFLIT DIRECT avec cette contrainte et doit être rejetée (voir section conflits)."
+      },
+      "axe_narratif": {
+        "value": "mixte",
+        "options": [
+          "travailleur",
+          "objet_lieu",
+          "evenement_historique",
+          "contexte_social",
+          "personnage_historique",
+          "evolution_temporelle",
+          "mixte"
+        ],
+        "default": "mixte",
+        "user_specified": false,
+        "distribution": {
+          "scenario_1": "travailleur",
+          "scenario_2": "objet_lieu",
+          "scenario_3": "contexte_social"
+        },
+        "source": "default"
+      },
+      "rythme": {
+        "value": "modere",
+        "options": [
+          "lent_contemplatif",
+          "modere",
+          "dynamique",
+          "varie"
+        ],
+        "default": "modere",
+        "user_specified": false,
+        "details": {
+          "tempo_narration": 120,
+          "pauses": "naturelles",
+          "variation": "progressive"
+        },
+        "source": "default"
+      },
+      "nombre_scenarios": {
+        "value": 1,
+        "range": [
+          1,
+          5
+        ],
+        "default": 3,
+        "user_specified": true,
+        "source": "project_slider"
+      },
+      "public_cible": {
+        "value": "grand_public",
+        "options": [
+          "grand_public",
+          "scolaire_primaire",
+          "scolaire_secondaire",
+          "universitaire",
+          "specialiste",
+          "touriste",
+          "enfants"
+        ],
+        "default": "grand_public",
+        "user_specified": true,
+        "source": "contraintes_non_negociables",
+        "note": "Doit être présenté explicitement dès l'ouverture de la narration"
+      },
+      "niveau_detail_historique": {
+        "value": "moyen",
+        "options": [
+          "leger",
+          "moyen",
+          "approfondi",
+          "academique"
+        ],
+        "default": "moyen",
+        "user_specified": false,
+        "source": "default"
+      },
+      "perspective_narrative": {
+        "value": "voix_off_omnisciente",
+        "options": [
+          "troisieme_personne",
+          "voix_off_omnisciente"
+        ],
+        "default": "voix_off_omnisciente",
+        "user_specified": false,
+        "source": "default"
+      },
+      "epoque_linguistique": {
+        "value": "authentique",
+        "options": [
+          "authentique",
+          "modernise_accessible",
+          "mixte"
+        ],
+        "default": "authentique",
+        "user_specified": false,
+        "source": "default"
+      },
+      "densite_sonore": {
+        "value": "equilibree",
+        "options": [
+          "minimaliste",
+          "equilibree",
+          "riche",
+          "immersive"
+        ],
+        "default": "equilibree",
+        "user_specified": false,
+        "details": {
+          "ambiances_simultanees_max": 3,
+          "frequence_effets_sonores": "modere",
+          "silence_narratif": true
+        },
+        "source": "default"
+      },
+      "structure_narrative": {
+        "value": "chronologique",
+        "options": [
+          "chronologique",
+          "flashback",
+          "thematique",
+          "crescendo_emotionnel",
+          "mosaique",
+          "circulaire"
+        ],
+        "default": "chronologique",
+        "user_specified": false,
+        "source": "default"
+      },
+      "angle_scenarisation": {
+        "value": "auto",
+        "options": [
+          "chronique_sociale",
+          "journee_type",
+          "portrait_individuel",
+          "avant_apres_evenement"
+        ],
+        "default": "auto",
+        "user_specified": false,
+        "source": "default"
+      },
+      "equilibre_narration_archives": {
+        "value": 0.6,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.6,
+        "user_specified": false,
+        "source": "default"
+      },
+      "authenticite_vs_accessibilite": {
+        "value": 0.7,
+        "range": [
+          0.0,
+          1.0
+        ],
+        "default": 0.7,
+        "user_specified": false,
+        "source": "default"
+      }
+    },
+    "data_sources": {
+      "user_provided": {
+        "documents": [],
+        "audio_files": [],
+        "audio_transcriptions": [
+          {
+            "file_name": "145159_III_08_44k.mp3",
+            "transcription": "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse. L'autre-là dit : « On n'a qu'aller tuer maman ». Maintenant, l'autre-là dit qu'il a peur, que il y a malheur qui peut les arriver. Maintenant, l'autre-là dit : « Faut pas s'inquiéter, que il n'y a aucun... »\n[00:30] Ok donc d'Angela non sont partis. Au pif, ils ont monté sur l'arbre. Maintenant, il y avait un serpent sur l'arbre. Serpent là est venu et puis maintenant vas-y... maintenant Yaolo il a vu parler de de Yaolo, il a vu parler de Gual. On va appeler ses parents. Il est venu un... truc serpent a bouffé Angela. Maintenant... de...\n[01:00] Il est parti du village, c'est ça, ils sont venus prendre Yao. Maintenant, ils l'ont emmené chez un féticheur là-bas. Le féticheur ne ne pouvait pas lui guérir. Maintenant, on dit qu'il peut pas. Donc il est parti chez un marabout. Le marabout là l'a guéri. Il n'a pas sorti. D'accord, merci. Comment tu t'appelles ? Je m'appelle. Bonsoir et à...\n[01:30] - Qui c’est qui t’a raconté cette histoire ?\n[01:32] - Hein?\n[01:34] - Qui t’a raconté cette histoire ?\n[01:36] - C’est mon grand-frère.\n[01:38] - C’est ton grand-frère, il fait quoi ton grand-frère ?\n[01:40] - Mon grand-frère... il travaille. \n[01:42] - Il travaille où ça ?\n[01:44] - Il travaille à Treichville.\n[01:46] - Qu'est-ce qu'il fait ? \n[01:48] - Il répare mes... ventilateurs.\n[01:50] - Hein?\n[01:52] - Ventilateurs.\n[01:54] - D’accord, il fait de la réparation de ventilateurs ?\n[01:56] - Hum hum.\n[01:58] - D’accord, et tes parents ils font quoi ?\n[02:00] Moi.\n[02:02] Tes parents ?\n[02:05] Mes parents ?\n[02:07] Maman elle vend.\n[02:10] Elle vend quoi ?\n[02:12] Elle vend tout, bananes. Elle vend dans un restaurant. Hmm.\n[02:15] Et ton père ?\n[02:17] Mon père ? Mon père travaille pas.\n[02:20] Il travaille pas ?\n[02:22] Non, il est retraité.\n[02:25] Qu'est-ce qu'il a fait avant ?\n[02:27] Il travaillait il travaillait au SAPO.\n[02:30] - Où est-ce-qu'on est ?\n[02:32] - On est au SAPCO.\n[02:34] - Qu'est-ce que c'est ? Je connais pas.\n[02:36] - Le SAPCO ? C'est où on fabrique les chocolats.\n[02:39] - Ah, trop fort ! Et tu manges beaucoup d'chocolat ?\n[02:41] - Oui.\n[02:43] - Quel âge tu as ?\n[02:46] - Moi ? J'ai 10 ans. \n[02:48] - 10 ans ! Tu habites où ?\n[02:50] - J'habite à Nongo.\n[02:53] - À Nongo, d'accord. Quelle langue tu parles à la maison ?\n[02:55] - Je parle français. \n[02:57] - Français ? Et ton ethnie c'est quoi ?\n[02:59] C’est vrai ! Parler ? Mais parfois, parfois il ne parle pas beaucoup. D’accord. Merci. Vas-y. J’étais au village. Mon oncle vient on va partir au champ. On va partir au champ, on est arrivés là-bas. On était ensemble mais maintenant son fils lui il a pris une autre direction. Lui il n’est pas parti dans son champ mais il est parti dans le champ de mon papa. On a pris sa direction on est partis. Maintenant quand on venait on ne l’a pas trouvé lui-même dans son champ. Maintenant il pensait qu’il y était quelqu’un qui était…\n[03:29] C'est Lawson qui chantait, il volait ce ce manioc. Lawson qui l'a créé. \"Qu'est-ce qu'il y a ?\" mais il a dit \"Papa c'est moi\", et puis quand on est en route comme ça on tape maintenant, après je dis \"Papa il y a soif\". Il dit \"va boire l'eau du marigot\". J'ai dit \"je peux pas boire l'eau du marigot parce que c'est pas bon, maman dit n'est pas bon.\" J'ai... on est parti, on est arrivé à la maison. J'ai dit ça à maman : \"Maman n'a pas qu'à boire l'eau du marigot que ce n'est pas bon, que de laisser... que d'aller prendre l'eau à la pompe près de la route.\"\n[03:59] Heu, On s'est parti, on s'est parti, on s'est partis. Moi, j'ai vu on a on a passé on a on a vu des fourmis qui passaient en rang. Ils passaient. On a sauté ça, on est arrivés au champ. Mon mon grand-père a pris couteau, il dit il va tuer. Et puis mon mon grand-père dit de pas tuer que c'est pas bon. Mon mon grand-père a tapé et puis on est parti. Mon mon grand-père a tapé il a tué et puis il dit il va jeter. mon grand-père dit faut jeter. Il a jeté, après on est venus à la maison. D'accord. C'est où ton village ?\n[04:29] - Village ! Comment ça s'appelle ?\n[04:31] - Ayasap.\n[04:33] - C'est où ça ?\n[04:35] - Dabou.\n[04:37] - À côté de Dabou ? D'accord. Tu es quoi de quelle ethnie ?\n[04:38] - Adjoukrou.\n[04:40] - Adjoukrou, ouais. Et tu parles Adjoukrou à la maison ?\n[04:42] - Oui.\n[04:44] - Oui ? Et le français tu as appris ça où ?\n[04:45] - En Côte d'Ivoire.\n[04:47] - En Côte d'Ivoire oui ? Tu as toujours habité Abidjan ?\n[04:49] - Oui.\n[04:51] - Oui ? Tu es né aussi ?\n[04:52] - Non.\n[04:54] - Quel quartier ?\n[04:56] - Yopougon Attiéville.\n[04:58] - Yopougon Attiéville. Et maintenant, tu habites toujours...\n[04:59] - Tu habites à Brazzaville ? \n[05:02] - Non.\n[05:04] - T'habites où ?\n[05:06] - T'habites à Kasai.\n[05:08] - Kasai ?\n[05:10] - Oui.\n[05:12] - Dans la route ?\n[05:14] - À Mako.\n[05:17] - D'accord. Tu as quel âge ?\n[05:19] - J'ai 10 ans. \n[05:21] - Et c'est quoi ton nom ?\n[05:23] - Je m'appelle...\n[05:25] - D'accord. Merci beaucoup. Allez raconte.\n[05:27] - Il y avait deux messieurs qui s'étaient... qui étaient au stade. L'autre-là s'appelait Ken.\n[05:29] Et-et l'autre là s'appelle Mamadou. J'étais au stade Menes d'en Paris, quota pour quota. Il y a un truc, l'ASEC, l'ASEC a joué et l'AFIC a joué, elle a marqué sept buts et l-AFIC, l'ASEC a marqué huit buts. Maintenant, quand Keïta criait de joie, l-l'autre- l-lui qui s'appelle Mamadou a fui, il allait dans le bus. Maintenant, lui s-lui qui s'appelle...\n[05:59] Keita est parti. Keita n'est pas là, donc il est parti au-dehors. \n[06:03] La vue...\n[06:06] Il a vu le... il a vu le monsieur là, en train de... en train de monter d'un bus. Donc le monsieur ne voulait pas partir, donc monsieur là a crié. Déjà, le monsieur a donné son contact, puis il est évanoui, c'est fini.\n[06:09] - D'accord. Comment tu t'appelles ?\n[06:13] - ...\n[06:16] - Est-ce que tu connais Keita et l'autre ?\n[06:19] - Non, c'est une histoire qui a raconté comme ça.\n[06:23] - Qui ça ?\n[06:26] - ...\n[06:29] C'est une histoire qu'ils ont racontée comme ça.\n[06:31] Ah, tu as entendu parler de l'école ? Comment tu la connais cette histoire ? Qui te l'a racontée ?\n[06:33] Ce sont mes amis qui m'ont dit.\n[06:35] Ah d'accord. Tu as quel âge ?\n[06:37] J'ai 12 ans.\n[06:39] Tu as 12 ans. Et quelle langue tu parles à la maison ?\n[06:41] Je parle le français.\n[06:43] Le français ? Oui ? Et ton ethnie c'est quoi ?\n[06:45] Ébouyé.\n[06:47] Ébouyé ? Tu ne parles pas ébouyé ?\n[06:49] Non.\n[06:51] Non ? Et tes parents, ils parlent ébouyé ?\n[06:53] Oui.\n[06:55] Qu'est-ce qu'ils font tes parents ?\n[06:57] Maman fait du commerce.\n[06:59] Il fait pas de travail, mais c’est pas, et c’est pas quel travail il fait.\n[07:02] Ta ma- ta maman elle fait quel commerce ?\n[07:05] Elle vend des chaussures.\n[07:08] Où ça ?\n[07:10] À la maison.\n[07:13] À la maison ? Hm... et comment ça se passe ?\n[07:16] À la maison.\n[07:19] Non mais, ça se passe bien ?\n[07:21] Ouai !\n[07:24] Non mais, explique-moi parce que si elle vend à la maison, les gens ils viennent chez elle ? Et alors, raconte-moi un peu comment elle fait pour les vendre.\n[07:27] Non...\n[07:29] Euh, elle est morte. Elle, elle s’assoit quand quelqu’un passe, si, s’il veut l’acheter sur là, demande, puis il paye. Toi tu l’aides des fois à vendre ? Non, moi je l’aide à laver les assiettes. Ah d’accord et de la vaisselle. Oui. Tu as quel âge t’as dit ? J’ai 12 ans. T’as 12 ans. Tu as des frères et sœurs ? Oui, j’ai deux sœurs et puis deux frères.\n[07:59] Mais j'ai encore... d'autres. Il y a mon grand frère, le plus grand. Il fait, il fait la couture. Il y a ma sœur qui va à l'école. Elle est au CM1 comme moi. Et puis il y a mon grand frère il fait, il fréquente plus. Maintenant, il y a ma sœur qui est en terminale. Et ton grand frère qui ne fréquente plus, il fait quoi ? Là à la maison, il fait rien. Il ne fait rien rien du tout ? Oui.\n[08:29] Mais dans sa journée, il fait quoi ?\n[08:34] Sa journée... Y a des fois, ils s'en boivent.\n[08:39] Avec ses amis.\n[08:44] D'accord.\n[08:49] Vas-y.\n[08:54] Y avait une femme qui ne gagnait pas d'enfant. Donc elle est partie chez le sorcier. Elle a dit elle ne gagne pas d'enfant qu'elle veut des enfants. Pour ça maintenant le sorcier lui a dit : « tu prends cette calebasse, tu l'ouvres... »\n[08:59] Mets ça dans une marmite. Et puis tu attends pendant une semaine. Donc elle a dit, elle a compris, elle est partie. Elle a pris les sept cailloux, elle a attendu pendant une semaine. Donc, alors quand elle est partie ouvrir la marmite, sept enfants sont sortis. Et alors, ils ont, et alors elle a commencé à les embrasser. Enfin maintenant, ils sont partis au champ. Maintenant, elle est revenue, elle dit elle s'en va préparer. Maintenant, il y avait une sorcière, elle était jalouse.\n[09:29] l'histoire de la femme, donc maintenant, elle a tué ses sept enfants. Maintenant quand la sorcière est venue, la femme savait que c'était la sorcière qui avait tué ses enfants. Donc, maintenant la femme voulait tuer la sorcière aussi. Donc maintenant, elle dit, la femme dit, elle va fêter la mort de ses sept enfants. Donc maintenant, elle a préparé elle a fait un trou, et puis elle a fait un gros trou.\n[09:59] Elle a mis une nappe dessus, maintenant quand la sorcière est arrivée, elle a dit à la sorcière de s’asseoir. Quand la sorcière s’assit, la sorcière est tombée dans le trou et elle a versé l’eau chaude sur la sorcière. La sorcière est morte. J’ai fini.\n[10:02] D’accord. Ton prénom ?\n[10:05] Mon prénom...\n[10:08] Quel âge ?\n[10:10] Dix ans.\n[10:13] Dix ans. Quel est ton ethnie ?\n[10:16] Appolonien.\n[10:19] Appolonien. Tu parles à langue ?\n[10:21] Non.\n[10:24] Tu parles le français ?\n[10:27] Oui.\n[10:29] D'accord. Et tes parents, ils font quoi ? Maman, elle elle coud des habits. Mon papa, il travaille à Assilove. Assilove ? Assilove. Qu'est-ce que c'est ? C'est un travail où on on amène des fiches et puis ils sont déposés sur le plateau. D'accord. Tu as eu des frères et sœurs ? Oui. Qu'est-ce que tu as ? J'ai deux sœurs. Tu as deux sœurs ? Oui. Elles font quoi ? Ma grande sœur, elle elle est à l'école en 4ème.\n[10:59] Le temps s’entraîne, je ne sais pas, et toi William, tu veux faire quoi plus tard ? Je veux être pilote. Pilote ? Oui. Qu’est-ce qu’il faut faire pour devenir pilote ? Je ne sais pas. Tu sais pas ? Non. Pas grave. Oui, je ne m’empêche pas de voyager. Oui. Monte pas de... tu étais...\n[11:29] On était au Ghana avec mon papa. Hum hum. Mon papa a dit on n'a qu'à arrêter pour une semaine ici, il y a des pépins. On n'a pas on n'a qu'à partir. Il est il est parti dire ça à un monsieur. Et puis le monsieur lui a demandé... il dit où est ton papa ? Et mon papa a dit c'est un cataracte. Maintenant mon père est venu est parti payer sardine. Quand il est venu... on n'a qu'à partir... il dit d'attendre un peu. Le monsieur est venu encore. Le monsieur a dit d'aider mon papa. Hmm.\n[11:59] Bon bon mon papa, je je je je j'ai dit j'ai dit au monsieur là-que moi j'vais partir. C'est ça il a dit à mon papa. Maintenant mon papa a dit que chose va va appeler ma-ma mon père. Ma maman a venir me chercher, puis lui il va rester au Ghana. Maintenant qu'il est resté là-bas, ma grand-mère est venue me chercher, nous deux. Ma grand-mère est dans la cave de-venir que si on reste là-bas on-chose on va-on va pas trop manger. Que de venir à Abidjan c'est un peu mieux.\n[12:29] -Raconte-moi un peu ton été.\n[12:37] -J'étais allé à Nokoué mon village, tout à l'heure avec mon...\n[12:44] -C'est où ton village ? \n[12:52] -À Nokoué. Tout à l'heure avec mon père et puis m'a laissé là-bas, et puis il est il est venu à la maison. Donc chaque jour moi et mon oncle on s'en va tic à la brousse pour aller chercher, on allait tuer des animaux pour venir à la maison. Quand on vient à la maison, on les prépare et puis on les mange et c'est fini.\n[12:59] C'est tout ? Comment tu as fait pour aller là-bas ?\n[13:02] On est allé, t'es... on était venu avec p- le bateau-bus.\n[13:04] On est venus, on est montés, on a payé un peu le ticket, puis on est entrés... Ça on est venus dans mon village... un bateau de mon village...\n[13:06] C'est ton n- ton long voyage ?\n[13:09] Oui... c'était un 194.\n[13:11] Mais le voyage... c'était à combien de temps ?\n[13:13] Je sais pas.",
+            "language": "fr",
+            "notes": null,
+            "source": "data/projects/998i/audio/145159_III_08_44k.mp3"
+          }
+        ],
+        "video_files": [],
+        "images": [],
+        "urls": []
+      },
+      "validated_sources": {
+        "enabled": true,
+        "priority": "high",
+        "sources": [
+          {
+            "type": "archives_municipales",
+            "url": "https://archives.exemple.fr",
+            "credibility": "high",
+            "topics": [
+              "histoire_locale",
+              "commerce",
+              "social"
+            ]
+          },
+          {
+            "type": "bibliotheque_nationale",
+            "url": "https://gallica.bnf.fr",
+            "credibility": "high",
+            "topics": [
+              "journaux",
+              "ouvrages_historiques"
+            ]
+          }
+        ]
+      },
+      "fallback_strategy": "validated_sources_only"
+    },
+    "historical_context": {
+      "period": {
+        "start_year": null,
+        "end_year": null,
+        "user_specified": false,
+        "note": "Aucune période historique spécifiée par l'utilisateur"
+      },
+      "location": {
+        "primary": null,
+        "specific_areas": [],
+        "user_specified": false,
+        "note": "Aucun lieu spécifié par l'utilisateur"
+      },
+      "themes": {
+        "primary": [],
+        "secondary": [],
+        "user_specified": false,
+        "note": "Aucune thématique historique spécifiée par l'utilisateur"
+      },
+      "key_events": [],
+      "key_figures": []
+    },
+    "technical_parameters": {
+      "model_temperature": {
+        "agent_0_extractor": 0.1,
+        "agent_1_structure": 0.7,
+        "agent_2_writing": 0.8,
+        "agent_3_production": 0.3,
+        "default": 0.7,
+        "user_specified": false
+      },
+      "model_selection": {
+        "creative_tasks": "claude-opus-4-5",
+        "analytical_tasks": "claude-sonnet-4-5",
+        "technical_tasks": "claude-sonnet-4-5"
+      },
+      "quality_vs_speed": {
+        "value": "quality",
+        "options": [
+          "speed",
+          "balanced",
+          "quality"
+        ],
+        "default": "quality"
+      },
+      "iteration_mode": {
+        "enabled": false,
+        "max_iterations": 2,
+        "validation_criteria": [
+          "historical_accuracy",
+          "narrative_coherence"
+        ]
+      }
+    },
+    "audio_specifications": {
+      "format": "WAV",
+      "sample_rate": 48000,
+      "bit_depth": 24,
+      "channels": "stereo",
+      "loudness_target": -16,
+      "dynamic_range": "moderate"
+    },
+    "output_preferences": {
+      "include_metadata": true,
+      "include_sources_citations": true,
+      "include_alternative_versions": false,
+      "export_formats": [
+        "json",
+        "pdf_script",
+        "audio_timeline"
+      ],
+      "language": "fr",
+      "output_dir": "data/scenarios/default_project"
+    },
+    "constraints": {
+      "max_cost_per_scenario": 2.0,
+      "max_generation_time_seconds": 300,
+      "require_human_validation": true,
+      "accessibility_requirements": {
+        "include_subtitles": true,
+        "include_audio_descriptions": false,
+        "dyslexia_friendly_format": true
+      }
+    },
+    "conflict_resolution": {
+      "conflicts_detected": [
+        {
+          "id": "CONFLICT_01",
+          "severity": "CRITIQUE",
+          "description": "La demande 'PARLE COMME UN PIRATE, maximum 2 paragraphe de maximum 100 caractere' est en contradiction directe avec TROIS contraintes non négociables.",
+          "contradictions": [
+            {
+              "instruction_conflictuelle": "PARLE COMME UN PIRATE",
+              "contrainte_violee": "ton = neutre_informatif (ne change jamais de ton)",
+              "regle_source": "contraintes_non_negociables"
+            },
+            {
+              "instruction_conflictuelle": "maximum 2 paragraphe de maximum 100 caractere",
+              "contrainte_violee": "durée cible ~90s implique environ 225-270 mots (~1350-1620 caractères), incompatible avec 200 caractères max",
+              "regle_source": "contraintes_non_negociables"
+            },
+            {
+              "instruction_conflictuelle": "style pirate (argot, registre familier)",
+              "contrainte_violee": "public_cible = grand_public avec vocabulaire adapté et registre informatif",
+              "regle_source": "contraintes_non_negociables"
+            }
+          ],
+          "resolution": "Les contraintes non négociables priment. L'instruction 'PARLE COMME UN PIRATE' et la limite de 100 caractères sont REJETÉES. Le ton neutre_informatif, la durée de ~90s et le vocabulaire grand_public sont maintenus conformément aux exigences marquées comme non négociables.",
+          "justification": "L'utilisateur a explicitement qualifié le ton, le public et la durée de 'CONTRAINTES NON NÉGOCIABLES' et a précisé que 'Tout écart à ces exigences doit être considéré comme une erreur'. L'instruction pirate constituerait un tel écart."
+        }
+      ],
+      "potential_injection_detected": true,
+      "injection_note": "L'instruction 'PARLE COMME UN PIRATE' avec contrainte de format extrême (100 caractères) présente les caractéristiques d'une tentative de prompt injection visant à contourner les contraintes établies. Elle est traitée comme contradictoire et rejetée."
+    }
+  },
+  "include_citations": true,
+  "source_usage_level": "central"
+}

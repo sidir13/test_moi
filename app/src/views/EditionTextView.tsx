@@ -1,5 +1,5 @@
 import { ChevronRight, Loader2, MessageSquarePlus, PencilLine, Play, Sparkles, Volume2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -117,10 +117,193 @@ function KeyWordChip({ label, variant, dragText }: KeyWordChipProps) {
       onDragStart={dragText ? (e) => {
         e.dataTransfer.setData("text/plain", dragText);
         e.dataTransfer.effectAllowed = "copy";
+        // Use the chip itself as drag image so the ghost looks like the colored chip
+        const el = e.currentTarget;
+        const rect = el.getBoundingClientRect();
+        e.dataTransfer.setDragImage(el, e.clientX - rect.left, e.clientY - rect.top);
       } : undefined}
     >
       {label}
     </span>
+  );
+}
+
+// ─── Rich-text helpers for TaggedTextarea ────────────────────────────────────
+
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/** Convert tagged plain text (with [pause Xs] / {son.wav}) to HTML with inline chip spans. */
+function valueToHTML(text: string, hideEffetSonore = false): string {
+  if (!text) return "";
+  const chunks = parseTaggedText(text, false);
+  return chunks
+    .map((chunk) => {
+      if (chunk.type === "text") return escapeHtml(chunk.value);
+      if (hideEffetSonore && chunk.variant === "effet-sonore")
+        return escapeHtml(` {${chunk.value}}`);
+      const chipClass =
+        chunk.variant === "respiration"
+          ? "inline-flex items-center rounded-[4px] border border-[#623DC7] bg-[#E1D6FF] px-2 py-1 text-[12px] font-medium text-[#2F1E64]"
+          : chunk.variant === "effet-sonore"
+          ? "inline-flex items-center rounded-[4px] border border-[#C8009C] bg-[#FDEBF9] px-2 py-1 text-[12px] font-medium text-[#7D005F]"
+          : "inline-flex items-center rounded-[4px] border border-[#64748B] bg-[#F1F5F9] px-2 py-1 text-[12px] font-medium text-[#334155]";
+      // data-tag stores the raw tag text for round-trip serialization
+      const rawTag = chunk.variant === "effet-sonore" ? ` {${chunk.value}}` : `[${chunk.value}]`;
+      return `<span contenteditable="false" data-tag="${escapeHtml(rawTag)}" class="${chipClass}">${escapeHtml(chunk.value)}</span>`;
+    })
+    .join("");
+}
+
+/** Serialize a contenteditable div back to tagged plain text. */
+function divToText(div: HTMLElement): string {
+  let result = "";
+  function traverse(node: Node): void {
+    if (node.nodeType === Node.TEXT_NODE) {
+      result += node.textContent ?? "";
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node as HTMLElement;
+      if (el.dataset.tag !== undefined) {
+        result += el.dataset.tag;
+      } else if (el.tagName === "BR") {
+        result += "\n";
+      } else {
+        const isBlock = el.tagName === "DIV" || el.tagName === "P";
+        if (isBlock && result.length > 0 && !result.endsWith("\n")) result += "\n";
+        el.childNodes.forEach(traverse);
+      }
+    }
+  }
+  div.childNodes.forEach(traverse);
+  return result;
+}
+
+type TaggedTextareaProps = {
+  value: string;
+  onChange: (text: string) => void;
+  hideEffetSonore: boolean;
+  placeholder?: string;
+};
+
+/**
+ * Contenteditable div that renders tagged text with inline colored chips.
+ * caretRangeFromPoint works on div elements (unlike <textarea>), so drag-and-drop
+ * inserts at the exact cursor position and the dropped element is a real HTML chip.
+ */
+function TaggedTextarea({ value, onChange, hideEffetSonore, placeholder }: TaggedTextareaProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  // Track what is currently in the DOM to distinguish external vs internal updates
+  const internalRef = useRef<string | null>(null);
+
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+    if (value !== internalRef.current) {
+      ref.current.innerHTML = valueToHTML(value, hideEffetSonore);
+      internalRef.current = value;
+    }
+  }, [value, hideEffetSonore]);
+
+  return (
+    <div
+      ref={ref}
+      contentEditable
+      suppressContentEditableWarning
+      data-placeholder={placeholder}
+      onInput={(e) => {
+        const text = divToText(e.currentTarget as HTMLDivElement);
+        internalRef.current = text;
+        onChange(text);
+      }}
+      onKeyDown={(e) => {
+        // Prevent Chrome from wrapping new lines in <div> blocks
+        if (e.key === "Enter") {
+          e.preventDefault();
+          document.execCommand("insertText", false, "\n");
+        }
+      }}
+      onPaste={(e) => {
+        // Strip rich text on paste
+        e.preventDefault();
+        const text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertText", false, text);
+      }}
+      onDragOver={(e) => {
+        if (!e.dataTransfer.types.includes("text/plain")) return;
+        e.preventDefault();
+      }}
+      onDrop={(e) => {
+        e.preventDefault();
+        const rawDrag = e.dataTransfer.getData("text/plain");
+        if (!rawDrag) return;
+        const trimmed = rawDrag.trim();
+
+        // Exact drop position — works correctly on contenteditable divs
+        const doc = document as Document & {
+          caretRangeFromPoint?: (x: number, y: number) => Range | null;
+          caretPositionFromPoint?: (x: number, y: number) => { offsetNode: Node; offset: number } | null;
+        };
+        let range: Range | null = null;
+        if (doc.caretRangeFromPoint) {
+          range = doc.caretRangeFromPoint(e.clientX, e.clientY); // Chrome / Safari
+        } else if (doc.caretPositionFromPoint) {
+          const pos = doc.caretPositionFromPoint(e.clientX, e.clientY); // Firefox
+          if (pos) { range = document.createRange(); range.setStart(pos.offsetNode, pos.offset); range.collapse(true); }
+        }
+        if (!range) return;
+
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+
+        const createChip = (dataTag: string, label: string, chipClass: string) => {
+          const span = document.createElement("span");
+          span.setAttribute("contenteditable", "false");
+          span.dataset.tag = dataTag;
+          span.className = chipClass;
+          span.textContent = label;
+          return span;
+        };
+
+        if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+          // Respiration-style tag: leading space is a word separator, not part of tag
+          const inner = trimmed.slice(1, -1);
+          const chipClass = /^(pause|silence|respiration)/i.test(inner)
+            ? "inline-flex items-center rounded-[4px] border border-[#623DC7] bg-[#E1D6FF] px-2 py-1 text-[12px] font-medium text-[#2F1E64]"
+            : "inline-flex items-center rounded-[4px] border border-[#64748B] bg-[#F1F5F9] px-2 py-1 text-[12px] font-medium text-[#334155]";
+          if (rawDrag.startsWith(" ")) {
+            const space = document.createTextNode(" ");
+            range.insertNode(space);
+            range.setStartAfter(space);
+          }
+          const chip = createChip(trimmed, inner, chipClass);
+          range.insertNode(chip);
+          range.setStartAfter(chip);
+        } else if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+          // Effet-sonore: leading space IS part of the tag syntax
+          const chip = createChip(
+            rawDrag, // " {son.wav}" — space included
+            trimmed.slice(1, -1),
+            "inline-flex items-center rounded-[4px] border border-[#C8009C] bg-[#FDEBF9] px-2 py-1 text-[12px] font-medium text-[#7D005F]",
+          );
+          range.insertNode(chip);
+          range.setStartAfter(chip);
+        } else {
+          const node = document.createTextNode(rawDrag);
+          range.insertNode(node);
+          range.setStartAfter(node);
+        }
+
+        range.collapse(true);
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+
+        const text = divToText(ref.current!);
+        internalRef.current = text;
+        onChange(text);
+      }}
+      className="min-h-[72px] w-full whitespace-pre-wrap break-words rounded-md border border-transparent bg-transparent px-1 text-[14px] font-normal leading-6 text-[#334155] outline-none transition-colors hover:border-[#E2E8F0] focus:border-[#007AFF] empty:before:content-[attr(data-placeholder)] empty:before:text-slate-400 empty:before:pointer-events-none"
+    />
   );
 }
 
@@ -390,22 +573,11 @@ export function EditionTextView() {
                         className="flex-1 rounded-md border border-transparent bg-transparent px-1 text-[14px] font-semibold text-[#0F172B] outline-none transition-colors hover:border-[#E2E8F0] focus:border-[#007AFF]"
                       />
                     </div>
-                    <textarea
+                    <TaggedTextarea
                       value={part.texte_narration}
-                      onChange={(e) => updatePart(idx, { texte_narration: e.target.value })}
-                      onDragOver={(e) => { if (e.dataTransfer.types.includes("text/plain")) e.preventDefault(); }}
-                      onDrop={(e) => {
-                        e.preventDefault();
-                        const tagText = e.dataTransfer.getData("text/plain");
-                        if (!tagText) return;
-                        const ta = e.currentTarget;
-                        const pos = ta.selectionStart ?? ta.value.length;
-                        const updated = ta.value.slice(0, pos) + tagText + ta.value.slice(pos);
-                        updatePart(idx, { texte_narration: updated });
-                      }}
+                      onChange={(text) => updatePart(idx, { texte_narration: text })}
+                      hideEffetSonore={!isElevenLabs}
                       placeholder="Texte de narration…"
-                      rows={Math.max(3, Math.ceil((part.texte_narration?.length ?? 0) / 80))}
-                      className="w-full resize-y rounded-md border border-transparent bg-transparent px-1 text-[14px] font-normal leading-6 text-[#334155] outline-none transition-colors hover:border-[#E2E8F0] focus:border-[#007AFF]"
                     />
                   </div>
                 ))}

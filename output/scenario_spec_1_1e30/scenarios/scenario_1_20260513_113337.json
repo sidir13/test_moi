@@ -1,0 +1,243 @@
+{
+  "scenario_id": 1,
+  "titre": "Voix d'enfance à Treichville",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "journee_type",
+  "resumeHistoire": "Dans un quartier de Côte d'Ivoire, un enfant d'une dizaine d'années raconte sa journée et son monde. Entre le conte transmis par son grand frère réparateur de ventilateurs à Treichville, la mère qui vend des bananes au restaurant, et le père retraité de la SAPCO — l'usine à chocolat —, c'est tout un univers familial et quotidien qui se dessine. Du village au champ, des histoires de serpents aux odeurs de cacao, cette voix d'enfant capture un fragment de vie ordinaire en Afrique de l'Ouest, où tradition orale et modernité cohabitent naturellement.",
+  "duree_estimee": 138.5183512140034,
+  "parties": [
+    {
+      "partie_id": 1,
+      "titre": "Le matin — Les histoires du grand frère",
+      "duree": 43.63636363636364,
+      "texte_narration": "Un garçon de dix ans, à Nongo, en Côte d'Ivoire. Le matin, avant que le jour ne chauffe, il y a les histoires. Celles que le grand frère ramène avec lui. L'enfant raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. »] On lui demande d'où vient ce conte. Il précise : [ARCHIVE : « C'est mon grand frère. »]",
+      "ton": {
+        "global": "chaleureux, posé, immersif",
+        "tempo_lecture": 110,
+        "pauses": [
+          "après 'en Côte d'Ivoire' (1.5s)",
+          "après la première archive (1s)",
+          "après 'ce conte' (0.5s)"
+        ],
+        "intonation": "douce, narrative, légèrement suspendue sur les citations"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:00",
+          "action": "Ouverture sur le portrait de l'enfant — ancrage géographique immédiat",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "0:08",
+          "action": "Première citation du conte — voix de l'enfant",
+          "duree": 10.0
+        },
+        {
+          "timestamp": "0:24",
+          "action": "Révélation de la source du conte — le grand frère",
+          "duree": 4.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Un garçon de dix ans, à Nongo, en Côte d'Ivoire.",
+          "sources": [
+            "[02:46] Moi ? J'ai 10 ans.",
+            "[02:50] J'habite à Nongo."
+          ]
+        },
+        {
+          "sentence": "Le matin, avant que le jour ne chauffe, il y a les histoires.",
+          "sources": []
+        },
+        {
+          "sentence": "Celles que le grand frère ramène avec lui.",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        },
+        {
+          "sentence": "L'enfant raconte : [ARCHIVE : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Les deux partaient en brousse. »]",
+          "sources": [
+            "[00:00] Il y avait... il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie. Maintenant, les deux partaient en brousse."
+          ]
+        },
+        {
+          "sentence": "On lui demande d'où vient ce conte.",
+          "sources": [
+            "[01:30] Qui c'est qui t'a raconté cette histoire ?"
+          ]
+        },
+        {
+          "sentence": "Il précise : [ARCHIVE : « C'est mon grand frère. »]",
+          "sources": [
+            "[01:36] C'est mon grand-frère."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 2,
+      "titre": "La journée — Le monde des adultes",
+      "duree": 41.73913043478261,
+      "texte_narration": "Ce grand frère travaille à Treichville. L'enfant explique : [ARCHIVE : « Il répare les ventilateurs. »] La mère, elle, tient un petit commerce. Il ajoute : [ARCHIVE : « Maman elle vend. Elle vend tout, bananes. Elle vend dans un restaurant. »] Et le père ? Il confie : [ARCHIVE : « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. »] Le SAPCO, c'est l'usine où l'on fabrique le chocolat. L'enfant le sait bien — il glisse : [ARCHIVE : « Et tu manges beaucoup d'chocolat ? Oui. »]",
+      "ton": {
+        "global": "neutre, vivant, documentaire",
+        "tempo_lecture": 115,
+        "pauses": [
+          "après 'ventilateurs' (0.5s)",
+          "après 'restaurant' (1s)",
+          "après 'retraité' (0.5s)",
+          "après 'chocolat' (1s)"
+        ],
+        "intonation": "légèrement plus rythmée, enchaînement fluide entre les citations"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "0:30",
+          "action": "Portrait du grand frère — métier concret",
+          "duree": 5.0
+        },
+        {
+          "timestamp": "0:37",
+          "action": "Portrait de la mère — commerce alimentaire",
+          "duree": 8.0
+        },
+        {
+          "timestamp": "0:48",
+          "action": "Le père et la SAPCO — ouverture sur le chocolat",
+          "duree": 10.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Ce grand frère travaille à Treichville.",
+          "sources": [
+            "[01:44] Il travaille à Treichville."
+          ]
+        },
+        {
+          "sentence": "L'enfant explique : [ARCHIVE : « Il répare les ventilateurs. »]",
+          "sources": [
+            "[01:48] Il répare mes... ventilateurs."
+          ]
+        },
+        {
+          "sentence": "La mère, elle, tient un petit commerce.",
+          "sources": [
+            "[02:07] Maman elle vend."
+          ]
+        },
+        {
+          "sentence": "Il ajoute : [ARCHIVE : « Maman elle vend. Elle vend tout, bananes. Elle vend dans un restaurant. »]",
+          "sources": [
+            "[02:07] Maman elle vend.",
+            "[02:12] Elle vend tout, bananes. Elle vend dans un restaurant."
+          ]
+        },
+        {
+          "sentence": "Et le père ?",
+          "sources": [
+            "[02:15] Et ton père ?"
+          ]
+        },
+        {
+          "sentence": "Il confie : [ARCHIVE : « Mon père travaille pas. Il est retraité. Il travaillait au SAPCO. »]",
+          "sources": [
+            "[02:17] Mon père ? Mon père travaille pas.",
+            "[02:22] Non, il est retraité.",
+            "[02:27] Il travaillait il travaillait au SAPO."
+          ]
+        },
+        {
+          "sentence": "Le SAPCO, c'est l'usine où l'on fabrique le chocolat.",
+          "sources": [
+            "[02:36] Le SAPCO ? C'est où on fabrique les chocolats."
+          ]
+        },
+        {
+          "sentence": "L'enfant le sait bien — il glisse : [ARCHIVE : « Et tu manges beaucoup d'chocolat ? Oui. »]",
+          "sources": [
+            "[02:39] Ah, trop fort ! Et tu manges beaucoup d'chocolat ?",
+            "[02:41] Oui."
+          ]
+        }
+      ]
+    },
+    {
+      "partie_id": 3,
+      "titre": "Le soir — Du village au champ",
+      "duree": 53.14285714285714,
+      "texte_narration": "Puis vient l'heure d'une autre histoire, celle du village. L'enfant se souvient : [ARCHIVE : « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais maintenant son fils lui il a pris une autre direction. »] Chacun sa route dans les plantations. Le soir tombe sur Nongo. Entre un conte de brousse et un souvenir de champ, entre l'odeur du chocolat et la voix d'un grand frère, un monde entier tient dans les mots d'un enfant de dix ans.",
+      "ton": {
+        "global": "apaisé, contemplatif, sobre",
+        "tempo_lecture": 105,
+        "pauses": [
+          "après 'du village' (1s)",
+          "après la citation archive (1.5s)",
+          "après 'plantations' (1s)",
+          "après 'dix ans' (2s)"
+        ],
+        "intonation": "ralentie, descendante vers la fin, ton de clôture douce"
+      },
+      "moments_cles": [
+        {
+          "timestamp": "1:00",
+          "action": "Transition vers le souvenir du village — changement de registre",
+          "duree": 4.0
+        },
+        {
+          "timestamp": "1:05",
+          "action": "Citation du départ au champ avec l'oncle",
+          "duree": 12.0
+        },
+        {
+          "timestamp": "1:22",
+          "action": "Fermeture contemplative — portrait sonore complet de l'enfant",
+          "duree": 8.0
+        }
+      ],
+      "ambiances_continues": [],
+      "sentence_sources": [
+        {
+          "sentence": "Puis vient l'heure d'une autre histoire, celle du village.",
+          "sources": []
+        },
+        {
+          "sentence": "L'enfant se souvient : [ARCHIVE : « J'étais au village. Mon oncle vient, on va partir au champ. On est arrivés là-bas. On était ensemble mais maintenant son fils lui il a pris une autre direction. »]",
+          "sources": [
+            "[02:59] J'étais au village. Mon oncle vient on va partir au champ. On va partir au champ, on est arrivés là-bas. On était ensemble mais maintenant son fils lui il a pris une autre direction."
+          ]
+        },
+        {
+          "sentence": "Chacun sa route dans les plantations.",
+          "sources": []
+        },
+        {
+          "sentence": "Le soir tombe sur Nongo.",
+          "sources": [
+            "[02:50] J'habite à Nongo."
+          ]
+        },
+        {
+          "sentence": "Entre un conte de brousse et un souvenir de champ, entre l'odeur du chocolat et la voix d'un grand frère, un monde entier tient dans les mots d'un enfant de dix ans.",
+          "sources": [
+            "[00:00] Il y avait... il y avait deux petits...",
+            "[02:36] Le SAPCO ? C'est où on fabrique les chocolats.",
+            "[01:36] C'est mon grand-frère.",
+            "[02:46] Moi ? J'ai 10 ans."
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "nombre_mots": 253,
+    "duree_lecture_estimee": 138.5183512140034,
+    "nombre_archives_utilisees": 0,
+    "nombre_ambiances": 0
+  },
+  "notes_pour_agent_3": "FLUIDITÉ : Le récit est porté par une voix off omnisciente au ton neutre et informatif, registre accessible grand public. Les citations directes de l'enfant constituent le cœur du récit — elles doivent être intégrées comme des moments d'écoute privilégiés, non comme des interruptions. La narration tisse un fil continu entre les paroles de l'enfant, créant un portrait par accumulation de détails concrets. Éviter toute condescendance — traiter cette voix d'enfant avec la même dignité qu'un témoignage adulte. Le rythme suit la journée : lenteur matinale du conte, vivacité du quotidien familial, apaisement vespéral. Pas d'adresse directe au public. Maintenir l'authenticité linguistique des citations (français ivoirien). Budget total : environ 180 mots maximum."
+}

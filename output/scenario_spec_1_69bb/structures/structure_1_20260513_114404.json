@@ -1,0 +1,101 @@
+{
+  "scenario_id": 1,
+  "titre_global": "L'enfant de Nongo",
+  "resumeHistoire": "Un garçon de dix ans, habitant le quartier de Nongo, raconte avec ses mots d'enfant une histoire transmise par son grand frère, réparateur de ventilateurs à Treichville. À travers ce conte mettant en scène deux garçons — Kwaku et Kofie — partis en brousse et confrontés à un serpent, puis soignés par un marabout, se dessine tout un univers familial et culturel. Le portrait de cet enfant, entre traditions orales héritées et quotidien modeste — une mère qui vend des bananes dans un restaurant, un père retraité de la SAPCO, la fabrique de chocolat —, révèle la vitalité de la transmission entre générations dans une famille ivoirienne ordinaire.",
+  "axe_narratif": "mixte",
+  "angle_scenarisation": "portrait_individuel",
+  "duree_totale": 90,
+  "structure": [
+    {
+      "partie": 1,
+      "titre": "Le conte de la brousse",
+      "duree_cible": 20.0,
+      "fonction_narrative": "ouverture_in_medias_res_flashback",
+      "position_arc_emotionnel": "intrigue_immédiate",
+      "elements_necessaires": [
+        "Entrée directe dans le conte raconté par l'enfant : Kwaku et Kofie partent en brousse",
+        "Citation directe de l'enfant : « Il y avait deux petits, il y en a un qui s'appelait Kwaku, il y en a un qui s'appelait Kofie »",
+        "Le projet dangereux, le serpent, le recours au marabout guérisseur",
+        "Ambiance sonore suggérée : brousse, nature"
+      ],
+      "mood": "mystérieux_enfantin"
+    },
+    {
+      "partie": 2,
+      "titre": "La voix derrière le conte",
+      "duree_cible": 10.0,
+      "fonction_narrative": "pivot_temporel_retour_au_present",
+      "position_arc_emotionnel": "curiosité_transition",
+      "elements_necessaires": [
+        "Rupture douce : on découvre que ce conte est raconté par un enfant, ici et maintenant",
+        "La voix off révèle le conteur : un garçon de dix ans",
+        "Transition du monde du conte vers le monde réel de l'enfant"
+      ],
+      "mood": "chaleureux_intime"
+    },
+    {
+      "partie": 3,
+      "titre": "Portrait d'une famille",
+      "duree_cible": 35.0,
+      "fonction_narrative": "developpement_portrait",
+      "position_arc_emotionnel": "attachement_croissant",
+      "elements_necessaires": [
+        "Citation : « Qui t'a raconté cette histoire ? — C'est mon grand-frère »",
+        "Le grand frère réparateur de ventilateurs à Treichville",
+        "La mère qui vend au restaurant : « Elle vend tout, bananes. Elle vend dans un restaurant »",
+        "Le père retraité de la SAPCO : « C'est où on fabrique les chocolats »",
+        "Citation : « Et tu manges beaucoup d'chocolat ? — Oui »",
+        "L'enfant habite à Nongo, parle français à la maison",
+        "Densité sonore riche : ambiance de quartier, vie quotidienne"
+      ],
+      "mood": "vivant_tendre"
+    },
+    {
+      "partie": 4,
+      "titre": "Ce que transmet une histoire",
+      "duree_cible": 25.0,
+      "fonction_narrative": "resolution_elevation",
+      "position_arc_emotionnel": "émotion_contemplative",
+      "elements_necessaires": [
+        "Retour au conte comme fil de transmission entre le grand frère et l'enfant",
+        "Élargissement : derrière ce petit récit de brousse, toute une culture orale qui persiste",
+        "Évocation du quotidien modeste mais riche de sens",
+        "Fermeture sur l'image de l'enfant, dix ans, porteur d'histoires plus grandes que lui",
+        "Ton neutre informatif maintenu, émotion par les faits"
+      ],
+      "mood": "contemplatif_lumineux"
+    }
+  ],
+  "arc_emotionnel_global": "curiosité_vers_attachement_contemplatif",
+  "rythme_general": "ouverture_vive_puis_ralentissement_progressif_vers_contemplation",
+  "transitions_cles": [
+    {
+      "entre_parties": [
+        1,
+        2
+      ],
+      "type": "rupture_douce_temporelle",
+      "duree": 2.0,
+      "description": "Du monde imaginaire du conte, on glisse vers la réalité : la voix off révèle que ce récit sort de la bouche d'un enfant. Le passage du flashback narratif au présent se fait par un changement d'ambiance sonore — de la brousse évoquée vers un environnement plus proche, plus quotidien."
+    },
+    {
+      "entre_parties": [
+        2,
+        3
+      ],
+      "type": "progression_naturelle",
+      "duree": 1.5,
+      "description": "La curiosité sur l'identité du conteur ouvre naturellement sur son univers familial. Les citations directes de l'échange questions-réponses créent un rythme dialogué qui porte la transition sans effort."
+    },
+    {
+      "entre_parties": [
+        3,
+        4
+      ],
+      "type": "élargissement_réflexif",
+      "duree": 2.0,
+      "description": "Du portrait concret de la famille, la narration s'élève doucement vers le sens de la transmission orale. Le rythme ralentit, la voix off prend du recul, passant du particulier à l'universel."
+    }
+  ],
+  "notes_production": "FLUIDITÉ ET CONTINUITÉ : Le récit commence en flashback par le conte de Kwaku et Kofie, comme si l'auditeur entendait d'abord une histoire ancienne, avant de découvrir qu'elle est portée par un enfant de dix ans. Ce retournement doux est le pivot central du documentaire. — Les citations directes de l'enfant (au moins 4-5 extraits) constituent le cœur battant du récit ; la voix off tisse autour d'elles sans jamais les écraser. — Le ton reste neutre et informatif tout au long : l'émotion naît des faits et des paroles de l'enfant, jamais d'effets rhétoriques. — Registre grand public : phrases courtes, vocabulaire accessible, pas de jargon ethnographique. — La structure en flashback impose que la partie 1 ne révèle PAS encore qui raconte ; le suspense léger est résolu en partie 2. — Ambiances sonores suggérées : brousse/nature pour la partie 1, transition vers ambiance urbaine/quartier pour les parties 2-3, retour à un calme contemplatif en partie 4. — Respecter strictement le budget de ~180 mots maximum pour l'ensemble. Chaque mot compte. — Ne pas inventer de détails biographiques absents de la transcription : s'en tenir à Nongo, Treichville, la SAPCO, le français parlé à la maison, l'âge de dix ans, et les éléments familiaux explicitement mentionnés."
+}
